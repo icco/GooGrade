@@ -59,50 +59,23 @@
 
 <div class="slide">
 <h1>Use Case 15 - Edit User</h1>
-<font size="1">
-<table border="1">
-<tr>
-<th>Use Case</th>
-<td>UC-15</td>
-<th>Use Case Name</th>
-<td>Edit User</td>
-</tr>
-<tr>
-<th>Created by</th>
-<td>Viktor Gerdin</td>
-<th>Last Modified by</th>
-<td>Viktor Gerdin</td></tr>
-</tr>
-<tr>
-<th>Date Created</th>
-<td>2/17/09</td>
-<th>Last Change</th>
-<td>2/24/09</td></tr>
-</tr>
-<tr>
-<th>Actor</th>
-<td colspan="3">Teacher</td>
-</tr>
-<tr>
-<th>Description</th>
-<td colspan="3">The <b>Actor</b> can edit an <b>Account</b>
+<div style="font-size: 0.45em;">
+<p><strong>Actor:</strong> Teacher. (TA, Student, see Notes and issues on future slide)<br />
+<strong>Priority:</strong> High. <br />
+<strong>Frequency of Use:</strong> Once a Quarter</p>
+<h2>Description</h2>
+<p>The <b>Actor</b> can edit an <b>Account</b>
 from the system. The System will notify the <b>Account</b> holder
-about any changes made.</td>
-<tr>
-<th>Pre-conditions</th>
-<td colspan="3"><ul><li>The Actor must be authenticated by the system.</li></ul></td>
-</tr>
-<tr>
-<th>Post-conditions</th>
-<td colspan="3">
+about any changes made.</p>
+<h2>Pre-conditions</h2>
+<ul><li>The Actor must be authenticated by the system.</li></ul>
+<h2>Post-conditions</h2>
 <ul><li>Any <i>other</i> <b>Account</b> must be unaffected by the editing
 of an <b>Account</b>.</li>
 <li><b>Password</b> must comply with security requirement SE-4. 
-(See section 5.3 in SRS document)</li></td>
-</tr>
-<tr>
-<th>Normal Flow</th>
-<td colspan="3"><ol>
+(See section 5.3 in SRS document)</li></ul>
+<h2>Normal Flow</h2>
+<ol>
 <li>The Actor selects an <b>Account</b> for editing.</li>
 <li>The System displays the selected <b>Account</b>.</li>
 <li>The Actor selects what <b>Account</b> data to edit.</li>
@@ -110,11 +83,13 @@ of an <b>Account</b>.</li>
 <li>The Actor selects to store any changes.</li>
 <li>The System stores edited <b>Account</b> data.</li>
 <li>The System notifies <b>Account</b> holder of any changed data.</li>
-</ol></td>
-</tr>
-<tr>
-<th>Alternate Flow</th>
-<td colspan="3">
+</ol>
+</div>
+</div>
+<div class="slide">
+<h1>Use Case Summary Cont.</h1>
+<div style="font-size: 0.5em;">
+<h2>Alternate Flow</h2>
 <u>Alt Flow 1: At step 5 of Normal Flow:</u><br/>
 <ol start="5">
 <li>The Actor selects to cancel the edit.</li>
@@ -132,9 +107,7 @@ If edited <b>EmailAddress</b> is not a valid email address.<br/>
 <li>The System displays an error massage.</li>
 <li>The System returns to step 4 <i>without</i> altering any <b>Account</b>.</li>
 </ol>
-</td>
-</tr></table>
-</font>
+</div>
 </div>
 
 <div class="slide">
