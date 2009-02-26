@@ -58,16 +58,87 @@
 </div>
 
 <div class="slide">
-<h1>Slide 2</h1>
-<img src="penis.jpg" />
+<h1>Use Case 15 - Edit User</h1>
+<font size="1">
+<table border="1">
+<tr>
+<th>Use Case</th>
+<td>UC-15</td>
+<th>Use Case Name</th>
+<td>Edit User</td>
+</tr>
+<tr>
+<th>Created by</th>
+<td>Viktor Gerdin</td>
+<th>Last Modified by</th>
+<td>Viktor Gerdin</td></tr>
+</tr>
+<tr>
+<th>Date Created</th>
+<td>2/17/09</td>
+<th>Last Change</th>
+<td>2/24/09</td></tr>
+</tr>
+<tr>
+<th>Actor</th>
+<td colspan="3">Teacher</td>
+</tr>
+<tr>
+<th>Description</th>
+<td colspan="3">The <b>Actor</b> can edit an <b>Account</b>
+from the system. The System will notify the <b>Account</b> holder
+about any changes made.</td>
+<tr>
+<th>Pre-conditions</th>
+<td colspan="3"><ul><li>The Actor must be authenticated by the system.</li></ul></td>
+</tr>
+<tr>
+<th>Post-conditions</th>
+<td colspan="3">
+<ul><li>Any <i>other</i> <b>Account</b> must be unaffected by the editing
+of an <b>Account</b>.</li>
+<li><b>Password</b> must comply with security requirement SE-4. 
+(See section 5.3 in SRS document)</li></td>
+</tr>
+<tr>
+<th>Normal Flow</th>
+<td colspan="3"><ol>
+<li>The Actor selects an <b>Account</b> for editing.</li>
+<li>The System displays the selected <b>Account</b>.</li>
+<li>The Actor selects what <b>Account</b> data to edit.</li>
+<li>The Actor edits selected <b>Account</b> data.</li>
+<li>The Actor selects to store any changes.</li>
+<li>The System stores edited <b>Account</b> data.</li>
+<li>The System notifies <b>Account</b> holder of any changed data.</li>
+</ol></td>
+</tr>
+<tr>
+<th>Alternate Flow</th>
+<td colspan="3">
+<u>Alt Flow 1: At step 5 of Normal Flow:</u><br/>
+<ol start="5">
+<li>The Actor selects to cancel the edit.</li>
+<li>The System returns to step 1 <i>without</i> altering any <b>Account</b>.</li>
+</ol>
+<u>Alt Flow 2: At step 6 of Normal Flow:</u><br/>
+If edited <b>Password</b> does not comply with SE-4 (See section 5.3 in SRS)<br/>
+<ol start="6">
+<li>The System displays an error message.</li>
+<li>The System returns to step 4 <i>without</i> altering any <b>Account</b>.</li> 
+</ol>
+<u>Alt Flow 3: At step 6 of Normal Flow:</u><br/>
+If edited <b>EmailAddress</b> is not a valid email address.<br/>
+<ol start="6">
+<li>The System displays an error massage.</li>
+<li>The System returns to step 4 <i>without</i> altering any <b>Account</b>.</li>
+</ol>
+</td>
+</tr></table>
+</font>
 </div>
 
 <div class="slide">
-<h1>Use Case Summary</h1>
-</div>
-
-<div class="slide">
-<h1>Test Case Sumamry</h1>
+<h1>Test Case Summary</h1>
 </div>
 
 <div class="slide">
