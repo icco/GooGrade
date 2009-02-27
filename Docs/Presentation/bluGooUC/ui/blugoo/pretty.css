@@ -1,10 +1,11 @@
 /*
- Theme: i18n
- Eric A. Meyer (http://meyerweb.com/)
+ Theme: blugoo
+ a fork of i18n by Eric A. Meyer (http://meyerweb.com/)
+ Modifications by Nat Welch
  Theme placed under CC by-sa 2.0 license
 */
 
-body {background: #95A7D4 url(bg-slide.jpg) 100% 100% no-repeat; color: #210; font: 28px Arial, sans-serif;}
+body {background: #95A7D4 100% 100% no-repeat; color: #210; font: 28px Arial, sans-serif;}
 a {text-decoration: none; color: #336; border-bottom: 1px dotted;}
 h1, h2, h3, h4, h5, h6 {font-size: 1em; margin: 0;}
 sup {font-size: 0.75em; font-weight: normal;
