@@ -8,9 +8,9 @@
 <!-- metadata -->
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
-<meta name="presdate" content="20050728" />
-<meta name="author" content="Eric A. Meyer" />
-<meta name="company" content="Complex Spiral Consulting" />
+<meta name="presdate" content="20090227" />
+<meta name="author" content="N. Welch V.Gerdin" />
+<meta name="company" content="BluGoo" />
 <!-- configuration parameters -->
 <meta name="defaultView" content="slideshow" />
 <meta name="controlVis" content="hidden" />
@@ -50,7 +50,7 @@
 <h1>Overview</h1>
 <ul>
 <li>Use Case Summary</li>
-<li>Test Case Sumamry</li>
+<li>Test Case Summary</li>
 <li>CRC</li>
 <li>Class Diagram</li>
 <li>Activity Diagram</li>
@@ -60,13 +60,13 @@
 <div class="slide">
 <h1>Use Case 15 - Edit User</h1>
 <div style="font-size: 0.45em;">
-<p><strong>Actor:</strong> Teacher. (TA, Student, see Notes and issues on future slide)<br />
+<p><strong>Actor:</strong> Teacher, Teacher Assistant w/ <b>ManageUser Permission</b> in their course, Student w/ <b>ManageUser Permission</b> can edit their own data.<br />
 <strong>Priority:</strong> High. <br />
 <strong>Frequency of Use:</strong> Once a Quarter</p>
 <h2>Description</h2>
 <p>The <b>Actor</b> can edit an <b>Account</b>
 from the system. The System will notify the <b>Account</b> holder
-about any changes made.</p>
+about any changes made by <b>Email</b>.</p>
 <h2>Pre-conditions</h2>
 <ul><li>The Actor must be authenticated by the system.</li></ul>
 <h2>Post-conditions</h2>
@@ -81,11 +81,13 @@ of an <b>Account</b>.</li>
 <li>The Actor selects what <b>Account</b> data to edit.</li>
 <li>The Actor edits selected <b>Account</b> data.</li>
 <li>The Actor selects to store any changes.</li>
+<li>The System validates edited <b>Account</b> data.</li>
 <li>The System stores edited <b>Account</b> data.</li>
 <li>The System notifies <b>Account</b> holder of any changed data.</li>
 </ol>
 </div>
 </div>
+
 <div class="slide">
 <h1>Use Case Summary Cont.</h1>
 <div style="font-size: 0.5em;">
@@ -111,6 +113,32 @@ If edited <b>EmailAddress</b> is not a valid email address.<br/>
 </div>
 
 <div class="slide">
+<h1>Use Case Summary Cont.</h1>
+<div style="font-size: 0.5em;">
+<h2>Functional Requirements</h2>
+<ol>
+<li>When Actor selects "Edit User," the System displays a list of Accounts.</li>
+<li>When Actor selects "Submit", the system prompts the user to confirm the edits. If the user selects "Accept", the Account changes will be saved. If the user selects "Cancel", the system will return to the "Edit User" display.</li>
+<li>When Actor selects "Submit" and all of the information has not been entered, the system displays "The Following Information is Missing:" and lists the fields that are empty.</li>
+<li>If no <b>Accounts</b> exist, the System displays "No Accounts Exist" and redirects the user to "Add User".</li>
+<li>If the <b>Username</b> specified already exists, the system displays "Username Already Exists" and Actor must correct the error to continue.</li>
+<li>If the <b>EmailAddress</b> is already in use, system displays "Email Address Already Exists" and Actor must correct the error to continue.</li>
+<li>If <b>EmailAddress</b> isn't valid, the System displays "The Email Address is Invalid" and Actor must correct the error to continue.</li>
+<li>If <b>EmailAddress</b> is altered, both the old and the new address will be notified of the changes.</li>
+<li>If <b>Password</b> does not comply with SE-4 (see Section 5.3 in SRS), the system displays "The Password is Not Secure Enough" and Actor must correct the error to continue.</li>
+<li>The System will confirm changes to the Actor after the changes are successfuly stored.</li>
+<li>If the System fails to store changes the System displays "Could not store data".</li>
+</ol>
+SE-4: User <b>Password</b> must contain at least 6 characters and must include the following: at least 1 number, at least 1 capital character and the <b>Password</b> may not be the same as the <b>Username</b>.
+</div>
+</div>
+
+<div class="slide">
+<h1>Activity Diagram</h1>
+<center><img src="./uc15ad.jpg" alt="The World's Greatest Activity Diagram" height="750px"/></center>
+</div>
+
+<div class="slide">
 <h1>Test Case Summary</h1>
 </div>
 
@@ -121,11 +149,6 @@ If edited <b>EmailAddress</b> is not a valid email address.<br/>
 <div class="slide">
 <h1>Class Diagram</h1>
 </div>
-
-<div class="slide">
-<h1>Activity Diagram</h1>
-</div>
-
 
 <!-- End presentation -->
 </div>
