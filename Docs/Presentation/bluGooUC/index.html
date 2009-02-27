@@ -149,14 +149,82 @@ SE-4: User <b>Password</b> must contain at least 6 characters and must include t
 
 <div class="slide">
 <h1>Test Case Summary</h1>
+<div style="font-size: 0.5em;">
+<table>
+<tr><td>
+<h2>Normal Flow</h2>
+<ol>
+<li>Select an <b>Account</b> for editing.</li>
+<li>Observe that the selected <b>Account</b> is displayed.</li>
+<li>Select a data field to edit and change the data. Also change <b>EmailAddress</b>.</li>
+<li>Select to store all changes.</li>
+<li>Observe that any changed data is confirmed with a notification.</li>
+<li>Check both the old and new Email Addresses and observe that notifications were sent.</li>
+</ol>
+</td>
+<td>
+<h2>Alternate Steps 3</h2>
+<ol>
+<li>Select and edit an Account.</li>
+<li>Choose to "Cancel" the edit.</li>
+<li>Observe that "Edit User" is displayed.</li>
+</ol>
+</td></tr>
+<tr><td>
+<h2>Alternate Steps 1</h2>
+<ol>
+<li>Administratively ensure that Account data cannot be changedi.</li>
+<li>Attempt to select and edit an Account.</li>
+<li>Observe that an error is displayed.</li>
+</ol>
+</td>
+<td>
+<h2>Alternate Steps 4</h2>
+<ol>
+<li>Ensure that no Users exist.</li>
+<li>Observe that an error is displayed.</li>
+</ol>
+</td></tr>
+<tr><td>
+<h2>Alternate Steps 2</h2>
+<ol>
+<li>Choose to edit an Account.</li>
+<li>Change the password to one that does not comply with SE-4 (see Section 5.3 in SRS).</li>
+<li>Observe that an error is displayed.</li>
+</ol>
+</td></tr>
+</table>
+</div>
 </div>
 
 <div class="slide">
-<h1>CRC</li>
+<h1>CRC</h1>
+<div style="font-size: 0.5em;">
+<table>
+<tr><td>
+<b>Class:</b>>
+Account
+</td></tr>
+<tr><td>
+<b>Responsibilities</b>
+<ul>
+<li>Storing Account Information</li>
+<li>Edit Account Information</li>
+</ul></td></tr>
+<tr><td>
+<b>Connections</b>
+<ul>
+<li>Course</li>
+<li>DBHandler</li>
+</ul>
+</td></tr>
+</table>
+</div>
 </div>
 
 <div class="slide">
 <h1>Class Diagram</h1>
+<center><img src="fastclass.png" height="750" /></center>
 </div>
 
 <!-- End presentation -->
