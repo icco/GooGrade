@@ -29,10 +29,9 @@
 <div id="currentSlide"><!-- DO NOT EDIT --></div>
 <div id="header"></div>
 <div id="footer">
-<h1>CSC 308 2/26/09</h1>
+<h1>CSC 308 2/27/09</h1>
 <h2>BluGoo Use Case Presentation</h2>
 </div>
-
 </div>
 
 
@@ -48,17 +47,20 @@
 
 <div class="slide">
 <h1>Overview</h1>
+<!--<div style="font-size: 0.45em;">--!>
 <ul>
 <li>Use Case Summary</li>
+<li>Activity Diagram</li>
+<li>User Interface</li>
 <li>Test Case Summary</li>
 <li>CRC</li>
 <li>Class Diagram</li>
-<li>Activity Diagram</li>
 </ul>
+<!--</div>--!>
 </div>
 
 <div class="slide">
-<h1>Use Case 15 - Edit User</h1>
+<h1>Use Case Summary</h1>
 <div style="font-size: 0.45em;">
 <p><strong>Actor:</strong> Teacher, Teacher Assistant w/ <b>ManageUser Permission</b> in their course, Student w/ <b>ManageUser Permission</b> can edit their own data.<br />
 <strong>Priority:</strong> High. <br />
@@ -143,8 +145,8 @@ SE-4: User <b>Password</b> must contain at least 6 characters and must include t
 </div>
 
 <div class="slide">
-<h1>User Interface cont.</h1>
-<center><img src="UC15Screenshot2.png"><img src="./UC15Screenshot2.png" height="750px" /></a></center>
+<h1>User Interface Cont.</h1>
+<center><a href="UC15Screenshot2.png"><img src="./UC15Screenshot2.png" height="750px" /></a></center>
 </div>
 
 <div class="slide">
@@ -200,31 +202,35 @@ SE-4: User <b>Password</b> must contain at least 6 characters and must include t
 <div class="slide">
 <h1>CRC</h1>
 <div style="font-size: 0.5em;">
-<table>
+<center>
+<table cellpadding="5" border="1">
 <tr><td>
-<b>Class:</b>>
-Account
+<b>Class:</b> Account
 </td></tr>
 <tr><td>
 <b>Responsibilities</b>
 <ul>
-<li>Storing Account Information</li>
-<li>Edit Account Information</li>
+<li>Authenticating User</li>
+<li>Storing <b>Account</b></li>
+<li>Edit <b>Account</b></li>
+<li>Secure Display<li>
 </ul></td></tr>
 <tr><td>
 <b>Connections</b>
 <ul>
+<li>Permission</li>
+<li>Files</li>
 <li>Course</li>
 <li>DBHandler</li>
 </ul>
 </td></tr>
-</table>
+</table></center>
 </div>
 </div>
 
 <div class="slide">
 <h1>Class Diagram</h1>
-<center><img src="fastclass.png" height="750" /></center>
+<center><a href="classdiagram.png"><img src="classdiagram.png" height="750" /></a></center>
 </div>
 
 <!-- End presentation -->
