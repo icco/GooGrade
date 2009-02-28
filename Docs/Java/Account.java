@@ -6,9 +6,9 @@ import java.lang.*;
 
 public class Account implements Storage
 {
-	private String name;
-	private String email;
-
-
+	/*General Attributes*/
+	private String userName;
+	private String fullName;
+	private String emailAddress;
 
 }
