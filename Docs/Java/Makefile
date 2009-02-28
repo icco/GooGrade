@@ -1,7 +1,7 @@
 all: docs
 
 docs: 
-	javadoc -d html *.java 
+	javadoc -private -d html *.java 
 
 clean:
 	@rm -rvf html
