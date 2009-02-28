@@ -1,5 +1,5 @@
 
-public class Course
+public class Course implements Storage
 {
 
 

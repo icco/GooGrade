@@ -1,5 +1,8 @@
+/**
+ * This will be our database connection.
+ */ 
 
-class Storage
+interface Storage
 {
 
 
