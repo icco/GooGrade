@@ -1,9 +1,13 @@
 /**
- * The class stores information about Emails
+ * The class stores information about Emails.
  *
- * @author
- * @version
+ * @author bluGoo
+ * @version 0.42
  */
+
+import java.lang.*;
+import java.util.*;
+
 public class Email
 {
     /** The title of the Email */
@@ -13,7 +17,8 @@ public class Email
     private String emailAttachment;
     
     /** An array of email addresses to which the Email will be sent */
-    private String emailRecipients[];
+    private ArrayList<String> emailRecipients;
     
     /** The body of the Email */
     private String emailBody;
+}

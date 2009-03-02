@@ -1,15 +1,12 @@
 /**
  * This is a class that keeps all of the information of a User.
+ * @author bluGoo
+ * @version 0.42
  */
 
+import java.util.*;
 import java.lang.*;
 
-/**
- * Description
- *
- * @author
- * @version
- */
 public class Account implements Storage
 {
 	/** Username for logging in */
@@ -24,16 +21,9 @@ public class Account implements Storage
     /** Password for logging in */
     private String password;
     
-    /** Type of User; can be Teacher, Teacher Assistant, or Student */
-    private short userType;
-    
     /** An array of Courses that the User is involved in */
-    private Course courses[];
+    private ArrayList<Course> courses;
     
     /** Permissions for performing actions */
     private Permissions permission;
-    
-    /** An array of files that the User owns */
-    private File files[];
-
 }

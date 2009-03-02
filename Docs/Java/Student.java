@@ -1,18 +1,35 @@
+/**
+ * This class keeps information about Students. It is an extension of Account. 
+ * Students have files. 
+ *
+ * @author bluGoo
+ * @version 0.42
+ */
 
 import java.util.*;
 import java.lang.*;
 
-/**
- * This class keeps information about Students. It is an extension of Account.
- *
- * @author
- * @version
- */
 public class Student extends Account
 {
-    /** The current total grade of the Student */
-	private double totalGrade;
-    
-    /** An array of Assignments for which the Student is responsible */
-	private Assignment assignments[];
+
+	/**
+	 * Gets the student grade in the course.
+	 * @return percentage the student has in the course
+	 * @param course A string which maches a course name, or other identifier.
+	 */
+	int GetGrade(String course)
+	{
+		return 0;
+	}
+
+	int getGrade(String course, String assignment)
+	{
+		return 0;
+	}
+
+	void uploadFile(String assignment, String course)
+	{
+
+
+	}
 }

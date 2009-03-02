@@ -1,8 +1,8 @@
 /**
  * This class keeps information about Files
  *
- * @author
- * @version
+ * @author bluGoo
+ * @version 0.42
  */
 public class File 
 {

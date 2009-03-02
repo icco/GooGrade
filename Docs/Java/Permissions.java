@@ -1,8 +1,8 @@
 /**
  * This class keeps information about permissions for each action.
  *
- * @author
- * @version
+ * @author bluGoo
+ * @version 0.42
  */
 public class Permissions
 {
