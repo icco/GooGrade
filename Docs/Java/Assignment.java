@@ -1,22 +1,22 @@
 
 /**
- * Description
+ * This class keeps information about Assignments
  *
  * @author
  * @version
  */
 public class Assignment
 {
-    /** Description */
+    /** The due date of the Assignment */
     private String dueDate;
     
-    /** Description */
+    /** The name of the Assignment */
     private String name;
     
-    /** Description */
+    /** The maximum possible score of the Assignment */
     private int assignmentTotal;
     
-    /** Description */
+    /** The type of the Assignment; can be Test, Quiz, Homework, Participation, or other */
     private short type;
 }
 

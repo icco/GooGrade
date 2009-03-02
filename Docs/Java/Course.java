@@ -1,26 +1,26 @@
 /**
- * Description
+ * This class keeps information about Courses
  *
  * @author
  * @version
  */
 public class Course implements Storage
 {
-    /** Description */
+    /** The grading rules for the Course */
     private int gradingRules;
     
-    /** Description */
+    /** The Course's title */
     private String courseTitle;
     
-    /** Description */
+    /** The Course's section */
     private short courseSection;
     
-    /** Description */
+    /** The Course's number */
     private int courseNumber;
     
-    /** Description */
+    /** An array of Students who are enrolled in the Course */
     private Student students[];
     
-    /** Description */
+    /** An array of Teacher Assistants who are associated with the Course */
     private TeacherAssistant assistants[];
 }

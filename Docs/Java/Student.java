@@ -3,16 +3,16 @@ import java.util.*;
 import java.lang.*;
 
 /**
- * Description
+ * This class keeps information about Students. It is an extension of Account.
  *
  * @author
  * @version
  */
 public class Student extends Account
 {
-    /** Description */
+    /** The current total grade of the Student */
 	private double totalGrade;
     
-    /** Description */
+    /** An array of Assignments for which the Student is responsible */
 	private Assignment assignments[];
 }

@@ -1,5 +1,5 @@
 /**
- * This is a class that keeps all of the information of a user.
+ * This is a class that keeps all of the information of a User.
  */
 
 import java.lang.*;
@@ -12,28 +12,28 @@ import java.lang.*;
  */
 public class Account implements Storage
 {
-	/** Description */
+	/** Username for logging in */
 	private String userName;
     
-    /** Description */
+    /** Full name of the Account owner */
 	private String fullName;
     
-    /** Description */
+    /** Email address of the Account owner */
 	private String emailAddress;
     
-    /** Description */
+    /** Password for logging in */
     private String password;
     
-    /** Description */
+    /** Type of User; can be Teacher, Teacher Assistant, or Student */
     private short userType;
     
-    /** Description */
-    private Course courses;
+    /** An array of Courses that the User is involved in */
+    private Course courses[];
     
-    /** Description */
+    /** Permissions for performing actions */
     private Permissions permission;
     
-    /** Description */
+    /** An array of files that the User owns */
     private File files[];
 
 }

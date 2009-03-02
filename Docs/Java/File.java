@@ -1,18 +1,18 @@
 /**
- * Description
+ * This class keeps information about Files
  *
  * @author
  * @version
  */
 public class File 
 {
-    /** Description */
+    /** The time and date the File was created or uploaded */
     private String creationDate;
     
-    /** Description */
+    /** The owner of the File */
     private String owner;
     
-    /** Description */
-    private String assignmentName;
+    /** The name of the File */
+    private String fileName;
 
 }

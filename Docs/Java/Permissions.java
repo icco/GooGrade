@@ -1,36 +1,36 @@
 /**
- * Description
+ * This class keeps information about permissions for each action.
  *
  * @author
  * @version
  */
 public class Permissions
 {
-    /** Description */
+    /** Permission for sending emails */
     private boolean sendEmail;
     
-    /** Description */
+    /** Permission for uploading files */
     private boolean uploadFile;
     
-    /** Description */
+    /** Permission for viewing personal grades */
     private boolean viewOwnGrade;
     
-    /** Description */
+    /** Permission for managing Courses */
     private boolean manageCourse;
     
-    /** Description */
+    /** Permission for managing metrics */
     private boolean manageMetric;
     
-    /** Description */
+    /** Permission for managing grades */
     private boolean manageGrade;
     
-    /** Description */
+    /** Permission for managing the roster */
     private boolean manageRoster;
     
-    /** Description */
+    /** Permission for managing Assignments */
     private boolean manageAnnouncement;
     
-    /** Description */
+    /** Permission for managing Users */
     private boolean manageUser;
 
 }

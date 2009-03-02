@@ -1,19 +1,19 @@
 /**
- * Description
+ * The class stores information about Emails
  *
  * @author
  * @version
  */
 public class Email
 {
-    /** Description */
+    /** The title of the Email */
     private String emailTitle;
     
-    /** Description */
+    /** The pathname of a file to be attached to the Email */
     private String emailAttachment;
     
-    /** Description */
+    /** An array of email addresses to which the Email will be sent */
     private String emailRecipients[];
     
-    /** Description */
+    /** The body of the Email */
     private String emailBody;
