@@ -1,22 +1,19 @@
-
 /**
  * Description
  *
  * @author
  * @version
  */
-public class Assignment
+public class Email
 {
     /** Description */
-    private String dueDate;
+    private String emailTitle;
     
     /** Description */
-    private String name;
+    private String emailAttachment;
     
     /** Description */
-    private int assignmentTotal;
+    private String emailRecipients[];
     
     /** Description */
-    private short type;
-}
-
+    private String emailBody;

@@ -2,10 +2,17 @@
 import java.util.*;
 import java.lang.*;
 
+/**
+ * Description
+ *
+ * @author
+ * @version
+ */
 public class Student extends Account
 {
-	/*Student Attributes*/
+    /** Description */
 	private double totalGrade;
+    
+    /** Description */
 	private Assignment assignments[];
-
 }
