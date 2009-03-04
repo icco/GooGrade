@@ -7,7 +7,7 @@
 import java.util.*;
 import java.lang.*;
 
-public class Account implements Storage
+public abstract class Account implements Storage
 {
 	/** Username for logging in */
 	private String userName;

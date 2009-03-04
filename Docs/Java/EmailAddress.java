@@ -20,6 +20,7 @@ public class EmailAddress
 	 */
 	boolean valid(String in)
 	{
+		return false;
 
 	}
 

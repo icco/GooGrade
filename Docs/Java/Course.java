@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Comparator;
+
 /**
  * This class keeps information about Courses
  *
@@ -23,4 +26,28 @@ public class Course implements Storage
     
     /** An array of Teacher Assistants who are associated with the Course */
     private TeacherAssistant assistants[];
+
+	@Override
+	public ArrayList<Object> buildArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Object> buildArray(Comparator condition) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean save(Object in) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ArrayList<Object> selectFrom(String query) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
