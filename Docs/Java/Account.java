@@ -16,14 +16,51 @@ public class Account implements Storage
 	private String fullName;
     
     /** Email address of the Account owner */
-	private String emailAddress;
+	private EmailAddress emailAddress;
     
-    /** Password for logging in */
-    private String password;
+    /**
+	 * Password for logging in. This will not be 
+	 * stored in plain text due to privacy concerns. 
+	 */
+    private Password password;
     
     /** An array of Courses that the User is involved in */
     private ArrayList<Course> courses;
     
     /** Permissions for performing actions */
     private Permissions permission;
+
+	/**
+	 * get the accounts user name.
+	 * @return a string with the user name of the current account
+	 */
+	String getUserName()
+	{
+		return this.userName;
+	}
+
+	/**
+	 * get the accounts full name.
+	 * @return a string with the full name of the current account
+	 */
+	String getFullName()
+	{
+		return this.fullName;
+	}
+
+	/**
+	 * hashes the provided password and checks to see if they match.
+	 */
+	boolean isPassword(String passwd)
+	{
+		return false;
+	}
+
+	/**
+	 * Takes new password, hashes it, and saves to database.
+	 */
+	boolean setPassword(String newpass)
+	{
+		return true;
+	}
 }

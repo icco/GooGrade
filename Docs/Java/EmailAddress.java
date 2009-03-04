@@ -1,0 +1,27 @@
+/**
+ * A model for email addresses since they need to be validated and such.
+ *
+ * @author bluGoo
+ * @version 0.42
+ */
+
+import java.util.*;
+import java.lang.*;
+
+public class EmailAddress 
+{
+
+	private String address;
+
+	/**
+	 * Basically a wrapper for validation.
+	 * @param in Email adress to validate
+	 * @return boolean if is a valid email address or not.
+	 */
+	boolean valid(String in)
+	{
+
+	}
+
+
+}
