@@ -21,4 +21,14 @@ public class Email
     
     /** The body of the Email */
     private String emailBody;
+
+
+    /** 
+     * Constructor for Email class.
+     * @param none
+     * @return none 
+     */
+    public Email()
+    {
+    }
 }
