@@ -83,7 +83,7 @@ public class Assignment
 
 	public Float getMin()
 	{
-		return this.min
+		return this.min;
 	}
 
 }

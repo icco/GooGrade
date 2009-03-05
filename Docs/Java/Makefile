@@ -11,7 +11,12 @@ publish: doxygen
 	mv doxy/html/ ~/www/blugoo/arch
 	chmod -R 755 ~/www/blugoo
 
+print: doxygen
+	make -C ./doxy/latex
+	pdf2ps ./doxy/latex/refman.pdf
+	lp -o sides=two-sided-long-edge refman.ps
+
 clean:
 	@rm -rvf doxy javadoc
-	@rm -vf *~
+	@rm -vf *~ refman.ps
 
