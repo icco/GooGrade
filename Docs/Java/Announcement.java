@@ -13,7 +13,8 @@ public class Announcement implements Storage
 	private Date posted;
 
 	/**
-	 * Posts an announcement.
+	 * Posts an announcement. This will call the functions needed 
+	 * to save to the database.
 	 * @param title The title
 	 * @param post The post body
 	 */
