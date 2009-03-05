@@ -33,4 +33,21 @@ public class Permissions
     /** Permission for managing Users */
     private boolean manageUser;
 
+    /** Constructor for Permissions class
+     */
+    public Permissions()
+    {
+    }
+
+    /* This class probably needs an enum */
+    /**
+     * VerifyPermission determines if an account has the permission required to perform another method. 
+     * @param inquirer indicates the specific permission that is being inquired about.
+     * @return permission is true if the account has permission to perform the inquired action.    
+     */
+    public boolean VerifyPermission(int inquirer)
+    {
+	    return permission. 
+    }
+
 }
