@@ -68,8 +68,8 @@ public abstract class Account implements Storage
 		return true;
 	}
 
-	/**GetEmailAddress returns the EmailAddress of this account.
-	 * @param none
+	/**
+	 * GetEmailAddress returns the EmailAddress of this account.
 	 * @return this user's email address 
 	 */
 	public EmailAddress getEmailAddress()
@@ -80,3 +80,4 @@ public abstract class Account implements Storage
 
 
 }
+

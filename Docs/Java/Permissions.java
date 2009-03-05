@@ -47,21 +47,19 @@ public class Permissions
      */
     public boolean VerifyPermission(int inquirer)
     {
-	    return permission. 
+	    return permission; 
     }
 
 
     /** AddPermission grants a new permission to a user. It does nothing to permissions already granted.  
      * @param permission to determine which permission is to be granted
-     * @return nothing 
-     * */
+     */
     public void  AddPermission( int permission)
     {
     }
 
     /** Remove Permission prevents a user from using a specific permission. It does nothing to permissions previoulsy not granted. 
      * @param permission to determine which permission to be removed
-     * @return nothing
      */
     public void RemovePermission( int permission)
     {

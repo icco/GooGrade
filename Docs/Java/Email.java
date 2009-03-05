@@ -25,8 +25,6 @@ public class Email
 
     /** 
      * Constructor for Email class.
-     * @param none
-     * @return none 
      */
     public Email()
     {

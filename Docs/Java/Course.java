@@ -58,6 +58,9 @@ public class Course implements Storage
 	}
 
 	public boolean EditCourseTitle(String newTitle)
+	{
+		return false;
+	}
 
 	/** AddStudent adds a new student to this course. 
 	 * @param permission the permission of the user who calls this function
@@ -66,6 +69,7 @@ public class Course implements Storage
 	 */
 	public boolean AddStudent(Permissions permission, Student student)
 	{
+		return false;
 	}
 
 	/** RemoveStudent removes a particular student from the course
@@ -75,6 +79,7 @@ public class Course implements Storage
 	 */
 	public boolean RemoveStudent(Permissions permission, Student student)
 	{
+		return false;
 	}
 
 	/** RemoveStudent removes a particular student from the course
@@ -84,6 +89,7 @@ public class Course implements Storage
 	 */
 	public boolean RemoveStudent(Permissions permission, String student)
 	{
+		return false;
 	}
 
 	/** AddTA assignes a new TeacherAssistant to this course.
@@ -93,6 +99,7 @@ public class Course implements Storage
 	 */
 	public boolean AddTA(Permissions permission, TeacherAssistant ta)
 	{
+		return false;
 	}
 
 	/**RemoveTA removes a TeacherAssistant from this course
@@ -102,5 +109,6 @@ public class Course implements Storage
 	 */
 	public boolean RemoveTA(Permissions permission, TeacherAssistant ta)
 	{
+		return false;
 	}
 }

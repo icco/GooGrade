@@ -26,8 +26,7 @@ public class EmailAddress
 
 	/**
 	 * Obtain a string form of the Email Address. 
-	 * @param none
-	 * @return a String of this Account's EmailAddress
+	 * @return a String of this EmailAddress
 	 */
 	public String toString()
 	{
