@@ -57,9 +57,28 @@ public class Course implements Storage
 	{
 	}
 
+	/**EditCourseTitle saves a new Couse title over the old
+	 * @param newTitle the new title to save
+	 * @return true if no errors 
+	 */
 	public boolean EditCourseTitle(String newTitle)
 	{
-		return false;
+	}
+
+	/**EditCourseSection saves a new section number over the old one
+	 * @param newSection is the number of the new section to save
+	 * @return true if no errors occurred
+	 */
+	public boolean EditCourseSection(short newSection)
+	{
+	}
+
+	/** Edit Course number replaces the course number with a new one
+	 * @param newNumber is the new course number to save
+	 * @return true if no errors occurred. 
+	 */
+	public boolean EditCourseNumber(int newNumber)
+	{
 	}
 
 	/** AddStudent adds a new student to this course. 
@@ -69,7 +88,6 @@ public class Course implements Storage
 	 */
 	public boolean AddStudent(Permissions permission, Student student)
 	{
-		return false;
 	}
 
 	/** RemoveStudent removes a particular student from the course
@@ -79,7 +97,6 @@ public class Course implements Storage
 	 */
 	public boolean RemoveStudent(Permissions permission, Student student)
 	{
-		return false;
 	}
 
 	/** RemoveStudent removes a particular student from the course
@@ -89,7 +106,6 @@ public class Course implements Storage
 	 */
 	public boolean RemoveStudent(Permissions permission, String student)
 	{
-		return false;
 	}
 
 	/** AddTA assignes a new TeacherAssistant to this course.
@@ -99,7 +115,6 @@ public class Course implements Storage
 	 */
 	public boolean AddTA(Permissions permission, TeacherAssistant ta)
 	{
-		return false;
 	}
 
 	/**RemoveTA removes a TeacherAssistant from this course
@@ -109,6 +124,5 @@ public class Course implements Storage
 	 */
 	public boolean RemoveTA(Permissions permission, TeacherAssistant ta)
 	{
-		return false;
 	}
 }
