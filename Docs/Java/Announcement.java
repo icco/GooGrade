@@ -1,14 +1,25 @@
-/**
- * @author bluGoo
- * @version 0.42
- */
  
 import java.lang.*;
 import java.util.*;
 
-public class Announcement
+/**
+ * An announcement for a course.
+ * @author bluGoo
+ * @version 0.42
+ */
+public class Announcement implements Storage
 {
+	private String body;
+	private String title;
+	private Date posted;
 
-	String body;
-	Date posted;
+	/**
+	 * Posts an announcement.
+	 * @param title The title
+	 * @param post The post body
+	 */
+	boolean post(String title, String post)
+	{
+		return false;
+	}
 }
