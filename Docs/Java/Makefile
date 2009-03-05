@@ -4,7 +4,7 @@ docs:
 	javadoc -private -d javadoc *.java 
 
 doxygen: 
-	doxygen Doxyfile
+	doxygen Doxyfile 
 
 publish: doxygen
 	rm -rf ~/www/blugoo/arch
