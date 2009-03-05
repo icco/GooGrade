@@ -1,3 +1,6 @@
+import java.util.*;
+import java.lang.*;
+
 /**
  * This will be our database connection.
  * One theory that needs to be remembered for storage is that it's 
@@ -9,10 +12,6 @@
  * @author bluGoo
  * @version 0.42
  */
- 
-import java.util.*;
-import java.lang.*;
-
 interface Storage
 {
 

@@ -1,13 +1,12 @@
+import java.lang.*;
+import java.util.*;
+
 /**
  * The class stores information about Emails.
  *
  * @author bluGoo
  * @version 0.42
  */
-
-import java.lang.*;
-import java.util.*;
-
 public class Email
 {
     /** The title of the Email */

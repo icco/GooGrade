@@ -1,12 +1,12 @@
 all: docs doxygen
 
 docs: 
-	javadoc -private -d html *.java 
+	javadoc -private -d javadoc *.java 
 
 doxygen: 
 	doxygen Doxyfile
 
 clean:
-	@rm -rvf html doxy
+	@rm -rvf doxy javadoc
 	@rm -vf *~
 

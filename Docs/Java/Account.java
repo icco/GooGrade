@@ -1,12 +1,11 @@
+import java.util.*;
+import java.lang.*;
+
 /**
  * This is a class that keeps all of the information of a User.
  * @author bluGoo
  * @version 0.42
  */
-
-import java.util.*;
-import java.lang.*;
-
 public abstract class Account implements Storage
 {
 	/** Username for logging in */
