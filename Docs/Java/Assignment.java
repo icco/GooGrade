@@ -1,5 +1,5 @@
 import java.util.*;
-import java.jang.*;
+import java.lang.*;
 
 /**
  * This class keeps information about Assignments

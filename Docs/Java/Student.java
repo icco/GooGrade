@@ -60,8 +60,9 @@ public class Student extends Account
 	/** ViewAnnouncements will compile a list of Announcements and display them.
 	 * @return the list of announcements as an Arraylist
 	 */
-	public Arraylist<Announcements> ViewAnnouncements
+	public ArrayList<Announcement> ViewAnnouncements()
 	{
+		return null;
 	}
 
 

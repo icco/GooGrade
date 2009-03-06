@@ -72,7 +72,7 @@ public class Teacher extends Account
 	/** CreateAnnouncement gathers information from the user to make a new Announcement with
 	 * @return the new, created Announcement.
 	 */
-	public Annoucement CreateAnnouncement()
+	public Announcement CreateAnnouncement()
 	{
 		return new Announcement();
 	}
@@ -163,7 +163,7 @@ public class Teacher extends Account
 	/**TakeAttendance adjusts the Participation portion of a grade for Students
 	 * @return true if no errors occurred
 	 */
-	public boolean TakeAttendance
+	public boolean TakeAttendance()
 	{
 	}
 
