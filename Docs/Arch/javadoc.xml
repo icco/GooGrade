@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="javadoc">
+    <target name="javadoc">
+        <javadoc access="private" author="true" classpath="." destdir="html" nodeprecated="false" nodeprecatedlist="false" noindex="false" nonavbar="false" notree="false" source="1.5" sourcefiles="Assignment.java,Permissions.java,Email.java,Teacher.java,Account.java,File.java,Announcement.java,TeacherAssistant.java,Course.java,Password.java,Storage.java,EmailAddress.java,Student.java" sourcepath="." splitindex="true" use="true" version="true"/>
+    </target>
+</project>
