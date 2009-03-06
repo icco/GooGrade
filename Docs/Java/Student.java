@@ -55,4 +55,15 @@ public class Student extends Account
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	/** ViewAnnouncements will compile a list of Announcements and display them.
+	 * @return the list of announcements as an Arraylist
+	 */
+	public Arraylist<Announcements> ViewAnnouncements
+	{
+	}
+
+
+
 }
