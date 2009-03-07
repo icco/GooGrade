@@ -1,0 +1,16 @@
+Account.java
+Announcement.java
+Assignment.java
+Course.java
+EmailAddress.java
+Email.java
+File.java
+GradingRules.java
+Password.java
+Permissions.java
+StorageConnection.java
+Storage.java
+Student.java
+TeacherAssistant.java
+Teacher.java
+
