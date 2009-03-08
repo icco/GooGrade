@@ -24,8 +24,11 @@ public class Course implements Storage
     /** An array of Students who are enrolled in the Course */
     private ArrayList<Student> students;
     
-    /** An array of Teacher Assistants who are associated with the Course */
+    /** An instance of Teacher Assistant who is associated with the Course */
     private TeacherAssistant assistant;
+
+    /** An instance of Teacher who is teaching the Course*/
+    private Teacher teacher;
 
 	public ArrayList<Object> buildArray()
 	{
@@ -120,10 +123,25 @@ public class Course implements Storage
 
 	/**RemoveTA removes a TeacherAssistant from this course
 	 * @param permission the permission of the user who calls this function
-	 * @param ta the TeacherAssistant to be assigned to this course
+	 * @param ta the TeacherAssistant to be removed to this course
 	 * @return true if no errors have occured  
 	 */
 	public boolean RemoveTA(Permissions permission, TeacherAssistant ta)
+	{
+	}
+
+	/**SetTeacher sets the Teacher attribute for this course
+	 * @param t the Teacher to be assigned to this course
+	 * @return true if no error have occured
+	 */
+	public boolean SetTeacher(Teacher t)
+	{
+	}
+
+	/**GetTeacher gets the Teacher attribute from this course
+	 * @return teacher of this course
+	 */
+	public Teacher GetTeacher()
 	{
 	}
 }
