@@ -38,7 +38,7 @@
 <div class="presentation">
 
 <div class="slide">
-<h1>Final Presentation of Doom Death</h1>
+<h1>GooGrade</h1>
 <h2>An Architecture Overview</h2>
 <h3>Nat Welch</h3>
 <h4>BluGoo</h4>
@@ -58,13 +58,13 @@
 <div class="slide">
 <h1>Who is BluGoo?</h1>
 <ul>
-<li>Victor Gerdin</li>
-<li>Hermyn Mendez</li>
+<li>Viktor Gerdin</li>
 <li>Nat Welch</li>
 <li>Katherine Blizard</li>
+<li>Paul Phu</li>
 <li>Michael Quan</li>
 <li>Kalvin Vu</li>
-<li>Paul Phu</li>
+<li>Hermyn Mendez</li>
 </ul>
 </div>
 
@@ -72,24 +72,20 @@
 <h1>
 Account
 </h1>
-<p>An account is the foundation of our three user classes: <b>Teacher, Teacher Assistant</b> and <b>Student</b>.
-<p>It is where information all three of those <b>user types</b> originate, such as <b>email addresses</b>, their names and login <b>usernames</b>.
+<ul>
+<li>An account is the foundation of our three user types: Teacher, Teacher Assistant and Student.</li>
+<li>It is where information all three of the user types originate, such as email addresses, their names and login usernames.</li>
+</ul>
 </div>
 
 <div class="slide">
 <h1>
-Course
+Teacher
 </h1>
-<p>A Course is an important storage class for a list of <b>Students</b>, <b>Teacher Assistants</b>, <b>Grading Rules</b> and other details about the course, such as the <b> Course Title</b> and <b>Section</b>
-<p>Importantly, it houses methods that manage the list of <b>Students</b>.
-</div>
-
-<div class="slide">
-<h1>
-EmailAddress
-</h1>
-<p>The <b>Email Address</b> is a simple class that stores an <b>Account's</b> email address.
-<p>It differs from an ordinary String class in that it contains methods that ensure that the <b>email address</b> is valid, for instance, making sure that the String contains a @ sign. 
+<ul>
+<li>Administrator (aka User 1, Uber user, Epic Hitler)</li>
+<li>Access to all information of any account associated with their courses</li>
+</ul>
 </div>
 
 <div class="slide">
@@ -99,31 +95,41 @@ TeacherAssistant
 <ul>
 <li>The most versatile usertype</li>
 <li>Ranges from mere slave to almighty admin</li>
-<li>Available features completly dependant on set permissions)</li>
+<li>Available features completly dependant on set permissions</li>
 </ul>
 </div>
 
 <div class="slide">
 <h1>
-Announcement
+Student
 </h1>
-<p>The <b>Announcement</b> class represents the messages a <b>Teacher</b> wishes to display to his <b>Student</b>s. 
-<p>The class stores the fields for the Title and Body of the text the <b>Teacher</b> has entered. 
-<p>In addition, it also will collect the date and time of modification and store it as well. 
+<ul>
+<li>A student's own account</li>
+<li>Limited access to other students information</li>
+<li>Used by students to identify themselves</li>
+<li>Used by system to gather student information</li>
+</ul>
 </div>
 
 <div class="slide">
 <h1>
-Email
+Permissions
 </h1>
-<p>The <b>Email </b>class contains all the fields needed for an <b>Email</b> to be sent out to <b>Students</b> in a course.
-<p>It stores the fields for the Title, Body and recipients of the email as entered in by a <b>Teacher </b>or <b>Teacher Assistant</b>.
+<ul>
+<li>Optional user features</li>
+<li>Set of booleans</li>
+<li>Always TRUE for Teacher</li>
+<li>Varies for Student and Teacher Assistant</li>
+</ul>
 </div>
 
 <div class="slide">
 <h1>
-GradingRules
+EmailAddress
 </h1>
+<li>The Email Address is a simple class that stores an Account's email address.</li>
+<li>It differs from an ordinary String class in that it contains methods that ensure that the email address is valid, for instance, making sure that the String contains a @ sign. </li>
+</ul>
 </div>
 
 <div class="slide">
@@ -139,10 +145,11 @@ Password
 
 <div class="slide">
 <h1>
-Teacher
+Course
 </h1>
 <ul>
-<li>God mode</li>
+<li>A Course is an important storage class for a list of Students, Teacher Assistants, Grading Rules and other details about the course, such as the Course Title and Section</li>
+<li>Importantly, it houses methods that manage the list of Students.</li>
 </ul>
 </div>
 
@@ -150,40 +157,57 @@ Teacher
 <h1>
 Assignment
 </h1>
-<p>The <b>Assignment</b> class contains the information about a particular <b>Assignemnt</b>, including the points it is worth, the <b>Due Date</b> and its <b>Description</b>.
-<p>An Assignment can be one of several categories:Test, Quiz, Homework, Final, Participation, and Other.
+<ul>
+<li>The Assignment class contains the information about a particular Assignemnt, including the points it is worth, the Due Date and its Description.</li>
+<li>An Assignment can be one of several categories: Test, Quiz, Homework, Final, Participation, and Other.</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>
+GradingRules
+</h1>
+<ul>
+<li>Variable grade boundaries</li>
+<li>Single set for all assignments in a course</li>
+<li></li>
+</ul>
 </div>
 
 <div class="slide">
 <h1>
 File
 </h1>
-<p>Each instance of the <b>File</b> class represents one file uploaded by a user onto the system. 
-<p>The class keeps tabs on who the file is from.
-<p>For instance, homework uploaded by a <b>Student</b> would be put up for download for a <b>Teacher</b>
-</div>
-
-<div class="slide">
-<h1>
-Permissions
-</h1>
 <ul>
-<li>What a user can do</li>
-<li>Set of booleans</li>
-<li>Always TRUE for Teacher</li>
-<li>Varies for Student and TeacherAssistant</li>
-<li>System wide options</li>
+<li>Each instance of the File class represents one file uploaded by a user onto the system. </li>
+<li>The class keeps tabs on who the file is from.</li>
+<li>For instance, homework uploaded by a Student would be put up for download for a Teacher</li>
 </ul>
 </div>
 
 <div class="slide">
 <h1>
-Student
+Announcement
 </h1>
+<ul>
+<li>The Announcement class represents the messages a Teacher wishes to display to his Students.</li>
+<li>The class stores the fields for the Title and Body of the text the Teacher has entered.</li>
+<li>In addition, it also will collect the date and time of modification and store it as well.</li>
+</ul>
 </div>
 
 <div class="slide">
-<h1>Thanks</h1>
+<h1>
+Email
+</h1>
+<ul>
+<li>The Email class contains all the fields needed for an Email to be sent out to Students in a course.</li>
+<li>It stores the fields for the Title, Body and recipients of the email as entered in by a Teacher or Teacher Assistant.</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>KTHXBYE</h1>
 <h2>Questions?</h2>
 </div>
 
