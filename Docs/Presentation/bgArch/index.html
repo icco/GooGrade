@@ -71,18 +71,24 @@
 <h1>
 Account
 </h1>
+<p>An account is the foundation of our three user classes: <b>Teacher, Teacher Assistant</b> and <b>Student</b>.
+<p>It is where information all three of those <b>user types</b> originate, such as <b>email addresses</b>, their names and login <b>usernames</b>.
 </div>
 
 <div class="slide">
 <h1>
 Course
 </h1>
+<p>A Course is an important storage class for a list of <b>Students</b>, <b>Teacher Assistants</b>, <b>Grading Rules</b> and other details about the course, such as the <b> Course Title</b> and <b>Section</b>
+<p>Importantly, it houses methods that manage the list of <b>Students</b>.
 </div>
 
 <div class="slide">
 <h1>
 EmailAddress
 </h1>
+<p>The <b>Email Address</b> is a simple class that stores an <b>Account's</b> email address.
+<p>It differs from an ordinary String class in that it contains methods that ensure that the <b>email address</b> is valid, for instance, making sure that the String contains a @ sign. 
 </div>
 
 <div class="slide">
@@ -95,12 +101,17 @@ TeacherAssistant
 <h1>
 Announcement
 </h1>
+<p>The <b>Announcement</b> class represents the messages a <b>Teacher</b> wishes to display to his <b>Student</b>s. 
+<p>The class stores the fields for the Title and Body of the text the <b>Teacher</b> has entered. 
+<p>In addition, it also will collect the date and time of modification and store it as well. 
 </div>
 
 <div class="slide">
 <h1>
 Email
 </h1>
+<p>The <b>Email </b>class contains all the fields needed for an <b>Email</b> to be sent out to <b>Students</b> in a course.
+<p>It stores the fields for the Title, Body and recipients of the email as entered in by a <b>Teacher </b>or <b>Teacher Assistant</b>.
 </div>
 <div class="slide">
 <h1>
@@ -124,12 +135,17 @@ Teacher
 <h1>
 Assignment
 </h1>
+<p>The <b>Assignment</b> class contains the information about a particular <b>Assignemnt</b>, including the points it is worth, the <b>Due Date</b> and its <b>Description</b>.
+<p>An Assignment can be one of several categories:Test, Quiz, Homework, Final, Participation, and Other.
 </div>
 
 <div class="slide">
 <h1>
 File
 </h1>
+<p>Each instance of the <b>File</b> class represents one file uploaded by a user onto the system. 
+<p>The class keeps tabs on who the file is from.
+<p>For instance, homework uploaded by a <b>Student</b> would be put up for download for a <b>Teacher</b>
 </div>
 
 <div class="slide">
