@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-<title>BluGoo Use Case Presentation </title>
+<title>GooGrade Arcitecture Presentation </title>
 <!-- metadata -->
 <meta name="generator" content="S5" />
 <meta name="version" content="S5 1.1" />
@@ -38,8 +38,8 @@
 <div class="presentation">
 
 <div class="slide">
-<h1>GooGrade</h1>
-<h2>An Architecture Overview</h2>
+<h1>GooGrade Presentation of Doom Death</h1>
+<h2>A GooGrade Project and Architecture Overview</h2>
 <h3>Nat Welch</h3>
 <h4>BluGoo</h4>
 </div>
@@ -114,10 +114,16 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 <a href="pics/ER.png"><img src="pics/ER.png" width="700px"></a>
 </div>
 
+<!-- Begin Class Insanity -->
+
 <div class="slide">
-<h1>
-Account
-</h1>
+<h1>Entity/Class Summary</h1>
+<p>This is just a summary, main class diagram afterwards.</p>
+<p>Here we go...</p>
+</div>
+
+<div class="slide">
+<h1>Account</h1>
 <ul>
 <li>An Account is the foundation of our three user types: Teacher, Teacher Assistant and Student.</li>
 <li>It is where information all three of the user types originate, such as email addresses, their names and login user names.</li>
@@ -125,9 +131,7 @@ Account
 </div>
 
 <div class="slide">
-<h1>
-Teacher
-</h1>
+<h1>Teacher</h1>
 <ul>
 <li>Administrator</li>
 <li>Owner of the System</li>
@@ -136,20 +140,16 @@ Teacher
 </div>
 
 <div class="slide">
-<h1>
-TeacherAssistant
-</h1>
+<h1>TeacherAssistant</h1>
 <ul>
 <li>The most versatile user type</li>
-<li>Ranges from mere slave to almighty admin</li>
+<li>Ranges from mere slave to almighty administrator</li>
 <li>Available features completely dependent on set permissions</li>
 </ul>
 </div>
 
 <div class="slide">
-<h1>
-Student
-</h1>
+<h1>Student</h1>
 <ul>
 <li>A student's own account</li>
 <li>Limited access to other students information</li>
@@ -159,9 +159,7 @@ Student
 </div>
 
 <div class="slide">
-<h1>
-Permissions
-</h1>
+<h1>Permissions</h1>
 <ul>
 <li>Optional user features</li>
 <li>Set of booleans</li>
@@ -171,18 +169,14 @@ Permissions
 </div>
 
 <div class="slide">
-<h1>
-EmailAddress
-</h1>
+<h1>EmailAddress</h1>
 <li>The Email Address is a simple class that stores an Account's email address.</li>
 <li>It differs from an ordinary String class in that it contains methods that ensure that the email address is valid, for instance, making sure that the String contains a @ sign. </li>
 </ul>
 </div>
 
 <div class="slide">
-<h1>
-Password
-</h1>
+<h1>Password</h1>
 <ul>
 <li>Security guard</li>
 <li>Passwords are stored encrypted</li>
@@ -191,9 +185,7 @@ Password
 </div>
 
 <div class="slide">
-<h1>
-Course
-</h1>
+<h1>Course</h1>
 <ul>
 <li>A Course is an important storage class for a list of Students, Teacher Assistants, Grading Rules and other details about the course, such as the Course Title and Section</li>
 <li>Importantly, it houses methods that manage the list of Students.</li>
@@ -201,9 +193,7 @@ Course
 </div>
 
 <div class="slide">
-<h1>
-Assignment
-</h1>
+<h1>Assignment</h1>
 <ul>
 <li>The Assignment class contains the information about a particular Assignment, including the points it is worth, the Due Date and its Description.</li>
 <li>An Assignment can be one of several categories: Test, Quiz, Homework, Final, Participation, and Other.</li>
@@ -211,9 +201,7 @@ Assignment
 </div>
 
 <div class="slide">
-<h1>
-GradingRules
-</h1>
+<h1>GradingRules</h1>
 <ul>
 <li>Variable grade boundaries</li>
 <li>Single set for all assignments in a course</li>
@@ -221,9 +209,7 @@ GradingRules
 </div>
 
 <div class="slide">
-<h1>
-File
-</h1>
+<h1>File</h1>
 <ul>
 <li>Each instance of the File class represents one file uploaded by a user onto the system. </li>
 <li>The class keeps tabs on who the file is from.</li>
@@ -232,9 +218,7 @@ File
 </div>
 
 <div class="slide">
-<h1>
-Announcement
-</h1>
+<h1>Announcement</h1>
 <ul>
 <li>The Announcement class represents the messages a Teacher wishes to display to his Students.</li>
 <li>The class stores the fields for the Title and Body of the text the Teacher has entered.</li>
@@ -243,9 +227,7 @@ Announcement
 </div>
 
 <div class="slide">
-<h1>
-Email
-</h1>
+<h1>Email</h1>
 <ul>
 <li>The Email class contains all the fields needed for an Email to be sent out to Students in a course.</li>
 <li>It stores the fields for the Title, Body and recipients of the email as entered in by a Teacher or Teacher Assistant.</li>
@@ -253,9 +235,23 @@ Email
 </div>
 
 <div class="slide">
-<h1>
-The Blue GUI
-</h1>
+<h1>How these translate to the web</h1>
+...
+</div>
+
+<div class="slide">
+<h1>Class Diagram</h1>
+<ul>
+<li>...link to Doxygen</li>
+<li>...link to JavaDocs</li>
+<li>...link to Class Diagram</li>
+</ul>
+</div>
+
+<!-- Begin Design Insanity -->
+
+<div class="slide">
+<h1>The Blue GUI</h1>
 <a href="./pics/1UIex.PNG"><img src="./pics/1UIex.PNG" height="550px" /></a>
 </div>
 
