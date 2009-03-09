@@ -30,6 +30,9 @@ public class Course implements Storage
     /** An instance of Teacher who is teaching the Course*/
     private Teacher teacher;
 
+    /** The set of grade boundaries for this class*/
+    private GradingRules scale;
+
 	public ArrayList<Object> buildArray()
 	{
 		/// @TODO Auto-generated method stub
