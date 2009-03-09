@@ -13,6 +13,7 @@ sup {font-size: 0.75em; font-weight: normal;
 ul {margin-left: 1em; padding-left: 0;}
 li {margin-bottom: 0.66em;}
 li li {margin: 0.33em 0; font-size: smaller;}
+dd {font-size: 0.8em;}
 
 #header {background: url(bg-shade.png); border-bottom: 1px solid #333;
   padding-bottom: 2em;}
@@ -30,7 +31,7 @@ li li {margin: 0.33em 0; font-size: smaller;}
   background-color: #8597C4;}
 
 #currentSlide {font-size: 0.5em;}
-#currentSlide span {font-size: 13px; color: rgb(49%,47%,66%);}
+#currentSlide span {font-size: 13px; color: rgb(47%,47%,66%);}
 #currentSlide #csSep {display: none;}
 #currentSlide #csHere {font-weight: bold;}
 #currentSlide #csHere:before {content: "#"; font-weight: normal;}

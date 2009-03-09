@@ -29,7 +29,7 @@
 <div id="currentSlide"><!-- DO NOT EDIT --></div>
 <div id="header"></div>
 <div id="footer">
-<h1>CSC 308 2/27/09</h1>
+<h1>CSC 308 3/11/09</h1>
 <h2>BluGoo Architecture Presentation</h2>
 </div>
 </div>
@@ -48,6 +48,7 @@
 <h1>Overview</h1>
 <ul>
 <li>Who is BluGoo?</li>
+<li>GooGrade Vision and Scope</li>
 <li>Suggested Systems</li>
 <li>Architecture Overview</li>
 <li>Design Overview</li>
@@ -69,11 +70,56 @@
 </div>
 
 <div class="slide">
+<h1>GooGrade Vision and Scope</h1>
+<p>...from Michael...</p>
+</div>
+
+<div class="slide">
+<h1>Suggested Systems</h1>
+<ul>
+<li>Java Server Pages</li>
+<li>Java Servlets</li>
+<li>Apache Tomcat</li>
+<li>Linux for Server OS</li>
+<li>Modern Browsers for Users</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Architecture Overview</h1>
+<ul>
+<li><dt>MVC</dt><dd>Model, View, Controller</dd></li>
+<li><dt>Model</dt><dd>Defines and pulls data from database (Hibernate?)</dd></li>
+<li><dt>View</dt><dd><accronym title="Java Server Pages">JSP</accronym>. Uses basic HTML and specialized tags to display data.</dd></li>
+<li><dt>Controller</dt><dd>Defines how to work with data.</dd></li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Abstraction, MVC, and the tubes</h1>
+<ul>
+<li>Abstract or Die.</li>
+<li>Let designers design and let coders code.  
+<ul><li>Separate "Business Logic" from "Design"</li></ul></li>
+<li>On the intarwebs this is very important. 
+<ul><li>
+Imagine if Amazon had to go digging through their entire site every time they wanted to change the design...
+</li></ul>
+</li>
+</ul>
+</div>
+
+<div class="slide">
+<h1>Entity Relationships</h1>
+<a href="pics/ER.png"><img src="pics/ER.png" width="700px"></a>
+</div>
+
+<div class="slide">
 <h1>
 Account
 </h1>
 <ul>
-<li>An account is the foundation of our three user types: Teacher, Teacher Assistant and Student.</li>
+<li>An Account is the foundation of our three user types: Teacher, Teacher Assistant and Student.</li>
 <li>It is where information all three of the user types originate, such as email addresses, their names and login user names.</li>
 </ul>
 </div>
@@ -83,7 +129,8 @@ Account
 Teacher
 </h1>
 <ul>
-<li>Administrator (aka User 1, Uber user or Epic Hitler)</li>
+<li>Administrator</li>
+<li>Owner of the System</li>
 <li>Access to all information of any account associated with their courses</li>
 </ul>
 </div>
