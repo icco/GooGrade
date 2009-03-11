@@ -6,9 +6,12 @@ docs:
 doxygen: 
 	doxygen Doxyfile 
 
-publish: doxygen
+publish: docs doxygen latex
 	rm -rf ~/www/blugoo/arch
+	rm -rf ~/www/blugoo/javadocs
 	mv doxy/html/ ~/www/blugoo/arch
+	mv javadoc/ ~/www/blugoo/javadocs
+	mv doxy/latex/refman.pdf ~/www/blugoo/blugooarch.pdf
 	chmod -R 755 ~/www/blugoo
 
 latex: doxygen
