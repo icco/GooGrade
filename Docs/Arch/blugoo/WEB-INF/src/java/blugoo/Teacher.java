@@ -125,7 +125,7 @@ public class Teacher extends Account
 
 	/**
 	 * SendEmail creates a new Email and send it to an address specified by the Teacher.
-	 * @returns the sent email
+	 * @return the sent email
 	 */
 	public Email sendEmail()
 	{

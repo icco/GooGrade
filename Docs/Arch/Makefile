@@ -1,7 +1,7 @@
 all: docs doxygen
 
 docs: 
-	javadoc -private -d javadoc *.java 
+	javadoc -private -d javadoc blugoo/WEB-INF/src/java/blugoo/*.java
 
 doxygen: 
 	doxygen Doxyfile 

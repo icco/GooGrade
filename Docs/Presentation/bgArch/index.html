@@ -40,8 +40,8 @@
 <div class="slide">
 <h1>GooGrade Presentation of Doom Death</h1>
 <h2>A GooGrade Project and Architecture Overview</h2>
-<h3>Nat Welch</h3>
-<h4>BluGoo</h4>
+<h3>BluGoo</h3>
+<h4></h4>
 </div>
 
 <div class="slide">
@@ -72,9 +72,9 @@
 <div class="slide">
 <h1>Vision and Scope Background</h1>
 <ul>
-<li>Managing, calculating, and monitoring grades are time consuming for teachers!</li>
+<li>Managing, calculating, and monitoring grades is time consuming for teachers!</li>
 <li>Students want to monitor their progress in a course and plan ahead to obtain the best grades they can.</li>
-<li>Students and teachers want freedom to do all of these things from home or the most convenient locations with instant grade updates and feedback for students.</li>
+<li>Students and teachers want freedom to do all of these things from home or the most convenient location with instant grade updates and feedback for students.</li>
 </ul>
 </div>
 
@@ -83,21 +83,21 @@
 <ul>
 <li>Teachers want to spend more time teaching rather than doing administration.</li>
 <li>They want a quality grading tool that will save time by keeping track of assignments and students.</li>
-<li>GooGrade will be competing with other tools of similar nature (especially the ones in our CPE308 class)</li>
-<li>GooGrade has more features than most of the tools at low cost (pretty much free!) to the individual user</li>
+<li>GooGrade will be competing with other tools of similar nature (especially the ones in our CPE308 class).</li>
+<li>GooGrade has more features than most of other tools, and is basically free to use.</li>
 </ul>
 </div>
 
 <div class="slide">
 <h1>Competitive Analysis</h1>
-<a href="pics/CM.png"><img src="pics/CM.png" width="700px" /></a>
+<a href="pics/CM.png"><img src="pics/CM.png" width="800px" /></a>
 </div>
 
 <div class="slide">
 <h1>Business Objectives</h1>
 <ul>
 <li>Save Time!</li>
-<li>Free web based grade management application!</li>
+<li>Create a free web based grade management application</li>
 </ul>
 </div>
 
@@ -107,7 +107,7 @@ Success Criteria
 </h1>
 <ul>
 <li>Measured by positive and negative feedback through a survey given at 3 months and 12 months of initial release.</li>
-<li>If two ore more Cal Poly Computer Science teachers choose to use GooGrade over any other application that already exists or developed in this class.</li>
+<li>If two or more Cal Poly Computer Science teachers choose to use GooGrade over any other application that already exists or developed in this class.</li>
 </ul>
 </div>
 
@@ -160,7 +160,7 @@ Noteworthy Features
 <li>Abstract or Die.</li>
 <li>Let designers design and let coders code.  
 <ul><li>Separate "Business Logic" from "Design"</li></ul></li>
-<li>On the intarwebs this is very important. 
+<li>On the internet this is very important. 
 <ul><li>
 Imagine if Amazon had to go digging through their entire site every time they wanted to change the design...
 </li></ul>
@@ -185,7 +185,11 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 <h1>Account</h1>
 <ul>
 <li>An Account is the foundation of our three user types: Teacher, Teacher Assistant and Student.</li>
-<li>It is where information all three of the user types originate, such as email addresses, their names and login user names.</li>
+<li>It is where information for all three of the user types originate.<ul>
+<li>email addresses</li>
+<li>names</li>
+<li>user names</li>
+</ul></li>
 </ul>
 </div>
 
@@ -212,8 +216,6 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 <ul>
 <li>A student's own account</li>
 <li>Limited access to other students information</li>
-<li>Used by students to identify themselves</li>
-<li>Used by system to gather student information</li>
 </ul>
 </div>
 
@@ -228,25 +230,15 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 </div>
 
 <div class="slide">
-<h1>EmailAddress</h1>
-<li>The Email Address is a simple class that stores an Account's email address.</li>
-<li>It differs from an ordinary String class in that it contains methods that ensure that the email address is valid, for instance, making sure that the String contains a @ sign. </li>
-</ul>
-</div>
-
-<div class="slide">
-<h1>Password</h1>
-<ul>
-<li>Security guard</li>
-<li>Passwords are stored encrypted</li>
-<li>Black box validation</li>
+<h1>EmailAddress & Password</h1>
+<li>Contain methods to ensure that they are valid.</li>
 </ul>
 </div>
 
 <div class="slide">
 <h1>Course</h1>
 <ul>
-<li>A Course is an important storage class for a list of Students, Teacher Assistants, Grading Rules and other details about the course, such as the Course Title and Section</li>
+<li>A Course is an important storage class for a list of Students, Teacher Assistants, Grading Rules and other details about the course.</li>
 <li>Importantly, it houses methods that manage the list of Students.</li>
 </ul>
 </div>
@@ -271,8 +263,8 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 <h1>File</h1>
 <ul>
 <li>Each instance of the File class represents one file uploaded by a user onto the system. </li>
-<li>The class keeps tabs on who the file is from.</li>
-<li>For instance, homework uploaded by a Student would be put up for download for a Teacher</li>
+<li>The class keeps tabs on who the file is from.<ul>
+<li>For instance, homework uploaded by a Student would be put up for download for a Teacher</li></ul></li>
 </ul>
 </div>
 
@@ -289,21 +281,34 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 <h1>Email</h1>
 <ul>
 <li>The Email class contains all the fields needed for an Email to be sent out to Students in a course.</li>
-<li>It stores the fields for the Title, Body and recipients of the email as entered in by a Teacher or Teacher Assistant.</li>
+<li>Emails are not stored in the Database in anyway</li>
 </ul>
 </div>
 
 <div class="slide">
 <h1>How these translate to the web</h1>
-...
+<small>
+<pre>
+`-- blugoo
+|-- META-INF
+|   `-- maven
+|       `-- org.apache.struts
+|-- WEB-INF
+|   |-- classes
+|   |   `-- blugoo
+|   |-- lib
+|   `-- src
+|       `-- java
+|           `-- blugoo
+`-- blugoo
+</pre></small>
 </div>
 
 <div class="slide">
-<h1>Class Diagram</h1>
+<h1>Class Documentation</h1>
 <ul>
-<li>...link to Doxygen</li>
-<li>...link to JavaDocs</li>
-<li>...link to Class Diagram</li>
+<li><a href="http://users.csc.calpoly.edu/~nwelch/blugoo/arch/">Doxygen Online Documentation</a></li>
+<li><a href="http://users.csc.calpoly.edu/~nwelch/blugoo/blugooarch.pdf">Architecture PDF</a></li>
 </ul>
 </div>
 
@@ -363,6 +368,7 @@ Imagine if Amazon had to go digging through their entire site every time they wa
 <h1>End.</h1>
 <h2>Questions?</h2>
 <h2>KTHXBYE</h2>
+<p>This presentation at: <a href="http://users.csc.calpoly.edu/~nwelch/talks/blugooarch/">http://users.csc.calpoly.edu/~nwelch/talks/blugooarch/</a>
 </div>
 
 <!-- End presentation -->
