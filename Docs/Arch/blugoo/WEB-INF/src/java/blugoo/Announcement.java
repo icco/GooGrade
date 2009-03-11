@@ -1,5 +1,6 @@
 import java.lang.*;
 import java.util.*;
+import java.io.*;
 
 /**
  * An announcement for a course. Quite a simple class for saving 
@@ -8,7 +9,7 @@ import java.util.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Announcement implements Serializeable
+public class Announcement implements Serializable
 {
 	private String body;
 	private String title;
