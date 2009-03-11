@@ -10,6 +10,7 @@ publish: doxygen
 	rm -rf ~/www/blugoo/arch
 	mv doxy/html/ ~/www/blugoo/arch
 	chmod -R 755 ~/www/blugoo
+
 latex: doxygen
 	make -C ./doxy/latex
 
