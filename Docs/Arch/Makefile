@@ -7,12 +7,13 @@ doxygen:
 	doxygen Doxyfile 
 
 publish: doxygen
-	rm -rf ~/www/blugoo/newarch
-	mv doxy/html/ ~/www/blugoo/newarch
+	rm -rf ~/www/blugoo/arch
+	mv doxy/html/ ~/www/blugoo/arch
 	chmod -R 755 ~/www/blugoo
-
-print: doxygen
+latex: doxygen
 	make -C ./doxy/latex
+
+print: latex
 	pdf2ps ./doxy/latex/refman.pdf
 	lp -o sides=two-sided-long-edge refman.ps
 
