@@ -8,7 +8,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public abstract class Account 
+public abstract class AccountController 
 {
 	/**
 	 * get the accounts user name.
