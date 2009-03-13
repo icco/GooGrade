@@ -1,3 +1,10 @@
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+
+package blugoo;
+
+
 /**
  * This class keeps information about permissions for each action.
  *

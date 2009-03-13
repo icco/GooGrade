@@ -1,6 +1,8 @@
 import java.util.*;
 import java.lang.*;
 
+package blugoo;
+
 /**
  * This is the class that deals with connecting to the storage device.
  * It could also deal with querying the storage system. Look into 

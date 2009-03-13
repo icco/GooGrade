@@ -2,6 +2,8 @@ import java.lang.*;
 import java.util.*;
 import java.io.*;
 
+package blugoo;
+
 /**
  * An announcement for a course. Quite a simple class for saving 
  * and storing Announcements. There should be a method in Course to 

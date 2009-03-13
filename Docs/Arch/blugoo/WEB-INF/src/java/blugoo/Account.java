@@ -2,6 +2,8 @@ import java.util.*;
 import java.lang.*;
 import java.io.*;
 
+package blugoo;
+
 /**
  * This is a class that keeps all of the information of a User. A user is 
  * a synomnym for an Account. This will have lots of get and set methods 

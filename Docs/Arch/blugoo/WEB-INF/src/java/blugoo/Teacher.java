@@ -1,6 +1,8 @@
 import java.util.*;
 import java.lang.*;
 
+package blugoo;
+
 /**
  * A Teacher is an Account type that has the most permissions. It acts as the
  * administrator of its installation. There are a lot of methods in here

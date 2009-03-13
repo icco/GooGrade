@@ -1,6 +1,8 @@
 import java.lang.*;
 import java.util.*;
 
+package blugoo;
+
 /**
  * The class stores information about Emails. These emails will not be stored 
  * in the database. This is purely a way to create a wrapper for validation and 
