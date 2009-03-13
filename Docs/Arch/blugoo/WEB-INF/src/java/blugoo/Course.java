@@ -10,7 +10,7 @@ import java.io.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Course implements Serializable
+public class Course implements java.io.Serializable
 {
     /** The grading rules for the Course */
     private int gradingRules;

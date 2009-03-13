@@ -4,7 +4,7 @@
  * @author bluGoo
  * @version 0.42
  */
-public class Permissions
+public class Permissions implements java.io.Serializable
 {
     /** Permission for sending emails */
     private boolean sendEmail;

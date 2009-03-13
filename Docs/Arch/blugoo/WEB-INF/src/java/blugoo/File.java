@@ -7,7 +7,7 @@ import java.util.*;
  * @author bluGoo
  * @version 0.42
  */
-public class File implements Serializable
+public class File implements java.io.Serializable
 {
     /** The time and date the File was created or uploaded */
     private String creationDate;

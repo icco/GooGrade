@@ -10,7 +10,7 @@ import java.io.*;
  * @author bluGoo
  * @version 0.42
  */
-public abstract class Account implements Serializable
+public abstract class Account implements java.io.Serializable
 {
 	/**
 	 * Username for logging in

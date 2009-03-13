@@ -9,7 +9,7 @@ import java.io.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Announcement implements Serializable
+public class Announcement implements java.io.Serializable
 {
 	private String body;
 	private String title;
