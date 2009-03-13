@@ -12,7 +12,7 @@ import java.io.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Announcement implements java.io.Serializable
+public class AnnouncementController
 {
 	private String body;
 	private String title;

@@ -1,4 +1,3 @@
-
 package blugoo;
 
 import java.lang.*;

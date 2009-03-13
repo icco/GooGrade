@@ -11,7 +11,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Student extends Account
+public class StudentController extends Account
 {
 
 	/**

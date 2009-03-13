@@ -13,7 +13,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Teacher extends Account
+public class TeacherController extends Account
 {
     /** An array of Announcements owned by the Teacher */
     private Announcement announcements[];

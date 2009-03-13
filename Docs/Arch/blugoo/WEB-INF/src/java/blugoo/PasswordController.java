@@ -10,7 +10,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Password 
+public class PasswordController
 {
 
 	private String password;

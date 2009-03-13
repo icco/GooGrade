@@ -10,7 +10,7 @@ import java.util.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Permissions implements java.io.Serializable
+public class PermissionsController
 {
     /** Permission for sending emails */
     private boolean sendEmail;

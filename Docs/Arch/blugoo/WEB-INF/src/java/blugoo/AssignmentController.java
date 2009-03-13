@@ -9,7 +9,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public class Assignment implements java.io.Serializable
+public class AssignmentController
 {
     /** 
 	 * The due date of the Assignment 

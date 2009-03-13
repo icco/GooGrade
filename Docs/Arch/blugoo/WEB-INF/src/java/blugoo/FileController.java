@@ -10,7 +10,7 @@ import java.util.*;
  * @author bluGoo
  * @version 0.42
  */
-public class File implements java.io.Serializable
+public class FileController
 {
     /** The time and date the File was created or uploaded */
     private String creationDate;

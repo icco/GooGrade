@@ -10,7 +10,7 @@ import java.util.*;
  * @author Blugoo
  * @version 0.42
  */
-public class GradingRules implements java.io.Serializable
+public class GradingRulesController
 {
 	/**
 	 * The lowest percentage a student can have to obtain an A in the course.
