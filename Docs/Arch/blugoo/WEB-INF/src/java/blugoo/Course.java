@@ -1,9 +1,8 @@
+package blugoo;
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
-package blugoo;
-
 
 /**
  * This class keeps information about Courses. It's a JavaBean since

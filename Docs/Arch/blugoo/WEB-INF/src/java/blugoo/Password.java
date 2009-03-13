@@ -1,7 +1,8 @@
-import java.util.*;
-import java.lang.*;
 
 package blugoo;
+
+import java.util.*;
+import java.lang.*;
 
 /**
  * A model for passwords since they need to be validated and such.

@@ -1,7 +1,6 @@
+package blugoo;
 import java.util.*;
 import java.lang.*;
-
-package blugoo;
 
 /**
  * A model for email addresses since they need to be validated and such.

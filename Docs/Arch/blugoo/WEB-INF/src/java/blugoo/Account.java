@@ -1,8 +1,8 @@
+package blugoo;
+
 import java.util.*;
 import java.lang.*;
 import java.io.*;
-
-package blugoo;
 
 /**
  * This is a class that keeps all of the information of a User. A user is 

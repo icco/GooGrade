@@ -1,7 +1,8 @@
+package blugoo;
+
 import java.util.*;
 import java.lang.*;
 
-package blugoo;
 
 /**
  * This class keeps information about Students. It is an extension of Account. 

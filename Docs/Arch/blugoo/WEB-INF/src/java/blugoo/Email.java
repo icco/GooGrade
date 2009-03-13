@@ -1,7 +1,8 @@
-import java.lang.*;
-import java.util.*;
 
 package blugoo;
+
+import java.lang.*;
+import java.util.*;
 
 /**
  * The class stores information about Emails. These emails will not be stored 

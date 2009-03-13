@@ -1,7 +1,8 @@
+package blugoo;
+
 import java.lang.*;
 import java.util.*;
 
-package blugoo;
 
 /**
  * The GradingRules class determines how the Total Grade is computed from mutiple Assignment Grades. 
