@@ -13,15 +13,4 @@ import java.lang.*;
 public class PasswordController
 {
 
-	private String password;
-
-	/**
-	 * Basically a wrapper for hashing.
-	 */
-	Password(String newpass)
-	{
-
-	}
-
-
 }

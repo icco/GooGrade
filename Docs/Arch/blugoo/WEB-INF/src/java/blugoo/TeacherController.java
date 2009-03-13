@@ -15,19 +15,7 @@ import java.lang.*;
  */
 public class TeacherController extends Account
 {
-    /** An array of Announcements owned by the Teacher */
-    private Announcement announcements[];
-
-    /** A list of courses owned by the Teacher */
-    private ArrayList<Course> courses;
-
-	/** Constructor for Teacher. All permissions are granted to the Teacher by  default.  
-	 */
-	public Teacher()
-	{
-	}
-
-	/**
+   /**
 	 * createCourse provides the overhead for creating a new class. The method prompts the user for information.
 	 * @return a new course as specified by the Teacher's input.
 	 */
@@ -126,14 +114,6 @@ public class TeacherController extends Account
 	{
 	}
 
-	/**
-	 * SendEmail creates a new Email and send it to an address specified by the Teacher.
-	 * @return the sent email
-	 */
-	public Email sendEmail()
-	{
-	}	
-
 	/** 
 	 * adjustCruve modifies the GradingRules to a specific Course
 	 * @return the GradingRules that were modified
@@ -146,7 +126,7 @@ public class TeacherController extends Account
 	 * takeAttendance adjusts the Participation portion of a grade for Students
 	 * @return true if no errors occurred
 	 */
-	public boolean TakeAttendance()
+	public boolean takeAttendance()
 	{
 	}
 }

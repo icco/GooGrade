@@ -19,17 +19,6 @@ public class Announcement implements java.io.Serializable
 	private Date posted;
 
 	/**
-	 * Posts an announcement. This will call the functions needed 
-	 * to save to the database.
-	 * @param title The title
-	 * @param post The post body
-	 */
-	boolean post(String title, String post)
-	{
-		return false;
-	}
-
-	/**
 	 * Returns the body, aka the content, of an Announcement.
 	 * @return the content of the post in a single string.
 	 */

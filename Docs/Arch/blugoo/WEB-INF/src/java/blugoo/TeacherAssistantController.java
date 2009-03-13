@@ -12,15 +12,6 @@ import java.lang.*;
  */
 public class TeacherAssistantController extends Account
 {
-	/**
-	 * Constructor for Teacher Assistant. If no permissions are passed in, a default, minimal permission set will be initiated. 
-	 */
-	public TeacherAssistant(Permissions granted)
-	{
-	}
 
-	public TeacherAssistant()
-	{
-	}
 }
 

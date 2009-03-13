@@ -14,24 +14,4 @@ import java.lang.*;
 public class StudentController extends Account
 {
 
-	/**
-	 * Gets the student grade in the course.
-	 * @return percentage the student has in the course
-	 * @param course A string which maches a course name, or other identifier.
-	 */
-	int GetGrade(String course)
-	{
-		return 0;
-	}
-
-	int getGrade(String course, String assignment)
-	{
-		return 0;
-	}
-
-	void uploadFile(String assignment, String course)
-	{
-
-
-	}
 }

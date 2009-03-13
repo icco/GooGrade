@@ -12,40 +12,6 @@ import java.util.*;
  */
 public class PermissionsController
 {
-    /** Permission for sending emails */
-    private boolean sendEmail;
-    
-    /** Permission for uploading files */
-    private boolean uploadFile;
-    
-    /** Permission for viewing personal grades */
-    private boolean viewOwnGrade;
-    
-    /** Permission for managing Courses */
-    private boolean manageCourse;
-    
-    /** Permission for managing metrics */
-    private boolean manageMetric;
-    
-    /** Permission for managing grades */
-    private boolean manageGrade;
-    
-    /** Permission for managing the roster */
-    private boolean manageRoster;
-    
-    /** Permission for managing Assignments */
-    private boolean manageAnnouncement;
-    
-    /** Permission for managing Users */
-    private boolean manageUser;
-
-    /** Constructor for Permissions class
-     */
-    public Permissions()
-    {
-    }
-
-    /* This class probably needs an enum */
     /**
      * VerifyPermission determines if an account has the permission required to perform another method. 
      * @param inquirer indicates the specific permission that is being inquired about.

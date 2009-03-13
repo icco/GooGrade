@@ -12,13 +12,22 @@ import java.util.*;
  */
 public class FileController
 {
-    /** The time and date the File was created or uploaded */
-    private String creationDate;
-    
-    /** The owner of the File */
-    private String owner;
-    
-    /** The name of the File */
-    private String fileName;
+	/**
+	
+	*/
+	public void upload()
+	{
+	
+	
+	}
+	
+	/**
+	
+	*/
+	public void download()
+	{
+	
+	
+	}
 
 }
