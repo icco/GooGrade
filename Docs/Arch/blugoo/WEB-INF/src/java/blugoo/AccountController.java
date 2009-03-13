@@ -1,4 +1,4 @@
-package blugoo.controller;
+package blugoo;
 
 import java.util.*;
 import java.lang.*;
