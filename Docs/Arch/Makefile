@@ -4,6 +4,7 @@ javadocs:
 	javadoc -quiet -private -d javadoc blugoo/WEB-INF/src/java/blugoo/*.java 
 
 doxygen: 
+	rm -rf doxy
 	doxygen Doxyfile 
 
 publish: javadocs doxygen latex
