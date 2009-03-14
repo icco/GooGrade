@@ -5,9 +5,7 @@ import java.lang.*;
 import java.io.*;
 
 /**
- * This class keeps information about Courses. It's a JavaBean since
- * it implements java.io.Serializable. It too uses StorageConnection
- * to store and get things out of the storage system.
+ * Methods for modifying a course and it's related actions.
  *
  * @author bluGoo
  * @version 0.42

@@ -9,7 +9,7 @@ import java.util.*;
  *
  * @author bluGoo
  * @version 0.42
- * @bug this is a horrible.
+ * @bug This is a horrible implementation. 
  */
 public class FileController
 {

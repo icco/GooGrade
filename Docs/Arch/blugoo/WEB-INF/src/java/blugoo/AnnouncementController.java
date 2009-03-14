@@ -6,9 +6,8 @@ import java.util.*;
 import java.io.*;
 
 /**
- * An announcement for a course. Quite a simple class for saving 
- * and storing Announcements. There should be a method in Course to 
- * obtain an array of these associated with said Course.
+ * This is the controller for Announcement. All it does is post things.
+ *
  * @author bluGoo
  * @version 0.42
  */

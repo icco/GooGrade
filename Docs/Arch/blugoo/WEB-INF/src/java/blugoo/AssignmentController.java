@@ -4,7 +4,7 @@ import java.lang.*;
 
 
 /**
- * This class keeps information about Assignments
+ * Does all of the work on the Assignment.
  *
  * @author bluGoo
  * @version 0.42

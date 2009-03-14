@@ -9,6 +9,7 @@ import java.io.*;
  * a synomnym for an Account. This will have lots of get and set methods 
  * that will handle getting and saving Accounts to the Storage system
  * using the Storage Connection class. 
+ *
  * @author bluGoo
  * @version 0.42
  */
