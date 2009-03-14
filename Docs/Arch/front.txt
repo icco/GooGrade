@@ -2,8 +2,13 @@
  *
  * @section Description
  * This is a project for CSC308, Winter 2009 with Clark Savage Turner.
- * This is made by the bluGoo Team whos wiki can be found at 
+ * This is made by the bluGoo Team whose wiki can be found at 
  * http://wiki.csc.calpoly.edu/blugoo/
+ * 
+ * @section Pdf Version
+ * Interested in a printable version of this document? If you have the source
+ * code run 'make latex' otherwise check out the most recent published version
+ * at http://users.csc.calpoly.edu/~nwelch/blugoo/blugooarch.pdf
  *
  * @section Markup
  * Doxygen generates <a

@@ -6,7 +6,7 @@ javadocs:
 doxygen: 
 	doxygen Doxyfile 
 
-publish: docs doxygen latex
+publish: javadocs doxygen latex
 	rm -rf ~/www/blugoo/arch
 	rm -rf ~/www/blugoo/javadocs
 	mv doxy/html/ ~/www/blugoo/arch
