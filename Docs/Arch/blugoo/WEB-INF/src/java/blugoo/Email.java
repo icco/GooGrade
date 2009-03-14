@@ -34,11 +34,4 @@ public class Email
     {
     }
 
-	/**
-	 * Sends the email once it has been written.
-	 */
-	public void send()
-	{
-
-	}
 }

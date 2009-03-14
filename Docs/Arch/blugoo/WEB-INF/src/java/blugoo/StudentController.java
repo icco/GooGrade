@@ -5,7 +5,7 @@ import java.lang.*;
 
 
 /**
- * This class keeps information about Students. It is an extension of Account. 
+ * This class deals with controlling Students. It is an extension of AccountController. 
  * Students have files. 
  *
  * @author bluGoo

@@ -22,7 +22,7 @@ package blugoo;
  */
 
 /**
- * This should deal with login I guess.
+ * This should deal with login I guess. Taken from the struts example.
  */
 public class Login
 {

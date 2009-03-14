@@ -5,7 +5,7 @@ import java.lang.*;
 
 
 /**
- *   This class keeps information about Teacher Assistants. It is an extension of Account.
+ *   This class controlls Teacher Assistants. It is an extension of AccountController.
  *  
  *   @author bluGoo
  *   @version 0.42

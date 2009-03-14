@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class keeps information about permissions for each action.
+ * This class keeps the permissions controller.
  *
  * @author bluGoo
  * @version 0.42
@@ -23,18 +23,19 @@ public class PermissionsController
     }
 
 
-    /** AddPermission grants a new permission to a user. It does nothing to permissions already granted.  
+    /** 
+ * AddPermission grants a new permission to a user. It does nothing to permissions already granted.  
      * @param permission to determine which permission is to be granted
      */
     public void  AddPermission( int permission)
     {
     }
 
-    /** Remove Permission prevents a user from using a specific permission. It does nothing to permissions previoulsy not granted. 
+    /** 
+ * Remove Permission prevents a user from using a specific permission. It does nothing to permissions previoulsy not granted. 
      * @param permission to determine which permission to be removed
      */
     public void RemovePermission( int permission)
     {
     }
-
 }

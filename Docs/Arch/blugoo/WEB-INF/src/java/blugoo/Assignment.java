@@ -2,7 +2,6 @@ package blugoo;
 import java.util.*;
 import java.lang.*;
 
-
 /**
  * This class keeps information about Assignments
  *
@@ -65,13 +64,6 @@ public class Assignment implements java.io.Serializable
 	{
 		return new String();
 	}
-
-	/*
-	public AssignmentMetric getMetrics()
-	{
-
-	}
-*/
 
 	public Float getAvg()
 	{

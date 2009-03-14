@@ -3,7 +3,6 @@ package blugoo;
 import java.io.*;
 import java.util.*;
 
-
 /**
  * This class keeps information about Files
  *

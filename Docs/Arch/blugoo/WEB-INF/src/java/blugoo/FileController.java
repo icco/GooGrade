@@ -5,29 +5,31 @@ import java.util.*;
 
 
 /**
- * This class keeps information about Files
+ * This class is to deal with files. This is not a good implementation. 
  *
  * @author bluGoo
  * @version 0.42
+ * @bug this is a horrible.
  */
 public class FileController
 {
 	/**
-	
-	*/
+	 * Upload to system.
+	 *
+	 */
 	public void upload()
 	{
-	
-	
+
+
 	}
-	
+
 	/**
-	
-	*/
+	 * Download a file.
+	 */
 	public void download()
 	{
-	
-	
+
+
 	}
 
 }

@@ -5,10 +5,7 @@ import java.lang.*;
 
 
 /**
- * A Teacher is an Account type that has the most permissions. It acts as the
- * administrator of its installation. There are a lot of methods in here
- * that really should not be in here. I mean seriously. most of the create,
- * edit, and remove methods SHOULD NOT be in here. It makes me cringe everytime I think about it.
+ * This is a controller for teacher.
  *
  * @author bluGoo
  * @version 0.42

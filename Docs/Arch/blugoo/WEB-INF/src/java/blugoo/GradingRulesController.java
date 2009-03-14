@@ -5,7 +5,7 @@ import java.util.*;
 
 
 /**
- * The GradingRules class determines how the Total Grade is computed from mutiple Assignment Grades. 
+ * The GradingRulesController class is the GradingRules controller. 
  *
  * @author Blugoo
  * @version 0.42
