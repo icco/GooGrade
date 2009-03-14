@@ -13,7 +13,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public class TeacherController extends Account
+public class TeacherController extends AccountController
 {
    /**
 	 * createCourse provides the overhead for creating a new class. The method prompts the user for information.
