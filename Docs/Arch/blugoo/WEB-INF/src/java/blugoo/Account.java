@@ -37,11 +37,6 @@ public abstract class Account implements java.io.Serializable
 	private Password password;
 
 	/**
-	 * An array of Courses that the User is involved in.
-	 */
-	private ArrayList<Course> courses;
-    
-	/**
 	 * Permissions for performing actions
 	 */
 	private Permissions permission;
