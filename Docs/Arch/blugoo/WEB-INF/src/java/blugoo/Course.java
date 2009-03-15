@@ -14,17 +14,14 @@ import java.io.*;
  */
 public class Course implements java.io.Serializable
 {
-    /** The grading rules for the Course */
-    private int gradingRules;
-    
     /** The Course's title */
     private String courseTitle;
     
     /** The Course's section */
-    private short courseSection;
+    private Integer courseSection;
     
     /** The Course's number */
-    private int courseNumber;
+    private Integer courseNumber;
     
     /** An array of Students who are enrolled in the Course */
     private ArrayList<Student> students;
@@ -39,11 +36,21 @@ public class Course implements java.io.Serializable
     private GradingRules scale;
 
 	/**
+	 * setGradingRules saves a new Grading Rules over the old.
+	 * @param newScale the new grading rules to save
+	 * @return true if no errors 
+	 */
+	public boolean setGradingRules(GradingRules scale)
+	{
+		return false;
+	}
+	
+	/**
 	 * setTitle saves a new Couse title over the old.
 	 * @param newTitle the new title to save
 	 * @return true if no errors 
 	 */
-	public boolean setTitle(String newTitle)
+	public boolean setCourseTitle(String newTitle)
 	{
 		return false;
 	}
@@ -53,7 +60,7 @@ public class Course implements java.io.Serializable
 	 * @param newSection is the number of the new section to save
 	 * @return true if no errors occurred
 	 */
-	public boolean setSection(short newSection)
+	public boolean setCourseSection(short newSection)
 	{
 		return false;
 	}
@@ -63,7 +70,7 @@ public class Course implements java.io.Serializable
 	 * @param newNumber is the new course number to save
 	 * @return true if no errors occurred. 
 	 */
-	public boolean setNumber(int newNumber)
+	public boolean setCourseNumber(int newNumber)
 	{
 		return false;
 	}
@@ -80,10 +87,75 @@ public class Course implements java.io.Serializable
 	}
 
 	/**
+	 * setTeacherAssistant sets the TeacherAssistant attribute for this course
+	 * @param ta the TeacherAssistant to be assigned to this course
+	 * @return true if no error have occured
+	 */
+	public boolean setTeacherAssistant(TeacherAssistant ta)
+	{
+		return false;
+	}
+	
+	/**
 	 * getTeacher gets the Teacher attribute from this course
 	 * @return teacher of this course
 	 */
 	public Teacher getTeacher()
 	{
+		return teacher;
+	}
+	
+	/**
+	 * getTeacherAssistant gets the TeacherAssistant attribute from this course
+	 * @return assistant of this course
+	 */
+	public TeacherAssistant getTeacherAssistant()
+	{
+		return assistant; 
+	}
+
+	/**
+	 * getCourseNumber gets the courseNumber
+	 * @return the courseNumber
+	 */
+	public Integer getCourseNumber()
+	{
+		return courseNumber; 
+	}
+	
+	/**
+	 * getCourseSection gets the courseSection
+	 * @return the courseSection
+	 */
+	public Integer getCourseSection()
+	{
+		return courseSection; 
+	}
+
+	/**
+	 * getCourseTitle gets the courseTitle
+	 * @return the courseTitle
+	 */
+	public String getCourseTitle()
+	{
+		return courseTitle; 
+	}
+	
+	/**
+	 * getGradingRules gets the scale attribute for this course 
+	 * @return the scale attribute for this course
+	 */
+	public GradingRules getGradingRules()
+	{
+		return scale; 
+	}
+
+	/**
+	 * getStudents gets the students attribute for this course 
+	 * @return the students attribute for this course
+	 */
+	public ArrayList<Student> getStudents()
+	{
+		return students; 
 	}
 }
