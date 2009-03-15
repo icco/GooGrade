@@ -66,7 +66,7 @@ public class Permissions implements java.io.Serializable
 	  */
 	 public boolean isViewOwnGrade()
 	 {
-		 return viewOwnGrade()
+		 return viewOwnGrade;
 	 }
 
 	 /** To check if the user has the manageCourse permission
@@ -148,7 +148,7 @@ public class Permissions implements java.io.Serializable
 	  * @param pManageCourse A boolean value to which manageCourse is set to.
 	  * @return true if set is succesful, false if not
 	  */
-	 public boolean setManageCourse(boolean pManagecourse)
+	 public boolean setManageCourse(boolean pManageCourse)
 	 {
 		 return false;
 	 }

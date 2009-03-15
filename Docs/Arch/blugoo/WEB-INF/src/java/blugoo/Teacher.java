@@ -15,11 +15,8 @@ import java.lang.*;
  */
 public class Teacher extends Account
 {
-    /** An array of Announcements owned by the Teacher */
-    private Announcement announcements[];
-
     /** A list of courses owned by the Teacher */
-    private ArrayList<Course> courses;
+    private ArrayList<Course> teaches;
 
 	/** Constructor for Teacher. All permissions are granted to the Teacher by  default.  
 	 */

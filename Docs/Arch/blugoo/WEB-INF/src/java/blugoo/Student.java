@@ -13,6 +13,7 @@ import java.lang.*;
  */
 public class Student extends Account
 {
+	ArrayList<Course> enrolled;
 
 	/**
 	 * Gets the student grade in the course.

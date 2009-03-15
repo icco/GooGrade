@@ -12,6 +12,9 @@ import java.lang.*;
  */
 public class TeacherAssistant extends Account
 {
+
+	private ArrayList<Course> helps;
+
 	/**
 	 * Constructor for Teacher Assistant.
 	 */
@@ -19,7 +22,7 @@ public class TeacherAssistant extends Account
 	{
 	}
 
-/**
+	/**
 	 * Constructor for Teacher Assistant. No permissions are passed in, a default, minimal permission set will be initiated. 
 	 */
 	public TeacherAssistant()
