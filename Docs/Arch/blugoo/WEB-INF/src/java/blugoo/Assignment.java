@@ -27,7 +27,7 @@ public class Assignment implements java.io.Serializable
     private Integer total;
     
     /**
-	 * The type of the Assignment; can be Test, Quiz, Homework, Participation, or other
+	 * The type of the Assignment; can be Test, Quiz, Homework, Participation, or Other
 	 */
     private String type;
 
@@ -46,72 +46,138 @@ public class Assignment implements java.io.Serializable
 	 */
 	private Float min;
 
+	/**
+	* Gets a Date object for the due date of the assignment
+	* @return the date the assignment is due
+	*/ 
 	public Date getDueDate()
 	{
 		return new Date();
 	}
-
+	
+	/**
+	* Gets a String for the name of the assignment.
+	* @return the name of the assignment.
+	*/ 
 	public String getName()
 	{
 		return new String();
 	}
 
+	
+	/**
+	* Gets the total points for the Assignment.
+	* @return this Assignment's total points.
+	*/ 
 	public Integer getTotal()
 	{
 		return 0;
 	}
 
+	/**
+	* Gets the type of Assignment.
+	* @return a String of the type Assignment.
+	*/ 
 	public String getType()
 	{
 		return new String();
 	}
 
+
+	/**
+	* Gets the average points of Assignment.
+	* @return this Assignment's average points.
+	*/ 
 	public Float getAvg()
 	{
 		return this.average;
 	}
 
+	/**
+	* Gets the max point out of all graded assignment of this Assignment.
+	* @return this Assignment's max points.
+	*/ 
 	public Float getMax()
 	{
 		return this.max;
 	}
 
+	/**
+	* Gets the min point out of all graded assignment of this Assignment.
+	* @return this Assignment's min points.
+	*/ 
 	public Float getMin()
 	{
 		return this.min;
 	}
-
-	public boolean setDueDate()
+	
+	/**
+	* Sets the dueDate of the Assignment.
+	* @param dueDate the date the Assignment is due.
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setDueDate(Date dueDate)
 	{
 		return false;
 	}
 
-	public boolean setName()
+	/**
+	* Sets the namne of the Assignment.
+	* @param name the name of the Assignment.
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setName(String name)
 	{
 		return false;
 	}
 
-	public boolean setTotal()
+	/**
+	* Sets the total points of the Assignment.
+	* @param total the total points of the Assignment.
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setTotal(Integer total)
 	{
 		return false;
 	}
 
-	public boolean setType()
+
+	/**
+	* Sets the type of the Assignment.
+	* @param type the type the Assignment is.
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setType(String type)
 	{
 		return false;
 	}
 
-	public boolean setAvg()
+	/**
+	* Sets the average points of the Assignment
+	* @param average the average points of the graded assignment for this Assignment
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setAvg(Float average)
 	{
 		return false;
 	}
 
-	public boolean setMax()
+	/**
+	* Sets the max points of the Assignment
+	* @param max the max points of the graded assignment for this Assignment
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setMax(Float max)
 	{
 		return false;
 	}
-
-	public boolean setMin()
+	
+	/**
+	* Sets the min points of the Assignment
+	* @param min the min points of the graded assignment for this Assignment
+	* @return true if set, false if failure.
+	*/ 
+	public boolean setMin(Float min)
 	{
 		return false;
 	}
