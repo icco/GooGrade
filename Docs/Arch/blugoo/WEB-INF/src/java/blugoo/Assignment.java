@@ -80,5 +80,39 @@ public class Assignment implements java.io.Serializable
 		return this.min;
 	}
 
+	public Date setDueDate()
+	{
+		return new Date();
+	}
+
+	public String setName()
+	{
+		return new String();
+	}
+
+	public Integer setTotal()
+	{
+		return 0;
+	}
+
+	public String setType()
+	{
+		return new String();
+	}
+
+	public Float setAvg()
+	{
+		return this.average;
+	}
+
+	public Float setMax()
+	{
+		return this.max;
+	}
+
+	public Float setMin()
+	{
+		return this.min;
+	}
 }
 

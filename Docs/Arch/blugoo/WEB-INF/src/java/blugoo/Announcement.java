@@ -5,7 +5,7 @@ import java.util.*;
 import java.io.*;
 
 /**
- * An Announcement for a course. Quite a simple class for saving 
+ * An Announcement for a Course. Quite a simple class for saving 
  * and storing Announcements. There should be a method in Course to 
  * obtain an array of these associated with said Course.
  *
@@ -41,6 +41,33 @@ public class Announcement implements java.io.Serializable
 	 * @return a string containing the title.
 	 */
 	public String getTitle()
+	{
+		return this.title;
+	}
+
+	/**
+	 * Sets the body of the Announcement.
+	 * @return false if error. True if successful
+	 */
+	public boolean setBody()
+	{
+		return this.body;
+	}
+
+	/**
+	 * Sets the date of the Announcement.
+	 * @return false if error. True if successful
+	 */
+	public Date setDate()
+	{
+		return this.posted;
+	}
+
+	/**
+	 * sets the title of the announcement.
+	 * @return false if error. True if successful
+	 */
+	public String setTitle()
 	{
 		return this.title;
 	}

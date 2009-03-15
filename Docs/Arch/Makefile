@@ -17,6 +17,7 @@ publish: javadocs doxygen latex
 
 latex: doxygen
 	make -C ./doxy/latex
+	cp -f doxy/latex/refman.pdf arch.pdf
 
 print: latex
 	pdf2ps ./doxy/latex/refman.pdf

@@ -5,7 +5,7 @@ import java.lang.*;
 import java.io.*;
 
 /**
- * This is a class that keeps all of the information of a User. A user is 
+ * This is a class that keeps all of the information of a user. A user is 
  * a synomnym for an Account. This will have lots of get and set methods 
  * that will handle getting and saving Accounts to the Storage system
  * using the Storage Connection class. 

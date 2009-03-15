@@ -4,7 +4,7 @@ import java.lang.*;
 import java.util.*;
 
 /**
- * This deals with working with emails.
+ * This deals with sending emails.
  *
  * @author bluGoo
  * @version 0.42
