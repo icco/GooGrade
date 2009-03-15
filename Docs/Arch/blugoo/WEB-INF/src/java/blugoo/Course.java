@@ -38,13 +38,6 @@ public class Course implements java.io.Serializable
     /** The set of grade boundaries for this class*/
     private GradingRules scale;
 
-	/** 
-	 * Constructor of Course class
-	 */
-	public Course()
-	{
-	}
-
 	/**
 	 * setTitle saves a new Couse title over the old.
 	 * @param newTitle the new title to save

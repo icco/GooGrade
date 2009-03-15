@@ -12,5 +12,9 @@ import java.lang.*;
  */
 public class PasswordController
 {
-
+	public boolean validate(String passwd)
+	{
+		return false;
+	}
 }
+

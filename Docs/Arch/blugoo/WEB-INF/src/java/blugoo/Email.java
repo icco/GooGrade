@@ -17,8 +17,8 @@ public class Email
     /** The title of the Email */
     private String emailTitle;
     
-    /** The pathname of a file to be attached to the Email */
-    private String emailAttachment;
+    /** The files to be attached to the Email */
+    private ArrayList<File> emailAttachment;
     
     /** An array of email addresses to which the Email will be sent */
     private ArrayList<EmailAddress> emailRecipients;
@@ -30,8 +30,8 @@ public class Email
     /** 
      * Constructor for Email class.
      */
-    public Email()
+    public Email(String title, ArrayList<File> attachments, ArrayList<EmailAddress> to, String body)
     {
+    
     }
-
 }

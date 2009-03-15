@@ -13,7 +13,6 @@ import java.lang.*;
  */
 class StorageConnection 
 {
-
 	/**
 	 * Connect and be jolly.
 	 */
@@ -21,6 +20,12 @@ class StorageConnection
 	{
 
 
+	}
+
+	boolean query(String query)
+	{
+	
+	
 	}
 
 }

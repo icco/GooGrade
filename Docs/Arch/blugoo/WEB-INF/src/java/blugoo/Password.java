@@ -22,6 +22,10 @@ public class Password
 	{
 
 	}
-
-
+	
+	public boolean setPassword(String passwd)
+	{
+	
+	
+	}
 }

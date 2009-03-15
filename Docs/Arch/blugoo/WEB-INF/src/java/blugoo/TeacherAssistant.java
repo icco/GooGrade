@@ -13,12 +13,15 @@ import java.lang.*;
 public class TeacherAssistant extends Account
 {
 	/**
-	 * Constructor for Teacher Assistant. If no permissions are passed in, a default, minimal permission set will be initiated. 
+	 * Constructor for Teacher Assistant.
 	 */
 	public TeacherAssistant(Permissions granted)
 	{
 	}
 
+/**
+	 * Constructor for Teacher Assistant. No permissions are passed in, a default, minimal permission set will be initiated. 
+	 */
 	public TeacherAssistant()
 	{
 	}

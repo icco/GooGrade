@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- * This class keeps information about Files
+ * This class keeps information about Files.
  *
  * @author bluGoo
  * @version 0.42

@@ -30,6 +30,4 @@ public class EmailAddress
 	{
 		return address;
 	}
-
-
 }
