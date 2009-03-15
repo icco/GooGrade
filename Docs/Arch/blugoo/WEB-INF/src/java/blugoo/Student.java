@@ -18,8 +18,9 @@ public class Student extends Account
 	 * Gets the student grade in the course.
 	 * @return percentage the student has in the course
 	 * @param course A string which maches a course name, or other identifier.
+	 * @param ass An assignment to get the grade for.
 	 */
-	int getGrade(String course, String assignment)
+	int getGrade(String course, Assignment ass)
 	{
 		return 0;
 	}
