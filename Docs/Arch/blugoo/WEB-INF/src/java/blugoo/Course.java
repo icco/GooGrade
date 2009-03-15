@@ -40,7 +40,7 @@ public class Course implements java.io.Serializable
 	 * @param newScale the new grading rules to save
 	 * @return true if no errors 
 	 */
-	public boolean setGradingRules(GradingRules scale)
+	public boolean setGradingRules(GradingRules newScale)
 	{
 		return false;
 	}
