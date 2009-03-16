@@ -11,6 +11,7 @@
  versions.<ul>
  <li> PDF: http://users.csc.calpoly.edu/~nwelch/blugoo/blugooarch.pdf</li>
  <li> Web: http://users.csc.calpoly.edu/~nwelch/blugoo/arch/</li>
+ <li> JavaDocs: http://users.csc.calpoly.edu/~nwelch/blugoo/javadocs/</li>
  </ul>
 
 @section MVC
@@ -18,6 +19,12 @@ This project follows the Model, View, Controller Philosophy. Views are Java
 Server Pages. Models are classes containing Get and Set methods and the
 ability to store data to the storage system. Controllers act with the models
 and the views to do actual specific work.
+
+@section Note
+This is not complete enough to be implemented. Most of the controllers need 
+more functionality and how to connect to the storage system is all but
+undocumented. Also the JSP pages were excluded because they had no
+documentation what so ever.
 
  @section Markup
  Doxygen generates <a

@@ -14,7 +14,7 @@ public class FileController
 {
 	/**
 	 * Upload to system.
-	 * @param file to be uploaded 
+	 * @param filename to be uploaded 
 	 * @return true if successful, false if error.
 	 */
 	public boolean upload(File filename)
@@ -25,7 +25,7 @@ public class FileController
 
 	/**
 	 * Download a file.
-	 * @param file to be downloaded
+	 * @param filename to be downloaded
 	 * @return true if successful, false if error.
 	 */
 	public boolean download(File filename)
@@ -36,7 +36,7 @@ public class FileController
 	
 	 /**
 	 * Delete a file.
-	 * @param file to be deleted
+	 * @param filename to be deleted
 	 * @return true if successful, false if error.
 	 */
 	public boolean delete(File filename)
