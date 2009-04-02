@@ -1,0 +1,28 @@
+- Suggested Systems
+	- Java Server Pages
+ 		- Allows for view seperation for MVC
+	- Java Servlets
+	- Apache Tomcat
+ 		- One of many, chose mainly because of brand name.
+	- Linux for Server OS
+	- Modern Browsers for Users
+ 		- w3c compliant and such
+
+- Architecture Overview
+	- Model View Controller
+ 		- According to wikipedia it "isolates business logic from user interface considerations, resulting in an application where it is easier to modify either the visual appearance of the application or the underlying business rules without affecting the other."
+		- Prevents coupling as well
+	- We want to keep this modular.
+ 		- Group project etc.
+	- Entity Relationship Diagram
+		- see ER.pdf
+	- Class Diagrams 
+ 		- ...
+	- Overview of classes
+
+- Design Overview
+	- Screen Shots
+	- Future Problems?
+
+Thanks.
+
