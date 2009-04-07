@@ -1,34 +1,31 @@
---- Stage 1 ---
-                        Start Mon Mar 29, 2004                           End  Fri Jun 4, 2004
-                               4      11     18     25     2      9
-                       | MTWRFSSMTWRFSSMTWRFSSMTWRFSSMTWRFSSMTWRFSSMTWRFSSMTWRFSSMTWRFSSMTWRF
-                       |-------|------|------|------|------|------|------|------|------|-----
+GooGrade Release Schedule
 
-Review Spec                [-]
-Review HLD                  []
-Review pseudocode            [--]
-Delivery Plan signoff           x
-Training                     [----------------]
-Implement Stage 0            [----]
-Daily Build begins                x
-Implement Stage 0.1               [-]
-Stage0 Integration party            x
-Write Sys Tests                  ...[----].
-Unit Development                      .....[-----]
-Integration Test begins 4/21              ......x
-Integration Test                          ......[-----]
-Development Frozen                               .x
-System Test                                    .[----..]
-Write Install Doc                                   [--.]
-Write User manual                                   [--.]
-Release Prep                                           []
-Release 1                                               .x (Fri 4/30 2pm)
-Midterm Exam                                             x
-                       | MTWRFS2MTWRFS3MTWRFS4MTWRFS5MTWRFS6MTWRFS7MTWRFS8MTWRFS9MTWRFS0MTWRF
-
-
---- Stage 2 ---
-                       | 7MTWRFS8MTWRFS9MTWRFS0MTWRF
+Start Mon Mar 29, 2004   
+End  Fri Jun 12, 2009
+Saturday                       4      11      18       25      2       9      16      23       30     6
+                       |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
+--- Stage 1 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final
+                       |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
+Review SRS              ....[---]
+Review Arch               ..[--] 
+Delivery Plan signoff            x
+Training                  [-------------------]
+Pseudocode                      [-----] 
+Implement Stage 0                  [--------------]
+Daily Builds begin                    x
+Integration party                                 x
+Write Sys Tests                             [------------]
+Unit Test Development                        [-----]
+Integration Test                               [-----]
+System Test                                    [-------]
+Write Install Doc                                   [---]
+Write User manual                                   [---]
+Release Prep                                           [-]
+Midterm Exam                                                 x
+Release 1                                                          x (Fri 5/6 11am)
+                       |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
+--- Stage 2 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
+                       |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
 Training                 [-------------]
 Write Sys Tests              [-----]
 Unit Development         [---------]
@@ -39,7 +36,6 @@ Update User manual                     [--]
 Release Prep                              [-]
 Release 2 finished                          x (Fri May 28 3pm)
 Release 2 Due                                    x
-                       | 7MTWRFS8MTWRFS9MTWRFS0MTWRF
 
 
 Symbols
@@ -47,47 +43,4 @@ Symbols
 -   activity underway 	.   date slipped (oops)
 ]   activity completes 	_   date pulled in (yeah)
 
-
-Detailed Schedule Weeks 8-9
-
-Wed 5-19   Begin Unit Testing On All New Units
-
-Fri 5-21
-12 AM Completed Unit Development On All New Units
-            SwingUI and WordServer pass automated JUnit tests. 
-            Begin integration.  Check-in SwingUI and JUnit tests.  Build system. Run manual integration tests.
-            Turn JUnit tests into integration tests.  Run JUnit integration tests. 
-            Report and repair any defects.
-1PM    SwingUI successfully integrated.
-            Repeat for WordServer
-            
-Sat 5-22
-9AM   Merge maintenance branch of CVS into main trunk.
-12PM  Stage 2 new System Test cases posted in Test Matrix.
-            Begin System Testing New Units
-
-Sun 5-23  activity: Run system tests, report and repair defects.
-
-Mon 5-24 
-12PM  manual System Testing (functional tests) completed.
-            Run Coverage Tool to measure % coverage.
-1PM     System Test Results (functional tests) report completed and posted.
-            Schedule a pilot test.
-
-Tue 5-25 3pm System Test Results (non-functional tests) report completed and posted.
-
-Wed 5-26
-12PM Sean: Finish Updating Of Install Docs
-           Josh: Finish Updating Of User Manual
-
-Thu 5-27 Do tasks on release checklist (including pilot test).  Gather Release Criteria Metrics.
-
-Thu 5-27
-eve meeting: 
-                         Sean and Josh and John: Items On The Release Checklist Due
-                                  Sean and Josh: Release Criteria Metrics Due
-
-Fri 5-28
-11:00 AM  Class Demo Of Finished Product
-1:00 PM Release Party!
 
