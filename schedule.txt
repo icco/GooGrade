@@ -11,7 +11,7 @@ Review Arch               ..[--]
 Delivery Plan signoff            x
 Training                  [-------------------]
 Pseudocode                      [-----] 
-Implement Stage 0                  [--------------]
+Implement Stage 1                  [--------------]
 Daily Builds begin                    x
 Integration party                                 x
 Write Sys Tests                             [------------]
@@ -22,20 +22,24 @@ Write Install Doc                                   [---]
 Write User manual                                   [---]
 Release Prep                                           [-]
 Midterm Exam                                                 x
-Release 1                                                          x (Fri 5/6 11am)
+Release 1                                                          x (Wed 5/6 11am)
                        |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
 --- Stage 2 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
                        |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
-Training                 [-------------]
-Write Sys Tests              [-----]
-Unit Development         [---------]
-Development Frozen                 x
-System Test                        [-----]
-Update Install Doc                     [--]
-Update User manual                     [--]
-Release Prep                              [-]
-Release 2 finished                          x (Fri May 28 3pm)
-Release 2 Due                                    x
+Training                                                               [-------------] 
+Implement Stage 2                                                     [---------------]
+Integration Party                                                                     x  
+Write Sys Tests                                                                   [-----]
+Unit Test Development                                                             [---------]
+Development Frozen                                                                            x
+System Test                                                                                 [-----]
+Update Install Doc                                                                              [---]
+Update User manual                                                                              [---]
+Release Prep                                                                                           [--]
+Release 2 finished                                                                                        x 
+Release 2 Due                                                                                              x(Wed 6/3 11am)
+                       |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
+                       |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
 
 
 Symbols
