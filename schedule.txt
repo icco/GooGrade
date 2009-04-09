@@ -1,6 +1,6 @@
 GooGrade Release Schedule
 
-Start Mon Mar 29, 2004   
+Start Mon Mar 30, 2009   
 End  Fri Jun 12, 2009
 Saturday                       4      11      18       25      2       9      16      23       30     6
                        |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
@@ -9,17 +9,16 @@ Saturday                       4      11      18       25      2       9      16
 Review SRS              ....[---]                            
 Review Arch               ..[--]                           
 Delivery Plan signoff            x                                            
-Training                  [-------------------]
-Pseudocode                        ....[-----] 
-Implement Stage 1                        [--------------]
+Training                  [------------------------------]
+Pseudocode                        ....[-----]
+Vertical Prototpyping Party               x x
+Implement Stage 1                            [----------]
+Unit Test Development                        [----------]
 Daily Builds begin                         x
-Integration party                                       x
-Write Sys Tests                              [------------]
-Unit Test Development                               [-----]
+Write Sys Tests                              [-----]
 Integration Test                                      [-----]
 System Test                                          [-------]
-Write Install Doc                                          [---]
-Write User manual                                          [---]
+Write Deployment Doc                                         [---]
 Release Prep                                                    [-]
 Midterm Exam                                                 x
 Release 1                                                          x (Wed 5/6 11am)
