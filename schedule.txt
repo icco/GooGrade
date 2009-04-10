@@ -17,7 +17,8 @@ Unit Test Development                        [----------]
 Daily Builds begin                         x
 Write Sys Tests                              [-----]
 Integration Test                                      [-----]
-System Test                                          [-------]
+Review System Test                                [-------]
+Write System Test                                    [-------]
 Write Deployment Doc                                         [---]
 Release Prep                                                    [-]
 Midterm Exam                                                 x
