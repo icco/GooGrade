@@ -1,0 +1,138 @@
+\hypertarget{classGradingRules}{
+\section{GradingRules Class Reference}
+\label{classGradingRules}\index{GradingRules@{GradingRules}}
+}
+Inheritance diagram for GradingRules:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=62pt]{classGradingRules__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for GradingRules:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=94pt]{classGradingRules__coll__graph}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+The \hyperlink{classGradingRules}{GradingRules} class determines how the Total Grade is computed from mutiple \hyperlink{classAssignment}{Assignment} Grades. 
+
+\begin{Desc}
+\item[Author:]Blugoo \end{Desc}
+\begin{Desc}
+\item[Version:]0.42 \end{Desc}
+
+
+Definition at line 10 of file GradingRules.java.\subsection*{Package Functions}
+\begin{CompactItemize}
+\item 
+boolean \hyperlink{classGradingRules_a598ad97fc49367e792bb932b048477a}{setCurve} (Character letter, Integer grade)
+\begin{CompactList}\small\item\em Sets a the lowest percentage one can have to have a grade. \item\end{CompactList}\item 
+Integer \hyperlink{classGradingRules_1efd3c9e8bc3c4df7d1851454fb74784}{getCurve} (Character letter)
+\begin{CompactList}\small\item\em Gets a the lowest percentage one can have to have a grade. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+Integer \hyperlink{classGradingRules_8b01111e235cf047ea844f87b9d2090f}{aFloor}
+\begin{CompactList}\small\item\em The lowest percentage a student can have to obtain an A in the course. \item\end{CompactList}\item 
+Integer \hyperlink{classGradingRules_cf65a7bcb2ebbe708ccbb2143eb4c510}{bFloor}
+\begin{CompactList}\small\item\em The lowest percentage a student can have to obtain an B in the course. \item\end{CompactList}\item 
+Integer \hyperlink{classGradingRules_dc3b401172a5322cc6cec7b1605b6ffd}{cFloor}
+\begin{CompactList}\small\item\em The lowest percentage a student can have to obtain an C in the course. \item\end{CompactList}\item 
+Integer \hyperlink{classGradingRules_aa2a35bd471a7ae909bd388875552565}{dFloor}
+\begin{CompactList}\small\item\em The lowest percentage a student can have to obtain an D in the course. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classGradingRules_a598ad97fc49367e792bb932b048477a}{
+\index{GradingRules@{GradingRules}!setCurve@{setCurve}}
+\index{setCurve@{setCurve}!GradingRules@{GradingRules}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean GradingRules.setCurve (Character {\em letter}, \/  Integer {\em grade})\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classGradingRules_a598ad97fc49367e792bb932b048477a}
+
+
+Sets a the lowest percentage one can have to have a grade. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em letter}]The Grade (A,B,C,D) you wish to change \item[{\em grade}]The Percentage you wish to set the floor to. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]false if fail, true if set. \end{Desc}
+
+
+Definition at line 35 of file GradingRules.java.\hypertarget{classGradingRules_1efd3c9e8bc3c4df7d1851454fb74784}{
+\index{GradingRules@{GradingRules}!getCurve@{getCurve}}
+\index{getCurve@{getCurve}!GradingRules@{GradingRules}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Integer GradingRules.getCurve (Character {\em letter})\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classGradingRules_1efd3c9e8bc3c4df7d1851454fb74784}
+
+
+Gets a the lowest percentage one can have to have a grade. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em letter}]The Grade (A,B,C,D) you wish to get \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]false if fail, true if set. \end{Desc}
+
+
+Definition at line 45 of file GradingRules.java.
+
+\subsection{Member Data Documentation}
+\hypertarget{classGradingRules_8b01111e235cf047ea844f87b9d2090f}{
+\index{GradingRules@{GradingRules}!aFloor@{aFloor}}
+\index{aFloor@{aFloor}!GradingRules@{GradingRules}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Integer {\bf GradingRules.aFloor}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classGradingRules_8b01111e235cf047ea844f87b9d2090f}
+
+
+The lowest percentage a student can have to obtain an A in the course. 
+
+
+
+Definition at line 15 of file GradingRules.java.\hypertarget{classGradingRules_cf65a7bcb2ebbe708ccbb2143eb4c510}{
+\index{GradingRules@{GradingRules}!bFloor@{bFloor}}
+\index{bFloor@{bFloor}!GradingRules@{GradingRules}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Integer {\bf GradingRules.bFloor}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classGradingRules_cf65a7bcb2ebbe708ccbb2143eb4c510}
+
+
+The lowest percentage a student can have to obtain an B in the course. 
+
+
+
+Definition at line 19 of file GradingRules.java.\hypertarget{classGradingRules_dc3b401172a5322cc6cec7b1605b6ffd}{
+\index{GradingRules@{GradingRules}!cFloor@{cFloor}}
+\index{cFloor@{cFloor}!GradingRules@{GradingRules}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Integer {\bf GradingRules.cFloor}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classGradingRules_dc3b401172a5322cc6cec7b1605b6ffd}
+
+
+The lowest percentage a student can have to obtain an C in the course. 
+
+
+
+Definition at line 23 of file GradingRules.java.\hypertarget{classGradingRules_aa2a35bd471a7ae909bd388875552565}{
+\index{GradingRules@{GradingRules}!dFloor@{dFloor}}
+\index{dFloor@{dFloor}!GradingRules@{GradingRules}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Integer {\bf GradingRules.dFloor}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classGradingRules_aa2a35bd471a7ae909bd388875552565}
+
+
+The lowest percentage a student can have to obtain an D in the course. 
+
+
+
+Definition at line 27 of file GradingRules.java.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+blugoo/WEB-INF/src/java/blugoo/\hyperlink{GradingRules_8java}{GradingRules.java}\end{CompactItemize}

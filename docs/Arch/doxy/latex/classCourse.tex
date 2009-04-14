@@ -1,0 +1,343 @@
+\hypertarget{classCourse}{
+\section{Course Class Reference}
+\label{classCourse}\index{Course@{Course}}
+}
+Inheritance diagram for Course:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=58pt]{classCourse__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for Course:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classCourse__coll__graph}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+This class keeps information about Courses. 
+
+It's a JavaBean since it implements java.io.Serializable. It too uses \hyperlink{classStorageConnection}{StorageConnection} to store and get things out of the storage system.
+
+\begin{Desc}
+\item[Author:]bluGoo \end{Desc}
+\begin{Desc}
+\item[Version:]0.42 \end{Desc}
+
+
+Definition at line 13 of file Course.java.\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classCourse_85d22954deffe5dd6c35c94304ac7092}{Course} ()
+\begin{CompactList}\small\item\em Constructor of \hyperlink{classCourse}{Course} class. \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_fab2ecaf6ad860890161c693b7a3aa00}{setTitle} (String newTitle)
+\begin{CompactList}\small\item\em setTitle saves a new Couse title over the old. \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_93bd3af1063181e32bcc4cddb3e2348b}{setSection} (short newSection)
+\begin{CompactList}\small\item\em setSection saves a new section number over the old one \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_43edb09a6091becee394eb5a5cd7a17a}{setNumber} (int newNumber)
+\begin{CompactList}\small\item\em setNumber replaces the course number with a new one \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_5b9c0561583f36cd8ad5d04712d19c82}{addStudent} (\hyperlink{classPermissions}{Permissions} permission, \hyperlink{classStudent}{Student} student)
+\begin{CompactList}\small\item\em addStudent adds a new student to this course. \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_1ef5ef0c45209e94bc4c80e679a05ccd}{removeStudent} (\hyperlink{classPermissions}{Permissions} permission, \hyperlink{classStudent}{Student} student)
+\begin{CompactList}\small\item\em removeStudent removes a particular student from the course. \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_fa902d10778aabf551c83b7330de82ee}{addTA} (\hyperlink{classPermissions}{Permissions} permission, \hyperlink{classTeacherAssistant}{TeacherAssistant} ta)
+\begin{CompactList}\small\item\em addTA assignes a new \hyperlink{classTeacherAssistant}{TeacherAssistant} to this course. \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_75709fa5448678e86d780b1a9f6f73ad}{removeTA} (\hyperlink{classPermissions}{Permissions} permission, \hyperlink{classTeacherAssistant}{TeacherAssistant} ta)
+\begin{CompactList}\small\item\em removeTA removes a \hyperlink{classTeacherAssistant}{TeacherAssistant} from this course \item\end{CompactList}\item 
+boolean \hyperlink{classCourse_678a0261fead39c7bfca06b0e69fc419}{setTeacher} (\hyperlink{classTeacher}{Teacher} t)
+\begin{CompactList}\small\item\em setTeacher sets the \hyperlink{classTeacher}{Teacher} attribute for this course \item\end{CompactList}\item 
+\hyperlink{classTeacher}{Teacher} \hyperlink{classCourse_4bd27c4b74ec54cc76d13d9bb05f2e58}{getTeacher} ()
+\begin{CompactList}\small\item\em getTeacher gets the \hyperlink{classTeacher}{Teacher} attribute from this course \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+int \hyperlink{classCourse_98c195c6fb24d3516cce208d316cfea7}{gradingRules}
+\begin{CompactList}\small\item\em The grading rules for the \hyperlink{classCourse}{Course}. \item\end{CompactList}\item 
+String \hyperlink{classCourse_b5d0d78500c3a2ac7e3119e492e84c43}{courseTitle}
+\begin{CompactList}\small\item\em The Course's title. \item\end{CompactList}\item 
+short \hyperlink{classCourse_3c691a1d87018604cc97964dd1d23969}{courseSection}
+\begin{CompactList}\small\item\em The Course's section. \item\end{CompactList}\item 
+int \hyperlink{classCourse_d80c00a2eb9c442c923701341091c041}{courseNumber}
+\begin{CompactList}\small\item\em The Course's number. \item\end{CompactList}\item 
+ArrayList$<$ \hyperlink{classStudent}{Student} $>$ \hyperlink{classCourse_4c9b5c99514f93acca32bfc5b59056a0}{students}
+\begin{CompactList}\small\item\em An array of Students who are enrolled in the \hyperlink{classCourse}{Course}. \item\end{CompactList}\item 
+\hyperlink{classTeacherAssistant}{TeacherAssistant} \hyperlink{classCourse_1a4e0b8a02c292d708ea189a3ec630ac}{assistant}
+\begin{CompactList}\small\item\em An instance of \hyperlink{classTeacher}{Teacher} Assistant who is associated with the \hyperlink{classCourse}{Course}. \item\end{CompactList}\item 
+\hyperlink{classTeacher}{Teacher} \hyperlink{classCourse_2e9ff59d7be67142a26b00e07695a1da}{teacher}
+\begin{CompactList}\small\item\em An instance of \hyperlink{classTeacher}{Teacher} who is teaching the \hyperlink{classCourse}{Course}. \item\end{CompactList}\item 
+\hyperlink{classGradingRules}{GradingRules} \hyperlink{classCourse_92119e5fc9ef69e7b3c26ba3d36a3c4e}{scale}
+\begin{CompactList}\small\item\em The set of grade boundaries for this class. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classCourse_85d22954deffe5dd6c35c94304ac7092}{
+\index{Course@{Course}!Course@{Course}}
+\index{Course@{Course}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}Course.Course ()}}
+\label{classCourse_85d22954deffe5dd6c35c94304ac7092}
+
+
+Constructor of \hyperlink{classCourse}{Course} class. 
+
+
+
+Definition at line 42 of file Course.java.
+
+\subsection{Member Function Documentation}
+\hypertarget{classCourse_fab2ecaf6ad860890161c693b7a3aa00}{
+\index{Course@{Course}!setTitle@{setTitle}}
+\index{setTitle@{setTitle}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.setTitle (String {\em newTitle})}}
+\label{classCourse_fab2ecaf6ad860890161c693b7a3aa00}
+
+
+setTitle saves a new Couse title over the old. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em newTitle}]the new title to save \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors \end{Desc}
+
+
+Definition at line 51 of file Course.java.\hypertarget{classCourse_93bd3af1063181e32bcc4cddb3e2348b}{
+\index{Course@{Course}!setSection@{setSection}}
+\index{setSection@{setSection}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.setSection (short {\em newSection})}}
+\label{classCourse_93bd3af1063181e32bcc4cddb3e2348b}
+
+
+setSection saves a new section number over the old one 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em newSection}]is the number of the new section to save \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors occurred \end{Desc}
+
+
+Definition at line 61 of file Course.java.\hypertarget{classCourse_43edb09a6091becee394eb5a5cd7a17a}{
+\index{Course@{Course}!setNumber@{setNumber}}
+\index{setNumber@{setNumber}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.setNumber (int {\em newNumber})}}
+\label{classCourse_43edb09a6091becee394eb5a5cd7a17a}
+
+
+setNumber replaces the course number with a new one 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em newNumber}]is the new course number to save \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors occurred. \end{Desc}
+
+
+Definition at line 71 of file Course.java.\hypertarget{classCourse_5b9c0561583f36cd8ad5d04712d19c82}{
+\index{Course@{Course}!addStudent@{addStudent}}
+\index{addStudent@{addStudent}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.addStudent ({\bf Permissions} {\em permission}, \/  {\bf Student} {\em student})}}
+\label{classCourse_5b9c0561583f36cd8ad5d04712d19c82}
+
+
+addStudent adds a new student to this course. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em permission}]the permission of the user who calls this function \item[{\em student}]the student that is to be added to the course \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors were enountered \end{Desc}
+
+
+Definition at line 82 of file Course.java.\hypertarget{classCourse_1ef5ef0c45209e94bc4c80e679a05ccd}{
+\index{Course@{Course}!removeStudent@{removeStudent}}
+\index{removeStudent@{removeStudent}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.removeStudent ({\bf Permissions} {\em permission}, \/  {\bf Student} {\em student})}}
+\label{classCourse_1ef5ef0c45209e94bc4c80e679a05ccd}
+
+
+removeStudent removes a particular student from the course. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em permission}]the permission of the user who calls this function \item[{\em student}]the student to be removed from this course \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors were encountered in removal. \end{Desc}
+
+
+Definition at line 93 of file Course.java.\hypertarget{classCourse_fa902d10778aabf551c83b7330de82ee}{
+\index{Course@{Course}!addTA@{addTA}}
+\index{addTA@{addTA}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.addTA ({\bf Permissions} {\em permission}, \/  {\bf TeacherAssistant} {\em ta})}}
+\label{classCourse_fa902d10778aabf551c83b7330de82ee}
+
+
+addTA assignes a new \hyperlink{classTeacherAssistant}{TeacherAssistant} to this course. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em permission}]the permission of the user who calls this function \item[{\em ta}]the \hyperlink{classTeacherAssistant}{TeacherAssistant} to be assigned to this course \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors have occured \end{Desc}
+
+
+Definition at line 104 of file Course.java.\hypertarget{classCourse_75709fa5448678e86d780b1a9f6f73ad}{
+\index{Course@{Course}!removeTA@{removeTA}}
+\index{removeTA@{removeTA}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.removeTA ({\bf Permissions} {\em permission}, \/  {\bf TeacherAssistant} {\em ta})}}
+\label{classCourse_75709fa5448678e86d780b1a9f6f73ad}
+
+
+removeTA removes a \hyperlink{classTeacherAssistant}{TeacherAssistant} from this course 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em permission}]the permission of the user who calls this function \item[{\em ta}]the \hyperlink{classTeacherAssistant}{TeacherAssistant} to be removed to this course \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no errors have occured \end{Desc}
+
+
+Definition at line 115 of file Course.java.\hypertarget{classCourse_678a0261fead39c7bfca06b0e69fc419}{
+\index{Course@{Course}!setTeacher@{setTeacher}}
+\index{setTeacher@{setTeacher}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Course.setTeacher ({\bf Teacher} {\em t})}}
+\label{classCourse_678a0261fead39c7bfca06b0e69fc419}
+
+
+setTeacher sets the \hyperlink{classTeacher}{Teacher} attribute for this course 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em t}]the \hyperlink{classTeacher}{Teacher} to be assigned to this course \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if no error have occured \end{Desc}
+
+
+Definition at line 125 of file Course.java.\hypertarget{classCourse_4bd27c4b74ec54cc76d13d9bb05f2e58}{
+\index{Course@{Course}!getTeacher@{getTeacher}}
+\index{getTeacher@{getTeacher}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Teacher} Course.getTeacher ()}}
+\label{classCourse_4bd27c4b74ec54cc76d13d9bb05f2e58}
+
+
+getTeacher gets the \hyperlink{classTeacher}{Teacher} attribute from this course 
+
+\begin{Desc}
+\item[Returns:]teacher of this course \end{Desc}
+
+
+Definition at line 134 of file Course.java.
+
+\subsection{Member Data Documentation}
+\hypertarget{classCourse_98c195c6fb24d3516cce208d316cfea7}{
+\index{Course@{Course}!gradingRules@{gradingRules}}
+\index{gradingRules@{gradingRules}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Course.gradingRules}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_98c195c6fb24d3516cce208d316cfea7}
+
+
+The grading rules for the \hyperlink{classCourse}{Course}. 
+
+
+
+Definition at line 16 of file Course.java.\hypertarget{classCourse_b5d0d78500c3a2ac7e3119e492e84c43}{
+\index{Course@{Course}!courseTitle@{courseTitle}}
+\index{courseTitle@{courseTitle}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String {\bf Course.courseTitle}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_b5d0d78500c3a2ac7e3119e492e84c43}
+
+
+The Course's title. 
+
+
+
+Definition at line 19 of file Course.java.\hypertarget{classCourse_3c691a1d87018604cc97964dd1d23969}{
+\index{Course@{Course}!courseSection@{courseSection}}
+\index{courseSection@{courseSection}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}short {\bf Course.courseSection}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_3c691a1d87018604cc97964dd1d23969}
+
+
+The Course's section. 
+
+
+
+Definition at line 22 of file Course.java.\hypertarget{classCourse_d80c00a2eb9c442c923701341091c041}{
+\index{Course@{Course}!courseNumber@{courseNumber}}
+\index{courseNumber@{courseNumber}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}int {\bf Course.courseNumber}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_d80c00a2eb9c442c923701341091c041}
+
+
+The Course's number. 
+
+
+
+Definition at line 25 of file Course.java.\hypertarget{classCourse_4c9b5c99514f93acca32bfc5b59056a0}{
+\index{Course@{Course}!students@{students}}
+\index{students@{students}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ArrayList$<${\bf Student}$>$ {\bf Course.students}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_4c9b5c99514f93acca32bfc5b59056a0}
+
+
+An array of Students who are enrolled in the \hyperlink{classCourse}{Course}. 
+
+
+
+Definition at line 28 of file Course.java.\hypertarget{classCourse_1a4e0b8a02c292d708ea189a3ec630ac}{
+\index{Course@{Course}!assistant@{assistant}}
+\index{assistant@{assistant}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf TeacherAssistant} {\bf Course.assistant}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_1a4e0b8a02c292d708ea189a3ec630ac}
+
+
+An instance of \hyperlink{classTeacher}{Teacher} Assistant who is associated with the \hyperlink{classCourse}{Course}. 
+
+
+
+Definition at line 31 of file Course.java.\hypertarget{classCourse_2e9ff59d7be67142a26b00e07695a1da}{
+\index{Course@{Course}!teacher@{teacher}}
+\index{teacher@{teacher}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Teacher} {\bf Course.teacher}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_2e9ff59d7be67142a26b00e07695a1da}
+
+
+An instance of \hyperlink{classTeacher}{Teacher} who is teaching the \hyperlink{classCourse}{Course}. 
+
+
+
+Definition at line 34 of file Course.java.\hypertarget{classCourse_92119e5fc9ef69e7b3c26ba3d36a3c4e}{
+\index{Course@{Course}!scale@{scale}}
+\index{scale@{scale}!Course@{Course}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf GradingRules} {\bf Course.scale}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classCourse_92119e5fc9ef69e7b3c26ba3d36a3c4e}
+
+
+The set of grade boundaries for this class. 
+
+
+
+Definition at line 37 of file Course.java.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+blugoo/WEB-INF/src/java/blugoo/\hyperlink{Course_8java}{Course.java}\end{CompactItemize}

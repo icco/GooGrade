@@ -1,0 +1,259 @@
+\hypertarget{classAccount}{
+\section{Account Class Reference}
+\label{classAccount}\index{Account@{Account}}
+}
+Inheritance diagram for Account:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=147pt]{classAccount__inherit__graph}
+\end{center}
+\end{figure}
+Collaboration diagram for Account:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=400pt]{classAccount__coll__graph}
+\end{center}
+\end{figure}
+
+
+\subsection{Detailed Description}
+This is a class that keeps all of the information of a User. 
+
+A user is a synomnym for an \hyperlink{classAccount}{Account}. This will have lots of get and set methods that will handle getting and saving Accounts to the Storage system using the Storage Connection class. \begin{Desc}
+\item[Author:]bluGoo \end{Desc}
+\begin{Desc}
+\item[Version:]0.42 \end{Desc}
+
+
+Definition at line 13 of file Account.java.\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classEmailAddress}{EmailAddress} \hyperlink{classAccount_f8a1bb86591b5835fef9287aa4aca550}{getEmailAddress} ()
+\begin{CompactList}\small\item\em gets the \hyperlink{classEmailAddress}{EmailAddress} of this account. \item\end{CompactList}\item 
+boolean \hyperlink{classAccount_0286b42456e5fe6368467048dc020315}{setEmailAddress} ()
+\begin{CompactList}\small\item\em sets the \hyperlink{classEmailAddress}{EmailAddress} of this \hyperlink{classAccount}{Account}. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Package Functions}
+\begin{CompactItemize}
+\item 
+String \hyperlink{classAccount_16fba083bc4400303f070e775272fd11}{getUserName} ()
+\begin{CompactList}\small\item\em get the accounts user name. \item\end{CompactList}\item 
+String \hyperlink{classAccount_682c54ac7722ac83f9755ef83dfd69aa}{getFullName} ()
+\begin{CompactList}\small\item\em get the accounts full name. \item\end{CompactList}\item 
+boolean \hyperlink{classAccount_afe1f765fc54335bee76563973e09cb2}{setPassword} (String newpass)
+\begin{CompactList}\small\item\em Takes new password, hashes it, and saves to database. \item\end{CompactList}\item 
+String \hyperlink{classAccount_b243d54ab5be144d1185b0717f98955f}{setUserName} ()
+\begin{CompactList}\small\item\em set the Account's user name. \item\end{CompactList}\item 
+String \hyperlink{classAccount_b24ee6fdfa6029cba65b217050933c89}{setFullName} ()
+\begin{CompactList}\small\item\em set the Account's full name. \item\end{CompactList}\item 
+boolean \hyperlink{classAccount_49681dc24e580eee8030061c1ca30614}{isPassword} (String passwd)
+\begin{CompactList}\small\item\em Checks the provided password to see if they match. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+String \hyperlink{classAccount_82e5741dc469c95deab81dc6cca7736a}{userName}
+\begin{CompactList}\small\item\em Username for logging in. \item\end{CompactList}\item 
+String \hyperlink{classAccount_0b789f8d14a1938803f8ff2d4f2d8b5e}{fullName}
+\begin{CompactList}\small\item\em Full name of the \hyperlink{classAccount}{Account} owner. \item\end{CompactList}\item 
+\hyperlink{classEmailAddress}{EmailAddress} \hyperlink{classAccount_4e5039ce78a405ba13acd79da0e16c7f}{emailAddress}
+\begin{CompactList}\small\item\em \hyperlink{classEmail}{Email} address of the \hyperlink{classAccount}{Account} owner. \item\end{CompactList}\item 
+\hyperlink{classPassword}{Password} \hyperlink{classAccount_d50b726ed8997abb1ac362fd31f183a2}{password}
+\begin{CompactList}\small\item\em \hyperlink{classPassword}{Password} for logging in. \item\end{CompactList}\item 
+ArrayList$<$ \hyperlink{classCourse}{Course} $>$ \hyperlink{classAccount_465319ae346d4b7e3233f7c3325443dd}{courses}
+\begin{CompactList}\small\item\em An array of Courses that the User is involved in. \item\end{CompactList}\item 
+\hyperlink{classPermissions}{Permissions} \hyperlink{classAccount_a633f729217a58a51d6878d0c20940cf}{permission}
+\begin{CompactList}\small\item\em \hyperlink{classPermissions}{Permissions} for performing actions. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classAccount_16fba083bc4400303f070e775272fd11}{
+\index{Account@{Account}!getUserName@{getUserName}}
+\index{getUserName@{getUserName}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String Account.getUserName ()\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classAccount_16fba083bc4400303f070e775272fd11}
+
+
+get the accounts user name. 
+
+\begin{Desc}
+\item[Returns:]a string with the user name of the current account \end{Desc}
+
+
+Definition at line 52 of file Account.java.\hypertarget{classAccount_682c54ac7722ac83f9755ef83dfd69aa}{
+\index{Account@{Account}!getFullName@{getFullName}}
+\index{getFullName@{getFullName}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String Account.getFullName ()\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classAccount_682c54ac7722ac83f9755ef83dfd69aa}
+
+
+get the accounts full name. 
+
+\begin{Desc}
+\item[Returns:]a string with the full name of the current account \end{Desc}
+
+
+Definition at line 61 of file Account.java.\hypertarget{classAccount_f8a1bb86591b5835fef9287aa4aca550}{
+\index{Account@{Account}!getEmailAddress@{getEmailAddress}}
+\index{getEmailAddress@{getEmailAddress}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf EmailAddress} Account.getEmailAddress ()}}
+\label{classAccount_f8a1bb86591b5835fef9287aa4aca550}
+
+
+gets the \hyperlink{classEmailAddress}{EmailAddress} of this account. 
+
+\begin{Desc}
+\item[Returns:]this user's email address \end{Desc}
+
+
+Definition at line 70 of file Account.java.\hypertarget{classAccount_afe1f765fc54335bee76563973e09cb2}{
+\index{Account@{Account}!setPassword@{setPassword}}
+\index{setPassword@{setPassword}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Account.setPassword (String {\em newpass})\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classAccount_afe1f765fc54335bee76563973e09cb2}
+
+
+Takes new password, hashes it, and saves to database. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em newpass}]the new password to be saved \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if set, false if failure. \end{Desc}
+
+
+Definition at line 80 of file Account.java.\hypertarget{classAccount_b243d54ab5be144d1185b0717f98955f}{
+\index{Account@{Account}!setUserName@{setUserName}}
+\index{setUserName@{setUserName}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String Account.setUserName ()\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classAccount_b243d54ab5be144d1185b0717f98955f}
+
+
+set the Account's user name. 
+
+\begin{Desc}
+\item[Returns:]true if set, false if error. \end{Desc}
+
+
+Definition at line 89 of file Account.java.\hypertarget{classAccount_b24ee6fdfa6029cba65b217050933c89}{
+\index{Account@{Account}!setFullName@{setFullName}}
+\index{setFullName@{setFullName}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String Account.setFullName ()\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classAccount_b24ee6fdfa6029cba65b217050933c89}
+
+
+set the Account's full name. 
+
+\begin{Desc}
+\item[Returns:]true if set, false if error. \end{Desc}
+
+
+Definition at line 98 of file Account.java.\hypertarget{classAccount_0286b42456e5fe6368467048dc020315}{
+\index{Account@{Account}!setEmailAddress@{setEmailAddress}}
+\index{setEmailAddress@{setEmailAddress}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Account.setEmailAddress ()}}
+\label{classAccount_0286b42456e5fe6368467048dc020315}
+
+
+sets the \hyperlink{classEmailAddress}{EmailAddress} of this \hyperlink{classAccount}{Account}. 
+
+\begin{Desc}
+\item[Returns:]true if set, false if error. \end{Desc}
+
+
+Definition at line 107 of file Account.java.\hypertarget{classAccount_49681dc24e580eee8030061c1ca30614}{
+\index{Account@{Account}!isPassword@{isPassword}}
+\index{isPassword@{isPassword}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}boolean Account.isPassword (String {\em passwd})\hspace{0.3cm}{\tt  \mbox{[}package\mbox{]}}}}
+\label{classAccount_49681dc24e580eee8030061c1ca30614}
+
+
+Checks the provided password to see if they match. 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em passwd}]the password entered by the user that will be compared with the stored value. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if the hashed passwd matches the password in the database, false otherwise. \end{Desc}
+
+
+Definition at line 117 of file Account.java.
+
+\subsection{Member Data Documentation}
+\hypertarget{classAccount_82e5741dc469c95deab81dc6cca7736a}{
+\index{Account@{Account}!userName@{userName}}
+\index{userName@{userName}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String {\bf Account.userName}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classAccount_82e5741dc469c95deab81dc6cca7736a}
+
+
+Username for logging in. 
+
+
+
+Definition at line 18 of file Account.java.\hypertarget{classAccount_0b789f8d14a1938803f8ff2d4f2d8b5e}{
+\index{Account@{Account}!fullName@{fullName}}
+\index{fullName@{fullName}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}String {\bf Account.fullName}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classAccount_0b789f8d14a1938803f8ff2d4f2d8b5e}
+
+
+Full name of the \hyperlink{classAccount}{Account} owner. 
+
+
+
+Definition at line 23 of file Account.java.\hypertarget{classAccount_4e5039ce78a405ba13acd79da0e16c7f}{
+\index{Account@{Account}!emailAddress@{emailAddress}}
+\index{emailAddress@{emailAddress}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf EmailAddress} {\bf Account.emailAddress}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classAccount_4e5039ce78a405ba13acd79da0e16c7f}
+
+
+\hyperlink{classEmail}{Email} address of the \hyperlink{classAccount}{Account} owner. 
+
+
+
+Definition at line 28 of file Account.java.\hypertarget{classAccount_d50b726ed8997abb1ac362fd31f183a2}{
+\index{Account@{Account}!password@{password}}
+\index{password@{password}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Password} {\bf Account.password}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classAccount_d50b726ed8997abb1ac362fd31f183a2}
+
+
+\hyperlink{classPassword}{Password} for logging in. 
+
+This will not be stored in plain text due to privacy concerns. 
+
+Definition at line 34 of file Account.java.\hypertarget{classAccount_465319ae346d4b7e3233f7c3325443dd}{
+\index{Account@{Account}!courses@{courses}}
+\index{courses@{courses}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}ArrayList$<${\bf Course}$>$ {\bf Account.courses}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classAccount_465319ae346d4b7e3233f7c3325443dd}
+
+
+An array of Courses that the User is involved in. 
+
+
+
+Reimplemented in \hyperlink{classTeacher_ee7404da23833c44e12c5c460f480931}{Teacher}.
+
+Definition at line 39 of file Account.java.\hypertarget{classAccount_a633f729217a58a51d6878d0c20940cf}{
+\index{Account@{Account}!permission@{permission}}
+\index{permission@{permission}!Account@{Account}}
+\subsubsection{\setlength{\rightskip}{0pt plus 5cm}{\bf Permissions} {\bf Account.permission}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classAccount_a633f729217a58a51d6878d0c20940cf}
+
+
+\hyperlink{classPermissions}{Permissions} for performing actions. 
+
+
+
+Definition at line 44 of file Account.java.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+blugoo/WEB-INF/src/java/blugoo/\hyperlink{Account_8java}{Account.java}\end{CompactItemize}
