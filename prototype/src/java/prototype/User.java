@@ -6,26 +6,47 @@
 package prototype;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.*;
 
 /**
  *
  * @author vgerdin
  */
-@Entity
+//@Entity
 public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
+    private String name;
+    private String email;
 
+    Connection conn = DriverManager.getConnection("jdbc:sqlite://home/vgerdin/db/ToDo.db");
+    Statement stat = conn.createStatement();
+    PreparedStatement prep = conn.prepareStatement("SELECT id, name, email FROM users WHERE id = ?;");
+    ResultSet rs;
+    
+    public User (Long id) throws SQLException{
+
+        prep.setLong(1, id);
+      
+        
+        conn.setAutoCommit(false);
+        rs = prep.executeQuery();
+        conn.setAutoCommit(true);
+        
+        if(rs.next()){
+            this.id = id;
+            this.name = rs.getString("name");
+            this.email = rs.getString("email");
+        }
+        
+    }
+    
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -53,6 +74,22 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "prototype.User[id=" + id + "]";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 }

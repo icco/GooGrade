@@ -14,6 +14,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h2>Hello World!</h2>
+        <h2>Hello Kitty!</h2>
+        
+        <form name="member" action="response.jsp">
+            Select a member: 
+            <select name="id">
+                <option value="1">Nat</option>
+                <option value="2">Vic</option>
+                <option value="3">Mat</option>
+                <option value="4">Kat</option>
+                <option value="5">Pat</option>
+            </select>
+            <input type="submit" value="OK" />
+        </form>
     </body>
 </html>
