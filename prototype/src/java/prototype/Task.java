@@ -6,22 +6,21 @@
 package prototype;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.persistence.*;
 import java.sql.*;
 
 /**
  *
  * @author nwelch
  */
-@Entity
+
 public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    
     private Long id;
     private Long startDate;
     private Long dueDate;
@@ -32,8 +31,10 @@ public class Task implements Serializable {
     PreparedStatement prep = conn.prepareStatement("SELECT id, startDate, dueDate, what FROM tasks WHERE id = ?;");
     ResultSet rs;
     
-    public Task (Long id){
-        prep.setLong(1,id);
+    public Task (Long id) throws SQLException{
+
+        prep.setLong(1, id);
+      
         
         conn.setAutoCommit(false);
         rs = prep.executeQuery();
