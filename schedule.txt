@@ -26,18 +26,16 @@ Release 1                      |       |       |       |       |   x (Wed 5/6 11
                        |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
 --- Stage 2 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
                        |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
-Training                                                               [-------------] 
-Implement Stage 2                                                     [---------------]
-Integration Party                                                                     x  
-Write Sys Tests                                                                   [-----]
-Unit Test Development                                                             [---------]
-Development Frozen                                                                            x
-System Test                                                                                 [-----]
-Update Install Doc                                                                              [---]
-Update User manual                                                                              [---]
-Release Prep                                                                                           [--]
-Release 2 finished                                                                                        x 
-Release 2 Due                                                                                              x(Wed 6/3 11am)
+Training                                                               |[------|-----] |       |       |       
+Implement Stage 2                                                    [-|-------|------]|       |       |
+Write Sys Tests                                                        |       |  [----|]      |       | 
+Unit Test Development                                                  |       |  [----|----]  |       |
+Development Frozen                                                     |       |       |      x|       |
+System Test                                                            |       |       |    [--|--]    |
+Update Deployment Doc                                                  |       |       |       |[---]  |
+Release Prep                                                           |       |       |       |      [|-]
+Release 2 finished                                                     |       |       |       |       |  x 
+Release 2 Due                                                          |       |       |       |       |   x(Wed 6/3 11am)
                        |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
                        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
 
