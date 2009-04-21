@@ -8,12 +8,12 @@ doxygen:
 	doxygen Doxyfile 
 
 publish: javadocs doxygen latex
-	rm -rf ~/www/blugoo/arch
-	rm -rf ~/www/blugoo/javadocs
-	mv doxy/html/ ~/www/blugoo/arch
-	mv javadoc/ ~/www/blugoo/javadocs
-	mv doxy/latex/refman.pdf ~/www/blugoo/blugooarch.pdf
-	chmod -R 755 ~/www/blugoo
+	rm -rf /var/www/html/doxygen
+	rm -rf /var/www/html/javadocs
+	mv doxy/html/ /var/www/html/doxygen
+	mv javadoc/ /var/www/html/javadocs
+	mv doxy/latex/refman.pdf /var/www/html/blugooarch.pdf
+	chmod -R 755 /var/www/html/*
 
 latex: doxygen
 	make -C ./doxy/latex
