@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Daily Build Page</title>
+	<style type="text/css">
+	A:link
+	{
+		text-decoration: none;
+		color: #007eff;
+	}
+
+	A:visited
+	{
+		text-decoration: none;
+		color: #eb2d2d;
+	}
+
+	A:hover
+	{
+		text-decoration: underline;
+		color: yellow;
+		background: #000000;
+	}
+
+	body
+	{
+		color:#fafafa;
+		background:#000000;
+	}
+	</style>
+</head>
+
+<body>
+<h2 style="text-align:center;">
+	<a style="text-decoration:none; color:#fafafa"
+		 href="http://wiki.csc.calpoly.edu/PolyCron">PolyCron</a>
+</h2>
+<h3 style="text-align:center;">LemmingScheduler Daily Builds</h3>
+<p>
+This process is entirely automated with no human interaction. Hopefully,
+removing humans from this process will create a more reliable daily build
+system.
+</p>
+<p>
+Builds are done at 04:00 Pacific. If no new build appears that means no code
+has been committed since the last automatic build.
+Clicking the revision number shows a change log containing svn commit messages
+since the last daily build.
+</p>
+
+<p>
+WARNING: All of these builds are considered unstable until an official
+release is made.
+</p>
+
+<p>
+	Daily javadocs <a href="javadoc/index.html">here</a>. Only applies to
+	latest revision.
+</p>
+
+<table border="1" width="95%" style="margin:auto;">
+<tbody id="results">
+	<tr style="text-align:center; font-weight:bold;">
+		<td>
+			Time
+		</td>
+		<td>
+			Rev
+		</td>
+		<td>
+			Status
+		</td>
+		<td>
+			Logfile
+		</td>
+		<td>
+			Binary
+		</td>
+	</tr>
