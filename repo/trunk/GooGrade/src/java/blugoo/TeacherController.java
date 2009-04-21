@@ -5,7 +5,9 @@ import java.lang.*;
 
 
 /**
- * This is a controller for teacher.
+ * This is a controller for teacher. It should be noted that controllers work by
+ * running doPost or something similiar, then calling a function which then calls
+ * the model.
  *
  * @author bluGoo
  * @version 0.42
