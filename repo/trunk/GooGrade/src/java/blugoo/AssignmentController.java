@@ -2,6 +2,7 @@ package blugoo;
 
 import java.util.*;
 import java.lang.*;
+import javax.servlet.http.HttpServlet;
 
 /**
  * Does all of the work on the Assignment, it is the controller. 
@@ -10,7 +11,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public class AssignmentController
+public class AssignmentController extends HttpServlet
 {
 	/**
 	 * More of a concept than anything.
