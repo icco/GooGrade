@@ -3,11 +3,11 @@
 
 # Variables
 SUBJECT="Daily Build Report for `date +%D`"
-EMAIL="blugoo@lists.csc.calpoly.edu"
+#EMAIL="blugoo@lists.csc.calpoly.edu"
+EMAIL="nat@natwelch.com"
 MESSAGE_FILE="output.`date +%D`"
 
-cd /var/www/html/svn/repo/trunk/
-make publish &> $MESSAGE_FILE
+make -C /var/www/html/svn/trunk/ publish &> $MESSAGE_FILE
 
 /bin/mail -s "$SUBJECT" "$EMAIL" < $MESSAGE_FILE
 
