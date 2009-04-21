@@ -40,7 +40,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>coursecontroller</servlet-name>
-        <servlet-class>goograde.CourseController</servlet-class>
+        <servlet-class>GooGrade.CourseController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>coursecontroller</servlet-name>
