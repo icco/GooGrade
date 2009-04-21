@@ -4,7 +4,7 @@
 # Variables
 SUBJECT="Daily Build Report for `date +%D`"
 EMAIL="blugoo@lists.csc.calpoly.edu"
-MESSAGE_FILE="output"
+MESSAGE_FILE="output.`date +%D`"
 
 cd /var/www/html/svn/repo/trunk/
 make publish &> $MESSAGE_FILE
