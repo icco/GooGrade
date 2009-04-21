@@ -11,7 +11,7 @@ import java.lang.*;
  * @author bluGoo
  * @version 0.42
  */
-public abstract class AccountController 
+public abstract class AccountController extends javax.servlet.http.HttpServlet
 {
 	
 
