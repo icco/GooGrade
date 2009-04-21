@@ -13,6 +13,10 @@ import java.lang.*;
  */
 public class Student extends Account
 {
+    Float totalGrade;
+    
+    ArrayList<File> files;
+
 	ArrayList<Course> enrolled;
 
 	/**
@@ -24,6 +28,15 @@ public class Student extends Account
 	int getGrade(String course, Assignment ass)
 	{
 		return 0;
+	}
+
+    /**
+	 * Get a list of courses a student is enrolled in.
+	 * @return an Array list of Courses.
+	 */
+	public ArrayList<Course> viewEnrolledCourses()
+	{
+		return null;
 	}
 
 }

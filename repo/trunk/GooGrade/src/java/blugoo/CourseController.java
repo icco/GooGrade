@@ -10,7 +10,7 @@ import java.io.*;
  * @author bluGoo
  * @version 0.42
  */
-public class CourseController
+public class CourseController extends httpServlet
 {
 	/** 
 	 * addStudent adds a new student to this course. 
