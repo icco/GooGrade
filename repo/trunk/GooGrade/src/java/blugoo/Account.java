@@ -72,39 +72,45 @@ public abstract class Account implements java.io.Serializable
 	
 	/**
 	 * Takes new password, hashes it, and saves to database.
-	 * @param newpass the new password to be saved
+	 * @param newPass the new password to be saved
 	 * @return true if set, false if failure.
 	 */
-	boolean setPassword(String newpass)
+	boolean setPassword(String newPass)
 	{
 		return false;
 	}
 	
 	/**
 	 * set the Account's user name.
+	 * @param newUserName the new name to be stored
 	 * @return true if set, false if error.
 	 */
-	String setUserName()
+	boolean setUserName(String newUserName)
 	{
-		return false;
+      this.userName = newUserName;
+		return true;
 	}
 
 	/**
 	 * set the Account's full name.
+	 * @param newFullName the new name to be stored
 	 * @return true if set, false if error.
 	 */
-	String setFullName()
+	boolean setFullName(String newFullName)
 	{
-		return false;
+      this.fullName = newFullName;
+		return true;
 	}
 
 	/**
 	 * sets the EmailAddress of this Account.
+	 * @param newAddress the new email address to be stored
 	 * @return true if set, false if error.
 	 */
-	public boolean setEmailAddress()
+	boolean setEmailAddress(EmailAddress newAddress)
 	{
-		return false;
+      this.emailAddress = newAddress;
+		return true;
 	}
 	
 	/**
