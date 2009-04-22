@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- You may freely edit this file. See commented blocks below for -->
-<!-- some examples of how to customize the build. -->
-<!-- (If you delete it and reopen the project it will be recreated.) -->
 <project name="GooGrade" default="default" basedir=".">
     <description>Builds, tests, and runs the project GooGrade.</description>
-    <import file="nbproject/build-impl.xml"/>
+    <import file="nbproject/build-impl.xml"/> <!-- For NetBeans... -->
     <!--
 
-    There exist several targets which are by default empty and which can be 
-    used for execution of your tasks. These targets are usually executed 
-    before and after some main targets. They are: 
+    Some main targets: 
 
       -pre-init:                 called before initialization of project properties 
       -post-init:                called after initialization of project properties 
@@ -38,29 +33,44 @@
     For list of available properties check the imported 
     nbproject/build-impl.xml file. 
 
-
-    Other way how to customize the build is by overriding existing main targets.
-    The target of interest are: 
-
-      init-macrodef-javac:    defines macro for javac compilation
-      init-macrodef-junit:   defines macro for junit execution
-      init-macrodef-debug:    defines macro for class debugging
-      do-dist:                archive building
-      run:                    execution of project 
-      javadoc-build:          javadoc generation 
-
-    Example of overriding the target for project execution could look like 
-
-        <target name="run" depends="<PROJNAME>-impl.jar">
-            <exec dir="bin" executable="launcher.exe">
-                <arg file="${dist.jar}"/>
-            </exec>
-        </target>
-
-    Notice that overridden target depends on jar target and not only on 
-    compile target as regular run target does. Again, for list of available 
-    properties which you can use check the target you are overriding in 
-    nbproject/build-impl.xml file. 
-
     -->
+
+    <!-- Obtain current sources from svn repository                          -->
+    <target name="-pre-init">
+    <echo>Updating source files from repository</echo>
+    <exec executable="svn">
+    <arg value="update"/>
+    <arg value="${svnpath}"/>
+    </exec>
+    </target>
+
+    <!-- Create a property for the current svn revision                      -->
+    <target name="-post-init">
+    <exec outputproperty="build.current.revision" executable="svnversion">
+    <arg line="-n" />
+    <arg line="${svnpath}" />
+    </exec>
+
+    <exec outputproperty="logdate" executable="date">
+    <arg line="+%F" />
+    </exec>
+
+    <exec outputproperty="emaildate" executable="date">
+    <arg line="+%D" />
+    </exec>
+    </target>
+
+    <target name="-post-dist" depends="javadoc">
+<!-- This would send out an email, but in all honesty, it's useless.
+	    <mail from="blugoo@lists.csc.calpoly.edu" 
+		  tolist="blugoo@lists.csc.calpoly.edu" 
+		  subject="Daily Build Report for ${emaildate}">
+		    <message>The Build was successful. </message>
+	    </mail>
+-->
+	<copy todir="/var/www/html/javadoc/">
+    <fileset dir="dist/javadoc/"/>
+  </copy>
+
+    </target>
 </project>
