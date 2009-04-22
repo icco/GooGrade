@@ -2,6 +2,9 @@ package GooGrade;
 
 import java.util.*;
 import java.lang.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -12,6 +15,12 @@ import java.lang.*;
  */
 public class StudentController extends AccountController
 {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    {
+    }
+     
+    
+    
 	/** 
 	 * Get a list of courses a student is enrolled in.
 	 * @return an Array list of Courses.

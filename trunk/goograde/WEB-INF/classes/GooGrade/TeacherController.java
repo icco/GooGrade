@@ -3,6 +3,9 @@ package GooGrade;
 
 import java.util.*;
 import java.lang.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -15,6 +18,11 @@ import java.lang.*;
  */
 public class TeacherController extends AccountController
 {
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    {
+    }
+     
+    
    /**
 	 * createCourse provides the overhead for creating a new class. The method prompts the user for information.
 	 * @return a new course as specified by the Teacher's input.

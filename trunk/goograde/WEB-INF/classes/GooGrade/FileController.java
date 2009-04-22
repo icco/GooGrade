@@ -2,6 +2,8 @@ package GooGrade;
 
 import java.io.*;
 import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 /**
@@ -12,6 +14,11 @@ import java.util.*;
  */
 public class FileController
 {
+    
+     public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    {
+    }
+     
 	/**
 	 * Upload to system.
 	 * @param filename to be uploaded 

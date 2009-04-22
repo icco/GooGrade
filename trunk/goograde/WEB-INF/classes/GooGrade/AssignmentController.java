@@ -3,6 +3,8 @@ package GooGrade;
 import java.util.*;
 import java.lang.*;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Does all of the work on the Assignment, it is the controller. 
@@ -13,6 +15,11 @@ import javax.servlet.http.HttpServlet;
  */
 public class AssignmentController extends HttpServlet
 {
+    
+     public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    {
+    }
+    
 	/**
 	 * More of a concept than anything.
 	 */
