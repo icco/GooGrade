@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Context path="/ToDo_DB">
-    <Resource name="jdbc/ToDo_DB" auth="Container" type="javax.sql.DataSource"
-        maxActive="100" maxIdle="30" maxWait="10000"
-        username="root" password="nbuser" driverClassName="org.sqlite.JDBC"
-        url="jdbc:sqlite://home/vgerdin/db/ToDo.db"/>
-</Context>
