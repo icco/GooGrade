@@ -3,6 +3,9 @@
  * and open the template in the editor.
  */
 
+package GooGrade;
+
+
 
 import junit.framework.TestCase;
 
