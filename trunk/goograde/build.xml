@@ -41,7 +41,6 @@
 	    <echo>Updating source files from repository</echo>
 	    <exec executable="svn">
 		    <arg value="update"/>
-		    <arg value="${svnpath}"/>
 	    </exec>
     </target>
 
