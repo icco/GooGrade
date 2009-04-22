@@ -1,4 +1,4 @@
-package goograde;
+package GooGrade;
 
 /*
  * $Id: Login.java 471756 2006-11-06 15:01:43Z husted $

@@ -1,32 +1,20 @@
-package goograde;
+package GooGrade;
 
-import goograde.Account;
+
 import java.util.*;
 import java.lang.*;
 
 
 /**
- * A Teacher is an Account type that has the most permissions. It acts as the
- * administrator of its installation. Models work by making all sql calls and dealing
- * with that side of things.
+ * This is a controller for teacher. It should be noted that controllers work by
+ * running doPost or something similiar, then calling a function which then calls
+ * the model.
  *
  * @author bluGoo
  * @version 0.42
  */
-public class Teacher extends Account
+public class TeacherController extends AccountController
 {
-    /** 
-	 * A list of courses owned by the Teacher 
-	 */
-    private ArrayList<Course> teaches;
-
-	/** 
-	 * Constructor for Teacher. All permissions are granted to the Teacher by  default.  
-	 */
-	public Teacher()
-	{
-	}
-
    /**
 	 * createCourse provides the overhead for creating a new class. The method prompts the user for information.
 	 * @return a new course as specified by the Teacher's input.

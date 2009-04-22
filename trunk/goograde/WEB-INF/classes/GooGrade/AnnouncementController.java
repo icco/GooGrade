@@ -1,5 +1,4 @@
-
-package goograde;
+package GooGrade;
 
 import java.lang.*;
 import java.util.*;

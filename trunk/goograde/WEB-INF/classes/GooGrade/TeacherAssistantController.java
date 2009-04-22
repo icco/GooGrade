@@ -1,6 +1,5 @@
-package goograde;
+package GooGrade;
 
-import goograde.AccountController;
 import java.util.*;
 import java.lang.*;
 

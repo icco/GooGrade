@@ -1,4 +1,4 @@
-package goograde;
+package GooGrade;
 
 import java.util.*;
 import java.lang.*;
@@ -21,15 +21,16 @@ public class CourseController extends HttpServlet
         throws ServletException, IOException {
 
         String action = request.getParameter("action");
-        Course course = null;
+        Course course = new Course();
         
         if(action != null && action.equals("create")){ 
-            String title = request.getParameter("newcoursetitle");
-            int num = new Integer(request.getParameter("newcoursetitle")).intValue();
-            course = new Course(num, title);
+            course.setCourseTitle(request.getParameter("newcoursetitle"));
+            course.setCourseNumber(new Integer(request.getParameter("newcoursetitle")).intValue());
         }
         else{
-            course = new Course();
+            course.setCourseDepartment("CSC");
+            course.setCourseNumber(309);
+            course.setCourseTitle("Software Engineering II");
         }
         request.setAttribute("course", course);
 

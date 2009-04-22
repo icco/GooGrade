@@ -1,4 +1,4 @@
-package goograde;
+package GooGrade;
 
 import java.util.*;
 import java.lang.*;
@@ -70,7 +70,8 @@ public class Course implements java.io.Serializable
 	 */
 	public boolean setCourseTitle(String newTitle)
 	{
-		return false;
+            this.courseTitle = newTitle;
+            return true;
 	}
 
 	/**
@@ -78,9 +79,10 @@ public class Course implements java.io.Serializable
 	 * @param newSection is the number of the new section to save
 	 * @return true if no errors occurred
 	 */
-	public boolean setCourseSection(short newSection)
+	public boolean setCourseSection(int newSection)
 	{
-		return false;
+            this.courseSection = newSection;
+            return true;
 	}
 
 	/** 
@@ -90,7 +92,8 @@ public class Course implements java.io.Serializable
 	 */
 	public boolean setCourseNumber(int newNumber)
 	{
-		return false;
+            this.courseNumber = newNumber;
+            return true;
 	}
 
 
@@ -226,8 +229,9 @@ public class Course implements java.io.Serializable
         return courseDepartment;
     }
 
-    public void setCourseDepartment(String courseDepartment)
+    public boolean setCourseDepartment(String courseDepartment)
     {
         this.courseDepartment = courseDepartment;
+        return true;
     }
 }
