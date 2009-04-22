@@ -37,40 +37,44 @@
 
     <!-- Obtain current sources from svn repository                          -->
     <target name="-pre-init">
-    <echo>Updating source files from repository</echo>
-    <exec executable="svn">
-    <arg value="update"/>
-    <arg value="${svnpath}"/>
-    </exec>
+	    <echo>Begining Build. See http://blugoo.csc.calpoly.edu/ for results</echo>
+	    <echo>Updating source files from repository</echo>
+	    <exec executable="svn">
+		    <arg value="update"/>
+		    <arg value="${svnpath}"/>
+	    </exec>
     </target>
 
     <!-- Create a property for the current svn revision                      -->
     <target name="-post-init">
-    <exec outputproperty="build.current.revision" executable="svnversion">
-    <arg line="-n" />
-    <arg line="${svnpath}" />
-    </exec>
+	    <exec outputproperty="build.current.revision" executable="svnversion">
+		    <arg line="-n" />
+		    <arg line="${svnpath}" />
+	    </exec>
 
-    <exec outputproperty="logdate" executable="date">
-    <arg line="+%F" />
-    </exec>
+	    <exec outputproperty="logdate" executable="date">
+		    <arg line="+%F" />
+	    </exec>
 
-    <exec outputproperty="emaildate" executable="date">
-    <arg line="+%D" />
-    </exec>
+	    <exec outputproperty="emaildate" executable="date">
+		    <arg line="+%D" />
+	    </exec>
     </target>
 
     <target name="-post-dist" depends="javadoc">
-<!-- This would send out an email, but in all honesty, it's useless.
-	    <mail from="blugoo@lists.csc.calpoly.edu" 
-		  tolist="blugoo@lists.csc.calpoly.edu" 
-		  subject="Daily Build Report for ${emaildate}">
-		    <message>The Build was successful. </message>
-	    </mail>
--->
-	<copy todir="/var/www/html/javadoc/">
-    <fileset dir="dist/javadoc/"/>
-  </copy>
+	    <!-- This would send out an email, but in all honesty, it's useless.
+		    <mail from="blugoo@lists.csc.calpoly.edu" 
+			    tolist="blugoo@lists.csc.calpoly.edu" 
+			    subject="Daily Build Report for ${emaildate}">
+			    <message>The Build was successful. </message>
+		    </mail>
+	    -->
+	    <copy todir="/var/www/html/javadoc/">
+		    <fileset dir="dist/javadoc/"/>
+	    </copy>
 
+	    <copy file="dist/GooGrade.war" tofile="/var/www/html/GooGrade.war"/>
+
+	    <exec executable="/var/www/html/svnstat/runme.sh" />
     </target>
 </project>
