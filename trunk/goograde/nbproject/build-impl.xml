@@ -30,18 +30,37 @@
     <target depends="-pre-init" name="-init-private">
         <property file="nbproject/private/private.properties"/>
     </target>
-    <target depends="-pre-init,-init-private" name="-init-user">
+    <target depends="-pre-init,-init-private" name="-init-libraries">
+        <property location="./lib/nblibraries.properties" name="libraries.1.path"/>
+        <dirname file="${libraries.1.path}" property="libraries.1.dir.nativedirsep"/>
+        <pathconvert dirsep="/" property="libraries.1.dir">
+            <path path="${libraries.1.dir.nativedirsep}"/>
+        </pathconvert>
+        <basename file="${libraries.1.path}" property="libraries.1.basename" suffix=".properties"/>
+        <touch file="${libraries.1.dir}/${libraries.1.basename}-private.properties"/>
+        <loadproperties srcfile="${libraries.1.dir}/${libraries.1.basename}-private.properties">
+            <filterchain>
+                <replacestring from="$${base}" to="${libraries.1.dir}"/>
+            </filterchain>
+        </loadproperties>
+        <loadproperties srcfile="${libraries.1.path}">
+            <filterchain>
+                <replacestring from="$${base}" to="${libraries.1.dir}"/>
+            </filterchain>
+        </loadproperties>
+    </target>
+    <target depends="-pre-init,-init-private,-init-libraries" name="-init-user">
         <property file="${user.properties.file}"/>
         <!-- The two properties below are usually overridden -->
         <!-- by the active platform. Just a fallback. -->
         <property name="default.javac.source" value="1.4"/>
         <property name="default.javac.target" value="1.4"/>
     </target>
-    <target depends="-pre-init,-init-private,-init-user" name="-init-project">
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user" name="-init-project">
         <property file="nbproject/project.properties"/>
     </target>
     <target depends="-pre-init,-init-private,-init-user,-init-project,-init-macrodef-property" if="dist.ear.dir" name="-do-ear-init"/>
-    <target depends="-pre-init,-init-private,-init-user,-init-project,-init-macrodef-property" name="-do-init">
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-init-macrodef-property" name="-do-init">
         <condition property="have.tests">
             <or>
                 <available file="${test.TestSrc.dir}"/>
@@ -172,7 +191,7 @@
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
     </target>
-    <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init" name="-init-check">
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-do-init" name="-init-check">
         <fail unless="src.classes.dir">Must set src.classes.dir</fail>
         <fail unless="test.TestSrc.dir">Must set test.TestSrc.dir</fail>
         <fail unless="build.dir">Must set build.dir</fail>
@@ -365,7 +384,7 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
             </sequential>
         </macrodef>
     </target>
-    <target depends="-pre-init,-init-private,-init-user,-init-project,-do-init,-post-init,-init-check,-init-macrodef-property,-init-macrodef-javac,-init-macrodef-junit,-init-macrodef-java,-init-macrodef-nbjpda,-init-macrodef-nbjsdebug,-init-macrodef-debug,-init-macrodef-copy-ear-war" name="init"/>
+    <target depends="-pre-init,-init-private,-init-libraries,-init-user,-init-project,-do-init,-post-init,-init-check,-init-macrodef-property,-init-macrodef-javac,-init-macrodef-junit,-init-macrodef-java,-init-macrodef-nbjpda,-init-macrodef-nbjsdebug,-init-macrodef-debug,-init-macrodef-copy-ear-war" name="init"/>
     <!--
                 COMPILATION SECTION
             -->
@@ -509,27 +528,27 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,-do-dist-with-manifest,-do-dist-without-manifest" name="do-dist"/>
     <target depends="init" if="dist.ear.dir" name="library-inclusion-in-manifest">
-        <basename file="${file.reference.servlet-api.jar}" property="included.lib.file.reference.servlet-api.jar"/>
-        <copy-ear-war file="${file.reference.servlet-api.jar}" propname="included.lib.file.reference.servlet-api.jar.X"/>
-        <basename file="${file.reference.sqlitejdbc-v054.jar}" property="included.lib.file.reference.sqlitejdbc-v054.jar"/>
-        <copy-ear-war file="${file.reference.sqlitejdbc-v054.jar}" propname="included.lib.file.reference.sqlitejdbc-v054.jar.X"/>
         <basename file="${libs.jstl11.classpath.libfile.2}" property="included.lib.libs.jstl11.classpath.2"/>
         <basename file="${libs.jstl11.classpath.libfile.1}" property="included.lib.libs.jstl11.classpath.1"/>
         <copy-ear-war file="${libs.jstl11.classpath.libfile.2}" propname="included.lib.libs.jstl11.classpath.2.X"/>
         <copy-ear-war file="${libs.jstl11.classpath.libfile.1}" propname="included.lib.libs.jstl11.classpath.1.X"/>
+        <basename file="${file.reference.servlet-api.jar}" property="included.lib.file.reference.servlet-api.jar"/>
+        <copy-ear-war file="${file.reference.servlet-api.jar}" propname="included.lib.file.reference.servlet-api.jar.X"/>
+        <basename file="${file.reference.sqlitejdbc-v054.jar}" property="included.lib.file.reference.sqlitejdbc-v054.jar"/>
+        <copy-ear-war file="${file.reference.sqlitejdbc-v054.jar}" propname="included.lib.file.reference.sqlitejdbc-v054.jar.X"/>
         <basename file="${libs.junit.classpath}" property="included.lib.libs.junit.classpath"/>
         <copy-ear-war file="${libs.junit.classpath}" propname="included.lib.libs.junit.classpath.X"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.file.reference.servlet-api.jar} ${included.lib.file.reference.sqlitejdbc-v054.jar} ${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} ${included.lib.libs.junit.classpath} "/>
+            <attribute name="Class-Path" value="${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} ${included.lib.file.reference.servlet-api.jar} ${included.lib.file.reference.sqlitejdbc-v054.jar} ${included.lib.libs.junit.classpath} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
     <target depends="init" name="library-inclusion-in-archive" unless="dist.ear.dir">
-        <copy file="${file.reference.servlet-api.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copy file="${file.reference.sqlitejdbc-v054.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.jstl11.classpath.libfile.2}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.jstl11.classpath.libfile.1}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.servlet-api.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.sqlitejdbc-v054.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.junit.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
