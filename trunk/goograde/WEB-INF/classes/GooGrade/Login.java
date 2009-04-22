@@ -20,44 +20,50 @@ package GooGrade;
  * specific language governing permissions and limitations
  * under the License.
  */
-
 /**
  * This should deal with login I guess. Taken from the struts example.
  */
 public class Login
 {
 
-    public String execute() throws Exception {
+    public String execute() throws Exception
+    {
 
-        if (isInvalid(getUsername())) return null; //INPUT;
-
-        if (isInvalid(getPassword())) return null; //INPUT;
-
+        if (isInvalid(getUsername()))
+        {
+            return null; //INPUT;
+        }
+        if (isInvalid(getPassword()))
+        {
+            return null; //INPUT;
+        }
         return null; //SUCCESS;
     }
 
-    private boolean isInvalid(String value) {
+    private boolean isInvalid(String value)
+    {
         return (value == null || value.length() == 0);
     }
-
     private String username;
 
-    public String getUsername() {
+    public String getUsername()
+    {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setUsername(String username)
+    {
         this.username = username;
     }
-
     private String password;
 
-    public String getPassword() {
+    public String getPassword()
+    {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(String password)
+    {
         this.password = password;
     }
-
 }

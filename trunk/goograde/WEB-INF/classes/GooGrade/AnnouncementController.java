@@ -15,20 +15,21 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AnnouncementController extends HttpServlet
 {
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
-    
-	/**
-	 * Posts an announcement. This will call the functions needed 
-	 * to save to the database.
-	 * @param title The title
-	 * @param post The post body
-	 * @return false if fail, true if pass.
-	 */
-	boolean post(String title, String post)
-	{
-		return false;
-	}
+
+    /**
+     * Posts an announcement. This will call the functions needed 
+     * to save to the database.
+     * @param title The title
+     * @param post The post body
+     * @return false if fail, true if pass.
+     */
+    boolean postEmail(String title, String post)
+    {
+        return false;
+    }
 }
 

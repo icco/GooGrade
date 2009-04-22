@@ -14,15 +14,14 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class PasswordController extends HttpServlet
 {
-    
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
-     
-    
-	public boolean validate(String passwd)
-	{
-		return false;
-	}
+
+    public boolean validate(String passwd)
+    {
+        return false;
+    }
 }
 

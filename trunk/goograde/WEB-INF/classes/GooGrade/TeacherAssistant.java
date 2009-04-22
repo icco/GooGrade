@@ -3,7 +3,6 @@ package GooGrade;
 import java.util.*;
 import java.lang.*;
 
-
 /**
  *   This class keeps information about Teacher Assistants. It is an extension of Account.
  *  
@@ -13,20 +12,20 @@ import java.lang.*;
 public class TeacherAssistant extends Account
 {
 
-	private ArrayList<Course> helps;
+    private ArrayList<Course> helps;
 
-	/**
-	 * Constructor for Teacher Assistant.
-	 */
-	public TeacherAssistant(Permissions granted)
-	{
-	}
+    /**
+     * Constructor for Teacher Assistant.
+     */
+    public TeacherAssistant(Permissions granted)
+    {
+    }
 
-	/**
-	 * Constructor for Teacher Assistant. No permissions are passed in, a default, minimal permission set will be initiated. 
-	 */
-	public TeacherAssistant()
-	{
-	}
+    /**
+     * Constructor for Teacher Assistant. No permissions are passed in, a default, minimal permission set will be initiated. 
+     */
+    public TeacherAssistant()
+    {
+    }
 }
 

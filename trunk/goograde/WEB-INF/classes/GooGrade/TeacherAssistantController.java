@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *   This class controlls Teacher Assistants. It is an extension of AccountController.
  *  
@@ -15,10 +14,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TeacherAssistantController extends AccountController
 {
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
-     
-
 }
 

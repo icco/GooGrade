@@ -14,15 +14,15 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class EmailController extends HttpServlet
 {
-     public void doPost(HttpServletRequest req, HttpServletResponse resp)
+
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
-    
-	/**
-	 * Sends the email once it has been written.
-	 */
-	public void send()
-	{
 
-	}
+    /**
+     * Sends the email once it has been written.
+     */
+    public void send()
+    {
+    }
 }

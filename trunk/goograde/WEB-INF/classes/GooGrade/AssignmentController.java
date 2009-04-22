@@ -15,27 +15,26 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AssignmentController extends HttpServlet
 {
-    
-     public void doPost(HttpServletRequest req, HttpServletResponse resp)
+
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
-    
-	/**
-	 * More of a concept than anything.
-	 */
-	public void buildMetrics()
-	{
-		return;
-	}
-	
-	/**
-	 * Give a student a grade for this assignment.
-	 * @return false if fail, true if pass
-	 */
-	public boolean gradeStudent(Student stu)
-	{
-		return false;
-	}
 
+    /**
+     * More of a concept than anything.
+     */
+    public void buildMetrics()
+    {
+        return;
+    }
+
+    /**
+     * Give a student a grade for this assignment.
+     * @return false if fail, true if pass
+     */
+    public boolean gradeStudent(Student stu)
+    {
+        return false;
+    }
 }
 

@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * This class deals with controlling Students. It is an extension of AccountController. 
  *
@@ -15,19 +14,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StudentController extends AccountController
 {
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
-     
-    
-    
-	/** 
-	 * Get a list of courses a student is enrolled in.
-	 * @return an Array list of Courses.
-	 */
-	public ArrayList<Course> viewEnrolledCourses()
-	{
-		return null;
-	}
 
+    /** 
+     * Get a list of courses a student is enrolled in.
+     * @return an Array list of Courses.
+     */
+    public ArrayList<Course> viewEnrolledCourses()
+    {
+        return null;
+    }
 }

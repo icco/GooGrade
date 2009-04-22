@@ -1,14 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-package GooGrade;
-
-
+package GooGradeTest;
 
 import junit.framework.TestCase;
-
+import GooGrade.*; //We need this to do our tests...
 
 /**
  *
@@ -474,32 +467,32 @@ public class PermissionsTest extends TestCase
         boolean isStudent = false;
         boolean isTeacher = false;
         Permissions instance;
-        
+
         try
         {
             instance = new Permissions();
             assertEquals(false, instance.isManageUser());
-            
+
             instance = new Permissions(isStudent, isTeacher);
             assertEquals(false, instance.isManageUser());
-            
+
             isStudent = true;
             instance = new Permissions(isStudent, isTeacher);
             assertEquals(false, instance.isManageUser());
             assertEquals(true, instance.isViewOwnGrade());
-            
+
             isStudent = false;
             isTeacher = true;
             instance = new Permissions(isStudent, isTeacher);
             assertEquals(false, instance.isViewOwnGrade());
             assertEquals(true, instance.isManageUser());
-            
+
         }
-        catch(Exception error)
+        catch (Exception error)
         {
             fail("Constructor failed");
         }
-        
+
         try
         {
             isStudent = true;
@@ -507,10 +500,10 @@ public class PermissionsTest extends TestCase
             instance = new Permissions(isStudent, isTeacher);
             fail("Exception not thrown");
         }
-        catch(Exception Error)
+        catch (Exception Error)
         {
             System.out.println(Error);
         }
-        
+
     }
 }

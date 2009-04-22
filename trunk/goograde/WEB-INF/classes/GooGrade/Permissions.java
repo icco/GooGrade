@@ -1,12 +1,8 @@
-
 package GooGrade;
-
-
 
 import java.lang.*;
 import java.io.*;
 import java.util.*;
-
 
 /**
  * This class keeps information about permissions for each action.
@@ -48,22 +44,22 @@ public class Permissions implements java.io.Serializable
         manageCourse = false;
         viewOwnGrade = false;
         uploadFile = false;
-        sendEmail = false; 
+        sendEmail = false;
     }
-    
+
     public Permissions(boolean isStudent, boolean isTeacher) throws Exception
     {
         this();
-        if(isStudent && isTeacher)
+        if (isStudent && isTeacher)
         {
             throw new Exception("Account cannot be Student and Teacher");
         }
-        if(isStudent)
+        if (isStudent)
         {
             viewOwnGrade = true;
             uploadFile = true;
         }
-        else if(isTeacher)
+        else if (isTeacher)
         {
             manageUser = true;
             manageAnnouncement = true;
@@ -75,9 +71,8 @@ public class Permissions implements java.io.Serializable
             sendEmail = true;
         }
     }
-    
 
-    private boolean changeVerify(boolean manageUserPermit) throws 
+    private boolean changeVerify(boolean manageUserPermit) throws
             IllegalAccessException
     {
         if (!manageUserPermit)
