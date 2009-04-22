@@ -14,8 +14,8 @@ Pseudocode                     | ....[-|---]   |       |       |       |       |
 Vertical Prototpyping Party    |       |  x ...|x      |       |       |       |       |       |       |
 Implement Stage 1              |       |     ..|.[-----|]      |       |       |       |       |       |
 Unit Test Development          |       |     ..|.[-----|]      |       |       |       |       |       |
-Daily Builds begin             |       |   ....|.x     |       |       |       |       |       |       |
-Write Sys Tests                |       |     ..|..[---]|       |       |       |       |       |       |
+Daily Builds begin             |       |   ....|..x    |       |       |       |       |       |       |
+Write Sys Tests                |       |     ..|.....[-|--]    |       |       |       |       |       |
 Integration Test               |       |       |       |[-----]|       |       |       |       |       |
 Review System Test             |       |       |   [---|---]   |       |       |       |       |       |
 Write System Test              |       |       |     [-|-----] |       |       |       |       |       |
