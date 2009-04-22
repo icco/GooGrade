@@ -22,7 +22,7 @@
         Class section: <jsp:getProperty name="course" property="courseSection" /><br />
         
         <form action="<c:url value="/Course.do" />" method="post">
-            <hidden name="action" value="create" />
+            <input type="hidden" name="action" value="create" />
             Title <input type="text" name="newcoursetitle"  /><br />
             Number <input type="text" name="newcoursenumber" /><br />
             <input type="submit" value="Create new course"/>
