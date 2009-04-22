@@ -7,7 +7,7 @@
 
 ### Variables
 # Location of scripts
-SCRIPTS=~/309/project/svn/trunk/build/scripts
+SCRIPTS=../../../../svn/trunk/build/scripts
 # Location of the checked out svn repository relative to the scripts
 SVN=../../../../svn
 # Output of build results
@@ -17,11 +17,11 @@ html=dailyresults.html
 # A log of the last run of this script
 log=dailybuild.log
 # Email to notify when the build is broken
-email=${USER}@calpoly.edu
+email=blugoo@lists.csc.calpoly.edu
 # The name of the .jar ex HappyFun for HappyFun_r42.jar
 execname=ExecutableName
 # group name
-group=PolyCron
+group=Blugoo
 # Where to rysnc to on remote server
 rsyncdir=~/trac-${group}/htdocs/
 # server to rsync to
