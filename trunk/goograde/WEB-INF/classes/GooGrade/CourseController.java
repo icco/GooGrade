@@ -24,9 +24,11 @@ public class CourseController extends HttpServlet
         String action = request.getParameter("action");
         Course course = new Course();
 
-        if (action != null)
+        if (action != null && action.equals("change"))
         {
+            
             course.setCourseTitle(request.getParameter("newcoursetitle"));
+            course.setCourseDepartment(request.getParameter("newcoursedepartment"));
             course.setCourseNumber(new Integer(request.getParameter("newcoursenumber")).intValue());
         }
         else
