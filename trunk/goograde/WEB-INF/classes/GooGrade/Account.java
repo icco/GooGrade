@@ -70,6 +70,7 @@ public abstract class Account implements java.io.Serializable
      * Takes new password, hashes it, and saves to database.
      * @param newPass the new password to be saved
      * @return true if set, false if failure.
+	 * @TODO Passwords are not implemented for release 1.
      */
     boolean setPassword(String newPass)
     {
