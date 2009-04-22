@@ -15,7 +15,7 @@
         <title>Course</title>
     </head>
     <body>
-        <jsp:useBean id="course" scope="session" class="goograde.Course" />
+        <jsp:useBean id="course" scope="session" class="GooGrade.Course" />
         <h2><jsp:getProperty name="course" property="courseTitle" /></h2>
         Class title: <jsp:getProperty name="course" property="courseTitle" /><br />
         Class reference: <jsp:getProperty name="course" property="courseDepartment" /><jsp:getProperty name="course" property="courseNumber" /><br />
