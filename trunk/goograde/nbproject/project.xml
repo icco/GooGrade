@@ -6,11 +6,11 @@
             <name>GooGrade</name>
             <minimum-ant-version>1.6</minimum-ant-version>
             <web-module-libraries>
-                <library files="1">
+                <library>
                     <file>${file.reference.servlet-api.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library files="1">
+                <library>
                     <file>${file.reference.sqlitejdbc-v054.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
