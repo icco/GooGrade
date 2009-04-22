@@ -1,4 +1,4 @@
-package blugoo;
+
 
 import java.lang.*;
 import java.io.*;
