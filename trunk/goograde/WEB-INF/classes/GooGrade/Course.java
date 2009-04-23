@@ -18,19 +18,12 @@ public class Course implements java.io.Serializable
 
     public Course()
     {
-        courseNumber = 309;
-        courseTitle = "Software Engneering II";
-        courseSection = 1;
-        courseDepartment = "CSC";
+    }
+    
+    public Course(String department, int number){
+        
     }
 
-    public Course(int num, String title)
-    {
-        courseNumber = num;
-        courseTitle = title;
-        courseSection = 1;
-        courseDepartment = "CSC";
-    }
     /** The Course's title */
     private String courseTitle;
     /** The Course's department */
@@ -65,6 +58,7 @@ public class Course implements java.io.Serializable
      */
     public boolean setCourseTitle(String newTitle)
     {
+        
         this.courseTitle = newTitle;
         return true;
     }

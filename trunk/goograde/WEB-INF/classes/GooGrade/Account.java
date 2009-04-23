@@ -3,6 +3,7 @@ package GooGrade;
 import java.util.*;
 import java.lang.*;
 import java.io.*;
+import java.sql.*;
 
 /**
  * This is a class that keeps all of the information of a user. A user is 
@@ -15,6 +16,8 @@ import java.io.*;
  */
 public abstract class Account implements java.io.Serializable
 {
+    String jdbcConnectionString;
+    Connection conn;
 
     /**
      * Username for logging in
