@@ -37,6 +37,17 @@
 
     <!-- Obtain current sources from svn repository                          -->
     <target name="-pre-init">
+	    <echo>Begining Build. See http://blugoo.csc.calpoly.edu/ for results</echo>
+	    <echo>Updating source files from repository</echo>
+	    <exec executable="svn">
+		    <arg value="update"/>
+	    </exec>
+    </target><!--
+    <target name="init">
+        <doxygen:doxygen configFilename="/var/www/html/svn/trunk/Doxyfile">
+        <property name="INPUT" value="${inputdir}" />
+        </doxygen:doxygen>
+    </target>-->
 
     <!-- Create a property for the current svn revision                      -->
     <target name="-post-init">
@@ -52,5 +63,22 @@
 	    <exec outputproperty="emaildate" executable="date">
 		    <arg line="+%D" />
 	    </exec>
+    </target>
+
+    <target name="-post-dist" depends="javadoc">
+	    <!-- This would send out an email, but in all honesty, it's useless.
+		    <mail from="blugoo@lists.csc.calpoly.edu" 
+			    tolist="blugoo@lists.csc.calpoly.edu" 
+			    subject="Daily Build Report for ${emaildate}">
+			    <message>The Build was successful. </message>
+		    </mail>
+	    -->
+	    <copy todir="/var/www/html/javadoc/">
+		    <fileset dir="dist/javadoc/"/>
+	    </copy>
+
+	    <copy file="dist/GooGrade.war" tofile="/var/www/html/GooGrade.${logdate}.war"/>
+
+	    <exec executable="/var/www/html/svnstat/runme.sh" />
     </target>
 </project>

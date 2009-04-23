@@ -8,8 +8,7 @@ import java.sql.*;
 /**
  * This is a class that keeps all of the information of a user. A user is 
  * a synomnym for an Account. This will have lots of get and set methods 
- * that will handle getting and saving Accounts to the Storage system
- * using the Storage Connection class. 
+ * that will handle getting and saving Accounts to the Storage system.
  *
  * @author bluGoo
  * @version 0.42
