@@ -33,7 +33,8 @@ public class Permissions implements java.io.Serializable
     /** Permission for managing Users */
     private boolean manageUser;
 
-    /** Constructor for Permissions class
+    /** Constructor for Permissions class. By default all permissions are turned
+     * off, assuming Teacher Assistant mode.
      */
     public Permissions()
     {
@@ -48,6 +49,14 @@ public class Permissions implements java.io.Serializable
         sendEmail = false;
     }
 
+    /**
+     * Constructor for Permissions class. By default all permissions are turned
+     * off, assuming Teacher Assistant mode, unless isTeacher or isStudent is 
+     * true
+     * @param isStudent determines whether set Student type permissions.
+     * @param isTeacher determines whether to set Teacher type permissions.
+     * @throws java.lang.Exception if isStudent and isTeacher are both true.
+     */
     public Permissions(boolean isStudent, boolean isTeacher) throws Exception
     {
         this();
@@ -73,6 +82,13 @@ public class Permissions implements java.io.Serializable
         }
     }
 
+    /**
+     * changeVerify is a permission checker to make sure the system has 
+     * permission to edit permissions. 
+     * @param manageUserPermit
+     * @return false if no problems are encountered. 
+     * @throws java.lang.IllegalAccessException
+     */
     private boolean changeVerify(boolean manageUserPermit) throws
             IllegalAccessException
     {
@@ -157,10 +173,14 @@ public class Permissions implements java.io.Serializable
     }
 
     /**Changes (sets) the sendEmail permission
-     * @param pSendEmail A boolean value to which sendEmail is set to.
+     * @param desiredChange A boolean value to which sendEmail is to be set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setSendEmail(boolean desiredChange, boolean manageUserPermit)
+    public boolean setSendEmail(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -170,16 +190,21 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the uploadFile permission
-     * @param pUploadFile A boolean value to which uploadFile is set to.
+     * @param desiredChange A boolean value to which uploadFile is to be set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setUploadFile(boolean desiredChange, boolean manageUserPermit)
+    public boolean setUploadFile(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -189,16 +214,22 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the viewOwnGrade permission
-     * @param pViewOwnGrade A boolean value to which viewOwnGrade is set to.
+     * @param desiredChange A boolean value to which viewOwnGrade is to be set 
+     * to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setViewOwnGrade(boolean desiredChange, boolean manageUserPermit)
+    public boolean setViewOwnGrade(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -208,16 +239,22 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the manageCourse permission
-     * @param pManageCourse A boolean value to which manageCourse is set to.
+     * @param desiredChange A boolean value to which manageCourse is to be set
+     * to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageCourse(boolean desiredChange, boolean manageUserPermit)
+    public boolean setManageCourse(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -227,16 +264,22 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the manageMetric permission
-     * @param pManageMetric A boolean value to which manageMetric is set to.
+     * @param desiredChange A boolean value to which manageMetric is to be 
+     * set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageMetric(boolean desiredChange, boolean manageUserPermit)
+    public boolean setManageMetric(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -246,16 +289,22 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the manageGrade permission
-     * @param pManageGrade A boolean value to which manageGrade is set to.
+     * @param desiredChange A boolean value to which manageGrade is to be 
+     * set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageGrade(boolean desiredChange, boolean manageUserPermit)
+    public boolean setManageGrade(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -265,16 +314,22 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the manageRoster permission
-     * @param pManageRoster A boolean value to which manageRoster is set to.
+     * @param desiredChange A boolean value to which manageRoster is to be 
+     * set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageRoster(boolean desiredChange, boolean manageUserPermit)
+    public boolean setManageRoster(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -284,16 +339,22 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the manageAnnouncement permission
-     * @param pManageAnnouncement A boolean value to which manageAnnouncement is set to.
+     * @param desiredChange A boolean value to which manageAnnouncement is to 
+     * be set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageAnnouncement(boolean desiredChange, boolean manageUserPermit)
+    public boolean setManageAnnouncement(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
@@ -303,13 +364,19 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
+
             return false;
         }
         return true;
     }
 
     /**Changes (sets) the manageUser permission
-     * @param pManageUser A boolean value to which manageUser is set to.
+     * @param desiredChange A boolean value to which manageUser is to be
+     * set to.
+     * @param manageUserPermit A value from an Account's isManageUser() to see
+     * if the account has permision to change permission. If this method is 
+     * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
     public boolean setManageUser(boolean desiredChange, boolean manageUserPermit)
@@ -322,6 +389,7 @@ public class Permissions implements java.io.Serializable
         }
         catch (IllegalAccessException accountError)
         {
+            /*changeVerify reported insufficient permissions. */
             return false;
         }
         return true;
