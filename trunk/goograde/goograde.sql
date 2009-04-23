@@ -1,6 +1,6 @@
 -- BluGoo's Awesome DataBase
 
--- Drop Tables 
+-- Drop Tables & Views
 DROP TABLE IF EXISTS Accounts;
 DROP TABLE IF EXISTS Courses;
 DROP TABLE IF EXISTS Files;
@@ -18,12 +18,9 @@ DROP VIEW IF EXISTS Teachers;
 DROP VIEW IF EXISTS TAs;
 DROP VIEW IF EXISTS Students;
 
+/* entity table for Account class */
 CREATE TABLE Accounts (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		teachID integer,  /*VG wants to delete*/
-		taId integer,     /*VG wants to delete*/
-		studentId Integer, /*VG wants to delete*/
-		
 		username STRING UNIQUE ON CONFLICT ROLLBACK,
 		name STRING,
 		email STRING,
@@ -33,6 +30,7 @@ CREATE TABLE Accounts (
 			CONFLICT ROLLBACK
 );
 
+/* entity table for Course class */
 CREATE TABLE Courses (      
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		title STRING,
@@ -45,21 +43,24 @@ CREATE TABLE Courses (
 		GradingRules (id) ON DELETE RESTRICT
 );
 
+/* entity table for File class */
 CREATE TABLE Files (        
 		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
+/* entity table for Assignment class */
 CREATE TABLE Assignments (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		name text,
 		userId Integer
 );
 
-
+/* entity table for Permission class */
 CREATE TABLE Permissions (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
+/* entity table for Announcement class */
 CREATE TABLE Announcements (   
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		courseId INTEGER,
@@ -68,72 +69,91 @@ CREATE TABLE Announcements (
 		datetime INTEGER
 );
 
+/* entity table for GradingRules class */
 CREATE TABLE GradingRules (    
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		courseId INTEGER -- VG wants to delete, store in course
+		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
-/*VG want to delete - unnecessary*/
+/* TODO, how to store Grades in database <<---------------!!!!!*/
+CREATE TABLE Grade (
+                id INTEGER PRIMARY KEY AUTOINCREMENT
+);
+
+/* relation table between Accounts & Grades */
 Create Table hasGrade (        
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		userId INTEGER
+		account INTEGER,
+		grade INTEGER,
+		CONSTRAINT pk_hasGrade PRIMARY KEY (account, grade),
+		CONSTRAINT fk_account FOREIGN KEY (account) REFERENCES Accounts
+			(id) ON DELETE CASCADE,
+		CONSTRAINT fk_grade FOREIGN KEY (grade) REFERENCES Grades
+			(id) ON DELETE CASCADE
 );
 
-CREATE TABLE teaches (         
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		courseId INTEGER
-);
-
+/* relation table between Accounts & Files */
 CREATE TABLE submitted (       
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		assignmentID integer,
-		datetime integer
+		account INTEGER,
+		file INTEGER,
+		CONSTRAINT pk_submitted PRIMARY KEY (account, file),
+		CONSTRAINT fk_account FOREIGN KEY (account) REFERENCES Accounts
+			(id) ON DELETE CASCADE,
+		CONSTRAINT fk_file FOREIGN KEY (file) REFERENCES Files
+			(id) ON DELETE CASCADE
 );
 
-/*VG want to delete - unnecessary*/
+/* relation table between Accounts & Permissions */
 Create Table hasPermission (   
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		userId INTEGER
+		account INTEGER,
+		permissions INTEGER,
+		CONSTRAINT pk_hasPermission PRIMARY KEY (account, permissions),
+		CONSTRAINT fk_account FOREIGN KEY (account) REFERENCES Accounts
+			(id) ON DELETE CASCADE,
+		CONSTRAINT fk_permissions FOREIGN KEY (permissions) REFERENCES Permissions
+			(id) ON DELETE CASCADE
 );
 
+/* relation table between Accounts (teachers) & Courses */
+CREATE TABLE teaches (         
+		course INTEGER,
+		teacher INTEGER,
+		CONSTRAINT pk_teaches PRIMARY KEY (course, teacher),
+		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
+			(id) ON DELETE CASCADE,
+		CONSTRAINT fk_teacher FOREIGN KEY (ta) REFERENCES Accounts
+			(id) ON DELETE CASCADE
+);
+
+/* relation table between Accounts (students) & Courses */
 CREATE TABLE enrolled (
 		course INTEGER,
 		student INTEGER,
-		CONSTRAINT pk_enrolled PRIMARY KEY (course, student) 
-			ON CONFLICT ROLLBACK,
+		CONSTRAINT pk_enrolled PRIMARY KEY (course, student),
 		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
 			(id) ON DELETE CASCADE,
 		CONSTRAINT fk_student FOREIGN KEY (student) REFERENCES Accounts
 			(id) ON DELETE CASCADE
 );
 
+/* relation table between Account (tas) & Courses */
 CREATE TABLE assists (
 		course INTEGER,
 		ta INTEGER,
-		CONSTRAINT pk_enrolled PRIMARY KEY (course, ta) 
-			ON CONFLICT ROLLBACK,
+		CONSTRAINT pk_enrolled PRIMARY KEY (course, ta),
 		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
 			(id) ON DELETE CASCADE,
 		CONSTRAINT fk_tas FOREIGN KEY (ta) REFERENCES Accounts
 			(id) ON DELETE CASCADE
 );
 
+/* View of all teacher ids*/
 CREATE VIEW Teachers AS
-    SELECT DISTINCT teacher FROM teaches;
+    SELECT DISTINCT teacher as id FROM teaches;
 
+/* View of all ta ids*/
 CREATE VIEW TAs AS
-    SELECT DISTINCT ta FROM assists;
+    SELECT DISTINCT ta as id FROM assists;
 
+/* View of all student ids*/
 CREATE VIEW Teachers AS
-    SELECT DISTINCT student FROM enrolled;
+    SELECT DISTINCT student as id FROM enrolled;
 
-INSERT INTO Courses (title, department, number, section) 
-    VALUES("Systems Programming", "CSC", "357","01");
-INSERT INTO Courses (title, department, number, section) 
-    VALUES("Software Engineering I", "CPE", "308","01");
-INSERT INTO Courses (title, department, number, section) 
-    VALUES("Software Engineering II", "CPE", "309","01");
-INSERT INTO Courses (title, department, number, section) 
-    VALUES("Professional responsabilities", "CSC", "300","01");
-INSERT INTO Courses (title, department, number, section) 
-    VALUES("Graduate Thesis", "CSC", "500","01");
