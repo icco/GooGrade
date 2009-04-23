@@ -9,7 +9,7 @@ Saturday                       4      11      18       25      2       9      16
 Review SRS              ....[--|]      |       |       |       |       |       |       |       |       |               
 Review Arch               ..[--|]      |       |       |       |       |       |       |       |       |
 Delivery Plan signoff          | x     |       |       |       |       |       |       |       |       |
-Training                  [----|-------|-------|-------|]      |       |       |       |       |       |
+Training                  [----|-------|-------|-------|-----] |       |       |       |       |       |
 Pseudocode                     | ....[-|---]   |       |       |       |       |       |       |       |
 Vertical Prototpyping Party    |       |  x ...|x      |       |       |       |       |       |       |
 Implement Stage 1              |       |     ..|.[-----|]      |       |       |       |       |       |
@@ -17,7 +17,7 @@ Unit Test Development          |       |     ..|.[-----|]      |       |       |
 Daily Builds begin             |       |   ....|..x    |       |       |       |       |       |       |
 Write Sys Tests                |       |     ..|.....[-|--]    |       |       |       |       |       |
 Integration Test               |       |       |       |[-----]|       |       |       |       |       |
-Review System Test             |       |       |   [---|---]   |       |       |       |       |       |
+Review System Test             |       |       |   ....|[--]   |       |       |       |       |       |
 Write System Test              |       |       |     [-|-----] |       |       |       |       |       |
 Write Deployment Doc           |       |       |       |     [-|--]    |       |       |       |       |
 Release Prep                   |       |       |       |       |[-]    |       |       |       |       |
