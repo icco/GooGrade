@@ -58,7 +58,6 @@ Create Table Accounts (
 
  Create Table Passwords (    
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		userId Integer,
 		passwd text
 );
 
@@ -104,10 +103,6 @@ Create Table Accounts (
 		userId INTEGER
 );
 
- Create Table hasPW (           
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		userId INTEGER
-);
 
  Create Table hasEmailAddr (         
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
