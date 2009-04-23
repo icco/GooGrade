@@ -35,11 +35,8 @@
 
     -->
 
-    <!-- Obtain current sources from svn repository                          -->
-    <target name="-pre-init">
-
-    <!-- Create a property for the current svn revision                      -->
     <target name="-post-init">
+		<!-- Create a property for the current svn revision-->
 	    <exec outputproperty="build.current.revision" executable="svnversion">
 		    <arg line="-n" />
 		    <arg line="${svnpath}" />
