@@ -6,6 +6,8 @@
  * @author Ian F. Darwin, inspired by David Flanagan.
  * Seven defects seeded by J. Dalbey Jan 2007
  */
+
+
 public class ComplexNumber
 {
     /** The real part */

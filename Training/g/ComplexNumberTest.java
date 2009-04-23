@@ -3,9 +3,8 @@
  * and open the template in the editor.
  */
 
-package junitexample;
 
-import junit.framework.TestCase;
+import junit.framework.*;
 
 /**
  *
@@ -35,7 +34,7 @@ public class ComplexNumberTest extends TestCase {
      * Test of magnitude method, of class ComplexNumber.
      * @author Matthew Duder
      */
-    public void testMagnitude() {
+    public void testMagnitudeDefect90() {
         System.out.println("magnitude");
         ComplexNumber instance = cn1;
         double expResult = 10.0;
