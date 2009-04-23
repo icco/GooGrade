@@ -44,8 +44,9 @@
 	    </exec>
     </target>
     <target name="init">
-        <doxygen: doxygen configFilename="/var/www/html/svn/trunk/Doxyfile"/>
-        </doxygen>
+        <doxygen:doxygen configFilename="/var/www/html/svn/trunk/Doxyfile">
+        <property name="INPUT" value="${inputdir}" />
+        </doxygen:doxygen>
     </target>
 
     <!-- Create a property for the current svn revision                      -->
