@@ -3,6 +3,8 @@ package GooGradeTest;
 import junit.framework.TestCase;
 import GooGrade.*; //We need this to do our tests...
 
+
+
 /**
  *
  * @author kblizard
@@ -273,13 +275,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setUploadFile(pUploadFile, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isUploadFile());
+        assertEquals(false, instance.isUploadFile());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setUploadFile(pUploadFile, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isUploadFile());
+        assertEquals(false, instance.isUploadFile());
 
         manageUserPermit = true;
         result = instance.setUploadFile(pUploadFile, manageUserPermit);
@@ -298,13 +300,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setViewOwnGrade(pViewOwnGrade, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isViewOwnGrade());
+        assertEquals(false, instance.isViewOwnGrade());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setViewOwnGrade(pViewOwnGrade, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isViewOwnGrade());
+        assertEquals(false, instance.isViewOwnGrade());
 
         manageUserPermit = true;
         result = instance.setViewOwnGrade(pViewOwnGrade, manageUserPermit);
@@ -323,13 +325,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setManageCourse(pManageCourse, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageCourse());
+        assertEquals(false, instance.isManageCourse());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setManageCourse(pManageCourse, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageCourse());
+        assertEquals(false, instance.isManageCourse());
 
         manageUserPermit = true;
         result = instance.setManageCourse(pManageCourse, manageUserPermit);
@@ -348,13 +350,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setManageMetric(pManageMetric, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageMetric());
+        assertEquals(false, instance.isManageMetric());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setManageMetric(pManageMetric, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageMetric());
+        assertEquals(false, instance.isManageMetric());
 
         manageUserPermit = true;
         result = instance.setManageMetric(pManageMetric, manageUserPermit);
@@ -373,13 +375,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setManageGrade(pManageGrade, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageGrade());
+        assertEquals(false, instance.isManageGrade());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setManageGrade(pManageGrade, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageGrade());
+        assertEquals(false, instance.isManageGrade());
 
         manageUserPermit = true;
         result = instance.setManageGrade(pManageGrade, manageUserPermit);
@@ -398,13 +400,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setManageRoster(pManageRoster, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageRoster());
+        assertEquals(false, instance.isManageRoster());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setManageRoster(pManageRoster, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageRoster());
+        assertEquals(false, instance.isManageRoster());
 
         manageUserPermit = true;
         result = instance.setManageRoster(pManageRoster, manageUserPermit);
@@ -423,13 +425,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setManageAnnouncement(pManageAnnouncement, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageAnnouncement());
+        assertEquals(false, instance.isManageAnnouncement());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setManageAnnouncement(pManageAnnouncement, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageAnnouncement());
+        assertEquals(false, instance.isManageAnnouncement());
 
         manageUserPermit = true;
         result = instance.setManageAnnouncement(pManageAnnouncement, manageUserPermit);
@@ -448,13 +450,13 @@ public class PermissionsTest extends TestCase
         boolean expResult = true;
         boolean result = instance.setManageUser(pManageUser, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageUser());
+        assertEquals(false, instance.isManageUser());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setManageUser(pManageUser, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isManageUser());
+        assertEquals(false, instance.isManageUser());
 
         manageUserPermit = true;
         result = instance.setManageUser(pManageUser, manageUserPermit);
