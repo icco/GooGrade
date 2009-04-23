@@ -1,22 +1,46 @@
-import junit.framework.*;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-// A demonstration of JUnit testing
-public class ComplexNumberTest extends TestCase
-{
-	ComplexNumber cn1, cn2;
-	
-	public ComplexNumberTest (String name)
-	{
-		super (name);
-	}
-	
-    // Create variables to used in each test case
-	protected void setUp()
-	{
-		cn1 = new ComplexNumber(6, 8);
-		cn2 = new ComplexNumber(1, 3);
-	}
+package junitexample;
 
-	
+import junit.framework.TestCase;
+
+/**
+ *
+ * @author mduder
+ */
+public class ComplexNumberTest extends TestCase {
+    
+    ComplexNumber cn1, cn2;
+    
+    public ComplexNumberTest(String testName) {
+        super(testName);
+    }            
+
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+        cn1 = new ComplexNumber(6, 8);
+        cn2 = new ComplexNumber(1, 3);
+    }
+
+    @Override
+    protected void tearDown() throws Exception {
+        super.tearDown();
+    }
+
+    /**
+     * Test of magnitude method, of class ComplexNumber.
+     * @author Matthew Duder
+     */
+    public void testMagnitude() {
+        System.out.println("magnitude");
+        ComplexNumber instance = cn1;
+        double expResult = 10.0;
+        double result = instance.magnitude();
+        assertEquals(expResult, result);
+    }
+
 }
-		

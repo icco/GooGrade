@@ -44,7 +44,7 @@ public class ComplexNumber
     /** Return the magnitude of a complex number */
     public double magnitude()
     {
-        return Math.sqrt(r*r + i);
+        return Math.sqrt(r*r + i*i);
     }
 
     /** Add another ComplexNumber to this one
