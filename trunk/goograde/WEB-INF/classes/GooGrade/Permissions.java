@@ -4,6 +4,7 @@ import java.lang.*;
 import java.io.*;
 import java.util.*;
 
+
 /**
  * This class keeps information about permissions for each action.
  *
@@ -159,12 +160,12 @@ public class Permissions implements java.io.Serializable
      * @param pSendEmail A boolean value to which sendEmail is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setSendEmail(boolean pSendEmail, boolean manageUserPermit)
+    public boolean setSendEmail(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            sendEmail = !sendEmail;
+            sendEmail = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -178,12 +179,12 @@ public class Permissions implements java.io.Serializable
      * @param pUploadFile A boolean value to which uploadFile is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setUploadFile(boolean pUploadFile, boolean manageUserPermit)
+    public boolean setUploadFile(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            uploadFile = !uploadFile;
+            uploadFile = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -197,12 +198,12 @@ public class Permissions implements java.io.Serializable
      * @param pViewOwnGrade A boolean value to which viewOwnGrade is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setViewOwnGrade(boolean pViewOwnGrade, boolean manageUserPermit)
+    public boolean setViewOwnGrade(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            viewOwnGrade = !viewOwnGrade;
+            viewOwnGrade = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -216,12 +217,12 @@ public class Permissions implements java.io.Serializable
      * @param pManageCourse A boolean value to which manageCourse is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setManageCourse(boolean pManageCourse, boolean manageUserPermit)
+    public boolean setManageCourse(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            manageCourse = !manageCourse;
+            manageCourse = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -235,12 +236,12 @@ public class Permissions implements java.io.Serializable
      * @param pManageMetric A boolean value to which manageMetric is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setManageMetric(boolean pManageMetric, boolean manageUserPermit)
+    public boolean setManageMetric(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            manageMetric = !manageMetric;
+            manageMetric = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -254,12 +255,12 @@ public class Permissions implements java.io.Serializable
      * @param pManageGrade A boolean value to which manageGrade is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setManageGrade(boolean pManageGrade, boolean manageUserPermit)
+    public boolean setManageGrade(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            manageGrade = !manageGrade;
+            manageGrade = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -273,12 +274,12 @@ public class Permissions implements java.io.Serializable
      * @param pManageRoster A boolean value to which manageRoster is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setManageRoster(boolean pManageRoster, boolean manageUserPermit)
+    public boolean setManageRoster(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            manageRoster = !manageRoster;
+            manageRoster = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -292,12 +293,12 @@ public class Permissions implements java.io.Serializable
      * @param pManageAnnouncement A boolean value to which manageAnnouncement is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setManageAnnouncement(boolean pManageAnnouncement, boolean manageUserPermit)
+    public boolean setManageAnnouncement(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            manageAnnouncement = !manageAnnouncement;
+            manageAnnouncement = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
@@ -311,12 +312,12 @@ public class Permissions implements java.io.Serializable
      * @param pManageUser A boolean value to which manageUser is set to.
      * @return true if set is succesful, false if not
      */
-    public boolean setManageUser(boolean pManageUser, boolean manageUserPermit)
+    public boolean setManageUser(boolean desiredChange, boolean manageUserPermit)
     {
         try
         {
             changeVerify(manageUserPermit);
-            manageUser = !manageUser;
+            manageUser = desiredChange;
 
         }
         catch (IllegalAccessException accountError)
