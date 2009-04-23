@@ -13,15 +13,13 @@ import java.sql.*;
  */
 public class Student extends Account
 {
-
-    Float totalGrade;
-    ArrayList<File> files;
-    ArrayList<Course> enrolled;
+    private Float totalGrade;
+    private ArrayList<Course> enrolled;
 
     public Student (String jdbcDriver, String jdbcConnectionString, String username)
     {
         //super(jdbcDriver, jdbcConnectionString, username); need proper constructor in Account
-        this.fetch(username);
+        //this.fetch(this.getId());
     }
     
     
@@ -51,15 +49,19 @@ public class Student extends Account
      * @param username is the username of the student who needs to be fetched
      * @return true if successful, false otherwise
      */
-    private boolean fetch(String username)
+    
+    /*private boolean fetch(Integer id)
     {
         try {
-          if (this.conn == null) {
-              this.conn = DriverManager.getConnection(this.jdbcConnectionString);
+          if (this.getConn() == null) {
+                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
  	    }
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT todoid, todo FROM todo");
+            Statement stmt = getConn().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT course FROM enrolled WHERE student = " + id.toString());
 
+            while (rs.next()) {
+                getEnrolled().add(new Course(rs.getInt(1), rs.getString(2)));
+            }
         }
         catch (SQLException ex) {
             System.err.println(
@@ -68,5 +70,41 @@ public class Student extends Account
         }
  	
         return false;
+    }*/
+
+    public Float getTotalGrade()
+    {
+        return totalGrade;
+    }
+
+    public void setTotalGrade(Float totalGrade)
+    {
+        this.totalGrade = totalGrade;
+    }
+
+    public ArrayList<Course> getEnrolled()
+    {
+        try {
+          if (this.getConn() == null) {
+                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+ 	    }
+            Statement stmt = getConn().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT course FROM enrolled WHERE student = " + this.getId().toString());
+
+            while (rs.next()) {
+                this.enrolled.add(new Course(new Integer(rs.getInt(1))));
+            }
+        }
+        catch (SQLException ex) {
+            System.err.println(
+                    "Error retrieving student courses from the database:\n" +
+                    ex.getMessage());
+        }
+        return this.enrolled;
+    }
+
+    public void setEnrolled(ArrayList<Course> enrolled)
+    {
+        this.enrolled = enrolled;
     }
 }

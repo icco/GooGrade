@@ -20,6 +20,10 @@ public class Course implements java.io.Serializable
     {
     }
     
+    public Course(Integer id){
+        this.id = id;
+    }
+    
     public Course(String department, int number){
         
     }
@@ -40,7 +44,9 @@ public class Course implements java.io.Serializable
     private Teacher teacher;
     /** The set of grade boundaries for this class*/
     private GradingRules scale;
-
+    /** Id used to fetch in database*/
+    private Integer id;
+    
     /**
      * setGradingRules saves a new Grading Rules over the old.
      * @param newScale the new grading rules to save
@@ -221,5 +227,15 @@ public class Course implements java.io.Serializable
     {
         this.courseDepartment = courseDepartment;
         return true;
+    }
+
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
     }
 }

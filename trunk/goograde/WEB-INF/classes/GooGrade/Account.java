@@ -16,8 +16,8 @@ import java.sql.*;
  */
 public abstract class Account implements java.io.Serializable
 {
-    String jdbcConnectionString;
-    Connection conn;
+    private String jdbcConnectionString;
+    private Connection conn;
 
     /**
      * Username for logging in
@@ -41,6 +41,16 @@ public abstract class Account implements java.io.Serializable
      */
     private Permissions permission;
 
+    /**
+     * Files owned by account
+     */
+    private ArrayList<File> files;
+    
+    /**
+     * ID used to find things in database
+     */
+    private Integer id;
+    
     // Begin the Functions!
     /**
      * get the accounts user name.
@@ -121,6 +131,46 @@ public abstract class Account implements java.io.Serializable
     boolean isPassword(String passwd)
     {
         return false;
+    }
+
+    public ArrayList<File> getFiles()
+    {
+        return files;
+    }
+
+    public void setFiles(ArrayList<File> files)
+    {
+        this.files = files;
+    }
+
+    public String getJdbcConnectionString()
+    {
+        return jdbcConnectionString;
+    }
+
+    public void setJdbcConnectionString(String jdbcConnectionString)
+    {
+        this.jdbcConnectionString = jdbcConnectionString;
+    }
+
+    public Connection getConn()
+    {
+        return conn;
+    }
+
+    public void setConn(Connection conn)
+    {
+        this.conn = conn;
+    }
+
+    public Integer getId()
+    {
+        return id;
+    }
+
+    public void setId(Integer id)
+    {
+        this.id = id;
     }
 }
 
