@@ -17,8 +17,25 @@ import java.sql.*;
 public abstract class Account implements java.io.Serializable
 {
     private String jdbcConnectionString;
+    private String jdbcDriver;
     private Connection conn;
 
+    /**
+     * standard constructor, should never be used
+     */
+    public Account (){
+    }
+    
+    /**
+     * Minimal constructor for db connection
+     * @param jdbcDriver driver to db
+     * @param jdbcConnectionString path to db
+     */
+    public Account (String jdbcDriver, String jdbcConnectionString){
+        this.setJdbcDriver("jdbcDriver");
+        this.setJdbcConnectionString("jdbcConnectionString");
+    }
+    
     /**
      * Username for logging in
      */
@@ -133,16 +150,30 @@ public abstract class Account implements java.io.Serializable
         return false;
     }
 
+    /**
+     * gets the list of files submitted by this account.
+     * @return this user's files 
+     */
     public ArrayList<File> getFiles()
     {
         return files;
     }
 
-    public void setFiles(ArrayList<File> files)
+    /**
+     * sets the list of files for this account
+     * @param files a list of files owned by this account
+     * @return true if set, false if error.
+     */
+    public boolean setFiles(ArrayList<File> files)
     {
         this.files = files;
+        return true;
     }
 
+    /**
+     * gets the db connection string for this instance.
+     * @return this instances connection string
+     */
     public String getJdbcConnectionString()
     {
         return jdbcConnectionString;
@@ -152,25 +183,64 @@ public abstract class Account implements java.io.Serializable
     {
         this.jdbcConnectionString = jdbcConnectionString;
     }
-
+    /**
+     * gets the db connection holder for this instance.
+     * @return this instances connection holder
+     */
     public Connection getConn()
     {
         return conn;
     }
 
-    public void setConn(Connection conn)
+    /**
+     * sets the db connection holder for this instance
+     * @param conn the db connection holder for this instance
+     * @return true if set, false if error.
+     */
+    public boolean setConn(Connection conn)
     {
         this.conn = conn;
+        return true;
     }
 
+    /**
+     * gets the id for this account.
+     * @return this account's id
+     */
     public Integer getId()
     {
         return id;
     }
 
-    public void setId(Integer id)
+    /**
+     * sets the id for this instance
+     * @param id the id used in the db for the account
+     * @return true if set, false if error.
+     */
+    public boolean setId(Integer id)
     {
         this.id = id;
+        return true;
+    }
+
+    /**
+     * gets the db connection driver string for this instance.
+     * @return this instances connection driver string
+     */
+    public String getJdbcDriver()
+    {
+        return jdbcDriver;
+    }
+
+    /**
+     * sets the jdbcDriver for this instance
+     * @param jdbcDringer the db driver string for this instance
+     * @return true if set, false if error.
+     */
+    public boolean setJdbcDriver(String jdbcDriver)
+    {
+        this.jdbcDriver = jdbcDriver;
+        return true;
     }
 }
 
