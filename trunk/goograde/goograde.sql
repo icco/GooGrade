@@ -3,26 +3,20 @@
 -- Drop Tables 
 DROP TABLE IF EXISTS Accounts;
 DROP TABLE IF EXISTS Courses;
-DROP TABLE IF EXISTS Teachers; --VG remove
-DROP TABLE IF EXISTS TAs; --VG remove
-DROP TABLE IF EXISTS Students;
 DROP TABLE IF EXISTS Files;
 DROP TABLE IF EXISTS Assignments;
-DROP TABLE IF EXISTS Passwords; --VG remove
 DROP TABLE IF EXISTS Permissions;
-DROP TABLE IF EXISTS EmailAddresses; --VG remove
-DROP TABLE IF EXISTS Announcements; --VG remove
+DROP TABLE IF EXISTS Announcements;
 DROP TABLE IF EXISTS GradingRules;
-DROP TABLE IF EXISTS hasGrade; --VG remove
+DROP TABLE IF EXISTS hasGrade;
 DROP TABLE IF EXISTS teaches;
 DROP TABLE IF EXISTS submitted;
-DROP TABLE IF EXISTS hasPermission; --VG remove
-DROP TABLE IF EXISTS hasPW; --VG remove
-DROP TABLE IF EXISTS hasEmailAddr; --VG remove
-DROP TABLE IF EXISTS hasAddr; --VG remove
-DROP TABLE IF EXISTS todo; --VG remove
+DROP TABLE IF EXISTS hasPermission;
 DROP TABLE IF EXISTS enrolled;
 DROP TABLE IF EXISTS assists; 
+DROP VIEW IF EXISTS Teachers;
+DROP VIEW IF EXISTS TAs;
+DROP VIEW IF EXISTS Students;
 
 CREATE TABLE Accounts (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,13 +28,7 @@ CREATE TABLE Accounts (
 		name STRING,
 		email STRING,
 		password STRING,
-		/*
-		level STRING, --"teacher", "ta" or "student" so we can remove two tables
-		*/
-		/*
-		CONSTRAINT pk_accounts PRIMARY KEY (id) ON CONFLICT ROLLBACK
-			AUTOINCREMENT,
-		*/
+
 		CONSTRAINT unique_username UNIQUE (username) ON 
 			CONFLICT ROLLBACK
 );
@@ -52,34 +40,9 @@ CREATE TABLE Courses (
 		number INTEGER,
 		section INTEGER,
 		gradingRulesID INTEGER,
-		/*
-		CONSTRAINT pk_courses PRIMARY KEY (id) ON CONFLICT
-			ROLLBACK AUTOINCREMENT,
-		*/
+
 		CONSTRAINT fk_gradingRules FOREIGN KEY (gradingRulesID) REFERENCES 
 		GradingRules (id) ON DELETE RESTRICT
-);
-
-/*VG wants to delete - move into Accounts*/
-Create Table Teachers (
-		id INTEGER,
-		CONSTRAINT pk_teachers PRIMARY KEY (id)
-			ON CONFLICT ROLLBACK,
-		CONSTRAINT fk_accounts FOREIGN KEY (id) REFERENCES
-			Accounts (id) ON DELETE CASCADE
-);
-
-/*VG wants to delete - move into Accounts*/
-CREATE TABLE TAs (          
-		id INTEGER,
-		CONSTRAINT pk_tas PRIMARY KEY (id)
-			ON CONFLICT ROLLBACK,
-		CONSTRAINT fk_accounts FOREIGN KEY (id) REFERENCES
-			Accounts (id) ON DELETE CASCADE
-);
-
-CREATE TABLE Students (
-		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
 CREATE TABLE Files (        
@@ -92,18 +55,8 @@ CREATE TABLE Assignments (
 		userId Integer
 );
 
-/*VG want to delete - put in Account*/
-CREATE TABLE Passwords (    
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		passwd text
-);
 
 CREATE TABLE Permissions (  
-		id INTEGER PRIMARY KEY AUTOINCREMENT
-);
-
-/*VG want to delete - put in Account*/
-CREATE TABLE EmailAddresses (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
@@ -143,12 +96,6 @@ Create Table hasPermission (
 		userId INTEGER
 );
 
-/*VG want to delete - unnecessary*/
-Create Table hasEmailAddr (         
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		userId INTEGER
-);
-
 CREATE TABLE enrolled (
 		course INTEGER,
 		student INTEGER,
@@ -170,3 +117,23 @@ CREATE TABLE assists (
 		CONSTRAINT fk_tas FOREIGN KEY (ta) REFERENCES Accounts
 			(id) ON DELETE CASCADE
 );
+
+CREATE VIEW Teachers AS
+    SELECT DISTINCT teacher FROM teaches;
+
+CREATE VIEW TAs AS
+    SELECT DISTINCT ta FROM assists;
+
+CREATE VIEW Teachers AS
+    SELECT DISTINCT student FROM enrolled;
+
+INSERT INTO Courses (title, department, number, section) 
+    VALUES("Systems Programming", "CSC", "357","01");
+INSERT INTO Courses (title, department, number, section) 
+    VALUES("Software Engineering I", "CPE", "308","01");
+INSERT INTO Courses (title, department, number, section) 
+    VALUES("Software Engineering II", "CPE", "309","01");
+INSERT INTO Courses (title, department, number, section) 
+    VALUES("Professional responsabilities", "CSC", "300","01");
+INSERT INTO Courses (title, department, number, section) 
+    VALUES("Graduate Thesis", "CSC", "500","01");
