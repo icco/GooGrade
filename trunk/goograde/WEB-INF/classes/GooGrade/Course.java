@@ -6,9 +6,9 @@ import java.lang.*;
 import java.sql.*;
 
 /**
- * This class keeps information about Courses. It's a JavaBean since
- * it implements java.io.Serializable. It too uses StorageConnection
- * to store and get things out of the storage system.
+ * This class keeps information about Courses. 
+ *
+ * The constructor should query the DB and deal with stuff.
  *
  * @author bluGoo
  * @version 0.42
