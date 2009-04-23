@@ -44,7 +44,7 @@
 	    </exec>
     </target>
     <target name="init">
-        <doxygen: doxygeni configFilename="${svnpath}/Doxyfile">
+        <doxygen: doxygen configFilename="/var/www/html/svn/trunk/Doxyfile">
         </doxygen>
     </target>
 
