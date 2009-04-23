@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-    <display-name>ToDoMVC</display-name>
+    <display-name>GooGrade</display-name>
     <listener>
-        <listener-class>com.sitepoint.ToDoServlet</listener-class>
+        <listener-class>GooGrade.CourseController</listener-class>
     </listener>
+    <distributable/>
     <context-param>
         <description>The JDBC driver class</description>
         <param-name>jdbcDriver</param-name>
