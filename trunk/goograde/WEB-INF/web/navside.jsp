@@ -30,7 +30,7 @@
         <div class="corner BL"></div>
         <div class="corner BR"></div>
         <div class="cornerBoxInner">
-            <h1>Goo<span OnSelectStart='return false;' style="color: #518ac1;">Grade</span></h1>
+            <h1>Goo<span style="color: #518ac1;">Grade</span></h1>
             <h2>Teacher's Control Panel</h2>
             <h3 class="trigger"><a href="#">CSC 308-01</a></h3>
             <div class="toggle_container">
