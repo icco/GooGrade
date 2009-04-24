@@ -15,10 +15,9 @@ Vertical Prototpyping Party    |       |  x ...|x      |       |       |       |
 Implement Stage 1              |       |     ..|.[-----|]      |       |       |       |       |       |
 Unit Test Development          |       |     ..|.[-----|]      |       |       |       |       |       |
 Daily Builds begin             |       |   ....|..x    |       |       |       |       |       |       |
-Write Sys Tests                |       |     ..|.....[-|--]    |       |       |       |       |       |
+Write Sys Tests                |       |     ..|.....[-|-----] |       |       |       |       |       |
 Integration Test               |       |       |       |[-----]|       |       |       |       |       |
-Review System Test             |       |       |   ....|[--]   |       |       |       |       |       |
-Write System Test              |       |       |     [-|-----] |       |       |       |       |       |
+Review System Test             |       |       |   ....|...[--]|       |       |       |       |       |
 Write Deployment Doc           |       |       |       |     [-|--]    |       |       |       |       |
 Release Prep                   |       |       |       |       |[-]    |       |       |       |       |
 Midterm Exam                   |       |       |       |     x |       |       |       |       |       |
