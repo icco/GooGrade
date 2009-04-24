@@ -22,7 +22,7 @@ public class ComplexNumberTest extends TestCase
         super.setUp();
         cn1 = new ComplexNumber(6, 8);
         cn2 = new ComplexNumber(1, 3);
-        cn2 = new ComplexNumber(1, 1);
+        cn3 = new ComplexNumber(1, 1);
     }
 
     @Override
@@ -82,5 +82,4 @@ public class ComplexNumberTest extends TestCase
         assertEquals(expResult, result);
 	}
 
->>>>>>> .r460
 }
