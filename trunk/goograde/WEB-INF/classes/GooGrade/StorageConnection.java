@@ -1,6 +1,11 @@
 package GooGrade;
 
-import java.sql.*;
+import java.sql.Array;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +21,7 @@ public class StorageConnection
 {
 
     /** Where is the database held? */
-    private String whereIsDb = "jdbc:sqlite://home/vgerdin/blugoo.db";
+    private String whereIsDb = "jdbc:sqlite://tmp/blugoo.db";
     /** What Driver are we using for a storage connection? */
     private String whatIsDb = "org.sqlite.JDBC";
     /** Where the connection is held */
@@ -27,7 +32,6 @@ public class StorageConnection
      */
     public StorageConnection()
     {
-
         try
         {
             Class.forName(whatIsDb).newInstance();
@@ -37,8 +41,6 @@ public class StorageConnection
         {
             System.err.println(ex);
         }
-
-
     }
 
     /**
@@ -50,7 +52,8 @@ public class StorageConnection
     public ArrayList<Array> query(String in)
     {
         Statement stat;
-        ArrayList<Array> ret = null;
+        ArrayList<Array> ret = new ArrayList<Array>();
+        
         try
         {
             stat = this.conn.createStatement();
@@ -68,7 +71,10 @@ public class StorageConnection
         catch (SQLException ex)
         {
             // TODO: Don't really know what this does...
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
+                    "An Error has occured while running a query. " + 
+                    "If you see this error, tell nwelch.",
+                    ex);
         }
 
         return ret;
@@ -83,7 +89,10 @@ public class StorageConnection
         catch (SQLException ex)
         {
             // TODO: Don't really know what this does...
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, 
+                    "An Error has occured while closing the connection. " +
+                    "If you see this error, tell nwelch.", 
+                    ex);
         }
     }
 
