@@ -1,7 +1,7 @@
 <%-- 
-    Document   : course
-    Created on : Apr 21, 2009, 9:23:55 AM
-    Author     : vgerdin
+    Document   : teacher
+    Created on : Apr 23, 2009, 9:24:31 PM
+    Author     : nwelch
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,12 +13,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Course</title>
+        <title>Teachers</title>
     </head>
     <body>
         <%@ include file="head.jsp" %>
-        
-        <h2>Course List</h2>
+        <h2>Teacher List</h2>
         <table>
             <tr>
                 <td>Title</td>
@@ -26,16 +25,16 @@
                 <td>Number</td>
                 <td>Section</td>
             </tr>
-            <c:forEach var="course" items="${courseList}">
+            <c:forEach var="Teacher" items="${TeacherList}">
                 <tr>
-                    <td>${course.courseTitle}</td>
-                    <td>${course.courseDepartment}</td>
-                    <td>${course.courseNumber}</td>
-                    <td>${course.courseSection}</td>
+                    <td>${Teacher.TeacherTitle}</td>
+                    <td>${Teacher.TeacherDepartment}</td>
+                    <td>${Teacher.TeacherNumber}</td>
+                    <td>${Teacher.TeacherSection}</td>
                     <td>
-                        <form action="<c:url value="/Course.do" />" method="post">
+                        <form action="<c:url value="/Teacher.do" />" method="post">
                             <input type="hidden" name="action" value="delete" />
-                            <input type="hidden" name="courseRef" value="${course.id}" />
+                            <input type="hidden" name="TeacherRef" value="${Teacher.id}" />
                             <input type="submit" value="Delete">
                         </form>
                     </td>
