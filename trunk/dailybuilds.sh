@@ -10,7 +10,7 @@ MESSAGE_FILE="/var/www/html/logs/output.`date +%F`.log"
 
 cd /var/www/html/svn/trunk/goograde/;
 ant clean &> /dev/null
-ant -logfile $MESSAGE_FILE &> /dev/null
+ant -f dailybuild.xml -logfile $MESSAGE_FILE &> /dev/null
 
 #Setting up the webapp
 cp /var/www/html/GooGrade.war /usr/share/tomcat/webapps/
