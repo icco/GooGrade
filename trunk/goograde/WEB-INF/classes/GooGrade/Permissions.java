@@ -60,17 +60,22 @@ public class Permissions implements java.io.Serializable
     public Permissions(boolean isStudent, boolean isTeacher) throws Exception
     {
         this();
+        
+        /*Based on type of account created, different permissions are set. */
         if (isStudent && isTeacher)
         {
+            /*Trying to set two contradictory permissions */
             throw new Exception("Account cannot be Student and Teacher");
         }
         if (isStudent)
         {
+            /*student permissions */
             viewOwnGrade = true;
             uploadFile = true;
         }
         else if (isTeacher)
         {
+            /*teacher permissions */
             manageUser = true;
             manageAnnouncement = true;
             manageRoster = true;
@@ -92,6 +97,7 @@ public class Permissions implements java.io.Serializable
     private boolean changeVerify(boolean manageUserPermit) throws
             IllegalAccessException
     {
+        /*System needs manage User permission */
         if (!manageUserPermit)
         {
             //throw error
