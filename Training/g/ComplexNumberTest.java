@@ -26,6 +26,7 @@ public class ComplexNumberTest extends TestCase
         super.setUp();
         cn1 = new ComplexNumber(6, 8);
         cn2 = new ComplexNumber(1, 3);
+        cn2 = new ComplexNumber(1, 1);
     }
 
     @Override
@@ -46,7 +47,10 @@ public class ComplexNumberTest extends TestCase
         double result = instance.magnitude();
         assertEquals(expResult, result);
     }
-
+	
+	/**
+	 * @author Katherin Blizard
+	 */
     public void testGetReal()
     {
         System.out.println("getReal");
@@ -55,4 +59,16 @@ public class ComplexNumberTest extends TestCase
         double result = instance.getReal();
         assertEquals(expResult, result);
     }
+
+	/**
+	 * @author Nat Welch
+	 */
+	public void testAdd()
+	{
+        System.out.println("add");
+		ComplexNumber result = ComplexNumber.add(cn3, cn3);
+        ComplexNumber expResult = new ComplexNumber(2,2);
+        assertEquals(expResult, result);
+	}
+
 }

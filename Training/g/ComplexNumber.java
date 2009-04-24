@@ -60,7 +60,7 @@ public class ComplexNumber
      */
     public static ComplexNumber add(ComplexNumber c1, ComplexNumber c2)
     {
-        return new ComplexNumber(c1.r+c2.r, c2.i+c2.i);
+        return new ComplexNumber(c1.r+c2.r, c1.i+c2.i);
     }
 
     /** Subtract another ComplexNumber from this one
