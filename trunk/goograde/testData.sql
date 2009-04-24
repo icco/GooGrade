@@ -9,7 +9,9 @@ INSERT INTO Courses (title, department, number, section)
 INSERT INTO Courses (title, department, number, section) 
     VALUES("Graduate Thesis", "CSC", "500","01");
 
-/*
-INSERT INTO Accounts (username, name, email, password)
-    VALUES("");
-*/  
+INSERT INTO Accounts (username, name, email, password) VALUES("nwelch","Nathaniel Welch","nat@natwelch.com",123456);
+INSERT INTO Accounts (username, name, email, password) VALUES("pphu","Paul Phu","pphu@calpoly.edu",123456);
+
+INSERT INTO teaches values (1,1);
+
+

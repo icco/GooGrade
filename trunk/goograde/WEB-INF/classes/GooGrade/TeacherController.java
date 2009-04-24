@@ -1,6 +1,7 @@
 package GooGrade;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +43,7 @@ public class TeacherController extends AccountController
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        request.setAttribute("teacherList", (List) Teacher.allTeachers());
      RequestDispatcher view = request.getRequestDispatcher("/teacher.jsp");
         view.forward(request, response);   
     }

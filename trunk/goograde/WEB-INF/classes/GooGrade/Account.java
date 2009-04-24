@@ -1,9 +1,7 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
-import java.io.*;
-import java.sql.*;
+import java.util.ArrayList;
+
 
 /**
  * This is a class that keeps all of the information of a user. A user is 
@@ -15,26 +13,7 @@ import java.sql.*;
  */
 public abstract class Account implements java.io.Serializable
 {
-    private String jdbcConnectionString;
-    private String jdbcDriver;
-    private Connection conn;
 
-    /**
-     * standard constructor, should never be used
-     */
-    public Account (){
-    }
-    
-    /**
-     * Minimal constructor for db connection
-     * @param jdbcDriver driver to db
-     * @param jdbcConnectionString path to db
-     */
-    public Account (String jdbcDriver, String jdbcConnectionString){
-        this.setJdbcDriver("jdbcDriver");
-        this.setJdbcConnectionString("jdbcConnectionString");
-    }
-    
     /**
      * Username for logging in
      */
@@ -56,17 +35,33 @@ public abstract class Account implements java.io.Serializable
      * Permissions for performing actions
      */
     private Permissions permission;
-
     /**
      * Files owned by account
      */
     private ArrayList<File> files;
-    
     /**
      * ID used to find things in database
      */
     private Integer id;
-    
+
+    /**
+     * standard constructor
+     */
+    public Account()
+    {
+    }
+
+    /**
+     * Commonly used constructor. I should just be able to do this with an id tho.
+     * @param id
+     * @param username
+     * @param name
+     * @param email
+     */
+    public Account(Integer id, String username, String name, String email)
+    {
+        
+    }
     // Begin the Functions!
     /**
      * get the accounts user name.
@@ -99,7 +94,7 @@ public abstract class Account implements java.io.Serializable
      * Takes new password, hashes it, and saves to database.
      * @param newPass the new password to be saved
      * @return true if set, false if failure.
-	 * @TODO Passwords are not implemented for release 1.
+     * @TODO Passwords are not implemented for release 1.
      */
     boolean setPassword(String newPass)
     {
@@ -170,39 +165,6 @@ public abstract class Account implements java.io.Serializable
     }
 
     /**
-     * gets the db connection string for this instance.
-     * @return this instances connection string
-     */
-    public String getJdbcConnectionString()
-    {
-        return jdbcConnectionString;
-    }
-
-    public void setJdbcConnectionString(String jdbcConnectionString)
-    {
-        this.jdbcConnectionString = jdbcConnectionString;
-    }
-    /**
-     * gets the db connection holder for this instance.
-     * @return this instances connection holder
-     */
-    public Connection getConn()
-    {
-        return conn;
-    }
-
-    /**
-     * sets the db connection holder for this instance
-     * @param conn the db connection holder for this instance
-     * @return true if set, false if error.
-     */
-    public boolean setConn(Connection conn)
-    {
-        this.conn = conn;
-        return true;
-    }
-
-    /**
      * gets the id for this account.
      * @return this account's id
      */
@@ -219,26 +181,6 @@ public abstract class Account implements java.io.Serializable
     public boolean setId(Integer id)
     {
         this.id = id;
-        return true;
-    }
-
-    /**
-     * gets the db connection driver string for this instance.
-     * @return this instances connection driver string
-     */
-    public String getJdbcDriver()
-    {
-        return jdbcDriver;
-    }
-
-    /**
-     * sets the jdbcDriver for this instance
-     * @param jdbcDringer the db driver string for this instance
-     * @return true if set, false if error.
-     */
-    public boolean setJdbcDriver(String jdbcDriver)
-    {
-        this.jdbcDriver = jdbcDriver;
         return true;
     }
 }

@@ -1,7 +1,12 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * A Teacher is an Account type that has the most permissions. It acts as the
@@ -24,6 +29,49 @@ public class Teacher extends Account
      */
     public Teacher()
     {
+    }
+
+    /**
+     * 
+     * @param id
+     * @param username
+     * @param name
+     * @param email
+     */
+    public Teacher(Integer id, String username, String name, String email)
+    {
+        super(id, username, name, email);
+    }
+
+    /**
+     * Returns an array of all of the teachers.
+     * 
+     * @return and arraylist of all the teachers
+     */
+    static public ArrayList<Teacher> allTeachers()
+    {
+
+        ArrayList<Teacher> ret = new ArrayList<Teacher>();
+        Connection conn = (new StorageConnection()).getConn();
+
+        try
+        {
+
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery("select accounts.id as id,username,name,email " + "from teachers, accounts" + " where teachers.id = accounts.id" + " group by accounts.id");
+
+            while (rs.next())
+            {
+                ret.add(new Teacher(new Integer(rs.getInt("id")), rs.getString("username"),
+                        rs.getString("name"), rs.getString("email")));
+            }
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, "SQL ERROR", ex);
+        }
+
+        return ret;
     }
 
     /**

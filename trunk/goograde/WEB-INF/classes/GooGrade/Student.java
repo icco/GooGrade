@@ -1,8 +1,8 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
-import java.sql.*;
+import java.util.ArrayList;
+
+
 
 /**
  * This class keeps information about Students. It is an extension of Account. 
@@ -16,20 +16,7 @@ public class Student extends Account
     private Float totalGrade;
     private ArrayList<Course> enrolled;
 
-    public Student (String jdbcDriver, String jdbcConnectionString, String username)
-    {
-        try {
-            Class.forName(jdbcDriver).newInstance();
-        }
-        catch (Exception ex) {
-            System.err.println("Error loading database driver " + jdbcDriver +
-            ":\n" + ex.getMessage());
-        }
-        //super(jdbcDriver, jdbcConnectionString, username); need proper constructor in Account
-        //this.fetch(this.getId());
-        this.setJdbcConnectionString("jdbcConnectionString");
-        this.setJdbcDriver("jdbcDriver");
-    }
+  
     
     
     
@@ -93,25 +80,7 @@ public class Student extends Account
 
     public ArrayList<Course> getEnrolled()
     {
-        if(this.enrolled == null){
-            try {
-                if (this.getConn() == null) {
-                    this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
-                }
-                Statement stmt = getConn().createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT course FROM enrolled WHERE student = " + this.getId().toString());
-
-                while (rs.next()) {
-                    this.enrolled.add(new Course(this.getJdbcDriver(), this.getJdbcConnectionString(), new Integer(rs.getInt(1))));
-                }
-            }
-            catch (SQLException ex) {
-                System.err.println(
-                    "Error retrieving student courses from the database:\n" +
-                    ex.getMessage());
-            }
-        }
-        return this.enrolled;
+       return null;
     }
 
     public void setEnrolled(ArrayList<Course> enrolled)
