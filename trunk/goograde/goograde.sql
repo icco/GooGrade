@@ -1,5 +1,10 @@
 -- BluGoo's Awesome DataBase
 
+DROP TABLE IF EXISTS Teachers;
+DROP TABLE IF EXISTS TAs;
+DROP TABLE IF EXISTS Students;
+
+
 -- Drop Tables & Views
 DROP TABLE IF EXISTS Accounts;
 DROP TABLE IF EXISTS Courses;
@@ -8,6 +13,7 @@ DROP TABLE IF EXISTS Assignments;
 DROP TABLE IF EXISTS Permissions;
 DROP TABLE IF EXISTS Announcements;
 DROP TABLE IF EXISTS GradingRules;
+DROP TABLE IF EXISTS Grades;
 DROP TABLE IF EXISTS hasGrade;
 DROP TABLE IF EXISTS teaches;
 DROP TABLE IF EXISTS submitted;
@@ -75,7 +81,7 @@ CREATE TABLE GradingRules (
 );
 
 /* TODO, how to store Grades in database <<---------------!!!!!*/
-CREATE TABLE Grade (
+CREATE TABLE Grades (
                 id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
@@ -119,7 +125,7 @@ CREATE TABLE teaches (
 		CONSTRAINT pk_teaches PRIMARY KEY (course, teacher),
 		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
 			(id) ON DELETE CASCADE,
-		CONSTRAINT fk_teacher FOREIGN KEY (ta) REFERENCES Accounts
+		CONSTRAINT fk_teacher FOREIGN KEY (teacher) REFERENCES Accounts
 			(id) ON DELETE CASCADE
 );
 
@@ -154,6 +160,6 @@ CREATE VIEW TAs AS
     SELECT DISTINCT ta as id FROM assists;
 
 /* View of all student ids*/
-CREATE VIEW Teachers AS
+CREATE VIEW Students AS
     SELECT DISTINCT student as id FROM enrolled;
 
