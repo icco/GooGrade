@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="GooGrade" default="default" xmlns:doxygen="antlib:org.doxygen.tools" basedir=".">
+<project name="GooGrade" default="default"  basedir=".">
     <description>Builds, tests, and runs the project GooGrade.</description>
     <import file="nbproject/build-impl.xml"/> <!-- For NetBeans... -->
     <!--
