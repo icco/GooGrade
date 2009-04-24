@@ -77,7 +77,8 @@
 		    <fileset dir="dist/javadoc/"/>
 	    </copy>
 
-	    <copy file="dist/GooGrade.war" tofile="/var/www/html/GooGrade.${logdate}.war"/>
+	    <copy file="dist/GooGrade.war" tofile="/var/www/html/wars/GooGrade.${logdate}.war"/>
+	    <copy file="dist/GooGrade.war" tofile="/usr/share/tomcat5/webapps/GooGrade.war"/>
 
 	    <exec executable="/var/www/html/svnstat/runme.sh" />
     </target>
