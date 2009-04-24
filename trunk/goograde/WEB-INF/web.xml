@@ -12,6 +12,7 @@
         <param-name>jdbcConnectionString</param-name>
         <param-value>jdbc:sqlite://tmp/goograde.db</param-value>
     </context-param>
+    
     <servlet>
         <servlet-name>coursecontroller</servlet-name>
         <servlet-class>GooGrade.CourseController</servlet-class>
@@ -22,6 +23,23 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>coursecontroller</servlet-name>
-        <url-pattern>/index.html</url-pattern>
+        <url-pattern>/courses/</url-pattern>
     </servlet-mapping>
-</web-app>
+    
+    <servlet>
+        <servlet-name>teachercontroller</servlet-name>
+        <servlet-class>GooGrade.TeacherController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>teachercontroller</servlet-name>
+        <url-pattern>/Teacher.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>teachercontroller</servlet-name>
+        <url-pattern>/teachers/</url-pattern>
+    </servlet-mapping>
+    
+    <welcome-file-list>
+        <welcome-file>welcome.jsp</welcome-file>
+    </welcome-file-list>
+    </web-app>
