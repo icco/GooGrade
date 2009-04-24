@@ -1,0 +1,193 @@
+/* 
+Document   : goograde
+Created on : Apr 23, 2009, 10:17:56 PM
+Author     : pphu
+Description:
+Purpose of the stylesheet follows.
+*/
+
+/* 
+TODO customize this sample style
+Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+body {
+    background-image: url(bg_blue2.png);
+    background-repeat: repeat-x;
+    background-color: #144370;
+    font-family:  myraid, verdana, arial;
+    font-size: 12pt;
+    
+    
+}
+
+#side .cornerBoxInner{
+    position: relative;
+    top: -35px;
+    padding-left:3px;
+    padding-right:3px;
+}
+
+h1{
+    font-family: myraid, verdana, arial;
+    font-size: 30pt;
+    position: relative;
+    text-align: center;
+    
+}
+h2{
+    font-family: myraid, verdana, arial;
+    font-size: 16pt;
+    text-decoration: underline;
+}
+html, #wrap{
+    height: 90%;
+    width: 1000px;
+    padding-bottom: 10px;
+    min-height:700px;
+    margin-right: auto;
+    margin-left: auto;
+    
+    
+}
+
+body > #wrap {
+    height: auto;
+}
+
+
+
+#header{
+    
+    padding-left: 70%;
+    padding-right: 20px;
+    width: 30%;
+    
+    font-size: 10pt;
+    text-align: center;
+}
+
+
+
+
+#content {
+    padding-top: 10px;
+    float: right;
+    width: 740px;
+    padding-bottom: 10px;
+}
+
+#side{
+    padding-top:10px;
+    padding-left: 0;
+    float: left;
+    width: 250px;
+    padding-bottom:10px;
+    height: 700px;
+}
+
+#footer {
+    position: relative;
+    height: 30px;
+    text-align: center; 
+    font-size: 9pt;
+    clear:both;
+    width: 1000px;
+} 
+
+
+#header .cornerBox {
+    position: relative; 
+    background: #e5ecf3; 
+    width: 100%;
+}
+#header .cornerBoxInner { 
+    padding: 2px; 
+}
+#side .cornerBox{
+    position: relative; 
+    background: #e5ecf3;
+    width: 100%; 
+    height: 100%;
+    
+}
+
+#content .cornerBox {
+    position: relative; 
+    background: #e5ecf3;
+    min-height: 700px; 
+    max-height: 10000px;
+    width: 100%;
+}
+
+.cornerBox {
+    position: relative; 
+    background: #e5ecf3; 
+    width: 100%; 
+}
+.corner { 
+    position: absolute; 
+    width: 10px; 
+    height: 10px;
+    background: url('corners.png') no-repeat; font-size: 0%; 
+}
+.cornerBoxInner { 
+    padding: 10px; 
+}
+.TL { 
+    top: 0; 
+    left: 0;
+    background-position: 0 0; 
+}
+.TR { 
+    top: 0; 
+    right: 0; 
+    background-position: -10px 0; 
+}
+.BL {
+    bottom: 0; 
+    left: 0; 
+    background-position: 0 -10px; 
+}
+.BR { 
+    bottom: 0; 
+    right: 0; 
+    background-position: -10px -10px;
+}
+
+h3{
+    font-family: myraid, verdana, arial;
+    font-size: 16pt;
+} 
+
+h3.trigger {
+	padding: 0 0 0 50px;
+	margin: 0 0 5px 0;
+	background: url(course-sele.png) no-repeat;
+        background-position: left bottom;
+	height: 46px;
+	line-height: 46px;
+	width: 195px;
+
+	font-weight: normal;
+	float: left;
+}
+h3.trigger a {
+	color: #000;
+	text-decoration: none;
+	display: block;
+}
+h3.trigger a:hover { color: #ccc; }
+h3.active {background-position: left top;} /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
+.toggle_container {
+	margin: 0 0 5px 20px;
+	padding: 0;
+	overflow: hidden;
+	font-size: 14px;
+	width: 200px;
+	clear: both;
+}
+.toggle_container .block {
+	padding: 5px; /*--Padding of Container--*/
+	background: url(toggle_block_btm.gif) no-repeat left bottom; /*--Bottom rounded corners--*/
+}
+
