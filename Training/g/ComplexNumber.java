@@ -36,7 +36,7 @@ public class ComplexNumber
     /** Return just the Real part */
     public double getReal()
     {
-        return i;
+        return r;
     }
     /** Return just the Real part */
     public double getImaginary()
