@@ -10,7 +10,7 @@
     <context-param>
         <description>The JDBC connection string.</description>
         <param-name>jdbcConnectionString</param-name>
-        <param-value>jdbc:sqlite://~/blugoo.db</param-value>
+        <param-value>jdbc:sqlite://tmp/goograde.db</param-value>
     </context-param>
     <servlet>
         <servlet-name>coursecontroller</servlet-name>

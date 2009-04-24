@@ -36,7 +36,7 @@ public class CourseController extends HttpServlet implements ServletContextListe
             }
         }
         request.setAttribute("courseList", 
-                (List) new Course("org.sqlite.JDBC","jdbc:sqlite://tmp/blugoo.db").allCourses());
+                (List) new Course("org.sqlite.JDBC","jdbc:sqlite://tmp/goograde.db").allCourses());
 
         RequestDispatcher view = request.getRequestDispatcher("/course.jsp");
         view.forward(request, response);
