@@ -53,7 +53,7 @@ public class ComplexNumber
      */
     public ComplexNumber add(ComplexNumber other)
     {
-        return add(this, other);
+        return new ComplexNumber(this.getReal()+other.getReal(), this.getImaginary()+other.getImaginary());
     }
 
     /** Add two Complexes
