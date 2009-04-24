@@ -116,7 +116,7 @@ public class ComplexNumber
             throw new IllegalArgumentException(
                 "ComplexNumber.equals argument must be a ComplexNumber");
         ComplexNumber other = (ComplexNumber)o;
-        return r == other.r && r == other.i;
+        return r == other.r && i == other.i;
     }
 
     /* Generate a hashCode; not sure how well distributed these are.

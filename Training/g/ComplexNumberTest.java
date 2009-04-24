@@ -9,7 +9,7 @@ import junit.framework.*;
 public class ComplexNumberTest extends TestCase
 {
 
-    ComplexNumber cn1, cn2;
+    ComplexNumber cn1, cn2, cn3;
 
     public ComplexNumberTest(String testName)
     {
@@ -65,7 +65,7 @@ public class ComplexNumberTest extends TestCase
     {
         System.out.println("add(ComplexNumber)");
 	    ComplexNumber instance = cn1;
-	    String expResult = "7+11i"
+	    String expResult = "7+11i";
         String result = cn1.add(cn1).toString();
         assertEquals(expResult,result);
     }
@@ -82,4 +82,15 @@ public class ComplexNumberTest extends TestCase
         assertEquals(expResult, result);
 	}
 
+    /**
+     * Tests the equals of two complex numbers.
+     * @author Paul Phu
+     */
+    public void testEquals()
+    {
+        System.out.println("Equals");
+        ComplexNumber result = new ComplexNumber(-2, 5);
+        ComplexNumber expected = new ComplexNumber(-2, 5);
+        assertEquals(expected, result);
+    }
 }
