@@ -17,6 +17,12 @@ import javax.servlet.http.HttpServlet;
 public abstract class AccountController extends HttpServlet
 {
 
+    /**
+     * For processing incoming post requests.
+     * 
+     * @param req The request submitted by the view
+     * @param resp The response sent to the view
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
