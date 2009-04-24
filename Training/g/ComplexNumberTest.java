@@ -63,10 +63,10 @@ public class ComplexNumberTest extends TestCase
      */
     public void testAddBug3()
     {
-        System.out.println("add(ComplexNumber)");
+        System.out.println("add1");
 	    ComplexNumber instance = cn1;
-	    String expResult = "7+11i";
-        String result = cn1.add(cn1).toString();
+	    String expResult = "7.0+11.0i";
+        String result = cn1.add(cn2).toString();
         assertEquals(expResult,result);
     }
 
@@ -76,7 +76,7 @@ public class ComplexNumberTest extends TestCase
 	 */
 	public void testAdd()
 	{
-        System.out.println("add");
+        System.out.println("add2");
 		ComplexNumber result = ComplexNumber.add(cn3, cn3);
         ComplexNumber expResult = new ComplexNumber(2,2);
         assertEquals(expResult, result);
