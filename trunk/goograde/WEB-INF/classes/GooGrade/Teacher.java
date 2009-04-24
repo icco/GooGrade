@@ -32,7 +32,7 @@ public class Teacher extends Account
      */
     public Course createCourse()
     {
-        return new Course();
+        return null; //new Course();
     }
 
     /**

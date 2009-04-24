@@ -15,19 +15,13 @@ import java.sql.*;
  */
 public class Course implements java.io.Serializable
 {
-
-    public Course()
-    {
-    }
+    /** Database connection String */
+    private String jdbcConnectionString;
+    /** Database connection Driver */
+    private String jdbcDriver;
+    /** Database connection holder*/
+    private Connection conn;
     
-    public Course(Integer id){
-        this.id = id;
-    }
-    
-    public Course(String department, int number){
-        
-    }
-
     /** The Course's title */
     private String courseTitle;
     /** The Course's department */
@@ -46,6 +40,81 @@ public class Course implements java.io.Serializable
     private GradingRules scale;
     /** Id used to fetch in database*/
     private Integer id;
+
+    public Course()
+    {
+    }
+    
+    public Course(String jdbcDriver, String jdbcConnectionString)
+    {
+        this.jdbcConnectionString = jdbcConnectionString;
+        this.jdbcDriver = jdbcDriver;
+        
+        try {
+            Class.forName(jdbcDriver).newInstance();
+        }
+        catch (Exception ex) {
+            System.err.println("Error loading database driver " + jdbcDriver +
+            ":\n" + ex.getMessage());
+        }
+    }
+    
+    public Course(String jdbcDriver, String jdbcConnectionString, Integer id)
+    {
+        this.id = id;
+        this.jdbcDriver = jdbcDriver;
+        this.jdbcConnectionString = jdbcConnectionString;
+        
+        try {
+            Class.forName(jdbcDriver).newInstance();
+        }
+        catch (Exception ex) {
+            System.err.println("Error loading database driver " + jdbcDriver +
+            ":\n" + ex.getMessage());
+        }
+        
+        try {
+          if (this.getConn() == null) {
+                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+ 	    }
+            Statement stmt = getConn().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id, title, department, number, section FROM Courses WHERE id = " + this.getId().toString());
+
+            if(rs.next()) {
+                this.courseTitle = rs.getString("title");
+                this.courseDepartment = rs.getString("department");
+                this.courseNumber = new Integer(rs.getInt("number"));
+                this.courseSection = new Integer(rs.getInt("section"));
+            }
+            else{
+                System.err.println(
+                    "Could not find course with id: " + this.id.toString());
+            }
+            getConn().close();
+        }
+        catch (SQLException ex) {
+            System.err.println(
+                    "Error retrieving student courses from the database:\n" +
+                    ex.getMessage());
+        }
+    }
+    
+    private Course(String jdbcDriver, String jdbcConnectionString, Integer id, String title, String department, Integer number, Integer section)
+    {
+        this.id = id;
+        this.courseTitle = title;
+        this.courseDepartment = department;
+        this.courseNumber = number;
+        this.courseSection = section;
+        
+        try {
+            Class.forName(jdbcDriver).newInstance();
+        }
+        catch (Exception ex) {
+            System.err.println("Error loading database driver " + jdbcDriver +
+            ":\n" + ex.getMessage());
+        }
+    }
     
     /**
      * setGradingRules saves a new Grading Rules over the old.
@@ -237,5 +306,88 @@ public class Course implements java.io.Serializable
     public void setId(Integer id)
     {
         this.id = id;
+    }
+    
+    public ArrayList<Course> allCourses()
+    {
+        ArrayList<Course> courses = new ArrayList<Course>();
+        
+        try {
+            if (this.getConn() == null) {
+                //this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+            }
+            Statement stmt = getConn().createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT id, title, department, number, section FROM Courses");
+
+            while (rs.next()) {
+                courses.add(new Course(this.getJdbcDriver(), this.getJdbcConnectionString(), new Integer(rs.getInt("id")), rs.getString("title"), 
+                        rs.getString("department"), new Integer(rs.getInt("number")), new Integer(rs.getInt("section"))));
+            }
+        }
+        catch (SQLException ex) {
+            System.err.println(
+                    "Error retrieving student courses from the database:\n" +
+                    ex.getMessage());
+        }
+        
+        return courses;
+    }
+
+    public String getJdbcConnectionString()
+    {
+        return this.jdbcConnectionString;
+    }
+
+    public void setJdbcConnectionString(String jdbcConnectionString)
+    {
+        this.jdbcConnectionString = jdbcConnectionString;
+    }
+
+    public Connection getConn()
+    {
+        return this.conn;
+    }
+
+    public void setConn(Connection conn)
+    {
+        this.conn = conn;
+    }
+
+    public String getJdbcDriver()
+    {
+        return this.jdbcDriver;
+    }
+
+    public void setJdbcDriver(String jdbcDriver)
+    {
+        this.jdbcDriver = jdbcDriver;
+    }
+    
+    public boolean deleteCourse(){
+        
+        try {
+            if (this.getConn() == null || this.getConn().isClosed()) {
+                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+            }
+            PreparedStatement stmt = conn.prepareStatement(
+                "DELETE FROM Courses WHERE id=?");
+            stmt.setInt(1, this.getId().intValue());
+            stmt.executeUpdate();
+            
+            getConn().close();
+        }
+        catch (SQLException ex) {
+            System.err.println(
+                    "Error deleting courses from the database:\n" +
+                    ex.getMessage());
+            return false;
+        }
+        
+        return true;
+    }
+    
+    public boolean addCourse(){
+        return true;
     }
 }

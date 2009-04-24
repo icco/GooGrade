@@ -33,7 +33,7 @@ public class TeacherController extends AccountController
         }
         else
         {
-            throw new InvalidOption();
+            //throw new InvalidOption();
         }
     }
 

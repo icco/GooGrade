@@ -18,8 +18,17 @@ public class Student extends Account
 
     public Student (String jdbcDriver, String jdbcConnectionString, String username)
     {
+        try {
+            Class.forName(jdbcDriver).newInstance();
+        }
+        catch (Exception ex) {
+            System.err.println("Error loading database driver " + jdbcDriver +
+            ":\n" + ex.getMessage());
+        }
         //super(jdbcDriver, jdbcConnectionString, username); need proper constructor in Account
         //this.fetch(this.getId());
+        this.setJdbcConnectionString("jdbcConnectionString");
+        this.setJdbcDriver("jdbcDriver");
     }
     
     
@@ -84,21 +93,23 @@ public class Student extends Account
 
     public ArrayList<Course> getEnrolled()
     {
-        try {
-          if (this.getConn() == null) {
-                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
- 	    }
-            Statement stmt = getConn().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT course FROM enrolled WHERE student = " + this.getId().toString());
+        if(this.enrolled == null){
+            try {
+                if (this.getConn() == null) {
+                    this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+                }
+                Statement stmt = getConn().createStatement();
+                ResultSet rs = stmt.executeQuery("SELECT course FROM enrolled WHERE student = " + this.getId().toString());
 
-            while (rs.next()) {
-                this.enrolled.add(new Course(new Integer(rs.getInt(1))));
+                while (rs.next()) {
+                    this.enrolled.add(new Course(this.getJdbcDriver(), this.getJdbcConnectionString(), new Integer(rs.getInt(1))));
+                }
             }
-        }
-        catch (SQLException ex) {
-            System.err.println(
+            catch (SQLException ex) {
+                System.err.println(
                     "Error retrieving student courses from the database:\n" +
                     ex.getMessage());
+            }
         }
         return this.enrolled;
     }

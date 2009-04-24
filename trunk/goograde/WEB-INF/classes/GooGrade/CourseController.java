@@ -13,7 +13,7 @@ import javax.servlet.http.*;
  * @author bluGoo
  * @version 0.42
  */
-public class CourseController extends HttpServlet
+public class CourseController extends HttpServlet implements ServletContextListener
 {
 
     @Override
@@ -22,21 +22,21 @@ public class CourseController extends HttpServlet
     {
 
         String action = request.getParameter("action");
-        Course course = new Course();
-
-        if (action != null && action.equals("change"))
+        String courseRef = request.getParameter("courseRef");
+        ArrayList<Course> courseList = (ArrayList<Course>) request.getAttribute("courseList");
+        
+        if (action != null)
         {
-            course.setCourseTitle(request.getParameter("newcoursetitle"));
-            course.setCourseDepartment(request.getParameter("newcoursedepartment"));
-            course.setCourseNumber(new Integer(request.getParameter("newcoursenumber")).intValue());
+            if(action.equals("delete"))
+            {
+                this.deleteCourse(courseRef);
+            }
+            else if(action.equals("add"))
+            {
+                
+            }
         }
-        else
-        {
-            course.setCourseDepartment("CPE");
-            course.setCourseNumber(309);
-            course.setCourseTitle("Software Engineering II");
-        }
-        request.setAttribute("course", course);
+        request.setAttribute("courseList", (List) new Course("org.sqlite.JDBC","jdbc:sqlite://home/vgerdin/blugoo.db").allCourses());
 
         RequestDispatcher view = request.getRequestDispatcher("/course.jsp");
         view.forward(request, response);
@@ -91,5 +91,20 @@ public class CourseController extends HttpServlet
     public boolean removeTA(Permissions permission, TeacherAssistant ta, Course course)
     {
         return false;
+    }
+
+    public void contextInitialized(ServletContextEvent sce)
+    {
+        ServletContext sc = sce.getServletContext();
+        sc.setAttribute("courseList", new Course(sc.getInitParameter("jdbcDriver"),sc.getInitParameter("jdbcConnectionString")).allCourses());
+    }
+
+    public void contextDestroyed(ServletContextEvent arg0)
+    {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    private void deleteCourse(String courseRef){
+        new Course("org.sqlite.JDBC","jdbc:sqlite://home/vgerdin/blugoo.db", new Integer(courseRef)).deleteCourse();
     }
 }
