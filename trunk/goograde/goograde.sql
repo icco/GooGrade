@@ -1,10 +1,5 @@
 -- BluGoo's Awesome DataBase
 
-DROP TABLE IF EXISTS Teachers;
-DROP TABLE IF EXISTS TAs;
-DROP TABLE IF EXISTS Students;
-
-
 -- Drop Tables & Views
 DROP TABLE IF EXISTS Accounts;
 DROP TABLE IF EXISTS Courses;

@@ -34,14 +34,23 @@
     nbproject/build-impl.xml file. 
 
     -->
+	<target name="-pre-init">
+		<!-- Set up database -->
+		<echo>Building /tmp/blugoo.db</echo>
+		<exec executable="sqlite3">
+			<arg line="-init goograde.sql" />
+			<arg line="/tmp/goograde.db" />
+		</exec>
+
+		<!-- Set up database -->
+		<echo>Put in test data</echo>
+		<exec executable="sqlite3">
+			<arg line="-init testData.sql" />
+			<arg line="/tmp/goograde.db" />
+		</exec>
+	</target>
 
     <target name="-post-init">
-		<!-- Create a property for the current svn revision-->
-	    <exec outputproperty="build.current.revision" executable="svnversion">
-		    <arg line="-n" />
-		    <arg line="${svnpath}" />
-	    </exec>
-
 	    <exec outputproperty="logdate" executable="date">
 		    <arg line="+%F" />
 	    </exec>
