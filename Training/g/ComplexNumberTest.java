@@ -43,10 +43,11 @@ public class ComplexNumberTest extends TestCase
         double result = instance.magnitude();
         assertEquals(expResult, result);
     }
-	
-	/**
-	 * @author Katherin Blizard
-	 */
+    
+    /**
+     * Test to get proper Re
+     * @author Katherine Blizard
+     */
     public void testGetReal()
     {
         System.out.println("getReal");
@@ -54,6 +55,19 @@ public class ComplexNumberTest extends TestCase
         double expResult = 6;
         double result = instance.getReal();
         assertEquals(expResult, result);
+    }
+
+    /**
+     * Test to add one Complex to "this"
+     * @author Viktor Gerdin
+     */
+    public void testAddBug3()
+    {
+        System.out.println("add(ComplexNumber)");
+	    ComplexNumber instance = cn1;
+	    String expResult = "7+11i"
+        String result = cn1.add(cn1).toString();
+        assertEquals(expResult,result);
     }
 
 	/**
@@ -68,4 +82,5 @@ public class ComplexNumberTest extends TestCase
         assertEquals(expResult, result);
 	}
 
+>>>>>>> .r460
 }
