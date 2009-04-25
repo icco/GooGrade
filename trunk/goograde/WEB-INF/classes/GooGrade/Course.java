@@ -1,9 +1,13 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
 
-import java.sql.*;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * This class keeps information about Courses. 
@@ -15,115 +19,60 @@ import java.sql.*;
  */
 public class Course implements java.io.Serializable
 {
-    /** Database connection String */
-    private String jdbcConnectionString;
-    /** Database connection Driver */
-    private String jdbcDriver;
-    /** Database connection holder*/
-    private Connection conn;
-    
-    /** The Course's title */
-    private String courseTitle;
-    /** The Course's department */
-    private String courseDepartment;
-    /** The Course's section */
-    private Integer courseSection;
-    /** The Course's number */
-    private Integer courseNumber;
-    /** An array of Students who are enrolled in the Course */
-    private ArrayList<Student> students;
-    /** An instance of Teacher Assistant who is associated with the Course */
-    private TeacherAssistant assistant;
-    /** An instance of Teacher who is teaching the Course*/
-    private Teacher teacher;
-    /** The set of grade boundaries for this class*/
-    private GradingRules scale;
+ 
     /** Id used to fetch in database*/
     private Integer id;
+    /** The Course's title */
+    private String title;
+    /** The Course's department */
+    private String department;
+    /** The Course's section */
+    private Integer section;
+    /** The Course's number */
+    private Integer number;
+    /** The set of grade boundaries for this class*/
+    private Integer gradingRulesId;
+    /** An array of Students who are enrolled in the Course */
+    private ArrayList<Student> roster;
+    /** An array of Assignments that are associatet with the Course */
+    private ArrayList<Assignment> assignments;
 
+    
+    /**
+     * Constructors
+     */
+    
     public Course()
     {
     }
     
-    public Course(String jdbcDriver, String jdbcConnectionString)
-    {
-        this.jdbcConnectionString = jdbcConnectionString;
-        this.jdbcDriver = jdbcDriver;
-        
-        try {
-            Class.forName(jdbcDriver).newInstance();
-        }
-        catch (Exception ex) {
-            System.err.println("Error loading database driver " + jdbcDriver +
-            ":\n" + ex.getMessage());
-        }
-    }
-    
-    public Course(String jdbcDriver, String jdbcConnectionString, Integer id)
+    /**
+     * ID constructor, standard constructor with id parameter.
+     * All variables, other than id, are still null and retrieved from
+     * database with fetch();
+     * @param id identification Integer used to fetch data from db
+     */
+    public Course(Integer id)
     {
         this.id = id;
-        this.jdbcDriver = jdbcDriver;
-        this.jdbcConnectionString = jdbcConnectionString;
-        
-        try {
-            Class.forName(jdbcDriver).newInstance();
-        }
-        catch (Exception ex) {
-            System.err.println("Error loading database driver " + jdbcDriver +
-            ":\n" + ex.getMessage());
-        }
-        
-        try {
-          if (this.getConn() == null) {
-                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
- 	    }
-            Statement stmt = getConn().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, title, department, number, section FROM Courses WHERE id = " + this.getId().toString());
+    }
 
-            if(rs.next()) {
-                this.courseTitle = rs.getString("title");
-                this.courseDepartment = rs.getString("department");
-                this.courseNumber = new Integer(rs.getInt("number"));
-                this.courseSection = new Integer(rs.getInt("section"));
-            }
-            else{
-                System.err.println(
-                    "Could not find course with id: " + this.id.toString());
-            }
-            getConn().close();
-        }
-        catch (SQLException ex) {
-            System.err.println(
-                    "Error retrieving student courses from the database:\n" +
-                    ex.getMessage());
-        }
-    }
-    
-    private Course(String jdbcDriver, String jdbcConnectionString, Integer id, String title, String department, Integer number, Integer section)
+    Course(String title, String department, Integer integer, Integer integer0)
     {
-        this.id = id;
-        this.courseTitle = title;
-        this.courseDepartment = department;
-        this.courseNumber = number;
-        this.courseSection = section;
-        
-        try {
-            Class.forName(jdbcDriver).newInstance();
-        }
-        catch (Exception ex) {
-            System.err.println("Error loading database driver " + jdbcDriver +
-            ":\n" + ex.getMessage());
-        }
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
     /**
-     * setGradingRules saves a new Grading Rules over the old.
-     * @param newScale the new grading rules to save
-     * @return true if no errors 
+     * Sets
      */
-    public boolean setGradingRules(GradingRules newScale)
+    
+    /**
+     * setId sets this.id to provided argument
+     * @param id Integer to set store
+     */
+    public void setId(Integer id)
     {
-        return false;
+        this.id = id;
     }
 
     /**
@@ -131,10 +80,31 @@ public class Course implements java.io.Serializable
      * @param newTitle the new title to save
      * @return true if no errors 
      */
-    public boolean setCourseTitle(String newTitle)
+    public boolean setTitle(String newTitle)
     {
+        this.title = newTitle;
+        return true;
+    }
+
+    /**
+     * setDepartment sets this.department to provided argument
+     * @param newDepartment
+     * @return true if no errors
+     */
+    public boolean setDepartment(String newDepartment)
+    {
+        this.department = newDepartment;
+        return true;
+    }
         
-        this.courseTitle = newTitle;
+    /** 
+     * setNumber replaces the course number with a new one
+     * @param newNumber is the new course number to save
+     * @return true if no errors occurred. 
+     */
+    public boolean setNumber(int newNumber)
+    {
+        this.number = newNumber;
         return true;
     }
 
@@ -143,105 +113,200 @@ public class Course implements java.io.Serializable
      * @param newSection is the number of the new section to save
      * @return true if no errors occurred
      */
-    public boolean setCourseSection(int newSection)
+    public boolean setSection(int newSection)
     {
-        this.courseSection = newSection;
+        this.section = newSection;
+        return true;
+    }
+    
+    /**
+     * setGradingRules saves a new Grading Rules over the old.
+     * @param newScale the new grading rules to save
+     * @return true if no errors 
+     */
+    public boolean setGradingRulesId(Integer newRulesId)
+    {
+        this.gradingRulesId = newRulesId;
+        return true;
+    }
+    
+    /**
+     * setRoster sets this.roster to provided argument
+     * @param roster list of students enrolled in the course
+     * @return true if no errors
+     */
+    public boolean setRoster(ArrayList<Student> roster)
+    {
+        this.roster = roster;
+        return true;
+    }
+    
+    /**
+     * setAssignments sets this.assignments provided argument
+     * @param assignments list of assignments associated with the course
+     * @return true if no errors
+     */
+    public boolean setAssignments(ArrayList<Assignment> assignments)
+    {
+        this.assignments = assignments;
         return true;
     }
 
-    /** 
-     * setNumber replaces the course number with a new one
-     * @param newNumber is the new course number to save
-     * @return true if no errors occurred. 
-     */
-    public boolean setCourseNumber(int newNumber)
-    {
-        this.courseNumber = newNumber;
-        return true;
-    }
+    /**
+     * Gets - Standard
+     */    
 
     /**
-     * setTeacher sets the Teacher attribute for this course
-     * @param t the Teacher to be assigned to this course
-     * @return true if no error have occured
+     * getId returns this.id
+     * @return id Integer to identify correct course in db
      */
-    public boolean setTeacher(Teacher t)
+    public Integer getId()
     {
-        return false;
+        return this.id;
     }
-
+    
     /**
-     * setTeacherAssistant sets the TeacherAssistant attribute for this course
-     * @param ta the TeacherAssistant to be assigned to this course
-     * @return true if no error have occured
+     * getTitle gets the title
+     * @return the title
      */
-    public boolean setTeacherAssistant(TeacherAssistant ta)
+    public String getTitle()
     {
-        return false;
+        return this.title;
     }
-
+    
     /**
-     * getTeacher gets the Teacher attribute from this course
+     * getDepartment gets the deparment code (eg "CSC")
+     * @return the department code
+     */
+    public String getDepartment()
+    {
+        return this.department;
+    }
+    
+    /**
+     * getNumber gets the number
+     * @return the number
+     */
+    public Integer getNumber()
+    {
+        return this.number;
+    }
+    
+    /**
+     * getSection gets the section
+     * @return the section
+     */
+    public Integer getSection()
+    {
+        return this.section;
+    }
+    
+    /**
+     * 
+     * @return
+     * @todo write comment
+     */  
+    public Integer getGradingRulesId()
+    {
+        return this.gradingRulesId;
+    }
+    
+    /**
+     * getRoster gets the roster attribute for this course 
+     * roster is no set untill first called, if roster
+     * is null then query the database and create it
+     * @return list of enrolled students
+     * @todo build roster
+     */
+    public ArrayList<Student> getRoster()
+    {
+        if(this.roster != null)
+        {
+            return this.roster;
+        }
+        else
+        {
+            this.roster = new ArrayList<Student>();
+            //Build roster from enrolled and Students
+            return this.roster;
+        }
+    }
+    
+    /**
+     * getRoster gets the assignments attribute for this course 
+     * assignments is no set untill first called, if assignments
+     * is null then query the database and create it
+     * @return list of associated Assignments
+     * @todo build assignments
+     */
+    public ArrayList<Assignment> getAssignments()
+    {
+        if(this.assignments != null)
+        {
+            return this.assignments;
+        }
+        else
+        {
+            this.assignments = new ArrayList<Assignment>();
+            //Build assignments from ----- and Assignments
+            return this.assignments;
+        }
+    }
+    
+    /**
+     * Gets - Special
+     */
+    
+    /**
+     * getTeachers gets the Teacher attribute from this course
      * @return teacher of this course
+     * @todo 
      */
-    public Teacher getTeacher()
+    public ArrayList<Teacher> getTeachers()
     {
-        return teacher;
+        ArrayList<Teacher> teachers = new ArrayList<Teacher>();
+        /*
+         * Query and fill list from table teaches
+         */
+        return teachers;
     }
 
     /**
      * getTeacherAssistant gets the TeacherAssistant attribute from this course
-     * @return assistant of this course
+     * @return assistants of this course
      */
-    public TeacherAssistant getTeacherAssistant()
+    public ArrayList<TeacherAssistant> getTeacherAssistants()
     {
-        return assistant;
+        ArrayList<TeacherAssistant> assistants = new ArrayList<TeacherAssistant>();
+        /*
+         * Query and fill list from table assists
+         */
+        return assistants;
     }
-
+    
     /**
-     * getCourseNumber gets the courseNumber
-     * @return the courseNumber
-     */
-    public Integer getCourseNumber()
-    {
-        return courseNumber;
-    }
-
-    /**
-     * getCourseSection gets the courseSection
-     * @return the courseSection
-     */
-    public Integer getCourseSection()
-    {
-        return courseSection;
-    }
-
-    /**
-     * getCourseTitle gets the courseTitle
-     * @return the courseTitle
-     */
-    public String getCourseTitle()
-    {
-        return courseTitle;
-    }
-
-    /**
-     * getGradingRules gets the scale attribute for this course 
-     * @return the scale attribute for this course
+     * getGradingRules generates a GradingRules object
+     * according to gradingRulesId and returns it 
+     * @return the associated GradingRules object
+     * @todo fix GradingRules class accordingly
      */
     public GradingRules getGradingRules()
     {
-        return scale;
+        if(this.gradingRulesId != null)
+        {
+            GradingRules rules = new GradingRules(this.getGradingRulesId());
+            
+            if(rules.fetch()) //true if valid gradingRulesId in database, else false
+            {
+                return rules;
+            }
+        }
+        return null;
     }
 
-    /**
-     * getStudents gets the students attribute for this course 
-     * @return the students attribute for this course
-     */
-    public ArrayList<Student> getStudents()
-    {
-        return students;
-    }
+    
+
+    
 
     /**
      * addStudent adds a new student to this course.
@@ -287,107 +352,86 @@ public class Course implements java.io.Serializable
         return false;
     }
 
-    public String getCourseDepartment()
-    {
-        return courseDepartment;
-    }
-
-    public boolean setCourseDepartment(String courseDepartment)
-    {
-        this.courseDepartment = courseDepartment;
-        return true;
-    }
-
-    public Integer getId()
-    {
-        return id;
-    }
-
-    public void setId(Integer id)
-    {
-        this.id = id;
-    }
     
-    public ArrayList<Course> allCourses()
+
+
+
+
+    
+    static public ArrayList<Course> allCourses()
     {
         ArrayList<Course> courses = new ArrayList<Course>();
         
-        try {
-            if (this.getConn() == null) {
-                //this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
-                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
+        StorageConnection conn = new StorageConnection();
+        ArrayList<Array> result = conn.query("SELECT id FROM Courses");
+        conn.close();
+        
+        
+        for(int i = 0; i < result.size(); i++)
+        {
+            Course course = null;
+            try
+            {
+                course = new Course(new Integer(result.get(i).getResultSet().getInt("id")));
             }
-            Statement stmt = getConn().createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT id, title, department, number, section FROM Courses");
-
-            while (rs.next()) {
-                courses.add(new Course(this.getJdbcDriver(), this.getJdbcConnectionString(), new Integer(rs.getInt("id")), rs.getString("title"), 
-                        rs.getString("department"), new Integer(rs.getInt("number")), new Integer(rs.getInt("section"))));
+            catch (SQLException ex)
+            {
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        catch (SQLException ex) {
-            System.err.println(
-                    "Error retrieving student courses from the database:\n" +
-                    ex.getMessage());
+            if(course != null && course.fetch())
+            {
+                courses.add(course);
+            }
         }
         
         return courses;
     }
 
-    public String getJdbcConnectionString()
+    public boolean deleteCourse()
     {
-        return this.jdbcConnectionString;
-    }
-
-    public void setJdbcConnectionString(String jdbcConnectionString)
-    {
-        this.jdbcConnectionString = jdbcConnectionString;
-    }
-
-    public Connection getConn()
-    {
-        return this.conn;
-    }
-
-    public void setConn(Connection conn)
-    {
-        this.conn = conn;
-    }
-
-    public String getJdbcDriver()
-    {
-        return this.jdbcDriver;
-    }
-
-    public void setJdbcDriver(String jdbcDriver)
-    {
-        this.jdbcDriver = jdbcDriver;
-    }
-    
-    public boolean deleteCourse(){
         
-        try {
-            if (this.getConn() == null || this.getConn().isClosed()) {
-                this.setConn(DriverManager.getConnection(this.getJdbcConnectionString()));
-            }
-            PreparedStatement stmt = conn.prepareStatement(
-                "DELETE FROM Courses WHERE id=?");
-            stmt.setInt(1, this.getId().intValue());
-            stmt.executeUpdate();
-            
-            getConn().close();
-        }
-        catch (SQLException ex) {
-            System.err.println(
-                    "Error deleting courses from the database:\n" +
-                    ex.getMessage());
-            return false;
-        }
-        
+        StorageConnection conn = new StorageConnection();
+        conn.query(
+            "DELETE FROM Courses WHERE id=" + this.getId().toString());
+        conn.close();
         return true;
     }
     
     public boolean addCourse(){
+        return true;
+    }
+    
+    /**
+     * Searches the database table Courses according
+     * to this.id and sets all instance variables from there
+     * @return true if found in database, else false
+     * @todo improve StorageConnection.query return handling
+     * @todo write it
+     */
+    public boolean fetch(){
+        StorageConnection conn = new StorageConnection();
+        String query = "SELECT title, department, number, section, gradingRulesId FROM Courses WHERE id = " + this.getId().toString();
+        ArrayList<Array> result = conn.query(query);
+        conn.close();
+        
+        if(result.size() < 1)
+        {
+            return false;
+        }
+        try
+        {
+            ResultSet rs = result.get(0).getResultSet();
+            this.setTitle(rs.getString("title"));
+            this.setDepartment(rs.getString("department"));
+            this.setNumber(new Integer(rs.getInt("number")));
+            this.setSection(new Integer(rs.getInt("section")));
+            this.setGradingRulesId(new Integer(rs.getInt("gradingRulesId")));
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "SQL error occurred when trying to fetch Course" +
+                    "with id = " + this.getId().toString(), ex);
+        }
         return true;
     }
 }

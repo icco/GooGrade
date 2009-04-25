@@ -21,22 +21,24 @@ public class CourseController extends HttpServlet implements ServletContextListe
     {
 
         String action = request.getParameter("action");
-        String courseRef = request.getParameter("courseRef");
         ArrayList<Course> courseList = (ArrayList<Course>) request.getAttribute("courseList");
         
         if (action != null)
         {
             if(action.equals("delete"))
             {
-                this.deleteCourse(courseRef);
+                this.deleteCourse(request.getParameter("courseRef"));
             }
             else if(action.equals("add"))
             {
-                
+                this.addCourse(request.getParameter("newCourseTitle"),
+                        request.getParameter("newCourseDepartment"),
+                        request.getParameter("newCourseNumber"),
+                        request.getParameter("newCourseSection"));
             }
         }
         request.setAttribute("courseList", 
-                (List) new Course("org.sqlite.JDBC","jdbc:sqlite://tmp/goograde.db").allCourses());
+                (List) new Course().allCourses());
 
         RequestDispatcher view = request.getRequestDispatcher("/course.jsp");
         view.forward(request, response);
@@ -96,7 +98,7 @@ public class CourseController extends HttpServlet implements ServletContextListe
     public void contextInitialized(ServletContextEvent sce)
     {
         ServletContext sc = sce.getServletContext();
-        sc.setAttribute("courseList", new Course(sc.getInitParameter("jdbcDriver"),sc.getInitParameter("jdbcConnectionString")).allCourses());
+        sc.setAttribute("courseList", new Course().allCourses());
     }
 
     public void contextDestroyed(ServletContextEvent arg0)
@@ -105,6 +107,10 @@ public class CourseController extends HttpServlet implements ServletContextListe
     }
     
     private void deleteCourse(String courseRef){
-        new Course("org.sqlite.JDBC","jdbc:sqlite://home/vgerdin/blugoo.db", new Integer(courseRef)).deleteCourse();
+        new Course(new Integer(courseRef)).deleteCourse();
+    }
+    
+    private void addCourse(String title, String department, String number, String section){
+        new Course(title,department,new Integer(number),new Integer(section));
     }
 }
