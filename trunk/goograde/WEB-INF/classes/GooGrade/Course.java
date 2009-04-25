@@ -245,9 +245,10 @@ public class Course implements java.io.Serializable
                     "WHERE Accounts.id = enrolled.student AND enrolled.course = " + this.getId();
                 
                 StorageConnection conn = new StorageConnection();
-                ArrayList<Array> result = conn.query(query);
+                ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
                 
+                /*
                 for(int i = 0; i < result.size(); i++)
                 {
                     Student student = null;
@@ -264,6 +265,7 @@ public class Course implements java.io.Serializable
                         this.roster.add(student);
                     }
                 }
+                 */ 
             }
             
             return this.roster;
@@ -541,7 +543,7 @@ public class Course implements java.io.Serializable
         String query = "SELECT title, department, number, section, gradingRulesId FROM Courses " +
                 "WHERE id = " + this.getId().toString();
         StorageConnection conn = new StorageConnection();
-        ArrayList<Array> result = conn.query(query);
+        ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
         
         if(result.size() < 1)

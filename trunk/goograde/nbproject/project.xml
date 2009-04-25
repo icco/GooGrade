@@ -14,12 +14,16 @@
                     <file>${file.reference.servlet-api.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
-                <library>
-                    <file>${file.reference.sqlitejdbc-v054.jar}</file>
+                <library files="1">
+                    <file>${libs.junit.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library files="1">
-                    <file>${libs.junit.classpath}</file>
+                    <file>${file.reference.sqlite.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
+                <library files="1">
+                    <file>${file.reference.commons-dbutils-1.1.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

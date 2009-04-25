@@ -1,14 +1,15 @@
 package GooGrade;
 
-import java.sql.Array;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.dbutils.BasicRowProcessor;
 
 /**
  * Alright this is how you do Database connections. If you 
@@ -36,6 +37,7 @@ public class StorageConnection
         {
             Class.forName(whatIsDb).newInstance();
             this.conn = DriverManager.getConnection(whereIsDb);
+            this.conn.setAutoCommit(true);
         }
         catch (Exception ex)
         {
@@ -49,19 +51,24 @@ public class StorageConnection
      * @param in Query to be run.
      * @return results of the query.
      */
-    public ArrayList<Array> query(String in)
+    public ArrayList<ArrayList<Object>> query(String in)
     {
         Statement stat;
-        ArrayList<Array> ret = new ArrayList<Array>();
+        BasicRowProcessor rowProc = new BasicRowProcessor();
+        ArrayList<ArrayList<Object>> ret = new ArrayList<ArrayList<Object>>();
+        ArrayList<Object> toAdd = null;
         
         try
         {
+           
             stat = this.conn.createStatement();
             ResultSet rs = stat.executeQuery(in);
-
+            toAdd = new ArrayList<Object>(Arrays.asList(rowProc.toArray(rs)));
+            
             for (int idx = 0; rs.next(); idx++)
             {
-                ret.add(rs.getArray(idx));
+                toAdd = new ArrayList<Object>();
+                ret.add(toAdd);
             }
 
             rs.close();
@@ -77,6 +84,8 @@ public class StorageConnection
                     ex);
         }
 
+        Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,toAdd.toString());
+        
         return ret;
     }
 
