@@ -1,7 +1,10 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
+import java.util.Date;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+//import java.lang.;
 
 /**
  * This class keeps information about Assignments
@@ -66,6 +69,17 @@ public class Assignment implements java.io.Serializable
     public Assignment(Integer id)
     {
         this.id = id;
+        
+        /*Get the database at row ID */
+        /*String query = "SELECT id, total, name, " +
+                "dueDate, type, average, max, " +
+                "min FROM Assignments WHERE id =" + id;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<Array> result = conn.query(query);
+        conn.close(); 
+         
+         //set varaibles to values loaded from database, TODO
+         */
     }
     
     /**
@@ -74,7 +88,7 @@ public class Assignment implements java.io.Serializable
      */
     public Date getDueDate()
     {
-        return new Date();
+        return dueDate;
     }
 
     /**
@@ -83,7 +97,7 @@ public class Assignment implements java.io.Serializable
      */
     public String getName()
     {
-        return new String();
+        return name;
     }
 
     /**
@@ -92,7 +106,7 @@ public class Assignment implements java.io.Serializable
      */
     public Integer getTotal()
     {
-        return 0;
+        return total;
     }
 
     /**
@@ -101,7 +115,7 @@ public class Assignment implements java.io.Serializable
      */
     public String getType()
     {
-        return new String();
+        return type;
     }
 
     /**
@@ -110,7 +124,7 @@ public class Assignment implements java.io.Serializable
      */
     public Float getAvg()
     {
-        return this.average;
+        return average;
     }
 
     /**
@@ -119,7 +133,7 @@ public class Assignment implements java.io.Serializable
      */
     public Float getMax()
     {
-        return this.max;
+        return max;
     }
 
     /**
@@ -128,7 +142,7 @@ public class Assignment implements java.io.Serializable
      */
     public Float getMin()
     {
-        return this.min;
+        return min;
     }
 
     /**
@@ -136,9 +150,16 @@ public class Assignment implements java.io.Serializable
      * @param dueDate the date the Assignment is due.
      * @return true if set, false if failure.
      */
-    public boolean setDueDate(Date dueDate)
+    public boolean setDueDate(Date pdueDate)
     {
-        return false;
+        dueDate = pdueDate;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        return true;
     }
 
     /**
@@ -146,9 +167,17 @@ public class Assignment implements java.io.Serializable
      * @param name the name of the Assignment.
      * @return true if set, false if failure.
      */
-    public boolean setName(String name)
+    public boolean setName(String pname)
     {
-        return false;
+        name = pname;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        
+        return true;
     }
 
     /**
@@ -156,9 +185,16 @@ public class Assignment implements java.io.Serializable
      * @param total the total points of the Assignment.
      * @return true if set, false if failure.
      */
-    public boolean setTotal(Integer total)
+    public boolean setTotal(Integer ptotal)
     {
-        return false;
+        total = ptotal;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        return true;
     }
 
     /**
@@ -166,9 +202,16 @@ public class Assignment implements java.io.Serializable
      * @param type the type the Assignment is.
      * @return true if set, false if failure.
      */
-    public boolean setType(String type)
+    public boolean setType(String ptype)
     {
-        return false;
+        type = ptype;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        return true;
     }
 
     /**
@@ -176,9 +219,16 @@ public class Assignment implements java.io.Serializable
      * @param average the average points of the graded assignment for this Assignment
      * @return true if set, false if failure.
      */
-    public boolean setAvg(Float average)
+    public boolean setAvg(Float paverage)
     {
-        return false;
+        average = paverage;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        return true;
     }
 
     /**
@@ -186,9 +236,16 @@ public class Assignment implements java.io.Serializable
      * @param max the max points of the graded assignment for this Assignment
      * @return true if set, false if failure.
      */
-    public boolean setMax(Float max)
+    public boolean setMax(Float pmax)
     {
-        return false;
+        max = pmax;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        return true;
     }
 
     /**
@@ -196,9 +253,16 @@ public class Assignment implements java.io.Serializable
      * @param min the min points of the graded assignment for this Assignment
      * @return true if set, false if failure.
      */
-    public boolean setMin(Float min)
+    public boolean setMin(Float pmin)
     {
-        return false;
+        min = pmin;
+        /*now updating the database with changes */
+        /*String query = "UPDATE Assignments SET dueDate =" +
+                dueDate + "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+        return true;
     }
     
     /**
@@ -210,7 +274,7 @@ public class Assignment implements java.io.Serializable
      */
     public boolean fetch()
     {
-        return false;
+        return true;
     }
 }
 
