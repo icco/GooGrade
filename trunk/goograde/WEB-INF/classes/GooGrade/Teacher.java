@@ -24,11 +24,26 @@ public class Teacher extends Account
      */
     private ArrayList<Course> teaches;
 
+    /**
+     * Constructors
+     */
+    
     /** 
      * Constructor for Teacher. All permissions are granted to the Teacher by  default.  
      */
     public Teacher()
     {
+    }
+    
+    /**
+     * ID constructor, standard constructor with id parameter.
+     * All variables, other than id, are still null and retrieved from
+     * database with fetch();
+     * @param id identification Integer used to fetch data from db
+     */
+    public Teacher(Integer id)
+    {
+        super(id);
     }
 
     /**

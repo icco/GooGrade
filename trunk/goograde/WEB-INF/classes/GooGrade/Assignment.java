@@ -12,6 +12,10 @@ import java.lang.*;
 public class Assignment implements java.io.Serializable
 {
 
+    /**
+     * The database id of the Assignment
+     */
+    private Integer id;
     /** 
      * The due date of the Assignment 
      */
@@ -41,6 +45,29 @@ public class Assignment implements java.io.Serializable
      */
     private Float min;
 
+    
+    /**
+     * Constructors
+     */
+    
+    /**
+     * Standard constructor, should not be used, kept for now
+     */
+    public Assignment()
+    {
+    }
+    
+    /**
+     * ID constructor, standard constructor with id parameter.
+     * All variables, other than id, are still null and retrieved from
+     * database with fetch();
+     * @param id identification Integer used to fetch data from db
+     */
+    public Assignment(Integer id)
+    {
+        this.id = id;
+    }
+    
     /**
      * Gets a Date object for the due date of the assignment
      * @return the date the assignment is due
@@ -170,6 +197,18 @@ public class Assignment implements java.io.Serializable
      * @return true if set, false if failure.
      */
     public boolean setMin(Float min)
+    {
+        return false;
+    }
+    
+    /**
+     * Searches the database table Assignments according
+     * to this.id and sets all instance variables from there
+     * @return true if found in database, else false
+     * @todo improve StorageConnection.query return handling
+     * @todo write it
+     */
+    public boolean fetch()
     {
         return false;
     }

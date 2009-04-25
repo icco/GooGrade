@@ -44,13 +44,30 @@ public abstract class Account implements java.io.Serializable
      */
     private Integer id;
 
+    
     /**
-     * standard constructor
+     * Constructors
+     */
+    
+    /**
+     * Standard constructor, should not be used, kept for now
      */
     public Account()
     {
     }
 
+    /**
+     * ID constructor, standard constructor with id parameter.
+     * All variables, other than id, are still null and retrieved from
+     * database with fetch();
+     * @param id identification Integer used to fetch data from db
+     */
+    public Account(Integer id)
+    {
+        this.id = id;
+    }
+    
+    
     /**
      * Commonly used constructor. I should just be able to do this with an id tho.
      * @param id
@@ -182,6 +199,18 @@ public abstract class Account implements java.io.Serializable
     {
         this.id = id;
         return true;
+    }
+    
+    /**
+     * Searches the database table Accounts according
+     * to this.id and sets all instance variables from there
+     * @return true if found in database, else false
+     * @todo improve StorageConnection.query return handling
+     * @todo write it
+     */
+    public boolean fetch()
+    {
+        return false;
     }
 }
 

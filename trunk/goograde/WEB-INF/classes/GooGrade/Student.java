@@ -16,9 +16,28 @@ public class Student extends Account
     private Float totalGrade;
     private ArrayList<Course> enrolled;
 
-  
+
+    /**
+     * Constructors
+     */    
     
-    
+    /**
+     * Standard constructor, should not be used, kept for now
+     */
+    public Student()
+    {
+    }
+
+   /**
+     * ID constructor, standard constructor with id parameter.
+     * All variables, other than id, are still null and retrieved from
+     * database with fetch();
+     * @param id identification Integer used to fetch data from db
+     */
+    public Student(Integer id)
+    {
+        super(id);
+    }
     
     /**
      * Gets the student grade in the course.
@@ -87,4 +106,5 @@ public class Student extends Account
     {
         this.enrolled = enrolled;
     }
+    
 }
