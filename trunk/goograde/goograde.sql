@@ -56,9 +56,13 @@ CREATE TABLE Assignments (
 		userId Integer
 );
 
-/* entity table for Permission class */
+/* 
+ * entity table for Permission class 
+ * ... This needs some other stuff...
+ */
 CREATE TABLE Permissions (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT
+
 );
 
 /* entity table for Announcement class */

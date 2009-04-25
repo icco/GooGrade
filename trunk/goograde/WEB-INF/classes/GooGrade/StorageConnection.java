@@ -21,7 +21,7 @@ public class StorageConnection
 {
 
     /** Where is the database held? */
-    private String whereIsDb = "jdbc:sqlite://tmp/blugoo.db";
+    private String whereIsDb = "jdbc:sqlite://tmp/goograde.db";
     /** What Driver are we using for a storage connection? */
     private String whatIsDb = "org.sqlite.JDBC";
     /** Where the connection is held */

@@ -12,8 +12,6 @@ import java.util.logging.Logger;
 /**
  * This class keeps information about Courses. 
  *
- *
- *
  * @author bluGoo
  * @version 0.42
  */
@@ -457,7 +455,8 @@ public class Course implements java.io.Serializable
 
     /**
      * deleteCourse (static) removes the course, if exists, with 
-     * provided id from the database
+     * provided id from the database.
+     * 
      * @param permission Permission to remove a course
      * @param id Id of Course to be deleted
      * @return true if deleted, false otherwise
@@ -504,7 +503,8 @@ public class Course implements java.io.Serializable
     
     /**
      * addCourse (static) adds a course with the given parameters to the 
-     * database
+     * database.
+     * 
      * @param permission Permission to add a Course
      * @param title new Course's title
      * @param department new Course's department
@@ -530,7 +530,8 @@ public class Course implements java.io.Serializable
     
     /**
      * Searches the database table Courses according
-     * to this.id and sets all instance variables from there
+     * to this.id and sets all instance variables from there.
+     * 
      * @return true if found in database, else false
      * @todo improve StorageConnection.query return handling
      * @todo write it
