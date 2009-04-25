@@ -1,6 +1,11 @@
 package GooGrade;
 
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -70,10 +75,10 @@ public abstract class Account implements java.io.Serializable
     
     /**
      * Commonly used constructor. I should just be able to do this with an id tho.
-     * @param id
-     * @param username
-     * @param name
-     * @param email
+     * @param id        unique identification number for each account
+     * @param username  the user name an account holder uses to access GooGrade
+     * @param name      the full name of an account holder
+     * @param email     the email address of an account holder
      */
     public Account(Integer id, String username, String name, String email)
     {
@@ -111,11 +116,11 @@ public abstract class Account implements java.io.Serializable
      * Takes new password, hashes it, and saves to database.
      * @param newPass the new password to be saved
      * @return true if set, false if failure.
-     * @TODO Passwords are not implemented for release 1.
+     * @todo Passwords are not implemented for release 1.
      */
     boolean setPassword(String newPass)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -153,8 +158,9 @@ public abstract class Account implements java.io.Serializable
 
     /**
      * Checks the provided password to see if they match.
-     * @param passwd the password entered by the user that will be compared with the stored value. 
-     * @return true if the hashed passwd matches the password in the database, false otherwise. 
+     * @param passwd the password entered by the user. 
+     * @return true if the hashed passwd matches the password in the database,
+     *         false otherwise. 
      */
     boolean isPassword(String passwd)
     {
@@ -164,6 +170,7 @@ public abstract class Account implements java.io.Serializable
     /**
      * gets the list of files submitted by this account.
      * @return this user's files 
+     * @todo NOT IMPLEMENTING FOR RELEASE 1
      */
     public ArrayList<File> getFiles()
     {
@@ -172,12 +179,13 @@ public abstract class Account implements java.io.Serializable
 
     /**
      * sets the list of files for this account
-     * @param files a list of files owned by this account
+     * @param newFiles a list of files owned by this account
      * @return true if set, false if error.
+     * @todo NOT IMPLEMENTING FOR RELEASE 1
      */
-    public boolean setFiles(ArrayList<File> files)
+    public boolean setFiles(ArrayList<File> newFiles)
     {
-        this.files = files;
+        this.files = newFiles;
         return true;
     }
 
@@ -192,25 +200,83 @@ public abstract class Account implements java.io.Serializable
 
     /**
      * sets the id for this instance
-     * @param id the id used in the db for the account
+     * @param newID the id used in the db for the account
      * @return true if set, false if error.
      */
-    public boolean setId(Integer id)
+    public boolean setId(Integer newID)
     {
-        this.id = id;
+        this.id = newID;
         return true;
     }
     
     /**
-     * Searches the database table Accounts according
+     * returns the permission for an account
+     * @return the permission
+     */
+    public Permissions getPermissions()
+    {
+        return this.permission;
+    }
+    
+    /**
+     * Searches the database table Account according
      * to this.id and sets all instance variables from there
      * @return true if found in database, else false
-     * @todo improve StorageConnection.query return handling
-     * @todo write it
      */
     public boolean fetch()
     {
+        String query = "SELECT username, name, email, password"
+                + " FROM Account WHERE id = " + this.getId().toString();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<Array> result = conn.query(query);
+        conn.close();
+        
+        /* No results from the query means an unsuccessful fetch */
+        if(result.size() < 1)
+        {
+            return false;
+        }
+        try
+        {
+            ResultSet rs = result.get(0).getResultSet();
+            this.setUserName(rs.getString("username"));
+            this.setFullName(rs.getString("name"));
+            this.setEmailAddress(new EmailAddress(rs.getString("email")));
+            this.setPassword(rs.getString("password"));
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
+                    "SQL error occurred when trying to fetch Account"
+                    + "with id = " + this.getId().toString(), ex);
+        }
+        return true;
+    }
+    
+    /**
+     * Resets all variables according to current database information
+     * @return true if successful, else false
+     */
+    public boolean refresh()
+    {
+        /* Account validity is checked before a fetch */
+        if(this.getId() != null)
+        {
+            return this.fetch();
+        }
         return false;
+    }
+    
+    /**
+     * save, stores current instance in database
+     * if id already exists, update
+     * else, insert
+     * @return true if successfull, else false
+     * @todo implement the functionality requried for this
+     */
+    public boolean save()
+    {
+        return true;
     }
 }
 

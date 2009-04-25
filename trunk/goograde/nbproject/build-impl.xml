@@ -534,13 +534,11 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <copy-ear-war file="${libs.jstl11.classpath.libfile.1}" propname="included.lib.libs.jstl11.classpath.1.X"/>
         <basename file="${file.reference.servlet-api.jar}" property="included.lib.file.reference.servlet-api.jar"/>
         <copy-ear-war file="${file.reference.servlet-api.jar}" propname="included.lib.file.reference.servlet-api.jar.X"/>
-        <basename file="${file.reference.sqlitejdbc-v054.jar}" property="included.lib.file.reference.sqlitejdbc-v054.jar"/>
-        <copy-ear-war file="${file.reference.sqlitejdbc-v054.jar}" propname="included.lib.file.reference.sqlitejdbc-v054.jar.X"/>
         <basename file="${libs.junit.classpath}" property="included.lib.libs.junit.classpath"/>
         <copy-ear-war file="${libs.junit.classpath}" propname="included.lib.libs.junit.classpath.X"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} ${included.lib.file.reference.servlet-api.jar} ${included.lib.file.reference.sqlitejdbc-v054.jar} ${included.lib.libs.junit.classpath} "/>
+            <attribute name="Class-Path" value="${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} ${included.lib.file.reference.servlet-api.jar} ${included.lib.libs.junit.classpath} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
@@ -548,7 +546,6 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <copy file="${libs.jstl11.classpath.libfile.2}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.jstl11.classpath.libfile.1}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${file.reference.servlet-api.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
-        <copy file="${file.reference.sqlite.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${libs.junit.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
