@@ -21,7 +21,6 @@ public class CourseController extends HttpServlet implements ServletContextListe
     {
 
         String action = request.getParameter("action");
-        ArrayList<Course> courseList = (ArrayList<Course>) request.getAttribute("courseList");
         
         if (action != null)
         {
@@ -38,7 +37,7 @@ public class CourseController extends HttpServlet implements ServletContextListe
             }
         }
         request.setAttribute("courseList", 
-                (List) new Course().allCourses());
+                (List) Course.allCourses());
 
         RequestDispatcher view = request.getRequestDispatcher("/course.jsp");
         view.forward(request, response);
@@ -98,7 +97,7 @@ public class CourseController extends HttpServlet implements ServletContextListe
     public void contextInitialized(ServletContextEvent sce)
     {
         ServletContext sc = sce.getServletContext();
-        sc.setAttribute("courseList", new Course().allCourses());
+        sc.setAttribute("courseList", (List) Course.allCourses());
     }
 
     public void contextDestroyed(ServletContextEvent arg0)
@@ -107,10 +106,10 @@ public class CourseController extends HttpServlet implements ServletContextListe
     }
     
     private void deleteCourse(String courseRef){
-        new Course(new Integer(courseRef)).deleteCourse();
+        Course.deleteCourse(null, new Integer(courseRef));
     }
     
     private void addCourse(String title, String department, String number, String section){
-        new Course(title,department,new Integer(number),new Integer(section));
+        Course.addCourse(null,title,department,new Integer(number),new Integer(section));
     }
 }
