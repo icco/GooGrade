@@ -65,25 +65,29 @@ public abstract class Account implements java.io.Serializable
      * ID constructor, standard constructor with id parameter.
      * All variables, other than id, are still null and retrieved from
      * database with fetch();
-     * @param id identification Integer used to fetch data from db
+     * @param newID identification Integer used to fetch data from db
      */
-    public Account(Integer id)
+    public Account(Integer newID)
     {
-        this.id = id;
+        this.id = newID;
     }
     
     
     /**
      * Commonly used constructor. I should just be able to do this with an id tho.
-     * @param id        unique identification number for each account
-     * @param username  the user name an account holder uses to access GooGrade
-     * @param name      the full name of an account holder
-     * @param email     the email address of an account holder
+     * @param newID        unique identification number for each account
+     * @param newUser  the user name an account holder uses to access GooGrade
+     * @param newFull      the full name of an account holder
+     * @param newEmail     the email address of an account holder
      */
-    public Account(Integer id, String username, String name, String email)
+    public Account(Integer newID, String newUser, String newFull, String newEmail)
     {
-        
+        this.id = newID;
+        this.userName = newUser;
+        this.fullName = newFull;
+        this.emailAddress = new EmailAddress(newEmail);
     }
+    
     // Begin the Functions!
     /**
      * get the accounts user name.
@@ -224,14 +228,14 @@ public abstract class Account implements java.io.Serializable
      * @return true if found in database, else false
      */
     public boolean fetch()
-    {
+    { /*
         String query = "SELECT username, name, email, password"
                 + " FROM Account WHERE id = " + this.getId().toString();
         StorageConnection conn = new StorageConnection();
         ArrayList<Array> result = conn.query(query);
         conn.close();
         
-        /* No results from the query means an unsuccessful fetch */
+        /* No results from the query means an unsuccessful fetch *
         if(result.size() < 1)
         {
             return false;
@@ -249,7 +253,7 @@ public abstract class Account implements java.io.Serializable
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
                     "SQL error occurred when trying to fetch Account"
                     + "with id = " + this.getId().toString(), ex);
-        }
+        } */
         return true;
     }
     
