@@ -38,7 +38,7 @@ CREATE TABLE Courses (
 		department STRING,
 		number INTEGER,
 		section INTEGER,
-		gradingRulesID INTEGER,
+		gradingRulesId INTEGER,
 
 		CONSTRAINT fk_gradingRules FOREIGN KEY (gradingRulesID) REFERENCES 
 		GradingRules (id) ON DELETE RESTRICT
