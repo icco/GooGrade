@@ -3,6 +3,9 @@ package GooGrade;
 import java.lang.*;
 import java.io.*;
 import java.util.*;
+import java.sql.Array;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 /**
@@ -32,9 +35,11 @@ public class Permissions implements java.io.Serializable
     private boolean manageAnnouncement;
     /** Permission for managing Users */
     private boolean manageUser;
+    /*the ID of the account that these permissions belong to */
+    private int accountID;
 
-    /** Constructor for Permissions class. By default all permissions are turned
-     * off, assuming Teacher Assistant mode.
+    /** Constructor for a NEW Permissions class. By default all permissions 
+     * are turned off, assuming Teacher Assistant mode.
      */
     public Permissions()
     {
@@ -47,12 +52,24 @@ public class Permissions implements java.io.Serializable
         viewOwnGrade = false;
         uploadFile = false;
         sendEmail = false;
+
+        //make ID the next integer in the database here TODO
+        /*String query = "INSERT INTO Permissions (manageUser, " +
+                "manageAnnouncement, manageRoster, manageGrade, manageMetric" +
+                "manageCourse, viewOwnGrade, uploadFile, sendEmail) " +
+                "VALUES(" + manageUser + ", " + manageAnnouncement + ", " +
+                manageRoster + ", " + manageGrade + ", " + manageMetric + ", " +
+                manageCourse + ", " + viewOwnGrade + ", " + uploadFile + ", " +
+                sendEmail + ")";
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
     }
 
     /**
-     * Constructor for Permissions class. By default all permissions are turned
-     * off, assuming Teacher Assistant mode, unless isTeacher or isStudent is 
-     * true
+     * Constructor for a NEW Permissions class. By default all permissions are 
+     * turned off, assuming Teacher Assistant mode, unless isTeacher or 
+     * isStudent is true
      * @param isStudent determines whether set Student type permissions.
      * @param isTeacher determines whether to set Teacher type permissions.
      * @throws java.lang.Exception if isStudent and isTeacher are both true.
@@ -60,7 +77,7 @@ public class Permissions implements java.io.Serializable
     public Permissions(boolean isStudent, boolean isTeacher) throws Exception
     {
         this();
-        
+
         /*Based on type of account created, different permissions are set. */
         if (isStudent && isTeacher)
         {
@@ -85,6 +102,26 @@ public class Permissions implements java.io.Serializable
             uploadFile = true;
             sendEmail = true;
         }
+    }
+
+    /**
+     * Constuctor for a PREVIOUSLY EXISTING set of permissions
+     * @param id is the ID of the Account that these permissions belong to
+     */
+    public Permissions(int id)
+    {
+        /*loads permissions from the database */
+        /*String query = "SELECT manageUser, manageAnnouncement, manageRoster, " +
+                "manageGrade, manageMetric, manageCourse, uploadFile, " +
+                "sendEmail FROM Permissions WHERE accountID =" + id;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<Array> result = conn.query(query);
+        conn.close(); */
+
+    /*set variables from results from the database.  */
+    //i dont know how to get the items out of the array
+    //manageUser = result.get(0).;
+
     }
 
     /**
@@ -185,7 +222,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setSendEmail(boolean desiredChange, 
+    public boolean setSendEmail(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -199,6 +236,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET sendEmail =" +
+                sendEmail + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close(); */
+
         return true;
     }
 
@@ -209,7 +254,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setUploadFile(boolean desiredChange, 
+    public boolean setUploadFile(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -223,6 +268,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET uploadFile =" +
+                uploadFile + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -234,7 +287,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setViewOwnGrade(boolean desiredChange, 
+    public boolean setViewOwnGrade(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -248,6 +301,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET viewOwnGrade =" +
+                viewOwnGrade + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -259,7 +320,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageCourse(boolean desiredChange, 
+    public boolean setManageCourse(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -273,6 +334,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET manageCourse =" +
+                manageCourse + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -284,7 +353,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageMetric(boolean desiredChange, 
+    public boolean setManageMetric(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -298,6 +367,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET manageMetric =" +
+                manageMetric + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -309,7 +386,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageGrade(boolean desiredChange, 
+    public boolean setManageGrade(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -323,6 +400,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET manageGrade =" +
+                manageGrade + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -334,7 +419,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageRoster(boolean desiredChange, 
+    public boolean setManageRoster(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -348,6 +433,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET manageRoster =" +
+                manageRoster + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -359,7 +452,7 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageAnnouncement(boolean desiredChange, 
+    public boolean setManageAnnouncement(boolean desiredChange,
             boolean manageUserPermit)
     {
         try
@@ -374,6 +467,14 @@ public class Permissions implements java.io.Serializable
 
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET manageAnnouncement =" +
+                manageAnnouncement + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 
@@ -398,6 +499,14 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
+
+        /*now updating the database with changes */
+        /*String query = "UPDATE Permissions SET manageUser =" +
+                manageUser + "WHERE accountID = " + accountID;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();*/
+
         return true;
     }
 }
