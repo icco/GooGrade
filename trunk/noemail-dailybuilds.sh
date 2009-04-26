@@ -9,7 +9,7 @@ ant clean &> /dev/null
 ant -f dailybuild.xml -logfile $MESSAGE_FILE &> /dev/null
 
 #Setting up the webapp
-cp /var/www/html/GooGrade.war /usr/share/tomcat/webapps/
+cp /var/www/html/war/GooGrade.`date +%F`.war /usr/share/tomcat/webapps/GooGrade.war
 rm -rf /user/share/tomcat/webapps/GooGrade/
 /sbin/service tomcat5 restart
 
