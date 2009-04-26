@@ -428,6 +428,7 @@ public class Course implements java.io.Serializable
      */
     static public ArrayList<Course> allCourses()
     {
+		/*
         ArrayList<Course> courses = new ArrayList<Course>();
         String query = "SELECT id FROM Courses";
         StorageConnection conn = new StorageConnection();
@@ -453,6 +454,7 @@ public class Course implements java.io.Serializable
         }
         
         return courses;
+		*/ return null;
     }
 
     /**
@@ -540,6 +542,7 @@ public class Course implements java.io.Serializable
      */
     public boolean fetch()
     {
+		/*
         String query = "SELECT title, department, number, section, gradingRulesId FROM Courses " +
                 "WHERE id = " + this.getId().toString();
         StorageConnection conn = new StorageConnection();
@@ -565,6 +568,7 @@ public class Course implements java.io.Serializable
                     "SQL error occurred when trying to fetch Course" +
                     "with id = " + this.getId().toString(), ex);
         }
+*/
         return true;
     }
     
