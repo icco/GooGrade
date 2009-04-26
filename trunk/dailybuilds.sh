@@ -14,7 +14,7 @@ ant -f dailybuild.xml -logfile $MESSAGE_FILE &> /dev/null
 
 #Setting up the webapp
 cp /var/www/html/wars/GooGrade.`date +%f`.war /usr/share/tomcat/webapps/GooGrade.war
-rm -rf /user/share/tomcat/webapps/GooGrade/
+rm -rf /user/share/tomcat5/webapps/GooGrade/
 /sbin/service tomcat5 restart
 
 #Mail it!!!
