@@ -9,7 +9,7 @@ Saturday                       4      11      18       25      2       9      16
 Review SRS              ....[--|]      |       |       |       |       |       |       |       |       |               
 Review Arch               ..[--|]      |       |       |       |       |       |       |       |       |
 Delivery Plan signoff          | x     |       |       |       |       |       |       |       |       |
-Training                  [----|-------|-------|-------|-----] |       |       |       |       |       |
+Training                  [----|-------|-------|-------|-]____ |       |       |       |       |       |
 Pseudocode                     | ....[-|---]   |       |       |       |       |       |       |       |
 Vertical Prototpyping Party    |       |  x ...|x      |       |       |       |       |       |       |
 Implement Stage 1              |       |     ..|.[-----|]      |       |       |       |       |       |
