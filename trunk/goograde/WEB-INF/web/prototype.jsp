@@ -7,14 +7,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
-<link rel="stylesheet" href="styles/goograde.css" type="text/css"/>
-
+<%@ include file="libs.jsp" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    
     <body>
+        
         <div id="wrap">
             
             <%@ include file="header.jsp" %>
@@ -26,7 +27,7 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
- 
+
                     </div>
                 </div>
                 

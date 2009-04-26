@@ -20,13 +20,63 @@ body {
     
 }
 
+.iconlist
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.add
+{
+    background-image: url('styles/knobadd.png');
+    background-repeat: no-repeat;
+    
+}
+
+li.export
+{
+    background-image: url('styles/knobdownload.png');
+    background-repeat: no-repeat;
+    
+}
+
+li.import
+{
+    background-image: url('styles/knobupload.png');
+    background-repeat: no-repeat;
+}
+
+a:link, a:visited  {
+    color: #000000;
+    text-decoration: underline;
+}
+
+a:hover, a:active {
+    color: #518ac1; 
+    text-decoration: underline;
+}
+
+
 #side .cornerBoxInner{
     position: relative;
-    top: -35px;
     padding-left:3px;
+    /*top: -35px;*/
     padding-right:3px;
 }
 
+#coursepanel{
+    margin-right:auto;
+    margin-left:auto;
+    width: 200px;
+    
+}
+
+.cornerBoxInner-blue{
+    position: relative;
+    padding-left:3px;
+    padding-right:3px;
+}
 h1{
     font-family: myraid, verdana, arial;
     font-size: 30pt;
@@ -34,6 +84,7 @@ h1{
     text-align: center;
     
 }
+
 h2{
     font-family: myraid, verdana, arial;
     font-size: 16pt;
@@ -47,14 +98,11 @@ html, #wrap{
     margin-right: auto;
     margin-left: auto;
     
-    
 }
 
 body > #wrap {
     height: auto;
 }
-
-
 
 #header{
     
@@ -66,7 +114,10 @@ body > #wrap {
     text-align: center;
 }
 
-
+#accordion{
+    position: relative;
+    top: 20px;
+}
 
 
 #content {
@@ -108,7 +159,6 @@ body > #wrap {
     background: #e5ecf3;
     width: 100%; 
     height: 100%;
-    
 }
 
 #content .cornerBox {
@@ -117,6 +167,18 @@ body > #wrap {
     min-height: 700px; 
     max-height: 10000px;
     width: 100%;
+}
+
+.cornerBox-blue {
+    position: relative; 
+    background: #98bfe3; 
+    width: 100%; 
+}
+.corner-blue { 
+    position: absolute; 
+    width: 10px; 
+    height: 10px;
+    background: url('corners-blue.png') no-repeat; font-size: 0%; 
 }
 
 .cornerBox {
@@ -130,6 +192,7 @@ body > #wrap {
     height: 10px;
     background: url('corners.png') no-repeat; font-size: 0%; 
 }
+
 .cornerBoxInner { 
     padding: 10px; 
 }
@@ -138,16 +201,19 @@ body > #wrap {
     left: 0;
     background-position: 0 0; 
 }
+
 .TR { 
     top: 0; 
     right: 0; 
     background-position: -10px 0; 
 }
+
 .BL {
     bottom: 0; 
     left: 0; 
     background-position: 0 -10px; 
 }
+
 .BR { 
     bottom: 0; 
     right: 0; 
@@ -160,34 +226,38 @@ h3{
 } 
 
 h3.trigger {
-	padding: 0 0 0 50px;
-	margin: 0 0 5px 0;
-	background: url(course-sele.png) no-repeat;
-        background-position: left bottom;
-	height: 46px;
-	line-height: 46px;
-	width: 195px;
-
-	font-weight: normal;
-	float: left;
+    padding: 0 0 0 50px;
+    margin: 0 0 5px 0;
+    background: url(course-sele.png) no-repeat;
+    background-position: left bottom;
+    height: 46px;
+    line-height: 46px;
+    width: 195px;
+    
+    font-weight: normal;
+    float: left;
 }
 h3.trigger a {
-	color: #000;
-	text-decoration: none;
-	display: block;
+    color: #000;
+    text-decoration: none;
+    display: block;
 }
-h3.trigger a:hover { color: #ccc; }
-h3.active {background-position: left top;} /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
+h3.trigger a:hover { 
+    color: #ccc; 
+}
+h3.active {
+    background-position: left top;
+} /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
 .toggle_container {
-	margin: 0 0 5px 20px;
-	padding: 0;
-	overflow: hidden;
-	font-size: 14px;
-	width: 200px;
-	clear: both;
+    margin: 0 0 5px 20px;
+    padding: 0;
+    overflow: hidden;
+    font-size: 14px;
+    width: 200px;
+    clear: both;
 }
 .toggle_container .block {
-	padding: 5px; /*--Padding of Container--*/
-	background: url(toggle_block_btm.gif) no-repeat left bottom; /*--Bottom rounded corners--*/
+    padding: 5px; /*--Padding of Container--*/
+    background: url(toggle_block_btm.gif) no-repeat left bottom; /*--Bottom rounded corners--*/
 }
 
