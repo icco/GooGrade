@@ -4,5 +4,5 @@
     Author     : nwelch
 --%>
 
-<div class="head"><a href="..">Home...</a></div>
+<div class="head"><a href="/GooGrade">Home...</a></div>
 

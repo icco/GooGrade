@@ -25,20 +25,16 @@ public class AccountController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = req.getParameter("action");
-         Account temp = null;
 
         if(action.equals("delete"))
         {
-            temp = new Account(new Integer(req.getParameter("accountRef")));
-            temp.delete();           
+            this.deleteAccount(new Integer(req.getParameter("accountRef")));
         }
         else if(action.equals("add"))
         {
-            temp = new Account();
-            temp.setEmailAddress(new EmailAddress(req.getParameter("newEmailAddr")));
-            temp.setUserName(req.getParameter("newUserName"));
-            temp.setFullName(req.getParameter("newFullName"));
-            temp.save();
+            this.addAccount(req.getParameter("newUserName"),
+                    req.getParameter("newFullName"),
+                    req.getParameter("newEmailAddr"));
         }
         
         try
@@ -76,6 +72,22 @@ public class AccountController extends HttpServlet
             Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    private void addAccount(String uName, String fName, String eAddr)
+    {
+        Account temp = null;
+        temp = new Account();
+        temp.setEmailAddress(new EmailAddress(eAddr));
+        temp.setUserName(uName);
+        temp.setFullName(fName);
+        temp.save();
+    }
+
+    private void deleteAccount(Integer in)
+    {
+        Account temp = new Account(in);
+        temp.delete();
     }
 }
 

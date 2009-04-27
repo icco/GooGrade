@@ -21,10 +21,41 @@ import javax.servlet.http.HttpServletResponse;
 public class TeacherController extends HttpServlet
 {
 
-    @Override
+        @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
+        String action = req.getParameter("action");
 
+        if(action.equals("delete"))
+        {
+            this.deleteTeacher(new Integer(req.getParameter("accountRef")));
+        }
+        else if(action.equals("add"))
+        {
+            this.addTeacher(req.getParameter("newUserName"),
+                    req.getParameter("newFullName"),
+                    req.getParameter("newEmailAddr"));
+        }
+        
+        try
+        {
+            this.doGet(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException
+    {
         RequestDispatcher view = req.getRequestDispatcher("/teacher.jsp");
 
         req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
@@ -41,13 +72,6 @@ public class TeacherController extends HttpServlet
             Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
-        doPost(request, response);
     }
 
     /**
@@ -95,5 +119,15 @@ public class TeacherController extends HttpServlet
     public Announcement createAnnouncement(Course which)
     {
         return new Announcement();
+    }
+
+    private void addTeacher(String uName, String fName, String eMailAddr)
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void deleteTeacher(Integer id)
+    {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
 }
