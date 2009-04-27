@@ -1,6 +1,8 @@
 package GooGrade;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This is a class that keeps all of the information of a user. A user is 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  * @author bluGoo
  * @version 0.42
  */
-public abstract class Account implements java.io.Serializable
+public class Account implements java.io.Serializable
 {
 
     /**
@@ -269,7 +271,33 @@ public abstract class Account implements java.io.Serializable
      */
     public static ArrayList<Account> allAccounts()
     {
-        return null;
+        ArrayList<Account> ret = new ArrayList<Account>();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
+
+        try
+        {
+            out = conn.query("select id, username, name, email from accounts");
+            for (ArrayList<Object> row : out)
+            {
+                ret.add(new Account((Integer) row.get(0),
+                        (String) row.get(1),
+                        (String) row.get(2),
+                        (String) row.get(3)));
+            }
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
+                    "Error in Teacher", ex);
+        }
+        finally
+        {
+            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
+        }
+
+        return ret;
     }
 
     /**
