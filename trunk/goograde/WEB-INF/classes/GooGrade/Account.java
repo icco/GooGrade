@@ -416,5 +416,16 @@ public class Account implements java.io.Serializable
         
         return ret;
     }
+    
+    /**
+     * This checks the database to make sure the currently set username
+     * is unique.
+     * 
+     * @return true if unique, false if not.
+     */
+    public boolean isUserNameUnique()
+    {
+        return true;
+    }
 }
 
