@@ -48,11 +48,30 @@ public class Account implements java.io.Serializable
     /**
      * Constructors
      */
+    
     /**
-     * Standard constructor, should not be used, kept for now
+     * Standard constructor
      */
     public Account()
     {
+        this.id = null;
+        this.userName = new String();
+        this.fullName = new String();
+        this.emailAddress = new EmailAddress(new String());
+    }
+    
+    /**
+     * Non-standard constructor
+     * @param newUser  the user name an account holder uses to access GooGrade
+     * @param newFull      the full name of an account holder
+     * @param newEmail     the email address of an account holder
+     */
+    public Account(String newUser, String newFull, String newEmail)
+    {
+        this.id = null;
+        this.userName = newUser;
+        this.fullName = newFull;
+        this.emailAddress = new EmailAddress(newEmail);
     }
 
     /**
@@ -64,6 +83,7 @@ public class Account implements java.io.Serializable
     public Account(Integer newID)
     {
         this.id = newID;
+        this.fetch();
     }
 
     /**
@@ -228,7 +248,7 @@ public class Account implements java.io.Serializable
         boolean ret = false;
         
         String query = "SELECT username, name, email, password"
-                + " FROM Account WHERE id = " + this.getId().toString();
+                + " FROM Accounts WHERE id = " + this.getId().toString();
         
         result = conn.query(query);
         
@@ -287,7 +307,32 @@ public class Account implements java.io.Serializable
      */
     public boolean save()
     {
-        return true;
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+        
+        /* Update if the id exists */
+        if (this.getId() != null)
+        {
+            String query = "UPDATE Accounts SET"
+                    + "username = \"" + this.getUserName() + "\","
+                    + "name = \"" + this.getFullName() + "\","
+                    + "email = \"" + this.getEmailAddress().toString() + "\","
+                    + "password = \"123456\","
+                    + "WHERE id = " + this.getId();
+            ret = conn.updateQuery(query);
+        }
+        else
+        {
+            String query = "INSERT into Accounts VALUES(\""
+                    + this.getUserName() + "\",\""
+                    + this.getFullName() + "\",\""
+                    + this.getEmailAddress().toString() 
+                    + "\",\"123456\"";
+            ret = conn.updateQuery(query);
+        }
+        
+        
+        return ret;
     }
 
     @Override
