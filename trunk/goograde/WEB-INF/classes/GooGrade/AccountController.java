@@ -25,31 +25,32 @@ public class AccountController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = req.getParameter("action");
+        if (action != null)
+        {
+            if (action.equals("delete"))
+            {
+                this.deleteAccount(new Integer(req.getParameter("accountRef")));
+            }
+            else if (action.equals("add"))
+            {
+                this.addAccount(req.getParameter("newUserName"),
+                        req.getParameter("newFullName"),
+                        req.getParameter("newEmailAddr"));
+            }
 
-        if(action.equals("delete"))
-        {
-            this.deleteAccount(new Integer(req.getParameter("accountRef")));
+            try
+            {
+                this.doGet(req, resp);
+            }
+            catch (ServletException ex)
+            {
+                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            catch (IOException ex)
+            {
+                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        else if(action.equals("add"))
-        {
-            this.addAccount(req.getParameter("newUserName"),
-                    req.getParameter("newFullName"),
-                    req.getParameter("newEmailAddr"));
-        }
-        
-        try
-        {
-            this.doGet(req, resp);
-        }
-        catch (ServletException ex)
-        {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     @Override
