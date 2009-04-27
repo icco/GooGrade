@@ -1,4 +1,4 @@
-/package GooGradeTest;
+package GooGradeTest;
 
 import GooGrade.*;
 import junit.framework.TestCase;
@@ -26,7 +26,7 @@ public class EmailAddressTest extends TestCase {
     /**
      * Test of valid method, of class EmailAddress.
      */
-    public void testValid()
+    /* public void testValid()
     {
         System.out.println("valid");
         String in = "";
@@ -36,7 +36,7 @@ public class EmailAddressTest extends TestCase {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    } */
 
     /**
      * Test of toString method, of class EmailAddress.

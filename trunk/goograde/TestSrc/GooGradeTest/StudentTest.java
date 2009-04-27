@@ -27,7 +27,7 @@ public class StudentTest extends TestCase {
     /**
      * Test of getGrade method, of class Student.
      */
-    public void testGetGrade()
+    /* public void testGetGrade()
     {
         System.out.println("getGrade");
         String course = "";
@@ -38,7 +38,7 @@ public class StudentTest extends TestCase {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
+    } */
 
     /**
      * Test of viewEnrolledCourses method, of class Student.
