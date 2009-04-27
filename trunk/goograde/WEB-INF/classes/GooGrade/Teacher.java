@@ -1,6 +1,5 @@
 package GooGrade;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +19,6 @@ public class Teacher extends Account
      * A list of courses owned by the Teacher 
      */
     private ArrayList<Course> teaches;
-    private String temp = "TEST";
 
     /**
      * Constructors
@@ -41,6 +39,8 @@ public class Teacher extends Account
     public Teacher(Integer id)
     {
         super(id);
+        this.teaches = getCourses();
+
     }
 
     /**
@@ -55,6 +55,7 @@ public class Teacher extends Account
     public Teacher(Integer id, String username, String name, String email)
     {
         super(id, username, name, email);
+        this.teaches = getCourses();
     }
 
     /**
@@ -71,10 +72,9 @@ public class Teacher extends Account
 
         try
         {
-            out = conn.query(
-                    "select accounts.id as id, username, name, email" 
-                    + " from teachers, accounts" 
-                    + " where teachers.id = accounts.id" 
+            out = conn.query("select accounts.id as id, username, name, email"
+                    + " from teachers, accounts"
+                    + " where teachers.id = accounts.id"
                     + " group by accounts.id");
             
             for (ArrayList<Object> row : out)
@@ -100,6 +100,38 @@ public class Teacher extends Account
         return ret;
     }
 
+    public ArrayList<Course> getCourses()
+    {
+        ArrayList<Course> ret = new ArrayList<Course>();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        
+        try
+        {
+            result = conn.query("select course as id from teaches" +
+                    " where teacher = " + this.getId());
+            
+            for (ArrayList<Object> row : result)
+            {
+                ret.add(new Course((Integer)row.get(0)));
+            }
+            
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
+                    "Error in Teacher", ex);
+        }
+        finally
+        {
+            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
+        }
+
+        
+        return ret;
+    }
+    
     /**
      * createCourse provides the overhead for creating a new class. The method prompts the user for information.
      * @return a new course as specified by the Teacher's input.

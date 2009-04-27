@@ -65,7 +65,7 @@ CREATE TABLE Permissions (
 
 );
 
-/* entity table for Announcement class */
+-- entity table for Announcement class
 CREATE TABLE Announcements (   
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		courseId INTEGER,
@@ -74,7 +74,7 @@ CREATE TABLE Announcements (
 		datetime INTEGER
 );
 
-/* entity table for GradingRules class */
+-- entity table for GradingRules class
 CREATE TABLE GradingRules (    
 		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
@@ -84,7 +84,7 @@ CREATE TABLE Grades (
                 id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
-/* relation table between Accounts & Grades */
+-- relation table between Accounts & Grades 
 Create Table hasGrade (        
 		account INTEGER,
 		grade INTEGER,
@@ -95,7 +95,7 @@ Create Table hasGrade (
 			(id) ON DELETE CASCADE
 );
 
-/* relation table between Accounts & Files */
+-- relation table between Accounts & Files
 CREATE TABLE submitted (       
 		account INTEGER,
 		file INTEGER,
@@ -106,7 +106,7 @@ CREATE TABLE submitted (
 			(id) ON DELETE CASCADE
 );
 
-/* relation table between Accounts & Permissions */
+-- relation table between Accounts & Permissions
 Create Table hasPermission (   
 		account INTEGER,
 		permissions INTEGER,
@@ -117,7 +117,7 @@ Create Table hasPermission (
 			(id) ON DELETE CASCADE
 );
 
-/* relation table between Accounts (teachers) & Courses */
+-- relation table between Accounts (teachers) & Courses 
 CREATE TABLE teaches (         
 		course INTEGER,
 		teacher INTEGER,
@@ -128,7 +128,7 @@ CREATE TABLE teaches (
 			(id) ON DELETE CASCADE
 );
 
-/* relation table between Accounts (students) & Courses */
+-- relation table between Accounts (students) & Courses 
 CREATE TABLE enrolled (
 		course INTEGER,
 		student INTEGER,
@@ -139,7 +139,7 @@ CREATE TABLE enrolled (
 			(id) ON DELETE CASCADE
 );
 
-/* relation table between Account (tas) & Courses */
+-- relation table between Account (tas) & Courses 
 CREATE TABLE assists (
 		course INTEGER,
 		ta INTEGER,
@@ -150,15 +150,16 @@ CREATE TABLE assists (
 			(id) ON DELETE CASCADE
 );
 
-/* View of all teacher ids*/
+-- View of all teacher ids
 CREATE VIEW Teachers AS
     SELECT DISTINCT teacher as id FROM teaches;
 
-/* View of all ta ids*/
+-- View of all ta ids
 CREATE VIEW TAs AS
     SELECT DISTINCT ta as id FROM assists;
 
-/* View of all student ids*/
+-- View of all student ids
 CREATE VIEW Students AS
     SELECT DISTINCT student as id FROM enrolled;
 
+-- Thanks for visiting!
