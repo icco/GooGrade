@@ -4,7 +4,7 @@
     Author     : nwelch
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -20,26 +20,27 @@
         <h2>Teacher List</h2>
         <table>
             <thead>
-            <tr>
-
-            </tr>
+                <tr>
+                    
+                </tr>
             </thead>
             <tbody>
-            <c:forEach var="Teacher" items="${TeacherList}">
-                <tr>
-                    <td>temp</td>
-                    <td>${Teacher.TeacheruserName}</td>
-                    <td>${Teacher.fullName}</td>
-                    <td>${Teacher.emailAddress}</td>
-                    <td>
-                        <form action="<c:url value="/Teacher.do" />" method="post">
-                            <input type="hidden" name="action" value="delete" />
-                            <input type="hidden" name="TeacherRef" value="${Teacher.id}" />
-                            <input type="submit" value="Delete">
-                        </form>
-                    </td>
-                </tr>
-            </c:forEach>
+                <c:forEach var="teach" items="${teacherList}">
+                    <tr>
+                        <td>${teach.userName}</td>
+                        <td>${teach.emailAddress}</td>
+                        <td>${teach.fullName}</td>
+                        
+                        
+                        <td>
+                            <form action="<c:url value="/Teacher.do" />" method="post">
+                                <input type="hidden" name="action" value="delete" />
+                                <input type="hidden" name="TeacherRef" value="${teach.id}" />
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
             </tbody>
         </table>
         <%@ include file="foot.jsp" %>

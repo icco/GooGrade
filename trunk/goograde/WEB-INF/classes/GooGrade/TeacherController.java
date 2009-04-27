@@ -1,7 +1,10 @@
 package GooGrade;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,43 +20,36 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TeacherController extends AccountController
 {
+
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        String action = req.getParameter("action");
-        Integer teacherID = new Integer(req.getParameter("teacherRef"));
-        Teacher theTeacher = new Teacher(teacherID);
 
-        if (action.equals("change"))
+        RequestDispatcher view = req.getRequestDispatcher("/teacher.jsp");
+
+        req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
+        try
         {
-            this.editCourse(new Course());
+            view.forward(req, resp);
         }
-        else if (action.equals("add"))
+        catch (ServletException ex)
         {
-            this.addCourse(new Course());
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else if (action.equals("remove"))
+        catch (IOException ex)
         {
-            this.removeCourse(new Course());
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        else
-        {
-            throw new InvalidOption();
-        }
+
     }
-    
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        RequestDispatcher view = request.getRequestDispatcher("/teacher.jsp");
-        
-        request.setAttribute("teacherList", (List) Teacher.allTeachers());
-                
-        view.forward(request, response);   
+        doPost(request, response);
     }
 
-    
     /**
      * editCourse asks for information from the user and updates the Course 
      * with the new information.
@@ -77,11 +73,11 @@ public class TeacherController extends AccountController
     {
         return true;
     }
-    
-     /**
+
+    /**
      * Adds a new course to the teachers list of taught courses.
-      * 
-      * @param course the course to add
+     * 
+     * @param course the course to add
      * @return true if no errors occur
      */
     public boolean addCourse(Course course)
@@ -100,5 +96,4 @@ public class TeacherController extends AccountController
     {
         return new Announcement();
     }
-
 }

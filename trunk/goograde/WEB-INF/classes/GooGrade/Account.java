@@ -18,27 +18,33 @@ public abstract class Account implements java.io.Serializable
      * Username for logging in
      */
     private String userName;
+    
     /**
      * Full name of the Account owner
      */
     private String fullName;
+    
     /**
      * Email address of the Account owner
      */
     private EmailAddress emailAddress;
+    
     /**
      * Password for logging in. This will not be 
      * stored in plain text due to privacy concerns. 
      */
     private Password password;
+    
     /**
      * Permissions for performing actions
      */
     private Permissions permission;
+    
     /**
      * Files owned by account
      */
     private ArrayList<File> files;
+    
     /**
      * ID used to find things in database
      */
@@ -276,6 +282,15 @@ public abstract class Account implements java.io.Serializable
     public boolean save()
     {
         return true;
+    }
+    
+    public String toString()
+    {
+        String ret = new String();
+        ret += this.getUserName() + ", ";
+        ret += this.getFullName();
+
+        return ret;
     }
 }
 

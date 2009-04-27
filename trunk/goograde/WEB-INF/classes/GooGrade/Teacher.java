@@ -19,6 +19,7 @@ public class Teacher extends Account
      * A list of courses owned by the Teacher 
      */
     private ArrayList<Course> teaches;
+    private String temp = "TEST";
 
     /**
      * Constructors
@@ -69,22 +70,23 @@ public class Teacher extends Account
 
         try
         {
-            out = conn.query("select accounts.id as id, username, name, email"
-                    + " from teachers, accounts" 
-                    + " where teachers.id = accounts.id" 
-                    + " group by accounts.id");
-            for(ArrayList<Object> row : out)
+            out = conn.query("select accounts.id as id, username, name, email" + " from teachers, accounts" + " where teachers.id = accounts.id" + " group by accounts.id");
+            for (ArrayList<Object> row : out)
             {
-                ret.add(new Teacher((Integer)row.get(0), 
-                        (String)row.get(1),
-                        (String)row.get(2), 
-                        (String)row.get(3)));
+                ret.add(new Teacher((Integer) row.get(0),
+                        (String) row.get(1),
+                        (String) row.get(2),
+                        (String) row.get(3)));
             }
         }
         catch (Exception ex)
         {
-            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, 
+            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
                     "Error in Teacher", ex);
+        }
+        finally
+        {
+            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
         }
 
         return ret;
@@ -208,5 +210,11 @@ public class Teacher extends Account
     public boolean takeAttendance()
     {
         return false;
+    }
+
+    @Override
+    public String toString()
+    {
+        return super.toString();
     }
 }
