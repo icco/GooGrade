@@ -328,12 +328,13 @@ public class Account implements java.io.Serializable
         }
         catch (Exception ex)
         {
-            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
-                    "Error in Teacher", ex);
+            Logger.getLogger(Account.class.getName())
+                    .log(Level.SEVERE, "Error in Account", ex);
         }
         finally
         {
-            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
+            Logger.getLogger(Account.class.getName())
+                    .log(Level.WARNING, ret.toString());
         }
 
         return ret;
