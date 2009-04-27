@@ -1,9 +1,6 @@
 package GooGrade;
 
 
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -56,6 +53,7 @@ public class Course implements java.io.Serializable
     public Course(Integer id)
     {
         this.id = id;
+        this.fetch();
     }
 
     /**
@@ -428,11 +426,11 @@ public class Course implements java.io.Serializable
      */
     static public ArrayList<Course> allCourses()
     {
-		/*
+
         ArrayList<Course> courses = new ArrayList<Course>();
         String query = "SELECT id FROM Courses";
         StorageConnection conn = new StorageConnection();
-        ArrayList<Array> result = conn.query(query);
+        ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
         
         
@@ -441,9 +439,9 @@ public class Course implements java.io.Serializable
             Course course = null;
             try
             {
-                course = new Course(new Integer(result.get(i).getResultSet().getInt("id")));
+                course = new Course((Integer) result.get(i).get(0));
             }
-            catch (SQLException ex)
+            catch (Exception ex)
             {
                 Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "Error msg TBD", ex);
             }
@@ -454,7 +452,7 @@ public class Course implements java.io.Serializable
         }
         
         return courses;
-		*/ return null;
+
     }
 
     /**
@@ -542,11 +540,11 @@ public class Course implements java.io.Serializable
      */
     public boolean fetch()
     {
-		/*
         String query = "SELECT title, department, number, section, gradingRulesId FROM Courses " +
                 "WHERE id = " + this.getId().toString();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
+        ArrayList<Object> temp = null;
         conn.close();
         
         if(result.size() < 1)
@@ -555,20 +553,20 @@ public class Course implements java.io.Serializable
         }
         try
         {
-            ResultSet rs = result.get(0).getResultSet();
-            this.setTitle(rs.getString("title"));
-            this.setDepartment(rs.getString("department"));
-            this.setNumber(new Integer(rs.getInt("number")));
-            this.setSection(new Integer(rs.getInt("section")));
-            this.setGradingRulesId(new Integer(rs.getInt("gradingRulesId")));
+            temp = result.get(0);
+            this.setTitle((String)temp.get(0));
+            this.setDepartment((String)temp.get(1));
+            this.setNumber((Integer)temp.get(2));
+            this.setSection((Integer)temp.get(3));
+            this.setGradingRulesId((Integer)temp.get(4));
         }
-        catch(SQLException ex)
+        catch(Exception ex)
         {
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
                     "SQL error occurred when trying to fetch Course" +
                     "with id = " + this.getId().toString(), ex);
         }
-*/
+        
         return true;
     }
     
@@ -597,6 +595,18 @@ public class Course implements java.io.Serializable
     public boolean save()
     {
         return true;
+    }
+    
+    public String toString()
+    {
+        String ret = new String();
+        ret += this.id + ", ";
+        ret += this.title + ", ";
+        ret += this.department + ", ";
+        ret += this.section + ", ";
+        ret += this.number;
+        
+        return ret;
     }
     
 }

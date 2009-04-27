@@ -3,6 +3,8 @@ package GooGrade;
 import java.util.*;
 import java.io.*;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -12,40 +14,64 @@ import javax.servlet.http.*;
  * @author bluGoo
  * @version 0.42
  */
-public class CourseController extends HttpServlet implements ServletContextListener
+public class CourseController extends HttpServlet
 {
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        String action = request.getParameter("action");
-        
+        String action = req.getParameter("action");
+
         if (action != null)
         {
-            if(action.equals("delete"))
+            if (action.equals("delete"))
             {
-                this.deleteCourse(request.getParameter("courseRef"));
+                this.deleteCourse(req.getParameter("courseRef"));
             }
-            else if(action.equals("add"))
+            else if (action.equals("add"))
             {
-                this.addCourse(request.getParameter("newCourseTitle"),
-                        request.getParameter("newCourseDepartment"),
-                        request.getParameter("newCourseNumber"),
-                        request.getParameter("newCourseSection"));
+                this.addCourse(req.getParameter("newCourseTitle"),
+                        req.getParameter("newCourseDepartment"),
+                        req.getParameter("newCourseNumber"),
+                        req.getParameter("newCourseSection"));
             }
-        }
-        request.setAttribute("courseList", (List) Course.allCourses());
-
-        RequestDispatcher view = request.getRequestDispatcher("/course.jsp");
-        view.forward(request, response);
+}
+            try
+            {
+                this.doGet(req, resp);
+            }
+            catch (ServletException ex)
+            {
+                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            catch (IOException ex)
+            {
+                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
     }
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        doPost(request, response);
+        RequestDispatcher view = req.getRequestDispatcher("/course.jsp");
+
+        req.setAttribute("courseList", (ArrayList<Course>) Course.allCourses());
+        
+        try
+        {
+            view.forward(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /** 
@@ -92,22 +118,13 @@ public class CourseController extends HttpServlet implements ServletContextListe
         return false;
     }
 
-    public void contextInitialized(ServletContextEvent sce)
+    private void deleteCourse(String courseRef)
     {
-        ServletContext sc = sce.getServletContext();
-        sc.setAttribute("courseList", (List) Course.allCourses());
-    }
-
-    public void contextDestroyed(ServletContextEvent arg0)
-    {
-        //throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    private void deleteCourse(String courseRef){
         Course.deleteCourse(null, new Integer(courseRef));
     }
-    
-    private void addCourse(String title, String department, String number, String section){
-        Course.addCourse(null,title,department,new Integer(number),new Integer(section));
+
+    private void addCourse(String title, String department, String number, String section)
+    {
+        Course.addCourse(null, title, department, new Integer(number), new Integer(section));
     }
 }

@@ -24,7 +24,9 @@ public class AccountController extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        String action = req.getParameter("action");
+        String action = new String();
+        action = req.getParameter("action");
+        
         if (action != null)
         {
             if (action.equals("delete"))

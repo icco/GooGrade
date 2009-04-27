@@ -21,22 +21,24 @@ import javax.servlet.http.HttpServletResponse;
 public class TeacherController extends HttpServlet
 {
 
-        @Override
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = req.getParameter("action");
 
-        if(action.equals("delete"))
+        if (action != null)
         {
-            this.deleteTeacher(new Integer(req.getParameter("accountRef")));
+            if (action.equals("delete"))
+            {
+                this.deleteTeacher(new Integer(req.getParameter("accountRef")));
+            }
+            else if (action.equals("add"))
+            {
+                this.addTeacher(req.getParameter("newUserName"),
+                        req.getParameter("newFullName"),
+                        req.getParameter("newEmailAddr"));
+            }
         }
-        else if(action.equals("add"))
-        {
-            this.addTeacher(req.getParameter("newUserName"),
-                    req.getParameter("newFullName"),
-                    req.getParameter("newEmailAddr"));
-        }
-        
         try
         {
             this.doGet(req, resp);
@@ -58,7 +60,8 @@ public class TeacherController extends HttpServlet
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher.jsp");
 
-        req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
+        //req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
+        req.setAttribute("teachCourseList", (ArrayList<Course>)(Teacher.allTeachers().get(0).getCourses()));
         try
         {
             view.forward(req, resp);
@@ -81,7 +84,8 @@ public class TeacherController extends HttpServlet
      * @param course The course to edit
      * @return the new, edited Course
      */
-    public Course editCourse(Course course)
+    public Course editCourse(
+            Course course)
     {
         return course;
     }
@@ -116,7 +120,8 @@ public class TeacherController extends HttpServlet
      * @return the new, created Announcement.
      * @TODO Implement me! for release 2
      */
-    public Announcement createAnnouncement(Course which)
+    public Announcement createAnnouncement(
+            Course which)
     {
         return new Announcement();
     }
