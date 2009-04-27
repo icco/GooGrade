@@ -12,6 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>GooGrade Home</title>
+        <%@ include file="includes.jspf" %>
     </head>
     <body>
         <h1>GooGrade!</h1>
