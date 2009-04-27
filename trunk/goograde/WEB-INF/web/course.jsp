@@ -33,7 +33,7 @@
                     <td>${course.number}</td>
                     <td>${course.section}</td>
                     <td>
-                        <form action="<c:url value="/courses" />" method="post">
+                        <form action="<c:url value="/courses/" />" method="post">
                             <input type="hidden" name="action" value="delete" />
                             <input type="hidden" name="courseRef" value="${course.id}" />
                             <input type="submit" value="Delete">
