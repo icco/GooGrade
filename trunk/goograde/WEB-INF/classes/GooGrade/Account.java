@@ -94,7 +94,7 @@ public abstract class Account implements java.io.Serializable
      * get the accounts user name.
      * @return a string with the user name of the current account
      */
-    String getUserName()
+    public String getUserName()
     {
         return this.userName;
     }
@@ -103,7 +103,7 @@ public abstract class Account implements java.io.Serializable
      * get the accounts full name.
      * @return a string with the full name of the current account
      */
-    String getFullName()
+    public String getFullName()
     {
         return this.fullName;
     }
