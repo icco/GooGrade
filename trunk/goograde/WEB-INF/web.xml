@@ -13,57 +13,40 @@
         <param-value>jdbc:sqlite://tmp/goograde.db</param-value>
     </context-param>
     
-    
-    
-    
     <servlet>
         <servlet-name>teachercontroller</servlet-name>
         <servlet-class>GooGrade.TeacherController</servlet-class>
         <load-on-startup>1</load-on-startup>
-        </servlet>
-    <servlet>
-        <servlet-name>coursecontroller</servlet-name>
-        <servlet-class>GooGrade.CourseController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
         <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>teachercontroller</servlet-name>
+        <url-pattern>/teacher/*</url-pattern>
+    </servlet-mapping>
     
-    
-    
-
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-    
-
-    
+    <servlet>
+        <servlet-name>coursecontroller</servlet-name>
+        <servlet-class>GooGrade.CourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>coursecontroller</servlet-name>
         <url-pattern>/teacher/course/*</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>assignmentscontroller</servlet-name>
+        <servlet-class>GooGrade.AssignmentController</servlet-class>
+    </servlet>
+
+
     <servlet-mapping>
-        <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/teacher/</url-pattern>
+        <servlet-name>assignmentscontroller</servlet-name>
+        <url-pattern>/teacher/assignment/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
-    </web-app>
+</web-app>

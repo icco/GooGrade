@@ -1,10 +1,6 @@
 package GooGrade;
 
 import java.util.Date;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-//import java.lang.;
 
 /**
  * This class keeps information about Assignments

@@ -1,7 +1,11 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,25 +20,61 @@ import javax.servlet.http.HttpServletResponse;
 public class AssignmentController extends HttpServlet
 {
 
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
+        String action = req.getParameter("action");
+
+        if (action != null)
+        {
+            if (action.equals("delete"))
+            {
+                //this.deleteTeacher(new Integer(req.getParameter("accountRef")));
+            }
+            else if (action.equals("add"))
+            {
+                //this.addAssignment(req.getParameter("newUserName"),
+                        }
+        }
+
+        try
+        {
+            this.doGet(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
-    /**
-     * More of a concept than anything.
-     */
-    public void buildMetrics()
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException
     {
-        return;
-    }
+        RequestDispatcher view = null;
 
-    /**
-     * Give a student a grade for this assignment.
-     * @return false if fail, true if pass
-     */
-    public boolean gradeStudent(Student stu)
-    {
-        return false;
+        view = req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
+
+        req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
+        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        try
+        {
+            view.forward(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 }
 
