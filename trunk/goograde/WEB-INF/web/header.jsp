@@ -14,7 +14,7 @@
         <div class="cornerBoxInner">
             
             User: jdoe &nbsp;&nbsp;  |  &nbsp;&nbsp; 
-            <a href="AccountSettings.jsp?keepThis=true&TB_iframe=true&height=400&width=300"class="thickbox">
+            <a href="AccountSettings.jsp?keepThis=true&TB_iframe=true&height=400&width=600"class="thickbox">
             Account Settings</a>&nbsp;&nbsp;
             | &nbsp;&nbsp;  Logout
         </div>

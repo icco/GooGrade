@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Apr 23, 2009, 10:19:12 PM
+    Document   : ViewAssignments
+    Created on : Apr 26, 2009, 9:47:24 PM
     Author     : pphu
 --%>
 
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>View Assignments</title>
     </head>
     
     <body>
@@ -27,7 +27,7 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-
+                        <h3>View Assignmnents</h3>
                     </div>
                 </div>
                 

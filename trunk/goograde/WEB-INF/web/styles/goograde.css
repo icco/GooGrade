@@ -3,21 +3,14 @@ Document   : goograde
 Created on : Apr 23, 2009, 10:17:56 PM
 Author     : pphu
 Description:
-Purpose of the stylesheet follows.
 */
 
-/* 
-TODO customize this sample style
-Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
 body {
     background-image: url(bg_blue2.png);
     background-repeat: repeat-x;
     background-color: #144370;
     font-family:  myraid, verdana, arial;
     font-size: 12pt;
-    
-    
 }
 
 .iconlist
@@ -31,14 +24,12 @@ li.add
 {
     background-image: url('styles/knobadd.png');
     background-repeat: no-repeat;
-    
 }
 
 li.export
 {
     background-image: url('styles/knobdownload.png');
     background-repeat: no-repeat;
-    
 }
 
 li.import
@@ -49,7 +40,7 @@ li.import
 
 a:link, a:visited  {
     color: #000000;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 a:hover, a:active {
@@ -57,6 +48,27 @@ a:hover, a:active {
     text-decoration: underline;
 }
 
+.course-options {
+    position: relative;
+    top: -44px;
+    left: 170px;
+    width: 10px ;
+    height: 20px;
+    display: inline;
+}
+.course-options a {
+    position: relative;
+    width: 10px ;
+    height: 20px;
+    display: inline;
+}
+.course-opitions img{
+    display: inline;
+}
+
+img {
+    border:0 none;
+} 
 
 #side .cornerBoxInner{
     position: relative;
@@ -66,6 +78,8 @@ a:hover, a:active {
 }
 
 #coursepanel{
+    position: relative;
+    top: 10px;
     margin-right:auto;
     margin-left:auto;
     width: 200px;
@@ -90,6 +104,7 @@ h2{
     font-size: 16pt;
     text-decoration: underline;
 }
+
 html, #wrap{
     height: 90%;
     width: 1000px;
@@ -97,7 +112,6 @@ html, #wrap{
     min-height:700px;
     margin-right: auto;
     margin-left: auto;
-    
 }
 
 body > #wrap {
@@ -105,11 +119,9 @@ body > #wrap {
 }
 
 #header{
-    
     padding-left: 70%;
     padding-right: 20px;
     width: 30%;
-    
     font-size: 10pt;
     text-align: center;
 }
@@ -147,13 +159,15 @@ body > #wrap {
 
 
 #header .cornerBox {
-    position: relative; 
-    background: #e5ecf3; 
+    position: relative;
+    background: #e5ecf3;
     width: 100%;
 }
+
 #header .cornerBoxInner { 
     padding: 2px; 
 }
+
 #side .cornerBox{
     position: relative; 
     background: #e5ecf3;
@@ -162,21 +176,22 @@ body > #wrap {
 }
 
 #content .cornerBox {
-    position: relative; 
+    position: relative;
     background: #e5ecf3;
-    min-height: 700px; 
+    min-height: 700px;
     max-height: 10000px;
     width: 100%;
 }
 
 .cornerBox-blue {
-    position: relative; 
-    background: #98bfe3; 
-    width: 100%; 
+    position: relative;
+    background: #98bfe3;
+    width: 100%;
 }
-.corner-blue { 
-    position: absolute; 
-    width: 10px; 
+
+.corner-blue {
+    position: absolute;
+    width: 10px;
     height: 10px;
     background: url('corners-blue.png') no-repeat; font-size: 0%; 
 }
@@ -186,6 +201,7 @@ body > #wrap {
     background: #e5ecf3; 
     width: 100%; 
 }
+
 .corner { 
     position: absolute; 
     width: 10px; 
@@ -196,13 +212,14 @@ body > #wrap {
 .cornerBoxInner { 
     padding: 10px; 
 }
+
 .TL { 
     top: 0; 
     left: 0;
     background-position: 0 0; 
 }
 
-.TR { 
+.TR {
     top: 0; 
     right: 0; 
     background-position: -10px 0; 
@@ -229,25 +246,28 @@ h3.trigger {
     padding: 0 0 0 50px;
     margin: 0 0 5px 0;
     background: url(course-sele.png) no-repeat;
-    background-position: left bottom;
     height: 46px;
     line-height: 46px;
     width: 195px;
-    
     font-weight: normal;
     float: left;
 }
+
 h3.trigger a {
     color: #000;
     text-decoration: none;
     display: block;
 }
+
 h3.trigger a:hover { 
     color: #ccc; 
 }
+
 h3.active {
-    background-position: left top;
+  width: auto;
+    
 } /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
+
 .toggle_container {
     margin: 0 0 5px 20px;
     padding: 0;
@@ -256,6 +276,7 @@ h3.active {
     width: 200px;
     clear: both;
 }
+
 .toggle_container .block {
     padding: 5px; /*--Padding of Container--*/
     background: url(toggle_block_btm.gif) no-repeat left bottom; /*--Bottom rounded corners--*/
