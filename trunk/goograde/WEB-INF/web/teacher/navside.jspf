@@ -3,7 +3,7 @@
     Created on : Apr 24, 2009, 3:07:57 AM
     Author     : pphu
 --%>
-
+<%@page contentType="text/html"%>
 <!-- Begin Nav -->
 <script type="text/javascript">
     $(document).ready(function(){
@@ -17,6 +17,11 @@
 
     });
 </script>
+<% 
+        RequestDispatcher dispatcher;
+        dispatcher = getServletContext().getRequestDispatcher("/teacher"); 
+        dispatcher.include(request,response); 
+%> 
 
 <div id="side">
     <div class="cornerBox">

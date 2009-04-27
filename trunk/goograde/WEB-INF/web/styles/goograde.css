@@ -38,6 +38,18 @@ li.import
     background-repeat: no-repeat;
 }
 
+li.teacher
+{
+    background-image: url('styles/teacher.png');
+    background-repeat: no-repeat;
+}
+
+li.student
+{
+    background-image: url('styles/student.png');
+    background-repeat: no-repeat;
+}
+
 a:link, a:visited  {
     color: #000000;
     text-decoration: none;
@@ -138,7 +150,12 @@ body > #wrap {
     width: 740px;
     padding-bottom: 10px;
 }
-
+#index-content {
+    padding-top: 10px;
+    float: right;
+    width: 990px;
+    padding-bottom: 10px;
+}
 #side{
     padding-top:10px;
     padding-left: 0;
@@ -176,6 +193,30 @@ body > #wrap {
 }
 
 #content .cornerBox {
+    position: relative;
+    background: #e5ecf3;
+    min-height: 700px;
+    max-height: 10000px;
+    width: 100%;
+}
+
+.frontlogo{
+    position: relative;
+    right: 25px;
+    top: 80px;
+    
+}
+
+.logo{
+    float: left;
+}
+.loginlinks{
+    float: right;
+    position: relative;
+    right: 230px;
+    top: 230px;
+}
+#index-content .cornerBox {
     position: relative;
     background: #e5ecf3;
     min-height: 700px;
