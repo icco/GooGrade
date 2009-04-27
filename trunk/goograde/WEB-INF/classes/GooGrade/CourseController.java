@@ -56,9 +56,10 @@ public class CourseController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        RequestDispatcher view = req.getRequestDispatcher("/course.jsp");
+        RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
 
         req.setAttribute("courseList", (ArrayList<Course>) Course.allCourses());
+        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         
         try
         {

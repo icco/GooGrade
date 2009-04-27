@@ -21,9 +21,13 @@
         <servlet-class>GooGrade.TeacherController</servlet-class>
         <load-on-startup>1</load-on-startup>
         </servlet>
+    <servlet>
+        <servlet-name>coursecontroller</servlet-name>
+        <servlet-class>GooGrade.CourseController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/Teacher.do</url-pattern>
+        <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
     
     
@@ -33,13 +37,27 @@
     
 
     
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+    
+
+    
     <servlet-mapping>
-        <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/Test</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/teacher/*</url-pattern>
+        <servlet-name>coursecontroller</servlet-name>
+        <url-pattern>/teacher/course/*</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

@@ -1,10 +1,8 @@
 package GooGrade;
 
-
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  * This class keeps information about Courses. 
@@ -14,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class Course implements java.io.Serializable
 {
- 
+
     /** Id used to fetch in database*/
     private Integer id;
     /** The Course's title */
@@ -32,18 +30,16 @@ public class Course implements java.io.Serializable
     /** An array of Assignments that are associatet with the Course */
     private ArrayList<Assignment> assignments;
 
-    
     /**
      * Constructors
      */
-    
     /**
      * Standard constructor, should not be used, kept for now
      */
     public Course()
     {
     }
-    
+
     /**
      * ID constructor, standard constructor with id parameter.
      * All variables, other than id, are still null and retrieved from
@@ -70,11 +66,10 @@ public class Course implements java.io.Serializable
         this.setNumber(number);
         this.setSection(section);
     }
-    
+
     /**
      * Sets
      */
-    
     /**
      * setId sets this.id to provided argument
      * @param id Integer to set store
@@ -106,7 +101,7 @@ public class Course implements java.io.Serializable
         this.department = newDepartment;
         return true;
     }
-        
+
     /** 
      * setNumber replaces the course number with a new one
      * @param newNumber is the new course number to save
@@ -128,7 +123,7 @@ public class Course implements java.io.Serializable
         this.section = newSection;
         return true;
     }
-    
+
     /**
      * setGradingRules saves a new Grading Rules over the old.
      * @param newScale the new grading rules to save
@@ -139,7 +134,7 @@ public class Course implements java.io.Serializable
         this.gradingRulesId = newRulesId;
         return true;
     }
-    
+
     /**
      * setRoster sets this.roster to provided argument
      * @param roster list of students enrolled in the course
@@ -150,7 +145,7 @@ public class Course implements java.io.Serializable
         this.roster = roster;
         return true;
     }
-    
+
     /**
      * setAssignments sets this.assignments provided argument
      * @param assignments list of assignments associated with the course
@@ -164,8 +159,7 @@ public class Course implements java.io.Serializable
 
     /**
      * Gets - Standard
-     */    
-
+     */
     /**
      * getId returns this.id
      * @return id Integer to identify correct course in db
@@ -174,7 +168,7 @@ public class Course implements java.io.Serializable
     {
         return this.id;
     }
-    
+
     /**
      * getTitle gets the title
      * @return the title
@@ -183,7 +177,7 @@ public class Course implements java.io.Serializable
     {
         return this.title;
     }
-    
+
     /**
      * getDepartment gets the deparment code (eg "CSC")
      * @return the department code
@@ -192,7 +186,7 @@ public class Course implements java.io.Serializable
     {
         return this.department;
     }
-    
+
     /**
      * getNumber gets the number
      * @return the number
@@ -201,7 +195,7 @@ public class Course implements java.io.Serializable
     {
         return this.number;
     }
-    
+
     /**
      * getSection gets the section
      * @return the section
@@ -210,17 +204,17 @@ public class Course implements java.io.Serializable
     {
         return this.section;
     }
-    
+
     /**
      * 
      * @return
      * @todo write comment
-     */  
+     */
     public Integer getGradingRulesId()
     {
         return this.gradingRulesId;
     }
-    
+
     /**
      * getRoster gets the roster attribute for this course 
      * roster is no set untill first called, if roster
@@ -230,46 +224,46 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<Student> getRoster()
     {
-        if(this.roster != null)
+        if (this.roster != null)
         {
             return this.roster;
         }
         else
         {
-            if(this.getId() != null)
+            if (this.getId() != null)
             {
                 this.roster = new ArrayList<Student>();
                 String query = "SELECT Accounts.id as id FROM Accounts, enrolled " +
-                    "WHERE Accounts.id = enrolled.student AND enrolled.course = " + this.getId();
-                
+                        "WHERE Accounts.id = enrolled.student AND enrolled.course = " + this.getId();
+
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
-                
-                /*
-                for(int i = 0; i < result.size(); i++)
-                {
-                    Student student = null;
-                    try
-                    {
-                        student = new Student(new Integer(result.get(i).getResultSet().getInt("id")));
-                    }
-                    catch (SQLException ex)
-                    {
-                       Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "Error msg TBD", ex);
-                    }
-                    if(student != null && student.fetch())
-                    {
-                        this.roster.add(student);
-                    }
-                }
-                 */ 
+
+            /*
+            for(int i = 0; i < result.size(); i++)
+            {
+            Student student = null;
+            try
+            {
+            student = new Student(new Integer(result.get(i).getResultSet().getInt("id")));
             }
-            
+            catch (SQLException ex)
+            {
+            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "Error msg TBD", ex);
+            }
+            if(student != null && student.fetch())
+            {
+            this.roster.add(student);
+            }
+            }
+             */
+            }
+
             return this.roster;
         }
     }
-    
+
     /**
      * getRoster gets the assignments attribute for this course 
      * assignments is no set untill first called, if assignments
@@ -279,7 +273,7 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<Assignment> getAssignments()
     {
-        if(this.assignments != null)
+        if (this.assignments != null)
         {
             return this.assignments;
         }
@@ -292,11 +286,10 @@ public class Course implements java.io.Serializable
             return this.assignments;
         }
     }
-    
+
     /**
      * Gets - Special
      */
-    
     /**
      * getCode gets the course code (eg. "CSC309")
      * @return the course code as a String
@@ -305,7 +298,7 @@ public class Course implements java.io.Serializable
     {
         return this.getDepartment() + this.getNumber();
     }
-    
+
     /**
      * getTeachers gets the Teacher attribute from this course
      * @return teacher of this course
@@ -332,7 +325,7 @@ public class Course implements java.io.Serializable
          */
         return assistants;
     }
-    
+
     /**
      * getGradingRules generates a GradingRules object
      * according to gradingRulesId and returns it 
@@ -341,11 +334,11 @@ public class Course implements java.io.Serializable
      */
     public GradingRules getGradingRules()
     {
-        if(this.gradingRulesId != null)
+        if (this.gradingRulesId != null)
         {
             GradingRules rules = new GradingRules(this.getGradingRulesId());
-            
-            if(rules.fetch()) //true if valid gradingRulesId in database, else false
+
+            if (rules.fetch()) //true if valid gradingRulesId in database, else false
             {
                 return rules;
             }
@@ -396,7 +389,7 @@ public class Course implements java.io.Serializable
     {
         return false;
     }
-    
+
     /**
      * addTeacher assignes a new Teacher to this course.
      * @param permission Permission of the user who calls this function
@@ -407,7 +400,7 @@ public class Course implements java.io.Serializable
     {
         return false;
     }
-    
+
     /**
      * removeTeacher removes a Teacher from this course.
      * @param permission Permission of the user who calls this function
@@ -418,7 +411,7 @@ public class Course implements java.io.Serializable
     {
         return false;
     }
-    
+
     /**
      * allCourses (static) queries the db for all
      * courses and returns a list of Course objects
@@ -432,9 +425,9 @@ public class Course implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
-        
-        
-        for(int i = 0; i < result.size(); i++)
+
+
+        for (int i = 0; i < result.size(); i++)
         {
             Course course = null;
             try
@@ -445,12 +438,12 @@ public class Course implements java.io.Serializable
             {
                 Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "Error msg TBD", ex);
             }
-            if(course != null && course.fetch())
+            if (course != null && course.fetch())
             {
                 courses.add(course);
             }
         }
-        
+
         return courses;
 
     }
@@ -467,19 +460,24 @@ public class Course implements java.io.Serializable
      */
     static public boolean deleteCourse(Permissions permission, Integer id)
     {
-        if(id != null)
+        String query;
+        StorageConnection conn;
+        boolean ret = false;
+
+        if (id != null)
         {
-            String query = "DELETE FROM Courses WHERE id=" + id.toString();
-            StorageConnection conn = new StorageConnection();
-            conn.query(query);
+            query = "DELETE FROM Courses WHERE id=" + id.toString();
+            conn = new StorageConnection();
+            ret = conn.updateQuery(query);
+
+            query = "DELETE FROM teaches WHERE course=" + id.toString();
+            ret = conn.updateQuery(query);
             conn.close();
-            
-            return true;
         }
-        
-        return false;
+
+        return ret;
     }
-    
+
     /**
      * deleteCourse removes the current course, if exists,
      * from the database
@@ -490,19 +488,19 @@ public class Course implements java.io.Serializable
      */
     public boolean deleteCourse(Permissions permission)
     {
-        if(this.getId() != null)
+        if (this.getId() != null)
         {
             String query = "DELETE FROM Courses WHERE id=" + this.getId().toString();
             StorageConnection conn = new StorageConnection();
             conn.query(query);
             conn.close();
-            
+
             return true;
         }
-        
+
         return false;
     }
-    
+
     /**
      * addCourse (static) adds a course with the given parameters to the 
      * database.
@@ -514,22 +512,23 @@ public class Course implements java.io.Serializable
      * @param section new Course's section
      * @return true if added, false otherwise
      */
-    static public boolean addCourse(Permissions permission, String title, String department, Integer number, Integer section){
-        
-        if(title != null && department != null && number != null && section != null)
+    static public boolean addCourse(Permissions permission, String title, String department, Integer number, Integer section)
+    {
+
+        if (title != null && department != null && number != null && section != null)
         {
             String query = "INSERT INTO Courses (title, department, number, section) " +
                     "VALUES (" + title + "," + department + "," + number + "," + section + ")";
             StorageConnection conn = new StorageConnection();
             conn.query(query);
             conn.close();
-            
+
             return true;
         }
-        
+
         return true;
     }
-    
+
     /**
      * Searches the database table Courses according
      * to this.id and sets all instance variables from there.
@@ -546,30 +545,30 @@ public class Course implements java.io.Serializable
         ArrayList<ArrayList<Object>> result = conn.query(query);
         ArrayList<Object> temp = null;
         conn.close();
-        
-        if(result.size() < 1)
+
+        if (result.size() < 1)
         {
             return false;
         }
         try
         {
             temp = result.get(0);
-            this.setTitle((String)temp.get(0));
-            this.setDepartment((String)temp.get(1));
-            this.setNumber((Integer)temp.get(2));
-            this.setSection((Integer)temp.get(3));
-            this.setGradingRulesId((Integer)temp.get(4));
+            this.setTitle((String) temp.get(0));
+            this.setDepartment((String) temp.get(1));
+            this.setNumber((Integer) temp.get(2));
+            this.setSection((Integer) temp.get(3));
+            this.setGradingRulesId((Integer) temp.get(4));
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
+            Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
                     "SQL error occurred when trying to fetch Course" +
                     "with id = " + this.getId().toString(), ex);
         }
-        
+
         return true;
     }
-    
+
     /**
      * refresh resets all variables according to
      * database entry, a rollback 
@@ -577,7 +576,7 @@ public class Course implements java.io.Serializable
      */
     public boolean refresh()
     {
-        if(this.getId() != null)
+        if (this.getId() != null)
         {
             this.setRoster(null);
             this.setAssignments(null);
@@ -585,7 +584,7 @@ public class Course implements java.io.Serializable
         }
         return false;
     }
-    
+
     /**
      * save, stores current instance in database
      * if id already exists, update
@@ -596,7 +595,7 @@ public class Course implements java.io.Serializable
     {
         return true;
     }
-    
+
     public String toString()
     {
         String ret = new String();
@@ -605,8 +604,7 @@ public class Course implements java.io.Serializable
         ret += this.department + ", ";
         ret += this.section + ", ";
         ret += this.number;
-        
+
         return ret;
     }
-    
 }

@@ -4,10 +4,15 @@ package GooGrade;
  *
  * @author nwelch
  */
-class Grade {
+public class Grade {
 
     public Grade(Course crse, Assignment ass, Student aThis)
     {
+    }
+    
+    public Grade()
+    {
+        
     }
 
     public Float getGrade()
