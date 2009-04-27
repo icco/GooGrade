@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServlet;
  * @author bluGoo
  * @version 0.42
  */
-public abstract class AccountController extends HttpServlet
+public class AccountController extends HttpServlet
 {
 
     @Override

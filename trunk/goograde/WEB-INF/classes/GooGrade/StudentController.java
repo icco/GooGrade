@@ -1,7 +1,6 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
+import java.util.ArrayList;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author bluGoo
  * @version 0.42
  */
-public class StudentController extends AccountController
+public class StudentController extends HttpServlet
 {
 
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
