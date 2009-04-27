@@ -18,10 +18,12 @@
     <body>
         <%@ include file="head.jsp" %>
         <h2>Teacher List</h2>
-        <table>
+        <table border="1">
             <thead>
                 <tr>
-                    
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Full Name</th>
                 </tr>
             </thead>
             <tbody>

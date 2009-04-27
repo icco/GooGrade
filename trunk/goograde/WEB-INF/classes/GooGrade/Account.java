@@ -218,11 +218,50 @@ public class Account implements java.io.Serializable
     /**
      * Searches the database table Account according
      * to this.id and sets all instance variables from there
+     * 
      * @return true if found in database, else false
      */
     public boolean fetch()
-    {
-        return true;
+    { 
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        boolean ret = false;
+        
+        String query = "SELECT username, name, email, password"
+                + " FROM Account WHERE id = " + this.getId().toString();
+        
+        result = conn.query(query);
+        
+        conn.close();
+        
+        /* No results from the query means an unsuccessful fetch */
+        if(result.size() < 1)
+        {
+            ret = false;
+        }
+        else
+        {
+            try
+            {
+                ArrayList<Object> rs = result.get(0);
+                this.setUserName((String) rs.get(0));
+                this.setFullName((String) rs.get(1));
+                this.setEmailAddress(new EmailAddress((String) rs.get(2)));
+                this.setPassword((String) rs.get(3));
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                        "SQL error occurred when trying to fetch Account"
+                        + " with id = " + this.getId().toString(), ex);
+            }
+            finally
+            {
+                ret = true;
+            }
+        }
+        
+        return ret;
     }
 
     /**

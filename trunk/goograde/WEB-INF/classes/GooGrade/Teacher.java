@@ -1,5 +1,6 @@
 package GooGrade;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,7 +71,12 @@ public class Teacher extends Account
 
         try
         {
-            out = conn.query("select accounts.id as id, username, name, email" + " from teachers, accounts" + " where teachers.id = accounts.id" + " group by accounts.id");
+            out = conn.query(
+                    "select accounts.id as id, username, name, email" 
+                    + " from teachers, accounts" 
+                    + " where teachers.id = accounts.id" 
+                    + " group by accounts.id");
+            
             for (ArrayList<Object> row : out)
             {
                 ret.add(new Teacher((Integer) row.get(0),
@@ -78,6 +84,8 @@ public class Teacher extends Account
                         (String) row.get(2),
                         (String) row.get(3)));
             }
+            
+            conn.close();
         }
         catch (Exception ex)
         {
@@ -211,7 +219,7 @@ public class Teacher extends Account
     {
         return false;
     }
-
+    
     @Override
     public String toString()
     {
