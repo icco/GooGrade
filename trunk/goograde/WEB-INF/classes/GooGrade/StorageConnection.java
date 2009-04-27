@@ -97,7 +97,26 @@ public class StorageConnection
      */
     public boolean updateQuery(String in)
     {
-        return false;
+        boolean ret = false;
+        Statement st = null;
+        int results = 0;
+        try
+        {
+            st = this.conn.createStatement();
+            results = st.executeUpdate(in);
+        }
+        catch (SQLException ex)
+        {
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, 
+                    "SQL Update ", ex);
+        }
+        finally
+        {
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
+                    "Query Returned: " + results + " rows updated.");
+        }
+
+        return results > 0;
     }
     
     public void close()

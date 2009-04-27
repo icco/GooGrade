@@ -4,5 +4,5 @@
     Author     : nwelch
 --%>
 
-<div class="foot">A <a href="http://blugoo.csc.calpoly.edu">BluGoo</a> Production...</div>
+<div class="foot" style="padding-top: 20px; font-size: 0.7em;">A <a href="http://blugoo.csc.calpoly.edu">BluGoo</a> Production...</div>
 
