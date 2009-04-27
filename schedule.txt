@@ -17,6 +17,7 @@ Unit Test Development          |       |     ..|.[-----|]      |       |       |
 Daily Builds begin             |       |   ....|..x    |       |       |       |       |       |       |
 Write Sys Tests                |       |     ..|.....[-|-----] |       |       |       |       |       |
 Integration Test               |       |       |       |[-----]|       |       |       |       |       |
+Daily Tests Begin              |       |       |       |     x |       |       |       |       |       |
 Review System Test             |       |       |   ....|...[--]|       |       |       |       |       |
 Write Deployment Doc           |       |       |       |     [-|--]    |       |       |       |       |
 Release Prep                   |       |       |       |       |[-]    |       |       |       |       |
