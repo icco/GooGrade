@@ -4,9 +4,7 @@
     Author     : pphu
 --%>
 
-
-
-
+<!-- Begin Nav -->
 <script type="text/javascript">
     $(document).ready(function(){
         $("#accordion").accordion(
@@ -51,139 +49,54 @@
                     </div>
                 </div>
             </div>
+            
             <div id="accordion">
-                <h3 class="trigger"><a href="#">CSC 308-01</a>
-                </h3>
-                <div class="toggle_container">
-                    <div class="block">
-                        
-                        <ul>
-                            <%--
+                <c:forEach var="course" items="${teachCourseList}">
+                    <h3 class="trigger"><a href="#">${course.title}</a></h3>
+                    <div class="toggle_container">
+                        <div class="block">
+                            <ul>
+                                <%--
                             <li>
                                 <a href="ManageAccouncements.jsp">Manage Accouncements</a>
                             </li>
-                            --%>
-                            <li>
-                                <a href="ManageGrades.jsp">Manage Grades</a>
-                            </li>
-                            <li>
-                                <a href="ManageAssignments.jsp">Manage Assignments</a>
-                            </li>
-                            <li>
-                                <a href="ManageAccounts.jsp">Manage Accounts</a>
-                            </li>
-                            <%-- For Release 2
+                                --%>
+                                <li>
+                                    <a href="ManageGrades.jsp">Manage Grades</a>
+                                </li>
+                                <li>
+                                    <a href="ManageAssignments.jsp">Manage Assignments</a>
+                                </li>
+                                <li>
+                                    <a href="ManageAccounts.jsp">Manage Accounts</a>
+                                </li>
+                                <%-- For Release 2
                             <li>
                                 <a href="SendEmail.jsp">Send Email</a>
                             </li>
                             <li>
                                 <a href="TakeAttendance.jsp">Take Attendance</a>
                             </li>
-                            --%>
-                            <li>
-                                <a href="ViewRoster.jsp">View Roster</a>
-                            </li>
-                            <li>
-                                <a href="EditCourse.jsp">Edit Course</a>
-                            </li>
-                            <%-- For Release 2
-                            <li>
-                                <a href="AdjustGradingCurve.jsp">Adjust Grading Curve</a>
-                            </li> 
-                            --%>
-                        </ul>
-                    </div>
-                    
-                </div>
-                <h3 class="trigger"><a href="#">CSC 103-05</a>
-                </h3>
-                <div class="toggle_container">
-                    <div class="block">
-                        
-                        <ul>
-                            <%--
-                            <li>
-                                <a href="ManageAccouncements.jsp">Manage Accouncements</a>
-                            </li>
-                            --%>
-                            <li>
-                                <a href="ManageGrades.jsp">Manage Grades</a>
-                            </li>
-                            <li>
-                                <a href="ManageAssignments.jsp">Manage Assignments</a>
-                            </li>
-                            <li>
-                                <a href="ManageAccounts.jsp">Manage Accounts</a>
-                            </li>
-                            <%-- For Release 2
-                            <li>
-                                <a href="SendEmail.jsp">Send Email</a>
-                            </li>
-                            <li>
-                                <a href="TakeAttendance.jsp">Take Attendance</a>
-                            </li>
-                            --%>
-                            <li>
-                                <a href="ViewRoster.jsp">View Roster</a>
-                            </li>
-                            <%-- For Release 2
+                                --%>
+                                <li>
+                                    <a href="ViewRoster.jsp">View Roster</a>
+                                </li>
+                                <li>
+                                    <a href="EditCourse.jsp">Edit Course</a>
+                                </li>
+                                <%-- For Release 2
                             <li>
                                 <a href="AdjustGradingCurve.jsp">Adjust Grading Curve</a>
                             </li> 
-                            --%>
-                        </ul>
-                    </div>
-                    
-                </div>
-                <h3 class="trigger"><a href="#">CSC 471-02</a>
-
-                </h3>
-                <div class="toggle_container">
-                    <div class="block">
-                        
-                        <ul>
-                            <%--
-                            <li>
-                                <a href="ManageAccouncements.jsp">Manage Accouncements</a>
-                            </li>
-                            --%>
-                            <li>
-                                <a href="ManageGrades.jsp">Manage Grades</a>
-                            </li>
-                            <li>
-                                <a href="ManageAssignments.jsp">Manage Assignments</a>
-                            </li>
-                            <li>
-                                <a href="ManageAccounts.jsp">Manage Accounts</a>
-                            </li>
-                            <%-- For Release 2
-                            <li>
-                                <a href="SendEmail.jsp">Send Email</a>
-                            </li>
-                            <li>
-                                <a href="TakeAttendance.jsp">Take Attendance</a>
-                            </li>
-                            --%>
-                            <li>
-                                <a href="ViewRoster.jsp">View Roster</a>
-                            </li>
-                            <%-- For Release 2
-                            <li>
-                                <a href="AdjustGradingCurve.jsp">Adjust Grading Curve</a>
-                            </li> 
-                            --%>
-                        </ul>
-                    </div>
-                    
-                </div>
-                
-                
+                                --%>
+                            </ul>
+                        </div>  
+                    </div>  
+                </c:forEach>
             </div>
         </div>
         
     </div>
 </div>
 
-
-
-
+<!-- End Nav -->

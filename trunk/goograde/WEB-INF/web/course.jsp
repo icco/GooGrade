@@ -28,12 +28,12 @@
             </tr>
             <c:forEach var="course" items="${courseList}">
                 <tr>
-                    <td>${course.courseTitle}</td>
-                    <td>${course.courseDepartment}</td>
-                    <td>${course.courseNumber}</td>
-                    <td>${course.courseSection}</td>
+                    <td>${course.title}</td>
+                    <td>${course.department}</td>
+                    <td>${course.number}</td>
+                    <td>${course.section}</td>
                     <td>
-                        <form action="<c:url value="/Course.do" />" method="post">
+                        <form action="<c:url value="/courses" />" method="post">
                             <input type="hidden" name="action" value="delete" />
                             <input type="hidden" name="courseRef" value="${course.id}" />
                             <input type="submit" value="Delete">
