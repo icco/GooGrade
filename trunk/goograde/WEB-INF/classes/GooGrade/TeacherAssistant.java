@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  *   This class keeps information about Teacher Assistants.
  *  
@@ -49,7 +48,7 @@ public class TeacherAssistant extends Account
     {
         super(id, username, name, email);
     }
-    
+
     /**
      * Returns an array of all of the teachers.
      * 
@@ -66,9 +65,7 @@ public class TeacherAssistant extends Account
 
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(
-                    "select accounts.id as id,username,name,email "
-                    + "from tas, accounts" + " where tas.id = accounts.id"
-                    + " group by accounts.id");
+                    "select accounts.id as id,username,name,email " + "from tas, accounts" + " where tas.id = accounts.id" + " group by accounts.id");
 
             while (rs.next())
             {
@@ -76,8 +73,7 @@ public class TeacherAssistant extends Account
                         rs.getString("username"), rs.getString("name"),
                         rs.getString("email")));
             }
-        }
-        catch (SQLException ex)
+        } catch (SQLException ex)
         {
             Logger.getLogger(Teacher.class.getName()).log(
                     Level.SEVERE, "SQL ERROR", ex);
@@ -102,6 +98,7 @@ public class TeacherAssistant extends Account
     public Course createCourse()
     {
         return null; //new Course();
+
     }
 
     /**
@@ -156,6 +153,12 @@ public class TeacherAssistant extends Account
     public GradingRules adjustCurve()
     {
         return null;
+    }
+
+    @Override
+    public boolean isTeacherAssistant()
+    {
+        return true;
     }
 }
 

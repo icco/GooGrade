@@ -217,4 +217,10 @@ public class Teacher extends Account
     {
         return super.toString();
     }
+    
+    @Override
+    public boolean isTeacher()
+    {
+        return true;
+    }
 }
