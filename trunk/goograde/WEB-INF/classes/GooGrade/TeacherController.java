@@ -39,6 +39,7 @@ public class TeacherController extends HttpServlet
                         req.getParameter("newEmailAddr"));
             }
         }
+        
         try
         {
             this.doGet(req, resp);
@@ -57,10 +58,18 @@ public class TeacherController extends HttpServlet
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
-    {
-        RequestDispatcher view = req.getRequestDispatcher("/teacher.jsp");
+    {        
+        RequestDispatcher view = null;
+        if (req.getRequestURI().equals("/teacher/courses"))
+        {
+            view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
+        }
+        else
+        {
+            view = req.getRequestDispatcher("/teacher.jsp");
+        }
 
-        //req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
+        req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
         req.setAttribute("teachCourseList", (ArrayList<Course>)(Teacher.allTeachers().get(0).getCourses()));
         try
         {
