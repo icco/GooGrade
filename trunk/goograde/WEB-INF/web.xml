@@ -32,11 +32,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/Teacher.do</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/teachers/</url-pattern>
+        <url-pattern>/teacher</url-pattern>
     </servlet-mapping>
     
     <servlet>
