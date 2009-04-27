@@ -123,7 +123,7 @@ public abstract class Account implements java.io.Serializable
      * @return true if set, false if failure.
      * @todo Passwords are not implemented for release 1.
      */
-    boolean setPassword(String newPass)
+    public boolean setPassword(String newPass)
     {
         return true;
     }
@@ -133,7 +133,7 @@ public abstract class Account implements java.io.Serializable
      * @param newUserName the new name to be stored
      * @return true if set, false if error.
      */
-    boolean setUserName(String newUserName)
+    public boolean setUserName(String newUserName)
     {
         this.userName = newUserName;
         return true;
@@ -144,7 +144,7 @@ public abstract class Account implements java.io.Serializable
      * @param newFullName the new name to be stored
      * @return true if set, false if error.
      */
-    boolean setFullName(String newFullName)
+    public boolean setFullName(String newFullName)
     {
         this.fullName = newFullName;
         return true;
@@ -155,7 +155,7 @@ public abstract class Account implements java.io.Serializable
      * @param newAddress the new email address to be stored
      * @return true if set, false if error.
      */
-    boolean setEmailAddress(EmailAddress newAddress)
+    public boolean setEmailAddress(EmailAddress newAddress)
     {
         this.emailAddress = newAddress;
         return true;
@@ -167,7 +167,7 @@ public abstract class Account implements java.io.Serializable
      * @return true if the hashed passwd matches the password in the database,
      *         false otherwise. 
      */
-    boolean isPassword(String passwd)
+    public boolean isPassword(String passwd)
     {
         return false;
     }
@@ -229,32 +229,7 @@ public abstract class Account implements java.io.Serializable
      * @return true if found in database, else false
      */
     public boolean fetch()
-    { /*
-        String query = "SELECT username, name, email, password"
-                + " FROM Account WHERE id = " + this.getId().toString();
-        StorageConnection conn = new StorageConnection();
-        ArrayList<Array> result = conn.query(query);
-        conn.close();
-        
-        /* No results from the query means an unsuccessful fetch *
-        if(result.size() < 1)
-        {
-            return false;
-        }
-        try
-        {
-            ResultSet rs = result.get(0).getResultSet();
-            this.setUserName(rs.getString("username"));
-            this.setFullName(rs.getString("name"));
-            this.setEmailAddress(new EmailAddress(rs.getString("email")));
-            this.setPassword(rs.getString("password"));
-        }
-        catch(SQLException ex)
-        {
-            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
-                    "SQL error occurred when trying to fetch Account"
-                    + "with id = " + this.getId().toString(), ex);
-        } */
+    {
         return true;
     }
     
@@ -302,13 +277,8 @@ public abstract class Account implements java.io.Serializable
      * 
      * @return and arraylist of all the accounts.
      */
-    static public ArrayList<Teacher> allAccounts()
+    public static ArrayList<Account> allAccounts()
     {
-        //look at Teacher...
-        
-        
-        
-
         return null;
     }
     
