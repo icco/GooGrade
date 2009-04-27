@@ -25,11 +25,20 @@ public class AccountController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = req.getParameter("action");
+         Account temp = null;
 
         if(action.equals("delete"))
         {
-            Account toDel = new Account(new Integer(req.getParameter("accountRef")));
-            toDel.delete();           
+            temp = new Account(new Integer(req.getParameter("accountRef")));
+            temp.delete();           
+        }
+        else if(action.equals("add"))
+        {
+            temp = new Account();
+            temp.setEmailAddress(new EmailAddress(req.getParameter("newEmailAddr")));
+            temp.setUserName(req.getParameter("newUserName"));
+            temp.setFullName(req.getParameter("newFullName"));
+            temp.save();
         }
         
         try

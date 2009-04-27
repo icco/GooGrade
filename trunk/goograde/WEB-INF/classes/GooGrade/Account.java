@@ -323,11 +323,11 @@ public class Account implements java.io.Serializable
         }
         else
         {
-            String query = "INSERT into Accounts VALUES(\""
-                    + this.getUserName() + "\",\""
-                    + this.getFullName() + "\",\""
-                    + this.getEmailAddress().toString() 
-                    + "\",\"123456\"";
+            String query = "INSERT into Accounts (username, name, email, password)";
+            query += " VALUES(\"" + this.getUserName() + "\",\"";
+            query += this.getFullName() + "\",\"";
+            query += this.getEmailAddress().toString();
+            query += "\",\"123456\")";
             ret = conn.updateQuery(query);
         }
         

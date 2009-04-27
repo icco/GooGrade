@@ -46,6 +46,17 @@
                         </td>
                     </tr>
                 </c:forEach>
+                <tr> 
+                <form action="<c:url value="/accounts/" />" method="post">
+                    <td><input type="hidden" name="action" value="add" /></td>
+                    <td><input name="newUserName" type="text" /></td>
+                    <td><input name="newEmailAddr" type="text" /></td>
+                    <td><input name="newFullName" type="text" /></td>
+                    <td>.</td>
+                    <td>.</td>
+                    <td><input type="submit" value="Engage!" /></td>
+                </form>
+            </tr>
             </tbody>
         </table>
         <%@ include file="foot.jsp" %>

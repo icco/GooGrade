@@ -108,7 +108,7 @@ public class StorageConnection
         catch (SQLException ex)
         {
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, 
-                    "SQL Update ", ex);
+                    "SQL Update: " + in, ex);
         }
         finally
         {
