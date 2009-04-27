@@ -402,5 +402,19 @@ public class Account implements java.io.Serializable
     {
         return false;
     }
+
+    public boolean delete()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+        if (this.getId() != null)
+        {
+            String query = "DELETE from Accounts ";
+            query += "WHERE id = " + this.getId();
+            ret = conn.updateQuery(query);
+        }
+        
+        return ret;
+    }
 }
 

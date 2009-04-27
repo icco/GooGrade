@@ -38,9 +38,9 @@
                         <td>.</td>
                         <td>.</td>
                         <td>
-                            <form action="<c:url value="/Account.do" />" method="post">
+                            <form action="<c:url value="/accounts/" />" method="post">
                                 <input type="hidden" name="action" value="delete" />
-                                <input type="hidden" name="TeacherRef" value="${user.id}" />
+                                <input type="hidden" name="accountRef" value="${user.id}" />
                                 <input type="submit" value="Delete">
                             </form>
                         </td>

@@ -19,7 +19,6 @@ public class CourseController extends HttpServlet implements ServletContextListe
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-
         String action = request.getParameter("action");
         
         if (action != null)
