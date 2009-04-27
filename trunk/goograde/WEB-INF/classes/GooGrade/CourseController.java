@@ -36,8 +36,7 @@ public class CourseController extends HttpServlet implements ServletContextListe
                         request.getParameter("newCourseSection"));
             }
         }
-        request.setAttribute("courseList", 
-                (List) Course.allCourses());
+        request.setAttribute("courseList", (List) Course.allCourses());
 
         RequestDispatcher view = request.getRequestDispatcher("/course.jsp");
         view.forward(request, response);

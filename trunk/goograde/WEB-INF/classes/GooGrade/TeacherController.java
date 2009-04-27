@@ -17,10 +17,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class TeacherController extends AccountController
 {
-
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = req.getParameter("action");
+        Integer teacherID = new Integer(req.getParameter("teacherRef"));
+        Teacher theTeacher = new Teacher(teacherID);
 
         if (action.equals("change"))
         {
@@ -40,17 +42,23 @@ public class TeacherController extends AccountController
         }
     }
     
+    @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
+        RequestDispatcher view = request.getRequestDispatcher("/teacher.jsp");
+        
         request.setAttribute("teacherList", (List) Teacher.allTeachers());
-     RequestDispatcher view = request.getRequestDispatcher("/teacher.jsp");
+                
         view.forward(request, response);   
     }
 
     
     /**
-     * editCourse asks for information from the user and updates the Course with it
+     * editCourse asks for information from the user and updates the Course 
+     * with the new information.
+     * 
+     * @param course The course to edit
      * @return the new, edited Course
      */
     public Course editCourse(Course course)
@@ -59,7 +67,10 @@ public class TeacherController extends AccountController
     }
 
     /**
-     * removeCourse marks a course for deletion. 
+     * removeCourse marks a course for deletion from the list of classes a 
+     * teacher has taught. 
+     * 
+     * @param course the course to remove.
      * @return true if no errors occur
      */
     public boolean removeCourse(Course course)
@@ -68,7 +79,9 @@ public class TeacherController extends AccountController
     }
     
      /**
-     * Adds a new course.
+     * Adds a new course to the teachers list of taught courses.
+      * 
+      * @param course the course to add
      * @return true if no errors occur
      */
     public boolean addCourse(Course course)
@@ -78,6 +91,7 @@ public class TeacherController extends AccountController
 
     /** 
      * createAnnouncement gathers information from the user to make a new Announcement with
+     * 
      * @param which The course to add an announcement for.
      * @return the new, created Announcement.
      * @TODO Implement me! for release 2

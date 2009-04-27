@@ -1,7 +1,5 @@
 package GooGrade;
 
-import java.util.*;
-import java.lang.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServlet;
@@ -26,6 +24,7 @@ public abstract class AccountController extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
+        
     }
 }
 

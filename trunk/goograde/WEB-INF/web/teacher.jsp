@@ -19,18 +19,18 @@
         <%@ include file="head.jsp" %>
         <h2>Teacher List</h2>
         <table>
+            <thead>
             <tr>
-                <td>Title</td>
-                <td>Department</td>
-                <td>Number</td>
-                <td>Section</td>
+
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="Teacher" items="${TeacherList}">
                 <tr>
-                    <td>${Teacher.TeacherTitle}</td>
-                    <td>${Teacher.TeacherDepartment}</td>
-                    <td>${Teacher.TeacherNumber}</td>
-                    <td>${Teacher.TeacherSection}</td>
+                    <td>temp</td>
+                    <td>${Teacher.TeacheruserName}</td>
+                    <td>${Teacher.fullName}</td>
+                    <td>${Teacher.emailAddress}</td>
                     <td>
                         <form action="<c:url value="/Teacher.do" />" method="post">
                             <input type="hidden" name="action" value="delete" />
@@ -40,6 +40,7 @@
                     </td>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
         <%@ include file="foot.jsp" %>
     </body>

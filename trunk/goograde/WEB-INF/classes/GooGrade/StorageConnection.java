@@ -63,11 +63,10 @@ public class StorageConnection
            
             stat = this.conn.createStatement();
             ResultSet rs = stat.executeQuery(in);
-            toAdd = new ArrayList<Object>(Arrays.asList(rowProc.toArray(rs)));
-            
+                        
             for (int idx = 0; rs.next(); idx++)
             {
-                toAdd = new ArrayList<Object>();
+                toAdd = new ArrayList<Object>(Arrays.asList(rowProc.toArray(rs)));
                 ret.add(toAdd);
             }
 
@@ -77,18 +76,30 @@ public class StorageConnection
         }
         catch (SQLException ex)
         {
-            // TODO: Don't really know what this does...
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
                     "An Error has occured while running a query. " + 
                     "If you see this error, tell nwelch.",
                     ex);
         }
-
-        Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,toAdd.toString());
-        
+        finally
+        {
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
+                    "Query Returned: " + ret.toString());
+        }
+           
         return ret;
     }
-
+    
+    /**
+     * This is the method you use to update the database. 
+     * @param in A query string containing an insert, update, or delete statement.
+     * @return A boolean specifying if the database was able to execute the statement.
+     */
+    public boolean updateQuery(String in)
+    {
+        return false;
+    }
+    
     public void close()
     {
         try

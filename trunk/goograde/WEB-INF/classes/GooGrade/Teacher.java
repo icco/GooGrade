@@ -1,9 +1,5 @@
 package GooGrade;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,14 +23,13 @@ public class Teacher extends Account
     /**
      * Constructors
      */
-    
     /** 
      * Constructor for Teacher. All permissions are granted to the Teacher by  default.  
      */
     public Teacher()
     {
     }
-    
+
     /**
      * ID constructor, standard constructor with id parameter.
      * All variables, other than id, are still null and retrieved from
@@ -47,11 +42,13 @@ public class Teacher extends Account
     }
 
     /**
+     * Builds a Teacher with information we have already grabbed because we are
+     * fly like that. Note that this just calls Accounts constructor.
      * 
-     * @param id
-     * @param username
-     * @param name
-     * @param email
+     * @param id The ID from the Database
+     * @param username Teachers username
+     * @param name Teachers real name
+     * @param email Teachers Email address
      */
     public Teacher(Integer id, String username, String name, String email)
     {
@@ -67,23 +64,27 @@ public class Teacher extends Account
     {
 
         ArrayList<Teacher> ret = new ArrayList<Teacher>();
-        Connection conn = (new StorageConnection()).getConn();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
 
         try
         {
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select accounts.id as id,username,name,email " + "from teachers, accounts" + " where teachers.id = accounts.id" + " group by accounts.id");
-
-            while (rs.next())
+            out = conn.query("select accounts.id as id, username, name, email"
+                    + " from teachers, accounts" 
+                    + " where teachers.id = accounts.id" 
+                    + " group by accounts.id");
+            for(ArrayList<Object> row : out)
             {
-                ret.add(new Teacher(new Integer(rs.getInt("id")), rs.getString("username"),
-                        rs.getString("name"), rs.getString("email")));
+                ret.add(new Teacher((Integer)row.get(0), 
+                        (String)row.get(1),
+                        (String)row.get(2), 
+                        (String)row.get(3)));
             }
         }
-        catch (SQLException ex)
+        catch (Exception ex)
         {
-            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, "SQL ERROR", ex);
+            Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE, 
+                    "Error in Teacher", ex);
         }
 
         return ret;
