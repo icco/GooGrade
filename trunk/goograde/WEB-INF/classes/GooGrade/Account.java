@@ -284,13 +284,33 @@ public abstract class Account implements java.io.Serializable
         return true;
     }
     
+    @Override
     public String toString()
     {
         String ret = new String();
+        ret += this.getId() + ", ";
         ret += this.getUserName() + ", ";
-        ret += this.getFullName();
+        ret += this.getFullName() + ", ";
+        ret += this.getEmailAddress();
+        
 
         return ret;
     }
+    
+    /**
+     * Returns an array of all of the accounts.
+     * 
+     * @return and arraylist of all the accounts.
+     */
+    static public ArrayList<Teacher> allAccounts()
+    {
+        //look at Teacher...
+        
+        
+        
+
+        return null;
+    }
+    
 }
 
