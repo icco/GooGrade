@@ -1,32 +1,52 @@
 <%-- 
-    Document   : course
-    Created on : Apr 21, 2009, 9:23:55 AM
-    Author     : vgerdin
+    Document   : account
+    Author     : nwelch
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modify Account</title>
+        <title>Accounts</title>
     </head>
     <body>
-        <jsp:useBean id="account" scope="session" class="GooGrade.Account" />
-        <h2><jsp:getProperty name="account" property="fullName" /></h2>
-        .... : <jsp:getProperty name="account" property="courseTitle" /><br />
-        .... : <jsp:getProperty name="account" property="courseDepartment" /><jsp:getProperty name="account" property="" /><br />
-        .... : <jsp:getProperty name="account" property="courseSection" /><br />
-        
-        <form action="<c:url value="/Course.do" />" method="post">
-            <input type="hidden" name="action" value="change" />
-            Title <input type="text" name="newcoursetitle" value="<jsp:getProperty name="course" property="courseTitle" />" /><br />
-            Department <input type="text" name="newcoursedepartment" value="<jsp:getProperty name="course" property="courseDepartment" />" /><br />
-            Number <input type="text" name="newcoursenumber" value="<jsp:getProperty name="course" property="courseNumber" />"/><br />
-            <input type="submit" value="Save"/>
-        </form>
+        <%@ include file="head.jsp" %>
+        <h2>Teacher List</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Full Name</th>
+                    <th>Teacher?</th>
+                    <th>TA?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="user" items="${accountList}">
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.userName}</td>
+                        <td>${user.emailAddress}</td>
+                        <td>${user.fullName}</td>
+                        <td>.</td>
+                        <td>.</td>
+                        <td>
+                            <form action="<c:url value="/Account.do" />" method="post">
+                                <input type="hidden" name="action" value="delete" />
+                                <input type="hidden" name="TeacherRef" value="${user.id}" />
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <%@ include file="foot.jsp" %>
     </body>
 </html>

@@ -1,5 +1,11 @@
 package GooGrade;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServlet;
@@ -15,16 +21,33 @@ import javax.servlet.http.HttpServlet;
 public abstract class AccountController extends HttpServlet
 {
 
-    /**
-     * For processing incoming post requests.
-     * 
-     * @param req The request submitted by the view
-     * @param resp The response sent to the view
-     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        
+
+        RequestDispatcher view = req.getRequestDispatcher("/account.jsp");
+
+        req.setAttribute("accountList", (ArrayList<Account>) Teacher.allAccounts());
+        try
+        {
+            view.forward(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException
+    {
+        doPost(request, response);
     }
 }
 

@@ -51,6 +51,19 @@
         <servlet-name>teacherassistantcontroller</servlet-name>
         <url-pattern>/teacherassistants/</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>accountcontroller</servlet-name>
+        <servlet-class>GooGrade.AccountController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>accountcontroller</servlet-name>
+        <url-pattern>/Account.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accountcontroller</servlet-name>
+        <url-pattern>/accounts/</url-pattern>
+    </servlet-mapping>
     
     <welcome-file-list>
         <welcome-file>welcome.jsp</welcome-file>
