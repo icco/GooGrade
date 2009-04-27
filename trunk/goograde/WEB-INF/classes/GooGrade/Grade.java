@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package GooGrade;
 
 /**
@@ -18,6 +13,7 @@ class Grade {
     public Float getGrade()
     {
         //throw new UnsupportedOperationException("Not yet implemented");
+        return null;
     }
     
     @Override

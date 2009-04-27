@@ -33,7 +33,7 @@
                 
             </div>
             
-            <%@ include file="navside.jspf" %>
+            <%@ include file="teacher/navside.jspf" %>
             
         </div>
         
