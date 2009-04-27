@@ -60,15 +60,9 @@ public class TeacherController extends HttpServlet
             throws ServletException, IOException
     {        
         RequestDispatcher view = null;
-        if (req.getRequestURI().equals("/teacher/courses"))
-        {
-            view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
-        }
-        else
-        {
-            view = req.getRequestDispatcher("/teacher.jsp");
-        }
-
+     
+            view = req.getRequestDispatcher("/teacher/teacher.jsp");
+      
         req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
         req.setAttribute("teachCourseList", (ArrayList<Course>)(Teacher.allTeachers().get(0).getCourses()));
         try

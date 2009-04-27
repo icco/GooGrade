@@ -17,11 +17,6 @@
 
     });
 </script>
-<% 
-        RequestDispatcher dispatcher;
-        dispatcher = getServletContext().getRequestDispatcher("/teacher"); 
-        dispatcher.include(request,response); 
-%> 
 
 <div id="side">
     <div class="cornerBox">
@@ -47,7 +42,7 @@
                             </li>
                             -->
                             <li class="add">
-                                <img src="../styles/add.png" style=" position: relative; top: 3px;">Manage Courses
+                                <img src="../styles/add.png" style=" position: relative; top: 3px;"><a href="/GooGrade/teacher/course">Manage Courses</a>
                             </li>
                             <!-- Not till release 2
                             <li class="export" >
