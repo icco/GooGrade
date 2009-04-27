@@ -19,6 +19,7 @@
         <ul>
             <li><a href="courses/">Courses</a></li>
             <li><a href="teachers/">Teachers</a></li>
+            <li><a href="teacherassistants/">Teacher Assistants</a></li>
             <li><a href="prototype.jsp">Prototype GUI</a></li>
         </ul>
     </body>

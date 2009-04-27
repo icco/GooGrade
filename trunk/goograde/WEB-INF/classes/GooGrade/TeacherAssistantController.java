@@ -1,7 +1,9 @@
 package GooGrade;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,41 +19,38 @@ public class TeacherAssistantController extends AccountController
 {
 
     /**
-     * I have no idea what this is supposed to do
+     * Controller post method also processes results from a doGet
+     * which ends up redirected to this method
      * @param req a servlet request
      * @param resp a servlet response
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        String action = req.getParameter("action");
 
-        /* TA wishes to change course details */
-        if (action.equals("change"))
+        RequestDispatcher view = req.getRequestDispatcher("/teacherassistant.jsp");
+
+        req.setAttribute("teacherAssistantList", 
+                (ArrayList<TeacherAssistant>) TeacherAssistant.allTeacherAssistants());
+        try
         {
-            this.editCourse(new Course());
+            view.forward(req, resp);
         }
-        
-        /* TA wishes to add a course*/
-        else if (action.equals("add"))
+        catch (ServletException ex)
         {
-            this.addCourse(new Course());
+            Logger.getLogger(TeacherAssistantController.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
-        
-        /* TA wishes to remove a course */
-        else if (action.equals("remove"))
+        catch (IOException ex)
         {
-            this.removeCourse(new Course());
+            Logger.getLogger(TeacherAssistantController.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
-        
-        else
-        {
-            throw new InvalidOption();
-        }
+
     }
     
     /**
-     * I have no idea what this is supposed to do
+     * Controller get method only redirects this call to the doPost above
      * @param request
      * @param response
      * @throws javax.servlet.ServletException
@@ -61,9 +60,7 @@ public class TeacherAssistantController extends AccountController
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        request.setAttribute("taList", (List) TeacherAssistant.allTAs());
-     RequestDispatcher view = request.getRequestDispatcher("/teacherassistant.jsp");
-        view.forward(request, response);   
+        doPost(request, response); 
     }
 
     

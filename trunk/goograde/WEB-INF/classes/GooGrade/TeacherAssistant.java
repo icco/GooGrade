@@ -1,9 +1,5 @@
 package GooGrade;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -54,31 +50,38 @@ public class TeacherAssistant extends Account
      * 
      * @return and arraylist of all the teachers
      */
-    static public ArrayList<TeacherAssistant> allTAs()
+    public static ArrayList<TeacherAssistant> allTeacherAssistants()
     {
-
         ArrayList<TeacherAssistant> ret = new ArrayList<TeacherAssistant>();
-        Connection conn = (new StorageConnection()).getConn();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
 
         try
         {
-
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(
-                    "select accounts.id as id,username,name,email " + "from tas, accounts" + " where tas.id = accounts.id" + " group by accounts.id");
-
-            while (rs.next())
+            out = conn.query("select accounts.id as id,username,name,email " 
+                    + "from tas, accounts where tas.id = accounts.id" 
+                    + " group by accounts.id");
+            
+            for (ArrayList<Object> row : out)
             {
-                ret.add(new TeacherAssistant(new Integer(rs.getInt("id")),
-                        rs.getString("username"), rs.getString("name"),
-                        rs.getString("email")));
+                ret.add(new TeacherAssistant((Integer) row.get(0),
+                        (String) row.get(1),
+                        (String) row.get(2),
+                        (String) row.get(3)));
             }
-        } catch (SQLException ex)
-        {
-            Logger.getLogger(Teacher.class.getName()).log(
-                    Level.SEVERE, "SQL ERROR", ex);
+            
+            conn.close();
         }
-
+        catch (Exception ex)
+        {
+            Logger.getLogger(TeacherAssistant.class.getName())
+                    .log(Level.SEVERE,"Error in TeacherAssistant", ex);
+        }
+        finally
+        {
+            Logger.getLogger(TeacherAssistant.class.getName())
+                    .log(Level.WARNING, ret.toString());
+        }
         return ret;
     }
 
