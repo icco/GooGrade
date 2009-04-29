@@ -63,7 +63,7 @@ public class Teacher extends Account
      * 
      * @return and arraylist of all the teachers
      */
-    static public ArrayList<Teacher> allTeachers()
+    public static ArrayList<Teacher> allTeachers()
     {
 
         ArrayList<Teacher> ret = new ArrayList<Teacher>();
@@ -76,7 +76,8 @@ public class Teacher extends Account
                     + " from teachers, accounts"
                     + " where teachers.id = accounts.id"
                     + " group by accounts.id");
-            
+           
+            // For each row, create a new Teacher
             for (ArrayList<Object> row : out)
             {
                 ret.add(new Teacher((Integer) row.get(0),
@@ -100,17 +101,24 @@ public class Teacher extends Account
         return ret;
     }
 
+    /**
+     * Gets all of the courses a teacher teaches
+     * 
+     * @return an ArrayList of Courses
+     */
     public ArrayList<Course> getCourses()
     {
         ArrayList<Course> ret = new ArrayList<Course>();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = null;
+        String query = new String();
         
         try
         {
-            result = conn.query("select course as id from teaches" +
-                    " where teacher = " + this.getId());
+            query = "select course as id from teaches where teacher = " + this.getId();
+            result = conn.query(query);
             
+            // for each row returned from database create a new Course
             for (ArrayList<Object> row : result)
             {
                 ret.add(new Course((Integer)row.get(0)));
@@ -125,7 +133,8 @@ public class Teacher extends Account
         }
         finally
         {
-            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
+            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING,
+                    ret.toString());
         }
 
         
@@ -133,7 +142,9 @@ public class Teacher extends Account
     }
     
     /**
-     * createCourse provides the overhead for creating a new class. The method prompts the user for information.
+     * createCourse provides the overhead for creating a new class. The method
+     * prompts the user for information.
+     * 
      * @return a new course as specified by the Teacher's input.
      */
     public Course createCourse()
@@ -143,6 +154,8 @@ public class Teacher extends Account
 
     /**
      * editCourse asks for information from the user and updates the Course with it
+     * 
+     * @param course the course to edit
      * @return the new, edited Course
      */
     public Course editCourse(Course course)
@@ -152,15 +165,19 @@ public class Teacher extends Account
 
     /**
      * removeCourse marks a course for deletion. 
+     * 
+     * @param course the course to remove
      * @return true if no errors occur
      */
     public boolean removeCourse(Course course)
     {
-        return true;
+        return false;
     }
 
     /** 
-     * createAnnouncement gathers information from the user to make a new Announcement with
+     * createAnnouncement gathers information from 
+     * the user to make a new Announcement with
+     * 
      * @param which The course to add an announcement for.
      * @return the new, created Announcement.
      */
@@ -171,7 +188,9 @@ public class Teacher extends Account
 
     /**
      * gradeStudent adjusts information in a Student specified by the user
+     * 
      * @param who the Student to be graded.
+     * @return true if no errors occur
      */
     public boolean gradeStudent(Student who)
     {
@@ -181,7 +200,9 @@ public class Teacher extends Account
     /**
      * createUser creates a new Account based on the user's preferences. 
      * If a Teacher Assistant is being created, their permissions may be given. 
-     * The new account will be stored in userStorage until they are given a Course, if none specified. 
+     * The new account will be stored in userStorage until they are given a Course,
+     * if none specified. 
+     * 
      * @return the created Account
      */
     public Account createUser()
@@ -252,12 +273,22 @@ public class Teacher extends Account
         return false;
     }
     
+    /**
+     * Calls Account.toString();
+     * 
+     * @return a string representation of the Teacher
+     */
     @Override
     public String toString()
     {
         return super.toString();
     }
     
+    /**
+     * returns true.
+     * 
+     * @return true if teacher.
+     */
     @Override
     public boolean isTeacher()
     {
