@@ -21,14 +21,22 @@ import javax.servlet.http.HttpServlet;
 public class AccountController extends HttpServlet
 {
 
+    /**
+     * Called automagically when a HTTP POST is made.
+     * 
+     * @param req the incoming HttpServletRequest
+     * @param resp the outgoing HttpServletResponse
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = new String();
         action = req.getParameter("action");
-        
+
+        // Make sure the post was legit
         if (action != null)
         {
+            //Do something depending on the hidden field
             if (action.equals("delete"))
             {
                 this.deleteAccount(new Integer(req.getParameter("accountRef")));
@@ -44,17 +52,21 @@ public class AccountController extends HttpServlet
             {
                 this.doGet(req, resp);
             }
-            catch (ServletException ex)
+            catch (Exception ex)
             {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE,
+                        "Post Error", ex);
             }
-            catch (IOException ex)
-            {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
         }
     }
 
+    /**
+     * Called automagically when a HTTP GET is made.
+     * 
+     * @param req the incoming HttpServletRequest
+     * @param resp the outgoing HttpServletResponse
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
@@ -62,21 +74,26 @@ public class AccountController extends HttpServlet
         RequestDispatcher view = req.getRequestDispatcher("/account.jsp");
 
         req.setAttribute("accountList", (ArrayList<Account>) Teacher.allAccounts());
+        
         try
         {
             view.forward(req, resp);
         }
-        catch (ServletException ex)
+        catch (Exception ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, 
+                    "Get Error", ex);
         }
 
     }
 
+    /**
+     * Add an account to the system.
+     * 
+     * @param uName User name of new account
+     * @param fName Full Name of new account
+     * @param eAddr email address of new account
+     */
     private void addAccount(String uName, String fName, String eAddr)
     {
         Account temp = null;
@@ -87,6 +104,11 @@ public class AccountController extends HttpServlet
         temp.save();
     }
 
+    /**
+     * Delete an account.
+     * 
+     * @param in ID of account to delete
+     */
     private void deleteAccount(Integer in)
     {
         Account temp = new Account(in);
