@@ -28,6 +28,8 @@
                     <div class="cornerBoxInner">
                         <h3>About GooGrade</h3>
                         <%-- Put your about here --%>
+                        <%-- Defect #166 fixed here --%>
+                        Assistant programmer & QA manager: Matt Duder
                             
                     </div>
                 </div>
