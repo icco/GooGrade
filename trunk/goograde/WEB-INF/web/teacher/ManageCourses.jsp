@@ -56,6 +56,23 @@
                                 </td>
                             </tr>
                         </table>
+                        <table>
+                            <tr>
+                                <td>Title</td>
+                                <td>Department</td>
+                                <td>Number</td>
+                                <td>Section</td>
+                            </tr>
+                                <form action="<c:url value="course" />" method="post">
+                                    <input type="hidden" name="action" value="add" />
+                                    <td><input type="text" name="newCourseTitle" /></td>
+                                    <td><input type="text" name="newCourseDepartment" /></td>
+                                    <td><input type="text" name="newCourseNumber" /></td>
+                                    <td><input type="text" name="newCourseSection" /></td>
+                                    <td><input type="submit" value="Add" /></td>
+                                </form>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 

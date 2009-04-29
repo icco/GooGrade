@@ -31,9 +31,6 @@ public class Course implements java.io.Serializable
     private ArrayList<Assignment> assignments;
 
     /**
-     * Constructors
-     */
-    /**
      * Standard constructor, should not be used, kept for now
      */
     public Course()
@@ -67,9 +64,6 @@ public class Course implements java.io.Serializable
         this.setSection(section);
     }
 
-    /**
-     * Sets
-     */
     /**
      * setId sets this.id to provided argument
      * @param id Integer to set store
@@ -157,9 +151,7 @@ public class Course implements java.io.Serializable
         return true;
     }
 
-    /**
-     * Gets - Standard
-     */
+
     /**
      * getId returns this.id
      * @return id Integer to identify correct course in db
@@ -287,9 +279,6 @@ public class Course implements java.io.Serializable
         }
     }
 
-    /**
-     * Gets - Special
-     */
     /**
      * getCode gets the course code (eg. "CSC309")
      * @return the course code as a String
