@@ -1,4 +1,4 @@
-package GooGrade;
+package goograde;
 
 import java.io.IOException;
 import java.util.ArrayList;

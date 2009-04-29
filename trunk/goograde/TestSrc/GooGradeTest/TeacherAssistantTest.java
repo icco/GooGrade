@@ -1,6 +1,6 @@
 package GooGradeTest;
 
-import GooGrade.*;
+import goograde.*;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 

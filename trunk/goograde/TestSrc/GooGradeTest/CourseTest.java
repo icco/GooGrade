@@ -5,13 +5,13 @@
 
 package GooGradeTest;
 
-import GooGrade.Assignment;
-import GooGrade.Course;
-import GooGrade.GradingRules;
-import GooGrade.Permissions;
-import GooGrade.Student;
-import GooGrade.Teacher;
-import GooGrade.TeacherAssistant;
+import goograde.Assignment;
+import goograde.Course;
+import goograde.GradingRules;
+import goograde.Permissions;
+import goograde.Student;
+import goograde.Teacher;
+import goograde.TeacherAssistant;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 

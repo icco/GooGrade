@@ -1,7 +1,7 @@
 package GooGradeTest;
 
 import junit.framework.TestCase;
-import GooGrade.*; //We need this to do our tests...
+import goograde.*; //We need this to do our tests...
 
 
 

@@ -1,4 +1,4 @@
-package GooGrade;
+package goograde;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

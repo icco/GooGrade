@@ -1,4 +1,4 @@
-package GooGrade;
+package goograde;
 
 import java.util.ArrayList;
 import javax.servlet.http.HttpServlet;

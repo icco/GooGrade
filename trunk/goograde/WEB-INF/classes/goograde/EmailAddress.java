@@ -1,4 +1,4 @@
-package GooGrade;
+package goograde;
 
 /**
  * A model for email addresses since they need to be validated and such.

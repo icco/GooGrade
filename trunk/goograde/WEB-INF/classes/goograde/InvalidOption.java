@@ -1,4 +1,4 @@
-package GooGrade;
+package goograde;
 
 /**
  * An exception to throw if something is given the wrong thing.
