@@ -36,19 +36,19 @@
                     <div class="cornerBoxInner-blue">
                         
                         <ul class="iconlist">
-                            <!-- Not till release 2
+                            <%-- Not till release 2
                             <li class="import" >
                                 <img src="../styles/import.png" style=" position: relative; top: 3px;">Import Course
                             </li>
-                            -->
+                            --%>
                             <li class="add">
-                                <img src="../styles/add.png" style=" position: relative; top: 3px;"><a href="/GooGrade/teacher/course">Manage Courses</a>
+                                <img src="../styles/add.png" style=" position: relative; top: 3px;"><a href="/GooGrade/teacher/course/">Manage Courses</a>
                             </li>
-                            <!-- Not till release 2
+                            <%-- Not till release 2
                             <li class="export" >
                                 <img src="../styles/export.png" style=" position: relative; top: 3px;">Export Course
                             </li>
-                                  -->
+                            --%>
                         </ul>
                     </div>
                 </div>

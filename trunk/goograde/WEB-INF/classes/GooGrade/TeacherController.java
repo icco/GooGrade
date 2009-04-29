@@ -39,18 +39,14 @@ public class TeacherController extends HttpServlet
                         req.getParameter("newEmailAddr"));
             }
         }
-        
+
         try
         {
             this.doGet(req, resp);
         }
-        catch (ServletException ex)
+        catch (Exception ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Problem loading page", ex);
         }
 
     }
@@ -58,26 +54,21 @@ public class TeacherController extends HttpServlet
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
-    {        
+    {
         RequestDispatcher view = null;
-     
-            view = req.getRequestDispatcher("/teacher/teacher.jsp");
-      
-        req.setAttribute("teacherList", (ArrayList<Teacher>) Teacher.allTeachers());
-        req.setAttribute("teachCourseList", (ArrayList<Course>)(Teacher.allTeachers().get(0).getCourses()));
+
+        view = req.getRequestDispatcher("/teacher/teacher.jsp");
+
+        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        
         try
         {
             view.forward(req, resp);
         }
-        catch (ServletException ex)
+        catch (Exception ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Problem loading page", ex);
         }
-        catch (IOException ex)
-        {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 
     /**
@@ -123,8 +114,7 @@ public class TeacherController extends HttpServlet
      * @return the new, created Announcement.
      * @TODO Implement me! for release 2
      */
-    public Announcement createAnnouncement(
-            Course which)
+    public Announcement createAnnouncement(Course which)
     {
         return new Announcement();
     }

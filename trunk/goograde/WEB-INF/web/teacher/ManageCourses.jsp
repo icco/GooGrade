@@ -35,7 +35,7 @@
                                 <td>Number</td>
                                 <td>Section</td>
                             </tr>
-                            <c:forEach var="course" items="${courseList}">
+                            <c:forEach var="course" items="${teachCourseList}">
                                 <tr>
                                     <td>${course.title}</td>
                                     <td>${course.department}</td>

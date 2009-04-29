@@ -77,9 +77,7 @@ public class StorageConnection
         catch (SQLException ex)
         {
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
-                    "An Error has occured while running a query. " + 
-                    "If you see this error, tell nwelch.",
-                    ex);
+                    "An Error has occured while running a query. ", ex);
         }
         finally
         {
@@ -107,13 +105,13 @@ public class StorageConnection
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, 
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING, 
                     "SQL Update: " + in, ex);
         }
         finally
         {
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
-                    "Query Returned: " + results + " rows updated.");
+                    "Update Query Returned: " + results + " rows updated.");
         }
 
         return results > 0;
@@ -127,11 +125,8 @@ public class StorageConnection
         }
         catch (SQLException ex)
         {
-            // TODO: Don't really know what this does...
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, 
-                    "An Error has occured while closing the connection. " +
-                    "If you see this error, tell nwelch.", 
-                    ex);
+                    "An Error has occured while closing the connection. ", ex);
         }
     }
 
