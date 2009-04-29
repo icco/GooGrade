@@ -1,4 +1,4 @@
-package GooGradeTest;
+package goograde;
 
 import goograde.*;
 import junit.framework.TestCase;

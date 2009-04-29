@@ -1,4 +1,4 @@
-package GooGradeTest;
+package goograde;
 
 import goograde.*;
 import java.util.ArrayList;

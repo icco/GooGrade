@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package GooGradeTest;
+package goograde;
 
 import goograde.Assignment;
 import goograde.Course;
