@@ -3,9 +3,9 @@ package goograde;
 //import java.lang;
 //import java.io.*;
 //import java.util.*;
-import java.sql.Array;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+//import java.sql.Array;
+//import java.sql.ResultSet;
+//import java.sql.SQLException;
 
 
 /**
@@ -78,18 +78,20 @@ public class Permissions implements java.io.Serializable
     {
         this();
 
-        /*Based on type of account created, different permissions are set. */
+        /*Check for error */
         if (isStudent && isTeacher)
         {
             /*Trying to set two contradictory permissions */
             throw new Exception("Account cannot be Student and Teacher");
         }
+        /*Based on type of account created, different permissions are set. */
         if (isStudent)
         {
             /*student permissions */
             viewOwnGrade = true;
             uploadFile = true;
         }
+        /*set teacher permissions */
         else if (isTeacher)
         {
             /*teacher permissions */
