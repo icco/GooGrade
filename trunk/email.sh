@@ -34,7 +34,7 @@ OUT=`echo $OUT1 | sed 's/ /\n/g'`;
 for ticket in $OUT; do
 	TITLE=`sqlite3 /trac/blugoo/db/trac.db "select summary from ticket where id='$ticket'"`;
 	echo " * $TITLE" >> $FILE;
-	echo "   --- http://wiki.csc.calpoly.edu/blugoo/tickets/$ticket" >> $FILE;
+	echo "   --- http://wiki.csc.calpoly.edu/blugoo/ticket/$ticket" >> $FILE;
 done;
 
 echo -e "\nSee you later, \n The BluGoo Trac Installation" >> $FILE;
