@@ -143,7 +143,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the dueDate of the Assignment.
-     * @param dueDate the date the Assignment is due.
+     * @param pdueDate the date the Assignment is due.
      * @return true if set, false if failure.
      */
     public boolean setDueDate(Date pdueDate)
@@ -160,7 +160,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the namne of the Assignment.
-     * @param name the name of the Assignment.
+     * @param pname the name of the Assignment.
      * @return true if set, false if failure.
      */
     public boolean setName(String pname)
@@ -178,7 +178,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the total points of the Assignment.
-     * @param total the total points of the Assignment.
+     * @param ptotal the total points of the Assignment.
      * @return true if set, false if failure.
      */
     public boolean setTotal(Integer ptotal)
@@ -195,7 +195,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the type of the Assignment.
-     * @param type the type the Assignment is.
+     * @param ptype the type the Assignment is.
      * @return true if set, false if failure.
      */
     public boolean setType(String ptype)
@@ -212,7 +212,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the average points of the Assignment
-     * @param average the average points of the graded assignment for this Assignment
+     * @param paverage the average points of the graded assignment for this Assignment
      * @return true if set, false if failure.
      */
     public boolean setAvg(Float paverage)
@@ -229,7 +229,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the max points of the Assignment
-     * @param max the max points of the graded assignment for this Assignment
+     * @param pmax the max points of the graded assignment for this Assignment
      * @return true if set, false if failure.
      */
     public boolean setMax(Float pmax)
@@ -246,7 +246,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the min points of the Assignment
-     * @param min the min points of the graded assignment for this Assignment
+     * @param pmin the min points of the graded assignment for this Assignment
      * @return true if set, false if failure.
      */
     public boolean setMin(Float pmin)
