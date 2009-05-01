@@ -7,7 +7,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+"http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
     <head>
@@ -27,17 +27,22 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>About GooGrade</h3>
-
-						<%-- Defect #174 fixed here. Make sure it shows at /about on the website to verify fix. --%>
-						<dt>Team Leader & Web Lead</dt>
-							<dd>Nat Welch</dd>
-
+                        
+                        <%-- Defect #174 fixed here.Make sure it shows at /about 
+                        on the website to verify fix. --%>
+                        <dt>Team Leader & Web Lead</dt>
+                        <dd>Nat Welch</dd>
+                        
                         <%-- Defect #166 fixed here --%>
                         <dt>Assistant programmer & QA manager:</dt>
-							<dd> Matt Duder</dd>
-						
+                        <dd> Matt Duder</dd>
+                        
+                        <%--Defect 175 fixed here  --%>
+                        <dt>Testing Manager</dt>
+                        <dd>Katherine Blizard</dd>
+                        
                         <%-- Put your about here --%>
-                            
+                        
                     </div>
                 </div>
             </div>
@@ -47,4 +52,4 @@
     </body>
 </html>
 
-</html>
+
