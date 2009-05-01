@@ -41,6 +41,10 @@
                         <dt>Testing Manager</dt>
                         <dd>Katherine Blizard</dd>
                         
+                        <%-- Defect #176 fixed here --%>
+                        <dt>Implementation Manager & Architecture/Designer</dt>
+                        <dd>Paul Phu</dd>
+
                         <%-- Put your about here --%>
                         
                     </div>
