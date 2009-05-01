@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>About GooGrade</title>
+        <%@ include file="libs.jspf" %>
     </head>
     <body>
         <div id="wrap">
@@ -50,7 +51,7 @@
                     </div>
                 </div>
             </div>
-            <%@ include file="student/navside.jspf" %>
+            <%@ include file="naviside.jspf" %>
         </div>
         <%@ include file="footer.jspf" %>
     </body>
