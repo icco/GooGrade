@@ -46,7 +46,11 @@
                         <dt>Implementation Manager & Architecture/Designer</dt>
                         <dd>Paul Phu</dd>
 
-                        <%-- Put your about here --%>
+			<%-- Defect #179 fixed here --%>
+                        <dt>Change Mangager & Analyst</dt>
+			<dd>Viktor Gerdin</dd>
+
+			<%-- Put your about here --%>
                         
                     </div>
                 </div>
