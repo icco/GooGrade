@@ -27,9 +27,16 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>About GooGrade</h3>
-                        <%-- Put your about here --%>
+
+						<%-- Defect #174 fixed here. Make sure it shows at /about on the website to verify fix. --%>
+						<dt>Team Leader & Web Lead</dt>
+							<dd>Nat Welch</dd>
+
                         <%-- Defect #166 fixed here --%>
-                        Assistant programmer & QA manager: Matt Duder
+                        <dt>Assistant programmer & QA manager:</dt>
+							<dd> Matt Duder</dd>
+						
+                        <%-- Put your about here --%>
                             
                     </div>
                 </div>
