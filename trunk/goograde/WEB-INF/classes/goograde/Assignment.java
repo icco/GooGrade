@@ -1,6 +1,10 @@
 package goograde;
 
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 
 /**
  * This class keeps information about Assignments
@@ -44,18 +48,16 @@ public class Assignment implements java.io.Serializable
      */
     private Float min;
 
-    
     /**
      * Constructors
      */
-    
     /**
      * Standard constructor, should not be used, kept for now
      */
     public Assignment()
     {
     }
-    
+
     /**
      * ID constructor, standard constructor with id parameter.
      * All variables, other than id, are still null and retrieved from
@@ -65,19 +67,9 @@ public class Assignment implements java.io.Serializable
     public Assignment(Integer id)
     {
         this.id = id;
-        
-        /*Get the database at row ID */
-        /*String query = "SELECT id, total, name, " +
-                "dueDate, type, average, max, " +
-                "min FROM Assignments WHERE id =" + id;
-        StorageConnection conn = new StorageConnection();
-        ArrayList<Array> result = conn.query(query);
-        conn.close(); 
-         
-         //set varaibles to values loaded from database, TODO
-         */
+        this.fetch();
     }
-    
+
     /**
      * Gets a Date object for the due date of the assignment
      * @return the date the assignment is due
@@ -150,11 +142,11 @@ public class Assignment implements java.io.Serializable
     {
         dueDate = pdueDate;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
         return true;
     }
 
@@ -167,12 +159,12 @@ public class Assignment implements java.io.Serializable
     {
         name = pname;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
-        
+        conn.close();
+
         return true;
     }
 
@@ -185,11 +177,11 @@ public class Assignment implements java.io.Serializable
     {
         total = ptotal;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
         return true;
     }
 
@@ -202,11 +194,11 @@ public class Assignment implements java.io.Serializable
     {
         type = ptype;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
         return true;
     }
 
@@ -219,11 +211,11 @@ public class Assignment implements java.io.Serializable
     {
         average = paverage;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
         return true;
     }
 
@@ -236,11 +228,11 @@ public class Assignment implements java.io.Serializable
     {
         max = pmax;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
         return true;
     }
 
@@ -253,14 +245,14 @@ public class Assignment implements java.io.Serializable
     {
         min = pmin;
         /*now updating the database with changes */
-        /*String query = "UPDATE Assignments SET dueDate =" +
+        String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
         return true;
     }
-    
+
     /**
      * Searches the database table Assignments according
      * to this.id and sets all instance variables from there
@@ -270,6 +262,41 @@ public class Assignment implements java.io.Serializable
      */
     public boolean fetch()
     {
+        /*Get the database at row ID */
+        String query = "SELECT id, aTotal, aName, " +
+                "aDueDate, aType, aAverage, aMax, " +
+                "aMin FROM Assignments WHERE id =" + id;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<Object> result = conn.query(query).get(0);
+        conn.close();
+        
+        /* No results from the query means an unsuccessful fetch */
+        if(result.size() < 1)
+        {
+            return false;
+        }
+        else
+        {
+            try
+            {
+
+                //set varaibles to values loaded from database,
+                total = (Integer) result.get(1);
+                name = (String) result.get(2);
+                dueDate = (Date) result.get(3);
+                type = (String) result.get(4);
+                average = (Float) result.get(5);
+                max = (Float) result.get(6);
+                min = (Float) result.get(7);
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                        "SQL error occurred when trying to fetch Assignment"
+                        + " with id = " + this.id.toString(), ex);
+            }
+        }
+
         return true;
     }
 }
