@@ -21,7 +21,13 @@
         <servlet-name>teachercontroller</servlet-name>
         <url-pattern>/teacher/</url-pattern>
     </servlet-mapping>
-    
+    <servlet>
+        <servlet-name>studentcontroller</servlet-name>
+        <servlet-class>goograde.StudentController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>studentcontroller</servlet-name>
+        <url-pattern>/student/</url-pattern>
     <servlet>
         <servlet-name>coursecontroller</servlet-name>
         <servlet-class>goograde.CourseController</servlet-class>
