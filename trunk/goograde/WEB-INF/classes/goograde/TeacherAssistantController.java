@@ -52,10 +52,10 @@ public class TeacherAssistantController extends HttpServlet
     
     /**
      * Controller get method only redirects this call to the doPost above
-     * @param request
-     * @param response
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
+     * @param request   a servlet with request info
+     * @param response  a servlet with response info
+     * @throws javax.servlet.ServletException   throws as we don't catch them
+     * @throws java.io.IOException              throws as we don't catch them
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)

@@ -150,7 +150,7 @@ public class Account implements java.io.Serializable
         boolean ret = false;
         
         /* Check for unique name before setting */
-        if (Account.isUserNameUnique(userName) == true)
+        if (Account.isUserNameUnique(userName))
         {
             this.userName = newUserName;
             ret = true;
@@ -253,6 +253,7 @@ public class Account implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = null;
         boolean ret = false;
+        int index = 0, initial = 0;
         
         String query = "SELECT username, name, email, password"
                 + " FROM Accounts WHERE id = " + this.getId().toString();
@@ -270,11 +271,11 @@ public class Account implements java.io.Serializable
         {
             try
             {
-                ArrayList<Object> rs = result.get(0);
-                this.setUserName((String) rs.get(0));
-                this.setFullName((String) rs.get(1));
-                this.setEmailAddress(new EmailAddress((String) rs.get(2)));
-                this.setPassword((String) rs.get(3));
+                ArrayList<Object> rs = result.get(initial);
+                this.setUserName((String) rs.get(index++));
+                this.setFullName((String) rs.get(index++));
+                this.setEmailAddress(new EmailAddress((String) rs.get(index++)));
+                this.setPassword((String) rs.get(index++));
             }
             catch (Exception ex)
             {
@@ -342,6 +343,10 @@ public class Account implements java.io.Serializable
         return ret;
     }
 
+    /**
+     * Standard toString method for displaying a class
+     * @return a concatenated string of the object's variables
+     */
     @Override
     public String toString()
     {
@@ -365,16 +370,18 @@ public class Account implements java.io.Serializable
         ArrayList<Account> ret = new ArrayList<Account>();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
+        int index = 0;
 
         try
         {
             out = conn.query("select id, username, name, email from accounts");
+            /* Each row in the query result creates and populates a new Account obj */
             for (ArrayList<Object> row : out)
             {
-                ret.add(new Account((Integer) row.get(0),
-                        (String) row.get(1),
-                        (String) row.get(2),
-                        (String) row.get(3)));
+                ret.add(new Account((Integer) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++)));
             }
             conn.close();
         }
@@ -410,10 +417,16 @@ public class Account implements java.io.Serializable
         return false;
     }
 
+    /**
+     * An account is deleted from the database
+     * @return a boolean representing the success of the delete call
+     */
     public boolean delete()
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
+        
+        /* Only allow a database call if this Account already exists in it */
         if (this.getId() != null)
         {
             String query = "DELETE from Accounts ";
@@ -428,6 +441,7 @@ public class Account implements java.io.Serializable
      * This checks the database to make sure the currently set username
      * is unique.
      * 
+     * @param userNameIn the name to verify if is unique
      * @return true if unique, false if not.
      */
     public static boolean isUserNameUnique(String userNameIn)

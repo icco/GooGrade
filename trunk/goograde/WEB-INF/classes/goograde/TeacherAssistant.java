@@ -34,11 +34,11 @@ public class TeacherAssistant extends Account
     }
 
     /**
-     * Constructor for use with the allTAs method
-     * @param id
-     * @param username
-     * @param name
-     * @param email
+     * Constructor for use with the allTeacherAssistants method
+     * @param id        incoming user id
+     * @param username  incoming user name
+     * @param name      incoming full name
+     * @param email     incoming email address
      */
     public TeacherAssistant(Integer id, String username, String name, String email)
     {
@@ -55,6 +55,7 @@ public class TeacherAssistant extends Account
         ArrayList<TeacherAssistant> ret = new ArrayList<TeacherAssistant>();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
+        int index = 0;
 
         try
         {
@@ -62,12 +63,13 @@ public class TeacherAssistant extends Account
                     + "from tas, accounts where tas.id = accounts.id" 
                     + " group by accounts.id");
             
+            /* For each query result, create and populate a new TeacherAssistant obj */
             for (ArrayList<Object> row : out)
             {
-                ret.add(new TeacherAssistant((Integer) row.get(0),
-                        (String) row.get(1),
-                        (String) row.get(2),
-                        (String) row.get(3)));
+                ret.add(new TeacherAssistant((Integer) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++)));
             }
             
             conn.close();
@@ -75,7 +77,7 @@ public class TeacherAssistant extends Account
         catch (Exception ex)
         {
             Logger.getLogger(TeacherAssistant.class.getName())
-                    .log(Level.SEVERE,"Error in TeacherAssistant", ex);
+                    .log(Level.SEVERE, "Error in TeacherAssistant", ex);
         }
         finally
         {
@@ -87,6 +89,7 @@ public class TeacherAssistant extends Account
 
     /**
      * Editing of a current course is done here
+     * @param course the course to edit
      * @return the new, edited Course
      */
     public Course editCourse(Course course)
@@ -106,6 +109,7 @@ public class TeacherAssistant extends Account
 
     /**
      * A course is marked for deletion. 
+     * @param course the course to remove
      * @return true if no errors occur
      */
     public boolean removeCourse(Course course)
@@ -116,6 +120,7 @@ public class TeacherAssistant extends Account
     /**
      * Grade information in a Student is filled in
      * @param who the Student to be graded.
+     * @return nobody knows
      */
     public boolean gradeStudent(Student who)
     {
@@ -158,6 +163,10 @@ public class TeacherAssistant extends Account
         return null;
     }
 
+    /**
+     * Object checker to verify whether it is of rank TeacherAssistant
+     * @return true always, as it is a Teacher Assistant
+     */
     @Override
     public boolean isTeacherAssistant()
     {
