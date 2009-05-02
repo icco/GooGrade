@@ -490,7 +490,7 @@ public class CourseTest extends TestCase {
         Permissions permission = null;
         Course instance = new Course();
         boolean expResult = false;
-        boolean result = instance.deleteCourse(permission);
+        boolean result = instance.delete(permission);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -508,7 +508,7 @@ public class CourseTest extends TestCase {
         Integer number = null;
         Integer section = null;
         boolean expResult = false;
-        boolean result = Course.addCourse(permission, title, department, number, section);
+        boolean result = Course.addCourse(permission, title, department, number, section,null);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
