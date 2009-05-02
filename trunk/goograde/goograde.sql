@@ -53,7 +53,6 @@ CREATE TABLE Files (
 CREATE TABLE Assignments (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		aName TEXT,
-		aUserId INTEGER,
                 aTotal INTEGER,  
                 aDueDate DATE, 
                 aType TEXT, 
@@ -94,19 +93,16 @@ CREATE TABLE GradingRules (
 		id INTEGER PRIMARY KEY AUTOINCREMENT
 );
 
-/* TODO, how to store Grades in database <<---------------!!!!!*/
-CREATE TABLE Grades (
-                id INTEGER PRIMARY KEY AUTOINCREMENT
-);
 
 -- relation table between Accounts & Grades 
-Create Table hasGrade (        
-		account INTEGER,
-		grade INTEGER,
-		CONSTRAINT pk_hasGrade PRIMARY KEY (account, grade),
-		CONSTRAINT fk_account FOREIGN KEY (account) REFERENCES Accounts
+Create Table Grades (        
+		accountId INTEGER,
+		grade FLOAT,
+                assignId INTEGER,
+		CONSTRAINT pk_Grades PRIMARY KEY (accountId, assignId),
+		CONSTRAINT fk_account FOREIGN KEY (accountId) REFERENCES Accounts
 			(id) ON DELETE CASCADE,
-		CONSTRAINT fk_grade FOREIGN KEY (grade) REFERENCES Grades
+		CONSTRAINT fk_assign FOREIGN KEY (assignId) REFERENCES Assignments
 			(id) ON DELETE CASCADE
 );
 
