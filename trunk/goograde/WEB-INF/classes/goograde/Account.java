@@ -147,8 +147,15 @@ public class Account implements java.io.Serializable
      */
     public boolean setUserName(String newUserName)
     {
-        this.userName = newUserName;
-        return true;
+        boolean ret = false;
+        
+        /* Check for unique name before setting */
+        if (Account.isUserNameUnique(userName) == true)
+        {
+            this.userName = newUserName;
+            ret = true;
+        }
+        return ret;
     }
 
     /**
@@ -423,9 +430,24 @@ public class Account implements java.io.Serializable
      * 
      * @return true if unique, false if not.
      */
-    public boolean isUserNameUnique()
+    public static boolean isUserNameUnique(String userNameIn)
     {
-        return true;
+        boolean ret = false;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        String query = "SELECT id FROM Accounts WHERE username = "
+                + userNameIn;
+        
+        result = conn.query(query);
+        conn.close();
+        
+        /* No results from the query means the name is unique */
+        if(result.size() < 1)
+        {
+            ret = true;
+        }
+        
+        return ret;
     }
 }
 
