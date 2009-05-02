@@ -53,8 +53,8 @@ public class Course implements java.io.Serializable
      * Secondary constructor used when creating new Courses
      * @param title
      * @param department
-     * @param integer
-     * @param integer0
+     * @param number
+     * @param section
      */
     public Course(String title, String department, Integer number, Integer section)
     {
@@ -120,7 +120,7 @@ public class Course implements java.io.Serializable
 
     /**
      * setGradingRules saves a new Grading Rules over the old.
-     * @param newScale the new grading rules to save
+     * @param newRulesId the new grading rules to save
      * @return true if no errors 
      */
     public boolean setGradingRulesId(Integer newRulesId)
@@ -199,7 +199,7 @@ public class Course implements java.io.Serializable
 
     /**
      * 
-     * @return
+     * @return this.gradingRulesId 
      * @todo write comment
      */
     public Integer getGradingRulesId()
