@@ -25,22 +25,9 @@
         <div class="corner BL"></div>
         <div class="corner BR"></div>
         <div class="cornerBoxInner">
-            <h1>Goo<span style="color: #518ac1;">Grade</span></h1>
-            <h2>Control Panel</h2>
-            <div id=coursepanel>
-                <div class="cornerBox-blue">
-                    <div class="corner-blue TL"></div>
-                    <div class="corner-blue TR"></div>
-                    <div class="corner-blue BL"></div>
-                    <div class="corner-blue BR"></div>
-                    <div class="cornerBoxInner-blue">
-                        
-                        <ul class="iconlist">
-                         
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            <h1><a href="/GooGrade">Goo<span style="color: #518ac1;">Grade</span></a></h1>
+            
+           
             
             <div id="accordion">
                 

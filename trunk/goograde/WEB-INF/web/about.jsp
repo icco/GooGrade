@@ -14,6 +14,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>About GooGrade</title>
         <%@ include file="libs.jspf" %>
+        <style>
+            <!--
+            dd {
+                padding-left: 20px;
+            }
+            
+            dt {
+                padding-top: 10px;
+                font-weight:900
+            }
+            -->
+        </style>
     </head>
     <body>
         <div id="wrap">
@@ -43,14 +55,12 @@
                         <dd>Katherine Blizard</dd>
                         
                         <%-- Defect #176 fixed here --%>
-                        <dt>Implementation Manager & Architecture/Designer</dt>
+                        <dt>Implementation Manager, Architect, & Designer</dt>
                         <dd>Paul Phu</dd>
 
 			<%-- Defect #179 fixed here --%>
                         <dt>Change Mangager & Analyst</dt>
 			<dd>Viktor Gerdin</dd>
-
-			<%-- Put your about here --%>
                         
                     </div>
                 </div>

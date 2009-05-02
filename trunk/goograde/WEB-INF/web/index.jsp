@@ -46,7 +46,7 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="cornerBox-blue" style="position: relative; top: 20px;">
+                            <div class="cornerBox-blue" style="position: relative; top: 0px;">
                                 <div class="corner-blue TL"></div>
                                 <div class="corner-blue TR"></div>
                                 <div class="corner-blue BL"></div>
@@ -60,7 +60,20 @@
                                     </ul>
                                 </div>
                             </div>
-                            
+                              <div class="cornerBox-blue" style="position: relative; top: 20px;">
+                                <div class="corner-blue TL"></div>
+                                <div class="corner-blue TR"></div>
+                                <div class="corner-blue BL"></div>
+                                <div class="corner-blue BR"></div>
+                                <div class="cornerBoxInner-blue">
+                                    
+                                    <ul class="iconlist">
+                                        <li class="teacher">
+                                            <h3><a href="about">About Page</a></h3>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

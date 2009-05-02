@@ -112,7 +112,7 @@ public class TeacherController extends HttpServlet
      * 
      * @param which The course to add an announcement for.
      * @return the new, created Announcement.
-     * @TODO Implement me! for release 2
+     * @todo Implement me! for release 2
      */
     public Announcement createAnnouncement(Course which)
     {
