@@ -52,8 +52,14 @@ CREATE TABLE Files (
 /* entity table for Assignment class */
 CREATE TABLE Assignments (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		name text,
-		userId Integer
+		aName TEXT,
+		userId INTEGER,
+                total INTEGER,  
+                dueDate DATE, 
+                aType TEXT, 
+                average FLOAT, 
+                aMax FLOAT, 
+                aMin FLOAT
 );
 
 /* 
@@ -61,7 +67,16 @@ CREATE TABLE Assignments (
  * ... This needs some other stuff...
  */
 CREATE TABLE Permissions (  
-		id INTEGER PRIMARY KEY AUTOINCREMENT
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+                accountID INTEGER, 
+                manageUser BOOLEAN,
+                manageAnnouncement BOOLEAN,
+                manageRoser BOOLEAN,
+                manageGrade BOOLEAN,
+                manageMetric BOOLEAN,
+                manageCourse BOOLEAN,
+                uploadFile BOOLEAN,
+                sendEmail BOOLEAN
 
 );
 
