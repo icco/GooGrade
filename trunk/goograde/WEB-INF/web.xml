@@ -19,7 +19,7 @@
     </servlet>
     <servlet><description>The about page</description><servlet-name>about</servlet-name><jsp-file>/about.jsp</jsp-file></servlet><servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/teacher</url-pattern>
+        <url-pattern>/teacher/</url-pattern>
     </servlet-mapping>
     
     <servlet>
