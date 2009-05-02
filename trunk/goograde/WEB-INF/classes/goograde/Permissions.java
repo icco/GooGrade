@@ -2,7 +2,7 @@ package goograde;
 
 //import java.lang;
 //import java.io.*;
-//import java.util.*;
+import java.util.ArrayList;
 //import java.sql.Array;
 //import java.sql.ResultSet;
 //import java.sql.SQLException;
@@ -54,7 +54,7 @@ public class Permissions implements java.io.Serializable
         sendEmail = false;
 
         //make ID the next integer in the database here TODO
-        /*String query = "INSERT INTO Permissions (manageUser, " +
+        String query = "INSERT INTO Permissions (manageUser, " +
                 "manageAnnouncement, manageRoster, manageGrade, manageMetric" +
                 "manageCourse, viewOwnGrade, uploadFile, sendEmail) " +
                 "VALUES(" + manageUser + ", " + manageAnnouncement + ", " +
@@ -63,7 +63,7 @@ public class Permissions implements java.io.Serializable
                 sendEmail + ")";
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close(); 
     }
 
     /**
@@ -113,16 +113,24 @@ public class Permissions implements java.io.Serializable
     public Permissions(int id)
     {
         /*loads permissions from the database */
-        /*String query = "SELECT manageUser, manageAnnouncement, manageRoster, " +
+        String query = "SELECT manageUser, manageAnnouncement, manageRoster, " +
                 "manageGrade, manageMetric, manageCourse, uploadFile, " +
                 "sendEmail FROM Permissions WHERE accountID =" + id;
         StorageConnection conn = new StorageConnection();
-        ArrayList<Array> result = conn.query(query);
-        conn.close(); */
+        ArrayList<Object> result =  conn.query(query).get(0);
+        conn.close();
 
     /*set variables from results from the database.  */
     //i dont know how to get the items out of the array
-    //manageUser = result.get(0).;
+    manageUser = (Boolean) result.get(0);
+    manageAnnouncement = (Boolean) result.get(1);
+    manageRoster = (Boolean) result.get(2);
+    manageGrade = (Boolean) result.get(3);
+    manageMetric = (Boolean) result.get(4);
+    manageCourse = (Boolean) result.get(5);
+    uploadFile = (Boolean) result.get(6);
+    sendEmail = (Boolean) result.get(7);
+    
 
     }
 
@@ -240,11 +248,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET sendEmail =" +
+        String query = "UPDATE Permissions SET sendEmail =" +
                 sendEmail + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close(); */
+        conn.close();
 
         return true;
     }
@@ -272,11 +280,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET uploadFile =" +
+        String query = "UPDATE Permissions SET uploadFile =" +
                 uploadFile + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -305,11 +313,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET viewOwnGrade =" +
+        String query = "UPDATE Permissions SET viewOwnGrade =" +
                 viewOwnGrade + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -338,11 +346,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET manageCourse =" +
+        String query = "UPDATE Permissions SET manageCourse =" +
                 manageCourse + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -371,11 +379,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET manageMetric =" +
+        String query = "UPDATE Permissions SET manageMetric =" +
                 manageMetric + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -404,11 +412,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET manageGrade =" +
+        String query = "UPDATE Permissions SET manageGrade =" +
                 manageGrade + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -437,11 +445,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET manageRoster =" +
+        String query = "UPDATE Permissions SET manageRoster =" +
                 manageRoster + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -471,11 +479,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET manageAnnouncement =" +
+        String query = "UPDATE Permissions SET manageAnnouncement =" +
                 manageAnnouncement + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
@@ -503,11 +511,11 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        /*String query = "UPDATE Permissions SET manageUser =" +
+        String query = "UPDATE Permissions SET manageUser =" +
                 manageUser + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
-        conn.close();*/
+        conn.close();
 
         return true;
     }
