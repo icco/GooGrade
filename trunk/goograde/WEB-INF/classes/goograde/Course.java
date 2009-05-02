@@ -231,25 +231,6 @@ public class Course implements java.io.Serializable
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
-
-            /*
-            for(int i = 0; i < result.size(); i++)
-            {
-            Student student = null;
-            try
-            {
-            student = new Student(new Integer(result.get(i).getResultSet().getInt("id")));
-            }
-            catch (SQLException ex)
-            {
-            Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "Error msg TBD", ex);
-            }
-            if(student != null && student.fetch())
-            {
-            this.roster.add(student);
-            }
-            }
-             */
             }
 
             return this.roster;
@@ -468,26 +449,27 @@ public class Course implements java.io.Serializable
     }
 
     /**
-     * deleteCourse removes the current course, if exists,
+     * delete removes the current course, if exists,
      * from the database
      * @param permission Permission to remove the 
      * @return true if deleted, false otherwise
-     * @todo StorageConnection.query does not do deletes
      * @todo Implement Permissions
      */
-    public boolean deleteCourse(Permissions permission)
-    {
+     
+    public boolean delete(Permissions permission)
+    {        
+        boolean ret = false;
         if (this.getId() != null)
         {
-            String query = "DELETE FROM Courses WHERE id=" + this.getId().toString();
+            
+            String query = "DELETE FROM Courses ";
+            query += "WHERE id = " + this.getId();
             StorageConnection conn = new StorageConnection();
-            conn.query(query);
+            ret = conn.updateQuery(query);
             conn.close();
-
-            return true;
         }
-
-        return false;
+        
+        return ret;
     }
 
     /**
@@ -501,21 +483,32 @@ public class Course implements java.io.Serializable
      * @param section new Course's section
      * @return true if added, false otherwise
      */
-    static public boolean addCourse(Permissions permission, String title, String department, Integer number, Integer section)
+    static public boolean addCourse(Permissions permission, String title, String department, Integer number, Integer section, Teacher teacher)
     {
-
+        
+        boolean ret = false;
+        
+        Course course = new Course(title, department, number, section);
+        ret = course.save();
+        
+        if(ret)
+        {
+            ret = course.setTeacher(teacher);
+        }
+        /*
         if (title != null && department != null && number != null && section != null)
         {
             String query = "INSERT INTO Courses (title, department, number, section) " +
-                    "VALUES (" + title + "," + department + "," + number + "," + section + ")";
+                    "VALUES (\"" + title + "\",\"" + department + "\",\"" + number + "\",\"" + section + "\")";
             StorageConnection conn = new StorageConnection();
-            conn.query(query);
+            conn.updateQuery(query);
             conn.close();
 
             return true;
         }
+        */
 
-        return true;
+        return ret;
     }
 
     /**
@@ -582,9 +575,66 @@ public class Course implements java.io.Serializable
      */
     public boolean save()
     {
-        return true;
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+        String query = "";
+        
+        if(this.getId() == null)
+        {
+            query = "INSERT INTO Courses (title, department, number, section) " +
+                    "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() + 
+                    "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+            
+            if(!(ret = conn.updateQuery(query)))
+            {
+                return ret;
+            }
+            
+            query = "SELECT max(id) FROM Courses";
+            ArrayList<ArrayList<Object>> result = conn.query(query);
+            conn.close();
+            
+            if(result.isEmpty())
+            {
+                return false;
+            }
+            
+            ret = this.setId((Integer)result.get(0).get(0));
+        }
+        
+        else
+        {
+            query = "SELECT id FROM Courses WHERE id = " + this.getId();
+            ArrayList<ArrayList<Object>> result = conn.query(query);
+            
+            if(result.isEmpty())
+            {
+                query = "INSERT INTO Courses (id, title, department, number, section) " +
+                    "VALUES (\"" + this.getId() + "\",\"" + this.getTitle() + "\",\"" + this.getDepartment() + 
+                    "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+                
+                ret = conn.updateQuery(query);
+                conn.close();
+            }
+            else
+            {
+                query = "UPDATE Courses SET " +
+                    "title = \"" + this.getTitle() + "\"," +
+                    "department = \"" + this.getDepartment() + "\"," +
+                    "number = \"" + this.getNumber() + "\"," +
+                    "section = \"" + this.getSection() + "\" " +
+                    "WHERE id = \"" + this.getId() + "\"";
+                
+                ret = conn.updateQuery(query);
+                conn.close();
+            }
+        }
+
+        return ret;
+                
     }
 
+    @Override
     public String toString()
     {
         String ret = new String();
@@ -594,6 +644,22 @@ public class Course implements java.io.Serializable
         ret += this.section + ", ";
         ret += this.number;
 
+        return ret;
+    }
+    
+    private boolean setTeacher(Teacher teacher)
+    {
+        boolean ret = false;
+        
+        if(teacher != null && this.getId() != null)
+        {
+            String query = "INSERT INTO teaches (teacher, course) " +
+                    "VALUES (\"" + teacher.getId() + "\",\"" + this.getId() + "\")";
+            StorageConnection conn = new StorageConnection();
+            ret = conn.updateQuery(query);
+            conn.close();
+        }
+        
         return ret;
     }
 }

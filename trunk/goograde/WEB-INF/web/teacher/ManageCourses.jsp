@@ -63,6 +63,7 @@
                                 <td>Number</td>
                                 <td>Section</td>
                             </tr>
+                            <tr>
                                 <form action="<c:url value="course" />" method="post">
                                     <input type="hidden" name="action" value="add" />
                                     <td><input type="text" name="newCourseTitle" /></td>

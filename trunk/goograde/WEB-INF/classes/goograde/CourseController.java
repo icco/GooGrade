@@ -63,7 +63,7 @@ public class CourseController extends HttpServlet
 
         //req.setAttribute("courseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        
+        //req.setAttribute("teachCourseList", (ArrayList<Course>) (Course.allCourses()));
         try
         {
             view.forward(req, resp);
@@ -129,6 +129,6 @@ public class CourseController extends HttpServlet
 
     private void addCourse(String title, String department, String number, String section)
     {
-        Course.addCourse(null, title, department, new Integer(number), new Integer(section));
+        Course.addCourse(null, title, department, new Integer(number), new Integer(section), Teacher.allTeachers().get(0));
     }
 }
