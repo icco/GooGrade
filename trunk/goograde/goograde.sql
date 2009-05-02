@@ -53,11 +53,11 @@ CREATE TABLE Files (
 CREATE TABLE Assignments (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		aName TEXT,
-		userId INTEGER,
-                total INTEGER,  
-                dueDate DATE, 
+		aUserId INTEGER,
+                aTotal INTEGER,  
+                aDueDate DATE, 
                 aType TEXT, 
-                average FLOAT, 
+                aAverage FLOAT, 
                 aMax FLOAT, 
                 aMin FLOAT
 );
