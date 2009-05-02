@@ -496,7 +496,8 @@ public class Permissions implements java.io.Serializable
      * called by the system rather than a user, pass in true. 
      * @return true if set is succesful, false if not
      */
-    public boolean setManageUser(boolean desiredChange, boolean manageUserPermit)
+    public boolean setManageUser(boolean desiredChange, 
+            boolean manageUserPermit)
     {
         try
         {
