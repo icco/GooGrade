@@ -20,11 +20,11 @@ public class CourseController extends HttpServlet
 {
 
     /**
-     * 
-     * @param req
-     * @param resp
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
+     * called from form method = "post"
+     * @param req request
+     * @param resp response
+     * @throws javax.servlet.ServletException on error
+     * @throws java.io.IOException on error
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -52,21 +52,25 @@ public class CourseController extends HttpServlet
         }
         catch (ServletException ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    AccountController.class.getName()).log(Level.SEVERE, 
+                    null, ex);
         }
         catch (IOException ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    AccountController.class.getName()).log(Level.SEVERE, 
+                    null, ex);
         }
 
     }
 
     /**
      * 
-     * @param req
-     * @param resp
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
+     * @param req request
+     * @param resp response
+     * @throws javax.servlet.ServletException on error
+     * @throws java.io.IOException on error
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -74,20 +78,23 @@ public class CourseController extends HttpServlet
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
 
-        //req.setAttribute("courseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        //req.setAttribute("teachCourseList", (ArrayList<Course>) (Course.allCourses()));
+        req.setAttribute("teachCourseList",
+            (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         try
         {
             view.forward(req, resp);
         }
         catch (ServletException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    TeacherController.class.getName()).log(
+                        Level.SEVERE, null, ex);
         }
         catch (IOException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    TeacherController.class.getName()).log(
+                        Level.SEVERE, null, ex);
         }
     }
 
@@ -140,7 +147,8 @@ public class CourseController extends HttpServlet
         Course.deleteCourse(null, new Integer(courseRef));
     }
 
-    private void addCourse(String title, String department, String number, String section)
+    private void addCourse(String title, String department, 
+            String number, String section)
     {
         if(Course.validateNumber(number) && Course.validateSection(section))
         {
