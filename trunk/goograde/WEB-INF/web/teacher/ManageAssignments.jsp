@@ -38,7 +38,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach var = 'assg' items="${teachCourseList}">
+                                    <%--TODO, do display "no assignments exist" --%>
+                                <c:forEach var = 'assg' items="${AssignmentList}">
                                     <tr>
                                         <td>${assg.name}</td>
                                         <td>${assg.total}</td>
@@ -46,7 +47,7 @@
                                         <td>
                                             <form action="<c:url value="course" />" method="post">
                                                 <input type="hidden" name="action" value="delete" />
-                                                <input type="hidden" name="courseRef" value="${assg.id}" />
+                                                <input type="hidden" name="AssgnId" value="${assg.id}" />
                                                 <input type="submit" value="Delete">
                                             </form>
                                         </td>
@@ -67,10 +68,11 @@
                                                 Title<input type="text" name="newAssgnTitle" />
                                             </td>
                                             <td>
-                                                Due Date<input type="text" size="5" name="newAssgnDate" />
+                                                
+                                                Due Date<input type="date" size="5" name="newAssgnDate" />
                                             </td>
                                             <td>
-                                                Total Points <input type="text" size="5" name="newAssgnTotal" />
+                                                Total Points <input type="integer" size="5" name="newAssgnTotal" />
                                             </td>
 
                                                 <td>
