@@ -74,6 +74,28 @@ public class Assignment implements java.io.Serializable
         this.fetch();
     }
 
+    public void deleteAssignment()
+    {
+        String query = "DELETE FROM Assignments WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.query(query);
+        conn.close();
+        
+        query = "DELETE FROM Grades WHERE assignId = " + id;
+        conn = new StorageConnection();
+        conn.query(query);
+        conn.close();
+        
+        id = 0;
+        type = null;
+        max = null;
+        min = null;
+        average = null;
+        dueDate = null;
+        name = null;
+        total = null;
+        
+    }
     /**
      * Gets a Date object for the due date of the assignment
      * @return the date the assignment is due
