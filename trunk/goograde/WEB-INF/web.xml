@@ -31,7 +31,7 @@
         </servlet>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/teacher</url-pattern>
+        <url-pattern>/teacher/</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>coursecontroller</servlet-name>
