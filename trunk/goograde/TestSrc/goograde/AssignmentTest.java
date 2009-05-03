@@ -140,12 +140,12 @@ public class AssignmentTest extends TestCase
     /**
      * Test of getGrades method, of class Assignment.
      */
-    public void testGetGrades()
+    public void testGetGrades() throws Exception
     {
         System.out.println("getGrades");
         Assignment instance = new Assignment();
         ArrayList<Grade> expResult = new ArrayList<Grade>();
-        instance.setAGrade(new Student(), 20.4F);
+        instance.setAGrade(new Student(42), 20.4F);
         expResult.add(new Grade());
         expResult.get(0).gradeStudent(20.4F);
         ArrayList<Grade> result = instance.getGrades();
@@ -246,10 +246,10 @@ public class AssignmentTest extends TestCase
     /**
      * Test of setAGrade method, of class Assignment.
      */
-    public void testSetAGrade()
+    public void testSetAGrade() throws Exception
     {
         System.out.println("setAGrade");
-        Student aStudent = new Student();
+        Student aStudent = new Student(42);
         float newGrade = 40.0F;
         Assignment instance = new Assignment();
         boolean expResult = true;
