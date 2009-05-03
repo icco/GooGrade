@@ -45,6 +45,15 @@ public class CourseController extends HttpServlet
                         req.getParameter("newCourseNumber"),
                         req.getParameter("newCourseSection"));
             }
+            else if (action.equals("edit"))
+            {
+                this.editCourse("1"/*(String) req.getParameter("courseRef")*/,
+                        (String) req.getParameter("title"),
+                        (String) req.getParameter("department"),
+                        (String) req.getParameter("number"),
+                        (String) req.getParameter("section")
+                        );
+            }
         }
         try
         {
@@ -155,5 +164,46 @@ public class CourseController extends HttpServlet
             Course.addCourse(null, title, department, new Integer(number), 
                 new Integer(section), Teacher.allTeachers().get(0));
         }
+    }
+    
+    private void editCourse(String courseRef, String title, String department, String number, String section)
+    {
+        boolean pass = true;
+        boolean ret = false;
+        if(!Course.validateId(courseRef))
+        {
+            pass = false;
+        }
+        if(!Course.validateTitle(title))
+        {
+            pass = false;
+        }
+        if(!Course.validateDepartment(department))
+        {
+            pass = false;
+        }
+        if(!Course.validateNumber(number))
+        {
+            pass = false;
+        }
+        if(!Course.validateSection(section))
+        {
+            pass = false;
+        }
+        
+        if(pass)
+        {
+            Course course = new Course(new Integer(courseRef));
+            if(course.setTitle(title)
+                && course.setDepartment(department)
+                && course.setNumber(new Integer(number))
+                && course.setSection(new Integer(section)))
+            {
+                ret = course.save();
+            }
+            
+        }
+        
+        //return ret;
     }
 }

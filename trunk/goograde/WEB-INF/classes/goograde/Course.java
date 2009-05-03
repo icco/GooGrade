@@ -103,7 +103,7 @@ public class Course implements java.io.Serializable
             this.title = newTitle;
             ret = true;
         }
-        return true;
+        return ret;
     }
 
     /**
@@ -768,6 +768,73 @@ public class Course implements java.io.Serializable
     }
     
     /**
+     * Validates that given string can be used as an id
+     * @param string string to be validated
+     * @return true if string follows specifications for id
+     */
+    public static boolean validateId(String string)
+    {
+        boolean ret = true;
+        try
+        {
+            Integer tmp = new Integer(string);
+            if(tmp.intValue() < 1)
+            {
+                throw new NumberFormatException(); 
+            }
+        }
+        catch(NumberFormatException nfe)
+        {
+            ret = false;
+            
+            Logger.getLogger(
+                    Course.class.getName()).log(Level.SEVERE, 
+                    string + " is not a valid section ", nfe);
+        }
+        return ret;
+    }
+    
+    /**
+     * Validates that given string can be used as a title
+     * @param string string to be validated
+     * @return true if string follows specifications for title
+     */
+    public static boolean validateTitle(String string)
+    {
+        boolean ret = true;
+        
+        if(string == null || string.length() < 3 || string.length() > 100)
+        {
+            ret = false;
+            Logger.getLogger(
+                    Course.class.getName()).log(Level.SEVERE, 
+                    string + " is not a valid title");
+        }
+        
+        return ret;
+    }
+    
+    /**
+     * Validates that given string can be used as a department
+     * @param string string to be validated
+     * @return true if string follows specifications for department
+     */
+    public static boolean validateDepartment(String string)
+    {
+        boolean ret = true;
+        
+        if(string == null || string.length() < 2 || string.length() > 4)
+        {
+            ret = false;
+            Logger.getLogger(
+                    Course.class.getName()).log(Level.SEVERE, 
+                    string + " is not a valid department");
+        }
+        
+        return ret;
+    }
+    
+    /**
      * Validates that given string can be used as a number
      * @param string string to be validated
      * @return true if string follows specifications for number
@@ -782,6 +849,9 @@ public class Course implements java.io.Serializable
         catch(NumberFormatException nfe)
         {
             ret = false;
+            Logger.getLogger(
+                    Course.class.getName()).log(Level.SEVERE, 
+                    string + " is not a valid number", nfe);
         }
         return ret;
     }
@@ -801,6 +871,10 @@ public class Course implements java.io.Serializable
         catch(NumberFormatException nfe)
         {
             ret = false;
+            
+            Logger.getLogger(
+                    Course.class.getName()).log(Level.SEVERE, 
+                    string + " is not a valid section ", nfe);
         }
         return ret;
     }
