@@ -30,8 +30,6 @@
     <body>
         <div id="wrap">
             
-            <%@ include file="header.jspf" %>
-            
             <div id="content">
                 <div class="cornerBox">
                     <div class="corner TL"></div>
