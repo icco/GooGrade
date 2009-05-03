@@ -111,7 +111,15 @@ public class AccountController extends HttpServlet
      */
     private void deleteAccount(Integer in)
     {
-        Account temp = new Account(in);
+        Account temp = null;
+        try
+        {
+            temp = new Account(in);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         temp.delete();
     }
 }

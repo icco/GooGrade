@@ -36,7 +36,7 @@ public class Teacher extends Account
      * database with fetch();
      * @param id identification Integer used to fetch data from db
      */
-    public Teacher(Integer id)
+    public Teacher(Integer id) throws Exception
     {
         super(id);
         this.teaches = getCourses();

@@ -35,7 +35,15 @@ public class StudentController extends HttpServlet
 
 
         view = req.getRequestDispatcher("/student/viewStudent.jsp");
-        Student user1 = new Student((new Integer(req.getParameter("who"))));
+        Student user1 = null;
+        try
+        {
+            user1 = new Student(new Integer(req.getParameter("who")));
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         req.setAttribute("stud", (Student) (user1));
         req.setAttribute("enrolledCourseList", 
                 (ArrayList<Course>) (user1.getEnrolled()));
