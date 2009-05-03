@@ -151,22 +151,57 @@ public class CourseController extends HttpServlet
         return false;
     }
 
-    private void deleteCourse(String courseRef)
+    private boolean deleteCourse(String courseRef)
     {
-        Course.deleteCourse(null, new Integer(courseRef));
+        boolean pass = true;
+        boolean ret = false;
+        
+        if(!Course.validateId(courseRef))
+        {
+            pass = false;
+        }
+        
+        if(pass)
+        {
+            ret = Course.deleteCourse(null, new Integer(courseRef));
+        }
+        
+        return ret;
     }
 
-    private void addCourse(String title, String department, 
+    private boolean addCourse(String title, String department, 
             String number, String section)
     {
-        if(Course.validateNumber(number) && Course.validateSection(section))
+        boolean pass = true;
+        boolean ret = false;
+
+        if(!Course.validateTitle(title))
         {
-            Course.addCourse(null, title, department, new Integer(number), 
+            pass = false;
+        }
+        if(!Course.validateDepartment(department))
+        {
+            pass = false;
+        }
+        if(!Course.validateNumber(number))
+        {
+            pass = false;
+        }
+        if(!Course.validateSection(section))
+        {
+            pass = false;
+        }
+        
+        if(pass)
+        {
+            ret = Course.addCourse(null, title, department, new Integer(number), 
                 new Integer(section), Teacher.allTeachers().get(0));
         }
+        
+        return ret;
     }
     
-    private void editCourse(String courseRef, String title, String department, String number, String section)
+    private boolean editCourse(String courseRef, String title, String department, String number, String section)
     {
         boolean pass = true;
         boolean ret = false;
@@ -204,6 +239,6 @@ public class CourseController extends HttpServlet
             
         }
         
-        //return ret;
+        return ret;
     }
 }
