@@ -74,6 +74,8 @@ public class AccountController extends HttpServlet
         RequestDispatcher view = req.getRequestDispatcher("/account.jsp");
 
         req.setAttribute("accountList", (ArrayList<Account>) Teacher.allAccounts());
+        req.setAttribute("teachCourseList",
+            (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         
         try
         {

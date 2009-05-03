@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-
 /**
  * Does all of the work on the Assignment, it is the controller. 
  * We haven't really speced out what this is going to do yet.
@@ -30,7 +29,7 @@ public class AssignmentController extends HttpServlet
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        
+
         String action = req.getParameter("action"); //the action to be done
 
         /*Determine which action needs to be taken */
@@ -41,38 +40,34 @@ public class AssignmentController extends HttpServlet
                 //choose teh appropriate assignment to modify and then modify 
                 //and then delete it
                 Assignment.deleteAssignment(req.getParameter("AssgnId"));
-            }
-            else if (action.equals("add"))
+            } else if (action.equals("add"))
             {
                 //this.addAssignment(req.getParameter("newUserName"),
-                Assignment.addAssignment(req.getParameter("Type"), 
-                        new Date(req.getParameter("NewAssgnDate")), 
+                Assignment.addAssignment(req.getParameter("Type"),
+                        new Date(req.getParameter("NewAssgnDate")),
                         req.getParameter("NewAssgnName"),
                         new Integer(req.getParameter("NewAssgnTotal")));
-                
-            }
-            else if(action.equals("edit"))
+
+            } else if (action.equals("edit"))
             {
-               /* Assignment.modifyAssignment(req.getParamater("EditType"), 
-                        new Float(req.getParamater("EditMax")), 
-                        new Float(req.getParamater("EditMin")), 
-                        new Float(req.getParamater("EditAverage")),
-                        new Date (req.getParamater("EditDueDate")),
-                        req.getParamater("EditName"), 
-                        new Integer(req.getParamater("EditTotal"))); */
+                /* Assignment.modifyAssignment(req.getParamater("EditType"), 
+                new Float(req.getParamater("EditMax")), 
+                new Float(req.getParamater("EditMin")), 
+                new Float(req.getParamater("EditAverage")),
+                new Date (req.getParamater("EditDueDate")),
+                req.getParamater("EditName"), 
+                new Integer(req.getParamater("EditTotal"))); */
             }
         }
 
         try
         {
             this.doGet(req, resp);
-        }
-        catch (ServletException ex)
+        } catch (ServletException ex)
         {
             Logger.getLogger(AccountController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(AccountController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -89,72 +84,70 @@ public class AssignmentController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        RequestDispatcher view = null;
+        RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
+        
+        req.setAttribute("teachCourseList",
+                (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
-        view = req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
+        req.setAttribute("AssignmentList", (ArrayList<Assignment>) Assignment.allAssignments());
 
-        req.setAttribute("AssignmentList", (ArrayList<Assignment>) 
-                Assignment.allAssignments());
+
         /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
-                (Teacher.allTeachers().get(0).getCourses())); */
+        (Teacher.allTeachers().get(0).getCourses())); */
         try
         {
             view.forward(req, resp);
-        }
-        catch (ServletException ex)
+        } catch (ServletException ex)
         {
             Logger.getLogger(AssignmentController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(AssignmentController.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
 
     }
-    
-    private void modifyAssignment(String type, float max, float min, 
-            float average, Date dueDate, String name, Integer total, Assignment
-            current)
+
+    private void modifyAssignment(String type, float max, float min,
+            float average, Date dueDate, String name, Integer total, Assignment current)
     {
         Assignment temp = current;
-        if(type != null)
+        if (type != null)
         {
             temp.setType(type);
         }
-        if(max >= 0)
+        if (max >= 0)
         {
             temp.setMax(max);
         }
-        if(min >= 0)
+        if (min >= 0)
         {
             temp.setMin(min);
         }
-        if(average >= 0)
+        if (average >= 0)
         {
             temp.setAvg(average);
         }
-        if(dueDate != null)
+        if (dueDate != null)
         {
             temp.setDueDate(dueDate);
         }
-        if(name != null)
+        if (name != null)
         {
             temp.setName(name);
         }
-        if(total != null)
+        if (total != null)
         {
             temp.setTotal(total);
         }
     }
-    
-    private void addAssignment(int id, String type, float max, float min, 
+
+    private void addAssignment(int id, String type, float max, float min,
             float average, Date dueDate, String name, Integer total)
     {
         Assignment temp = new Assignment(id);
         modifyAssignment(type, max, min, average, dueDate, name, total, temp);
     }
-    
 }
 

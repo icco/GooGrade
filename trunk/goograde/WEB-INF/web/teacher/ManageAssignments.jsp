@@ -38,7 +38,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <%--TODO, do display "no assignments exist" --%>
+                                <%--TODO, do display "no assignments exist" --%>
                                 <c:forEach var = 'assg' items="${AssignmentList}">
                                     <tr>
                                         <td>${assg.name}</td>
@@ -54,13 +54,13 @@
                                     </tr>
                                 </c:forEach>
                             </table>
-                            <input alt="#TB_inline?height=60&width=700&inlineId=Form" 
+                            <input alt="#TB_inline?height=60&width=700&inlineId=FormPopUp" 
                                    title="Add New Assignment" 
                                    class="thickbox" 
                                    type="button"
                                    value="Add New Assignment">
-                            <div id="Form" style="display: none">
-                                <form id="Form"  action="<c:url value="ManageAssignments.jsp"/>" method="post">
+                            <div id="FormPopUp" style="display: none">
+                                <form action="<c:url value="ManageAssignments.jsp"/>" method="post">
                                     <input type="hidden" name="action" value="add" />
                                     <table>
                                         <tr>
@@ -74,19 +74,19 @@
                                             <td>
                                                 Total Points <input type="integer" size="5" name="newAssgnTotal" />
                                             </td>
-
-                                                <td>
-                                                    Type: 
-                                                    <select name="Type" size="1">
-                                                        <option>Homework</option>
-                                                        <option>Quiz</option>
-                                                        <option>Test</option>
-                                                        <option>Final</option>
-                                                        <option>Participation</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                    
-                                                </td>
+                                            
+                                            <td>
+                                                Type: 
+                                                <select name="Type" size="1">
+                                                    <option>Homework</option>
+                                                    <option>Quiz</option>
+                                                    <option>Test</option>
+                                                    <option>Final</option>
+                                                    <option>Participation</option>
+                                                    <option>Other</option>
+                                                </select>
+                                                
+                                            </td>
                                             <td>
                                                 <input  type="submit" value="Add" />
                                             </td>
