@@ -13,6 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manage Courses</title>
     </head>
+
     <body>
         
         <div id="wrap">
@@ -35,9 +36,12 @@
                                     <th>Number</th>
                                     <th>Section</th>
                                 </tr>
+                                
+                                
+                                <script type="text/javascript">
+                                    var index = 0;
+                                </script>
                                 <c:forEach var="course" items="${teachCourseList}">
-                                    <c:choose>
-                                        <c:when test = "${course.id % 2 == 1}">
                                             <tr>
                                             
                                             <td>${course.title}</td>
@@ -45,17 +49,7 @@
                                             <td>${course.number}</td>
                                             <td>${course.section}</td>
                                             <td>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <tr>
-                                                <td class="alt">${course.title}</td>
-                                                <td class="alt">${course.department}</td>
-                                                <td class="alt">${course.number}</td>
-                                                <td class="alt">${course.section}</td>
-                                                <td class="alt">
-                                                </c:otherwise>
-                                            </c:choose>
-                                            
+ 
                                             <form action="<c:url value="course" />" method="post">
                                                 <input type="hidden" name="action" value="delete" />
                                                 <input type="hidden" name="courseRef" value="${course.id}" />
@@ -92,9 +86,9 @@
                                                 <input  type="submit" value="Add" />
                                             </td>
                                         </tr>
-                                    
+                                        
                                     </table>
-
+                                    
                                 </form>
                             </div>
                         </div>

@@ -20,3 +20,12 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function()
+    {
+
+        //for table row
+        $("tr:even").css("background-color", "#98bfe3");
+        $("tr:odd").css("background-color", "");
+    });
+</script>
