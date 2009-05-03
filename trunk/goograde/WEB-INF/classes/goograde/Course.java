@@ -79,8 +79,14 @@ public class Course implements java.io.Serializable
      */
     public boolean setId(Integer newId)
     {
-        this.id = newId;
-        return true;
+        boolean ret = false;
+        /*id must not be set to null*/
+        if(newId != null)
+        {
+            this.id = newId;
+            ret = true;
+        }
+        return ret;
     }
 
     /**
@@ -90,7 +96,13 @@ public class Course implements java.io.Serializable
      */
     public boolean setTitle(String newTitle)
     {
-        this.title = newTitle;
+        boolean ret = false;
+        /*title must not be set to null*/
+        if(newTitle != null)
+        {
+            this.title = newTitle;
+            ret = true;
+        }
         return true;
     }
 
@@ -101,8 +113,14 @@ public class Course implements java.io.Serializable
      */
     public boolean setDepartment(String newDepartment)
     {
-        this.department = newDepartment;
-        return true;
+        boolean ret = false;
+        /*department must not be set to null*/
+        if(newDepartment != null)
+        {
+            this.department = newDepartment;
+            ret = true;
+        }
+        return ret;
     }
 
     /** 
@@ -110,10 +128,16 @@ public class Course implements java.io.Serializable
      * @param newNumber is the new course number to save
      * @return true if no errors occurred. 
      */
-    public boolean setNumber(int newNumber)
+    public boolean setNumber(Integer newNumber)
     {
-        this.number = newNumber;
-        return true;
+        boolean ret = false;
+        /*number must not be set to null*/
+        if(newNumber != null)
+        {
+            this.number = newNumber;
+            ret = true;
+        }
+        return ret;
     }
 
     /**
@@ -121,10 +145,16 @@ public class Course implements java.io.Serializable
      * @param newSection is the number of the new section to save
      * @return true if no errors occurred
      */
-    public boolean setSection(int newSection)
+    public boolean setSection(Integer newSection)
     {
-        this.section = newSection;
-        return true;
+        boolean ret = false;
+        /*section must not be set to null*/
+        if(newSection != null)
+        {
+            this.section = newSection;
+            ret = true;
+        }
+        return ret;
     }
 
     /**
@@ -134,8 +164,14 @@ public class Course implements java.io.Serializable
      */
     public boolean setGradingRulesId(Integer newRulesId)
     {
-        this.gradingRulesId = newRulesId;
-        return true;
+        boolean ret = false;
+        /*rulesId must not be set to null*/
+        if(newRulesId != null)
+        {
+            this.gradingRulesId = newRulesId;
+            ret = true;
+        }
+        return ret;
     }
 
     /**
@@ -145,8 +181,14 @@ public class Course implements java.io.Serializable
      */
     public boolean setRoster(ArrayList<Student> newRoster)
     {
-        this.roster = newRoster;
-        return true;
+        boolean ret = false;
+        /*this will always happen but keep same look as rest in case of change*/
+        if(true)
+        {
+            this.roster = newRoster;
+            ret = true;
+        }
+        return ret;
     }
 
     /**
@@ -156,8 +198,14 @@ public class Course implements java.io.Serializable
      */
     public boolean setAssignments(ArrayList<Assignment> newAssignments)
     {
-        this.assignments = newAssignments;
-        return true;
+        boolean ret = false;
+        /*this will always happen but keep same look as rest in case of change*/
+        if(true)
+        {
+            this.assignments = newAssignments;
+            ret = true;
+        }
+        return ret;
     }
 
 
