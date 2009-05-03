@@ -732,7 +732,7 @@ public class Course implements java.io.Serializable
     
     /**
      * matches a teacher's id and a course id int the table teaches
-     * @param teacher
+     * @param teacher the new teacher for the class
      * @return true if set and no errors
      */ 
     private boolean setTeacher(Teacher teacher)
@@ -748,6 +748,44 @@ public class Course implements java.io.Serializable
             conn.close();
         }
         
+        return ret;
+    }
+    
+    /**
+     * Validates that given string can be used as a number
+     * @param string string to be validated
+     * @return true if string follows specifications for number
+     */
+    public static boolean validateNumber(String string)
+    {
+        boolean ret = true;
+        try
+        {
+            Integer tmp = new Integer(string);
+        }
+        catch(NumberFormatException nfe)
+        {
+            ret = false;
+        }
+        return ret;
+    }
+    
+    /**
+     * Validates that given string can be used as a section
+     * @param string string to be validated
+     * @return true if string follows specifications for section
+     */
+    public static boolean validateSection(String string)
+    {
+        boolean ret = true;
+        try
+        {
+            Integer tmp = new Integer(string);
+        }
+        catch(NumberFormatException nfe)
+        {
+            ret = false;
+        }
         return ret;
     }
 }

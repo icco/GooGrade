@@ -544,16 +544,69 @@ public class CourseTest extends TestCase {
 
     /**
      * Test of save method, of class Course.
+     * Test with null id
      */
-    public void testSave()
+    public void testSave1()
     {
-        System.out.println("save");
-        Course instance = new Course();
-        boolean expResult = false;
+        System.out.println("save1");
+        Course instance = new Course("Testing Save","TEST",101,null);
+        boolean expResult = true;
         boolean result = instance.save();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of save method, of class Course.
+     * Test with non-null id in database
+     */
+    public void testSave2()
+    {
+        System.out.println("save2");
+        Course instance = new Course(1);
+        boolean expResult = true;
+        boolean result = instance.save();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of save method, of class Course.
+     * Test with non-null id not in database
+     */
+    public void testSave3()
+    {
+        System.out.println("save3");
+        Course instance = new Course(15);
+        instance.setTitle("Testing is fun");
+        instance.setDepartment("TEST");
+        instance.setNumber(103);
+        instance.setSection(1);
+        boolean expResult = true;
+        boolean result = instance.save();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of validateNumber method, of class Course.
+     * Test with valid number
+     */
+    public void testValidateNumber1()
+    {
+        System.out.println("validateNumber1");
+        boolean expResult = true;
+        boolean result = Course.validateNumber("123");
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of validateNumber method, of class Course.
+     * Test with invalid number
+     */
+    public void testValidateNumber2()
+    {
+        System.out.println("validateNumber2");
+        boolean expResult = false;
+        boolean result = Course.validateNumber("jeh");
+        assertEquals(expResult, result);
     }
 
 }
