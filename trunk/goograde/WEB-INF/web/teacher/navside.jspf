@@ -66,10 +66,10 @@
                             </li>
                                 --%>
                                 <li>
-                                    <a href="ManageGrades.jsp">Manage Grades</a>
+                                    <a href="/GooGrade/teacher/manageGrades?id=${course.id}">Manage Grades</a>
                                 </li>
                                 <li>
-                                    <a href="ManageAssignments.jsp">Manage Assignments</a>
+                                    <a href="/GooGrade/teacher/assignment?id=${course.id}">Manage Assignments</a>
                                 </li>
                                 <li>
                                     <a href="ManageAccounts.jsp">Manage Accounts</a>

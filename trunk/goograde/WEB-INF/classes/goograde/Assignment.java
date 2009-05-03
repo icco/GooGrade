@@ -1,10 +1,10 @@
 package goograde;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 
 /**
  * This class keeps information about Assignments
@@ -296,13 +296,13 @@ public class Assignment implements java.io.Serializable
     {
         StorageConnection conn = new StorageConnection();
         String query;
-        
+
         /*making sure to avoid nulls */
         if (grades == null)
         {
             grades = new ArrayList<Grade>();
         }
-        
+
         /*adds the new grade */
         grades.add(new Grade(aStudent.getId(), id));
         grades.get(grades.indexOf(aStudent.getId())).gradeStudent(newGrade);
@@ -341,104 +341,102 @@ public class Assignment implements java.io.Serializable
                 "aDueDate, aType, aAverage, aMax, " +
                 "aMin FROM Assignments WHERE id =" + id;
         StorageConnection conn = new StorageConnection();
-        if (conn.query(query).size() == 0)
+        /*if (conn.query(query).size() == 0)
+        {*/
+        ArrayList<Object> result = conn.query(query).get(0);
+        conn.close();
+        /* No results from the query means an unsuccessful fetch */
+        if (result.size() < 1)
         {
-            ArrayList<Object> result = conn.query(query).get(0);
-            conn.close();
-            /* No results from the query means an unsuccessful fetch */
-            if (result.size() < 1)
+            return false;
+        } else
+        {
+            try
             {
-                return false;
-            }
-            else
-            {
-                try
-                {
-                    //set varaibles to values loaded from database,
-                    total = (Integer) result.get(1);
-                    name = (String) result.get(2);
-                    dueDate = (Date) result.get(3);
-                    type = (String) result.get(4);
-                    average = (Float) result.get(5);
-                    max = (Float) result.get(6);
-                    min = (Float) result.get(7);
-                }
-                catch (Exception ex)
-                {
-                    Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " +
-                            "Assignment" +
-                            " with id = " + this.id.toString(), ex);
-                }
-            }
-            /* No results from the query means an unsuccessful fetch */
-            if (result.size() < 1)
-            {
-                return false;
-            }
-            else
-            {
-                try
-                {
-                    //set varaibles to values loaded from database,
-                    total = (Integer) result.get(1);
-                    name = (String) result.get(2);
-                    dueDate = (Date) result.get(3);
-                    type = (String) result.get(4);
-                    average = (Float) result.get(5);
-                    max = (Float) result.get(6);
-                    min = (Float) result.get(7);
-                }
-                catch (Exception ex)
-                {
-                    Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " +
-                            "Assignment" +
-                            " with id = " + this.id.toString(), ex);
-                }
-            }
-            /*Now fetch the grades from the grade table */
-            query = "SELECT accountId, grade, assignId " +
-                    "FROM Grades WHERE assignId =" + id;
-            conn = new StorageConnection();
-            ArrayList<ArrayList<Object>> result2 = conn.query(query);
-            conn.close();
+                //set varaibles to values loaded from database,
+                total = (Integer) result.get(1);
+                name = (String) result.get(2);
 
-            /* No results from the query means an unsuccessful fetch */
-            if (result2.size() < 1)
+                String dateFormatString = "MM-dd-yy";
+                SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
+                Date newDate = format.parse((String)result.get(3));
+                dueDate = newDate;
+                type = (String) result.get(4);
+                average = new Float((Double)result.get(5));
+                max = new Float((Double)result.get(6));
+                min = new Float((Double)result.get(7));
+            } catch (Exception ex)
             {
-                return false;
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                        "SQL error occurred when trying to fetch " +
+                        "Assignment" +
+                        " with id = " + this.id.toString(), ex);
             }
-            else
-            {
-                try
-                {
-                    /*put the grades into the grade table */
-                    grades = new ArrayList<Grade>();
-                    int count;
-                    for (count = 0; count < result2.size(); count++)
-                    {
-                        grades.add(new Grade((Integer) 
-                                result2.get(count).get(2),
-                                (Integer) result2.get(count).get(0)));
-                        grades.get(count).gradeStudent((Float) 
-                                result2.get(count).get(1));
-                    }
-
-                }
-                catch (Exception ex)
-                {
-                    /*table insert failed */
-                    Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch Grades" +
-                            " with id = " + this.id.toString(), ex);
-                }
-            }
+        }
+        /* No results from the query means an unsuccessful fetch 
+        if (result.size() < 1)
+        {
+        return false;
         }
         else
         {
-            return false;
+        try
+        {
+        //set varaibles to values loaded from database,
+        total = (Integer) result.get(1);
+        name = (String) result.get(2);
+        dueDate = (Date) result.get(3);
+        type = (String) result.get(4);
+        average = (Float) result.get(5);
+        max = (Float) result.get(6);
+        min = (Float) result.get(7);
         }
+        catch (Exception ex)
+        {
+        Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+        "SQL error occurred when trying to fetch " +
+        "Assignment" +
+        " with id = " + this.id.toString(), ex);
+        }
+        }*/
+        /*Now fetch the grades from the grade table */
+        query = "SELECT accountId, grade, assignId " +
+                "FROM Grades WHERE assignId =" + id;
+        conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result2 = conn.query(query);
+        conn.close();
+
+        /* No results from the query means an unsuccessful fetch */
+        if (result2.size() < 1)
+        {
+            //return false;
+        } else
+        {
+            try
+            {
+                /*put the grades into the grade table */
+                grades = new ArrayList<Grade>();
+                int count;
+                for (count = 0; count < result2.size(); count++)
+                {
+                    grades.add(new Grade((Integer) result2.get(count).get(2),
+                            (Integer) result2.get(count).get(0)));
+                    grades.get(count).gradeStudent((Float) result2.get(count).get(1));
+                }
+
+            } catch (Exception ex)
+            {
+                /*table insert failed */
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                        "SQL error occurred when trying to fetch Grades" +
+                        " with id = " + this.id.toString(), ex);
+            }
+        }
+        /*}
+        else
+        {
+        return false;
+        }*/
 
         return true;
     }
@@ -459,8 +457,7 @@ public class Assignment implements java.io.Serializable
             try
             {
                 assignment = new Assignment((Integer) result.get(index).get(0));
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
                         "Error msg TBD", ex);

@@ -17,6 +17,10 @@
         <servlet-class>goograde.TeacherController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>gradecontroller</servlet-name>
+        <servlet-class>goograde.GradeController</servlet-class>
+    </servlet>
+    <servlet>
         <description>The about page</description>
         <servlet-name>about</servlet-name>
         <jsp-file>/about.jsp</jsp-file>
@@ -28,7 +32,7 @@
     <servlet>
         <servlet-name>rostercontroller</servlet-name>
         <servlet-class>goograde.RosterController</servlet-class>
-        </servlet>
+    </servlet>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
         <url-pattern>/teacher/</url-pattern>
@@ -47,7 +51,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>assignmentscontroller</servlet-name>
-        <url-pattern>/teacher/assignment/*</url-pattern>
+        <url-pattern>/teacher/assignment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>about</servlet-name>

@@ -103,6 +103,27 @@ td.alt{
     padding: 3px 6px 0px 10px;
 }
 
+.ui-datepicker-month, .ui-datepicker-year{
+    position: relative;
+    left: 100px;
+}
+.ui-datepicker-next{
+    float: right;    
+}
+.ui-datepicker-prev{
+    float: left;    
+}
+.ui-datepicker{
+    position: relative;
+    top: 50px;
+    
+    
+}
+#ui-datepicker-div{
+    z-index: 199;
+    top: 115px !important;
+
+}
 
 .course-options {
     position: relative;

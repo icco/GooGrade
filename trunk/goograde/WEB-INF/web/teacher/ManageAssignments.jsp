@@ -14,6 +14,7 @@
         <title>Manage Assignments</title>
     </head>
     
+    
     <body>
         
         <div id="wrap">
@@ -29,21 +30,22 @@
                     <div class="cornerBoxInner">
                         <h3>Manage Assignments</h3>
                         <div id="data"> 
-                            <table border="0" cellspacing="30" cellpadding="2">
-                                <thead>
-                                    <tr>
-                                        <th>Assignment</th>
-                                        <th>Assignment Total</th>
-                                        <th>Due Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <table >
+                                <tr>
+                                    <th>Assignment</th>
+                                    <th>Assignment Total</th>
+                                    <th>Due Date</th>
+                                    <th>Type</th>
+                                </tr>
+                                
                                 <%--TODO, do display "no assignments exist" --%>
                                 <c:forEach var = 'assg' items="${AssignmentList}">
                                     <tr>
                                         <td>${assg.name}</td>
                                         <td>${assg.total}</td>
+                                        <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
                                         <td>${assg.dueDate}</td>
+                                        <td>${assg.type}</td>
                                         <td>
                                             <form action="<c:url value="course" />" method="post">
                                                 <input type="hidden" name="action" value="delete" />
@@ -54,13 +56,18 @@
                                     </tr>
                                 </c:forEach>
                             </table>
-                            <input alt="#TB_inline?height=60&width=700&inlineId=FormPopUp" 
+                            <input alt="#TB_inline?height=300&width=700&inlineId=FormPopUp" 
                                    title="Add New Assignment" 
                                    class="thickbox" 
                                    type="button"
                                    value="Add New Assignment">
                             <div id="FormPopUp" style="display: none">
-                                <form action="<c:url value="ManageAssignments.jsp"/>" method="post">
+                                <script>
+                                    $(document).ready(function(){
+                                        $("#datepicker").datepicker({ dateFormat: 'mm-dd-y' });
+                                    });
+                                </script>
+                                <form action="<c:url value="assignment"/>" method="post">
                                     <input type="hidden" name="action" value="add" />
                                     <table>
                                         <tr>
@@ -68,8 +75,9 @@
                                                 Title<input type="text" name="newAssgnTitle" />
                                             </td>
                                             <td>
+                                                Due Date
                                                 
-                                                Due Date<input type="date" size="5" name="newAssgnDate" />
+                                                <input id="datepicker" type="date" size="5" name="newAssgnDate" />
                                             </td>
                                             <td>
                                                 Total Points <input type="integer" size="5" name="newAssgnTotal" />

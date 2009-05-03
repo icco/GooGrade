@@ -43,6 +43,7 @@ public class RosterController extends HttpServlet
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher/ViewRoster.jsp");
         req.setAttribute("teachCourseList",
@@ -67,3 +68,7 @@ public class RosterController extends HttpServlet
         }
     }
 }
+
+
+
+

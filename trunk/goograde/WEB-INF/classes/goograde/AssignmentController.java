@@ -1,6 +1,8 @@
 package goograde;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,9 +44,20 @@ public class AssignmentController extends HttpServlet
                 Assignment.deleteAssignment(req.getParameter("AssgnId"));
             } else if (action.equals("add"))
             {
+                String dateFormatString = "MM-dd-yy";
+                SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
+                Date newDate = new Date();
+                try
+                {
+                    newDate = format.parse(req.getParameter("NewAssgnDate"));
+                } catch (ParseException ex)
+                {
+                    Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
                 //this.addAssignment(req.getParameter("newUserName"),
                 Assignment.addAssignment(req.getParameter("Type"),
-                        new Date(req.getParameter("NewAssgnDate")),
+                        newDate,
                         req.getParameter("NewAssgnName"),
                         new Integer(req.getParameter("NewAssgnTotal")));
 
