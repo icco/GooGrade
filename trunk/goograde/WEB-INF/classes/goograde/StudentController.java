@@ -18,9 +18,16 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StudentController extends HttpServlet
 {
-
+    /**
+     * method called from form tag with method="post"
+     * @param req request
+     * @param resp response
+     * @throws javax.servlet.ServletException on error
+     * @throws java.io.IOException on error
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException
     {
 
         String action = req.getParameter("action");
@@ -30,7 +37,8 @@ public class StudentController extends HttpServlet
         view = req.getRequestDispatcher("/student/viewStudent.jsp");
         Student user1 = new Student((new Integer(req.getParameter("who"))));
         req.setAttribute("stud", (Student) (user1));
-        req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user1.getEnrolled()));
+        req.setAttribute("enrolledCourseList", 
+                (ArrayList<Course>) (user1.getEnrolled()));
         
         try
         {
