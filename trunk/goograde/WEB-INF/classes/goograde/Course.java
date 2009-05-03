@@ -273,6 +273,8 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<Student> getRoster()
     {
+        Student toAdd = null;
+        
         /*if we have a roster, return it */
         if (this.roster != null)
         {
@@ -292,6 +294,13 @@ public class Course implements java.io.Serializable
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
+                
+                for(int indx = 0; indx < result.size(); indx++)
+                {
+                    toAdd = new Student((Integer)result.get(indx).get(0));
+                    this.roster.add(toAdd);
+                }
+                
             }
 
             return this.roster;

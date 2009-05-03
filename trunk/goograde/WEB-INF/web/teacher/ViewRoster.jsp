@@ -18,7 +18,7 @@
         
         <div id="wrap">
             
-            <%@ include file="../header.jsp" %>
+            <%@ include file="../header.jspf" %>
             
             <div id="content">
                 <div class="cornerBox">
@@ -27,17 +27,41 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>View Roster</h3>
+                        <h3>View Roster</h3>                     
+                     
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User Name</th>
+                                    <th>Email Address</th>
+                                    <th>Full Name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="user" items="${studentList}">
+                                    <tr>
+                                        <td>${user.id}</td>
+                                        <td>${user.userName}</td>
+                                        <td>${user.emailAddress}</td>
+                                        <td>${user.fullName}</td>
+                                    </tr>
+                                </c:forEach>
+                     
+                            </tbody>
+                        </table>
+                        
+                        
                     </div>
                 </div>
                 
             </div>
             
-            <%@ include file="navside.jsp" %>
+            <%@ include file="navside.jspf" %>
             
         </div>
         
-        <%@ include file="../footer.jsp" %>
+        <%@ include file="../footer.jspf" %>
         
         
     </body>

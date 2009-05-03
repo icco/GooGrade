@@ -83,7 +83,7 @@
                             </li>
                                 --%>
                                 <li>
-                                    <a href="ViewRoster.jsp">View Roster</a>
+                                    <a href="teacher/roster?id=${course.id}">View Roster</a>
                                 </li>
                                 <li>
                                     <a href="EditCourse.jsp">Edit Course</a>

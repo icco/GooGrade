@@ -19,6 +19,13 @@ import javax.servlet.http.HttpServletResponse;
 public class CourseController extends HttpServlet
 {
 
+    /**
+     * 
+     * @param req
+     * @param resp
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
@@ -54,6 +61,13 @@ public class CourseController extends HttpServlet
 
     }
 
+    /**
+     * 
+     * @param req
+     * @param resp
+     * @throws javax.servlet.ServletException
+     * @throws java.io.IOException
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
