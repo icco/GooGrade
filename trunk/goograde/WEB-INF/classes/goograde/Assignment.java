@@ -74,28 +74,21 @@ public class Assignment implements java.io.Serializable
         this.fetch();
     }
 
-    public void deleteAssignment()
+    public static void deleteAssignment(String Rid)
     {
-        String query = "DELETE FROM Assignments WHERE id = " + id;
+        String query = "DELETE FROM Assignments WHERE id = " + Rid;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
-        
-        query = "DELETE FROM Grades WHERE assignId = " + id;
+
+        query = "DELETE FROM Grades WHERE assignId = " + Rid;
         conn = new StorageConnection();
         conn.query(query);
         conn.close();
-        
-        id = 0;
-        type = null;
-        max = null;
-        min = null;
-        average = null;
-        dueDate = null;
-        name = null;
-        total = null;
-        
+
+
     }
+
     /**
      * Gets a Date object for the due date of the assignment
      * @return the date the assignment is due
@@ -158,7 +151,7 @@ public class Assignment implements java.io.Serializable
     {
         return min;
     }
-    
+
     public int getId()
     {
         return id;
@@ -253,7 +246,7 @@ public class Assignment implements java.io.Serializable
         average = paverage;
         /*now updating the database with changes */
         String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
+                paverage + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -303,10 +296,20 @@ public class Assignment implements java.io.Serializable
     {
         StorageConnection conn = new StorageConnection();
         String query;
+        
+        /*making sure to avoid nulls */
+        if (grades == null)
+        {
+            grades = new ArrayList<Grade>();
+        }
+        
+        /*adds the new grade */
+        grades.add(new Grade(aStudent.getId(), id));
+        grades.get(grades.indexOf(aStudent.getId())).gradeStudent(newGrade);
 
         /*seek the student to see if he has a grade for this assignment already
          * If so, edit that grade instead of creating a new one */
-        if (grades.contains(aStudent.getId()))
+        if (grades != null && grades.contains(aStudent.getId()))
         {
             query = "UPDATE Grades SET grade = " + newGrade +
                     "WHERE accountID = " + aStudent.getId();
@@ -338,73 +341,188 @@ public class Assignment implements java.io.Serializable
                 "aDueDate, aType, aAverage, aMax, " +
                 "aMin FROM Assignments WHERE id =" + id;
         StorageConnection conn = new StorageConnection();
-        ArrayList<Object> result = conn.query(query).get(0);
-        conn.close();
-
-        /* No results from the query means an unsuccessful fetch */
-        if (result.size() < 1)
+        if (conn.query(query).size() == 0)
         {
-            return false;
-        }
-        else
-        {
-            try
+            ArrayList<Object> result = conn.query(query).get(0);
+            conn.close();
+            /* No results from the query means an unsuccessful fetch */
+            if (result.size() < 1)
             {
-                //set varaibles to values loaded from database,
-                total = (Integer) result.get(1);
-                name = (String) result.get(2);
-                dueDate = (Date) result.get(3);
-                type = (String) result.get(4);
-                average = (Float) result.get(5);
-                max = (Float) result.get(6);
-                min = (Float) result.get(7);
+                return false;
             }
-            catch (Exception ex)
+            else
             {
-                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                        "SQL error occurred when trying to fetch Assignment" +
-                        " with id = " + this.id.toString(), ex);
-            }
-        }
-
-        /*Now fetch the grades from the grade table */
-        query = "SELECT accountId, grade, assignId " +
-                "FROM Grades WHERE assignId =" + id;
-        conn = new StorageConnection();
-        ArrayList<ArrayList<Object>> result2 = conn.query(query);
-        conn.close();
-
-        /* No results from the query means an unsuccessful fetch */
-        if (result2.size() < 1)
-        {
-            return false;
-        }
-        else
-        {
-            try
-            {
-                /*put the grades into the grade table */
-                grades = new ArrayList<Grade>();
-                int count;
-                for (count = 0; count < result2.size(); count++)
+                try
                 {
-                    grades.add(new Grade((Integer) result2.get(count).get(2),
-                            (Integer) result2.get(count).get(0)));
-                    grades.get(count).gradeStudent((Float) 
-                            result2.get(count).get(1));
+                    //set varaibles to values loaded from database,
+                    total = (Integer) result.get(1);
+                    name = (String) result.get(2);
+                    dueDate = (Date) result.get(3);
+                    type = (String) result.get(4);
+                    average = (Float) result.get(5);
+                    max = (Float) result.get(6);
+                    min = (Float) result.get(7);
                 }
-
+                catch (Exception ex)
+                {
+                    Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                            "SQL error occurred when trying to fetch " +
+                            "Assignment" +
+                            " with id = " + this.id.toString(), ex);
+                }
             }
-            catch (Exception ex)
+            /* No results from the query means an unsuccessful fetch */
+            if (result.size() < 1)
             {
-                /*table insert failed */
-                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                        "SQL error occurred when trying to fetch Grades" + 
-                        " with id = " + this.id.toString(), ex);
+                return false;
             }
+            else
+            {
+                try
+                {
+                    //set varaibles to values loaded from database,
+                    total = (Integer) result.get(1);
+                    name = (String) result.get(2);
+                    dueDate = (Date) result.get(3);
+                    type = (String) result.get(4);
+                    average = (Float) result.get(5);
+                    max = (Float) result.get(6);
+                    min = (Float) result.get(7);
+                }
+                catch (Exception ex)
+                {
+                    Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                            "SQL error occurred when trying to fetch " +
+                            "Assignment" +
+                            " with id = " + this.id.toString(), ex);
+                }
+            }
+            /*Now fetch the grades from the grade table */
+            query = "SELECT accountId, grade, assignId " +
+                    "FROM Grades WHERE assignId =" + id;
+            conn = new StorageConnection();
+            ArrayList<ArrayList<Object>> result2 = conn.query(query);
+            conn.close();
+
+            /* No results from the query means an unsuccessful fetch */
+            if (result2.size() < 1)
+            {
+                return false;
+            }
+            else
+            {
+                try
+                {
+                    /*put the grades into the grade table */
+                    grades = new ArrayList<Grade>();
+                    int count;
+                    for (count = 0; count < result2.size(); count++)
+                    {
+                        grades.add(new Grade((Integer) 
+                                result2.get(count).get(2),
+                                (Integer) result2.get(count).get(0)));
+                        grades.get(count).gradeStudent((Float) 
+                                result2.get(count).get(1));
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    /*table insert failed */
+                    Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                            "SQL error occurred when trying to fetch Grades" +
+                            " with id = " + this.id.toString(), ex);
+                }
+            }
+        }
+        else
+        {
+            return false;
         }
 
         return true;
+    }
+
+    public static ArrayList<Assignment> allAssignments()
+    {
+
+        ArrayList<Assignment> assgns = new ArrayList<Assignment>();
+        String query = "SELECT id FROM Assignments";
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        conn.close();
+
+        /*for all in result, add to returned course list*/
+        for (int index = 0; index < result.size(); index++)
+        {
+            Assignment assignment = null;
+            try
+            {
+                assignment = new Assignment((Integer) result.get(index).get(0));
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                        "Error msg TBD", ex);
+            }
+            /*avoid null pointer exceptions and fetch is successful*/
+            if (assignment != null && assignment.fetch())
+            {
+                assgns.add(assignment);
+            }
+        }
+
+        return assgns;
+
+    }
+
+    public static void addAssignment(String type, Date dueDate, String name,
+            Integer total)
+    {
+        int tid = 0; //TODO
+
+        Assignment temp = new Assignment(tid);
+
+        temp.setType(type);
+        temp.setDueDate(dueDate);
+        temp.setName(name);
+        temp.setTotal(total);
+    }
+
+    private static void modifyAssignment(String type, float max, float min,
+            float average, Date dueDate, String name, Integer total, int pid)
+    {
+
+        Assignment temp = new Assignment(pid);
+
+        if (type != null)
+        {
+            temp.setType(type);
+        }
+        if (max >= 0)
+        {
+            temp.setMax(max);
+        }
+        if (min >= 0)
+        {
+            temp.setMin(min);
+        }
+        if (average >= 0)
+        {
+            temp.setAvg(average);
+        }
+        if (dueDate != null)
+        {
+            temp.setDueDate(dueDate);
+        }
+        if (name != null)
+        {
+            temp.setName(name);
+        }
+        if (total != null)
+        {
+            temp.setTotal(total);
+        }
     }
 }
 
