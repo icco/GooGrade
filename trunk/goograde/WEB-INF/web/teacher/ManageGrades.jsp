@@ -18,7 +18,7 @@
         
         <div id="wrap">
             
-            <%@ include file="../header.jsp" %>
+            <%@ include file="../header.jspf" %>
             
             <div id="content">
                 <div class="cornerBox">
@@ -33,11 +33,11 @@
                 
             </div>
             
-            <%@ include file="navside.jsp" %>
+            <%@ include file="navside.jspf" %>
             
         </div>
         
-        <%@ include file="../footer.jsp" %>
+        <%@ include file="../footer.jspf" %>
         
         
     </body>
