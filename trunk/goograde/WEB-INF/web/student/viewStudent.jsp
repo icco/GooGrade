@@ -1,7 +1,7 @@
 <%-- 
-    Document   : ViewGrades
+    Document   : Student Index
     Created on : Apr 26, 2009, 9:47:24 PM
-    Author     : pphu
+    Author     : nwelch
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Grades</title>
+        <title>View Student</title>
     </head>
     
     <body>
@@ -27,7 +27,27 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>ViewGrades</h3>
+                        <h3>Your Courses</h3>
+                        <p>
+                            ${stud.userName}
+                        </p>
+                        <table>
+                            <tr>
+                                <td>Title</td>
+                                <td>Department</td>
+                                <td>Number</td>
+                                <td>Section</td>
+                            </tr>
+                            
+                            <c:forEach var="course" items="${enrolledCourseList}">
+                                <tr>
+                                    <td>${course.title}</td>
+                                    <td>${course.department}</td>
+                                    <td>${course.number}</td>
+                                    <td>${course.section}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
                     </div>
                 </div>
                 
@@ -38,7 +58,6 @@
         </div>
         
         <%@ include file="../footer.jspf" %>
-        
         
     </body>
 </html>

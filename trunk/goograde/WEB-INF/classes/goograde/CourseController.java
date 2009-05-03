@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  * Methods for modifying a course and it's related actions.
  *
@@ -39,20 +38,20 @@ public class CourseController extends HttpServlet
                         req.getParameter("newCourseNumber"),
                         req.getParameter("newCourseSection"));
             }
-}
-            try
-            {
-                this.doGet(req, resp);
-            }
-            catch (ServletException ex)
-            {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            catch (IOException ex)
-            {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+        }
+        try
+        {
+            this.doGet(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override

@@ -101,8 +101,7 @@ public class Student extends Account
         {
             out = conn.query("select accounts.id as id, username, name, email"
                     + " from students, accounts"
-                    + " where students.id = accounts.id"
-                    + " group by accounts.id");
+                    + " where students.id = accounts.id");
             
             for (ArrayList<Object> row : out)
             {
