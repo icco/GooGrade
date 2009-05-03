@@ -42,15 +42,18 @@ public class AssignmentController extends HttpServlet
                 //choose teh appropriate assignment to modify and then modify 
                 //and then delete it
                 Assignment.deleteAssignment(req.getParameter("AssgnId"));
-            } else if (action.equals("add"))
+            }
+            else if (action.equals("add"))
             {
                 String dateFormatString = "MM-dd-yy";
                 SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
                 Date newDate = new Date();
+                
                 try
                 {
                     newDate = format.parse(req.getParameter("NewAssgnDate"));
-                } catch (ParseException ex)
+                }
+                catch (ParseException ex)
                 {
                     Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -61,7 +64,8 @@ public class AssignmentController extends HttpServlet
                         req.getParameter("NewAssgnName"),
                         new Integer(req.getParameter("NewAssgnTotal")));
 
-            } else if (action.equals("edit"))
+            }
+            else if (action.equals("edit"))
             {
                 /* Assignment.modifyAssignment(req.getParamater("EditType"), 
                 new Float(req.getParamater("EditMax")), 
@@ -76,11 +80,13 @@ public class AssignmentController extends HttpServlet
         try
         {
             this.doGet(req, resp);
-        } catch (ServletException ex)
+        }
+        catch (ServletException ex)
         {
             Logger.getLogger(AccountController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(AccountController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -98,7 +104,7 @@ public class AssignmentController extends HttpServlet
             throws ServletException, IOException
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
-        
+
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
@@ -110,11 +116,13 @@ public class AssignmentController extends HttpServlet
         try
         {
             view.forward(req, resp);
-        } catch (ServletException ex)
+        }
+        catch (ServletException ex)
         {
             Logger.getLogger(AssignmentController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(AssignmentController.class.getName()).
                     log(Level.SEVERE, null, ex);

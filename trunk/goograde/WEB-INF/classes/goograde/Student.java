@@ -104,7 +104,7 @@ public class Student extends Account
     {
         this.enrolled = new ArrayList<Course>(enrolled);
     }
-    
+
     /**
      * static function to return all students in all classes
      * @return ArrayList of all students
@@ -115,23 +115,27 @@ public class Student extends Account
         ArrayList<Student> ret = new ArrayList<Student>();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
+        String query = new String();
 
         try
         {
-            out = conn.query("select accounts.id as id, username, name, email"
-                    + " from students, accounts"
-                    + " where students.id = accounts.id");
-            
+            query = "SELECT accounts.id as id, username, name, email";
+            query += " FROM students, accounts";
+            query += " WHERE students.id = accounts.id";
+
+            out = conn.query(query);
+
             int index = 0;
-            /*For each resultant row, add into ret ArrayList*/
+            // For each resultant row, add into ret ArrayList
             for (ArrayList<Object> row : out)
             {
                 ret.add(new Student((Integer) row.get(index++),
                         (String) row.get(index++),
                         (String) row.get(index++),
                         (String) row.get(index++)));
+                index = 0;
             }
-            
+
             conn.close();
         }
         catch (Exception ex)
@@ -146,7 +150,7 @@ public class Student extends Account
 
         return ret;
     }
-    
+
     /**
      * specialized toString method uses Account.toString()
      * @return Account.toString()
