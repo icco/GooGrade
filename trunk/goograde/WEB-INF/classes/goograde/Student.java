@@ -50,7 +50,7 @@ public class Student extends Account
      */
     Float getGrade(Course crse, Assignment ass)
     {
-        return (new Grade(crse, ass, this)).getGrade();
+        return (new Grade(ass.getId(), this.getId())).getGrade();
     }
 
     public ArrayList<Course> getEnrolled()
