@@ -31,6 +31,20 @@ public class TeacherAssistant extends Account
      */
     public TeacherAssistant()
     {
+        super();
+    }
+
+    /**
+     * ID constructor, standard constructor with id parameter.
+     * All variables, other than id, are still null and retrieved from
+     * database with fetch();
+     * @param newId identification Integer used to fetch data from db
+     */
+    public TeacherAssistant(Integer newId) throws Exception
+    {
+        super(newId);
+        this.assists = getCourses();
+
     }
 
     /**
@@ -43,6 +57,7 @@ public class TeacherAssistant extends Account
     public TeacherAssistant(Integer id, String username, String name, String email)
     {
         super(id, username, name, email);
+        this.assists = getCourses();
     }
 
     /**
@@ -70,6 +85,7 @@ public class TeacherAssistant extends Account
                         (String) row.get(index++),
                         (String) row.get(index++),
                         (String) row.get(index++)));
+                index = 0;
             }
             
             conn.close();
@@ -88,7 +104,60 @@ public class TeacherAssistant extends Account
     }
 
     /**
+     * Gets all of the courses a teacher teaches
+     * 
+     * @return an ArrayList of Courses
+     */
+    public ArrayList<Course> getCourses()
+    {
+        ArrayList<Course> ret = new ArrayList<Course>();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        String query = new String();
+        
+        try
+        {
+            query = "select course as id from assists where ta = " + this.getId();
+            result = conn.query(query);
+            
+            // for each row returned from database create a new Course
+            for (ArrayList<Object> row : result)
+            {
+                ret.add(new Course((Integer)row.get(0)));
+            }
+            
+            conn.close();
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(TeacherAssistant.class.getName()).log(Level.SEVERE,
+                    "Error in TeacherAssistant", ex);
+        }
+        finally
+        {
+            Logger.getLogger(TeacherAssistant.class.getName()).log(Level.WARNING,
+                    ret.toString());
+        }
+
+        
+        return ret;
+    }
+    
+    /**
+     * Public accessor to determine whether a Teacher Assistant has any courses
+     * @return true if courses are had, false otherwise
+     */
+    public boolean hasCourses()
+    {
+        boolean retVal = false;
+        if (this.assists != null)
+            retVal = true;
+        return retVal;
+    }
+
+    /**
      * Editing of a current course is done here
+     * NOTE: Flagged for removal - bad design.  See vgerdin
      * @param course the course to edit
      * @return the new, edited Course
      */
@@ -99,6 +168,7 @@ public class TeacherAssistant extends Account
 
     /**
      * Creation of a new course
+     * NOTE: Flagged for removal - bad design.  See vgerdin
      * @return a new course as specified by the Teacher's input.
      */
     public Course createCourse()
@@ -109,12 +179,13 @@ public class TeacherAssistant extends Account
 
     /**
      * A course is marked for deletion. 
+     * NOTE: Flagged for removal - bad design.  See vgerdin
      * @param course the course to remove
      * @return true if no errors occur
      */
     public boolean removeCourse(Course course)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -161,6 +232,27 @@ public class TeacherAssistant extends Account
     public GradingRules adjustCurve()
     {
         return null;
+    }
+    
+    /**
+     * Calls Account.toString();
+     * 
+     * @return a string representation of the Teacher
+     */
+    @Override
+    public String toString()
+    {
+        return super.toString();
+    }
+    
+    /**
+     * Calls Account.equals();
+     * 
+     * @return a string representation of the Teacher
+     */
+    public boolean equals(TeacherAssistant otherTA)
+    {
+        return super.equals(otherTA);
     }
 
     /**

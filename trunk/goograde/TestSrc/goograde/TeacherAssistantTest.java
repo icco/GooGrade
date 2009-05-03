@@ -1,6 +1,5 @@
 package goograde;
 
-import goograde.*;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 
@@ -23,62 +22,42 @@ public class TeacherAssistantTest extends TestCase {
     protected void tearDown() throws Exception {
         super.tearDown();
     }
+    
+    /**
+     * Test of method equals with class TeacherAssistant
+     */
+    public void testEquals()
+    {
+        try
+        {
+            TeacherAssistant ta1 = new TeacherAssistant(2);
+            TeacherAssistant ta2 = new TeacherAssistant(4);
+            boolean result1 = ta1.equals(ta1);
+            boolean result2 = ta2.equals(ta1);
+            assertEquals(true, result1);
+            assertEquals(false, result2);
+        }
+        catch (Exception ex)
+        {
+            System.out.println("Invalid id found in test case testEquals" + ex);
+        }
+    }
 
     /**
      * Test of allTeacherAssistants method, of class TeacherAssistant.
      */
     public void testAllTeacherAssistants()
     {
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> out = new ArrayList<ArrayList<Object>>();
+        int result = TeacherAssistant.allTeacherAssistants().size();
+        int expResult = 0;
+        
         System.out.println("allTeacherAssistants");
-        ArrayList<TeacherAssistant> expResult = null;
-        ArrayList<TeacherAssistant> result = TeacherAssistant.allTeacherAssistants();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of editCourse method, of class TeacherAssistant.
-     */
-    public void testEditCourse()
-    {
-        System.out.println("editCourse");
-        Course course = null;
-        TeacherAssistant instance = new TeacherAssistant();
-        Course expResult = null;
-        Course result = instance.editCourse(course);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of createCourse method, of class TeacherAssistant.
-     */
-    public void testCreateCourse()
-    {
-        System.out.println("createCourse");
-        TeacherAssistant instance = new TeacherAssistant();
-        Course expResult = null;
-        Course result = instance.createCourse();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of removeCourse method, of class TeacherAssistant.
-     */
-    public void testRemoveCourse()
-    {
-        System.out.println("removeCourse");
-        Course course = null;
-        TeacherAssistant instance = new TeacherAssistant();
-        boolean expResult = false;
-        boolean result = instance.removeCourse(course);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        out = conn.query("SELECT * FROM tas");
+        conn.close();
+        expResult = out.size();
+        assertEquals(result, expResult);
     }
 
     /**
@@ -87,13 +66,11 @@ public class TeacherAssistantTest extends TestCase {
     public void testGradeStudent()
     {
         System.out.println("gradeStudent");
-        Student who = null;
+        Student who = new Student();
         TeacherAssistant instance = new TeacherAssistant();
         boolean expResult = false;
         boolean result = instance.gradeStudent(who);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,8 +83,6 @@ public class TeacherAssistantTest extends TestCase {
         Assignment expResult = null;
         Assignment result = instance.createAssignment();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -120,8 +95,6 @@ public class TeacherAssistantTest extends TestCase {
         Assignment expResult = null;
         Assignment result = instance.editAssignment();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -134,8 +107,6 @@ public class TeacherAssistantTest extends TestCase {
         Assignment expResult = null;
         Assignment result = instance.deleteAssignment();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -148,8 +119,6 @@ public class TeacherAssistantTest extends TestCase {
         GradingRules expResult = null;
         GradingRules result = instance.adjustCurve();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -159,11 +128,9 @@ public class TeacherAssistantTest extends TestCase {
     {
         System.out.println("isTeacherAssistant");
         TeacherAssistant instance = new TeacherAssistant();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.isTeacherAssistant();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

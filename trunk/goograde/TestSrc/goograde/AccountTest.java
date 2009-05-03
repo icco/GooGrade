@@ -245,7 +245,7 @@ public class AccountTest extends TestCase {
     {
         System.out.println("allAccounts");
         ArrayList<Account> actList = new ArrayList<Account>();
-        boolean accountState = true, result = false, expResult = false;
+        boolean accountState = true, result = false;
         int index = 1;
         
         while (accountState)
@@ -258,9 +258,6 @@ public class AccountTest extends TestCase {
                 actList.add(newAct);
             }
         }
-        // ArrayList<Account> result = Account.allAccounts();
-        // ArrayList<Account> result = null;
-        // result = expResult.get(1).equals(Account.allAccounts().get(1));
         
         for (index = 0; index < actList.size(); index++)
         {
