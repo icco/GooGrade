@@ -372,6 +372,8 @@ public class Account implements java.io.Serializable
             ret = conn.updateQuery(query);
         }
         
+        conn.close();
+        
         return ret;
     }
 
