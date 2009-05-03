@@ -36,7 +36,7 @@
     -->
 	<target name="-pre-init">
 		<!-- Set up database -->
-		<echo>Building /tmp/blugoo.db</echo>
+		<echo>Building /tmp/goograde.db</echo>
 		<exec executable="sqlite3">
 			<arg line="-init goograde.sql" />
 			<arg line="/tmp/goograde.db" />
