@@ -30,7 +30,7 @@ public class Student extends Account
      * database with fetch();
      * @param id identification Integer used to fetch data from db
      */
-    public Student(Integer id)
+    public Student(Integer id) throws Exception
     {
         super(id);
         this.enrolled = getEnrolled();

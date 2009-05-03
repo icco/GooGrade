@@ -3,6 +3,7 @@ package goograde;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.Throwable;
 
 /**
  * This is a class that keeps all of the information of a user. A user is 
@@ -58,6 +59,9 @@ public class Account implements java.io.Serializable
         this.userName = new String();
         this.fullName = new String();
         this.emailAddress = new EmailAddress(new String());
+        this.password = null;
+        this.permission = null;
+        this.files = null;
     }
     
     /**
@@ -72,6 +76,9 @@ public class Account implements java.io.Serializable
         this.userName = newUser;
         this.fullName = newFull;
         this.emailAddress = new EmailAddress(newEmail);
+        this.password = null;
+        this.permission = null;
+        this.files = null;
     }
 
     /**
@@ -80,10 +87,19 @@ public class Account implements java.io.Serializable
      * database with fetch();
      * @param newID identification Integer used to fetch data from db
      */
-    public Account(Integer newID)
+    public Account(Integer newID) throws Exception
     {
         this.id = newID;
-        this.fetch();
+        this.password = null;
+        this.permission = null;
+        this.files = null;
+        boolean validIdent = this.fetch();
+        
+        /* An invalid ID must throw an error */
+        if (validIdent == false)
+        {
+            throw new Exception("Invalid identification");
+        }
     }
 
     /**
@@ -99,6 +115,9 @@ public class Account implements java.io.Serializable
         this.userName = newUser;
         this.fullName = newFull;
         this.emailAddress = new EmailAddress(newEmail);
+        this.password = null;
+        this.permission = null;
+        this.files = null;
     }
 
     // Begin the Functions!
@@ -135,7 +154,7 @@ public class Account implements java.io.Serializable
      * @return true if set, false if failure.
      * @todo Passwords are not implemented for release 1.
      */
-    public boolean setPassword(String newPass)
+    public boolean setPassword(Password newPass)
     {
         return true;
     }
@@ -150,7 +169,7 @@ public class Account implements java.io.Serializable
         boolean ret = false;
         
         /* Check for unique name before setting */
-        if (Account.isUserNameUnique(userName))
+        if (Account.isUserNameUnique(newUserName))
         {
             this.userName = newUserName;
             ret = true;
@@ -185,10 +204,11 @@ public class Account implements java.io.Serializable
      * @param passwd the password entered by the user. 
      * @return true if the hashed passwd matches the password in the database,
      *         false otherwise. 
+     * @todo To be implemented with release 2
      */
     public boolean isPassword(String passwd)
     {
-        return false;
+        return true;
     }
 
     /**
@@ -252,14 +272,26 @@ public class Account implements java.io.Serializable
     { 
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = null;
+        String query = new String();
         boolean ret = false;
         int index = 0, initial = 0;
         
-        String query = "SELECT username, name, email, password"
-                + " FROM Accounts WHERE id = " + this.getId().toString();
+        /* Query call to be modified depending on existence of Account id */
+        if (this.getId() != null)
+        {
+            query = "SELECT id, username, name, email, password"
+                    + " FROM Accounts WHERE id = " + this.getId().toString();
+        }
+        else if (this.getUserName() != null)
+        {
+            query = "SELECT id, username, name, email, password"
+                    + " FROM Accounts WHERE username = " + this.getUserName();
+        }
+        /* An account with neither id nor username is empty; do not fetch */
+        else
+            return ret;
         
         result = conn.query(query);
-        
         conn.close();
         
         /* No results from the query means an unsuccessful fetch */
@@ -272,10 +304,11 @@ public class Account implements java.io.Serializable
             try
             {
                 ArrayList<Object> rs = result.get(initial);
-                this.setUserName((String) rs.get(index++));
+                this.setId((Integer) rs.get(index++));
+                this.setUserName(new String((String) rs.get(index++)));
                 this.setFullName((String) rs.get(index++));
                 this.setEmailAddress(new EmailAddress((String) rs.get(index++)));
-                this.setPassword((String) rs.get(index++));
+                this.setPassword(new Password((String) rs.get(index++)));
             }
             catch (Exception ex)
             {
@@ -325,7 +358,7 @@ public class Account implements java.io.Serializable
                     + "username = \"" + this.getUserName() + "\","
                     + "name = \"" + this.getFullName() + "\","
                     + "email = \"" + this.getEmailAddress().toString() + "\","
-                    + "password = \"123456\","
+                    + "password = \"123456a\","
                     + "WHERE id = " + this.getId();
             ret = conn.updateQuery(query);
         }
@@ -335,10 +368,9 @@ public class Account implements java.io.Serializable
             query += " VALUES(\"" + this.getUserName() + "\",\"";
             query += this.getFullName() + "\",\"";
             query += this.getEmailAddress().toString();
-            query += "\",\"123456\")";
+            query += "\",\"123456a\")";
             ret = conn.updateQuery(query);
         }
-        
         
         return ret;
     }
@@ -382,6 +414,7 @@ public class Account implements java.io.Serializable
                         (String) row.get(index++),
                         (String) row.get(index++),
                         (String) row.get(index++)));
+                index = 0;
             }
             conn.close();
         }
@@ -433,24 +466,31 @@ public class Account implements java.io.Serializable
             query += "WHERE id = " + this.getId();
             ret = conn.updateQuery(query);
         }
+        else if (this.getUserName() != null)
+        {
+            String query = new String("DELETE from Accounts WHERE username = \""
+                    + this.getUserName() + "\"");
+            ret = conn.updateQuery(query);
+        }
         
         return ret;
     }
     
     /**
-     * This checks the database to make sure the currently set username
-     * is unique.
+     * This checks the database to make sure the queried username
+     * is unique.  *** As per Nat Welch, 05-02, this method has been
+     * set to always return true due to design issues.  Should be fixed. ***
      * 
      * @param userNameIn the name to verify if is unique
      * @return true if unique, false if not.
      */
     public static boolean isUserNameUnique(String userNameIn)
     {
-        boolean ret = false;
+        boolean ret = true;
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = null;
-        String query = "SELECT id FROM Accounts WHERE username = "
-                + userNameIn;
+        String query = "SELECT id FROM Accounts WHERE username = \""
+                + userNameIn + "\"";
         
         result = conn.query(query);
         conn.close();
@@ -461,6 +501,19 @@ public class Account implements java.io.Serializable
             ret = true;
         }
         
+        return ret;
+    }
+    
+    /**
+     * Standard issue equals method
+     * @param testAct the Account object to be compared with
+     * @return true if equal, false otherwise
+     */
+    public boolean equals(Account testAct)
+    {
+        boolean ret = true;
+        if (!(this.toString().equals(testAct.toString())))
+            ret = false;
         return ret;
     }
 }

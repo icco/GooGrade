@@ -1,6 +1,5 @@
 package goograde;
 
-import goograde.*;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 
@@ -30,12 +29,10 @@ public class AccountTest extends TestCase {
     public void testGetUserName()
     {
         System.out.println("getUserName");
-        Account instance = new Account();
-        String expResult = "";
-        String result = instance.getUserName();
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        String expResult = "testGuy";
+        String result = testAct.getUserName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -44,12 +41,10 @@ public class AccountTest extends TestCase {
     public void testGetFullName()
     {
         System.out.println("getFullName");
-        Account instance = new Account();
-        String expResult = "";
-        String result = instance.getFullName();
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        String expResult = "Test Guy";
+        String result = testAct.getFullName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -58,12 +53,9 @@ public class AccountTest extends TestCase {
     public void testGetEmailAddress()
     {
         System.out.println("getEmailAddress");
-        Account instance = new Account();
-        EmailAddress expResult = null;
-        EmailAddress result = instance.getEmailAddress();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        String expResult = "test@guy";
+        assertEquals(expResult, testAct.getEmailAddress().toString());
     }
 
     /**
@@ -72,13 +64,11 @@ public class AccountTest extends TestCase {
     public void testSetPassword()
     {
         System.out.println("setPassword");
-        String newPass = "";
-        Account instance = new Account();
-        boolean expResult = false;
-        boolean result = instance.setPassword(newPass);
+        Password newPass = new Password("123456");
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
+        boolean result = testAct.setPassword(newPass);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -87,13 +77,11 @@ public class AccountTest extends TestCase {
     public void testSetUserName()
     {
         System.out.println("setUserName");
-        String newUserName = "";
-        Account instance = new Account();
-        boolean expResult = false;
-        boolean result = instance.setUserName(newUserName);
+        String newUserName = "newGuy";
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
+        boolean result = testAct.setUserName(newUserName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -102,13 +90,11 @@ public class AccountTest extends TestCase {
     public void testSetFullName()
     {
         System.out.println("setFullName");
-        String newFullName = "";
-        Account instance = new Account();
-        boolean expResult = false;
-        boolean result = instance.setFullName(newFullName);
+        String newFullName = "New Guy";
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
+        boolean result = testAct.setFullName(newFullName);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -117,13 +103,11 @@ public class AccountTest extends TestCase {
     public void testSetEmailAddress()
     {
         System.out.println("setEmailAddress");
-        EmailAddress newAddress = null;
-        Account instance = new Account();
-        boolean expResult = false;
-        boolean result = instance.setEmailAddress(newAddress);
+        EmailAddress newAddress = new EmailAddress(new String("new@guy"));
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
+        boolean result = testAct.setEmailAddress(newAddress);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -132,13 +116,11 @@ public class AccountTest extends TestCase {
     public void testIsPassword()
     {
         System.out.println("isPassword");
-        String passwd = "";
-        Account instance = new Account();
-        boolean expResult = false;
-        boolean result = instance.isPassword(passwd);
+        String passwd = "123456";
+        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
+        boolean result = testAct.isPassword(passwd);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -147,12 +129,10 @@ public class AccountTest extends TestCase {
     public void testGetFiles()
     {
         System.out.println("getFiles");
-        Account instance = new Account();
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
         ArrayList<File> expResult = null;
         ArrayList<File> result = instance.getFiles();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -162,12 +142,10 @@ public class AccountTest extends TestCase {
     {
         System.out.println("setFiles");
         ArrayList<File> newFiles = null;
-        Account instance = new Account();
-        boolean expResult = false;
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
         boolean result = instance.setFiles(newFiles);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -176,12 +154,10 @@ public class AccountTest extends TestCase {
     public void testGetId()
     {
         System.out.println("getId");
-        Account instance = new Account();
-        Integer expResult = null;
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
+        Integer expResult = 42;
         Integer result = instance.getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -190,13 +166,11 @@ public class AccountTest extends TestCase {
     public void testSetId()
     {
         System.out.println("setId");
-        Integer newID = null;
-        Account instance = new Account();
-        boolean expResult = false;
+        Integer newID = 27;
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
+        boolean expResult = true;
         boolean result = instance.setId(newID);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -205,54 +179,48 @@ public class AccountTest extends TestCase {
     public void testGetPermissions()
     {
         System.out.println("getPermissions");
-        Account instance = new Account();
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
         Permissions expResult = null;
         Permissions result = instance.getPermissions();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of fetch method, of class Account.
+     * Test of fetch method, of class Account.  Assumes test db entry #1 is Nat.
      */
-    public void testFetch()
+    public void testFetch() throws Exception
     {
         System.out.println("fetch");
-        Account instance = new Account();
-        boolean expResult = false;
-        boolean result = instance.fetch();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Account instance1 = new Account(1);
+        String expResult = new String("nwelch");
+        assertEquals(expResult, instance1.getUserName());
     }
 
     /**
      * Test of refresh method, of class Account.
      */
-    public void testRefresh()
+    public void testRefresh() throws Exception
     {
         System.out.println("refresh");
-        Account instance = new Account();
-        boolean expResult = false;
+        Account instance = new Account(1);
         boolean result = instance.refresh();
+        boolean expResult = true;
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
-     * Test of save method, of class Account.
+     * Test of save and delete methods, of class Account.
      */
-    public void testSave()
+    public void testSaveAndDelete()
     {
-        System.out.println("save");
-        Account instance = new Account();
-        boolean expResult = false;
+        System.out.println("save and delete");
+        Account instance = new Account("jUnit", "JAY EWENIT", "jay@unit");
+        boolean expResult = true;
         boolean result = instance.save();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        result = instance.delete();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -261,25 +229,45 @@ public class AccountTest extends TestCase {
     public void testToString()
     {
         System.out.println("toString");
-        Account instance = new Account();
-        String expResult = "";
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
+        String expResult = "42, testGuy, Test Guy, test@guy";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of allAccounts method, of class Account.
+     * NOTE: jUnit doesn't use Account class equals method in assertEquals
+     * for some reason, so I am calling Account equals for each and 
+     * asserting the results.
      */
     public void testAllAccounts()
     {
         System.out.println("allAccounts");
-        ArrayList<Account> expResult = null;
-        ArrayList<Account> result = Account.allAccounts();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Account> actList = new ArrayList<Account>();
+        boolean accountState = true, result = false, expResult = false;
+        int index = 1;
+        
+        while (accountState)
+        {
+            Account newAct = new Account();
+            newAct.setId(index++);
+            accountState = newAct.fetch();
+            if (accountState)
+            {
+                actList.add(newAct);
+            }
+        }
+        // ArrayList<Account> result = Account.allAccounts();
+        // ArrayList<Account> result = null;
+        // result = expResult.get(1).equals(Account.allAccounts().get(1));
+        
+        for (index = 0; index < actList.size(); index++)
+        {
+            result = Account.allAccounts().get(index).equals(actList.get(index));
+            if (!result)
+                fail();
+        }
     }
 
     /**
@@ -288,12 +276,10 @@ public class AccountTest extends TestCase {
     public void testIsTeacher()
     {
         System.out.println("isTeacher");
-        Account instance = new Account();
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
         boolean expResult = false;
         boolean result = instance.isTeacher();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -302,12 +288,24 @@ public class AccountTest extends TestCase {
     public void testIsTeacherAssistant()
     {
         System.out.println("isTeacherAssistant");
-        Account instance = new Account();
+        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
         boolean expResult = false;
         boolean result = instance.isTeacherAssistant();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+    /**
+     * Test of equals method in class Account
+     */
+    public void testEquals()
+    {
+        System.out.println("equals");
+        Account instance1 = new Account(42, "testGuy", "Test Guy", "test@guy");
+        Account instance2 = new Account(42, "testGuy", "Test Guy", "test@guy");
+        Account instance3 = new Account(41, "newGuy", "New Guy", "new@guy");
+        boolean result1 = instance1.equals(instance2);
+        boolean result2 = instance1.equals(instance3);
+        assertEquals(true, result1);
+        assertEquals(false, result2);
+    }
 }

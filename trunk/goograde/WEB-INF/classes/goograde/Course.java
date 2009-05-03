@@ -297,8 +297,15 @@ public class Course implements java.io.Serializable
                 
                 for(int indx = 0; indx < result.size(); indx++)
                 {
-                    toAdd = new Student((Integer)result.get(indx).get(0));
-                    this.roster.add(toAdd);
+                    try
+                    {
+                        toAdd = new Student((Integer)result.get(indx).get(0));
+                        this.roster.add(toAdd);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.out.println("Invalid roster: " + ex);
+                    }
                 }
                 
             }
