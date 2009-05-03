@@ -36,6 +36,13 @@ public class Student extends Account
         this.enrolled = getEnrolled();
     }
 
+    /**
+     * Large constructor with all data
+     * @param id identification Integer used to fetch data from db
+     * @param username used to log into system
+     * @param name student's real name
+     * @param email student's email
+     */
     public Student(Integer id, String username, String name, String email)
     {
         super(id, username, name, email);
@@ -53,6 +60,10 @@ public class Student extends Account
         return (new Grade(ass.getId(), this.getId())).getGrade();
     }
 
+    /**
+     * gets a list of all courses a student is enrolled in
+     * @return list of all courses the student is enrolled in
+     */
     public ArrayList<Course> getEnrolled()
     {
         ArrayList<Course> ret = new ArrayList<Course>();
@@ -61,9 +72,9 @@ public class Student extends Account
 
         try
         {
-            result = conn.query("select course as id from enrolled" +
-                    " where student = " + this.getId());
-
+            result = conn.query("select course as id from enrolled" 
+                    + " where student = " + this.getId());
+            /*add all returned rows into ret ArrayList*/
             for (ArrayList<Object> row : result)
             {
                 ret.add(new Course((Integer) row.get(0)));
@@ -85,12 +96,20 @@ public class Student extends Account
         return ret;
     }
 
+    /**
+     * Sets this.enrolled
+     * @param enrolled ArrayList of Course objects the student is enrolled in
+     */
     public void setEnrolled(ArrayList<Course> enrolled)
     {
         this.enrolled = new ArrayList<Course>(enrolled);
     }
     
-     static public ArrayList<Student> allStudents()
+    /**
+     * static function to return all students in all classes
+     * @return ArrayList of all students
+     */
+    public static ArrayList<Student> allStudents()
     {
 
         ArrayList<Student> ret = new ArrayList<Student>();
@@ -103,12 +122,14 @@ public class Student extends Account
                     + " from students, accounts"
                     + " where students.id = accounts.id");
             
+            int index = 0;
+            /*For each resultant row, add into ret ArrayList*/
             for (ArrayList<Object> row : out)
             {
-                ret.add(new Student((Integer) row.get(0),
-                        (String) row.get(1),
-                        (String) row.get(2),
-                        (String) row.get(3)));
+                ret.add(new Student((Integer) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++)));
             }
             
             conn.close();
@@ -125,7 +146,11 @@ public class Student extends Account
 
         return ret;
     }
-     
+    
+    /**
+     * specialized toString method uses Account.toString()
+     * @return Account.toString()
+     */
     @Override
     public String toString()
     {
