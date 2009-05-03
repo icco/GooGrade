@@ -45,6 +45,9 @@ public class RosterController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher/ViewRoster.jsp");
+        req.setAttribute("teachCourseList",
+            (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        
         Course roster = new Course(new Integer(req.getParameter("id")));
         
         req.setAttribute("course", roster);
