@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
+
 /**
  * Does all of the work on the Assignment, it is the controller. 
  * We haven't really speced out what this is going to do yet.
@@ -45,24 +46,34 @@ public class AssignmentController extends HttpServlet
             }
             else if (action.equals("add"))
             {
+                /*Parse Date into Date Object */
                 String dateFormatString = "MM-dd-yy";
-                SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
+                SimpleDateFormat format = new 
+                        SimpleDateFormat(dateFormatString);
                 Date newDate = new Date();
                 
                 try
                 {
-                    newDate = format.parse(req.getParameter("NewAssgnDate"));
+                    newDate = format.parse(req.getParameter("newAssgnDate"));
                 }
                 catch (ParseException ex)
                 {
-                    Logger.getLogger(AssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(AssignmentController.class.getName()).
+                            log(Level.SEVERE, null, ex);
                 }
 
-                //this.addAssignment(req.getParameter("newUserName"),
-                Assignment.addAssignment(req.getParameter("Type"),
+                //Create the new Assignment with the input
+                try
+                {
+                    Assignment.addAssignment(req.getParameter("type"),
                         newDate,
-                        req.getParameter("NewAssgnName"),
-                        new Integer(req.getParameter("NewAssgnTotal")));
+                        req.getParameter("newAssgnName"),
+                        new Integer(req.getParameter("newAssgnTotal")));
+                }
+                catch(Exception E)
+                {
+                    System.out.println(E.toString());
+                }
 
             }
             else if (action.equals("edit"))
@@ -103,12 +114,14 @@ public class AssignmentController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
+        RequestDispatcher view = 
+                req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
 
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
-        req.setAttribute("AssignmentList", (ArrayList<Assignment>) Assignment.allAssignments());
+        req.setAttribute("AssignmentList", 
+                (ArrayList<Assignment>) Assignment.allAssignments());
 
 
         /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
