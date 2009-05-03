@@ -32,7 +32,8 @@ public class Assignment implements java.io.Serializable
      */
     private Integer total;
     /**
-     * The type of the Assignment; can be Test, Quiz, Homework, Participation, or Other
+     * The type of the Assignment; can be Test, Quiz, Homework, Participation,
+     * or Other
      */
     private String type;
     /**
@@ -47,6 +48,9 @@ public class Assignment implements java.io.Serializable
      * The minimum for all graded assignments for this assignment
      */
     private Float min;
+    private ArrayList<Grade> grades; // a list of student grades on this 
+    //  assignment
+
 
     /**
      * Constructors
@@ -132,6 +136,20 @@ public class Assignment implements java.io.Serializable
     {
         return min;
     }
+    
+    public int getId()
+    {
+        return id;
+    }
+
+    /**
+     * getGrades returns a list of grades for this assignment
+     * @return the list of grades
+     */
+    public ArrayList<Grade> getGrades()
+    {
+        return grades;
+    }
 
     /**
      * Sets the dueDate of the Assignment.
@@ -204,7 +222,8 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the average points of the Assignment
-     * @param paverage the average points of the graded assignment for this Assignment
+     * @param paverage the average points of the graded assignment for this 
+     * Assignment
      * @return true if set, false if failure.
      */
     public boolean setAvg(Float paverage)
@@ -254,6 +273,36 @@ public class Assignment implements java.io.Serializable
     }
 
     /**
+     * Saves a new grade for a partucular student into the database
+     * @param aStudent the student being graded.
+     * @return true if save was successful
+     */
+    public boolean setAGrade(Student aStudent, float newGrade)
+    {
+        StorageConnection conn = new StorageConnection();
+        String query;
+
+        /*seek the student to see if he has a grade for this assignment already
+         * If so, edit that grade instead of creating a new one */
+        if (grades.contains(aStudent.getId()))
+        {
+            query = "UPDATE Grades SET grade = " + newGrade +
+                    "WHERE accountID = " + aStudent.getId();
+            conn.query(query);
+            conn.close();
+        }
+        /*Otherwise, add a new row to the database with the new grade */
+        {
+            query = "INSERT INTO Grades (accountID, grade, assignmentID) " +
+                    "VALUES (" + aStudent.getId() + "," + newGrade + "," +
+                    this.id + ")";
+            conn.query(query);
+            conn.close();
+        }
+        return true;
+    }
+
+    /**
      * Searches the database table Assignments according
      * to this.id and sets all instance variables from there
      * @return true if found in database, else false
@@ -269,9 +318,9 @@ public class Assignment implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         ArrayList<Object> result = conn.query(query).get(0);
         conn.close();
-        
+
         /* No results from the query means an unsuccessful fetch */
-        if(result.size() < 1)
+        if (result.size() < 1)
         {
             return false;
         }
@@ -279,7 +328,6 @@ public class Assignment implements java.io.Serializable
         {
             try
             {
-
                 //set varaibles to values loaded from database,
                 total = (Integer) result.get(1);
                 name = (String) result.get(2);
@@ -292,8 +340,45 @@ public class Assignment implements java.io.Serializable
             catch (Exception ex)
             {
                 Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                        "SQL error occurred when trying to fetch Assignment"
-                        + " with id = " + this.id.toString(), ex);
+                        "SQL error occurred when trying to fetch Assignment" +
+                        " with id = " + this.id.toString(), ex);
+            }
+        }
+
+        /*Now fetch the grades from the grade table */
+        query = "SELECT accountId, grade, assignId " +
+                "FROM Grades WHERE assignId =" + id;
+        conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result2 = conn.query(query);
+        conn.close();
+
+        /* No results from the query means an unsuccessful fetch */
+        if (result2.size() < 1)
+        {
+            return false;
+        }
+        else
+        {
+            try
+            {
+                /*put the grades into the grade table */
+                grades = new ArrayList<Grade>();
+                int count;
+                for (count = 0; count < result2.size(); count++)
+                {
+                    grades.add(new Grade((Integer) result2.get(count).get(2),
+                            (Integer) result2.get(count).get(0)));
+                    grades.get(count).gradeStudent((Float) 
+                            result2.get(count).get(1));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                /*table insert failed */
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+                        "SQL error occurred when trying to fetch Grades" + 
+                        " with id = " + this.id.toString(), ex);
             }
         }
 
