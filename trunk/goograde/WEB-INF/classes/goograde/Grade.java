@@ -6,9 +6,9 @@ package goograde;
  */
 public class Grade 
 {
-    private Student student;
-    private Assignment assignment;
-    private Course course;
+    private int student;
+    private int assignment;
+
     private float grade;
 
     /**
@@ -17,11 +17,10 @@ public class Grade
      * @param ass teh assignment this grade is from
      * @param aThis the student is grade is for
      */
-    public Grade(Course crse, Assignment ass, Student aThis)
+    public Grade(int ass , int aThis)
     {
         student = aThis;
         assignment = ass;
-        course = crse;
     }
     
     /**
@@ -53,29 +52,20 @@ public class Grade
     
     /**
      * getAssignment returns the assignment this grade belonged to
-     * @return the Assignment
+     * @return the Assignment ID
      */
-    public Assignment getAssgn()
+    public int getAssgn()
     {
         return assignment;
     }
     
     /**
      * getStudent returns the student this grade is for
-     * @return the Student
+     * @return the Student ID
      */
-    public Student getStudent()
+    public int getStudent()
     {
         return student;
-    }
-    
-    /**
-     * getCourse returns the course this grade is from.
-     * @return the Course
-     */
-    public Course getCourse()
-    {
-        return course;
     }
     
     /**
