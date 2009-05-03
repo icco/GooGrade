@@ -47,7 +47,7 @@
                                         <td>${assg.dueDate}</td>
                                         <td>${assg.type}</td>
                                         <td>
-                                            <form action="<c:url value="course" />" method="post">
+                                            <form action="<c:url value="teacher/ManageAssignments.jsp" />" method="post">
                                                 <input type="hidden" name="action" value="delete" />
                                                 <input type="hidden" name="AssgnId" value="${assg.id}" />
                                                 <input type="submit" value="Delete">
@@ -85,7 +85,7 @@
                                             
                                             <td>
                                                 Type: 
-                                                <select name="Type" size="1">
+                                                <select name="type" size="1">
                                                     <option>Homework</option>
                                                     <option>Quiz</option>
                                                     <option>Test</option>
