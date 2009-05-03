@@ -39,11 +39,27 @@ public class AssignmentController extends HttpServlet
             if (action.equals("delete"))
             {
                 //choose teh appropriate assignment to modify and then modify 
-                    //and then delete it
+                //and then delete it
+                Assignment.deleteAssignment(req.getParameter("AssgnId"));
             }
             else if (action.equals("add"))
             {
                 //this.addAssignment(req.getParameter("newUserName"),
+                Assignment.addAssignment(req.getParameter("Type"), 
+                        new Date(req.getParameter("NewAssgnDate")), 
+                        req.getParameter("NewAssgnName"),
+                        new Integer(req.getParameter("NewAssgnTotal")));
+                
+            }
+            else if(action.equals("edit"))
+            {
+               /* Assignment.modifyAssignment(req.getParamater("EditType"), 
+                        new Float(req.getParamater("EditMax")), 
+                        new Float(req.getParamater("EditMin")), 
+                        new Float(req.getParamater("EditAverage")),
+                        new Date (req.getParamater("EditDueDate")),
+                        req.getParamater("EditName"), 
+                        new Integer(req.getParamater("EditTotal"))); */
             }
         }
 
@@ -77,22 +93,22 @@ public class AssignmentController extends HttpServlet
 
         view = req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
 
-        req.setAttribute("teacherList", (ArrayList<Teacher>) 
-                Teacher.allTeachers());
-        req.setAttribute("teachCourseList", (ArrayList<Course>) 
-                (Teacher.allTeachers().get(0).getCourses()));
+        req.setAttribute("AssignmentList", (ArrayList<Assignment>) 
+                Assignment.allAssignments());
+        /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
+                (Teacher.allTeachers().get(0).getCourses())); */
         try
         {
             view.forward(req, resp);
         }
         catch (ServletException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).
+            Logger.getLogger(AssignmentController.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
         catch (IOException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).
+            Logger.getLogger(AssignmentController.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
 
