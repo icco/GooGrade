@@ -51,26 +51,35 @@ public class Course implements java.io.Serializable
 
     /**
      * Secondary constructor used when creating new Courses
-     * @param title
-     * @param department
-     * @param number
-     * @param section
+     * @param title Title of course
+     * @param department Department of course
+     * @param number course number
+     * @param section section of course
      */
     public Course(String title, String department, Integer number, Integer section)
     {
         this.setTitle(title);
         this.setDepartment(department);
         this.setNumber(number);
-        this.setSection(section);
+        /*default value for section is 1*/
+        if(section == null)
+        {
+            this.setSection(new Integer(1));
+        }
+        else
+        {
+            this.setSection(section);
+        }
     }
 
     /**
      * setId sets this.id to provided argument
-     * @param id Integer to set store
+     * @param newId Integer to store
+     * @return true if no errors
      */
-    public boolean setId(Integer id)
+    public boolean setId(Integer newId)
     {
-        this.id = id;
+        this.id = newId;
         return true;
     }
 
@@ -87,7 +96,7 @@ public class Course implements java.io.Serializable
 
     /**
      * setDepartment sets this.department to provided argument
-     * @param newDepartment
+     * @param newDepartment department tag (eg. "CSC")
      * @return true if no errors
      */
     public boolean setDepartment(String newDepartment)
@@ -131,23 +140,23 @@ public class Course implements java.io.Serializable
 
     /**
      * setRoster sets this.roster to provided argument
-     * @param roster list of students enrolled in the course
+     * @param newRoster list of students enrolled in the course
      * @return true if no errors
      */
-    public boolean setRoster(ArrayList<Student> roster)
+    public boolean setRoster(ArrayList<Student> newRoster)
     {
-        this.roster = roster;
+        this.roster = newRoster;
         return true;
     }
 
     /**
      * setAssignments sets this.assignments provided argument
-     * @param assignments list of assignments associated with the course
+     * @param newAssignments list of assignments associated with the course
      * @return true if no errors
      */
-    public boolean setAssignments(ArrayList<Assignment> assignments)
+    public boolean setAssignments(ArrayList<Assignment> newAssignments)
     {
-        this.assignments = assignments;
+        this.assignments = newAssignments;
         return true;
     }
 
@@ -216,17 +225,21 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<Student> getRoster()
     {
+        /*if we have a roster, return it */
         if (this.roster != null)
         {
             return this.roster;
         }
+        /*else fetch it from db and return */
         else
         {
+            /*avoid null pointer exceptions, we must have an id to fetch from db*/
             if (this.getId() != null)
             {
                 this.roster = new ArrayList<Student>();
-                String query = "SELECT Accounts.id as id FROM Accounts, enrolled " +
-                        "WHERE Accounts.id = enrolled.student AND enrolled.course = " + this.getId();
+                String query = "SELECT Accounts.id as id FROM Accounts, enrolled "
+                        + "WHERE Accounts.id = enrolled.student "
+                        + "AND enrolled.course = " + this.getId();
 
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
@@ -246,10 +259,12 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<Assignment> getAssignments()
     {
+        /*if we have a list of assignments return it*/
         if (this.assignments != null)
         {
             return this.assignments;
         }
+        /*if list of assignments are missing, fetch it from db*/
         else
         {
             this.assignments = new ArrayList<Assignment>();
@@ -304,11 +319,12 @@ public class Course implements java.io.Serializable
      */
     public GradingRules getGradingRules()
     {
+        /*if no id is set, get one from db*/
         if (this.gradingRulesId != null)
         {
             GradingRules rules = new GradingRules(this.getGradingRulesId());
-
-            if (rules.fetch()) //true if valid gradingRulesId in database, else false
+            /*true if valid gradingRulesId in database, else false*/
+            if (rules.fetch())
             {
                 return rules;
             }
@@ -387,7 +403,7 @@ public class Course implements java.io.Serializable
      * courses and returns a list of Course objects
      * @return list of all Courses in the database
      */
-    static public ArrayList<Course> allCourses()
+    public static ArrayList<Course> allCourses()
     {
 
         ArrayList<Course> courses = new ArrayList<Course>();
@@ -396,18 +412,20 @@ public class Course implements java.io.Serializable
         ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
 
-
-        for (int i = 0; i < result.size(); i++)
+        /*for all in result, add to returned course list*/
+        for (int index = 0; index < result.size(); index++)
         {
             Course course = null;
             try
             {
-                course = new Course((Integer) result.get(i).get(0));
+                course = new Course((Integer) result.get(index).get(0));
             }
             catch (Exception ex)
             {
-                Logger.getLogger(Course.class.getName()).log(Level.SEVERE, "Error msg TBD", ex);
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
+                        "Error msg TBD", ex);
             }
+            /*avoid null pointer exceptions and fetch is successful*/
             if (course != null && course.fetch())
             {
                 courses.add(course);
@@ -428,12 +446,12 @@ public class Course implements java.io.Serializable
      * @todo StorageConnection.query does not do deletes
      * @todo Implement Permissions
      */
-    static public boolean deleteCourse(Permissions permission, Integer id)
+    public static boolean deleteCourse(Permissions permission, Integer id)
     {
         String query;
         StorageConnection conn;
         boolean ret = false;
-
+        /*only delete if id is not null*/
         if (id != null)
         {
             query = "DELETE FROM Courses WHERE id=" + id.toString();
@@ -457,8 +475,9 @@ public class Course implements java.io.Serializable
      */
      
     public boolean delete(Permissions permission)
-    {        
+    {
         boolean ret = false;
+        /*we can only delete if id is not null*/
         if (this.getId() != null)
         {
             
@@ -481,32 +500,22 @@ public class Course implements java.io.Serializable
      * @param department new Course's department
      * @param number new Course's number
      * @param section new Course's section
+     * @param teacher set the teacher for the class
      * @return true if added, false otherwise
      */
-    static public boolean addCourse(Permissions permission, String title, String department, Integer number, Integer section, Teacher teacher)
+    public static boolean addCourse(Permissions permission, String title, 
+            String department, Integer number, Integer section, Teacher teacher)
     {
         
         boolean ret = false;
         
         Course course = new Course(title, department, number, section);
         ret = course.save();
-        
+        /*if we have not failed already, continue*/
         if(ret)
         {
             ret = course.setTeacher(teacher);
         }
-        /*
-        if (title != null && department != null && number != null && section != null)
-        {
-            String query = "INSERT INTO Courses (title, department, number, section) " +
-                    "VALUES (\"" + title + "\",\"" + department + "\",\"" + number + "\",\"" + section + "\")";
-            StorageConnection conn = new StorageConnection();
-            conn.updateQuery(query);
-            conn.close();
-
-            return true;
-        }
-        */
 
         return ret;
     }
@@ -521,31 +530,33 @@ public class Course implements java.io.Serializable
      */
     public boolean fetch()
     {
-        String query = "SELECT title, department, number, section, gradingRulesId FROM Courses " +
-                "WHERE id = " + this.getId().toString();
+        String query = "SELECT title, department, number, section, "
+                + "gradingRulesId FROM Courses "
+                + "WHERE id = " + this.getId();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         ArrayList<Object> temp = null;
         conn.close();
-
+        /*if nothing was found we could not find anything in db*/
         if (result.size() < 1)
         {
             return false;
         }
         try
         {
+            int index = 0;
             temp = result.get(0);
-            this.setTitle((String) temp.get(0));
-            this.setDepartment((String) temp.get(1));
-            this.setNumber((Integer) temp.get(2));
-            this.setSection((Integer) temp.get(3));
-            this.setGradingRulesId((Integer) temp.get(4));
+            this.setTitle((String) temp.get(index++));
+            this.setDepartment((String) temp.get(index++));
+            this.setNumber((Integer) temp.get(index++));
+            this.setSection((Integer) temp.get(index++));
+            this.setGradingRulesId((Integer) temp.get(index++));
         }
         catch (Exception ex)
         {
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                    "SQL error occurred when trying to fetch Course" +
-                    "with id = " + this.getId().toString(), ex);
+                    "SQL error occurred when trying to fetch Course "
+                    + "with id = " + this.getId().toString(), ex);
         }
 
         return true;
@@ -558,6 +569,7 @@ public class Course implements java.io.Serializable
      */
     public boolean refresh()
     {
+        /*can only refresh if we exist in db, ie id != null*/
         if (this.getId() != null)
         {
             this.setRoster(null);
@@ -577,64 +589,87 @@ public class Course implements java.io.Serializable
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
-        String query = "";
-        
+        /*if id is null we a creating a new course*/
         if(this.getId() == null)
         {
-            query = "INSERT INTO Courses (title, department, number, section) " +
-                    "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() + 
-                    "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
-            
-            if(!(ret = conn.updateQuery(query)))
-            {
-                return ret;
-            }
-            
-            query = "SELECT max(id) FROM Courses";
-            ArrayList<ArrayList<Object>> result = conn.query(query);
-            conn.close();
-            
-            if(result.isEmpty())
-            {
-                return false;
-            }
-            
-            ret = this.setId((Integer)result.get(0).get(0));
+            ret = this.saveWithoutId();
         }
-        
+        /*if we have an id set, we are updating*/
         else
         {
-            query = "SELECT id FROM Courses WHERE id = " + this.getId();
-            ArrayList<ArrayList<Object>> result = conn.query(query);
-            
-            if(result.isEmpty())
-            {
-                query = "INSERT INTO Courses (id, title, department, number, section) " +
-                    "VALUES (\"" + this.getId() + "\",\"" + this.getTitle() + "\",\"" + this.getDepartment() + 
-                    "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
-                
-                ret = conn.updateQuery(query);
-                conn.close();
-            }
-            else
-            {
-                query = "UPDATE Courses SET " +
-                    "title = \"" + this.getTitle() + "\"," +
-                    "department = \"" + this.getDepartment() + "\"," +
-                    "number = \"" + this.getNumber() + "\"," +
-                    "section = \"" + this.getSection() + "\" " +
-                    "WHERE id = \"" + this.getId() + "\"";
-                
-                ret = conn.updateQuery(query);
-                conn.close();
-            }
+            ret = this.saveWithId();
         }
-
         return ret;
-                
+    }
+    
+    /**
+     * save method if we don't have id set
+     * @return true if no error
+     */
+    private boolean saveWithoutId()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+        
+        String query = "INSERT INTO Courses (title, department, number, section) " 
+                    + "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() 
+                    + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+        ret = conn.updateQuery(query);
+        /*if we failed to update, discontinue*/
+        if(!(ret))
+        {
+            return ret;
+        }
+        query = "SELECT max(id) FROM Courses";
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        conn.close();
+        /*if result is empty so is Courses*/
+        if(result.isEmpty())
+        {
+            return false;
+        }
+        ret = this.setId((Integer)result.get(0).get(0));
+        return ret;
+    }
+    /**
+     * save method if we have id set
+     * @return true if no error
+     */    
+    private boolean saveWithId()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+        
+        String query = "SELECT id FROM Courses WHERE id = " + this.getId();
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        /*if for some reason id does not exist in db we insert*/
+        if(result.isEmpty())
+        {
+            query = "INSERT INTO Courses (id, title, department, number, section) "
+                + "VALUES (\"" + this.getId() + "\",\"" + this.getTitle() 
+                + "\",\"" + this.getDepartment() + "\",\"" + this.getNumber() 
+                + "\",\"" + this.getSection() + "\")";
+            ret = conn.updateQuery(query);
+        }
+        /*if id does exist we update*/
+        else
+        {
+            query = "UPDATE Courses SET " 
+                + "title = \"" + this.getTitle() + "\","
+                + "department = \"" + this.getDepartment() + "\","
+                + "number = \"" + this.getNumber() + "\","
+                + "section = \"" + this.getSection() + "\" "
+                + "WHERE id = \"" + this.getId() + "\"";
+            ret = conn.updateQuery(query);
+        }
+        conn.close();
+        return ret;
     }
 
-    @Override
+    /**
+     * toString()
+     * @return a string created from Course class
+     */
     public String toString()
     {
         String ret = new String();
@@ -647,14 +682,19 @@ public class Course implements java.io.Serializable
         return ret;
     }
     
+    /**
+     * matches a teacher's id and a course id int the table teaches
+     * @param teacher
+     * @return true if set and no errors
+     */ 
     private boolean setTeacher(Teacher teacher)
     {
         boolean ret = false;
-        
+        /*db table has two columns that can't be set to null...*/
         if(teacher != null && this.getId() != null)
         {
-            String query = "INSERT INTO teaches (teacher, course) " +
-                    "VALUES (\"" + teacher.getId() + "\",\"" + this.getId() + "\")";
+            String query = "INSERT INTO teaches (teacher, course) " 
+                    + "VALUES (\"" + teacher.getId() + "\",\"" + this.getId() + "\")";
             StorageConnection conn = new StorageConnection();
             ret = conn.updateQuery(query);
             conn.close();
