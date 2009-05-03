@@ -13,7 +13,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manage Courses</title>
     </head>
-    
     <body>
         
         <div id="wrap">
@@ -28,52 +27,80 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Courses</h3>
-                        <table>
-                            <tr>
-                                <td>Title</td>
-                                <td>Department</td>
-                                <td>Number</td>
-                                <td>Section</td>
-                            </tr>
-                            <c:forEach var="course" items="${teachCourseList}">
+                        <div id="data">
+                            <table>
                                 <tr>
-                                    <td>${course.title}</td>
-                                    <td>${course.department}</td>
-                                    <td>${course.number}</td>
-                                    <td>${course.section}</td>
-                                    <td>
-                                        <form action="<c:url value="course" />" method="post">
-                                            <input type="hidden" name="action" value="delete" />
-                                            <input type="hidden" name="courseRef" value="${course.id}" />
-                                            <input type="submit" value="Delete">
-                                        </form>
-                                    </td>
+                                    <th>Title</th>
+                                    <th>Department</th>
+                                    <th>Number</th>
+                                    <th>Section</th>
                                 </tr>
-                            </c:forEach>
-                            <tr>
-                                <td colspan="5">
-                                    <a href="#">Add Course?</a>
-                                </td>
-                            </tr>
-                        </table>
-                        <table>
-                            <tr>
-                                <td>Title</td>
-                                <td>Department</td>
-                                <td>Number</td>
-                                <td>Section</td>
-                            </tr>
-                            <tr>
-                                <form action="<c:url value="course" />" method="post">
+                                <c:forEach var="course" items="${teachCourseList}">
+                                    <c:choose>
+                                        <c:when test = "${course.id % 2 == 1}">
+                                            <tr>
+                                            
+                                            <td>${course.title}</td>
+                                            <td>${course.department}</td>
+                                            <td>${course.number}</td>
+                                            <td>${course.section}</td>
+                                            <td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <tr>
+                                                <td class="alt">${course.title}</td>
+                                                <td class="alt">${course.department}</td>
+                                                <td class="alt">${course.number}</td>
+                                                <td class="alt">${course.section}</td>
+                                                <td class="alt">
+                                                </c:otherwise>
+                                            </c:choose>
+                                            
+                                            <form action="<c:url value="course" />" method="post">
+                                                <input type="hidden" name="action" value="delete" />
+                                                <input type="hidden" name="courseRef" value="${course.id}" />
+                                                <input type="submit" value="Delete">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                            <input alt="#TB_inline?height=60&width=700&inlineId=Form" 
+                                   title="Add Course" 
+                                   class="thickbox" 
+                                   type="button"
+                                   value="Add Course">
+                            <div id="Form" style="display: none">
+                                <form id="Form"  action="<c:url value="course"/>" method="post">
                                     <input type="hidden" name="action" value="add" />
-                                    <td><input type="text" name="newCourseTitle" /></td>
-                                    <td><input type="text" name="newCourseDepartment" /></td>
-                                    <td><input type="text" name="newCourseNumber" /></td>
-                                    <td><input type="text" name="newCourseSection" /></td>
-                                    <td><input type="submit" value="Add" /></td>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                Title<input type="text" name="newCourseTitle" />
+                                            </td>
+                                            <td>
+                                                Department<input type="text" size="5" name="newCourseDepartment" />
+                                            </td>
+                                            <td>
+                                                Number <input type="text" size="5" name="newCourseNumber" />
+                                            </td>
+                                            
+                                            <td>
+                                                Section <input type="text" size="5" name="newCourseSection" />
+                                            </td>
+                                            <td>
+                                                <input  type="submit" value="Add" />
+                                            </td>
+                                        </tr>
+                                    
+                                    </table>
+                                    
+                                    
+                                    
+                                    
                                 </form>
-                            </tr>
-                        </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 

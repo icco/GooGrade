@@ -60,6 +60,50 @@ a:hover, a:active {
     text-decoration: underline;
 }
 
+#data{
+    position: relative;
+    top: 40px;
+}
+
+
+table{
+    border-width: 0px;
+    border-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+th {
+    font: bold 14px, Verdana, Arial, Helvetica, sans-serif;
+    color: #00000;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    border-top: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 6px 6px 6px 12px;
+    background: #518ac1;
+}
+
+tr{
+    border-width: 1px;
+    border-style: solid; 
+}
+td{
+    border-width: 1px;
+    border-style: solid; 
+    padding: 4px 6px 3px 10px;
+}
+
+td.alt{
+    border-width: 1px;
+    border-style: solid; 
+    background-color: #98bfe3;
+    padding: 3px 6px 0px 10px;
+}
+
+
 .course-options {
     position: relative;
     top: -44px;
@@ -305,7 +349,7 @@ h3.trigger a:hover {
 }
 
 h3.active {
-  width: auto;
+    width: auto;
     
 } /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
 
