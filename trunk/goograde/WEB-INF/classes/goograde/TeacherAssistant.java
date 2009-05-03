@@ -39,6 +39,7 @@ public class TeacherAssistant extends Account
      * All variables, other than id, are still null and retrieved from
      * database with fetch();
      * @param newId identification Integer used to fetch data from db
+     * @throws Exception calls Account constructor, with Exception on invalid id
      */
     public TeacherAssistant(Integer newId) throws Exception
     {
@@ -142,18 +143,6 @@ public class TeacherAssistant extends Account
         
         return ret;
     }
-    
-    /**
-     * Public accessor to determine whether a Teacher Assistant has any courses
-     * @return true if courses are had, false otherwise
-     */
-    public boolean hasCourses()
-    {
-        boolean retVal = false;
-        if (this.assists != null)
-            retVal = true;
-        return retVal;
-    }
 
     /**
      * Editing of a current course is done here
@@ -247,7 +236,7 @@ public class TeacherAssistant extends Account
     
     /**
      * Calls Account.equals();
-     * 
+     * @param otherTA The other object to be compared with
      * @return a string representation of the Teacher
      */
     public boolean equals(TeacherAssistant otherTA)

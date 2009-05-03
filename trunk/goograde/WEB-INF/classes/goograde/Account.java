@@ -3,7 +3,6 @@ package goograde;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.lang.Throwable;
 
 /**
  * This is a class that keeps all of the information of a user. A user is 
@@ -86,6 +85,7 @@ public class Account implements java.io.Serializable
      * All variables, other than id, are still null and retrieved from
      * database with fetch();
      * @param newID identification Integer used to fetch data from db
+     * @throws Exception an invalid id passed in is erroneous
      */
     public Account(Integer newID) throws Exception
     {
@@ -96,7 +96,7 @@ public class Account implements java.io.Serializable
         boolean validIdent = this.fetch();
         
         /* An invalid ID must throw an error */
-        if (validIdent == false)
+        if (!validIdent)
         {
             throw new Exception("Invalid identification");
         }
@@ -276,12 +276,13 @@ public class Account implements java.io.Serializable
         boolean ret = false;
         int index = 0, initial = 0;
         
-        /* Query call to be modified depending on existence of Account id */
+        /* A present ID requires one type of query */
         if (this.getId() != null)
         {
             query = "SELECT id, username, name, email, password"
                     + " FROM Accounts WHERE id = " + this.getId().toString();
         }
+        /* Otherwise, a present username requires a different query type */
         else if (this.getUserName() != null)
         {
             query = "SELECT id, username, name, email, password"
@@ -289,17 +290,14 @@ public class Account implements java.io.Serializable
         }
         /* An account with neither id nor username is empty; do not fetch */
         else
+        {
             return ret;
-        
+        }
         result = conn.query(query);
         conn.close();
         
         /* No results from the query means an unsuccessful fetch */
-        if(result.size() < 1)
-        {
-            ret = false;
-        }
-        else
+        if(result.size() >= 1)
         {
             try
             {
@@ -309,6 +307,7 @@ public class Account implements java.io.Serializable
                 this.setFullName((String) rs.get(index++));
                 this.setEmailAddress(new EmailAddress((String) rs.get(index++)));
                 this.setPassword(new Password((String) rs.get(index++)));
+                ret = true;
             }
             catch (Exception ex)
             {
@@ -316,12 +315,7 @@ public class Account implements java.io.Serializable
                         "SQL error occurred when trying to fetch Account"
                         + " with id = " + this.getId().toString(), ex);
             }
-            finally
-            {
-                ret = true;
-            }
         }
-        
         return ret;
     }
 
@@ -461,13 +455,14 @@ public class Account implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
         
-        /* Only allow a database call if this Account already exists in it */
+        /* If an ID is present, form one type of query to delete */
         if (this.getId() != null)
         {
             String query = "DELETE from Accounts ";
             query += "WHERE id = " + this.getId();
             ret = conn.updateQuery(query);
         }
+        /* Otherwise, if a valid user name is present, use a different query */
         else if (this.getUserName() != null)
         {
             String query = new String("DELETE from Accounts WHERE username = \""
@@ -514,8 +509,11 @@ public class Account implements java.io.Serializable
     public boolean equals(Account testAct)
     {
         boolean ret = true;
+        /* Equals implemented via variable string comparison */
         if (!(this.toString().equals(testAct.toString())))
+        {
             ret = false;
+        }
         return ret;
     }
 }
