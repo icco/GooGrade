@@ -28,28 +28,29 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>View Roster</h3>                     
-                     
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>User Name</th>
-                                    <th>Email Address</th>
-                                    <th>Full Name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="user" items="${studentList}">
+                        <div id="data">
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>${user.id}</td>
-                                        <td>${user.userName}</td>
-                                        <td>${user.emailAddress}</td>
-                                        <td>${user.fullName}</td>
+                                        <th>ID</th>
+                                        <th>User Name</th>
+                                        <th>Email Address</th>
+                                        <th>Full Name</th>
                                     </tr>
-                                </c:forEach>
-                     
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    <c:forEach var="user" items="${studentList}">
+                                        <tr>
+                                            <td>${user.id}</td>
+                                            <td>${user.userName}</td>
+                                            <td>${user.emailAddress}</td>
+                                            <td>${user.fullName}</td>
+                                        </tr>
+                                    </c:forEach>
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                         
                         
                     </div>
