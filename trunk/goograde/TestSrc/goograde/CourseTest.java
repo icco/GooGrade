@@ -516,30 +516,67 @@ public class CourseTest extends TestCase {
 
     /**
      * Test of fetch method, of class Course.
+     * Test with valid id
      */
-    public void testFetch()
+    public void testFetch1()
     {
-        System.out.println("fetch");
-        Course instance = new Course();
+        System.out.println("fetch1");
+        Course instance = new Course(1);
+        boolean expResult = true;
+        boolean result = instance.fetch();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of fetch method, of class Course.
+     * Test with invalid id
+     */
+    public void testFetch2()
+    {
+        System.out.println("fetch1");
+        Course instance = new Course(666);
         boolean expResult = false;
         boolean result = instance.fetch();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of refresh method, of class Course.
+     * Test with null id
      */
-    public void testRefresh()
+    public void testRefresh1()
     {
-        System.out.println("refresh");
-        Course instance = new Course();
+        System.out.println("refresh1");
+        Course instance = new Course("Yay","Nay",123,null);
         boolean expResult = false;
         boolean result = instance.refresh();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of refresh method, of class Course.
+     * Test with valid id
+     */
+    public void testRefresh2()
+    {
+        System.out.println("refresh2");
+        Course instance = new Course(1);
+        boolean expResult = true;
+        boolean result = instance.refresh();
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of refresh method, of class Course.
+     * Test with invalid id
+     */
+    public void testRefresh3()
+    {
+        System.out.println("refresh3");
+        Course instance = new Course(666);
+        boolean expResult = false;
+        boolean result = instance.refresh();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -606,6 +643,30 @@ public class CourseTest extends TestCase {
         System.out.println("validateNumber2");
         boolean expResult = false;
         boolean result = Course.validateNumber("jeh");
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of validateSection method, of class Course.
+     * Test with valid section
+     */
+    public void testValidateSection1()
+    {
+        System.out.println("validateSection1");
+        boolean expResult = true;
+        boolean result = Course.validateSection("01");
+        assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of validateSection method, of class Course.
+     * Test with invalid section
+     */
+    public void testValidateSection2()
+    {
+        System.out.println("validateSection2");
+        boolean expResult = false;
+        boolean result = Course.validateSection("vg");
         assertEquals(expResult, result);
     }
 
