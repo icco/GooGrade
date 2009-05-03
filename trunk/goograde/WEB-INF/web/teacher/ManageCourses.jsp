@@ -92,17 +92,17 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                Title<input type="text" name="newCourseTitle" />
+                                                Title<input type="text" maxlength="100" name="newCourseTitle" />
                                             </td>
                                             <td>
-                                                Department<input type="text" size="5" name="newCourseDepartment" />
+                                                Department<input type="text" size="5" maxlength="4" name="newCourseDepartment" />
                                             </td>
                                             <td>
-                                                Number <input type="text" size="5" name="newCourseNumber" />
+                                                Number <input type="text" size="5" maxlength="3" name="newCourseNumber" />
                                             </td>
                                             
                                             <td>
-                                                Section <input type="text" size="5" name="newCourseSection" />
+                                                Section <input type="text" size="5" maxlength="1" name="newCourseSection" />
                                             </td>
                                             <td>
                                                 <input  type="submit" value="Add" />
