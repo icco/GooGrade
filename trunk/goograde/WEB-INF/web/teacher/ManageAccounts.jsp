@@ -28,7 +28,6 @@
                     <div class="cornerBoxInner">
                         <h3>Manage Accounts</h3>
                         <table border="1">
-                            <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>User Name</th>
@@ -37,10 +36,8 @@
                                     <th>Teacher?</th>
                                     <th>TA?</th>
                                 </tr>
-                            </thead>
-                            <tbody>
                                 <c:forEach var="user" items="${accountList}">
-                                    <tr>
+                                    <tr class="color">
                                         <td>${user.id}</td>
                                         <td>${user.userName}</td>
                                         <td>${user.emailAddress}</td>
@@ -56,7 +53,7 @@
                                         </td>
                                     </tr>
                                 </c:forEach>
-                                <tr> 
+                                <tr class="color"> 
                                     <form action="<c:url value="/teacher/accounts?id=${course.id}" />" method="post">
                                         <td><input type="hidden" name="action" value="add" /></td>
                                         <td><input size ="10" name="newUserName" type="text" /></td>
