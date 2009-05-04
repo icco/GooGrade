@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Roster</title>
+        <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - View Roster</title>
     </head>
     
     <body>
@@ -40,7 +40,7 @@
                                 </thead>
                                 <tbody>
                                     <c:forEach var="user" items="${studentList}">
-                                        <tr>
+                                        <tr class="color">
                                             <td>${user.id}</td>
                                             <td>${user.userName}</td>
                                             <td>${user.emailAddress}</td>

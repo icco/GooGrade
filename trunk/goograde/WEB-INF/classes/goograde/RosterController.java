@@ -50,8 +50,9 @@ public class RosterController extends HttpServlet
             (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         
         Course roster = new Course(new Integer(req.getParameter("id")));
-        
-        req.setAttribute("course", roster);
+        req.setAttribute("id", req.getParameter("id"));
+
+        req.setAttribute("currentCourse", roster);
         req.setAttribute("studentList", roster.getRoster());
         
         try
