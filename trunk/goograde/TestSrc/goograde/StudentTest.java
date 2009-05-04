@@ -1,6 +1,5 @@
 package goograde;
 
-import goograde.*;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 
@@ -26,12 +25,25 @@ public class StudentTest extends TestCase {
 
     /**
      * Test of getGrade method, of class Student.
+     * Note: Needs to be updated once this method is implemented.
      */
     public void testGetGrade()
     {
         System.out.println("getGrade");
-        // assertEquals(null, null);
-        fail("getGrade method not yet complete.");
+        Student testStu = null;
+        try
+        {
+            testStu = new Student(4);
+        }
+        catch (Exception ex)
+        {
+            fail("invalid student ID");
+        }
+        Assignment testAssign = new Assignment(2);
+        Course testCourse = new Course(3);
+        Float result = testStu.getGrade(testCourse, testAssign);
+        Float expResult = new Float(0.0);
+        assertEquals(expResult, result);
     } 
 
 

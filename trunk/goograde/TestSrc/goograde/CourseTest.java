@@ -10,7 +10,7 @@ import junit.framework.TestCase;
 
 /**
  *
- * @author vgerdin
+ * @author mduder, vgerdin
  */
 public class CourseTest extends TestCase {
     
@@ -283,11 +283,11 @@ public class CourseTest extends TestCase {
     public void testGetAssignments()
     {
         System.out.println("getAssignments");
-        Course instance = new Course();
-        ArrayList<Assignment> expResult = null;
+        Course instance = new Course(4);
         ArrayList<Assignment> result = instance.getAssignments();
-        // assertEquals(expResult, result);
-        fail("Assignments are not yet implemented.");
+        String assignName = new String(result.get(0).getName());
+        String expResult = new String("SRS");
+        assertEquals(expResult, assignName);
     }
 
     /**
@@ -312,11 +312,11 @@ public class CourseTest extends TestCase {
     public void testGetTeachers()
     {
         System.out.println("getTeachers");
-        Course instance = new Course();
-        ArrayList<Teacher> expResult = null;
+        Course instance = new Course(1);
         ArrayList<Teacher> result = instance.getTeachers();
-        // assertEquals(expResult, result);
-        fail("getTeachers is not yet implemented.");
+        String teacherName = new String(result.get(0).getUserName());
+        String expResult = new String("nwelch");
+        assertEquals(expResult, teacherName);
     }
 
     /**
@@ -325,11 +325,11 @@ public class CourseTest extends TestCase {
     public void testGetTeacherAssistants()
     {
         System.out.println("getTeacherAssistants");
-        Course instance = new Course();
-        ArrayList<TeacherAssistant> expResult = null;
+        Course instance = new Course(1);
         ArrayList<TeacherAssistant> result = instance.getTeacherAssistants();
-        // assertEquals(expResult, result);
-        fail("getTeacherAssistants is not yet implemented.");
+        String taName = new String(result.get(0).getUserName());
+        String expResult = new String("pphu");
+        assertEquals(expResult, taName);
     }
 
     /**
@@ -348,91 +348,80 @@ public class CourseTest extends TestCase {
     /**
      * Test of addStudent method, of class Course.
      */
-    public void testAddStudent()
+    public void testAddAndRemoveStudent()
     {
         System.out.println("addStudent");
-        Permissions permission = null;
+        Permissions permission = new Permissions();
+        Course instance = new Course(4);
         Student student = null;
-        Course instance = new Course();
-        boolean expResult = false;
+        try
+        {
+            student = new Student(4);
+        }
+        catch (Exception ex)
+        {
+            fail("invalid student id" + ex);
+        }
+        boolean expResult = true;
         boolean result = instance.addStudent(permission, student);
-        // assertEquals(expResult, result);
-        fail("addStudent not yet implemented.");
-    }
-
-    /**
-     * Test of removeStudent method, of class Course.
-     */
-    public void testRemoveStudent()
-    {
+        assertEquals(expResult, result);
+        
         System.out.println("removeStudent");
-        Permissions permission = null;
-        Student student = null;
-        Course instance = new Course();
-        boolean expResult = false;
-        boolean result = instance.removeStudent(permission, student);
-        // assertEquals(expResult, result);
-        fail("removeStudent not yet implemented.");
+        result = instance.removeStudent(permission, student);
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of addTA method, of class Course.
      */
-    public void testAddTA()
+    public void testAddAndRemoveTA()
     {
         System.out.println("addTA");
-        Permissions permission = null;
+        Permissions permission = new Permissions();
+        Course instance = new Course(4);
         TeacherAssistant ta = null;
-        Course instance = new Course();
-        boolean expResult = false;
+        try
+        {
+            ta = new TeacherAssistant(2);
+        }
+        catch (Exception ex)
+        {
+            fail("invalid Teacher Assistant id" + ex);
+        }
+        boolean expResult = true;
         boolean result = instance.addTA(permission, ta);
-        // assertEquals(expResult, result);
-        fail("addTA not yet implemented");
-    }
-
-    /**
-     * Test of removeTA method, of class Course.
-     */
-    public void testRemoveTA()
-    {
+        assertEquals(expResult, result);
+        
         System.out.println("removeTA");
-        Permissions permission = null;
-        TeacherAssistant ta = null;
-        Course instance = new Course();
-        boolean expResult = false;
-        boolean result = instance.removeTA(permission, ta);
-        // assertEquals(expResult, result);
-        fail("removeTA not yet implemented");
+        result = instance.removeTA(permission, ta);
+        assertEquals(expResult, result);
     }
 
     /**
      * Test of addTeacher method, of class Course.
      */
-    public void testAddTeacher()
+    public void testAddAndRemoveTeacher()
     {
         System.out.println("addTeacher");
-        Permissions permission = null;
-        Teacher teacher = null;
-        Course instance = new Course();
+        Permissions permission = new Permissions();
+        Course instance = new Course(4);
+        Teacher testTeacher = null;
+        try
+        {
+            testTeacher = new Teacher(1);
+        }
+        catch (Exception ex)
+        {
+            fail("invalid Teacher id" + ex);
+        }
         boolean expResult = false;
-        boolean result = instance.addTeacher(permission, teacher);
-        // assertEquals(expResult, result);
-        fail("addTeacher not yet implemented.");
-    }
-
-    /**
-     * Test of removeTeacher method, of class Course.
-     */
-    public void testRemoveTeacher()
-    {
+        boolean result = instance.addTeacher(permission, testTeacher);
+        assertEquals(expResult, result);
+        
         System.out.println("removeTeacher");
-        Permissions permission = null;
-        Teacher teacher = null;
-        Course instance = new Course();
-        boolean expResult = false;
-        boolean result = instance.removeTeacher(permission, teacher);
-        // assertEquals(expResult, result);
-        fail("removeTeacher not yet implemented.");
+        expResult = true;
+        result = instance.removeTeacher(permission, testTeacher);
+        assertEquals(expResult, result);
     }
 
     /**

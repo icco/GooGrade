@@ -96,13 +96,6 @@ public class TeacherAssistant extends Account
             Logger.getLogger(TeacherAssistant.class.getName())
                     .log(Level.SEVERE, "Error in TeacherAssistant", ex);
         }
-        finally
-        {
-            /*
-            Logger.getLogger(TeacherAssistant.class.getName())
-                    .log(Level.WARNING, ret.toString());
-             */ 
-        }
         return ret;
     }
 
@@ -135,13 +128,6 @@ public class TeacherAssistant extends Account
         {
             Logger.getLogger(TeacherAssistant.class.getName()).log(Level.SEVERE,
                     "Error in TeacherAssistant", ex);
-        }
-        finally
-        {
-            /*
-            Logger.getLogger(TeacherAssistant.class.getName()).log(Level.WARNING,
-                    ret.toString());
-             */ 
         }
 
         
