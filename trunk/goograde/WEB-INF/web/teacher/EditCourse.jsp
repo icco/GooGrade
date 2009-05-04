@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage Courses</title>
+        <title>Edit Courses</title>
     </head>
     <body>
         
@@ -26,18 +26,41 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>Manage Courses</h3>
+                        <h3>Edit Course</h3>
                         <div id="data">
-                            <form action="<c:url value="editCourse" />" method="post">
-                                <input type="hidden" name="action" value="edit" />
-                                <input type="hidden" name="courseRef" value="${course.id}" />
-                                <input type="text" name="title" value="${course.title}" />
-                                <input type="text" name="department" value="${course.department}" size="5" />
-                                <input type="text" name="number" value="${course.number}" size="5" />
-                                <input type="text" name="section" value="${course.section}" size="5" />
-                                <input type="submit" value="save" />
-                            </form>
-<%--
+                            
+                            <table>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Department</th>
+                                    <th>Number</th>
+                                    <th>Section</th>
+                                </tr>
+                                <form action="<c:url value="editCourse" />" method="post">
+                                    <tr>
+                                        <td>
+                                            
+                                            <input type="hidden" name="action" value="edit" />
+                                            <input type="hidden" name="courseRef" value="${course.id}" />
+                                            <input type="text" name="title" value="${course.title}" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="department" value="${course.department}" size="5" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="number" value="${course.number}" size="5" />
+                                        </td>
+                                        <td>
+                                            <input type="text" name="section" value="${course.section}" size="5" />
+                                        </td>
+                                        <td>
+                                            <input type="submit" value="save" />
+                                        </td>
+                                    </tr>
+                                </form>
+                            </table>
+                            
+                            <%--
                             <input alt="#TB_inline?height=60&width=700&inlineId=Form" 
                                    title="Add Course" 
                                    class="thickbox" 

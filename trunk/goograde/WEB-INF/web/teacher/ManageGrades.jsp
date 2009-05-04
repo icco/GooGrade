@@ -28,6 +28,29 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Grades</h3>
+                        <table>
+                            <tr>
+                                <th>Assignment</th>
+                                <th>Possible Points</th>
+                                <th>Due Date</th>
+                                <th>Type</th>
+                                <th>Grade</th>
+                            </tr>
+                            <%--             
+             req.setAttribute("assArray", crse.getAssignments());
+            req.setAttribute("gradeList", gradearray);
+            req.setAttribute("stuArray",crse.getStudents());
+            --%>
+            
+                            <c:forEach var="assignment" items="${assArray}">
+                                <tr class="color"> 
+                                    <td>
+                                        ${assignment.name} ${assignment.total}
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            
+                        </table>
                     </div>
                 </div>
                 
