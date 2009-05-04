@@ -47,7 +47,7 @@ public class CourseController extends HttpServlet
             }
             else if (action.equals("edit"))
             {
-                this.editCourse("1"/*(String) req.getParameter("courseRef")*/,
+                this.editCourse((String) req.getParameter("courseRef"),
                         (String) req.getParameter("title"),
                         (String) req.getParameter("department"),
                         (String) req.getParameter("number"),

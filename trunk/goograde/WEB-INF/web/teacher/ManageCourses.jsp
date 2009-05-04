@@ -1,7 +1,7 @@
 <%-- 
     Document   : ManageCourses
     Created on : Apr 26, 2009, 9:47:24 PM
-    Author     : pphu
+    Author     : pphu, vgerdin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -37,21 +37,6 @@
                                     <th>Section</th>
                                 </tr>
                                 
-                                
-                                <script type="text/javascript">
-                                    var index = 0;
-                                </script>
-                                <script type="text/javascript">
-                                    function setEditCourseRef(id)
-                                    {
-                                        var editCourseRef = id;
-                                    }
-                                        
-                                    function getEditCourseRef()
-                                    {
-                                        return editCourseRef;
-                                    }
-                                </script>
                                 <c:forEach var="course" items="${teachCourseList}">
                                     <tr>
                                         
@@ -60,49 +45,45 @@
                                         <td>${course.number}</td>
                                         <td>${course.section}</td>
                                         <td>
-                                            
-                                            <form action="<c:url value="course" />" method="post">
-                                                <input type="hidden" name="action" value="delete" />
-                                                <input type="hidden" name="courseRef" value="${course.id}" />
-                                                <input type="submit" value="Delete">
-                                            </form>
-                                        </td>
-                                        <td>
-                                            <form>
-                                                <input alt="#TB_inline?height=60&width=700&inlineId=Edit${course.id}" 
-                                                       title="Edit Course" 
-                                                       class="thickbox" 
-                                                       type="button"
-                                                       value="Edit"
-                                                       />
-                                                <div id="Edit${course.id}" style="display: none">
-                                                    <form id="Edit${course.id}"  action="<c:url value="course"/>" method="post">
-                                                        <input type="hidden" name="action" value="edit" />
-                                                        <input type="hidden" name="courseRef" value="${course.id}" />
-                                                        <table class="fuckingshit">
-                                                            <tr class="fuckingshit">
-                                                                <td>
-                                                                    Title<input type="text" size="18" maxlength="100" name="title" value="${course.title}" />
-                                                                </td>
-                                                                <td>
-                                                                    Department<input type="text" size="5" maxlength="4" name="department" value="${course.department}" />
-                                                                </td>
-                                                                <td>
-                                                                    Number <input type="text" size="5" maxlength="3" name="number" value="${course.number}"/>
-                                                                </td>
-                                                                
-                                                                <td>
-                                                                    Section <input type="text" size="5" maxlength="1" name="section" value="${course.section}"/>
-                                                                </td>
-                                                                <td>
-                                                                    <input  type="submit" value="Save" />
-                                                                </td>
-                                                            </tr>
+                                            <input alt="#TB_inline?height=60&width=700&inlineId=Edit${course.id}a" 
+                                                   title="Edit Course" 
+                                                   class="thickbox" 
+                                                   type="button"
+                                                   value="Edit"
+                                                   />
+                                            <div id="Edit${course.id}a" style="display: none">
+                                                <form id="Edit${course.id}a"  action="<c:url value="course"/>" method="post">
+                                                    <input type="hidden" name="action" value="edit" />
+                                                    <input type="hidden" name="courseRef" value="${course.id}" />
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                Title<input type="text" size="18" maxlength="100" name="title" value="${course.title}" />
+                                                            </td>
+                                                            <td>
+                                                                Department<input type="text" size="5" maxlength="4" name="department" value="${course.department}" />
+                                                            </td>
+                                                            <td>
+                                                                Number <input type="text" size="5" maxlength="3" name="number" value="${course.number}"/>
+                                                            </td>
                                                             
-                                                        </table>
-                                                    </form>
-                                                </div>
-                                            </form>
+                                                            <td>
+                                                                Section <input type="text" size="5" maxlength="1" name="section" value="${course.section}"/>
+                                                            </td>
+                                                            <td>
+                                                                <input  type="submit" value="Save" />
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </form>
+                                            </div>
+                                            <td>
+                                                <form action="<c:url value="course" />" method="post">
+                                                    <input type="hidden" name="action" value="delete" />
+                                                    <input type="hidden" name="courseRef" value="${course.id}" />
+                                                    <input type="submit" value="Delete">
+                                                </form>
+                                            </td>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -134,9 +115,7 @@
                                                 <input  type="submit" value="Add" />
                                             </td>
                                         </tr>
-                                        
                                     </table>
-                                    
                                 </form>
                             </div>
                         </div>
