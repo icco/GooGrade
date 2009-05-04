@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd /var/www/html/svn/trunk/; 
-rm -rf /var/html/www/statsvn;
-svn log -v --xml logfile.log;
-java -jar ../../statsvn.jar -trac http://wiki.csc.calpoly.edu/blugoo -output-dir /var/html/www/statsvn logfile.log . 
+rm -rvf /var/www/html/statsvn > /tmp/statsvn.log;
+svn log -v --xml > logfile.log;
+java -jar ../../statsvn.jar -trac http://wiki.csc.calpoly.edu/blugoo -output-dir /var/www/html/statsvn logfile.log . &> /tmp/statsvn.log
 
