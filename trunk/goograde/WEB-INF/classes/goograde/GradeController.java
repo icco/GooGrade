@@ -31,7 +31,18 @@ public class GradeController extends HttpServlet
         /*Determine which action needs to be taken */
         if (action != null)
         {
-
+                if(action.equals("delete"))
+                {
+                    
+                }
+                else if(action.equals("add"))
+                {
+                    
+                }
+                else if(action.equals("edit"))
+                {
+                    
+                }
         }
 
         try
@@ -62,6 +73,8 @@ public class GradeController extends HttpServlet
         
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        
+        req.setAttribute("gradeList", (ArrayList<Grade>) (Grade.allGrades()));
 
         
 
