@@ -82,7 +82,7 @@
     </target>
 
 
-    <target name="-post-dist" depends="javadoc">
+    <target name="-post-dist" depends="javadoc,checkstyle">
 	    <!-- This would send out an email, but in all honesty, it's useless.
 		    <mail from="blugoo@lists.csc.calpoly.edu" 
 			    tolist="blugoo@lists.csc.calpoly.edu" 
@@ -103,5 +103,23 @@
 		    <param name="begin" value="2009-01-07" />
 		    <param name="end" value="9999-99-99" />
 	    </antcall>
+    </target>
+
+    <!-- Check for coding style conformance.                                 -->
+    <target name="initstyle" >       
+        <!-- Declare the checkstyle task -->
+        <taskdef resource="checkstyletask.properties">
+            <classpath>
+                    <pathelement location="lib/checkstyle-all-4.4.jar"/>
+                    <pathelement location="lib/308checks.jar"/>
+            </classpath>
+        </taskdef>
+    </target>
+   
+    <target name="checkstyle" depends="initstyle">
+        <checkstyle config="lib/308style.xml"
+                    failOnViolation="false">
+            <fileset dir="WEB-INF/classes/" includes="**/*.java"/>
+        </checkstyle>
     </target>
 </project>
