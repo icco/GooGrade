@@ -42,7 +42,7 @@
                             </li>
                             --%>
                             <li class="add">
-                                <img src="/GooGrade/styles/add.png" style=" position: relative; top: 3px;"><a href="/GooGrade/teacher/course">Manage Courses</a>
+                                <h4><img src="/GooGrade/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade/teacher/course">Manage Courses</a></h4>
                             </li>
                             <%-- Not till release 2
                             <li class="export" >

@@ -59,9 +59,9 @@
                                 <tr> 
                                     <form action="<c:url value="/teacher/accounts?id=${course.id}" />" method="post">
                                         <td><input type="hidden" name="action" value="add" /></td>
-                                        <td><input name="newUserName" type="text" /></td>
-                                        <td><input name="newEmailAddr" type="text" /></td>
-                                        <td><input name="newFullName" type="text" /></td>
+                                        <td><input size ="10" name="newUserName" type="text" /></td>
+                                        <td><input size ="10" name="newEmailAddr" type="text" /></td>
+                                        <td><input size ="10" name="newFullName" type="text" /></td>
                                         <td>.</td>
                                         <td>.</td>
                                         <td><input type="submit" value="Engage!" /></td>
