@@ -69,13 +69,39 @@
                                         </td>
                                         <td>
                                             <form>
-                                                <input type="hidden" name="editCourseRef" value="${course.id}" />
-                                                <input alt="#TB_inline?height=60&width=700&inlineId=Edit" 
+                                                <input alt="#TB_inline?height=60&width=700&inlineId=Edit${course.id}" 
                                                        title="Edit Course" 
                                                        class="thickbox" 
                                                        type="button"
                                                        value="Edit"
-                                                       onclick="setEditCourseRef(${course.id})" />
+                                                       />
+                                                <div id="Edit${course.id}" style="display: none">
+                                                    <form id="Edit${course.id}"  action="<c:url value="course"/>" method="post">
+                                                        <input type="hidden" name="action" value="edit" />
+                                                        <input type="hidden" name="courseRef" value="${course.id}" />
+                                                        <table class="fuckingshit">
+                                                            <tr class="fuckingshit">
+                                                                <td>
+                                                                    Title<input type="text" size="18" maxlength="100" name="title" value="${course.title}" />
+                                                                </td>
+                                                                <td>
+                                                                    Department<input type="text" size="5" maxlength="4" name="department" value="${course.department}" />
+                                                                </td>
+                                                                <td>
+                                                                    Number <input type="text" size="5" maxlength="3" name="number" value="${course.number}"/>
+                                                                </td>
+                                                                
+                                                                <td>
+                                                                    Section <input type="text" size="5" maxlength="1" name="section" value="${course.section}"/>
+                                                                </td>
+                                                                <td>
+                                                                    <input  type="submit" value="Save" />
+                                                                </td>
+                                                            </tr>
+                                                            
+                                                        </table>
+                                                    </form>
+                                                </div>
                                             </form>
                                         </td>
                                     </tr>
@@ -112,40 +138,6 @@
                                     </table>
                                     
                                 </form>
-                            </div>
-                            
-                            <div id="Edit" style="display: none">
-                                <c:set var="editCourseRef" value="getEditCourseRef()" scope="page" />
-                                <c:forEach var="course" items="${teachCourseList}" >
-                                    <c:if test="${course.id == 1}">
-                                        <form id="Edit"  action="<c:url value="course"/>" method="post">
-                                            <input type="hidden" name="action" value="edit" />
-                                            <input type="hidden" name="courseRef" value="${course.id}" />
-                                            <table>
-                                                <tr>
-                                                    <td>
-                                                        Title<input type="text" size="18" maxlength="100" name="title" value="${course.title}" />
-                                                    </td>
-                                                    <td>
-                                                        Department<input type="text" size="5" maxlength="4" name="department" value="${course.department}" />
-                                                    </td>
-                                                    <td>
-                                                        Number <input type="text" size="5" maxlength="3" name="number" value="${course.number}"/>
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        Section <input type="text" size="5" maxlength="1" name="section" value="${course.section}"/>
-                                                    </td>
-                                                    <td>
-                                                        <input  type="submit" value="Save" />
-                                                    </td>
-                                                </tr>
-                                                
-                                            </table>
-                                            
-                                        </form>
-                                    </c:if>
-                                </c:forEach>
                             </div>
                         </div>
                     </div>
