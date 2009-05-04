@@ -31,7 +31,7 @@
 
             
             <div id="accordion">
-                <c:forEach var="course" items="${studentCourseList}">
+                <c:forEach var="course" items="${enrolledCourseList}">
                     <h3 class="trigger"><a href="#">${course.department} ${course.number}-${course.section}</a></h3>
                     <div class="toggle_container">
                         <div class="block">
