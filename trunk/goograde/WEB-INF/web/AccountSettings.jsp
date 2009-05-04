@@ -5,8 +5,10 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-   "http://www.w3.org/TR/html4/loose.dtd">
+"http://www.w3.org/TR/html4/loose.dtd">
 <%--
 Read http://jquery.com/demo/thickbox/ for more infomation. 
 I am using an iFrame (2nd to last demo)
@@ -29,18 +31,31 @@ I am using an iFrame (2nd to last demo)
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="user" items="${allAccountList}">
-                    <tr>
-                        <td>${user.id}</td>
-                        <td>${user.userName}</td>
-                        <td>${user.emailAddress}</td>
-                        <td>${user.fullName}</td>
-                    </tr>
+                <c:forEach var="user" items="${accountList}">
+                    <c:when test="${user.id}">
+                        <tr>
+                            <td>${user.id}</td>
+                            <td>${user.userName}</td>
+                            <td>${user.emailAddress}</td>
+                            <td>${user.fullName}</td>
+                        </tr>
+                    </c:when>
                 </c:forEach>
                 <tr> 
-            </tr>
+                    
+                </tr>
             </tbody>
+            
         </table>
+        <form action="<c:url value="/accounts" />" method="post">
+            <td><input type="hidden" name="action" value="add" /></td>
+            <td><input name="newUserName" type="text" /></td>
+            <td><input name="newEmailAddr" type="text" /></td>
+            <td><input name="newFullName" type="text" /></td>
+            <tr>
+                <td><input type="submit" value="Enter" /></td>
+            </tr>
+        </form>
         
     </body>
 </html>
