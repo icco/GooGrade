@@ -7,8 +7,8 @@ INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, c
     VALUES("JSP Sample", 10,"Thu Apr 16 00:00:00 PDT 2009", "Other", 8.97, 10, 0, 1);
 INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
     VALUES("Midterm 2", 100,"Sun May 10 00:00:00 PDT 2009", "Test", 0, 0, 0, 2);
-INSERT INTO "Assignments" VALUES(4,'Hej',43,'Mon May 11 00:00:00 PDT 2009','Homework','null','null','null',1);
-INSERT INTO "Assignments" VALUES(5,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Final','null','null','null',2);
+INSERT INTO "Assignments" VALUES(4,'Hej',43,'Mon May 11 00:00:00 PDT 2009','Homework',0,0,0,1);
+INSERT INTO "Assignments" VALUES(5,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Final',0,0,0,2);
 
 
 INSERT INTO Courses (title, department, number, section, gradingRulesId) 

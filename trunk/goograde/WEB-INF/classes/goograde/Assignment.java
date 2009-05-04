@@ -245,7 +245,7 @@ public class Assignment implements java.io.Serializable
     public boolean setAvg(Float paverage)
     {
         //TODO, ACTUALLY calculate the average from all grades submitted
-        if(paverage > 0)
+        if(paverage >= 0)
         {
             average = paverage;
         }
@@ -260,7 +260,7 @@ public class Assignment implements java.io.Serializable
     public boolean setMax(Float pmax)
     {
         //TODO. calculate the maximum score out of all the grades
-        if(pmax > 0)
+        if(pmax >= 0)
         {
             max = pmax;
         }
@@ -276,7 +276,7 @@ public class Assignment implements java.io.Serializable
     public boolean setMin(Float pmin)
     {
         //TODO, calculate the minimum score out of all teh grades
-        if(pmin > 0)
+        if(pmin >= 0)
         {
             min = pmin;
         }
@@ -483,9 +483,9 @@ public class Assignment implements java.io.Serializable
         temp.setDueDate(dueDate);
         temp.setName(name);
         temp.setTotal(total);
-        temp.setAvg(new Float(0));
-        temp.setMax(new Float(0));
-        temp.setMin(new Float(0));
+        temp.setAvg(new Float(0F));
+        temp.setMax(new Float(0F));
+        temp.setMin(new Float(0F));
         
         temp.save();
     }
