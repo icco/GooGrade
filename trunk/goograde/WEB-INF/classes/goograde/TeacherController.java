@@ -44,7 +44,9 @@ public class TeacherController extends HttpServlet
         {
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        req.setAttribute("teac", (Teacher) (user1));
+        
+        req.setAttribute("user", (Account) (user1));
+        req.setAttribute("teach", (Teacher) (user1));
         req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
         if (action != null)

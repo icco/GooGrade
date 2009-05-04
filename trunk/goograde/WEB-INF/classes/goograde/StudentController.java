@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class StudentController extends HttpServlet
 {
+
     /**
      * method called from form tag with method="post"
      * @param req request
@@ -34,7 +35,7 @@ public class StudentController extends HttpServlet
         String action = req.getParameter("action");
         RequestDispatcher view = null;
 
-        resp.addCookie(new Cookie("userid",req.getParameter("who")));
+        resp.addCookie(new Cookie("userid", req.getParameter("who")));
 
         view = req.getRequestDispatcher("/student/viewStudent.jsp");
         Student user1 = null;
@@ -46,9 +47,11 @@ public class StudentController extends HttpServlet
         {
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        req.setAttribute("user", (Account) (user1));
         req.setAttribute("stud", (Student) (user1));
         req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user1.getEnrolled()));
-        
+
         try
         {
             view.forward(req, resp);
@@ -67,7 +70,7 @@ public class StudentController extends HttpServlet
 
         view = req.getRequestDispatcher("/student/index.jsp");
 
-        
+
         req.setAttribute("studentList", (ArrayList<Student>) (Student.allStudents()));
 
         try
