@@ -40,7 +40,7 @@
                                 
                                 <%--TODO, do display "no assignments exist" --%>
                                 <c:forEach var = 'assg' items="${AssignmentList}">
-                                    <tr>
+                                    <tr class="color">
                                         <td>${assg.name}</td>
                                         <td>${assg.total}</td>
                                         <%-- http://www.servletsuite.com/servlets/datetime.htm --%>

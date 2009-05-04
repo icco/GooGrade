@@ -88,7 +88,8 @@ th {
 
 tr{
     border-width: 1px;
-    border-style: solid; 
+    border-style: solid;
+    background-color: #98bfe3;
 }
 td{
     border-width: 1px;

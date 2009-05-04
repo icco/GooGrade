@@ -38,7 +38,7 @@
                                 </tr>
                                 
                                 <c:forEach var="course" items="${teachCourseList}">
-                                    <tr>
+                                    <tr class="color">
                                         
                                         <td>${course.title}</td>
                                         <td>${course.department}</td>

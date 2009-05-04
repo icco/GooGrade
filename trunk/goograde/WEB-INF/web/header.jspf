@@ -24,7 +24,7 @@
     $(document).ready(function()
     {
         //for table row
-        $("tr:even").css("background-color", "#98bfe3");
-        $("tr:odd").css("background-color", "");
+        $("tr.color:even").css("background-color", "#e5ecf3");
+        $("tr.color:odd").css("background-color", "#98bfe3");
     });
 </script>
