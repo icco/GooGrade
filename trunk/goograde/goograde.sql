@@ -58,7 +58,8 @@ CREATE TABLE Assignments (
                 aType TEXT, 
                 aAverage FLOAT, 
                 aMax FLOAT, 
-                aMin FLOAT
+                aMin FLOAT,
+                courseId INTEGER
 );
 
 /* 
