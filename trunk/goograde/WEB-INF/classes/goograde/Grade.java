@@ -29,6 +29,12 @@ public class Grade
         this.assignment = ass;
     }
 
+    public Grade(int ass, int aThis) throws Exception 
+    {
+        this.student = new Student(aThis);
+        this.assignment = new Assignment(ass);
+    }
+    
     /**
      * Empty Constructor for Grade. Not to be used.
      */

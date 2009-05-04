@@ -31,6 +31,8 @@ public class GradeController extends HttpServlet
         RequestDispatcher view = null;
         String action = req.getParameter("action"); //the action to be done
         Account user1 = new Account();
+        Integer courseId = new Integer(req.getParameter("id"));
+        Course crse = new Course(courseId);
 
         for (Cookie cook : req.getCookies())
         {
@@ -53,7 +55,7 @@ public class GradeController extends HttpServlet
             }
             catch (Exception ex)
             {
-                Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "User Does Not Exist", ex);
+                Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Teacher Does Not Exist", ex);
             }
             
 
@@ -77,11 +79,13 @@ public class GradeController extends HttpServlet
             {
                 Student user2 = new Student(user1.getId());
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
+                ArrayList<Grade> gradelist = user2.getGrades(crse);
                 req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user2.getEnrolled()));
+                req.setAttribute("gradeList",gradelist);
             }
             catch (Exception ex)
             {
-                Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "User Does Not Exist", ex);
+                Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Student Does Not Exist", ex);
             }
 
         }

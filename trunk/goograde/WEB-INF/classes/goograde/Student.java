@@ -35,7 +35,7 @@ public class Student extends Account
         super(id);
         this.enrolled = getEnrolled();
     }
-    
+
     /**
      * Non-standard constructor
      * @param newUser  the user name an account holder uses to access GooGrade
@@ -84,8 +84,7 @@ public class Student extends Account
 
         try
         {
-            result = conn.query("select course as id from enrolled" 
-                    + " where student = " + this.getId());
+            result = conn.query("select course as id from enrolled" + " where student = " + this.getId());
             /*add all returned rows into ret ArrayList*/
             for (ArrayList<Object> row : result)
             {
@@ -103,7 +102,7 @@ public class Student extends Account
         {
             /*
             Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
-             */ 
+             */
         }
 
 
@@ -162,14 +161,12 @@ public class Student extends Account
         {
             /*
             Logger.getLogger(Student.class.getName()).log(Level.WARNING, ret.toString());
-             */ 
+             */
         }
 
         return ret;
     }
 
-    
-    
     /**
      * specialized toString method uses Account.toString()
      * @return Account.toString()
@@ -178,5 +175,65 @@ public class Student extends Account
     public String toString()
     {
         return super.toString();
+    }
+
+    /**
+     * 
+     * @return a list of the grades a student has.
+     */
+    public ArrayList<Grade> getGrades() throws Exception
+    {
+        String query = new String();
+        ArrayList<Grade> ret = new ArrayList<Grade>();
+        StorageConnection conn = new StorageConnection();
+
+        query = "SELECT accountId, assignId " +
+                "FROM grades " +
+                "WHERE accountId = " + this.getId();
+
+        ArrayList<ArrayList<Object>> out = conn.query(query);
+
+        for (ArrayList<Object> row : out)
+        {
+            int index = 0;
+            Grade newGrade = new Grade((Integer) row.get(index++),
+                    (Integer) row.get(index++));
+            ret.add(newGrade);
+        }
+
+        return ret;
+    }
+
+    public ArrayList<Grade> getGrades(Course crse)
+    {
+        String query = new String();
+        ArrayList<Grade> ret = new ArrayList<Grade>();
+        StorageConnection conn = new StorageConnection();
+
+        query = "SELECT accountId, assignments.id " +
+                "FROM grades, assignments " +
+                "WHERE grades.assignId = assignments.id " +
+                "AND assignments.courseId = " + crse.getId() +
+                " AND  accountId = " + this.getId();
+
+        ArrayList<ArrayList<Object>> out = conn.query(query);
+
+        for (ArrayList<Object> row : out)
+        {
+            int index = 0;
+            Grade newGrade = null;
+            try
+            {
+                newGrade = new Grade((Integer) row.get(index++), (Integer) row.get(index++));
+                ret.add(newGrade);
+
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(Student.class.getName()).log(Level.SEVERE, "Grade does not exist", ex);
+            }
+        }
+
+        return ret;
     }
 }
