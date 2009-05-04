@@ -43,11 +43,14 @@
 		</exec>
 
 		<!-- Set up database -->
-		<echo>Put in test data</echo>
+		<echo>Put test data into database</echo>
 		<exec executable="sqlite3">
 			<arg line="-init testData.sql" />
 			<arg line="/tmp/goograde.db" />
 		</exec>
+
+		<echo>Set permissions on database</echo>
+		<chmod file="/tmp/goograde.db" perm="777"/>
 	</target>
 
     <target name="-post-init">
