@@ -81,10 +81,10 @@
                             </c:forEach>
                         </table>
                         <input alt="#TB_inline?height=140&width=700&inlineId=Form" 
-                               title="Add Student" 
+                               title="Add Account" 
                                class="thickbox" 
                                type="button"
-                               value="Add Student">
+                               value="Add Account">
                         <div id="Form" style="display: none">
                             <table>
                                 <tr><td colspan="6">Add a new account:</td></tr>
