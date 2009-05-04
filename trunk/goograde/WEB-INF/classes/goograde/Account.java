@@ -419,13 +419,13 @@ public class Account implements java.io.Serializable
             Logger.getLogger(Account.class.getName())
                     .log(Level.SEVERE, "Error in Account", ex);
         }
-        finally
+        /* finally
         {
-            /*
+           
             Logger.getLogger(Account.class.getName())
                     .log(Level.WARNING, ret.toString());
-             */ 
-        }
+             
+        } */
 
         return ret;
     }

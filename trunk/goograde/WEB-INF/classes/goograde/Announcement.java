@@ -1,7 +1,7 @@
 package goograde;
 
-import java.lang.*;
-import java.util.*;
+import java.util.Date;
+
 
 /**
  * An Announcement for a Course. Quite a simple class for saving 

@@ -304,6 +304,7 @@ public class Course implements java.io.Serializable
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
                 
+                /* For each student result, add it to the roster */
                 for(int indx = 0; indx < result.size(); indx++)
                 {
                     try
@@ -353,6 +354,7 @@ public class Course implements java.io.Serializable
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
                 
+                /* For each query result, add an assignment to the list */
                 for(int indx = 0; indx < result.size(); indx++)
                 {
                     try
@@ -398,7 +400,8 @@ public class Course implements java.io.Serializable
             StorageConnection conn = new StorageConnection();
             ArrayList<ArrayList<Object>> result = conn.query(query);
             conn.close();
-                
+            
+            /* For each query result, add a teacher to the list */
             for(int indx = 0; indx < result.size(); indx++)
             {
                 try
@@ -435,6 +438,7 @@ public class Course implements java.io.Serializable
             ArrayList<ArrayList<Object>> result = conn.query(query);
             conn.close();
                 
+            /* For each query result, add a TeacherAssistant to the list */
             for(int indx = 0; indx < result.size(); indx++)
             {
                 try
@@ -483,12 +487,15 @@ public class Course implements java.io.Serializable
         boolean ret = false;
         boolean isInRoster = false;
         
+        /* Only add a student if the representing object has an id */
         if(student != null && student.getId() != null && this.getId() != null)
         {
             ArrayList<Student> currentRoster = this.getRoster();
             int indx;
+            /* Go through every line item in the roster */
             for(indx = 0; indx < currentRoster.size(); indx++)
             {
+                /* Confirm the student received is at this index in the roster */
                 if(student.equals(currentRoster.get(indx)))
                 {
                     isInRoster = true;
@@ -531,12 +538,15 @@ public class Course implements java.io.Serializable
         boolean ret = false;
         boolean isInRoster = false;
         
-        if(student != null && student.getId() != null && this.getId() != null )
+        /* Only proceed if the received student object has a valid id */
+        if(student != null && student.getId() != null && this.getId() != null)
         {
             ArrayList<Student> currentRoster = this.getRoster();
             int indx;
+            /* Walk through the roster */
             for(indx = 0; indx < currentRoster.size(); indx++)
             {
+                /* Verify the student received is at this location in the roster */
                 if(student.equals(currentRoster.get(indx)))
                 {
                     isInRoster = true;
@@ -544,6 +554,7 @@ public class Course implements java.io.Serializable
                 }
             }
             
+            /* Proceed if the student was found */
             if(isInRoster)
             {
                 String query = "DELETE FROM enrolled "
@@ -556,7 +567,9 @@ public class Course implements java.io.Serializable
                 ret = conn.updateQuery(query);
                 conn.close();
                 
-                if(ret){
+                /* Proceed if ret? */
+                if(ret)
+                {
                     this.setRoster(null);
                     /*setting roster to null will force new 
                      generation a next get*/
@@ -578,12 +591,15 @@ public class Course implements java.io.Serializable
         boolean ret = false;
         boolean isAssisting = false;
         
+        /* Check for valid id in teacher assistant object before proceeding */
         if(ta != null && ta.getId() != null && this.getId() != null)
         {
             ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
             int indx;
+            /* Walk through the list of teacher assistants */
             for(indx = 0; indx < currentTAs.size(); indx++)
             {
+                /* Confirm the received assistant is at this list location */
                 if(ta.equals(currentTAs.get(indx)))
                 {
                     isAssisting = true;
@@ -618,12 +634,15 @@ public class Course implements java.io.Serializable
         boolean ret = false;
         boolean isAssisting = false;
         
-        if(ta != null && ta.getId() != null && this.getId() != null )
+        /* Validate the id of the teacher assistant before proceeding */
+        if(ta != null && ta.getId() != null && this.getId() != null)
         {
             ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
             int indx;
+            /* walk through the teacher assistant list */
             for(indx = 0; indx < currentTAs.size(); indx++)
             {
+                /* confirm the received TA is the same as the one at this list loc */
                 if(ta.equals(currentTAs.get(indx)))
                     
                 {
@@ -632,6 +651,7 @@ public class Course implements java.io.Serializable
                 }
             }
             
+            /* Proceed if a teacher assistant was found */
             if(isAssisting)
             {
                 String query = "DELETE FROM assists "
@@ -653,18 +673,22 @@ public class Course implements java.io.Serializable
      * @param permission Permission of the user who calls this function
      * @param teacher Teacher to be added to this course
      * @return true if no errors have occured
+     * @todo Note from Matt Duder:  This code retrieves TAs, you want it to retrieve Teachers: fix please
      */
     public boolean addTeacher(Permissions permission, Account teacher)
     {
         boolean ret = false;
         boolean isTeaching = false;
         
+        /* validate incoming teacher's ID before proceeding */
         if(teacher != null && teacher.getId() != null && this.getId() != null)
         {
             ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
             int indx;
+            /* Loop through the list retrieved */
             for(indx = 0; indx < currentTAs.size(); indx++)
             {
+                /* Proceed if a teacher is found */
                 if(teacher.equals(currentTAs.get(indx)))
                 {
                     isTeaching = true;
@@ -699,12 +723,15 @@ public class Course implements java.io.Serializable
         boolean ret = false;
         boolean isTeaching = false;
         
-        if(teacher != null && teacher.getId() != null && this.getId() != null )
+        /* validate teacher id before proceeding */
+        if(teacher != null && teacher.getId() != null && this.getId() != null)
         {
             ArrayList<Teacher> currentTeachers = this.getTeachers();
             int indx;
+            /* Loop through the teacher list */
             for(indx = 0; indx < currentTeachers.size(); indx++)
             {
+                /* Proceed if a teacher is found to match the received one */
                 if(teacher.equals(currentTeachers.get(indx)))
                     
                 {
@@ -713,6 +740,7 @@ public class Course implements java.io.Serializable
                 }
             }
             
+            /* Proceed if a teacher was found */
             if(isTeaching)
             {
                 String query = "DELETE FROM teaches "
@@ -1046,6 +1074,7 @@ public class Course implements java.io.Serializable
         try
         {
             Integer tmp = new Integer(string);
+            /* Validate the input value */
             if(tmp.intValue() < 1)
             {
                 throw new NumberFormatException(); 
@@ -1070,8 +1099,10 @@ public class Course implements java.io.Serializable
     public static boolean validateTitle(String string)
     {
         boolean ret = true;
+        int minLen = 3, maxLen = 100;
         
-        if(string == null || string.length() < 3 || string.length() > 100)
+        /* Validate input */
+        if(string == null || string.length() < minLen || string.length() > maxLen)
         {
             ret = false;
             Logger.getLogger(
@@ -1090,8 +1121,10 @@ public class Course implements java.io.Serializable
     public static boolean validateDepartment(String string)
     {
         boolean ret = true;
+        int minLen = 2, maxLen = 4;
         
-        if(string == null || string.length() < 2 || string.length() > 4)
+        /* validate data */
+        if(string == null || string.length() < minLen || string.length() > maxLen)
         {
             ret = false;
             Logger.getLogger(
