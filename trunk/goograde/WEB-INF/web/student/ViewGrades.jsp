@@ -29,7 +29,33 @@
                     <div class="cornerBoxInner">
                         <h3>View Grades</h3>
                         <table>
+                            <tr>
+                                <th>Assignment</th>
+                                <th>Possible Points</th>
+                                <th>Due Date</th>
+                                <th>Type</th>
+                                <th>Grade</th>
+                            </tr>
                             <c:forEach var="user" items="${gradeList}">
+                            
+                                <tr class="color"> 
+                                    <td>
+                                        ${user.assignment.name}
+                                    </td>
+                                    <td>
+                                        ${user.assignment.total}
+                                    </td>
+                                    <td>
+                                        ${user.assignment.dueDate}
+                                    </td>
+                                    <td>
+                                        ${user.assignment.type}
+                                    </td>
+                                    <td>
+                                        ${user.grade}
+                                    </td>
+                                    
+                                </tr>
                                 
                             </c:forEach>
                         </table>
