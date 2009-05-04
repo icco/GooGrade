@@ -62,6 +62,7 @@
                                             <div id="Edit${assg.id}" style="display: none">
                                                 <form action="<c:url value="assignment"/>" method="post">
                                                     <input type="hidden" name="action" value="edit" />
+                                                    <input type="hidden" name="id" value="${id}" />
                                                     <input type="hidden" name="AssignId" value="${assg.id}" />
                                                     <table>
                                                         <tr>
@@ -119,6 +120,7 @@
                             <div id="FormPopUp" style="display: none">
                                 <form action="<c:url value="assignment"/>" method="post">
                                     <input type="hidden" name="action" value="add" />
+                                    <input type="hidden" name="id" value="${id}" />
                                     <table>
                                         <tr>
                                             <td>
