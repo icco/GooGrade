@@ -6,22 +6,8 @@
 <%@page contentType="text/html"%>
 <!-- Begin Nav -->
 <script type="text/javascript">
-    function gup( name )
-    {
-        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-        var regexS = "[\\?&]"+name+"=([^&#]*)";
-        var regex = new RegExp( regexS );
-        var results = regex.exec( window.location.href );
-        if( results == null )
-            return "";
-        else
-            return results[1];
-    }
-    ; 
-    var num = parseInt(${id});
-    document.write($.getUrlParam("id"));
-     document.write(num);
-    if(num > 0)
+
+/*     if(${id} > 0)
     {   
         $(document).ready(function(){
             $("#accordion").accordion(
@@ -36,7 +22,7 @@
 
         
     }
-    else
+    else*/
     {
         $(document).ready(function(){
             $("#accordion").accordion(
@@ -92,17 +78,6 @@
                     <h3 class="trigger"><a href="#">${course.department} ${course.number}-${course.section}</a></h3>
                     
                     <div class="toggle_container">
-                        ${id} 
-                        <script type="text/javascript">
-                            if ( ${id} == ${course.id})
-                            {
-                                document.write('PASSED');
-                                $(function(){    
-                                    $("#accordion").accordion('option', 'active', 1);
-                                });
-
-                                 
-                            }
                             
                         </script>
                         <div class="block">
