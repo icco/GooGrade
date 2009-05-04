@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,14 +26,30 @@ public class TeacherController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         String action = req.getParameter("action");
-
+        RequestDispatcher view = null;
+        
+        resp.addCookie(new Cookie("userid",req.getParameter("who")));
+        
+        view = req.getRequestDispatcher("/teacher/teacher.jsp");
+        Teacher user1 = null;
+        try
+        {
+            user1 = new Teacher(new Integer(req.getParameter("who")));
+            req.setAttribute("who",user1.getId());
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        req.setAttribute("teac", (Teacher) (user1));
+        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        
         if (action != null)
         {
             if (action.equals("delete"))
             {
                 this.deleteTeacher(new Integer(req.getParameter("accountRef")));
-            }
-            else if (action.equals("add"))
+            } else if (action.equals("add"))
             {
                 this.addTeacher(req.getParameter("newUserName"),
                         req.getParameter("newFullName"),
@@ -42,9 +59,8 @@ public class TeacherController extends HttpServlet
 
         try
         {
-            this.doGet(req, resp);
-        }
-        catch (Exception ex)
+            view.forward(req, resp);
+        } catch (Exception ex)
         {
             Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Problem loading page", ex);
         }
@@ -57,15 +73,16 @@ public class TeacherController extends HttpServlet
     {
         RequestDispatcher view = null;
 
-        view = req.getRequestDispatcher("/teacher/teacher.jsp");
-
-        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        view = req.getRequestDispatcher("/teacher/index.jsp");
         
+        req.setAttribute("teacherList", (ArrayList<Teacher>) (Teacher.allTeachers()));
+        req.setAttribute("teacherAssistantList", (ArrayList<TeacherAssistant>) (TeacherAssistant.allTeacherAssistants()));
+        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+
         try
         {
             view.forward(req, resp);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Problem loading page", ex);
         }
