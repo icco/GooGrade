@@ -1,26 +1,22 @@
 -- 
 -- Test Data for Development. 
 --
-INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
-    VALUES("ArrayList Object", 20,"Fri Apr 10 00:00:00 PDT 2009", "Homework", 5, 3, 4, 1);
-INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
-    VALUES("JSP Sample", 10,"Thu Apr 16 00:00:00 PDT 2009", "Other", 8.97, 10, 0, 1);
-INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
-    VALUES("Midterm 2", 100,"Sun May 10 00:00:00 PDT 2009", "Test", 0, 0, 0, 2);
-INSERT INTO "Assignments" VALUES(4,'Hej',43,'Mon May 11 00:00:00 PDT 2009','Homework',0,0,0,1);
-INSERT INTO "Assignments" VALUES(5,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Final',0,0,0,2);
+INSERT INTO "Assignments" VALUES(1,'ArrayList Object',20,'Fri Apr 10 00:00:00 PDT 2009','Homework',5.0,3.0,4.0,1);
+INSERT INTO "Assignments" VALUES(2,'JSP Sample',10,'Thu Apr 16 00:00:00 PDT 2009','Other',8.97,10.0,0.0,1);
+INSERT INTO "Assignments" VALUES(3,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2);
+INSERT INTO "Assignments" VALUES(4,'Midterm 2',100,'Sun May 10 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2);
+INSERT INTO "Assignments" VALUES(5,'Vision and Scope Review',23,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
+INSERT INTO "Assignments" VALUES(6,'SRS',40,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,4);
+INSERT INTO "Assignments" VALUES(7,'Preliminary Design',25,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
+INSERT INTO "Assignments" VALUES(8,'Psaudo Code',10,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
+INSERT INTO "Assignments" VALUES(9,'Wiki',15,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
 
+INSERT INTO "Courses" VALUES(1,'Systems Programming','CSC',357,1,1);
+INSERT INTO "Courses" VALUES(2,'Software Engineering I','CPE',308,1,1);
+INSERT INTO "Courses" VALUES(3,'Software Engineering II','CPE',309,1,1);
+INSERT INTO "Courses" VALUES(4,'Professional responsabilities','CSC',300,1,1);
+INSERT INTO "Courses" VALUES(5,'Graduate Thesis','CSC',500,1,1);
 
-INSERT INTO Courses (title, department, number, section, gradingRulesId) 
-    VALUES("Systems Programming", "CSC", "357","01","1");
-INSERT INTO Courses (title, department, number, section, gradingRulesId) 
-    VALUES("Software Engineering I", "CPE", "308","01","1");
-INSERT INTO Courses (title, department, number, section, gradingRulesId) 
-    VALUES("Software Engineering II", "CPE", "309","01","1");
-INSERT INTO Courses (title, department, number, section, gradingRulesId) 
-    VALUES("Professional responsabilities", "CSC", "300","01","1");
-INSERT INTO Courses (title, department, number, section, gradingRulesId) 
-    VALUES("Graduate Thesis", "CSC", "500","01","1");
 
 -- Nat's account needs to stay first, since we test that the teacher is first in the db.
 INSERT INTO Accounts (username, name, email, password) VALUES("nwelch","Nathaniel Welch","nat@natwelch.com","123456a");
@@ -53,6 +49,18 @@ INSERT INTO enrolled (course, student) VALUES (5, 4);
 INSERT INTO enrolled (course, student) VALUES (2, 5);
 INSERT INTO enrolled (course, student) VALUES (3, 5);
 INSERT INTO enrolled (course, student) VALUES (5, 5);
+
+INSERT INTO enrolled (course, student) VALUES (2, 6);
+INSERT INTO enrolled (course, student) VALUES (3, 6);
+INSERT INTO enrolled (course, student) VALUES (5, 6);
+INSERT INTO enrolled (course, student) VALUES (4, 6);
+INSERT INTO enrolled (course, student) VALUES (1, 6);
+
+INSERT INTO enrolled (course, student) VALUES (2, 7);
+INSERT INTO enrolled (course, student) VALUES (3, 7);
+INSERT INTO enrolled (course, student) VALUES (4, 7);
+INSERT INTO enrolled (course, student) VALUES (5, 7);
+
 
 INSERT INTO Grades (accountId, assignId, grade) VALUES (4,2,87.8);
                 
