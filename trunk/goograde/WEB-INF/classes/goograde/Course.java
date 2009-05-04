@@ -435,7 +435,44 @@ public class Course implements java.io.Serializable
      */
     public boolean addStudent(Permissions permission, Student student)
     {
-        return false;
+        boolean ret = false;
+        boolean isInRoster = false;
+        
+        if(student != null && student.getId() != null && this.getId() != null)
+        {
+            ArrayList<Student> currentRoster = this.getRoster();
+            int indx;
+            for(indx = 0; indx < currentRoster.size(); indx++)
+            {
+                if(student.equals(currentRoster.get(indx)))
+                {
+                    isInRoster = true;
+                    break;
+                }
+            }
+            /*if student is not in the roster, we add him*/
+            if(!isInRoster)
+            {
+                String query = "INSERT INTO enrolled (course, student) "
+                        + "VALUES (\""
+                        + this.getId()
+                        + "\",\""
+                        + student.getId()
+                        + "\")";
+                StorageConnection conn = new StorageConnection();
+                ret = conn.updateQuery(query);
+                conn.close();
+                /*if query successfull, add to roster thingy*/
+                if(ret)
+                {
+                    this.setRoster(null);
+                    /*setting roster to null will force new 
+                     generation a next get*/
+                }
+            }
+        }
+        
+        return ret;
     }
 
     /**
