@@ -80,13 +80,13 @@ public class Assignment implements java.io.Serializable
     {
         String query = "DELETE FROM Assignments WHERE id = " + Rid;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
 
-        query = "DELETE FROM Grades WHERE assignId = " + Rid;
+        /*query = "DELETE FROM Grades WHERE assignId = " + Rid;
         conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
+        conn.updateQuery(query);
+        conn.close(); */
 
 
     }
@@ -303,8 +303,6 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setAGrade(Student aStudent, float newGrade)
     {
-        StorageConnection conn = new StorageConnection();
-        String query;
 
         /*making sure to avoid nulls */
         if (grades == null)
@@ -462,26 +460,27 @@ public class Assignment implements java.io.Serializable
     public static void addAssignment(String type, Date dueDate, String name,
             Integer total)
     {
-        String query = "SELECT count (*) FROM Assignments";
+        /*String query = "SELECT count (*) FROM Assignments";
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
-        conn.close();
+        conn.close(); */
         //TODO: fix database indexing issue. Deleting an item 
         //and adding it confiuses the index
 
-        int tid = (Integer) result.get(0).get(0) + 1;
+        //int tid = (Integer) result.get(0).get(0) + 1;
 
-        Assignment temp = new Assignment(tid);
-        query = "INSERT INTO Assignments (id) " +
+        Assignment temp = new Assignment();
+        /*query = "INSERT INTO Assignments (id) " +
                 "VALUES (" + tid + ")";
         conn = new StorageConnection();
         conn.query(query);
-        conn.close();
+        conn.close(); */
 
         temp.setType(type);
         temp.setDueDate(dueDate);
         temp.setName(name);
         temp.setTotal(total);
+        temp.save();
     }
 
     private static void modifyAssignment(String type, float max, float min,
@@ -591,10 +590,10 @@ public class Assignment implements java.io.Serializable
                     + this.getId() + "\",\""
                     + this.getType() + "\",\"" 
                     + this.getMax() + "\",\"" 
-                    + this.getMin() + "\"" 
-                    + this.getAvg() + "\"" 
-                    + this.getDueDate() + "\""
-                    + this.getName() + "\"" 
+                    + this.getMin() + "\", \"" 
+                    + this.getAvg() + "\", \"" 
+                    + this.getDueDate() + "\", \""
+                    + this.getName() + "\", \"" 
                     + this.getTotal() + "\")";
             ret = conn.updateQuery(query);
         }
@@ -602,13 +601,13 @@ public class Assignment implements java.io.Serializable
         else
         {
             query = "UPDATE Courses SET " 
-                    + "id = "+ this.getId() + "\",\"" 
-                    + "type =" + this.getType() + "\",\""
-                    + "max = " + this.getMax() + "\",\"" 
-                    + "min" + this.getMin() + "\"" 
-                    + "average = " + this.getAvg() + "\"" 
-                    + "dueDate = " + this.getDueDate() + "\"" 
-                    + "name = " + this.getName() + "\"" 
+                    + "id = "+ this.getId() + "\", \"" 
+                    + "type =" + this.getType() + "\", \""
+                    + "max = " + this.getMax() + "\", \"" 
+                    + "min" + this.getMin() + "\" , \"" 
+                    + "average = " + this.getAvg() + "\" , \"" 
+                    + "dueDate = " + this.getDueDate() + "\" , \"" 
+                    + "name = " + this.getName() + "\", \"" 
                     + "total = " + this.getTotal() + "\"";
             ret = conn.updateQuery(query);
         }
