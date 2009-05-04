@@ -119,7 +119,7 @@ public class AssignmentController extends HttpServlet
         req.setAttribute("id", (String)req.getParameter("id"));
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-
+                req.setAttribute("currentCourse", new Course(new Integer(req.getParameter("id"))));
         req.setAttribute("AssignmentList", 
                 (ArrayList<Assignment>) 
                 new Course(new Integer((String)req.getAttribute("id"))).

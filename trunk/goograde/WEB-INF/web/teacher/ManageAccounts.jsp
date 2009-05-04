@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>ManageAccounts</title>
+        <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - Manage Accounts</title>
     </head>
     <body>
         

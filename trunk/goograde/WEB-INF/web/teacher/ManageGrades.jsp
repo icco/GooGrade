@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage Grades</title>
+        <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - Manage Grades</title>
     </head>
     
     <body>
@@ -30,26 +30,36 @@
                         <h3>Manage Grades</h3>
                         <table>
                             <tr>
-                                <th>Assignment</th>
-                                <th>Possible Points</th>
-                                <th>Due Date</th>
-                                <th>Type</th>
-                                <th>Grade</th>
+                                <th>
+                                    
+                                </th>
+                                <c:forEach var="assignment" items="${assArray}">
+                                
+                                    <th>
+                                        ${assignment.name} (${assignment.total})
+                                    </th>
+                                    
+                                </c:forEach>
                             </tr>
                             <%--             
              req.setAttribute("assArray", crse.getAssignments());
             req.setAttribute("gradeList", gradearray);
             req.setAttribute("stuArray",crse.getStudents());
-            --%>
-            
-                            <c:forEach var="assignment" items="${assArray}">
-                                <tr class="color"> 
+                            --%>
+                            <c:forEach var="student" items="${stuArray}">
+                                <tr class="color">
                                     <td>
-                                        ${assignment.name} ${assignment.total}
+                                        ${student.userName}
                                     </td>
+                                    <c:forEach var="assignment" items="${assArray}">
+                                    
+                                        <td>
+
+                                        </td>
+                                        
+                                    </c:forEach>
                                 </tr>
-                            </c:forEach>
-                            
+                            </c:forEach>       
                         </table>
                     </div>
                 </div>

@@ -78,7 +78,8 @@ public class GradeController extends HttpServlet
             {
                 gradearray.addAll(ass.getGrades());
             }
-            
+            req.setAttribute("currentCourse", crse);
+            req.setAttribute("id", courseId);
             req.setAttribute("assArray", crse.getAssignments());
             req.setAttribute("gradeList", gradearray);
             req.setAttribute("stuArray",crse.getStudents());

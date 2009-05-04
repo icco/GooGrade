@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manage Assignments</title>
+        <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - Manage Assignments</title>
         <script>
             $(document).ready(function(){
                 $(".datepicker").datepicker({ dateFormat: 'mm-dd-y' });
