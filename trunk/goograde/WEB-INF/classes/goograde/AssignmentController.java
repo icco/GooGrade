@@ -120,7 +120,10 @@ public class AssignmentController extends HttpServlet
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
         req.setAttribute("AssignmentList", 
-                (ArrayList<Assignment>) new Course(new Integer((String)req.getAttribute("id"))).getAssignments());
+                (ArrayList<Assignment>) 
+                new Course(new Integer((String)req.getAttribute("id"))).
+                getAssignments());
+        System.out.println("Retreiveing from database");
 
 
         /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
@@ -173,6 +176,7 @@ public class AssignmentController extends HttpServlet
         {
             ass.setTotal(new Integer(assTotal));
         }
+        ass.save();
               
     }
 
