@@ -51,6 +51,8 @@ public class Assignment implements java.io.Serializable
     private Float min;
     private ArrayList<Grade> grades; // a list of student grades on this 
     //  assignment
+    
+    private int courseId;
 
 
     /**
@@ -119,6 +121,15 @@ public class Assignment implements java.io.Serializable
     {
         return total;
     }
+    
+    /**
+     * Gets the ID of the course this assignment belongs to
+     * @return
+     */
+    public Integer getCourseId()
+    {
+        return courseId;
+    }
 
     /**
      * Gets the type of Assignment.
@@ -182,7 +193,7 @@ public class Assignment implements java.io.Serializable
         String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
         return true;
     }
@@ -199,7 +210,7 @@ public class Assignment implements java.io.Serializable
         String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
 
         return true;
@@ -217,7 +228,7 @@ public class Assignment implements java.io.Serializable
         String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
         return true;
     }
@@ -234,7 +245,7 @@ public class Assignment implements java.io.Serializable
         String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
         return true;
     }
@@ -247,12 +258,13 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setAvg(Float paverage)
     {
+        //TODO, ACTUALLY calculate the average from all grades submitted
         average = paverage;
         /*now updating the database with changes */
         String query = "UPDATE Assignments SET dueDate =" +
                 paverage + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
         return true;
     }
@@ -264,12 +276,13 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setMax(Float pmax)
     {
+        //TODO. calculate the maximum score out of all the grades
         max = pmax;
         /*now updating the database with changes */
         String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close();
         return true;
     }
@@ -281,12 +294,27 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setMin(Float pmin)
     {
+        //TODO, calculate the minimum score out of all teh grades
         min = pmin;
         /*now updating the database with changes */
         String query = "UPDATE Assignments SET dueDate =" +
                 dueDate + "WHERE id = " + id;
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
+        conn.close();
+        return true;
+    }
+    
+    /**
+     * Sets the Course ID for this Assignment
+     */
+    public boolean setCourseId(int pcourse)
+    {
+        courseId = pcourse;
+        String query = "UPDATE Assignments SET courseId = " + courseId + 
+                "WHERE id = " + id;
+        StorageConnection conn = new StorageConnection();
+        conn.updateQuery(query);
         conn.close();
         return true;
     }
@@ -317,7 +345,7 @@ public class Assignment implements java.io.Serializable
         {
             query = "UPDATE Grades SET grade = " + newGrade +
                     "WHERE accountID = " + aStudent.getId();
-            conn.query(query);
+            conn.updateQuery(query);
             conn.close();
         }
         /*Otherwise, add a new row to the database with the new grade */
@@ -380,32 +408,6 @@ public class Assignment implements java.io.Serializable
                             " with id = " + this.id.toString(), ex);
                 }
             }
-            /* No results from the query means an unsuccessful fetch 
-            if (result.size() < 1)
-            {
-            return false;
-            }
-            else
-            {
-            try
-            {
-            //set varaibles to values loaded from database,
-            total = (Integer) result.get(1);
-            name = (String) result.get(2);
-            dueDate = (Date) result.get(3);
-            type = (String) result.get(4);
-            average = (Float) result.get(5);
-            max = (Float) result.get(6);
-            min = (Float) result.get(7);
-            }
-            catch (Exception ex)
-            {
-            Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-            "SQL error occurred when trying to fetch " +
-            "Assignment" +
-            " with id = " + this.id.toString(), ex);
-            }
-            }*/
 
             /*Now fetch the grades from the grade table */
             query = "SELECT accountId, grade, assignId " +
@@ -487,12 +489,19 @@ public class Assignment implements java.io.Serializable
     public static void addAssignment(String type, Date dueDate, String name,
             Integer total) 
     {
-        int tid = 1; //TODO
+        String query = "SELECT count (*) FROM Assignments";
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        conn.close();
+        //TODO: fix database indexing issue. Deleting an item 
+        //and adding it confiuses the index
+        
+        int tid =  (Integer) result.get(0).get(0) +1; 
 
         Assignment temp = new Assignment(tid);
-        String query = "INSERT INTO Assignments (id) VALUES (" + tid +
-                    ")";
-        StorageConnection conn = new StorageConnection();
+        query = "INSERT INTO Assignments (id) " +
+                "VALUES (" + tid + ")";
+        conn = new StorageConnection();
         conn.query(query);
         conn.close();
 
