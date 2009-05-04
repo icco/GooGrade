@@ -98,7 +98,7 @@ public class Assignment implements java.io.Serializable
      */
     public Date getDueDate()
     {
-        return dueDate;
+        return this.dueDate;
     }
 
     /**
@@ -107,7 +107,7 @@ public class Assignment implements java.io.Serializable
      */
     public String getName()
     {
-        return name;
+        return this.name;
     }
 
     /**
@@ -116,7 +116,7 @@ public class Assignment implements java.io.Serializable
      */
     public Integer getTotal()
     {
-        return total;
+        return this.total;
     }
 
     /**
@@ -125,7 +125,7 @@ public class Assignment implements java.io.Serializable
      */
     public Integer getCourseId()
     {
-        return courseId;
+        return this.courseId;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Assignment implements java.io.Serializable
      */
     public String getType()
     {
-        return type;
+        return this.type;
     }
 
     /**
@@ -143,7 +143,7 @@ public class Assignment implements java.io.Serializable
      */
     public Float getAvg()
     {
-        return average;
+        return this.average;
     }
 
     /**
@@ -152,7 +152,7 @@ public class Assignment implements java.io.Serializable
      */
     public Float getMax()
     {
-        return max;
+        return this.max;
     }
 
     /**
@@ -161,12 +161,12 @@ public class Assignment implements java.io.Serializable
      */
     public Float getMin()
     {
-        return min;
+        return this.min;
     }
 
     public Integer getId()
     {
-        return id;
+        return this.id;
     }
 
     /**
@@ -175,7 +175,7 @@ public class Assignment implements java.io.Serializable
      */
     public ArrayList<Grade> getGrades()
     {
-        return grades;
+        return this.grades;
     }
 
     /**
@@ -560,13 +560,13 @@ public class Assignment implements java.io.Serializable
 
         String query = "INSERT INTO Assignments (aType, aMax, aMin, " +
                 "aAverage, aDueDate, aName, aTotal, courseId)" + " VALUES (\"" 
-                + this.getType() + "\",\"" 
-                + this.getMax() + "\",\"" 
-                + this.getMin() + "\",\"" 
-                + this.getAvg() + "\",\"" 
+                + this.getType() + "\"," 
+                + this.getMax() + "," 
+                + this.getMin() + "," 
+                + this.getAvg() + ",\"" 
                 + this.getDueDate() + "\",\"" 
-                + this.getName() + "\",\"" 
-                + this.getTotal() + "\",\""
+                + this.getName() + "\"," 
+                + this.getTotal() + ",\""
                 + this.getCourseId() + "\")";
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
@@ -595,7 +595,7 @@ public class Assignment implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
 
-        String query = "SELECT id FROM Courses WHERE id = " + this.getId();
+        String query = "SELECT id FROM Assignments WHERE id = " + this.getId();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
@@ -616,14 +616,14 @@ public class Assignment implements java.io.Serializable
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Courses SET " 
-                    + "type = \"" + this.getType() + "\","
-                    + "max = \"" + this.getMax() + "\"," 
-                    + "min = \"" + this.getMin() + "\"," 
-                    + "average = \"" + this.getAvg() + "\"," 
-                    + "dueDate = \"" + this.getDueDate() + "\"," 
-                    + "name = \"" + this.getName() + "\"," 
-                    + "total = \"" + this.getTotal() + "\" "
+            query = "UPDATE Assignments SET " 
+                    + "aType = \"" + this.getType() + "\","
+                    + "aMax = \"" + this.getMax() + "\"," 
+                    + "aMin = \"" + this.getMin() + "\"," 
+                    + "aAverage = \"" + this.getAvg() + "\"," 
+                    + "aDueDate = \"" + this.getDueDate() + "\"," 
+                    + "aName = \"" + this.getName() + "\"," 
+                    + "aTotal = \"" + this.getTotal() + "\" "
                     + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }

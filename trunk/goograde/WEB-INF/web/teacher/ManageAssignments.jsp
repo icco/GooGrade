@@ -116,7 +116,7 @@
                                    title="Add New Assignment" 
                                    class="thickbox" 
                                    type="button"
-                                   value="Add New Assignment">
+                                   value="Add Assignment">
                             <div id="FormPopUp" style="display: none">
                                 <form action="<c:url value="assignment"/>" method="post">
                                     <input type="hidden" name="action" value="add" />

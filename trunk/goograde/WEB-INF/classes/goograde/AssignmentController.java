@@ -81,7 +81,7 @@ public class AssignmentController extends HttpServlet
             {
                 this.editAssignment(req.getParameter("AssignId"),
                         req.getParameter("newAssgnDate"),
-                        req.getParameter("newAssgnName"),
+                        req.getParameter("newAssgnTitle"),
                         req.getParameter("newAssgnTotal")
                         );
             }
