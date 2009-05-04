@@ -7,6 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 /**
  * This class keeps information about Assignments
  *
@@ -163,7 +164,7 @@ public class Assignment implements java.io.Serializable
         return min;
     }
 
-    public int getId()
+    public Integer getId()
     {
         return id;
     }
@@ -342,7 +343,7 @@ public class Assignment implements java.io.Serializable
         /*Get the database at row ID */
         String query = "SELECT id, aTotal, aName, " +
                 "aDueDate, aType, aAverage, aMax, " +
-                "aMin FROM Assignments WHERE id =" + id;
+                "aMin, courseId FROM Assignments WHERE id =" + this.getId();
         StorageConnection conn = new StorageConnection();
         if (conn.query(query).size() > 0)
         {
@@ -366,10 +367,11 @@ public class Assignment implements java.io.Serializable
                     SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
                     Date newDate = format.parse((String) result.get(3));
                     dueDate = newDate;
-                    type = (String) result.get(4);
+                    this.setType((String) result.get(4));
                     average = new Float((Double) result.get(5));
                     max = new Float((Double) result.get(6));
                     min = new Float((Double) result.get(7));
+                    this.setCourseId(new Integer((String)result.get(8)));
                 }
                 catch (Exception ex)
                 {
@@ -457,7 +459,7 @@ public class Assignment implements java.io.Serializable
 
     }
 
-    public static void addAssignment(String type, Date dueDate, String name,
+    public static void addAssignment(int courseId, String type, Date dueDate, String name,
             Integer total)
     {
         /*String query = "SELECT count (*) FROM Assignments";
@@ -476,10 +478,15 @@ public class Assignment implements java.io.Serializable
         conn.query(query);
         conn.close(); */
 
+        temp.setCourseId(courseId);
         temp.setType(type);
         temp.setDueDate(dueDate);
         temp.setName(name);
         temp.setTotal(total);
+        temp.setAvg(new Float(0));
+        temp.setMax(new Float(0));
+        temp.setMin(new Float(0));
+        
         temp.save();
     }
 
@@ -527,10 +534,9 @@ public class Assignment implements java.io.Serializable
      */
     public boolean save()
     {
-        StorageConnection conn = new StorageConnection();
         boolean ret = false;
         /*if id is null we a creating a new course*/
-        if (this.getId() == 0)
+        if (this.getId() == null)
         {
             ret = this.saveWithoutId();
         }
@@ -550,9 +556,18 @@ public class Assignment implements java.io.Serializable
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
+        
 
-        String query = "INSERT INTO Assignments (id, type, max, min, " +
-                "average, dueDate, name, total" + "VALUES (\"" + this.getId() + "\",\"" + this.getType() + "\",\"" + this.getMax() + "\",\"" + this.getMin() + "\"" + this.getAvg() + "\"" + this.getDueDate() + "\"" + this.getName() + "\"" + this.getTotal() + "\")";
+        String query = "INSERT INTO Assignments (aType, aMax, aMin, " +
+                "aAverage, aDueDate, aName, aTotal, courseId)" + " VALUES (\"" 
+                + this.getType() + "\",\"" 
+                + this.getMax() + "\",\"" 
+                + this.getMin() + "\",\"" 
+                + this.getAvg() + "\",\"" 
+                + this.getDueDate() + "\",\"" 
+                + this.getName() + "\",\"" 
+                + this.getTotal() + "\",\""
+                + this.getCourseId() + "\")";
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
         if (!(ret))
@@ -562,7 +577,7 @@ public class Assignment implements java.io.Serializable
         query = "SELECT max(id) FROM Assignments";
         ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
-        /*if result is empty so is Courses*/
+        /*if result is empty so is Assignments*/
         if (result.isEmpty())
         {
             return false;
