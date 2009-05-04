@@ -72,7 +72,7 @@
                                     <a href="/GooGrade/teacher/assignment?id=${course.id}">Manage Assignments</a>
                                 </li>
                                 <li>
-                                    <a href="ManageAccounts.jsp">Manage Accounts</a>
+                                    <a href="/GooGrade/teacher/accounts?id=${course.id}">Manage Accounts</a>
                                 </li>
                                 <%-- For Release 2
                             <li>

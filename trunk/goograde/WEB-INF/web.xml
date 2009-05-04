@@ -33,6 +33,10 @@
         <servlet-name>rostercontroller</servlet-name>
         <servlet-class>goograde.RosterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>accountcontroller</servlet-name>
+        <servlet-class>goograde.AccountController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
         <url-pattern>/teacher/</url-pattern>
@@ -72,6 +76,14 @@
     <servlet-mapping>
         <servlet-name>editcoursecontroller</servlet-name>
         <url-pattern>/teacher/editCourse</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>teachercontroller</servlet-name>
+        <url-pattern>/teacher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accountcontroller</servlet-name>
+        <url-pattern>/teacher/accounts</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

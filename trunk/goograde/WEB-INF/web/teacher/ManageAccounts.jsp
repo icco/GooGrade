@@ -27,6 +27,48 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Accounts</h3>
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User Name</th>
+                                    <th>Email Address</th>
+                                    <th>Full Name</th>
+                                    <th>Teacher?</th>
+                                    <th>TA?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="user" items="${accountList}">
+                                    <tr>
+                                        <td>${user.id}</td>
+                                        <td>${user.userName}</td>
+                                        <td>${user.emailAddress}</td>
+                                        <td>${user.fullName}</td>
+                                        <td>.</td>
+                                        <td>.</td>
+                                        <td>
+                                            <form action="<c:url value="/teacher/accounts?id=${course.id}" />" method="post">
+                                                <input type="hidden" name="action" value="delete" />
+                                                <input type="hidden" name="accountRef" value="${user.id}" />
+                                                <input type="submit" value="Delete">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                                <tr> 
+                                    <form action="<c:url value="/teacher/accounts?id=${course.id}" />" method="post">
+                                        <td><input type="hidden" name="action" value="add" /></td>
+                                        <td><input name="newUserName" type="text" /></td>
+                                        <td><input name="newEmailAddr" type="text" /></td>
+                                        <td><input name="newFullName" type="text" /></td>
+                                        <td>.</td>
+                                        <td>.</td>
+                                        <td><input type="submit" value="Engage!" /></td>
+                                    </form>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 

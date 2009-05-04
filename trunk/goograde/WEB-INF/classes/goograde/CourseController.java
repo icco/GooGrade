@@ -28,7 +28,6 @@ public class CourseController extends HttpServlet
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
         String action = req.getParameter("action");
 
@@ -51,44 +50,25 @@ public class CourseController extends HttpServlet
                         (String) req.getParameter("title"),
                         (String) req.getParameter("department"),
                         (String) req.getParameter("number"),
-                        (String) req.getParameter("section")
-                        );
+                        (String) req.getParameter("section"));
             }
         }
-        try
-        {
-            this.doGet(req, resp);
-        }
-        catch (ServletException ex)
-        {
-            Logger.getLogger(
-                    AccountController.class.getName()).log(Level.SEVERE, 
-                    null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(
-                    AccountController.class.getName()).log(Level.SEVERE, 
-                    null, ex);
-        }
 
+        this.doGet(req, resp);
     }
 
     /**
      * 
      * @param req request
      * @param resp response
-     * @throws javax.servlet.ServletException on error
-     * @throws java.io.IOException on error
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
 
         req.setAttribute("teachCourseList",
-            (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+                (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         try
         {
             view.forward(req, resp);
@@ -97,13 +77,13 @@ public class CourseController extends HttpServlet
         {
             Logger.getLogger(
                     TeacherController.class.getName()).log(
-                        Level.SEVERE, null, ex);
+                    Level.SEVERE, null, ex);
         }
         catch (IOException ex)
         {
             Logger.getLogger(
                     TeacherController.class.getName()).log(
-                        Level.SEVERE, null, ex);
+                    Level.SEVERE, null, ex);
         }
     }
 
@@ -155,90 +135,87 @@ public class CourseController extends HttpServlet
     {
         boolean pass = true;
         boolean ret = false;
-        
-        if(!Course.validateId(courseRef))
+
+        if (!Course.validateId(courseRef))
         {
             pass = false;
         }
-        
-        if(pass)
+
+        if (pass)
         {
             ret = Course.deleteCourse(null, new Integer(courseRef));
         }
-        
+
         return ret;
     }
 
-    private boolean addCourse(String title, String department, 
+    private boolean addCourse(String title, String department,
             String number, String section)
     {
         boolean pass = true;
         boolean ret = false;
 
-        if(!Course.validateTitle(title))
+        if (!Course.validateTitle(title))
         {
             pass = false;
         }
-        if(!Course.validateDepartment(department))
+        if (!Course.validateDepartment(department))
         {
             pass = false;
         }
-        if(!Course.validateNumber(number))
+        if (!Course.validateNumber(number))
         {
             pass = false;
         }
-        if(!Course.validateSection(section))
+        if (!Course.validateSection(section))
         {
             pass = false;
         }
-        
-        if(pass)
+
+        if (pass)
         {
-            ret = Course.addCourse(null, title, department, new Integer(number), 
-                new Integer(section), Teacher.allTeachers().get(0));
+            ret = Course.addCourse(null, title, department, new Integer(number),
+                    new Integer(section), Teacher.allTeachers().get(0));
         }
-        
+
         return ret;
     }
-    
+
     private boolean editCourse(String courseRef, String title, String department, String number, String section)
     {
         boolean pass = true;
         boolean ret = false;
-        if(!Course.validateId(courseRef))
+        if (!Course.validateId(courseRef))
         {
             pass = false;
         }
-        if(!Course.validateTitle(title))
+        if (!Course.validateTitle(title))
         {
             pass = false;
         }
-        if(!Course.validateDepartment(department))
+        if (!Course.validateDepartment(department))
         {
             pass = false;
         }
-        if(!Course.validateNumber(number))
+        if (!Course.validateNumber(number))
         {
             pass = false;
         }
-        if(!Course.validateSection(section))
+        if (!Course.validateSection(section))
         {
             pass = false;
         }
-        
-        if(pass)
+
+        if (pass)
         {
             Course course = new Course(new Integer(courseRef));
-            if(course.setTitle(title)
-                && course.setDepartment(department)
-                && course.setNumber(new Integer(number))
-                && course.setSection(new Integer(section)))
+            if (course.setTitle(title) && course.setDepartment(department) && course.setNumber(new Integer(number)) && course.setSection(new Integer(section)))
             {
                 ret = course.save();
             }
-            
+
         }
-        
+
         return ret;
     }
 }

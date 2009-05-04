@@ -263,6 +263,15 @@ public class Course implements java.io.Serializable
     {
         return this.gradingRulesId;
     }
+    
+    /**
+     * A simple wrapper for getRoster so we have a slightly more consistent api
+     * @return an arraylist of students
+     */
+    public ArrayList<Student> getStudents()
+    {
+        return this.getRoster();
+    }
 
     /**
      * getRoster gets the roster attribute for this course 

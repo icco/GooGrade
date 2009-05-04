@@ -30,16 +30,22 @@ public class AccountController extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-        String action = new String();
-        action = req.getParameter("action");
+        Course thiscourse = new Course(new Integer(req.getParameter("id")));
+        String action = req.getParameter("action");
 
-        // Make sure the post was legit
         if (action != null)
         {
             //Do something depending on the hidden field
             if (action.equals("delete"))
             {
-                this.deleteAccount(new Integer(req.getParameter("accountRef")));
+                try
+                {
+                    thiscourse.removeStudent(new Permissions(), new Student(new Integer(req.getParameter("accountRef"))));
+                }
+                catch (Exception ex)
+                {
+                    Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Error Unenrolling a student.", ex);
+                }
             }
             else if (action.equals("add"))
             {
@@ -47,18 +53,19 @@ public class AccountController extends HttpServlet
                         req.getParameter("newFullName"),
                         req.getParameter("newEmailAddr"));
             }
-
-            try
+            else if (action.equals("edit"))
             {
-                this.doGet(req, resp);
+                /*
+                this.editAccount((String) req.getParameter("courseRef"),
+                (String) req.getParameter("title"),
+                (String) req.getParameter("department"),
+                (String) req.getParameter("number"),
+                (String) req.getParameter("section"));
+                 */
             }
-            catch (Exception ex)
-            {
-                Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE,
-                        "Post Error", ex);
-            }
-
         }
+
+        this.doGet(req, resp);
     }
 
     /**
@@ -69,23 +76,33 @@ public class AccountController extends HttpServlet
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
-        RequestDispatcher view = req.getRequestDispatcher("/account.jsp");
+        RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageAccounts.jsp");
+        req.setAttribute("teachCourseList",
+                (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
-        req.setAttribute("accountList", (ArrayList<Account>) Teacher.allAccounts());
+        Course thiscourse = new Course(new Integer(req.getParameter("id")));
+        ArrayList<Account> members = new ArrayList<Account>();
 
-        
+        members.addAll(thiscourse.getTeacherAssistants());
+        members.addAll(thiscourse.getStudents());
+
+        req.setAttribute("accountList", members);
+
+        req.setAttribute("course", thiscourse);
+
         try
         {
             view.forward(req, resp);
         }
-        catch (Exception ex)
+        catch (ServletException ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, 
-                    "Get Error", ex);
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        catch (IOException ex)
+        {
+            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
