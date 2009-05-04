@@ -382,14 +382,36 @@ public class Course implements java.io.Serializable
     /**
      * getTeachers gets the Teacher attribute from this course
      * @return teacher of this course
-     * @todo 
      */
     public ArrayList<Teacher> getTeachers()
     {
-        ArrayList<Teacher> teachers = new ArrayList<Teacher>();
-        /*
-         * Query and fill list from table teaches
-         */
+        ArrayList<Teacher> teachers = null;
+        Teacher toAdd = null;
+        /*avoid null pointer exceptions, we must have an id to fetch from db*/
+        if (this.getId() != null)
+        {
+            teachers = new ArrayList<Teacher>();
+            String query = "SELECT Accounts.id as id FROM Accounts, teaches "
+                    + "WHERE Accounts.id = teaches.teacher "
+                    + "AND teaches.course = " + this.getId();
+
+            StorageConnection conn = new StorageConnection();
+            ArrayList<ArrayList<Object>> result = conn.query(query);
+            conn.close();
+                
+            for(int indx = 0; indx < result.size(); indx++)
+            {
+                try
+                {
+                    toAdd = new Teacher((Integer)result.get(indx).get(0));
+                    teachers.add(toAdd);
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("Invalid Teacher list: " + ex);
+                }
+            }
+        }
         return teachers;
     }
 
@@ -399,10 +421,33 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<TeacherAssistant> getTeacherAssistants()
     {
-        ArrayList<TeacherAssistant> assistants = new ArrayList<TeacherAssistant>();
-        /*
-         * Query and fill list from table assists
-         */
+        ArrayList<TeacherAssistant> assistants = null;
+        TeacherAssistant toAdd = null;
+        /*avoid null pointer exceptions, we must have an id to fetch from db*/
+        if (this.getId() != null)
+        {
+            assistants = new ArrayList<TeacherAssistant>();
+            String query = "SELECT Accounts.id as id FROM Accounts, assists "
+                    + "WHERE Accounts.id = assists.ta "
+                    + "AND assists.course = " + this.getId();
+
+            StorageConnection conn = new StorageConnection();
+            ArrayList<ArrayList<Object>> result = conn.query(query);
+            conn.close();
+                
+            for(int indx = 0; indx < result.size(); indx++)
+            {
+                try
+                {
+                    toAdd = new TeacherAssistant((Integer)result.get(indx).get(0));
+                    assistants.add(toAdd);
+                }
+                catch (Exception ex)
+                {
+                    System.out.println("Invalid TA list: " + ex);
+                }
+            }
+        }
         return assistants;
     }
 
@@ -528,9 +573,38 @@ public class Course implements java.io.Serializable
      * @param ta the TeacherAssistant to be assigned to this course
      * @return true if no errors have occured
      */
-    public boolean addTA(Permissions permission, TeacherAssistant ta)
+    public boolean addTA(Permissions permission, Account ta)
     {
-        return false;
+        boolean ret = false;
+        boolean isAssisting = false;
+        
+        if(ta != null && ta.getId() != null && this.getId() != null)
+        {
+            ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
+            int indx;
+            for(indx = 0; indx < currentTAs.size(); indx++)
+            {
+                if(ta.equals(currentTAs.get(indx)))
+                {
+                    isAssisting = true;
+                    break;
+                }
+            }
+            /*if student is not in the roster, we add him*/
+            if(!isAssisting)
+            {
+                String query = "INSERT INTO assists (course, ta) "
+                        + "VALUES (\""
+                        + this.getId()
+                        + "\",\""
+                        + ta.getId()
+                        + "\")";
+                StorageConnection conn = new StorageConnection();
+                ret = conn.updateQuery(query);
+                conn.close();
+            }
+        }
+        return ret;
     }
 
     /**
@@ -539,9 +613,39 @@ public class Course implements java.io.Serializable
      * @param ta the TeacherAssistant to be removed to this course
      * @return true if no errors have occured
      */
-    public boolean removeTA(Permissions permission, TeacherAssistant ta)
+    public boolean removeTA(Permissions permission, Account ta)
     {
-        return false;
+        boolean ret = false;
+        boolean isAssisting = false;
+        
+        if(ta != null && ta.getId() != null && this.getId() != null )
+        {
+            ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
+            int indx;
+            for(indx = 0; indx < currentTAs.size(); indx++)
+            {
+                if(ta.equals(currentTAs.get(indx)))
+                    
+                {
+                    isAssisting = true;
+                    break;
+                }
+            }
+            
+            if(isAssisting)
+            {
+                String query = "DELETE FROM assists "
+                    + "WHERE ta = \""
+                    + ta.getId()
+                    + "\" AND course = \""
+                    + this.getId()
+                    + "\"";
+                StorageConnection conn = new StorageConnection();
+                ret = conn.updateQuery(query);
+                conn.close();
+            }
+        }
+        return ret;
     }
 
     /**
@@ -550,9 +654,38 @@ public class Course implements java.io.Serializable
      * @param teacher Teacher to be added to this course
      * @return true if no errors have occured
      */
-    public boolean addTeacher(Permissions permission, Teacher teacher)
+    public boolean addTeacher(Permissions permission, Account teacher)
     {
-        return false;
+        boolean ret = false;
+        boolean isTeaching = false;
+        
+        if(teacher != null && teacher.getId() != null && this.getId() != null)
+        {
+            ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
+            int indx;
+            for(indx = 0; indx < currentTAs.size(); indx++)
+            {
+                if(teacher.equals(currentTAs.get(indx)))
+                {
+                    isTeaching = true;
+                    break;
+                }
+            }
+            /*if student is not in the roster, we add him*/
+            if(!isTeaching)
+            {
+                String query = "INSERT INTO assists (course, ta) "
+                        + "VALUES (\""
+                        + this.getId()
+                        + "\",\""
+                        + teacher.getId()
+                        + "\")";
+                StorageConnection conn = new StorageConnection();
+                ret = conn.updateQuery(query);
+                conn.close();
+            }
+        }
+        return ret;
     }
 
     /**
@@ -561,9 +694,39 @@ public class Course implements java.io.Serializable
      * @param teacher Teacher to be removed from this course
      * @return true if no errors have occured
      */
-    public boolean removeTeacher(Permissions permission, Teacher teacher)
+    public boolean removeTeacher(Permissions permission, Account teacher)
     {
-        return false;
+        boolean ret = false;
+        boolean isTeaching = false;
+        
+        if(teacher != null && teacher.getId() != null && this.getId() != null )
+        {
+            ArrayList<Teacher> currentTeachers = this.getTeachers();
+            int indx;
+            for(indx = 0; indx < currentTeachers.size(); indx++)
+            {
+                if(teacher.equals(currentTeachers.get(indx)))
+                    
+                {
+                    isTeaching = true;
+                    break;
+                }
+            }
+            
+            if(isTeaching)
+            {
+                String query = "DELETE FROM teaches "
+                    + "WHERE teacher = \""
+                    + teacher.getId()
+                    + "\" AND course = \""
+                    + this.getId()
+                    + "\"";
+                StorageConnection conn = new StorageConnection();
+                ret = conn.updateQuery(query);
+                conn.close();
+            }
+        }
+        return ret;
     }
 
     /**
