@@ -100,10 +100,10 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                Title<input type="text" maxlength="100" name="newCourseTitle" />
+                                                Title <input type="text" maxlength="100" name="newCourseTitle" />
                                             </td>
                                             <td>
-                                                Department<input type="text" size="5" maxlength="4" name="newCourseDepartment" />
+                                                Department <input type="text" size="5" maxlength="4" name="newCourseDepartment" />
                                             </td>
                                             <td>
                                                 Number <input type="text" size="5" maxlength="3" name="newCourseNumber" />
