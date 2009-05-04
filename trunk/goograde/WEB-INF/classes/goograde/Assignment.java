@@ -371,7 +371,7 @@ public class Assignment implements java.io.Serializable
                     average = new Float((Double) result.get(5));
                     max = new Float((Double) result.get(6));
                     min = new Float((Double) result.get(7));
-                    this.setCourseId(new Integer((String)result.get(8)));
+                    this.setCourseId((Integer) result.get(8));
                 }
                 catch (Exception ex)
                 {
@@ -600,30 +600,31 @@ public class Assignment implements java.io.Serializable
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Assignments (id, type, max, min, " +
-                    "average, dueDate, name, total" + "VALUES (\"" 
+            query = "INSERT INTO Assignments (id, aType, aMax, aMin, " +
+                    "aAverage, aDueDate, aName, aTotal, courseId" + "VALUES (\"" 
                     + this.getId() + "\",\""
                     + this.getType() + "\",\"" 
                     + this.getMax() + "\",\"" 
-                    + this.getMin() + "\", \"" 
-                    + this.getAvg() + "\", \"" 
-                    + this.getDueDate() + "\", \""
-                    + this.getName() + "\", \"" 
-                    + this.getTotal() + "\")";
+                    + this.getMin() + "\",\"" 
+                    + this.getAvg() + "\",\"" 
+                    + this.getDueDate() + "\",\""
+                    + this.getName() + "\",\"" 
+                    + this.getTotal() + "\",\""
+                    + this.getCourseId() + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
             query = "UPDATE Courses SET " 
-                    + "id = "+ this.getId() + "\", \"" 
-                    + "type =" + this.getType() + "\", \""
-                    + "max = " + this.getMax() + "\", \"" 
-                    + "min" + this.getMin() + "\" , \"" 
-                    + "average = " + this.getAvg() + "\" , \"" 
-                    + "dueDate = " + this.getDueDate() + "\" , \"" 
-                    + "name = " + this.getName() + "\", \"" 
-                    + "total = " + this.getTotal() + "\"";
+                    + "type = \"" + this.getType() + "\","
+                    + "max = \"" + this.getMax() + "\"," 
+                    + "min = \"" + this.getMin() + "\"," 
+                    + "average = \"" + this.getAvg() + "\"," 
+                    + "dueDate = \"" + this.getDueDate() + "\"," 
+                    + "name = \"" + this.getName() + "\"," 
+                    + "total = \"" + this.getTotal() + "\" "
+                    + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();

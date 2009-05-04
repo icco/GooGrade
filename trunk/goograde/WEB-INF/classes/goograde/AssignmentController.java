@@ -153,7 +153,7 @@ public class AssignmentController extends HttpServlet
         if (assDate != null)
         {
             /*Parse Date into Date Object */
-            String dateFormatString = "MM-dd-yy";
+            String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
             SimpleDateFormat format = new 
                     SimpleDateFormat(dateFormatString);
             Date newDate = new Date();
