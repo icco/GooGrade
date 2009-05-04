@@ -72,6 +72,16 @@ public class GradeController extends HttpServlet
                 {
                 }
             }
+            
+            ArrayList<Grade> gradearray = new ArrayList<Grade>();
+            for(Assignment ass : crse.getAssignments())
+            {
+                gradearray.addAll(ass.getGrades());
+            }
+            
+            req.setAttribute("assArray", crse.getAssignments());
+            req.setAttribute("gradeList", gradearray);
+            req.setAttribute("stuArray",crse.getStudents());
         }
         else // Is a student
         {

@@ -15,6 +15,7 @@ public class Student extends Account
 {
 
     private ArrayList<Course> enrolled;
+    private ArrayList<Grade> grades;
 
     /**
      * Standard constructor, should not be used, kept for now
@@ -33,7 +34,8 @@ public class Student extends Account
     public Student(Integer id) throws Exception
     {
         super(id);
-        this.enrolled = getEnrolled();
+        this.enrolled = this.getEnrolled();
+        this.grades = this.getGrades();
     }
 
     /**
@@ -54,10 +56,11 @@ public class Student extends Account
      * @param name student's real name
      * @param email student's email
      */
-    public Student(Integer id, String username, String name, String email)
+    public Student(Integer id, String username, String name, String email) throws Exception
     {
         super(id, username, name, email);
         this.enrolled = getEnrolled();
+        this.grades = this.getGrades();
     }
 
     /**
