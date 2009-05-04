@@ -28,6 +28,27 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>View Assignmnents</h3>
+                        <div id="data"> 
+                            <table >
+                                <tr>
+                                    <th>Assignment</th>
+                                    <th>Assignment Total</th>
+                                    <th>Due Date</th>
+                                    <th>Type</th>
+                                </tr>
+                                
+                                <%--TODO, do display "no assignments exist" --%>
+                                <c:forEach var = 'assg' items="${AssignmentList}">
+                                    <tr>
+                                        <td>${assg.name}</td>
+                                        <td>${assg.total}</td>
+                                        <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
+                                        <td>${assg.dueDate}</td>
+                                        <td>${assg.type}</td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 
