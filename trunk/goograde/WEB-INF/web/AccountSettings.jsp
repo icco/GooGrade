@@ -19,7 +19,28 @@ I am using an iFrame (2nd to last demo)
     </head>
     <link rel="stylesheet" href="styles/popups.css" type="text/css"/>
     <body>
-        <h2>Hello World!</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>User Name</th>
+                    <th>Email Address</th>
+                    <th>Full Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="user" items="${allAccountList}">
+                    <tr>
+                        <td>${user.id}</td>
+                        <td>${user.userName}</td>
+                        <td>${user.emailAddress}</td>
+                        <td>${user.fullName}</td>
+                    </tr>
+                </c:forEach>
+                <tr> 
+            </tr>
+            </tbody>
+        </table>
         
     </body>
 </html>
