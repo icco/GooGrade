@@ -27,8 +27,12 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>ViewGrades</h3>
-                        
+                        <h3>View Grades</h3>
+                        <table>
+                            <c:forEach var="user" items="${gradeList}">
+                                
+                            </c:forEach>
+                        </table>
                     </div>
                 </div>
                 

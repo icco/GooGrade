@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 /**
  * Grade holds a specific grade for bewteen an assignment and student.  
- * @author kblizard and nwelch
+ * 
+ * @author kblizard 
+ * @author nwelch
  */
 public class Grade
 {
@@ -24,8 +25,8 @@ public class Grade
      */
     public Grade(int ass, int aThis)
     {
-        student = aThis;
-        assignment = ass;
+        this.student = aThis;
+        this.assignment = ass;
     }
 
     /**
@@ -42,7 +43,8 @@ public class Grade
      */
     public boolean gradeStudent(float theGrade)
     {
-        grade = theGrade;
+        this.grade = theGrade;
+
         return true;
     }
 
@@ -59,7 +61,7 @@ public class Grade
      * getAssignment returns the assignment this grade belonged to
      * @return the Assignment ID
      */
-    public int getAssgn()
+    public int getAssgnment()
     {
         return assignment;
     }
@@ -80,28 +82,27 @@ public class Grade
     public boolean setStudent(int pstudent)
     {
         String query = "UPDATE Grades SET accountId = " + pstudent +
-                    " WHERE assignId = " + assignment;
+                " WHERE assignId = " + assignment;
         StorageConnection conn = new StorageConnection();
-            conn.updateQuery(query);
-            conn.close();
+        conn.updateQuery(query);
+        conn.close();
         return true;
     }
-    
+
     /**
      * set Assignment changes the id number of the assignment
      * @return true if set is sucessful
      */
     public boolean setAssignment(int assignmentNo)
     {
-         String query = "UPDATE Grades SET accountId = " + assignmentNo  +
-                    " WHERE assignId = " + student;
+        String query = "UPDATE Grades SET accountId = " + assignmentNo +
+                " WHERE assignId = " + student;
         StorageConnection conn = new StorageConnection();
-            conn.updateQuery(query);
-            conn.close();
+        conn.updateQuery(query);
+        conn.close();
         return true;
     }
-    
-    
+
     /**
      * toString returns the grade in the form of a string
      * @return the String version of the grade. 
@@ -146,7 +147,6 @@ public class Grade
             }
         }
         else
-        
         {
             return false;
         }
@@ -186,7 +186,9 @@ public class Grade
         return assgns;
 
     }
+
     
+    /* NO! */
     public static void addGrade(int sStudent, int sAssignment, float sGrade)
     {
         String query = "SELECT count (*) FROM Grades";
@@ -195,8 +197,8 @@ public class Grade
         conn.close();
         //TODO: fix database indexing issue. Deleting an item 
         //and adding it confiuses the index
-        
-        int tid =  (Integer) result.get(0).get(0) +1; 
+
+        int tid = (Integer) result.get(0).get(0) + 1;
 
         Grade temp = new Grade(sAssignment, sStudent);
         query = "INSERT INTO Grades (id, accountId, assignId) " +
@@ -207,15 +209,13 @@ public class Grade
 
         temp.gradeStudent(sGrade);
     }
-    
+
     public static void deleteGrade(int sStudent, int sAssignment)
     {
-        String query = "DELETE FROM Grades WHERE accountId = " + sStudent + 
+        String query = "DELETE FROM Grades WHERE accountId = " + sStudent +
                 "assignId = " + sAssignment;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
     }
-    
-    
 }

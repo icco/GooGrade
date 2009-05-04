@@ -6,12 +6,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * Controls server interactions for grades. Tells what views to serve and gets 
+ * data from the model, and related models.
  * @author nwelch
  */
 public class GradeController extends HttpServlet
@@ -30,15 +32,30 @@ public class GradeController extends HttpServlet
         String action = req.getParameter("action"); //the action to be done
         Account user1 = new Account();
 
-        user1.setId(new Integer((String) req.getAttribute("who")));
-        user1.fetch();
-        req.setAttribute("who", user1.getId());
+        for (Cookie cook : req.getCookies())
+        {
+            if (cook.getName().equals("userid"))
+            {
+                user1.setId(new Integer(cook.getValue()));
+                user1.fetch();
+            }
+        }
 
         if (user1.isTeacher() || user1.isTeacherAssistant())
         {
             view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
 
-            req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+            Teacher user3;
+            try
+            {
+                user3 = new Teacher(user1.getId());
+                req.setAttribute("teachCourseList", (ArrayList<Course>) (user3.getCourses()));
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "User Does Not Exist", ex);
+            }
+            
 
             /*Determine which action needs to be taken */
             if (action != null)
@@ -56,10 +73,18 @@ public class GradeController extends HttpServlet
         }
         else // Is a student
         {
-            view = req.getRequestDispatcher("/student/ViewGrades.jsp");
+            try
+            {
+                Student user2 = new Student(user1.getId());
+                view = req.getRequestDispatcher("/student/ViewGrades.jsp");
+                req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user2.getEnrolled()));
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "User Does Not Exist", ex);
+            }
 
         }
-
 
         try
         {
@@ -85,26 +110,28 @@ public class GradeController extends HttpServlet
      * @param resp respones
      */
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
-        RequestDispatcher view = null;
-        view = req.getRequestDispatcher("/student/ViewGrades.jsp");
-        req.setAttribute("gradeList", (ArrayList<Grade>) (Grade.allGrades()));
+        doPost(req, resp);
 
-        try
-        {
-            view.forward(req, resp);
-        }
-        catch (ServletException ex)
-        {
-            Logger.getLogger(GradeController.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(GradeController.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
-
+    /*
+    RequestDispatcher view = null;
+    view = req.getRequestDispatcher("/student/ViewGrades.jsp");
+    req.setAttribute("gradeList", (ArrayList<Grade>) (Grade.allGrades()));
+    
+    try
+    {
+    view.forward(req, resp);
+    }
+    catch (ServletException ex)
+    {
+    Logger.getLogger(GradeController.class.getName()).
+    log(Level.SEVERE, null, ex);
+    }
+    catch (IOException ex)
+    {
+    Logger.getLogger(GradeController.class.getName()).
+    log(Level.SEVERE, null, ex);
+    }
+     */
     }
 }

@@ -41,15 +41,13 @@ public class StudentController extends HttpServlet
         try
         {
             user1 = new Student(new Integer(req.getParameter("who")));
-            req.setAttribute("who",user1.getId());
         }
         catch (Exception ex)
         {
             Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
         }
         req.setAttribute("stud", (Student) (user1));
-        req.setAttribute("enrolledCourseList", 
-                (ArrayList<Course>) (user1.getEnrolled()));
+        req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user1.getEnrolled()));
         
         try
         {
