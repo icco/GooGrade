@@ -37,13 +37,13 @@
                         <div class="block">
                             <ul>
                                 <li>
-                                    <a href="ViewGrades.jsp">View Grades</a>
+                                    <a href="/GooGrade/student/grades?id=${course.id}">View Grades</a>
                                 </li>
                                 <li>
-                                    <a href="VieweAssignments.jsp">View Assignments</a>
+                                    <a href="/GooGrade/student/assignments?id=${course.id}">View Assignments</a>
                                 </li>
                                 <li>
-                                    <a href="ViewCourse.jsp">View Course</a>
+                                    <a href="/GooGrade/student/course?id=${course.id}">View Course</a>
                                 </li>
 
                             </ul>

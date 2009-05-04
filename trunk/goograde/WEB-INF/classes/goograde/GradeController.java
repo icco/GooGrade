@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 /**
  *
- * @author pphu
+ * @author nwelch
  */
 public class GradeController extends HttpServlet
 {
-        @Override
+
+    @Override
     /**
      * doPost performs actions
      * 
@@ -26,34 +26,51 @@ public class GradeController extends HttpServlet
      */
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-
+        RequestDispatcher view = null;
         String action = req.getParameter("action"); //the action to be done
+        Account user1 = new Account();
 
-        /*Determine which action needs to be taken */
-        if (action != null)
+        user1.setId(new Integer((String) req.getAttribute("who")));
+        user1.fetch();
+        req.setAttribute("who", user1.getId());
+
+        if (user1.isTeacher() || user1.isTeacherAssistant())
         {
-                if(action.equals("delete"))
+            view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
+
+            req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+
+            /*Determine which action needs to be taken */
+            if (action != null)
+            {
+                if (action.equals("delete"))
                 {
-                    
                 }
-                else if(action.equals("add"))
+                else if (action.equals("add"))
                 {
-                    
                 }
-                else if(action.equals("edit"))
+                else if (action.equals("edit"))
                 {
-                    
                 }
+            }
         }
+        else // Is a student
+        {
+            view = req.getRequestDispatcher("/student/ViewGrades.jsp");
+
+        }
+
 
         try
         {
-            this.doGet(req, resp);
-        } catch (ServletException ex)
+            view.forward(req, resp);
+        }
+        catch (ServletException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -70,26 +87,20 @@ public class GradeController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
-        
-        req.setAttribute("teachCourseList",
-                (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        
+        RequestDispatcher view = null;
+        view = req.getRequestDispatcher("/student/ViewGrades.jsp");
         req.setAttribute("gradeList", (ArrayList<Grade>) (Grade.allGrades()));
 
-        
-
-
-        /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
-        (Teacher.allTeachers().get(0).getCourses())); */
         try
         {
             view.forward(req, resp);
-        } catch (ServletException ex)
+        }
+        catch (ServletException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);

@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,12 +34,14 @@ public class StudentController extends HttpServlet
         String action = req.getParameter("action");
         RequestDispatcher view = null;
 
+        resp.addCookie(new Cookie("userid",req.getParameter("who")));
 
         view = req.getRequestDispatcher("/student/viewStudent.jsp");
         Student user1 = null;
         try
         {
             user1 = new Student(new Integer(req.getParameter("who")));
+            req.setAttribute("who",user1.getId());
         }
         catch (Exception ex)
         {
@@ -66,6 +69,7 @@ public class StudentController extends HttpServlet
 
         view = req.getRequestDispatcher("/student/index.jsp");
 
+        
         req.setAttribute("studentList", (ArrayList<Student>) (Student.allStudents()));
 
         try

@@ -85,6 +85,14 @@
         <servlet-name>accountcontroller</servlet-name>
         <url-pattern>/teacher/accounts</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gradecontroller</servlet-name>
+        <url-pattern>/student/grades</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gradecontroller</servlet-name>
+        <url-pattern>/teacher/grades</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
