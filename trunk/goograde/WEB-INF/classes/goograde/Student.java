@@ -15,7 +15,6 @@ public class Student extends Account
 {
 
     private ArrayList<Course> enrolled;
-    private ArrayList<Grade> grades;
 
     /**
      * Standard constructor, should not be used, kept for now
