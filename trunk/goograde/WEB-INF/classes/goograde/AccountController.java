@@ -49,7 +49,7 @@ public class AccountController extends HttpServlet
             }
             else if (action.equals("add"))
             {
-                Student toAdd = new Student(req.getParameter("newUserName"),
+                Account toAdd = new Account(req.getParameter("newUserName"),
                         req.getParameter("newFullName"),
                         req.getParameter("newEmailAddr"));
                 toAdd.save();
@@ -58,13 +58,20 @@ public class AccountController extends HttpServlet
             }
             else if (action.equals("edit"))
             {
-                /*
-                this.editAccount((String) req.getParameter("courseRef"),
-                (String) req.getParameter("title"),
-                (String) req.getParameter("department"),
-                (String) req.getParameter("number"),
-                (String) req.getParameter("section"));
-                 */
+                Account tmp = null;
+                try
+                {
+                    tmp = new Account(new Integer(req.getParameter("userRef")));
+                }
+                catch (Exception ex)
+                {
+                    Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                tmp.setUserName(req.getParameter("newUserName"));
+                tmp.setEmailAddress(new EmailAddress(req.getParameter("newEmailAddr")));
+                tmp.setFullName(req.getParameter("newFullName"));
+                
+                tmp.save();
             }
         }
 
@@ -85,6 +92,7 @@ public class AccountController extends HttpServlet
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
         Course thiscourse = new Course(new Integer(req.getParameter("id")));
+        req.setAttribute("id", req.getParameter("id"));
         ArrayList<Account> members = new ArrayList<Account>();
 
         members.addAll(thiscourse.getTeacherAssistants());

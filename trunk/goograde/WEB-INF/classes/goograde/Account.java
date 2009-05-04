@@ -348,12 +348,12 @@ public class Account implements java.io.Serializable
         /* Update if the id exists */
         if (this.getId() != null)
         {
-            String query = "UPDATE Accounts SET"
+            String query = "UPDATE Accounts SET "
                     + "username = \"" + this.getUserName() + "\","
                     + "name = \"" + this.getFullName() + "\","
                     + "email = \"" + this.getEmailAddress().toString() + "\","
-                    + "password = \"123456a\","
-                    + "WHERE id = " + this.getId();
+                    + "password = \"123456a\" "
+                    + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         else

@@ -45,7 +45,32 @@
                                     <td>.</td>
                                     <td>.</td>
                                     <td>
-                                        <form action="<c:url value="/teacher/accounts?id=${course.id}" />" method="post">
+                                        <input alt="#TB_inline?height=60&width=700&inlineId=Edit${user.id}a" 
+                                               title="Edit Course" 
+                                               class="thickbox" 
+                                               type="button"
+                                               value="Edit"
+                                               />
+                                        <div id="Edit${user.id}a" style="display: none">
+                                            <form id="Edit${user.id}a"  action="<c:url value="/teacher/accounts?id=${id}"/>" method="post">
+                                                <input type="hidden" name="action" value="edit" />
+                                                <input type="hidden" name="id" value="${id}" />
+                                                <input type="hidden" name="userRef" value="${user.id}" />
+                                                <table>
+                                                    <tr>
+                                                        <td>Username <input size ="10" name="newUserName" type="text" value="${user.userName}" /></td>
+                                                        <td>Email Address <input size ="10" name="newEmailAddr" type="text" value="${user.emailAddress}" /></td>
+                                                        <td>Full Name <input size ="10" name="newFullName" type="text" value="${user.fullName}" /></td>
+                                                        <td>
+                                                            <input  type="submit" value="Save" />
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <form action="<c:url value="/teacher/accounts?id=${id}" />" method="post">
                                             <input type="hidden" name="id" value="${id}" />
                                             <input type="hidden" name="action" value="delete" />
                                             <input type="hidden" name="accountRef" value="${user.id}" />
@@ -55,28 +80,28 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                            <input alt="#TB_inline?height=60&width=700&inlineId=Form" 
-                                   title="Add Student" 
-                                   class="thickbox" 
-                                   type="button"
-                                   value="Add Student">
-                            <div id="Form" style="display: none">
-                                <form id="Form"  action="<c:url value="/teacher/accounts?id=${course.id}" />" method="post">
-                                    <input type="hidden" name="action" value="add" />
-                                    <input type="hidden" name="id" value="${id}" />
-                                    <table>
-                                        <tr>
-                                            <td>Username <input size ="10" name="newUserName" type="text" /></td>
-                                            <td>Email Address <input size ="10" name="newEmailAddr" type="text" /></td>
-                                            <td>Full Name <input size ="10" name="newFullName" type="text" /></td>
-                                            <td>
-                                                <input  type="submit" value="Add" />
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </form>
-                            </div>
-                
+                        <input alt="#TB_inline?height=60&width=700&inlineId=Form" 
+                               title="Add Student" 
+                               class="thickbox" 
+                               type="button"
+                               value="Add Student">
+                        <div id="Form" style="display: none">
+                            <form id="Form"  action="<c:url value="/teacher/accounts?id=${id}" />" method="post">
+                                <input type="hidden" name="action" value="add" />
+                                <input type="hidden" name="id" value="${id}" />
+                                <table>
+                                    <tr>
+                                        <td>Username <input size ="10" name="newUserName" type="text" /></td>
+                                        <td>Email Address <input size ="10" name="newEmailAddr" type="text" /></td>
+                                        <td>Full Name <input size ="10" name="newFullName" type="text" /></td>
+                                        <td>
+                                            <input  type="submit" value="Add" />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
                 

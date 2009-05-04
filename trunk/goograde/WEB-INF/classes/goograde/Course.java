@@ -433,7 +433,7 @@ public class Course implements java.io.Serializable
      * @param student the student that is to be added to the course
      * @return true if no errors were enountered
      */
-    public boolean addStudent(Permissions permission, Student student)
+    public boolean addStudent(Permissions permission, Account student)
     {
         boolean ret = false;
         boolean isInRoster = false;
@@ -481,7 +481,7 @@ public class Course implements java.io.Serializable
      * @param student the student to be removed from this course
      * @return true if no errors were encountered in removal.
      */
-    public boolean removeStudent(Permissions permission, Student student)
+    public boolean removeStudent(Permissions permission, Account student)
     {
         boolean ret = false;
         boolean isInRoster = false;
