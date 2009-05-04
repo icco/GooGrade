@@ -286,7 +286,7 @@ public class Account implements java.io.Serializable
         else if (this.getUserName() != null)
         {
             query = "SELECT id, username, name, email, password"
-                    + " FROM Accounts WHERE username = " + this.getUserName();
+                    + " FROM Accounts WHERE username = \"" + this.getUserName() + "\"";
         }
         /* An account with neither id nor username is empty; do not fetch */
         else

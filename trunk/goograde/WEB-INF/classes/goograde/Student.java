@@ -35,6 +35,17 @@ public class Student extends Account
         super(id);
         this.enrolled = getEnrolled();
     }
+    
+    /**
+     * Non-standard constructor
+     * @param newUser  the user name an account holder uses to access GooGrade
+     * @param newFull      the full name of an account holder
+     * @param newEmail     the email address of an account holder
+     */
+    public Student(String newUser, String newFull, String newEmail)
+    {
+        super(newUser, newFull, newEmail);
+    }
 
     /**
      * Large constructor with all data

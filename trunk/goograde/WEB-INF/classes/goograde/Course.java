@@ -483,7 +483,43 @@ public class Course implements java.io.Serializable
      */
     public boolean removeStudent(Permissions permission, Student student)
     {
-        return false;
+        boolean ret = false;
+        boolean isInRoster = false;
+        
+        if(student != null && student.getId() != null && this.getId() != null )
+        {
+            ArrayList<Student> currentRoster = this.getRoster();
+            int indx;
+            for(indx = 0; indx < currentRoster.size(); indx++)
+            {
+                if(student.equals(currentRoster.get(indx)))
+                {
+                    isInRoster = true;
+                    break;
+                }
+            }
+            
+            if(isInRoster)
+            {
+                String query = "DELETE FROM enrolled "
+                    + "WHERE student = \""
+                    + student.getId()
+                    + "\" AND course = \""
+                    + this.getId()
+                    + "\"";
+                StorageConnection conn = new StorageConnection();
+                ret = conn.updateQuery(query);
+                conn.close();
+                
+                if(ret){
+                    this.setRoster(null);
+                    /*setting roster to null will force new 
+                     generation a next get*/
+                }
+            }
+            
+        }
+        return ret;
     }
 
     /**

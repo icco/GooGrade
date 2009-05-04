@@ -40,7 +40,7 @@ public class AccountController extends HttpServlet
             {
                 try
                 {
-                    thiscourse.removeStudent(new Permissions(), new Student(new Integer(req.getParameter("accountRef"))));
+                    thiscourse.removeStudent(null, new Student(new Integer(req.getParameter("accountRef"))));
                 }
                 catch (Exception ex)
                 {
@@ -49,9 +49,12 @@ public class AccountController extends HttpServlet
             }
             else if (action.equals("add"))
             {
-                this.addAccount(req.getParameter("newUserName"),
+                Student toAdd = new Student(req.getParameter("newUserName"),
                         req.getParameter("newFullName"),
                         req.getParameter("newEmailAddr"));
+                toAdd.save();
+                toAdd.fetch();
+                thiscourse.addStudent(null, toAdd);
             }
             else if (action.equals("edit"))
             {
@@ -120,6 +123,8 @@ public class AccountController extends HttpServlet
         temp.setUserName(uName);
         temp.setFullName(fName);
         temp.save();
+        
+        
     }
 
     /**
