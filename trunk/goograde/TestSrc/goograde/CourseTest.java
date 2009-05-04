@@ -5,13 +5,6 @@
 
 package goograde;
 
-import goograde.Assignment;
-import goograde.Course;
-import goograde.GradingRules;
-import goograde.Permissions;
-import goograde.Student;
-import goograde.Teacher;
-import goograde.TeacherAssistant;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 
@@ -152,8 +145,6 @@ public class CourseTest extends TestCase {
         ArrayList<Student> expResult = roster;
         ArrayList<Student> result = instance.getRoster();
         assertEquals(expResult, result);
-
-        fail("The test is not yet implemented");
     }
 
     /**
@@ -171,8 +162,6 @@ public class CourseTest extends TestCase {
         ArrayList<Assignment> expResult = assignments;
         ArrayList<Assignment> result = instance.getAssignments();
         assertEquals(expResult, result);
-
-        fail("The test is not yet implemented");
     }
 
     /**
@@ -277,12 +266,15 @@ public class CourseTest extends TestCase {
     public void testGetRoster()
     {
         System.out.println("getRoster");
-        Course instance = new Course();
-        ArrayList<Student> expResult = null;
-        ArrayList<Student> result = instance.getRoster();
+        StorageConnection conn = new StorageConnection();
+        String query = new String("SELECT student FROM enrolled WHERE course = 1");
+        ArrayList<ArrayList<Object>> queryResult = conn.query(query);
+        conn.close();
+        Integer expResult = queryResult.size();
+        Course instance = new Course(1);
+        ArrayList<Student> getResult = instance.getRoster();
+        Integer result = getResult.size();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -294,9 +286,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         ArrayList<Assignment> expResult = null;
         ArrayList<Assignment> result = instance.getAssignments();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("Assignments are not yet implemented.");
     }
 
     /**
@@ -324,9 +315,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         ArrayList<Teacher> expResult = null;
         ArrayList<Teacher> result = instance.getTeachers();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("getTeachers is not yet implemented.");
     }
 
     /**
@@ -338,9 +328,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         ArrayList<TeacherAssistant> expResult = null;
         ArrayList<TeacherAssistant> result = instance.getTeacherAssistants();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("getTeacherAssistants is not yet implemented.");
     }
 
     /**
@@ -352,9 +341,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         GradingRules expResult = null;
         GradingRules result = instance.getGradingRules();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("Grades are not yet implemented.");
     }
 
     /**
@@ -368,9 +356,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         boolean expResult = false;
         boolean result = instance.addStudent(permission, student);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("addStudent not yet implemented.");
     }
 
     /**
@@ -384,9 +371,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         boolean expResult = false;
         boolean result = instance.removeStudent(permission, student);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("removeStudent not yet implemented.");
     }
 
     /**
@@ -400,9 +386,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         boolean expResult = false;
         boolean result = instance.addTA(permission, ta);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("addTA not yet implemented");
     }
 
     /**
@@ -416,9 +401,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         boolean expResult = false;
         boolean result = instance.removeTA(permission, ta);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("removeTA not yet implemented");
     }
 
     /**
@@ -432,9 +416,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         boolean expResult = false;
         boolean result = instance.addTeacher(permission, teacher);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("addTeacher not yet implemented.");
     }
 
     /**
@@ -448,9 +431,8 @@ public class CourseTest extends TestCase {
         Course instance = new Course();
         boolean expResult = false;
         boolean result = instance.removeTeacher(permission, teacher);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(expResult, result);
+        fail("removeTeacher not yet implemented.");
     }
 
     /**
@@ -459,59 +441,84 @@ public class CourseTest extends TestCase {
     public void testAllCourses()
     {
         System.out.println("allCourses");
-        ArrayList<Course> expResult = null;
-        ArrayList<Course> result = Course.allCourses();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Course> courseList = Course.allCourses();
+        int index = 0, size = 1;
+        String query = new String("SELECT COUNT(*) FROM Courses");
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> queryResult = conn.query(query);
+        conn.close();
+        ArrayList<Object> rs = queryResult.get(0);
+        Integer courseCount = new Integer((Integer) rs.get(0));
+        Integer resultCount = courseList.size();
+        assertEquals(courseCount, resultCount);
     }
 
     /**
-     * Test of deleteCourse method, of class Course.
+     * Test of addCourse and deleteCourse methods, of class Course.
      */
-    public void testDeleteCourse_Permissions_Integer()
-    {
-        System.out.println("deleteCourse");
-        Permissions permission = null;
-        Integer id = null;
-        boolean expResult = false;
-        boolean result = Course.deleteCourse(permission, id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of deleteCourse method, of class Course.
-     */
-    public void testDeleteCourse_Permissions()
-    {
-        System.out.println("deleteCourse");
-        Permissions permission = null;
-        Course instance = new Course();
-        boolean expResult = false;
-        boolean result = instance.delete(permission);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of addCourse method, of class Course.
-     */
-    public void testAddCourse()
+    public void testAddCourseAndDeleteCourse()
     {
         System.out.println("addCourse");
         Permissions permission = null;
-        String title = "";
-        String department = "";
-        Integer number = null;
-        Integer section = null;
-        boolean expResult = false;
-        boolean result = Course.addCourse(permission, title, department, number, section,null);
+        String title = new String("jUnit Test Course");
+        String department = new String("CPE");
+        Integer number = new Integer(666);
+        Integer section = new Integer(6);
+        Teacher testTeacher = null;
+        try
+        {
+            testTeacher = new Teacher(1);
+        }
+        catch (Exception ex)
+        {
+            fail("invalid teacher ID" + ex);
+        }
+        boolean expResult = true;
+        ArrayList<Course> cList = Course.allCourses();
+        Integer initialSize = cList.get(cList.size() - 1).getId();
+        boolean result = Course.addCourse(permission, title, department, number, 
+                section, testTeacher);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        
+        System.out.println("deleteCourse");
+        cList = Course.allCourses();
+        Integer lastCourseId = cList.get(cList.size() - 1).getId();
+        result = Course.deleteCourse(permission, lastCourseId);
+        assertEquals(expResult, result);
+        cList = Course.allCourses();
+        Integer finalSize = cList.get(cList.size() - 1).getId();
+        assertEquals(initialSize, finalSize);
+    }
+    
+    /**
+     * Test of save and delete methods in class Course
+     */
+    public void testSaveAndDelete()
+    {
+        System.out.println("save");
+        String title = new String("jUnit Test Course 2");
+        String department = new String("CPE");
+        Integer number = new Integer(777);
+        Integer section = new Integer(7);
+        Course testCourse = new Course(title, department, number, section);
+        testCourse.save();
+        Integer testId = testCourse.getId();
+        
+        String query = new String("SELECT title FROM Courses WHERE id = \""
+                + testId.toString() + "\"");
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> queryResult = conn.query(query);
+        Integer workingSave = queryResult.size();
+        Integer expResult = new Integer(1);
+        assertEquals(workingSave, expResult);
+        
+        System.out.println("delete");
+        testCourse.delete(null);
+        queryResult = conn.query(query);
+        conn.close();
+        Integer workingDelete = queryResult.size();
+        expResult = new Integer(0);
+        assertEquals(workingDelete, expResult);
     }
 
     /**
