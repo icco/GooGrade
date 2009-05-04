@@ -61,67 +61,6 @@ public class TeacherAssistantTest extends TestCase {
     }
 
     /**
-     * Test of gradeStudent method, of class TeacherAssistant.
-     */
-    public void testGradeStudent()
-    {
-        System.out.println("gradeStudent");
-        Student who = new Student();
-        TeacherAssistant instance = new TeacherAssistant();
-        boolean expResult = false;
-        boolean result = instance.gradeStudent(who);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of createAssignment method, of class TeacherAssistant.
-     */
-    public void testCreateAssignment()
-    {
-        System.out.println("createAssignment");
-        TeacherAssistant instance = new TeacherAssistant();
-        Assignment expResult = null;
-        Assignment result = instance.createAssignment();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of editAssignment method, of class TeacherAssistant.
-     */
-    public void testEditAssignment()
-    {
-        System.out.println("editAssignment");
-        TeacherAssistant instance = new TeacherAssistant();
-        Assignment expResult = null;
-        Assignment result = instance.editAssignment();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of deleteAssignment method, of class TeacherAssistant.
-     */
-    public void testDeleteAssignment()
-    {
-        System.out.println("deleteAssignment");
-        TeacherAssistant instance = new TeacherAssistant();
-        Assignment expResult = null;
-        Assignment result = instance.deleteAssignment();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of adjustCurve method, of class TeacherAssistant.
-     */
-    public void testAdjustCurve()
-    {
-        System.out.println("adjustCurve");
-        TeacherAssistant instance = new TeacherAssistant();
-        GradingRules expResult = null;
-        GradingRules result = instance.adjustCurve();
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of isTeacherAssistant method, of class TeacherAssistant.
      */
     public void testIsTeacherAssistant()
@@ -131,6 +70,32 @@ public class TeacherAssistantTest extends TestCase {
         boolean expResult = true;
         boolean result = instance.isTeacherAssistant();
         assertEquals(expResult, result);
+    }
+    
+    /**
+     * Test of method getCourses in class TeacherAssistant
+     */
+    public void testGetCourses()
+    {
+        System.out.println("getCourses");
+        TeacherAssistant testTA = null;
+        try
+        {
+            testTA = new TeacherAssistant(2);
+        }
+        catch (Exception ex)
+        {
+            fail("Invalid id" + ex);
+        }
+        ArrayList<Course> testCourseList = testTA.getCourses();
+        String query = new String("SELECT COUNT(*) FROM assists WHERE ta = 2");
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> queryResult = conn.query(query);
+        conn.close();
+        Integer result = testCourseList.size();
+        ArrayList<Object> resultSet = queryResult.get(0);
+        Integer expResult = new Integer((Integer) resultSet.get(0));
+        assertEquals(result, expResult);
     }
 
 }

@@ -105,7 +105,7 @@ public class TeacherAssistant extends Account
     }
 
     /**
-     * Gets all of the courses a teacher teaches
+     * Gets all of the courses a teacher assistant assists
      * 
      * @return an ArrayList of Courses
      */
@@ -142,85 +142,6 @@ public class TeacherAssistant extends Account
 
         
         return ret;
-    }
-
-    /**
-     * Editing of a current course is done here
-     * NOTE: Flagged for removal - bad design.  See vgerdin
-     * @param course the course to edit
-     * @return the new, edited Course
-     */
-    public Course editCourse(Course course)
-    {
-        return course;
-    }
-
-    /**
-     * Creation of a new course
-     * NOTE: Flagged for removal - bad design.  See vgerdin
-     * @return a new course as specified by the Teacher's input.
-     */
-    public Course createCourse()
-    {
-        return null; //new Course();
-
-    }
-
-    /**
-     * A course is marked for deletion. 
-     * NOTE: Flagged for removal - bad design.  See vgerdin
-     * @param course the course to remove
-     * @return true if no errors occur
-     */
-    public boolean removeCourse(Course course)
-    {
-        return false;
-    }
-
-    /**
-     * Grade information in a Student is filled in
-     * @param who the Student to be graded.
-     * @return nobody knows
-     */
-    public boolean gradeStudent(Student who)
-    {
-        return false;
-    }
-
-    /**
-     * A new Assignment with the TA's specifications is created. 
-     * @return the new Assignment
-     */
-    public Assignment createAssignment()
-    {
-        return null;
-    }
-
-    /**
-     * Assignment details are changed to fit the TA's preferences.
-     * @return the modified Assignment
-     */
-    public Assignment editAssignment()
-    {
-        return null;
-    }
-
-    /**
-     * An Assignment is marked for removal from the system
-     * @return the Assignment deleted
-     */
-    public Assignment deleteAssignment()
-    {
-        return null;
-    }
-
-    /** 
-     * GradingRules are modified for a specific Course
-     * @return the GradingRules that were modified
-     */
-    public GradingRules adjustCurve()
-    {
-        return null;
     }
     
     /**
