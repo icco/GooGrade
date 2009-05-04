@@ -28,9 +28,7 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Your Courses</h3>
-                        <p>
-                            ${stud.userName}
-                        </p>
+               
                         <table>
                             <tr>
                                 <td>Title</td>
