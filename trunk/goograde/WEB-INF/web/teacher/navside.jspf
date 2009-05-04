@@ -6,16 +6,49 @@
 <%@page contentType="text/html"%>
 <!-- Begin Nav -->
 <script type="text/javascript">
-    $(document).ready(function(){
-        $("#accordion").accordion(
-        { 
-            active: false, 
-            alwaysOpen: false, 
-            collapsible: true,
-            autoHeight: true
+    function gup( name )
+    {
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( window.location.href );
+        if( results == null )
+            return "";
+        else
+            return results[1];
+    }
+    ; 
+    var num = parseInt(${id});
+    document.write($.getUrlParam("id"));
+     document.write(num);
+    if(num > 0)
+    {   
+        $(document).ready(function(){
+            $("#accordion").accordion(
+            { 
+                active: "${id}",
+                alwaysOpen: false, 
+                collapsible: true,
+                autoHeight: true
+            });
+
         });
 
-    });
+        
+    }
+    else
+    {
+        $(document).ready(function(){
+            $("#accordion").accordion(
+            { 
+                active: false, 
+                alwaysOpen: false, 
+                collapsible: true,
+                autoHeight: true
+            });
+
+        });
+    }
 </script>
 
 <div id="side">
@@ -59,10 +92,16 @@
                     <h3 class="trigger"><a href="#">${course.department} ${course.number}-${course.section}</a></h3>
                     
                     <div class="toggle_container">
+                        ${id} 
                         <script type="text/javascript">
-                            if (${currentCourse} == ${course.id})
+                            if ( ${id} == ${course.id})
                             {
-                                $('.selector').accordion('option', 'active', ${course.id});
+                                document.write('PASSED');
+                                $(function(){    
+                                    $("#accordion").accordion('option', 'active', 1);
+                                });
+
+                                 
                             }
                             
                         </script>

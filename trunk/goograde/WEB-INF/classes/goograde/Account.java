@@ -436,7 +436,23 @@ public class Account implements java.io.Serializable
      */
     public boolean isTeacher()
     {
-        return false;
+        boolean ret = false;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        String query = "SELECT id FROM Teachers WHERE id = \""
+                + id + "\"";
+        
+        
+        result = conn.query(query);
+        conn.close();
+        
+        /* If there is a result, then this account is Teacher */
+        if(result.size() > 0)
+        {
+            ret = true;
+        }
+        
+        return ret;
     }
 
     /**
@@ -445,7 +461,47 @@ public class Account implements java.io.Serializable
      */
     public boolean isTeacherAssistant()
     {
-        return false;
+        boolean ret = false;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        String query = "SELECT id FROM TAs WHERE id = \""
+                + id + "\"";
+        
+        result = conn.query(query);
+        conn.close();
+        
+        /* If there is a result, then this account is TeacherAssitant */
+        if(result.size() > 0)
+        {
+            ret = true;
+        }
+        
+        return ret;
+    }
+    
+    /**
+     * Tells whether an accounter is a Student or Not.
+     * @return true if account is a Student, false if it isn't
+     */
+    public boolean isStudent()
+    {
+        boolean ret = false;
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = null;
+        String query = "SELECT id FROM Students WHERE id = \""
+                + id + "\"";
+        
+        
+        result = conn.query(query);
+        conn.close();
+        
+        /* If there is a result, then this account is Student */
+        if(result.size() > 0)
+        {
+            ret = true;
+        }
+        
+        return ret;
     }
 
     /**

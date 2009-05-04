@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>View Grades</title>
+        <title>${currentCourse} - View Course</title>
     </head>
     
     <body>
@@ -27,8 +27,21 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>${thiscourse}</h3>
-                     
+                        <h3>View Course</h3>
+                        <table>
+                            <tr>
+                                <th>Title</th>
+                                <th>Department</th>
+                                <th>Number</th>
+                                <th>Section</th>
+                            </tr>
+                            <tr class="color">
+                                <td>${courseTitle}</td>
+                                <td>${courseDepartment}</td>
+                                <td>${courseNumber}</td>
+                                <td>${courseSection}</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
                 
