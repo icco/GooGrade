@@ -65,6 +65,23 @@
 	    </exec>
     </target>
 
+
+    <target name="svnstat-p">
+	    <delete dir="/var/www/html/svnstat2/" />
+	    <java classname="de.agentlab.svnstat.SvnStat" fork="yes">
+		    <arg line="-r /var/www/html/svnstat/svn.xml" />
+		    <arg line="-d /var/www/html/svnstat2" />
+		    <arg line="-config SvnStat.properties" />
+		    <arg line="-begin ${begin}" />
+		    <arg line="-end ${end}" />
+
+		    <classpath>
+			    <pathelement path="/var/www/html/SvnStat-all.jar" />
+		    </classpath>
+	    </java>
+    </target>
+
+
     <target name="-post-dist" depends="javadoc">
 	    <!-- This would send out an email, but in all honesty, it's useless.
 		    <mail from="blugoo@lists.csc.calpoly.edu" 
@@ -81,5 +98,10 @@
 	    <copy file="dist/GooGrade.war" tofile="/usr/share/tomcat5/webapps/GooGrade.war"/>
 
 	    <exec executable="/var/www/html/svnstat/runme.sh" />
+
+	    <antcall target="svnstat-p">
+		    <param name="begin" value="2009-01-07" />
+		    <param name="end" value="9999-99-99" />
+	    </antcall>
     </target>
 </project>

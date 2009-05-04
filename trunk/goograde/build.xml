@@ -62,4 +62,9 @@
 		    <arg line="+%D" />
 	    </exec>
     </target>
+
+    <target name="deps-clean">
+
+    </target>
+
 </project>
