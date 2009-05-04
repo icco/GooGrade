@@ -2,11 +2,11 @@
 -- Test Data for Development. 
 --
 INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
-    VALUES("ArrayList Object", 20,"4-10-09", "Homework", 5, 3, 4, 1);
+    VALUES("ArrayList Object", 20,"Fri Apr 10 00:00:00 PDT 2009", "Homework", 5, 3, 4, 1);
 INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
-    VALUES("JSP Sample", 10,"4-16-09", "Other", 8.97, 10, 0, 1);
+    VALUES("JSP Sample", 10,"Thu Apr 16 00:00:00 PDT 2009", "Other", 8.97, 10, 0, 1);
 INSERT INTO Assignments (aName, aTotal, aDueDate, aType, aAverage, aMax, aMin, courseId)
-    VALUES("Midterm 2", 100,"5-10-09", "Test", 0, 0, 0, 2);
+    VALUES("Midterm 2", 100,"Sun May 10 00:00:00 PDT 2009", "Test", 0, 0, 0, 2);
 
 INSERT INTO Courses (title, department, number, section, gradingRulesId) 
     VALUES("Systems Programming", "CSC", "357","01","1");

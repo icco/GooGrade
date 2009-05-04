@@ -363,7 +363,7 @@ public class Assignment implements java.io.Serializable
                     total = (Integer) result.get(1);
                     name = (String) result.get(2);
 
-                    String dateFormatString = "MM-dd-yy";
+                    String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
                     SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
                     Date newDate = format.parse((String) result.get(3));
                     dueDate = newDate;
