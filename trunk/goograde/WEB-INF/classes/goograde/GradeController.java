@@ -97,7 +97,6 @@ public class GradeController extends HttpServlet
             {
                 Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Student Does Not Exist", ex);
             }
-
         }
 
         try
@@ -114,7 +113,6 @@ public class GradeController extends HttpServlet
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override

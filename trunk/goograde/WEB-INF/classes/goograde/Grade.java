@@ -42,6 +42,13 @@ public class Grade
     {
     }
 
+    Grade(Student stud, Float aFloat, Assignment ass)
+    {
+        this.student = stud;
+        this.assignment = ass;
+        this.grade = aFloat;
+    }
+
     /**
      * gradeStudent gives a grade to a specific student.
      * @param theGrade the grade the student will receive
