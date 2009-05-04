@@ -57,7 +57,15 @@
             <div id="accordion">
                 <c:forEach var="course" items="${teachCourseList}">
                     <h3 class="trigger"><a href="#">${course.department} ${course.number}-${course.section}</a></h3>
+                    
                     <div class="toggle_container">
+                        <script type="text/javascript">
+                            if (${currentCourse} == ${course.id})
+                            {
+                                $('.selector').accordion('option', 'active', ${course.id});
+                            }
+                            
+                        </script>
                         <div class="block">
                             <ul>
                                 <%--

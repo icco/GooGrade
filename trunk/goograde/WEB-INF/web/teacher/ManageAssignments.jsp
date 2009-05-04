@@ -47,7 +47,9 @@
                                         <td>${assg.dueDate}</td>
                                         <td>${assg.type}</td>
                                         <td>
+                                            
                                             <form action="<c:url value="assignment" />" method="post">
+                                                <input type="hidden" name="id" value="${id}" />
                                                 <input type="hidden" name="action" value="delete" />
                                                 <input type="hidden" name="AssgnId" value="${assg.id}" />
                                                 <input type="submit" value="Delete">

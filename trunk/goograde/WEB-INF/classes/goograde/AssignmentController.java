@@ -116,7 +116,8 @@ public class AssignmentController extends HttpServlet
     {
         RequestDispatcher view = 
                 req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
-
+        
+        req.setAttribute("id", (String)req.getParameter("id"));
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
