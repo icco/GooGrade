@@ -6,7 +6,8 @@ TEAMNAME="BluGoo";
 SUBJECT="[BluGoo] Currently Open Tickets for `/bin/date +%r`";
 EMAIL="blugoo@lists.csc.calpoly.edu";
 
-fortune /home/nwelch/tmp/fortune-mod-9708/datfiles/literature > $FILE
+/home/nwelch/bin/fortune /home/nwelch/tmp/fortune-mod-9708/datfiles/literature > $FILE;
+ 
 
 echo "" >> $FILE;
 echo "Hey, $TEAMNAME" >> $FILE;
