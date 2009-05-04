@@ -30,6 +30,11 @@ public class Course implements java.io.Serializable
     /** An array of Assignments that are associatet with the Course */
     private ArrayList<Assignment> assignments;
 
+    private static final int kTITLEMINLEN = 3;
+    private static final int kTITLEMAXLEN = 100;
+    private static final int kDEPARTMENTMINLEN = 2;
+    private static final int kDEPARTMENTMAXLEN = 4;
+    
     /**
      * Standard constructor, should not be used, kept for now
      */
@@ -514,13 +519,9 @@ public class Course implements java.io.Serializable
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
-                /*if query successfull, add to roster thingy*/
-                if(ret)
-                {
-                    this.setRoster(null);
-                    /*setting roster to null will force new 
-                     generation a next get*/
-                }
+                this.setRoster(null);
+                /*setting roster to null will force new 
+                generation a next get*/
             }
         }
         
@@ -566,14 +567,9 @@ public class Course implements java.io.Serializable
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
-                
-                /* Proceed if ret? */
-                if(ret)
-                {
-                    this.setRoster(null);
-                    /*setting roster to null will force new 
-                     generation a next get*/
-                }
+                this.setRoster(null);
+                /*setting roster to null will force new 
+                 generation a next get*/
             }
             
         }
@@ -673,7 +669,6 @@ public class Course implements java.io.Serializable
      * @param permission Permission of the user who calls this function
      * @param teacher Teacher to be added to this course
      * @return true if no errors have occured
-     * @todo Note from Matt Duder:  This code retrieves TAs, you want it to retrieve Teachers: fix please
      */
     public boolean addTeacher(Permissions permission, Account teacher)
     {
@@ -695,10 +690,10 @@ public class Course implements java.io.Serializable
                     break;
                 }
             }
-            /*if student is not in the roster, we add him*/
+            /*if teacher is not teaching, we add him*/
             if(!isTeaching)
             {
-                String query = "INSERT INTO assists (course, ta) "
+                String query = "INSERT INTO teaches (course, teacher) "
                         + "VALUES (\""
                         + this.getId()
                         + "\",\""
@@ -1099,10 +1094,12 @@ public class Course implements java.io.Serializable
     public static boolean validateTitle(String string)
     {
         boolean ret = true;
-        int minLen = 3, maxLen = 100;
+        
         
         /* Validate input */
-        if(string == null || string.length() < minLen || string.length() > maxLen)
+        if(string == null 
+                || string.length() < kTITLEMINLEN
+                || string.length() > kTITLEMAXLEN)
         {
             ret = false;
             Logger.getLogger(
@@ -1121,10 +1118,11 @@ public class Course implements java.io.Serializable
     public static boolean validateDepartment(String string)
     {
         boolean ret = true;
-        int minLen = 2, maxLen = 4;
         
         /* validate data */
-        if(string == null || string.length() < minLen || string.length() > maxLen)
+        if(string == null 
+                || string.length() < kDEPARTMENTMINLEN 
+                || string.length() > kDEPARTMENTMAXLEN)
         {
             ret = false;
             Logger.getLogger(
