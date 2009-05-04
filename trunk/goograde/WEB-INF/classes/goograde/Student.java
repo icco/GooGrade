@@ -69,7 +69,7 @@ public class Student extends Account
      */
     public Float getGrade(Course crse, Assignment ass)
     {
-        return (new Grade(ass.getId(), this.getId())).getGrade();
+        return (new Grade(ass, this)).getGrade();
     }
 
     /**

@@ -312,7 +312,7 @@ public class Assignment implements java.io.Serializable
         }
 
         /*adds the new grade */
-        grades.add(new Grade(aStudent.getId(), id));
+        grades.add(new Grade(this, aStudent));
         grades.get(grades.indexOf(aStudent.getId())).gradeStudent(newGrade);
 
         return true;
@@ -403,8 +403,8 @@ public class Assignment implements java.io.Serializable
                     int count;
                     for (count = 0; count < result2.size(); count++)
                     {
-                        grades.add(new Grade((Integer) result2.get(count).get(2),
-                                (Integer) result2.get(count).get(0)));
+                        grades.add(new Grade(new Assignment((Integer) result2.get(count).get(2)),
+                                new Student((Integer) result2.get(count).get(0))));
                         grades.get(count).gradeStudent((Float) result2.get(count).get(1));
                     }
 
