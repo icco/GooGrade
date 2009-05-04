@@ -31,21 +31,21 @@ I am using an iFrame (2nd to last demo)
                 </tr>
             </thead>
             <tbody>
-                    <c:when test="${user.id}">
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.userName}</td>
-                            <td>${user.emailAddress}</td>
-                            <td>${user.fullName}</td>
-                        </tr>
-                    </c:when>
+                
+                <tr>
+                    <td>${user.id}</td>
+                    <td>${user.userName}</td>
+                    <td>${user.emailAddress}</td>
+                    <td>${user.fullName}</td>
+                </tr>
+                
                 <tr> 
                     
                 </tr>
             </tbody>
             
         </table>
-        <form action="<c:url value="/accounts" />" method="post">
+        <form action="<c:url value="/settings" />" method="post">
             <td><input type="hidden" name="action" value="add" /></td>
             <td><input name="newUserName" type="text" /></td>
             <td><input name="newEmailAddr" type="text" /></td>

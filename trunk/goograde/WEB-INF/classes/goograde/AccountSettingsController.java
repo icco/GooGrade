@@ -35,6 +35,7 @@ public class AccountSettingsController extends HttpServlet
         String action = req.getParameter("action");
         String type = req.getParameter("type");
         Account tmp = null;
+        RequestDispatcher view = req.getRequestDispatcher("/AccountSettings.jsp");
 
         try
         {
