@@ -65,9 +65,10 @@ public class AssignmentController extends HttpServlet
                 //Create the new Assignment with the input
                 try
                 {
-                    Assignment.addAssignment(req.getParameter("type"),
+                    Assignment.addAssignment(new Integer(req.getParameter("id")),
+                            req.getParameter("type"),
                         newDate,
-                        req.getParameter("newAssgnName"),
+                        req.getParameter("newAssgnTitle"),
                         new Integer(req.getParameter("newAssgnTotal")));
                 }
                 catch(Exception E)
