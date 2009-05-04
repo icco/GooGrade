@@ -34,7 +34,7 @@ public class Student extends Account
     {
         super(id);
         this.enrolled = this.getEnrolled();
-        this.grades = this.getGrades();
+
     }
 
     /**
@@ -59,7 +59,7 @@ public class Student extends Account
     {
         super(id, username, name, email);
         this.enrolled = getEnrolled();
-        this.grades = this.getGrades();
+
     }
 
     /**
