@@ -51,9 +51,8 @@ public class Assignment implements java.io.Serializable
     private Float min;
     private ArrayList<Grade> grades; // a list of student grades on this 
     //  assignment
-    
-    private int courseId;
 
+    private int courseId;
 
     /**
      * Constructors
@@ -71,7 +70,7 @@ public class Assignment implements java.io.Serializable
      * database with fetch();
      * @param id identification Integer used to fetch data from db
      */
-    public Assignment(Integer id) 
+    public Assignment(Integer id)
     {
         this.id = id;
         this.fetch();
@@ -118,7 +117,7 @@ public class Assignment implements java.io.Serializable
     {
         return total;
     }
-    
+
     /**
      * Gets the ID of the course this assignment belongs to
      * @return
@@ -185,13 +184,10 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setDueDate(Date pdueDate)
     {
-        dueDate = pdueDate;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(pdueDate != null)
+        {
+            dueDate = pdueDate;
+        }
         return true;
     }
 
@@ -202,13 +198,10 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setName(String pname)
     {
-        name = pname;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(pname != null)
+        {
+            name = pname;
+        }
 
         return true;
     }
@@ -220,13 +213,10 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setTotal(Integer ptotal)
     {
-        total = ptotal;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(ptotal > 0)
+        {
+            total = ptotal;
+        }
         return true;
     }
 
@@ -237,13 +227,11 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setType(String ptype)
     {
-        type = ptype;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(ptype != null)
+        {
+            type = ptype;
+        }
+
         return true;
     }
 
@@ -256,13 +244,10 @@ public class Assignment implements java.io.Serializable
     public boolean setAvg(Float paverage)
     {
         //TODO, ACTUALLY calculate the average from all grades submitted
-        average = paverage;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                paverage + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(paverage > 0)
+        {
+            average = paverage;
+        }
         return true;
     }
 
@@ -274,13 +259,11 @@ public class Assignment implements java.io.Serializable
     public boolean setMax(Float pmax)
     {
         //TODO. calculate the maximum score out of all the grades
-        max = pmax;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(pmax > 0)
+        {
+            max = pmax;
+        }
+     
         return true;
     }
 
@@ -292,27 +275,24 @@ public class Assignment implements java.io.Serializable
     public boolean setMin(Float pmin)
     {
         //TODO, calculate the minimum score out of all teh grades
-        min = pmin;
-        /*now updating the database with changes */
-        String query = "UPDATE Assignments SET dueDate =" +
-                dueDate + "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(pmin > 0)
+        {
+            min = pmin;
+        }
+      
         return true;
     }
-    
+
     /**
      * Sets the Course ID for this Assignment
      */
     public boolean setCourseId(int pcourse)
     {
-        courseId = pcourse;
-        String query = "UPDATE Assignments SET courseId = " + courseId + 
-                "WHERE id = " + id;
-        StorageConnection conn = new StorageConnection();
-        conn.updateQuery(query);
-        conn.close();
+        if(pcourse > 0)
+        {
+            courseId = pcourse;
+        }
+        
         return true;
     }
 
@@ -336,22 +316,18 @@ public class Assignment implements java.io.Serializable
         grades.add(new Grade(aStudent.getId(), id));
         grades.get(grades.indexOf(aStudent.getId())).gradeStudent(newGrade);
 
-        /*seek the student to see if he has a grade for this assignment already
-         * If so, edit that grade instead of creating a new one */
-        if (grades != null && grades.contains(aStudent.getId()))
+        return true;
+    }
+
+    public boolean setId(int newId)
+    {
+        if (newId > 0)
         {
-            query = "UPDATE Grades SET grade = " + newGrade +
-                    "WHERE accountID = " + aStudent.getId();
-            conn.updateQuery(query);
-            conn.close();
+            id = newId;
         }
-        /*Otherwise, add a new row to the database with the new grade */
+        else
         {
-            query = "INSERT INTO Grades (accountID, grade, assignmentID) " +
-                    "VALUES (" + aStudent.getId() + "," + newGrade + "," +
-                    this.id + ")";
-            conn.query(query);
-            conn.close();
+            return false;
         }
         return true;
     }
@@ -446,7 +422,7 @@ public class Assignment implements java.io.Serializable
         {
             return false;
         }
-            return true;
+        return true;
 
     }
 
@@ -484,7 +460,7 @@ public class Assignment implements java.io.Serializable
     }
 
     public static void addAssignment(String type, Date dueDate, String name,
-            Integer total) 
+            Integer total)
     {
         String query = "SELECT count (*) FROM Assignments";
         StorageConnection conn = new StorageConnection();
@@ -492,8 +468,8 @@ public class Assignment implements java.io.Serializable
         conn.close();
         //TODO: fix database indexing issue. Deleting an item 
         //and adding it confiuses the index
-        
-        int tid =  (Integer) result.get(0).get(0) +1; 
+
+        int tid = (Integer) result.get(0).get(0) + 1;
 
         Assignment temp = new Assignment(tid);
         query = "INSERT INTO Assignments (id) " +
@@ -542,6 +518,102 @@ public class Assignment implements java.io.Serializable
         {
             temp.setTotal(total);
         }
+    }
+
+    /**
+     * save, stores current instance in database
+     * if id already exists, update
+     * else, insert
+     * @return true if successfull, else false
+     */
+    public boolean save()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+        /*if id is null we a creating a new course*/
+        if (this.getId() == 0)
+        {
+            ret = this.saveWithoutId();
+        }
+        /*if we have an id set, we are updating*/
+        else
+        {
+            ret = this.saveWithId();
+        }
+        return ret;
+    }
+
+    /**
+     * save method if we don't have id set
+     * @return true if no error
+     */
+    private boolean saveWithoutId()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+
+        String query = "INSERT INTO Assignments (id, type, max, min, " +
+                "average, dueDate, name, total" + "VALUES (\"" + this.getId() + "\",\"" + this.getType() + "\",\"" + this.getMax() + "\",\"" + this.getMin() + "\"" + this.getAvg() + "\"" + this.getDueDate() + "\"" + this.getName() + "\"" + this.getTotal() + "\")";
+        ret = conn.updateQuery(query);
+        /*if we failed to update, discontinue*/
+        if (!(ret))
+        {
+            return ret;
+        }
+        query = "SELECT max(id) FROM Assignments";
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        conn.close();
+        /*if result is empty so is Courses*/
+        if (result.isEmpty())
+        {
+            return false;
+        }
+        ret = this.setId((Integer) result.get(0).get(0));
+        return ret;
+    }
+
+    /**
+     * save method if we have id set
+     * @return true if no error
+     */
+    private boolean saveWithId()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+
+        String query = "SELECT id FROM Courses WHERE id = " + this.getId();
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        /*if for some reason id does not exist in db we insert*/
+        if (result.isEmpty())
+        {
+            query = "INSERT INTO Assignments (id, type, max, min, " +
+                    "average, dueDate, name, total" + "VALUES (\"" 
+                    + this.getId() + "\",\""
+                    + this.getType() + "\",\"" 
+                    + this.getMax() + "\",\"" 
+                    + this.getMin() + "\"" 
+                    + this.getAvg() + "\"" 
+                    + this.getDueDate() + "\""
+                    + this.getName() + "\"" 
+                    + this.getTotal() + "\")";
+            ret = conn.updateQuery(query);
+        }
+        /*if id does exist we update*/
+        else
+        {
+            query = "UPDATE Courses SET " 
+                    + "id = "+ this.getId() + "\",\"" 
+                    + "type =" + this.getType() + "\",\""
+                    + "max = " + this.getMax() + "\",\"" 
+                    + "min" + this.getMin() + "\"" 
+                    + "average = " + this.getAvg() + "\"" 
+                    + "dueDate = " + this.getDueDate() + "\"" 
+                    + "name = " + this.getName() + "\"" 
+                    + "total = " + this.getTotal() + "\"";
+            ret = conn.updateQuery(query);
+        }
+        conn.close();
+        return ret;
     }
 }
 
