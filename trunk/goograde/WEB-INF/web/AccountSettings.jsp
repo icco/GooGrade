@@ -31,7 +31,6 @@ I am using an iFrame (2nd to last demo)
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="user" items="${accountList}">
                     <c:when test="${user.id}">
                         <tr>
                             <td>${user.id}</td>
@@ -40,7 +39,6 @@ I am using an iFrame (2nd to last demo)
                             <td>${user.fullName}</td>
                         </tr>
                     </c:when>
-                </c:forEach>
                 <tr> 
                     
                 </tr>
