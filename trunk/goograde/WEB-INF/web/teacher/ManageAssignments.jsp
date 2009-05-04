@@ -12,6 +12,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Manage Assignments</title>
+        <script>
+            $(document).ready(function(){
+                $(".datepicker").datepicker({ dateFormat: 'mm-dd-y' });
+            });
+        </script>
     </head>
     
     
@@ -46,8 +51,56 @@
                                         <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
                                         <td>${assg.dueDate}</td>
                                         <td>${assg.type}</td>
+                                        
                                         <td>
-                                            
+                                            <input alt="#TB_inline?height=60&width=700&inlineId=Edit${assg.id}" 
+                                                   title="Edit Course" 
+                                                   class="thickbox" 
+                                                   type="button"
+                                                   value="Edit"
+                                                   />
+                                            <div id="Edit${assg.id}" style="display: none">
+                                                <form action="<c:url value="assignment"/>" method="post">
+                                                    <input type="hidden" name="action" value="edit" />
+                                                    <input type="hidden" name="AssignId" value="${assg.id}" />
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                Title<input type="text" name="newAssgnTitle" value="${assg.name}" />
+                                                            </td>
+                                                            <td>
+                                                                Due Date
+                                                                
+                                                                <input class="datepicker" type="date" size="5" name="newAssgnDate" value="${assg.dueDate}"/>
+                                                            </td>
+                                                            <td>
+                                                                Total Points <input type="integer" size="5" name="newAssgnTotal" value="${assg.total}" />
+                                                            </td>
+                                                            
+                                                            <td>
+                                                                Type: 
+                                                                <select name="type" size="1" >
+                                                                    <option>Homework</option>
+                                                                    <option>Quiz</option>
+                                                                    <option>Test</option>
+                                                                    <option>Final</option>
+                                                                    <option>Participation</option>
+                                                                    <option>Other</option>
+                                                                </select>
+                                                                
+                                                            </td>
+                                                            <td>
+                                                                <input  type="submit" value="Save" />
+                                                            </td>
+                                                        </tr>
+                                                        
+                                                    </table>
+                                                    
+                                                </form>
+                                            </div>
+                                        </td>
+                                        
+                                        <td>
                                             <form action="<c:url value="assignment" />" method="post">
                                                 <input type="hidden" name="id" value="${id}" />
                                                 <input type="hidden" name="action" value="delete" />
@@ -64,11 +117,6 @@
                                    type="button"
                                    value="Add New Assignment">
                             <div id="FormPopUp" style="display: none">
-                                <script>
-                                    $(document).ready(function(){
-                                        $("#datepicker").datepicker({ dateFormat: 'mm-dd-y' });
-                                    });
-                                </script>
                                 <form action="<c:url value="assignment"/>" method="post">
                                     <input type="hidden" name="action" value="add" />
                                     <table>
@@ -79,7 +127,7 @@
                                             <td>
                                                 Due Date
                                                 
-                                                <input id="datepicker" type="date" size="5" name="newAssgnDate" />
+                                                <input class="datepicker" type="date" size="5" name="newAssgnDate" />
                                             </td>
                                             <td>
                                                 Total Points <input type="integer" size="5" name="newAssgnTotal" />

@@ -78,13 +78,11 @@ public class AssignmentController extends HttpServlet
             }
             else if (action.equals("edit"))
             {
-                /* Assignment.modifyAssignment(req.getParamater("EditType"), 
-                new Float(req.getParamater("EditMax")), 
-                new Float(req.getParamater("EditMin")), 
-                new Float(req.getParamater("EditAverage")),
-                new Date (req.getParamater("EditDueDate")),
-                req.getParamater("EditName"), 
-                new Integer(req.getParamater("EditTotal"))); */
+                this.editAssignment(req.getParameter("AssignId"),
+                        req.getParameter("newAssgnDate"),
+                        req.getParameter("newAssgnName"),
+                        req.getParameter("newAssgnTotal")
+                        );
             }
         }
 
@@ -144,45 +142,47 @@ public class AssignmentController extends HttpServlet
 
     }
 
-    private void modifyAssignment(String type, float max, float min,
-            float average, Date dueDate, String name, Integer total, Assignment current)
+    private void editAssignment(String assId, String assDate, String assName, String assTotal)
     {
-        Assignment temp = current;
-        if (type != null)
+        Assignment ass = new Assignment(new Integer(assId));
+        
+        if (assDate != null)
         {
-            temp.setType(type);
+            /*Parse Date into Date Object */
+            String dateFormatString = "MM-dd-yy";
+            SimpleDateFormat format = new 
+                    SimpleDateFormat(dateFormatString);
+            Date newDate = new Date();
+            
+            try
+            {
+                newDate = format.parse(assDate);
+            }
+            catch (ParseException ex)
+            {
+                Logger.getLogger(AssignmentController.class.getName()).
+                        log(Level.SEVERE, null, ex);
+            }
+            ass.setDueDate(newDate);
         }
-        if (max >= 0)
+        if (assName != null)
         {
-            temp.setMax(max);
+            ass.setName(assName);
         }
-        if (min >= 0)
+        if (assTotal != null)
         {
-            temp.setMin(min);
+            ass.setTotal(new Integer(assTotal));
         }
-        if (average >= 0)
-        {
-            temp.setAvg(average);
-        }
-        if (dueDate != null)
-        {
-            temp.setDueDate(dueDate);
-        }
-        if (name != null)
-        {
-            temp.setName(name);
-        }
-        if (total != null)
-        {
-            temp.setTotal(total);
-        }
+              
     }
 
+    /*
     private void addAssignment(int id, String type, float max, float min,
             float average, Date dueDate, String name, Integer total)
     {
         Assignment temp = new Assignment(id);
         modifyAssignment(type, max, min, average, dueDate, name, total, temp);
     }
+    */
 }
 
