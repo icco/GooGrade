@@ -80,40 +80,44 @@
                                 </tr>
                             </c:forEach>
                         </table>
-                        <input alt="#TB_inline?height=120&width=700&inlineId=Form" 
+                        <input alt="#TB_inline?height=140&width=700&inlineId=Form" 
                                title="Add Student" 
                                class="thickbox" 
                                type="button"
                                value="Add Student">
                         <div id="Form" style="display: none">
-                            <p>Add a new account:</p>
-                            <form action="<c:url value="/teacher/accounts" />" method="post">
-                                <input type="hidden" name="action" value="add" />
-                                <input type="hidden" name="id" value="${id}" />
-                                <table>
+                            <table>
+                                <tr><td colspan="6">Add a new account:</td></tr>
+                                <form action="<c:url value="/teacher/accounts" />" method="post">
+                                    <input type="hidden" name="action" value="add" />
+                                    <input type="hidden" name="id" value="${id}" />
                                     <tr>
                                         <td>Username <input size ="10" name="newUserName" type="text" /></td>
                                         <td>Email Address <input size ="10" name="newEmailAddr" type="text" /></td>
                                         <td>Full Name <input size ="10" name="newFullName" type="text" /></td>
-                                        <td>
-                                            <input  type="submit" value="Add" />
-                                        </td>
+                                        <td>TA <input type="radio" name="type" value="teacherAssistant" /></td>
+                                        <td>Student <input type="radio" name="type" value="student" checked="checked" /></td>
+                                        <td><input  type="submit" value="Add" /></td>
                                     </tr>
-                                </table>
-                            </form>
-                            <p>Add an existing account:</p>
-                            <form action="<c:url value="/teacher/accounts" />" method="post">
-                                <input type="hidden" name="action" value="addOld" />
-                                <input type="hidden" name="id" value="${id}" />
-                                <select name="accountRef">
-                                    <c:forEach var="oldUser" items="${allAccountList}">
-                                        <option value="${oldUser.id}">${oldUser.userName}</option>
-                                    </c:forEach>
-                                </select>
-                                <input type="submit" value="Add" />
-                            </form>
+                                </form>
+                                <tr><td colspan="6">Add an existing account:</td></tr>
+                                <form action="<c:url value="/teacher/accounts" />" method="post">
+                                    <input type="hidden" name="action" value="addOld" />
+                                    <input type="hidden" name="id" value="${id}" />
+                                    <tr>
+                                        <td colspan="3">Username <select name="accountRef">
+                                                <c:forEach var="oldUser" items="${allAccountList}">
+                                                    <option value="${oldUser.id}">${oldUser.userName}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                        <td>TA <input type="radio" name="type" value="teacherAssistant" /></td>
+                                        <td>Student <input type="radio" name="type" value="student" checked="checked" /></td>
+                                        <td><input type="submit" value="Add" /></td>
+                                    </tr>
+                                </form>
+                            </table>
                         </div>
-                        
                     </div>
                 </div>
                 

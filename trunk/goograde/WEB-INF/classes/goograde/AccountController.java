@@ -32,6 +32,7 @@ public class AccountController extends HttpServlet
     {
         Course thiscourse = new Course(new Integer(req.getParameter("id")));
         String action = req.getParameter("action");
+        String type = req.getParameter("type");
 
         if (action != null)
         {
@@ -54,7 +55,18 @@ public class AccountController extends HttpServlet
                         req.getParameter("newEmailAddr"));
                 toAdd.save();
                 toAdd.fetch();
-                thiscourse.addStudent(null, toAdd);
+                if(type != null)
+                {
+                    if(type.equals("student"))
+                    {
+                        thiscourse.addStudent(null, toAdd);
+                    }
+                    else if(type.equals("teacherAssistant"))
+                    {
+                        thiscourse.addTA(null, toAdd);
+                    }
+                }
+                
             }
             else if (action.equals("edit"))
             {
@@ -84,7 +96,18 @@ public class AccountController extends HttpServlet
                 {
                     Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                thiscourse.addStudent(null, toAdd);
+                
+                if(type != null)
+                {
+                    if(type.equals("student"))
+                    {
+                        thiscourse.addStudent(null, toAdd);
+                    }
+                    else if(type.equals("teacherAssistant"))
+                    {
+                        thiscourse.addTA(null, toAdd);
+                    }
+                }
             }
         }
 
@@ -116,6 +139,7 @@ public class AccountController extends HttpServlet
         
 
         req.setAttribute("accountList", members);
+        req.setAttribute("tas", thiscourse.getTeacherAssistants());
         
         req.setAttribute("currentCourse", thiscourse);
 
