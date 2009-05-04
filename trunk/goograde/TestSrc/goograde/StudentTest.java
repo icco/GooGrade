@@ -30,9 +30,8 @@ public class StudentTest extends TestCase {
     public void testGetGrade()
     {
         System.out.println("getGrade");
-        assertEquals(null, null);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        // assertEquals(null, null);
+        fail("getGrade method not yet complete.");
     } 
 
 
@@ -42,12 +41,24 @@ public class StudentTest extends TestCase {
     public void testGetEnrolled()
     {
         System.out.println("getEnrolled");
-        Student instance = new Student();
-        ArrayList<Course> expResult = null;
-        ArrayList<Course> result = instance.getEnrolled();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Student vgerdin = null;
+        try
+        {
+            vgerdin = new Student(3);
+        }
+        catch (Exception ex)
+        {
+            fail("invalid student id of 3:" + ex);
+        }
+        ArrayList<Course> courseListResult = vgerdin.getEnrolled();
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> queryResult = conn.query("SELECT COUNT(*) "
+                + "FROM enrolled WHERE student = 3");
+        conn.close();
+        ArrayList<Object> resultSet = queryResult.get(0);
+        Integer expResult = new Integer((Integer)resultSet.get(0));
+        Integer testResult = new Integer(courseListResult.size());
+        assertEquals(expResult, testResult);
     }
 
     /**
@@ -56,11 +67,19 @@ public class StudentTest extends TestCase {
     public void testSetEnrolled()
     {
         System.out.println("setEnrolled");
-        ArrayList<Course> enrolled = null;
-        Student instance = new Student();
-        instance.setEnrolled(enrolled);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<Course> enrolled = new ArrayList<Course>();
+        Student testStudent = null;
+        try
+        {
+            testStudent = new Student(4);
+        }
+        catch (Exception ex)
+        {
+            fail("Invalid student Id of 4: " + ex);
+        }
+        boolean testResult = testStudent.setEnrolled(enrolled);
+        boolean expResult = true;
+        assertEquals(testResult, expResult);
     }
 
 }

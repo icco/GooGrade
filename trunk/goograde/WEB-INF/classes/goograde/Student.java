@@ -54,8 +54,9 @@ public class Student extends Account
      * @return percentage the student has in the course
      * @param course A string which maches a course name, or other identifier.
      * @param ass An assignment to get the grade for.
+     * @todo This method NEEDS to be completed.
      */
-    Float getGrade(Course crse, Assignment ass)
+    public Float getGrade(Course crse, Assignment ass)
     {
         return (new Grade(ass.getId(), this.getId())).getGrade();
     }
@@ -100,9 +101,10 @@ public class Student extends Account
      * Sets this.enrolled
      * @param enrolled ArrayList of Course objects the student is enrolled in
      */
-    public void setEnrolled(ArrayList<Course> enrolled)
+    public boolean setEnrolled(ArrayList<Course> enrolled)
     {
         this.enrolled = new ArrayList<Course>(enrolled);
+        return true;
     }
 
     /**
