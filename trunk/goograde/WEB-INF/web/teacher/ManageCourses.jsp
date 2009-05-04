@@ -77,6 +77,7 @@
                                                     </table>
                                                 </form>
                                             </div>
+                                        </td>
                                             <td>
                                                 <form action="<c:url value="course" />" method="post">
                                                     <input type="hidden" name="action" value="delete" />

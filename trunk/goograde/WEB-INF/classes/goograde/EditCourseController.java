@@ -29,13 +29,19 @@ public class EditCourseController extends HttpServlet {
 
         if (action != null)
         {
-            if (action.equals("save"))
+            if (action.equals("edit"))
             {
-                //this.saveCourse();
+                this.editCourse((String) req.getAttribute("courseRef"),
+                        (String) req.getAttribute("title"),
+                        (String) req.getAttribute("department"),
+                        (String) req.getAttribute("number"),
+                        (String) req.getAttribute("section")
+                        );
             }
         }
         try
         {
+            req.setAttribute("id", req.getAttribute("courseRef"));
             this.doGet(req, resp);
         }
         catch (ServletException ex)
@@ -64,7 +70,12 @@ public class EditCourseController extends HttpServlet {
         
         try
         {
-            req.setAttribute("course", new Course(new Integer(req.getParameter("id"))));
+            String idString = (String) req.getParameter("id");
+            if(idString == null)
+            {
+                idString = (String) req.getAttribute("id");
+            }
+            req.setAttribute("course", new Course(new Integer(idString)));
         }
         catch (Exception ex)
         {
@@ -88,5 +99,32 @@ public class EditCourseController extends HttpServlet {
                         Level.SEVERE, null, ex);
         }
     }
-
+    
+    private boolean editCourse(String courseRef, String title, String department, String number, String section)
+    {
+        boolean pass = true;
+        boolean ret = false;
+        if(!Course.validateNumber(number))
+        {
+            pass = false;
+        }
+        if(!Course.validateSection(section))
+        {
+            pass = false;
+        }
+        
+        if(pass)
+        {
+            Course course = new Course(new Integer(courseRef));
+            if(course.setTitle(title) 
+                    && course.setDepartment(department)
+                    && course.setNumber(new Integer(number))
+                    && course.setSection(new Integer(section)))
+            {
+                ret = course.save();
+            }
+        }
+        
+        return ret;
+    }
 }

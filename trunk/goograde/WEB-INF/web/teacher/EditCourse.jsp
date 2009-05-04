@@ -29,7 +29,8 @@
                         <h3>Manage Courses</h3>
                         <div id="data">
                             <form action="<c:url value="editCourse" />" method="post">
-                                <input type="hidden" name="action" value="save" />
+                                <input type="hidden" name="action" value="edit" />
+                                <input type="hidden" name="courseRef" value="${course.id}" />
                                 <input type="text" name="title" value="${course.title}" />
                                 <input type="text" name="department" value="${course.department}" size="5" />
                                 <input type="text" name="number" value="${course.number}" size="5" />

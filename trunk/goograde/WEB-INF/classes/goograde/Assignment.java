@@ -75,9 +75,6 @@ public class Assignment implements java.io.Serializable
     {
         this.id = id;
         this.fetch();
-       
-       
- 
     }
 
     public static void deleteAssignment(String Rid)

@@ -332,6 +332,8 @@ public class Course implements java.io.Serializable
      */
     public ArrayList<Assignment> getAssignments()
     {
+        Assignment toAdd = null;
+        
         /*if we have a list of assignments return it*/
         if (this.assignments != null)
         {
@@ -340,10 +342,30 @@ public class Course implements java.io.Serializable
         /*if list of assignments are missing, fetch it from db*/
         else
         {
-            this.assignments = new ArrayList<Assignment>();
-            //Build assignments from ----- and Assignments
-            //Just like above but unclear on db structure
-            //How do we store Assignments and what course they belong to?
+            /*avoid null pointer exceptions, we must have an id to fetch from db*/
+            if (this.getId() != null)
+            {
+                this.assignments = new ArrayList<Assignment>();
+                String query = "SELECT id FROM Assignments "
+                        + "WHERE courseId = " + this.getId();
+
+                StorageConnection conn = new StorageConnection();
+                ArrayList<ArrayList<Object>> result = conn.query(query);
+                conn.close();
+                
+                for(int indx = 0; indx < result.size(); indx++)
+                {
+                    try
+                    {
+                        toAdd = new Assignment((Integer)result.get(indx).get(0));
+                        this.assignments.add(toAdd);
+                    }
+                    catch (Exception ex)
+                    {
+                        System.out.println("Invalid assignments: " + ex);
+                    }
+                }
+            }
             return this.assignments;
         }
     }
@@ -743,6 +765,7 @@ public class Course implements java.io.Serializable
      * toString()
      * @return a string created from Course class
      */
+    @Override
     public String toString()
     {
         String ret = new String();
