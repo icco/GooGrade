@@ -98,8 +98,10 @@ public class TeacherAssistant extends Account
         }
         finally
         {
+            /*
             Logger.getLogger(TeacherAssistant.class.getName())
                     .log(Level.WARNING, ret.toString());
+             */ 
         }
         return ret;
     }
@@ -136,8 +138,10 @@ public class TeacherAssistant extends Account
         }
         finally
         {
+            /*
             Logger.getLogger(TeacherAssistant.class.getName()).log(Level.WARNING,
                     ret.toString());
+             */ 
         }
 
         

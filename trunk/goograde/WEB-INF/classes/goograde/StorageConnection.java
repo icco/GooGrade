@@ -81,8 +81,10 @@ public class StorageConnection
         }
         finally
         {
+            /*
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
                     "Query Returned: " + ret.toString());
+             */ 
         }
            
         return ret;
@@ -110,8 +112,10 @@ public class StorageConnection
         }
         finally
         {
+            /*
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
                     "Update Query Returned: " + results + " rows updated.");
+             */ 
         }
 
         return results > 0;

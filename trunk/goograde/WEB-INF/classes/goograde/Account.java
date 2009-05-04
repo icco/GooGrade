@@ -421,8 +421,10 @@ public class Account implements java.io.Serializable
         }
         finally
         {
+            /*
             Logger.getLogger(Account.class.getName())
                     .log(Level.WARNING, ret.toString());
+             */ 
         }
 
         return ret;

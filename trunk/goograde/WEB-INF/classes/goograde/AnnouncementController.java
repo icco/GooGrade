@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AnnouncementController extends HttpServlet
 {
 
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }

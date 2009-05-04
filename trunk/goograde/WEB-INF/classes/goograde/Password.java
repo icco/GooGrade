@@ -1,8 +1,5 @@
 package goograde;
 
-import java.util.*;
-import java.lang.*;
-
 /**
  * A model for passwords since they need to be validated and such.
  *

@@ -95,7 +95,9 @@ public class Teacher extends Account
         }
         finally
         {
+            /*
             Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
+             */ 
         }
 
         return ret;
@@ -133,8 +135,10 @@ public class Teacher extends Account
         }
         finally
         {
+            /*
             Logger.getLogger(Teacher.class.getName()).log(Level.WARNING,
                     ret.toString());
+             */ 
         }
 
         

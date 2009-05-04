@@ -1,7 +1,5 @@
 package goograde;
 
-import java.lang.*;
-import java.util.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class EmailController extends HttpServlet
 {
 
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }

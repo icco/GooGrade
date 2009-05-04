@@ -35,6 +35,7 @@ public class EmailAddress
      * Obtain a string form of the Email Address. 
      * @return a String of this EmailAddress
      */
+    @Override
     public String toString()
     {
         return address;

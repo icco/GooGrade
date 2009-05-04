@@ -1,7 +1,8 @@
 package goograde;
 
-import java.lang.*;
-import java.util.*;
+import java.util.ArrayList;
+
+
 
 /**
  * The class stores information about Emails. These emails will not be stored 
