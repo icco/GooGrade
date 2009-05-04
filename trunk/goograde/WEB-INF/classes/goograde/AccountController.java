@@ -61,7 +61,7 @@ public class AccountController extends HttpServlet
                 Account tmp = null;
                 try
                 {
-                    tmp = new Account(new Integer(req.getParameter("userRef")));
+                    tmp = new Account(new Integer(req.getParameter("accountRef")));
                 }
                 catch (Exception ex)
                 {
@@ -72,6 +72,19 @@ public class AccountController extends HttpServlet
                 tmp.setFullName(req.getParameter("newFullName"));
                 
                 tmp.save();
+            }
+            else if (action.equals("addOld"))
+            {
+                Account toAdd = null;
+                try
+                {
+                    toAdd = new Account(new Integer(req.getParameter("accountRef")));
+                }
+                catch (Exception ex)
+                {
+                    Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                thiscourse.addStudent(null, toAdd);
             }
         }
 
@@ -90,6 +103,8 @@ public class AccountController extends HttpServlet
         RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageAccounts.jsp");
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        
+        req.setAttribute("allAccountList", Student.allAccounts());
 
         Course thiscourse = new Course(new Integer(req.getParameter("id")));
         req.setAttribute("id", req.getParameter("id"));
@@ -98,6 +113,7 @@ public class AccountController extends HttpServlet
 
         members.addAll(thiscourse.getTeacherAssistants());
         members.addAll(thiscourse.getStudents());
+        
 
         req.setAttribute("accountList", members);
         
