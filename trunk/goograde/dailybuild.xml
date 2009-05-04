@@ -98,6 +98,7 @@
 	    <copy file="dist/GooGrade.war" tofile="/usr/share/tomcat5/webapps/GooGrade.war"/>
 
 	    <exec executable="/var/www/html/svnstat/runme.sh" />
+	    <exec executable="/var/www/html/svn/trunk/statsvn.sh" />
 
 	    <antcall target="svnstat-p">
 		    <param name="begin" value="2009-01-07" />
