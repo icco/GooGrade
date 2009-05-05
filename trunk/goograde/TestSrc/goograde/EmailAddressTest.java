@@ -1,6 +1,5 @@
 package goograde;
 
-import goograde.*;
 import junit.framework.TestCase;
 
 /**
@@ -44,12 +43,10 @@ public class EmailAddressTest extends TestCase {
     public void testToString()
     {
         System.out.println("toString");
-        EmailAddress instance = null;
-        String expResult = "";
+        EmailAddress instance = new EmailAddress("mahAddy");
+        String expResult = "mahAddy";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }

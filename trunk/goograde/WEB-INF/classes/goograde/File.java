@@ -20,12 +20,21 @@ public class File implements java.io.Serializable
     private String fileName;
 
     /**
+     * We need a constructor
+     */
+    public File (Date newDate, String newOwner, String newFileName)
+    {
+        this.creationDate = newDate;
+        this.owner = newOwner;
+        this.fileName = newFileName;
+    }
+    /**
      * Gets the String of the owner for this File.
      * @return this File's owner.
      */
     public String getOwner()
     {
-        return new String();
+        return this.owner;
     }
 
     /**
@@ -34,7 +43,7 @@ public class File implements java.io.Serializable
      */
     public Date getCreationDate()
     {
-        return new Date();
+        return this.creationDate;
     }
 
     /**
@@ -43,16 +52,6 @@ public class File implements java.io.Serializable
      */
     public String getFileName()
     {
-        return new String();
-    }
-
-    /** 
-     * Constructor for File class.
-     * @param owner file owner
-     * @param creationDate file creation date
-     * @param fileName name of file
-     */
-    public File(String owner, Date creationDate, String fileName)
-    {
+        return this.fileName;
     }
 }

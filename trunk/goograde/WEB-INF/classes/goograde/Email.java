@@ -34,5 +34,27 @@ public class Email
     public Email(String title, ArrayList<File> attachments,
             ArrayList<EmailAddress> to, String body)
     {
+        this.emailTitle = title;
+        this.emailAttachment = attachments;
+        this.emailRecipients = to;
+        this.emailBody = body;
+    }
+    
+    /**
+     * Get the email title
+     * @return email title
+     */
+    public String getEmailTitle()
+    {
+        return this.emailTitle;
+    }
+    
+    /**
+     * Get the email body
+     * @return email body
+     */
+    public String getEmailBody()
+    {
+        return this.emailBody;
     }
 }

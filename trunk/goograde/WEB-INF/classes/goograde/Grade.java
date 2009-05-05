@@ -41,13 +41,16 @@ public class Grade
     }
 
     /**
-     * Empty Constructor for Grade. Not to be used.
+     * Empty Constructor for Grade. Not to be used, other than for unit tests.
      */
     public Grade()
     {
+        this.student = null;
+        this.assignment = null;
+        this.grade = 3.14F;
     }
 
-    Grade(Student stud, Float aFloat, Assignment ass)
+    public Grade(Student stud, Float aFloat, Assignment ass)
     {
         this.student = stud;
         this.assignment = ass;

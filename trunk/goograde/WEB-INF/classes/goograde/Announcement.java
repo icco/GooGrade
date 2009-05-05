@@ -19,6 +19,16 @@ public class Announcement implements java.io.Serializable
     private Date posted;
 
     /**
+     * Default constructor; can't write test cases without one.
+     */
+    public Announcement()
+    {
+        body = new String("Announcement!");
+        title = new String("Title!");
+        posted = null;
+    }
+    
+    /**
      * Returns the body, aka the content, of an Announcement.
      * @return the content of the post in a single string.
      */
@@ -49,27 +59,29 @@ public class Announcement implements java.io.Serializable
      * Sets the body of the Announcement.
      * @return false if error. True if successful
      */
-    public boolean setBody()
+    public boolean setBody(String newBody)
     {
-        return false;
+        this.body = newBody;
+        return true;
     }
 
     /**
      * Sets the date of the Announcement.
      * @return false if error. True if successful
      */
-    public Date setDate()
+    public boolean setDate()
     {
-        return this.posted;
+        return false;
     }
 
     /**
      * sets the title of the announcement.
      * @return false if error. True if successful
      */
-    public String setTitle()
+    public boolean setTitle(String newTitle)
     {
-        return this.title;
+        this.title = newTitle;
+        return true;
     }
 }
 
