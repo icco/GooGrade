@@ -12,22 +12,23 @@ Delivery Plan signoff          | x     |       |       |       |       |       |
 Training                  [----|-------|-------|-------|-]____ |       |       |       |       |       |
 Pseudocode                     | ....[-|---]   |       |       |       |       |       |       |       |
 Vertical Prototpyping Party    |       |  x ...|x      |       |       |       |       |       |       |
-Implement Stage 1              |       |     ..|.[-----|]      |       |       |       |       |       |
-Unit Test Development          |       |     ..|.[-----|]      |       |       |       |       |       |
+Implement Stage 1              |       |     ..|.[-----|.......|.]     |       |       |       |       |
+Unit Test Development          |       |     ..|.[-----|.......|.]     |       |       |       |       |
 Daily Builds begin             |       |   ....|..x    |       |       |       |       |       |       |
-Write Sys Tests                |       |     ..|.....[-|-----] |       |       |       |       |       |
-Integration Test               |       |       |       |[-----]|       |       |       |       |       |
-Daily Tests Begin              |       |       |       |     x |       |       |       |       |       |
+Write Sys Tests                |       |     ..|.....[-|-----..|.]     |       |       |       |       |
+Integration Test               |       |       |       |[------|-]     |       |       |       |       |
+Daily Tests Begin              |       |       |       |     ..|..x    |       |       |       |       |
 Review System Test             |       |       |   ....|...[--]|       |       |       |       |       |
 Write Deployment Doc           |       |       |       |     [-|--]    |       |       |       |       |
 Release Prep                   |       |       |       |       |[-]    |       |       |       |       |
 Midterm Exam                   |       |       |       |     x |       |       |       |       |       |
-Release 1                      |       |       |       |       |   x (Wed 5/6 11am)    |       |       |
+Release 1                      |       |       |       |       |   x (Wed 5/6 noon)    |       |       |
                        |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
 --- Stage 2 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
                        |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
+Release Party                                                        x |       |       |       |       |       
 Training                                                               |[------|-----] |       |       |       
-Implement Stage 2                                                    [-|-------|------]|       |       |
+Implement Stage 2                                                      |[------|------]|       |       |
 Write Sys Tests                                                        |       |  [----|]      |       | 
 Unit Test Development                                                  |       |  [----|----]  |       |
 Development Frozen                                                     |       |       |      x|       |
