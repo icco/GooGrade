@@ -1,11 +1,12 @@
 #!/bin/bash
-# Word.
+# Word. A script to mail the team.
 
 FILE="/tmp/blugooemail";
 TEAMNAME="BluGoo";
 SUBJECT="[BluGoo] Currently Open Tickets for `/bin/date +%r`";
 EMAIL="blugoo@lists.csc.calpoly.edu";
 
+# Because I had to hand compile fortune on the wiki server
 /home/nwelch/bin/fortune /home/nwelch/tmp/fortune-mod-9708/datfiles/literature > $FILE;
  
 
