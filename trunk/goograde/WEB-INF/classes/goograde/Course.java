@@ -299,7 +299,9 @@ public class Course implements java.io.Serializable
             if (this.getId() != null)
             {
                 this.roster = new ArrayList<Student>();
-                String query = "SELECT Accounts.id as id FROM Accounts, enrolled " + "WHERE Accounts.id = enrolled.student " + "AND enrolled.course = " + this.getId();
+                String query = "SELECT Accounts.id as id FROM Accounts, enrolled " +
+                        "WHERE Accounts.id = enrolled.student " +
+                        "AND enrolled.course = " + this.getId();
 
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
@@ -348,7 +350,8 @@ public class Course implements java.io.Serializable
             if (this.getId() != null)
             {
                 this.assignments = new ArrayList<Assignment>();
-                String query = "SELECT id FROM Assignments " + "WHERE courseId = " + this.getId();
+                String query = "SELECT id FROM Assignments " +
+                        "WHERE courseId = " + this.getId();
 
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
@@ -393,7 +396,10 @@ public class Course implements java.io.Serializable
         if (this.getId() != null)
         {
             teachers = new ArrayList<Teacher>();
-            String query = "SELECT Accounts.id as id FROM Accounts, teaches " + "WHERE Accounts.id = teaches.teacher " + "AND teaches.course = " + this.getId();
+            String query = "SELECT Accounts.id as id" +
+                    " FROM Accounts, teaches " +
+                    "WHERE Accounts.id = teaches.teacher " +
+                    "AND teaches.course = " + this.getId();
 
             StorageConnection conn = new StorageConnection();
             ArrayList<ArrayList<Object>> result = conn.query(query);
@@ -428,7 +434,10 @@ public class Course implements java.io.Serializable
         if (this.getId() != null)
         {
             assistants = new ArrayList<TeacherAssistant>();
-            String query = "SELECT Accounts.id as id FROM Accounts, assists " + "WHERE Accounts.id = assists.ta " + "AND assists.course = " + this.getId();
+            String query = "SELECT Accounts.id as id " +
+                    "FROM Accounts, assists " +
+                    "WHERE Accounts.id = assists.ta " +
+                    "AND assists.course = " + this.getId();
 
             StorageConnection conn = new StorageConnection();
             ArrayList<ArrayList<Object>> result = conn.query(query);
@@ -501,7 +510,9 @@ public class Course implements java.io.Serializable
             /*if student is not in the roster, we add him*/
             if (!isInRoster)
             {
-                String query = "INSERT INTO enrolled (course, student) " + "VALUES (\"" + this.getId() + "\",\"" + student.getId() + "\")";
+                String query = "INSERT INTO enrolled (course, student) " +
+                        "VALUES (\"" + this.getId() +
+                        "\",\"" + student.getId() + "\")";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -544,7 +555,10 @@ public class Course implements java.io.Serializable
             /* Proceed if the student was found */
             if (isInRoster)
             {
-                String query = "DELETE FROM enrolled " + "WHERE student = \"" + student.getId() + "\" AND course = \"" + this.getId() + "\"";
+                String query = "DELETE FROM enrolled " +
+                        "WHERE student = \"" +
+                        student.getId() +
+                        "\" AND course = \"" + this.getId() + "\"";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -586,7 +600,9 @@ public class Course implements java.io.Serializable
             /*if student is not in the roster, we add him*/
             if (!isAssisting)
             {
-                String query = "INSERT INTO assists (course, ta) " + "VALUES (\"" + this.getId() + "\",\"" + ta.getId() + "\")";
+                String query = "INSERT INTO assists (course, ta) " +
+                        "VALUES (\"" + this.getId() +
+                        "\",\"" + ta.getId() + "\")";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -625,7 +641,9 @@ public class Course implements java.io.Serializable
             /* Proceed if a teacher assistant was found */
             if (isAssisting)
             {
-                String query = "DELETE FROM assists " + "WHERE ta = \"" + ta.getId() + "\" AND course = \"" + this.getId() + "\"";
+                String query = "DELETE FROM assists " +
+                        "WHERE ta = \"" + ta.getId() +
+                        "\" AND course = \"" + this.getId() + "\"";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -663,7 +681,9 @@ public class Course implements java.io.Serializable
             /*if teacher is not teaching, we add him*/
             if (!isTeaching)
             {
-                String query = "INSERT INTO teaches (course, teacher) " + "VALUES (\"" + this.getId() + "\",\"" + teacher.getId() + "\")";
+                String query = "INSERT INTO teaches (course, teacher) " +
+                        "VALUES (\"" + this.getId() + "\",\"" +
+                        teacher.getId() + "\")";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -702,7 +722,8 @@ public class Course implements java.io.Serializable
             /* Proceed if a teacher was found */
             if (isTeaching)
             {
-                String query = "DELETE FROM teaches " + "WHERE teacher = \"" + teacher.getId() + "\" AND course = \"" + this.getId() + "\"";
+                String query = "DELETE FROM teaches " + "WHERE teacher = \"" +
+                        teacher.getId() + "\" AND course = \"" + this.getId() + "\"";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -842,7 +863,9 @@ public class Course implements java.io.Serializable
      */
     public boolean fetch()
     {
-        String query = "SELECT title, department, number, section, " + "gradingRulesId FROM Courses " + "WHERE id = " + this.getId();
+        String query = "SELECT title, department, number, section, " +
+                "gradingRulesId FROM Courses " +
+                "WHERE id = " + this.getId();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         ArrayList<Object> temp = null;
@@ -865,7 +888,9 @@ public class Course implements java.io.Serializable
         catch (Exception ex)
         {
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                    "SQL error occurred when trying to fetch Course " + "with id = " + this.getId().toString(), ex);
+                    "SQL error occurred when trying to fetch Course " +
+                    "with id = " +
+                    this.getId().toString(), ex);
         }
 
         return true;
@@ -920,7 +945,9 @@ public class Course implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
 
-        String query = "INSERT INTO Courses (title, department, number, section) " + "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+        String query = "INSERT INTO Courses (title, department, number, section) " +
+                "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() +
+                "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
         if (!(ret))
@@ -953,13 +980,27 @@ public class Course implements java.io.Serializable
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Courses (id, title, department, number, section) " + "VALUES (\"" + this.getId() + "\",\"" + this.getTitle() + "\",\"" + this.getDepartment() + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+            query = "INSERT INTO Courses (id, title, department, number, section) " +
+                    "VALUES (\"" + this.getId() + "\",\"" +
+                    this.getTitle() + "\",\"" + this.getDepartment() +
+                    "\",\"" + this.getNumber() + "\",\"" +
+                    this.getSection() + "\")";
+
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Courses SET " + "title = \"" + this.getTitle() + "\"," + "department = \"" + this.getDepartment() + "\"," + "number = \"" + this.getNumber() + "\"," + "section = \"" + this.getSection() + "\" " + "WHERE id = \"" + this.getId() + "\"";
+            query = "UPDATE Courses SET " +
+                    "title = \"" +
+                    this.getTitle() +
+                    "\"," + "department = \"" +
+                    this.getDepartment() + "\"," +
+                    "number = \"" + this.getNumber() +
+                    "\"," + "section = \"" +
+                    this.getSection() + "\" " +
+                    "WHERE id = \"" + this.getId() + "\"";
+
             ret = conn.updateQuery(query);
         }
         conn.close();
@@ -994,7 +1035,9 @@ public class Course implements java.io.Serializable
         /*db table has two columns that can't be set to null...*/
         if (teacher != null && this.getId() != null)
         {
-            String query = "INSERT INTO teaches (teacher, course) " + "VALUES (\"" + teacher.getId() + "\",\"" + this.getId() + "\")";
+            String query = "INSERT INTO teaches (teacher, course) " +
+                    "VALUES (\"" + teacher.getId() +
+                    "\",\"" + this.getId() + "\")";
             StorageConnection conn = new StorageConnection();
             ret = conn.updateQuery(query);
             conn.close();
@@ -1042,7 +1085,9 @@ public class Course implements java.io.Serializable
 
 
         /* Validate input */
-        if (string == null || string.length() < kTITLEMINLEN || string.length() > kTITLEMAXLEN)
+        if (string == null ||
+                string.length() < kTITLEMINLEN ||
+                string.length() > kTITLEMAXLEN)
         {
             ret = false;
             Logger.getLogger(
@@ -1063,7 +1108,9 @@ public class Course implements java.io.Serializable
         boolean ret = true;
 
         /* validate data */
-        if (string == null || string.length() < kDEPARTMENTMINLEN || string.length() > kDEPARTMENTMAXLEN)
+        if (string == null ||
+                string.length() < kDEPARTMENTMINLEN ||
+                string.length() > kDEPARTMENTMAXLEN)
         {
             ret = false;
             Logger.getLogger(

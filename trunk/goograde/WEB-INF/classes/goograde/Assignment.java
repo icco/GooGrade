@@ -51,9 +51,6 @@ public class Assignment implements java.io.Serializable
     private int courseId;
 
     /**
-     * Constructors
-     */
-    /**
      * Standard constructor, should not be used, kept for now
      */
     public Assignment()
@@ -120,6 +117,9 @@ public class Assignment implements java.io.Serializable
         return this.courseId;
     }
 
+    /**
+     * @return a course for this assignment.
+     */
     public Course getCourse()
     {
         return new Course(this.getCourseId());
@@ -192,9 +192,9 @@ public class Assignment implements java.io.Serializable
             for (int count = 0; count < result2.size(); count++)
             {
                 int index = 0;
-                grades.add(new Grade(new Student((Integer) result2.get(count).get(0)), 
-                        new Float((Double)result2.get(count).get(1)),
-                        new Assignment((Integer) result2.get(count).get(2))));
+                grades.add(new Grade(new Student((Integer) result2.get(count).get(index++)), 
+                        new Float((Double)result2.get(count).get(index++)),
+                        new Assignment((Integer) result2.get(count).get(index))));
             }
 
         }
@@ -405,19 +405,20 @@ public class Assignment implements java.io.Serializable
             {
                 try
                 {
+                    int indx = 0;
                     //set varaibles to values loaded from database,
-                    total = (Integer) result.get(1);
-                    name = (String) result.get(2);
+                    total = (Integer) result.get(indx++);
+                    name = (String) result.get(indx++);
 
                     String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
                     SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
-                    Date newDate = format.parse((String) result.get(3));
+                    Date newDate = format.parse((String) result.get(indx++));
                     dueDate = newDate;
-                    this.setType((String) result.get(4));
-                    average = new Float((Double) result.get(5));
-                    max = new Float((Double) result.get(6));
-                    min = new Float((Double) result.get(7));
-                    this.setCourseId((Integer) result.get(8));
+                    this.setType((String) result.get(indx++));
+                    average = new Float((Double) result.get(indx++));
+                    max = new Float((Double) result.get(indx++));
+                    min = new Float((Double) result.get(indx++));
+                    this.setCourseId((Integer) result.get(indx));
                     ret = true;
                 }
                 catch (Exception ex)
@@ -508,6 +509,18 @@ public class Assignment implements java.io.Serializable
         temp.save();
     }
 
+    /**
+     * This has a lot of parameters. Live with it.
+     * 
+     * @param type to change
+     * @param max to change
+     * @param min to change
+     * @param average to change
+     * @param dueDate to change
+     * @param name to change
+     * @param total to change
+     * @param pid to change
+     */
     private static void modifyAssignment(String type, float max, float min,
             float average, Date dueDate, String name, Integer total, int pid)
     {

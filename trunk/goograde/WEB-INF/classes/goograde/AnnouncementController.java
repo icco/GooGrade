@@ -1,8 +1,5 @@
 package goograde;
 
-import java.lang.*;
-import java.util.*;
-import java.io.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

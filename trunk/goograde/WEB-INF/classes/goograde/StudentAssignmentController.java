@@ -24,24 +24,26 @@ import javax.servlet.http.Cookie;
 public class StudentAssignmentController extends HttpServlet
 {
 
-    @Override
+    
     /**
      * doPost performs actions
      * @param req request
      * @param resp response
      */
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
 
         this.doGet(req, resp);
     }
 
-    @Override
+    
     /**
      * doGet receives things
      * @param req request
      * @param resp respones
      */
+    @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
        

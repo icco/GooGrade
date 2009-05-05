@@ -117,7 +117,8 @@ public class AssignmentController extends HttpServlet
         req.setAttribute("id", (String) req.getParameter("id"));
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        req.setAttribute("currentCourse", new Course(new Integer(req.getParameter("id"))));
+        req.setAttribute("currentCourse", 
+                new Course(new Integer(req.getParameter("id"))));
         req.setAttribute("AssignmentList", (ArrayList<Assignment>) new Course(
                 new Integer((String) req.getAttribute("id"))).getAssignments());
         System.out.println("Retreiveing from database");
@@ -142,7 +143,18 @@ public class AssignmentController extends HttpServlet
 
     }
 
-    private void editAssignment(String assId, String assDate, String assName, String assTotal)
+    /**
+     * @param assId  to change
+     * @param assDate to change
+     * @param assName to change
+     * @param assTotal to change
+     * 
+     * @todo Make better javadoc comments
+     */
+    private void editAssignment(String assId, 
+            String assDate, 
+            String assName, 
+            String assTotal)
     {
         Assignment ass = new Assignment(new Integer(assId));
 
@@ -175,14 +187,5 @@ public class AssignmentController extends HttpServlet
         ass.save();
 
     }
-
-    /*
-    private void addAssignment(int id, String type, float max, float min,
-    float average, Date dueDate, String name, Integer total)
-    {
-    Assignment temp = new Assignment(id);
-    modifyAssignment(type, max, min, average, dueDate, name, total, temp);
-    }
-     */
 }
 
