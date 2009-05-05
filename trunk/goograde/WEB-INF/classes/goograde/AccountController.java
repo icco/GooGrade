@@ -131,7 +131,7 @@ public class AccountController extends HttpServlet
 
         Course thiscourse = new Course(new Integer(req.getParameter("id")));
         req.setAttribute("id", req.getParameter("id"));
-                req.setAttribute("currentCourse", thiscourse);
+        req.setAttribute("currentCourse", thiscourse);
         ArrayList<Account> members = new ArrayList<Account>();
 
         members.addAll(thiscourse.getTeacherAssistants());

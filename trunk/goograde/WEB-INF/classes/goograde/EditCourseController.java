@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package goograde;
 
 import java.io.IOException;
@@ -19,8 +18,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author vgerdin
  */
-public class EditCourseController extends HttpServlet {
-   
+public class EditCourseController extends HttpServlet
+{
+
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
@@ -35,8 +35,7 @@ public class EditCourseController extends HttpServlet {
                         (String) req.getAttribute("title"),
                         (String) req.getAttribute("department"),
                         (String) req.getAttribute("number"),
-                        (String) req.getAttribute("section")
-                        );
+                        (String) req.getAttribute("section"));
             }
         }
         try
@@ -47,31 +46,35 @@ public class EditCourseController extends HttpServlet {
         catch (ServletException ex)
         {
             Logger.getLogger(
-                    AccountController.class.getName()).log(Level.SEVERE, 
+                    AccountController.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
         catch (IOException ex)
         {
             Logger.getLogger(
-                    AccountController.class.getName()).log(Level.SEVERE, 
+                    AccountController.class.getName()).log(Level.SEVERE,
                     null, ex);
         }
 
     }
-    
+
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
         RequestDispatcher view = req.getRequestDispatcher("/teacher/EditCourse.jsp");
 
+        Course thiscourse = new Course(new Integer(req.getParameter("id")));
+        req.setAttribute("id", req.getParameter("id"));
+        req.setAttribute("currentCourse", thiscourse);
+
         req.setAttribute("teachCourseList",
-            (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        
+                (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+
         try
         {
             String idString = (String) req.getParameter("id");
-            if(idString == null)
+            if (idString == null)
             {
                 idString = (String) req.getAttribute("id");
             }
@@ -81,7 +84,7 @@ public class EditCourseController extends HttpServlet {
         {
             Logger.getLogger(EditCourseController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         try
         {
             view.forward(req, resp);
@@ -90,41 +93,38 @@ public class EditCourseController extends HttpServlet {
         {
             Logger.getLogger(
                     EditCourseController.class.getName()).log(
-                        Level.SEVERE, null, ex);
+                    Level.SEVERE, null, ex);
         }
         catch (IOException ex)
         {
             Logger.getLogger(
                     EditCourseController.class.getName()).log(
-                        Level.SEVERE, null, ex);
+                    Level.SEVERE, null, ex);
         }
     }
-    
+
     private boolean editCourse(String courseRef, String title, String department, String number, String section)
     {
         boolean pass = true;
         boolean ret = false;
-        if(!Course.validateNumber(number))
+        if (!Course.validateNumber(number))
         {
             pass = false;
         }
-        if(!Course.validateSection(section))
+        if (!Course.validateSection(section))
         {
             pass = false;
         }
-        
-        if(pass)
+
+        if (pass)
         {
             Course course = new Course(new Integer(courseRef));
-            if(course.setTitle(title) 
-                    && course.setDepartment(department)
-                    && course.setNumber(new Integer(number))
-                    && course.setSection(new Integer(section)))
+            if (course.setTitle(title) && course.setDepartment(department) && course.setNumber(new Integer(number)) && course.setSection(new Integer(section)))
             {
                 ret = course.save();
             }
         }
-        
+
         return ret;
     }
 }
