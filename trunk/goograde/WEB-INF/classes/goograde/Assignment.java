@@ -72,19 +72,16 @@ public class Assignment implements java.io.Serializable
         this.fetch();
     }
 
-    public static void deleteAssignment(String Rid)
+    /**
+     * an assignment is deleted
+     * @param rId assignment id to delete
+     */
+    public static void deleteAssignment(String rId)
     {
-        String query = "DELETE FROM Assignments WHERE id = " + Rid;
+        String query = "DELETE FROM Assignments WHERE id = " + rId;
         StorageConnection conn = new StorageConnection();
         conn.updateQuery(query);
         conn.close();
-
-    /*query = "DELETE FROM Grades WHERE assignId = " + Rid;
-    conn = new StorageConnection();
-    conn.updateQuery(query);
-    conn.close(); */
-
-
     }
 
     /**
@@ -116,7 +113,7 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Gets the ID of the course this assignment belongs to
-     * @return
+     * @return this course's ID
      */
     public Integer getCourseId()
     {
@@ -159,6 +156,10 @@ public class Assignment implements java.io.Serializable
         return this.min;
     }
 
+    /**
+     * Get this Assignment's ID
+     * @return the Assignment's ID
+     */
     public Integer getId()
     {
         return this.id;
@@ -171,7 +172,8 @@ public class Assignment implements java.io.Serializable
     public ArrayList<Grade> getGrades()
     {
         /*Now fetch the grades from the grade table */
-        String query = "SELECT accountId, grade, assignId " + "FROM Grades WHERE assignId =" + id;
+        String query = "SELECT accountId, grade, assignId " 
+                + "FROM Grades WHERE assignId =" + id;
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result2 = conn.query(query);
         conn.close();
@@ -181,6 +183,7 @@ public class Assignment implements java.io.Serializable
         {
             grades = new ArrayList<Grade>();
             
+            /* Add a grade for each result */
             for (int count = 0; count < result2.size(); count++)
             {
                 int index = 0;
@@ -194,8 +197,8 @@ public class Assignment implements java.io.Serializable
         {
             /*table insert failed */
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                    "SQL error occurred when trying to fetch Grades" +
-                    " with assignId = " + this.id.toString(), ex);
+                    "SQL error occurred when trying to fetch Grades"
+                    + " with assignId = " + this.id.toString(), ex);
         }
 
 
@@ -210,6 +213,7 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setDueDate(Date pdueDate)
     {
+        /* Only good data will be set */
         if (pdueDate != null)
         {
             dueDate = pdueDate;
@@ -224,6 +228,7 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setName(String pname)
     {
+        /* Only good data will be set */
         if (pname != null)
         {
             name = pname;
@@ -239,6 +244,7 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setTotal(Integer ptotal)
     {
+        /* Only good data will be set */
         if (ptotal > 0)
         {
             total = ptotal;
@@ -253,6 +259,7 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setType(String ptype)
     {
+        /* Only good data will be set */
         if (ptype != null)
         {
             type = ptype;
@@ -311,9 +318,12 @@ public class Assignment implements java.io.Serializable
 
     /**
      * Sets the Course ID for this Assignment
+     * @param pcourse the id to set
+     * @return true if id set, false otherwise
      */
     public boolean setCourseId(int pcourse)
     {
+        /* Only good data will be set */
         if (pcourse > 0)
         {
             courseId = pcourse;
@@ -325,6 +335,7 @@ public class Assignment implements java.io.Serializable
     /**
      * Saves a new grade for a partucular student into the database
      * @param aStudent the student being graded.
+     * @param newGrade the new grade to set
      * @return true if save was successful
      */
     public boolean setAGrade(Student aStudent, float newGrade)
@@ -343,8 +354,14 @@ public class Assignment implements java.io.Serializable
         return true;
     }
 
+    /**
+     * set the assignment ID
+     * @param newId new id to set
+     * @return true if successful, false otherwise
+     */
     public boolean setId(int newId)
     {
+        /* Only good data will be set */
         if (newId > 0)
         {
             id = newId;
@@ -366,12 +383,13 @@ public class Assignment implements java.io.Serializable
     public boolean fetch()
     {
         /*Get the database at row ID */
-        String query = "SELECT id, aTotal, aName, " +
-                "aDueDate, aType, aAverage, aMax, " +
-                "aMin, courseId FROM Assignments WHERE id =" + this.getId();
+        String query = "SELECT id, aTotal, aName, "
+                + "aDueDate, aType, aAverage, aMax, "
+                + "aMin, courseId FROM Assignments WHERE id =" + this.getId();
         boolean ret = false;
         StorageConnection conn = new StorageConnection();
 
+        /* Process positive results from the database query */
         if (conn.query(query).size() > 0)
         {
             ArrayList<Object> result = conn.query(query).get(0);
@@ -400,9 +418,8 @@ public class Assignment implements java.io.Serializable
                 catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " +
-                            "Assignment" +
-                            " with id = " + this.id.toString(), ex);
+                            "SQL error occurred when trying to fetch "
+                            + "Assignment with id = " + this.id.toString(), ex);
                 }
             }
         }
@@ -410,6 +427,10 @@ public class Assignment implements java.io.Serializable
         return ret;
     }
 
+    /**
+     * return all assignments, yo
+     * @return all assignments, yo
+     */
     public static ArrayList<Assignment> allAssignments()
     {
 
@@ -443,14 +464,22 @@ public class Assignment implements java.io.Serializable
 
     }
 
-    public static void addAssignment(int courseId, String type, Date dueDate, String name,
-            Integer total)
+    /**
+     * add an assignment, yo
+     * @param courseId the id to add
+     * @param type the type to add
+     * @param dueDate the date to add
+     * @param name the name to add
+     * @param total the total to add
+     */
+    public static void addAssignment(int courseId, String type, Date dueDate,
+            String name, Integer total)
     {
         /*String query = "SELECT count (*) FROM Assignments";
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close(); */
-        //TODO: fix database indexing issue. Deleting an item 
+        //T0D0: fix database indexing issue. Deleting an item 
         //and adding it confiuses the index
 
         //int tid = (Integer) result.get(0).get(0) + 1;
@@ -480,30 +509,37 @@ public class Assignment implements java.io.Serializable
 
         Assignment temp = new Assignment(pid);
 
+        /* Validate data */
         if (type != null)
         {
             temp.setType(type);
         }
+        /* Validate data */
         if (max >= 0)
         {
             temp.setMax(max);
         }
+        /* Validate data */
         if (min >= 0)
         {
             temp.setMin(min);
         }
+        /* Validate data */
         if (average >= 0)
         {
             temp.setAvg(average);
         }
+        /* Validate data */
         if (dueDate != null)
         {
             temp.setDueDate(dueDate);
         }
+        /* Validate data */
         if (name != null)
         {
             temp.setName(name);
         }
+        /* Validate data */
         if (total != null)
         {
             temp.setTotal(total);
@@ -542,8 +578,13 @@ public class Assignment implements java.io.Serializable
         boolean ret = false;
 
 
-        String query = "INSERT INTO Assignments (aType, aMax, aMin, " +
-                "aAverage, aDueDate, aName, aTotal, courseId)" + " VALUES (\"" + this.getType() + "\"," + this.getMax() + "," + this.getMin() + "," + this.getAvg() + ",\"" + this.getDueDate() + "\",\"" + this.getName() + "\"," + this.getTotal() + ",\"" + this.getCourseId() + "\")";
+        String query = "INSERT INTO Assignments (aType, aMax, aMin, "
+                + "aAverage, aDueDate, aName, aTotal, courseId)" 
+                + " VALUES (\"" + this.getType() + "\"," 
+                + this.getMax() + "," + this.getMin() + "," + this.getAvg() 
+                + ",\"" + this.getDueDate() + "\",\"" + this.getName() 
+                + "\"," + this.getTotal() + ",\"" + this.getCourseId() + "\")";
+        
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
         if (!(ret))
@@ -576,14 +617,24 @@ public class Assignment implements java.io.Serializable
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Assignments (id, aType, aMax, aMin, " +
-                    "aAverage, aDueDate, aName, aTotal, courseId" + "VALUES (\"" + this.getId() + "\",\"" + this.getType() + "\",\"" + this.getMax() + "\",\"" + this.getMin() + "\",\"" + this.getAvg() + "\",\"" + this.getDueDate() + "\",\"" + this.getName() + "\",\"" + this.getTotal() + "\",\"" + this.getCourseId() + "\")";
+            query = "INSERT INTO Assignments (id, aType, aMax, aMin, "
+                    + "aAverage, aDueDate, aName, aTotal, courseId" 
+                    + "VALUES (\"" + this.getId() + "\",\"" + this.getType() 
+                    + "\",\"" + this.getMax() + "\",\"" + this.getMin() 
+                    + "\",\"" + this.getAvg() + "\",\"" + this.getDueDate() 
+                    + "\",\"" + this.getName() + "\",\"" + this.getTotal() 
+                    + "\",\"" + this.getCourseId() + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Assignments SET " + "aType = \"" + this.getType() + "\"," + "aMax = \"" + this.getMax() + "\"," + "aMin = \"" + this.getMin() + "\"," + "aAverage = \"" + this.getAvg() + "\"," + "aDueDate = \"" + this.getDueDate() + "\"," + "aName = \"" + this.getName() + "\"," + "aTotal = \"" + this.getTotal() + "\" " + "WHERE id = \"" + this.getId() + "\"";
+            query = "UPDATE Assignments SET " + "aType = \"" + this.getType() 
+                    + "\"," + "aMax = \"" + this.getMax() + "\"," + "aMin = \"" 
+                    + this.getMin() + "\"," + "aAverage = \"" + this.getAvg() 
+                    + "\"," + "aDueDate = \"" + this.getDueDate() + "\"," 
+                    + "aName = \"" + this.getName() + "\"," + "aTotal = \"" 
+                    + this.getTotal() + "\" " + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();

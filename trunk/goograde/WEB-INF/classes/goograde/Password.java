@@ -18,6 +18,11 @@ public class Password
     {
     }
 
+    /**
+     * set da password
+     * @param passwd password to set, word.
+     * @return true if successful, false otherwise
+     */
     public boolean setPassword(String passwd)
     {
         return false;

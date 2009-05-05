@@ -1,7 +1,7 @@
 package goograde;
 
-import java.io.*;
-import java.util.*;
+import java.util.Date;
+
 
 /**
  * This class keeps information about Files.
@@ -48,6 +48,9 @@ public class File implements java.io.Serializable
 
     /** 
      * Constructor for File class.
+     * @param owner file owner
+     * @param creationDate file creation date
+     * @param fileName name of file
      */
     public File(String owner, Date creationDate, String fileName)
     {

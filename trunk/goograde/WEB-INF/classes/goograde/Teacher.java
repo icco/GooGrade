@@ -35,6 +35,7 @@ public class Teacher extends Account
      * All variables, other than id, are still null and retrieved from
      * database with fetch();
      * @param id identification Integer used to fetch data from db
+     * @throws Exception cuz it can
      */
     public Teacher(Integer id) throws Exception
     {
@@ -80,10 +81,11 @@ public class Teacher extends Account
             // For each row, create a new Teacher
             for (ArrayList<Object> row : out)
             {
-                ret.add(new Teacher((Integer) row.get(0),
-                        (String) row.get(1),
-                        (String) row.get(2),
-                        (String) row.get(3)));
+                int index = 0;
+                ret.add(new Teacher((Integer) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++),
+                        (String) row.get(index++)));
             }
             
             conn.close();
@@ -92,12 +94,6 @@ public class Teacher extends Account
         {
             Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
                     "Error in Teacher", ex);
-        }
-        finally
-        {
-            /*
-            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
-             */ 
         }
 
         return ret;
@@ -133,14 +129,6 @@ public class Teacher extends Account
             Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
                     "Error in Teacher", ex);
         }
-        finally
-        {
-            /*
-            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING,
-                    ret.toString());
-             */ 
-        }
-
         
         return ret;
     }

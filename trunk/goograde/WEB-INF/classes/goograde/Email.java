@@ -26,8 +26,13 @@ public class Email
 
     /** 
      * Constructor for Email class.
+     * @param title email title
+     * @param attachments email attachments
+     * @param to receiver of email
+     * @param body message of email
      */
-    public Email(String title, ArrayList<File> attachments, ArrayList<EmailAddress> to, String body)
+    public Email(String title, ArrayList<File> attachments,
+            ArrayList<EmailAddress> to, String body)
     {
     }
 }

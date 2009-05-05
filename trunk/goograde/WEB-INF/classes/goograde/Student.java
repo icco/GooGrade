@@ -29,6 +29,7 @@ public class Student extends Account
      * All variables, other than id, are still null and retrieved from
      * database with fetch();
      * @param id identification Integer used to fetch data from db
+     * @throws Exception cuz it can
      */
     public Student(Integer id) throws Exception
     {
@@ -54,8 +55,10 @@ public class Student extends Account
      * @param username used to log into system
      * @param name student's real name
      * @param email student's email
+     * @throws Exception cuz it can
      */
-    public Student(Integer id, String username, String name, String email) throws Exception
+    public Student(Integer id, String username, String name, String email)
+            throws Exception
     {
         super(id, username, name, email);
         this.enrolled = getEnrolled();
@@ -65,7 +68,7 @@ public class Student extends Account
     /**
      * Gets the student grade in the course.
      * @return percentage the student has in the course
-     * @param course A string which maches a course name, or other identifier.
+     * @param crse A string which maches a course name, or other identifier.
      * @param ass An assignment to get the grade for.
      * @todo This method NEEDS to be completed.
      */
@@ -86,7 +89,8 @@ public class Student extends Account
 
         try
         {
-            result = conn.query("select course as id from enrolled" + " where student = " + this.getId());
+            result = conn.query("select course as id from enrolled" 
+                    + " where student = " + this.getId());
             /*add all returned rows into ret ArrayList*/
             for (ArrayList<Object> row : result)
             {
@@ -100,24 +104,18 @@ public class Student extends Account
             Logger.getLogger(Teacher.class.getName()).log(Level.SEVERE,
                     "Error in Student", ex);
         }
-        finally
-        {
-            /*
-            Logger.getLogger(Teacher.class.getName()).log(Level.WARNING, ret.toString());
-             */
-        }
-
 
         return ret;
     }
 
     /**
      * Sets this.enrolled
-     * @param enrolled ArrayList of Course objects the student is enrolled in
+     * @param nowEnrolled ArrayList of Course objects the student is enrolled in
+     * @return true if successful, false otherwise
      */
-    public boolean setEnrolled(ArrayList<Course> enrolled)
+    public boolean setEnrolled(ArrayList<Course> nowEnrolled)
     {
-        this.enrolled = new ArrayList<Course>(enrolled);
+        this.enrolled = new ArrayList<Course>(nowEnrolled);
         return true;
     }
 
@@ -159,13 +157,7 @@ public class Student extends Account
             Logger.getLogger(Student.class.getName()).log(Level.SEVERE,
                     "Error in Student", ex);
         }
-        finally
-        {
-            /*
-            Logger.getLogger(Student.class.getName()).log(Level.WARNING, ret.toString());
-             */
-        }
-
+        
         return ret;
     }
 
@@ -182,6 +174,7 @@ public class Student extends Account
     /**
      * 
      * @return a list of the grades a student has.
+     * @throws Exception cuz it can
      */
     public ArrayList<Grade> getGrades() throws Exception
     {
@@ -189,12 +182,12 @@ public class Student extends Account
         ArrayList<Grade> ret = new ArrayList<Grade>();
         StorageConnection conn = new StorageConnection();
 
-        query = "SELECT accountId, assignId " +
-                "FROM grades " +
-                "WHERE accountId = " + this.getId();
+        query = "SELECT accountId, assignId FROM grades "
+                + "WHERE accountId = " + this.getId();
 
         ArrayList<ArrayList<Object>> out = conn.query(query);
 
+        /* add a new grade for each query result */
         for (ArrayList<Object> row : out)
         {
             int index = 0;
@@ -206,33 +199,40 @@ public class Student extends Account
         return ret;
     }
 
+    /**
+     * Get the grades!
+     * @param crse course which needs grades gettin' from
+     * @return the list of grades
+     */
     public ArrayList<Grade> getGrades(Course crse)
     {
         String query = new String();
         ArrayList<Grade> ret = new ArrayList<Grade>();
         StorageConnection conn = new StorageConnection();
 
-        query = "SELECT accountId, assignments.id " +
-                "FROM grades, assignments " +
-                "WHERE grades.assignId = assignments.id " +
-                "AND assignments.courseId = " + crse.getId() +
-                " AND  accountId = " + this.getId();
+        query = "SELECT accountId, assignments.id FROM grades, assignments "
+                + "WHERE grades.assignId = assignments.id "
+                + "AND assignments.courseId = " + crse.getId()
+                + " AND  accountId = " + this.getId();
 
         ArrayList<ArrayList<Object>> out = conn.query(query);
 
+        /* For each query result, add a grade to the list */
         for (ArrayList<Object> row : out)
         {
             int index = 0;
             Grade newGrade = null;
             try
             {
-                newGrade = new Grade((Integer) row.get(index++), (Integer) row.get(index++));
+                newGrade = new Grade((Integer) row.get(index++),
+                        (Integer) row.get(index++));
                 ret.add(newGrade);
 
             }
             catch (Exception ex)
             {
-                Logger.getLogger(Student.class.getName()).log(Level.SEVERE, "Grade does not exist", ex);
+                Logger.getLogger(Student.class.getName())
+                        .log(Level.SEVERE, "Grade does not exist", ex);
             }
         }
 

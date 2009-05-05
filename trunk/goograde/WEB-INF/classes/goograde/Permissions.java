@@ -53,14 +53,14 @@ public class Permissions implements java.io.Serializable
         uploadFile = false;
         sendEmail = false;
 
-        //make ID the next integer in the database here TODO
-        String query = "INSERT INTO Permissions (manageUser, " +
-                "manageAnnouncement, manageRoster, manageGrade, manageMetric" +
-                "manageCourse, viewOwnGrade, uploadFile, sendEmail) " +
-                "VALUES(" + manageUser + ", " + manageAnnouncement + ", " +
-                manageRoster + ", " + manageGrade + ", " + manageMetric + ", " +
-                manageCourse + ", " + viewOwnGrade + ", " + uploadFile + ", " +
-                sendEmail + ")";
+        //make ID the next integer in the database here T0D0
+        String query = "INSERT INTO Permissions (manageUser, "
+                + "manageAnnouncement, manageRoster, manageGrade, manageMetric"
+                + "manageCourse, viewOwnGrade, uploadFile, sendEmail) "
+                + "VALUES(" + manageUser + ", " + manageAnnouncement + ", "
+                + manageRoster + ", " + manageGrade + ", " + manageMetric + ", "
+                + manageCourse + ", " + viewOwnGrade + ", " + uploadFile + ", "
+                + sendEmail + ")";
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close(); 
@@ -113,9 +113,9 @@ public class Permissions implements java.io.Serializable
     public Permissions(int id)
     {
         /*loads permissions from the database */
-        String query = "SELECT manageUser, manageAnnouncement, manageRoster, " +
-                "manageGrade, manageMetric, manageCourse, uploadFile, " +
-                "sendEmail FROM Permissions WHERE accountID =" + id;
+        String query = "SELECT manageUser, manageAnnouncement, manageRoster, "
+                + "manageGrade, manageMetric, manageCourse, uploadFile, "
+                + "sendEmail FROM Permissions WHERE accountID =" + id;
         StorageConnection conn = new StorageConnection();
         ArrayList<Object> result =  conn.query(query).get(0);
         conn.close();
@@ -248,8 +248,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET sendEmail =" +
-                sendEmail + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET sendEmail ="
+                + sendEmail + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -280,8 +280,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET uploadFile =" +
-                uploadFile + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET uploadFile ="
+                + uploadFile + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -313,8 +313,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET viewOwnGrade =" +
-                viewOwnGrade + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET viewOwnGrade ="
+                + viewOwnGrade + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -346,8 +346,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageCourse =" +
-                manageCourse + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET manageCourse ="
+                + manageCourse + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -379,8 +379,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageMetric =" +
-                manageMetric + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET manageMetric ="
+                + manageMetric + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -412,8 +412,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageGrade =" +
-                manageGrade + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET manageGrade ="
+                + manageGrade + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -445,8 +445,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageRoster =" +
-                manageRoster + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET manageRoster ="
+                + manageRoster + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -479,8 +479,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageAnnouncement =" +
-                manageAnnouncement + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET manageAnnouncement ="
+                + manageAnnouncement + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -512,8 +512,8 @@ public class Permissions implements java.io.Serializable
         }
 
         /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageUser =" +
-                manageUser + "WHERE accountID = " + accountID;
+        String query = "UPDATE Permissions SET manageUser ="
+                + manageUser + "WHERE accountID = " + accountID;
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();

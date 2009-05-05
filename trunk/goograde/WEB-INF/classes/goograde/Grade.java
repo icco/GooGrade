@@ -19,7 +19,6 @@ public class Grade
 
     /**
      * Constructor for Grade class
-     * @param crse the course this grade is from
      * @param ass teh assignment this grade is from
      * @param aThis the student is grade is for
      */
@@ -29,6 +28,12 @@ public class Grade
         this.assignment = ass;
     }
 
+    /**
+     * Constructor receiving ids for assignments and students
+     * @param ass id for assignment
+     * @param aThis id for student?
+     * @throws java.lang.Exception because it can
+     */
     public Grade(int ass, int aThis) throws Exception 
     {
         this.student = new Student(aThis);
@@ -90,6 +95,7 @@ public class Grade
 
     /**
      * set student changes the Student id number
+     * @param pstudent the p of a student, you know????
      * @return true if change is sucessful
      */
     public boolean setStudent(Student pstudent)
@@ -100,6 +106,7 @@ public class Grade
 
     /**
      * set Assignment changes the id number of the assignment
+     * @param assignmentNo assignment number
      * @return true if set is sucessful
      */
     public boolean setAssignment(Assignment assignmentNo)
@@ -118,12 +125,17 @@ public class Grade
         return this.getGrade().toString();
     }
 
+    /**
+     * fetch grade data from the database
+     * @return true if successful, false otherwise
+     */
     public boolean fetch()
     {
         /*Get the database at row ID */
-        String query = "SELECT accountId, grade" +
-                "FROM Grades WHERE assignment =" + assignment.getId();
+        String query = "SELECT accountId, grade FROM Grades WHERE assignment ="
+                + assignment.getId();
         StorageConnection conn = new StorageConnection();
+        /* Proceed if result is positive */
         if (conn.query(query).size() > 0)
         {
 
@@ -145,9 +157,9 @@ public class Grade
                 catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " +
-                            "Assignment" +
-                            " with id = " + this.assignment.getId(), ex);
+                            "SQL error occurred when trying to fetch "
+                            + "Assignment  with id = " 
+                            + this.assignment.getId(), ex);
                 }
             }
         }
@@ -159,11 +171,18 @@ public class Grade
         return true;
     }
     
+    /**
+     * verify one grade equals another
+     * @param object object to compare with
+     * @return true if equal, false otherwise
+     */
     @Override
     public boolean equals(Object object)
     {
+        /* Must be a grade to compare with */
         if(object instanceof Grade)
         {
+            /* Compare data */
             if(((Grade) object).getGrade() == this.getGrade())
             {
                 return true;
@@ -172,6 +191,10 @@ public class Grade
         return false;
     }
 
+    /**
+     * return all grades
+     * @return all grades
+     */
     public static ArrayList<Grade> allGrades()
     {
         ArrayList<Grade> assgns = new ArrayList<Grade>();
@@ -206,7 +229,12 @@ public class Grade
     }
 
     
-    /* NO! */
+    /**
+     * add a grade
+     * @param sStudent student whom owns it
+     * @param sAssignment assignment who is owned by it
+     * @param sGrade the value
+     */
     public static void addGrade(Student sStudent, Assignment sAssignment,
             float sGrade)
     {
@@ -214,14 +242,14 @@ public class Grade
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
-        //TODO: fix database indexing issue. Deleting an item 
+        //T0D0: fix database indexing issue. Deleting an item 
         //and adding it confiuses the index
 
         int tid = (Integer) result.get(0).get(0) + 1;
 
         Grade temp = new Grade(sAssignment, sStudent);
-        query = "INSERT INTO Grades (id, accountId, assignId) " +
-                "VALUES (" + tid + sStudent.getId() + sAssignment.getId() + ")";
+        query = "INSERT INTO Grades (id, accountId, assignId) VALUES (" 
+                + tid + sStudent.getId() + sAssignment.getId() + ")";
         conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -229,10 +257,15 @@ public class Grade
         temp.gradeStudent(sGrade);
     }
 
+    /**
+     * delete a grade
+     * @param sStudent student whom owns this grade
+     * @param sAssignment assignment owned by this grade
+     */
     public static void deleteGrade(Student sStudent, Assignment sAssignment)
     {
-        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId() +
-                "assignId = " + sAssignment.getId();
+        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId()
+                + "assignId = " + sAssignment.getId();
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
