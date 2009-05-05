@@ -36,10 +36,10 @@
                                 <th>Section</th>
                             </tr>
                             <tr class="color">
-                                <td>${courseTitle}</td>
-                                <td>${courseDepartment}</td>
-                                <td>${courseNumber}</td>
-                                <td>${courseSection}</td>
+                                <td>${currentCourse.title}</td>
+                                <td>${currentCourse.department}</td>
+                                <td>${currentCourse.number}</td>
+                                <td>${currentCourse.section}</td>
                             </tr>
                         </table>
                     </div>

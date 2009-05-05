@@ -28,23 +28,25 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Grades</h3>
-                        <c:forEach var="assignment" items="${assArray}">
-                        <h4>${assignment.name}</h4> 
-                            <ul> 
-                                <c:forEach var="stu" items="${assignment.course.roster}">
-                                    <form id="edit" method="post" action="<c:url value="grades"/>" >
-                                        <li>
-                                            ${stu.fullName}
-                                            <input type="text" name="grade" value="" size="5" maxlength="6" />
-                                            <hidden name="ass" value="${assignment.id}" />
-                                            <hidden name="stu" value="${stu.id}" />
-                                            <input type="submit" value="Grade" />
-                                        </li>
-                                    </form>
-                                </c:forEach>
-                            </ul>
-                        </c:forEach>
-                        
+                        <ul>
+                            <c:forEach var="assignment" items="${assArray}">
+                                <li><h4>${assignment.name}</h4> </li>
+                                <ul> 
+                                    <c:forEach var="stu" items="${assignment.course.roster}">
+                                        <form id="edit" method="post" action="<c:url value="grades"/>" >
+                                            <li>
+                                                ${stu.fullName}
+                                                <input type="text" name="grade" value="" size="5" maxlength="6" />
+                                                <hidden name="ass" value="${assignment.id}" />
+                                                <hidden name="stu" value="${stu.id}" />
+                                                <input type="submit" value="Grade" />
+                                            </li>
+                                        </form>
+                                    </c:forEach>
+                                </ul>
+                            </c:forEach>
+                            
+                        </ul>
                     </div>
                 </div>
                 

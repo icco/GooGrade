@@ -31,7 +31,7 @@ public class GradeController extends HttpServlet
         RequestDispatcher view = null;
 
         Account user1 = new Account();
-        Integer courseId = new Integer((String)req.getAttribute("id"));
+        Integer courseId = new Integer((String) req.getAttribute("id"));
         Course crse = new Course(courseId);
 
         // Gets the cookie we want
@@ -115,7 +115,7 @@ public class GradeController extends HttpServlet
      */
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
-   RequestDispatcher view = null;
+        RequestDispatcher view = null;
 
         Account user1 = new Account();
         Integer courseId = new Integer(req.getParameter("id"));

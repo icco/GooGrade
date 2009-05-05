@@ -1,7 +1,6 @@
 package goograde;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -42,6 +41,8 @@ public class CourseController extends HttpServlet
             {
                 user1.setId(new Integer(cook.getValue()));
                 user1.fetch();
+                req.setAttribute("user", user1);
+
             }
         }
 
@@ -86,6 +87,9 @@ public class CourseController extends HttpServlet
         {
             view = req.getRequestDispatcher("/student/ViewCourse.jsp");
 
+            Integer courseId = new Integer(req.getParameter("id"));
+            Course crse = new Course(courseId);
+            req.setAttribute("currentCourse", crse);
 
             try
             {
@@ -94,7 +98,7 @@ public class CourseController extends HttpServlet
             }
             catch (Exception ex)
             {
-                Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, "Error With Student View", ex);
             }
         }
 

@@ -34,12 +34,12 @@ public class Grade
      * @param aThis id for student?
      * @throws java.lang.Exception because it can
      */
-    public Grade(int ass, int aThis) throws Exception 
+    public Grade(int ass, int aThis) throws Exception
     {
         this.student = new Student(aThis);
         this.assignment = new Assignment(ass);
     }
-    
+
     /**
      * Empty Constructor for Grade. Not to be used.
      */
@@ -103,7 +103,7 @@ public class Grade
         student = pstudent;
         return true;
     }
-    
+
     /**
      * set Assignment changes the id number of the assignment
      * @param assignmentNo assignment number
@@ -132,8 +132,7 @@ public class Grade
     public boolean fetch()
     {
         /*Get the database at row ID */
-        String query = "SELECT accountId, grade FROM Grades WHERE assignment ="
-                + assignment.getId();
+        String query = "SELECT accountId, grade FROM Grades WHERE assignment =" + assignment.getId();
         StorageConnection conn = new StorageConnection();
         /* Proceed if result is positive */
         if (conn.query(query).size() > 0)
@@ -157,9 +156,7 @@ public class Grade
                 catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch "
-                            + "Assignment  with id = " 
-                            + this.assignment.getId(), ex);
+                            "SQL error occurred when trying to fetch " + "Assignment  with id = " + this.assignment.getId(), ex);
                 }
             }
         }
@@ -170,7 +167,7 @@ public class Grade
 
         return true;
     }
-    
+
     /**
      * verify one grade equals another
      * @param object object to compare with
@@ -180,10 +177,10 @@ public class Grade
     public boolean equals(Object object)
     {
         /* Must be a grade to compare with */
-        if(object instanceof Grade)
+        if (object instanceof Grade)
         {
             /* Compare data */
-            if(((Grade) object).getGrade() == this.getGrade())
+            if (((Grade) object).getGrade() == this.getGrade())
             {
                 return true;
             }
@@ -228,7 +225,6 @@ public class Grade
 
     }
 
-    
     /**
      * add a grade
      * @param sStudent student whom owns it
@@ -248,8 +244,7 @@ public class Grade
         int tid = (Integer) result.get(0).get(0) + 1;
 
         Grade temp = new Grade(sAssignment, sStudent);
-        query = "INSERT INTO Grades (id, accountId, assignId) VALUES (" 
-                + tid + sStudent.getId() + sAssignment.getId() + ")";
+        query = "INSERT INTO Grades (id, accountId, assignId) VALUES (" + tid + sStudent.getId() + sAssignment.getId() + ")";
         conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -264,13 +259,12 @@ public class Grade
      */
     public static void deleteGrade(Student sStudent, Assignment sAssignment)
     {
-        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId()
-                + "assignId = " + sAssignment.getId();
+        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId() + "assignId = " + sAssignment.getId();
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
     }
-    
+
     /**
      * save, stores current instance in database
      * if id already exists, update
@@ -283,73 +277,66 @@ public class Grade
         /*if id is null we a creating a new course*/
         /*if(this.getId() == null)
         {
-            ret = this.saveWithoutId();
+        ret = this.saveWithoutId();
         }*/
         /*if we have an id set, we are updating*/
         //else
         //{
-            ret = this.saveWithId();
+        ret = this.saveWithId();
         //}
         return ret;
     }
-    
+
     /**
      * save method if we don't have id set
      * @return true if no error
      */
     /*private boolean saveWithoutId()
     {
-        StorageConnection conn = new StorageConnection();
-        boolean ret = false;
-        
-        String query = "INSERT INTO Courses (title, department, number, section) " 
-                    + "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() 
-                    + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
-        ret = conn.updateQuery(query);
-        /*if we failed to update, discontinue//
-        if(!(ret))
-        {
-            return ret;
-        }
-        query = "SELECT max(id) FROM Courses";
-        ArrayList<ArrayList<Object>> result = conn.query(query);
-        conn.close();
-        //if result is empty so is Courses//
-        if(result.isEmpty())
-        {
-            return false;
-        }
-        ret = this.setId((Integer)result.get(0).get(0));
-        return ret;
+    StorageConnection conn = new StorageConnection();
+    boolean ret = false;
+    
+    String query = "INSERT INTO Courses (title, department, number, section) " 
+    + "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() 
+    + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+    ret = conn.updateQuery(query);
+    /*if we failed to update, discontinue//
+    if(!(ret))
+    {
+    return ret;
+    }
+    query = "SELECT max(id) FROM Courses";
+    ArrayList<ArrayList<Object>> result = conn.query(query);
+    conn.close();
+    //if result is empty so is Courses//
+    if(result.isEmpty())
+    {
+    return false;
+    }
+    ret = this.setId((Integer)result.get(0).get(0));
+    return ret;
     }*/
     /**
      * save method if we have id set
      * @return true if no error
-     */    
+     */
     private boolean saveWithId()
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
-        
-        String query = "SELECT assignId FROM Grades WHERE id = " 
-                + this.getAssignment();
+
+        String query = "SELECT assignId FROM Grades WHERE id = " + this.getAssignment();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         /*if for some reason id does not exist in db we insert*/
-        if(result.isEmpty())
+        if (result.isEmpty())
         {
-            query = "INSERT INTO Grades (assignId, grade, accountId) "
-                + "VALUES (\"" + ((Integer) this.getAssignment().getId()) + "\", \"" 
-                + this.getGrade() 
-                + "\",\"" + ((Integer) this.getStudent().getId()) + "\")";
+            query = "INSERT INTO Grades (assignId, grade, accountId) " + "VALUES (\"" + ((Integer) this.getAssignment().getId()) + "\", \"" + this.getGrade() + "\",\"" + ((Integer) this.getStudent().getId()) + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Grades SET " 
-                + "assignId = \"" + ((Integer)this.getAssignment().getId()) + "\","
-                + "grade = \"" + this.getGrade() + "\","
-                + "accountId = \"" + ((Integer) this.getStudent().getId()) + "\"";
+            query = "UPDATE Grades SET " + "assignId = \"" + ((Integer) this.getAssignment().getId()) + "\"," + "grade = \"" + this.getGrade() + "\"," + "accountId = \"" + ((Integer) this.getStudent().getId()) + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();
