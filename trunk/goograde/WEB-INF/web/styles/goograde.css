@@ -74,16 +74,14 @@ table{
 }
 
 th {
-    font: bold 14px;
+    font-size: 12px;
+    font-weight: bold;
     color: #00000;
-    border-right: 1px solid #C1DAD7;
-    border-bottom: 1px solid #C1DAD7;
-    border-top: 1px solid #C1DAD7;
-    letter-spacing: 2px;
-    text-transform: uppercase;
     text-align: left;
-    padding: 6px 6px 6px 12px;
+    padding: 6px 6px 6px 6px;
     background: #518ac1;
+    border-width: 1px;
+    border-style: solid; 
 }
 
 tr{
@@ -123,7 +121,7 @@ td.alt{
 #ui-datepicker-div{
     z-index: 199;
     top: 140px !important;
-
+    
 }
 
 .course-options {
@@ -185,7 +183,7 @@ h2{
 h4{
     font-size: 12pt;
     text-decoration: none;
-     font-weight: normal; 
+    font-weight: normal; 
 }
 html, #wrap{
     height: 90%;

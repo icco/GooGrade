@@ -29,27 +29,39 @@
                     <div class="cornerBoxInner">
                         <h3>View Roster</h3>                     
                         <div id="data">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>User Name</th>
-                                        <th>Email Address</th>
-                                        <th>Full Name</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:forEach var="user" items="${studentList}">
-                                        <tr class="color">
-                                            <td>${user.id}</td>
-                                            <td>${user.userName}</td>
-                                            <td>${user.emailAddress}</td>
-                                            <td>${user.fullName}</td>
-                                        </tr>
-                                    </c:forEach>
-                                    
-                                </tbody>
-                            </table>
+                            
+                            <c:choose>
+                                <c:when test = "${!empty studentList}">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>User Name</th>
+                                                <th>Email Address</th>
+                                                <th>Full Name</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="user" items="${studentList}">
+                                                <tr class="color">
+                                                    <td>${user.id}</td>
+                                                    <td>${user.userName}</td>
+                                                    <td>${user.emailAddress}</td>
+                                                    <td>${user.fullName}</td>
+                                                </tr>
+                                                
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </c:when>
+                                
+                                <c:otherwise>
+                                    <h3 style="color: #e40000">There are no Students enrolled in this course.</h3>
+                                </c:otherwise>
+                            </c:choose>
+                            
+                                                                
+                        
                         </div>
                         
                         
