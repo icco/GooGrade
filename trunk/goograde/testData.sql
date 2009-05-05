@@ -63,6 +63,10 @@ INSERT INTO enrolled (course, student) VALUES (5, 7);
 
 
 INSERT INTO Grades (accountId, assignId, grade) VALUES (4,2,87.8);
+INSERT INTO Grades (accountId, assignId, grade) VALUES (3,2,47.2);
+
+INSERT INTO Grades (accountId, assignId, grade) VALUES (3,9,80.0);
+INSERT INTO Grades (accountId, assignId, grade) VALUES (4,9,7.6);
                 
 -- Word to your Database. 
 -- Peace, I'm Out.
