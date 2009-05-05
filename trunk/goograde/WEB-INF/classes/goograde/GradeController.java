@@ -30,6 +30,7 @@ public class GradeController extends HttpServlet
     {
         RequestDispatcher view = null;
         String action = req.getParameter("action"); //the action to be done
+
         Account user1 = new Account();
         Integer courseId = new Integer(req.getParameter("id"));
         Course crse = new Course(courseId);
@@ -52,29 +53,26 @@ public class GradeController extends HttpServlet
             {
                 user3 = new Teacher(user1.getId());
                 req.setAttribute("teachCourseList", (ArrayList<Course>) (user3.getCourses()));
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Teacher Does Not Exist", ex);
             }
-            
+
 
             /*Determine which action needs to be taken */
             if (action != null)
             {
                 if (action.equals("delete"))
                 {
-                }
-                else if (action.equals("add"))
+                } else if (action.equals("add"))
                 {
-                }
-                else if (action.equals("edit"))
+                } else if (action.equals("edit"))
                 {
                 }
             }
-            
+
             ArrayList<Grade> gradearray = new ArrayList<Grade>();
-            for(Assignment ass : crse.getAssignments())
+            for (Assignment ass : crse.getAssignments())
             {
                 gradearray.addAll(ass.getGrades());
             }
@@ -82,9 +80,9 @@ public class GradeController extends HttpServlet
             req.setAttribute("id", courseId);
             req.setAttribute("assArray", crse.getAssignments());
             req.setAttribute("gradeList", gradearray);
-            req.setAttribute("stuArray",crse.getStudents());
-        }
-        else // Is a student
+            req.setAttribute("stuArray", crse.getStudents());
+        } else // Is a student
+
         {
             try
             {
@@ -92,9 +90,10 @@ public class GradeController extends HttpServlet
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
                 ArrayList<Grade> gradelist = user2.getGrades(crse);
                 req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user2.getEnrolled()));
-                req.setAttribute("gradeList",gradelist);
-            }
-            catch (Exception ex)
+                req.setAttribute("gradeList", gradelist);
+                req.setAttribute("currentCourse", crse);
+                req.setAttribute("id", courseId);
+            } catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Student Does Not Exist", ex);
             }
@@ -103,13 +102,11 @@ public class GradeController extends HttpServlet
         try
         {
             view.forward(req, resp);
-        }
-        catch (ServletException ex)
+        } catch (ServletException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
