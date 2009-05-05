@@ -6,6 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,34 +28,77 @@ public class CourseController extends HttpServlet
      * @throws java.io.IOException on error
      */
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp)
+    public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
         String action = req.getParameter("action");
+        Account user1 = new Account();
+        Teacher user3;
+        Student user2;
+        RequestDispatcher view;
 
-        if (action != null)
+        for (Cookie cook : req.getCookies())
         {
-            if (action.equals("delete"))
+            if (cook.getName().equals("userid"))
             {
-                this.deleteCourse(req.getParameter("courseRef"));
-            }
-            else if (action.equals("add"))
-            {
-                this.addCourse(req.getParameter("newCourseTitle"),
-                        req.getParameter("newCourseDepartment"),
-                        req.getParameter("newCourseNumber"),
-                        req.getParameter("newCourseSection"));
-            }
-            else if (action.equals("edit"))
-            {
-                this.editCourse((String) req.getParameter("courseRef"),
-                        (String) req.getParameter("title"),
-                        (String) req.getParameter("department"),
-                        (String) req.getParameter("number"),
-                        (String) req.getParameter("section"));
+                user1.setId(new Integer(cook.getValue()));
+                user1.fetch();
             }
         }
 
-        this.doGet(req, resp);
+        if (user1.isTeacher() || user1.isTeacherAssistant())
+        {
+            try
+            {
+                user3 = new Teacher(user1.getId());
+                req.setAttribute("teachCourseList", user3.getCourses());
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
+
+            if (action != null)
+            {
+                if (action.equals("delete"))
+                {
+                    this.deleteCourse(req.getParameter("courseRef"));
+                }
+                else if (action.equals("add"))
+                {
+                    this.addCourse(req.getParameter("newCourseTitle"),
+                            req.getParameter("newCourseDepartment"),
+                            req.getParameter("newCourseNumber"),
+                            req.getParameter("newCourseSection"));
+                }
+                else if (action.equals("edit"))
+                {
+                    this.editCourse((String) req.getParameter("courseRef"),
+                            (String) req.getParameter("title"),
+                            (String) req.getParameter("department"),
+                            (String) req.getParameter("number"),
+                            (String) req.getParameter("section"));
+                }
+            }
+        }
+        else
+        {
+            view = req.getRequestDispatcher("/student/ViewCourse.jsp");
+
+
+            try
+            {
+                user2 = new Student(user1.getId());
+                req.setAttribute("enrolledCourseList", user2.getEnrolled());
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        view.forward(req, resp);
     }
 
     /**
@@ -65,13 +109,9 @@ public class CourseController extends HttpServlet
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
-        RequestDispatcher view = req.getRequestDispatcher("/teacher/ManageCourses.jsp");
-
-        req.setAttribute("teachCourseList",
-                (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         try
         {
-            view.forward(req, resp);
+            this.doPost(req, resp);
         }
         catch (ServletException ex)
         {
@@ -85,50 +125,6 @@ public class CourseController extends HttpServlet
                     TeacherController.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
-    }
-
-    /** 
-     * addStudent adds a new student to this course. 
-     * @param permission the permission of the user who calls this function
-     * @param student the student that is to be added to the course
-     * @return true if no errors were enountered
-     */
-    public boolean addStudent(Permissions permission, Student student, Course course)
-    {
-        return false;
-    }
-
-    /** 
-     * removeStudent removes a particular student from the course.
-     * @param permission the permission of the user who calls this function
-     * @param student the student to be removed from this course
-     * @return true if no errors were encountered in removal.
-     */
-    public boolean removeStudent(Permissions permission, Student student, Course course)
-    {
-        return false;
-    }
-
-    /** 
-     * addTA assignes a new TeacherAssistant to this course.
-     * @param permission the permission of the user who calls this function
-     * @param ta the TeacherAssistant to be assigned to this course
-     * @return true if no errors have occured 
-     */
-    public boolean addTA(Permissions permission, TeacherAssistant ta, Course course)
-    {
-        return false;
-    }
-
-    /**
-     * removeTA removes a TeacherAssistant from this course
-     * @param permission the permission of the user who calls this function
-     * @param ta the TeacherAssistant to be removed to this course
-     * @return true if no errors have occured  
-     */
-    public boolean removeTA(Permissions permission, TeacherAssistant ta, Course course)
-    {
-        return false;
     }
 
     private boolean deleteCourse(String courseRef)

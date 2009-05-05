@@ -29,12 +29,11 @@ public class Course implements java.io.Serializable
     private ArrayList<Student> roster;
     /** An array of Assignments that are associatet with the Course */
     private ArrayList<Assignment> assignments;
-
     private static final int kTITLEMINLEN = 3;
     private static final int kTITLEMAXLEN = 100;
     private static final int kDEPARTMENTMINLEN = 2;
     private static final int kDEPARTMENTMAXLEN = 4;
-    
+
     /**
      * Standard constructor, should not be used, kept for now
      */
@@ -67,7 +66,7 @@ public class Course implements java.io.Serializable
         this.setDepartment(department);
         this.setNumber(number);
         /*default value for section is 1*/
-        if(section == null)
+        if (section == null)
         {
             this.setSection(new Integer(1));
         }
@@ -86,7 +85,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*id must not be set to null*/
-        if(newId != null)
+        if (newId != null)
         {
             this.id = newId;
             ret = true;
@@ -103,7 +102,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*title must not be set to null*/
-        if(newTitle != null)
+        if (newTitle != null)
         {
             this.title = newTitle;
             ret = true;
@@ -120,7 +119,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*department must not be set to null*/
-        if(newDepartment != null)
+        if (newDepartment != null)
         {
             this.department = newDepartment;
             ret = true;
@@ -137,7 +136,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*number must not be set to null*/
-        if(newNumber != null)
+        if (newNumber != null)
         {
             this.number = newNumber;
             ret = true;
@@ -154,7 +153,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*section must not be set to null*/
-        if(newSection != null)
+        if (newSection != null)
         {
             this.section = newSection;
             ret = true;
@@ -171,7 +170,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*rulesId must not be set to null*/
-        if(newRulesId != null)
+        if (newRulesId != null)
         {
             this.gradingRulesId = newRulesId;
             ret = true;
@@ -188,7 +187,7 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*this will always happen but keep same look as rest in case of change*/
-        if(true)
+        if (true)
         {
             this.roster = newRoster;
             ret = true;
@@ -205,14 +204,13 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         /*this will always happen but keep same look as rest in case of change*/
-        if(true)
+        if (true)
         {
             this.assignments = newAssignments;
             ret = true;
         }
         return ret;
     }
-
 
     /**
      * getId returns this.id
@@ -268,7 +266,7 @@ public class Course implements java.io.Serializable
     {
         return this.gradingRulesId;
     }
-    
+
     /**
      * A simple wrapper for getRoster so we have a slightly more consistent api
      * @return an arraylist of students
@@ -288,7 +286,7 @@ public class Course implements java.io.Serializable
     public ArrayList<Student> getRoster()
     {
         Student toAdd = null;
-        
+
         /*if we have a roster, return it */
         if (this.roster != null)
         {
@@ -301,20 +299,18 @@ public class Course implements java.io.Serializable
             if (this.getId() != null)
             {
                 this.roster = new ArrayList<Student>();
-                String query = "SELECT Accounts.id as id FROM Accounts, enrolled "
-                        + "WHERE Accounts.id = enrolled.student "
-                        + "AND enrolled.course = " + this.getId();
+                String query = "SELECT Accounts.id as id FROM Accounts, enrolled " + "WHERE Accounts.id = enrolled.student " + "AND enrolled.course = " + this.getId();
 
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
-                
+
                 /* For each student result, add it to the roster */
-                for(int indx = 0; indx < result.size(); indx++)
+                for (int indx = 0; indx < result.size(); indx++)
                 {
                     try
                     {
-                        toAdd = new Student((Integer)result.get(indx).get(0));
+                        toAdd = new Student((Integer) result.get(indx).get(0));
                         this.roster.add(toAdd);
                     }
                     catch (Exception ex)
@@ -322,7 +318,7 @@ public class Course implements java.io.Serializable
                         System.out.println("Invalid roster: " + ex);
                     }
                 }
-                
+
             }
 
             return this.roster;
@@ -339,7 +335,7 @@ public class Course implements java.io.Serializable
     public ArrayList<Assignment> getAssignments()
     {
         Assignment toAdd = null;
-        
+
         /*if we have a list of assignments return it*/
         if (this.assignments != null)
         {
@@ -352,19 +348,18 @@ public class Course implements java.io.Serializable
             if (this.getId() != null)
             {
                 this.assignments = new ArrayList<Assignment>();
-                String query = "SELECT id FROM Assignments "
-                        + "WHERE courseId = " + this.getId();
+                String query = "SELECT id FROM Assignments " + "WHERE courseId = " + this.getId();
 
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);
                 conn.close();
-                
+
                 /* For each query result, add an assignment to the list */
-                for(int indx = 0; indx < result.size(); indx++)
+                for (int indx = 0; indx < result.size(); indx++)
                 {
                     try
                     {
-                        toAdd = new Assignment((Integer)result.get(indx).get(0));
+                        toAdd = new Assignment((Integer) result.get(indx).get(0));
                         this.assignments.add(toAdd);
                     }
                     catch (Exception ex)
@@ -398,20 +393,18 @@ public class Course implements java.io.Serializable
         if (this.getId() != null)
         {
             teachers = new ArrayList<Teacher>();
-            String query = "SELECT Accounts.id as id FROM Accounts, teaches "
-                    + "WHERE Accounts.id = teaches.teacher "
-                    + "AND teaches.course = " + this.getId();
+            String query = "SELECT Accounts.id as id FROM Accounts, teaches " + "WHERE Accounts.id = teaches.teacher " + "AND teaches.course = " + this.getId();
 
             StorageConnection conn = new StorageConnection();
             ArrayList<ArrayList<Object>> result = conn.query(query);
             conn.close();
-            
+
             /* For each query result, add a teacher to the list */
-            for(int indx = 0; indx < result.size(); indx++)
+            for (int indx = 0; indx < result.size(); indx++)
             {
                 try
                 {
-                    toAdd = new Teacher((Integer)result.get(indx).get(0));
+                    toAdd = new Teacher((Integer) result.get(indx).get(0));
                     teachers.add(toAdd);
                 }
                 catch (Exception ex)
@@ -435,20 +428,18 @@ public class Course implements java.io.Serializable
         if (this.getId() != null)
         {
             assistants = new ArrayList<TeacherAssistant>();
-            String query = "SELECT Accounts.id as id FROM Accounts, assists "
-                    + "WHERE Accounts.id = assists.ta "
-                    + "AND assists.course = " + this.getId();
+            String query = "SELECT Accounts.id as id FROM Accounts, assists " + "WHERE Accounts.id = assists.ta " + "AND assists.course = " + this.getId();
 
             StorageConnection conn = new StorageConnection();
             ArrayList<ArrayList<Object>> result = conn.query(query);
             conn.close();
-                
+
             /* For each query result, add a TeacherAssistant to the list */
-            for(int indx = 0; indx < result.size(); indx++)
+            for (int indx = 0; indx < result.size(); indx++)
             {
                 try
                 {
-                    toAdd = new TeacherAssistant((Integer)result.get(indx).get(0));
+                    toAdd = new TeacherAssistant((Integer) result.get(indx).get(0));
                     assistants.add(toAdd);
                 }
                 catch (Exception ex)
@@ -491,40 +482,35 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         boolean isInRoster = false;
-        
+
         /* Only add a student if the representing object has an id */
-        if(student != null && student.getId() != null && this.getId() != null)
+        if (student != null && student.getId() != null && this.getId() != null)
         {
             ArrayList<Student> currentRoster = this.getRoster();
             int indx;
             /* Go through every line item in the roster */
-            for(indx = 0; indx < currentRoster.size(); indx++)
+            for (indx = 0; indx < currentRoster.size(); indx++)
             {
                 /* Confirm the student received is at this index in the roster */
-                if(student.equals(currentRoster.get(indx)))
+                if (student.equals(currentRoster.get(indx)))
                 {
                     isInRoster = true;
                     break;
                 }
             }
             /*if student is not in the roster, we add him*/
-            if(!isInRoster)
+            if (!isInRoster)
             {
-                String query = "INSERT INTO enrolled (course, student) "
-                        + "VALUES (\""
-                        + this.getId()
-                        + "\",\""
-                        + student.getId()
-                        + "\")";
+                String query = "INSERT INTO enrolled (course, student) " + "VALUES (\"" + this.getId() + "\",\"" + student.getId() + "\")";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
                 this.setRoster(null);
-                /*setting roster to null will force new 
-                generation a next get*/
+            /*setting roster to null will force new 
+            generation a next get*/
             }
         }
-        
+
         return ret;
     }
 
@@ -538,40 +524,35 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         boolean isInRoster = false;
-        
+
         /* Only proceed if the received student object has a valid id */
-        if(student != null && student.getId() != null && this.getId() != null)
+        if (student != null && student.getId() != null && this.getId() != null)
         {
             ArrayList<Student> currentRoster = this.getRoster();
             int indx;
             /* Walk through the roster */
-            for(indx = 0; indx < currentRoster.size(); indx++)
+            for (indx = 0; indx < currentRoster.size(); indx++)
             {
                 /* Verify the student received is at this location in the roster */
-                if(student.equals(currentRoster.get(indx)))
+                if (student.equals(currentRoster.get(indx)))
                 {
                     isInRoster = true;
                     break;
                 }
             }
-            
+
             /* Proceed if the student was found */
-            if(isInRoster)
+            if (isInRoster)
             {
-                String query = "DELETE FROM enrolled "
-                    + "WHERE student = \""
-                    + student.getId()
-                    + "\" AND course = \""
-                    + this.getId()
-                    + "\"";
+                String query = "DELETE FROM enrolled " + "WHERE student = \"" + student.getId() + "\" AND course = \"" + this.getId() + "\"";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
                 this.setRoster(null);
-                /*setting roster to null will force new 
-                 generation a next get*/
+            /*setting roster to null will force new 
+            generation a next get*/
             }
-            
+
         }
         return ret;
     }
@@ -586,31 +567,26 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         boolean isAssisting = false;
-        
+
         /* Check for valid id in teacher assistant object before proceeding */
-        if(ta != null && ta.getId() != null && this.getId() != null)
+        if (ta != null && ta.getId() != null && this.getId() != null)
         {
             ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
             int indx;
             /* Walk through the list of teacher assistants */
-            for(indx = 0; indx < currentTAs.size(); indx++)
+            for (indx = 0; indx < currentTAs.size(); indx++)
             {
                 /* Confirm the received assistant is at this list location */
-                if(ta.equals(currentTAs.get(indx)))
+                if (ta.equals(currentTAs.get(indx)))
                 {
                     isAssisting = true;
                     break;
                 }
             }
             /*if student is not in the roster, we add him*/
-            if(!isAssisting)
+            if (!isAssisting)
             {
-                String query = "INSERT INTO assists (course, ta) "
-                        + "VALUES (\""
-                        + this.getId()
-                        + "\",\""
-                        + ta.getId()
-                        + "\")";
+                String query = "INSERT INTO assists (course, ta) " + "VALUES (\"" + this.getId() + "\",\"" + ta.getId() + "\")";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -629,33 +605,27 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         boolean isAssisting = false;
-        
+
         /* Validate the id of the teacher assistant before proceeding */
-        if(ta != null && ta.getId() != null && this.getId() != null)
+        if (ta != null && ta.getId() != null && this.getId() != null)
         {
             ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
             int indx;
             /* walk through the teacher assistant list */
-            for(indx = 0; indx < currentTAs.size(); indx++)
+            for (indx = 0; indx < currentTAs.size(); indx++)
             {
                 /* confirm the received TA is the same as the one at this list loc */
-                if(ta.equals(currentTAs.get(indx)))
-                    
+                if (ta.equals(currentTAs.get(indx)))
                 {
                     isAssisting = true;
                     break;
                 }
             }
-            
+
             /* Proceed if a teacher assistant was found */
-            if(isAssisting)
+            if (isAssisting)
             {
-                String query = "DELETE FROM assists "
-                    + "WHERE ta = \""
-                    + ta.getId()
-                    + "\" AND course = \""
-                    + this.getId()
-                    + "\"";
+                String query = "DELETE FROM assists " + "WHERE ta = \"" + ta.getId() + "\" AND course = \"" + this.getId() + "\"";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -674,31 +644,26 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         boolean isTeaching = false;
-        
+
         /* validate incoming teacher's ID before proceeding */
-        if(teacher != null && teacher.getId() != null && this.getId() != null)
+        if (teacher != null && teacher.getId() != null && this.getId() != null)
         {
             ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
             int indx;
             /* Loop through the list retrieved */
-            for(indx = 0; indx < currentTAs.size(); indx++)
+            for (indx = 0; indx < currentTAs.size(); indx++)
             {
                 /* Proceed if a teacher is found */
-                if(teacher.equals(currentTAs.get(indx)))
+                if (teacher.equals(currentTAs.get(indx)))
                 {
                     isTeaching = true;
                     break;
                 }
             }
             /*if teacher is not teaching, we add him*/
-            if(!isTeaching)
+            if (!isTeaching)
             {
-                String query = "INSERT INTO teaches (course, teacher) "
-                        + "VALUES (\""
-                        + this.getId()
-                        + "\",\""
-                        + teacher.getId()
-                        + "\")";
+                String query = "INSERT INTO teaches (course, teacher) " + "VALUES (\"" + this.getId() + "\",\"" + teacher.getId() + "\")";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -717,33 +682,27 @@ public class Course implements java.io.Serializable
     {
         boolean ret = false;
         boolean isTeaching = false;
-        
+
         /* validate teacher id before proceeding */
-        if(teacher != null && teacher.getId() != null && this.getId() != null)
+        if (teacher != null && teacher.getId() != null && this.getId() != null)
         {
             ArrayList<Teacher> currentTeachers = this.getTeachers();
             int indx;
             /* Loop through the teacher list */
-            for(indx = 0; indx < currentTeachers.size(); indx++)
+            for (indx = 0; indx < currentTeachers.size(); indx++)
             {
                 /* Proceed if a teacher is found to match the received one */
-                if(teacher.equals(currentTeachers.get(indx)))
-                    
+                if (teacher.equals(currentTeachers.get(indx)))
                 {
                     isTeaching = true;
                     break;
                 }
             }
-            
+
             /* Proceed if a teacher was found */
-            if(isTeaching)
+            if (isTeaching)
             {
-                String query = "DELETE FROM teaches "
-                    + "WHERE teacher = \""
-                    + teacher.getId()
-                    + "\" AND course = \""
-                    + this.getId()
-                    + "\"";
+                String query = "DELETE FROM teaches " + "WHERE teacher = \"" + teacher.getId() + "\" AND course = \"" + this.getId() + "\"";
                 StorageConnection conn = new StorageConnection();
                 ret = conn.updateQuery(query);
                 conn.close();
@@ -776,7 +735,7 @@ public class Course implements java.io.Serializable
             }
             catch (Exception ex)
             {
-                Logger.getLogger(Course.class.getName()).log(Level.SEVERE, 
+                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
                         "Error msg TBD", ex);
             }
             /*avoid null pointer exceptions and fetch is successful*/
@@ -827,21 +786,20 @@ public class Course implements java.io.Serializable
      * @return true if deleted, false otherwise
      * @todo Implement Permissions
      */
-     
     public boolean delete(Permissions permission)
     {
         boolean ret = false;
         /*we can only delete if id is not null*/
         if (this.getId() != null)
         {
-            
+
             String query = "DELETE FROM Courses ";
             query += "WHERE id = " + this.getId();
             StorageConnection conn = new StorageConnection();
             ret = conn.updateQuery(query);
             conn.close();
         }
-        
+
         return ret;
     }
 
@@ -857,16 +815,16 @@ public class Course implements java.io.Serializable
      * @param teacher set the teacher for the class
      * @return true if added, false otherwise
      */
-    public static boolean addCourse(Permissions permission, String title, 
+    public static boolean addCourse(Permissions permission, String title,
             String department, Integer number, Integer section, Teacher teacher)
     {
-        
+
         boolean ret = false;
-        
+
         Course course = new Course(title, department, number, section);
         ret = course.save();
         /*if we have not failed already, continue*/
-        if(ret)
+        if (ret)
         {
             ret = course.setTeacher(teacher);
         }
@@ -884,9 +842,7 @@ public class Course implements java.io.Serializable
      */
     public boolean fetch()
     {
-        String query = "SELECT title, department, number, section, "
-                + "gradingRulesId FROM Courses "
-                + "WHERE id = " + this.getId();
+        String query = "SELECT title, department, number, section, " + "gradingRulesId FROM Courses " + "WHERE id = " + this.getId();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         ArrayList<Object> temp = null;
@@ -909,8 +865,7 @@ public class Course implements java.io.Serializable
         catch (Exception ex)
         {
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                    "SQL error occurred when trying to fetch Course "
-                    + "with id = " + this.getId().toString(), ex);
+                    "SQL error occurred when trying to fetch Course " + "with id = " + this.getId().toString(), ex);
         }
 
         return true;
@@ -944,7 +899,7 @@ public class Course implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
         /*if id is null we a creating a new course*/
-        if(this.getId() == null)
+        if (this.getId() == null)
         {
             ret = this.saveWithoutId();
         }
@@ -955,7 +910,7 @@ public class Course implements java.io.Serializable
         }
         return ret;
     }
-    
+
     /**
      * save method if we don't have id set
      * @return true if no error
@@ -964,13 +919,11 @@ public class Course implements java.io.Serializable
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
-        
-        String query = "INSERT INTO Courses (title, department, number, section) " 
-                    + "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() 
-                    + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+
+        String query = "INSERT INTO Courses (title, department, number, section) " + "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
-        if(!(ret))
+        if (!(ret))
         {
             return ret;
         }
@@ -978,42 +931,35 @@ public class Course implements java.io.Serializable
         ArrayList<ArrayList<Object>> result = conn.query(query);
         conn.close();
         /*if result is empty so is Courses*/
-        if(result.isEmpty())
+        if (result.isEmpty())
         {
             return false;
         }
-        ret = this.setId((Integer)result.get(0).get(0));
+        ret = this.setId((Integer) result.get(0).get(0));
         return ret;
     }
+
     /**
      * save method if we have id set
      * @return true if no error
-     */    
+     */
     private boolean saveWithId()
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
-        
+
         String query = "SELECT id FROM Courses WHERE id = " + this.getId();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         /*if for some reason id does not exist in db we insert*/
-        if(result.isEmpty())
+        if (result.isEmpty())
         {
-            query = "INSERT INTO Courses (id, title, department, number, section) "
-                + "VALUES (\"" + this.getId() + "\",\"" + this.getTitle() 
-                + "\",\"" + this.getDepartment() + "\",\"" + this.getNumber() 
-                + "\",\"" + this.getSection() + "\")";
+            query = "INSERT INTO Courses (id, title, department, number, section) " + "VALUES (\"" + this.getId() + "\",\"" + this.getTitle() + "\",\"" + this.getDepartment() + "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Courses SET " 
-                + "title = \"" + this.getTitle() + "\","
-                + "department = \"" + this.getDepartment() + "\","
-                + "number = \"" + this.getNumber() + "\","
-                + "section = \"" + this.getSection() + "\" "
-                + "WHERE id = \"" + this.getId() + "\"";
+            query = "UPDATE Courses SET " + "title = \"" + this.getTitle() + "\"," + "department = \"" + this.getDepartment() + "\"," + "number = \"" + this.getNumber() + "\"," + "section = \"" + this.getSection() + "\" " + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();
@@ -1036,28 +982,27 @@ public class Course implements java.io.Serializable
 
         return ret;
     }
-    
+
     /**
      * matches a teacher's id and a course id int the table teaches
      * @param teacher the new teacher for the class
      * @return true if set and no errors
-     */ 
+     */
     private boolean setTeacher(Teacher teacher)
     {
         boolean ret = false;
         /*db table has two columns that can't be set to null...*/
-        if(teacher != null && this.getId() != null)
+        if (teacher != null && this.getId() != null)
         {
-            String query = "INSERT INTO teaches (teacher, course) " 
-                    + "VALUES (\"" + teacher.getId() + "\",\"" + this.getId() + "\")";
+            String query = "INSERT INTO teaches (teacher, course) " + "VALUES (\"" + teacher.getId() + "\",\"" + this.getId() + "\")";
             StorageConnection conn = new StorageConnection();
             ret = conn.updateQuery(query);
             conn.close();
         }
-        
+
         return ret;
     }
-    
+
     /**
      * Validates that given string can be used as an id
      * @param string string to be validated
@@ -1070,22 +1015,22 @@ public class Course implements java.io.Serializable
         {
             Integer tmp = new Integer(string);
             /* Validate the input value */
-            if(tmp.intValue() < 1)
+            if (tmp.intValue() < 1)
             {
-                throw new NumberFormatException(); 
+                throw new NumberFormatException();
             }
         }
-        catch(NumberFormatException nfe)
+        catch (NumberFormatException nfe)
         {
             ret = false;
-            
+
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE, 
+                    Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid section ", nfe);
         }
         return ret;
     }
-    
+
     /**
      * Validates that given string can be used as a title
      * @param string string to be validated
@@ -1094,22 +1039,20 @@ public class Course implements java.io.Serializable
     public static boolean validateTitle(String string)
     {
         boolean ret = true;
-        
-        
+
+
         /* Validate input */
-        if(string == null 
-                || string.length() < kTITLEMINLEN
-                || string.length() > kTITLEMAXLEN)
+        if (string == null || string.length() < kTITLEMINLEN || string.length() > kTITLEMAXLEN)
         {
             ret = false;
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE, 
+                    Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid title");
         }
-        
+
         return ret;
     }
-    
+
     /**
      * Validates that given string can be used as a department
      * @param string string to be validated
@@ -1118,21 +1061,19 @@ public class Course implements java.io.Serializable
     public static boolean validateDepartment(String string)
     {
         boolean ret = true;
-        
+
         /* validate data */
-        if(string == null 
-                || string.length() < kDEPARTMENTMINLEN 
-                || string.length() > kDEPARTMENTMAXLEN)
+        if (string == null || string.length() < kDEPARTMENTMINLEN || string.length() > kDEPARTMENTMAXLEN)
         {
             ret = false;
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE, 
+                    Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid department");
         }
-        
+
         return ret;
     }
-    
+
     /**
      * Validates that given string can be used as a number
      * @param string string to be validated
@@ -1145,16 +1086,16 @@ public class Course implements java.io.Serializable
         {
             Integer tmp = new Integer(string);
         }
-        catch(NumberFormatException nfe)
+        catch (NumberFormatException nfe)
         {
             ret = false;
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE, 
+                    Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid number", nfe);
         }
         return ret;
     }
-    
+
     /**
      * Validates that given string can be used as a section
      * @param string string to be validated
@@ -1167,12 +1108,12 @@ public class Course implements java.io.Serializable
         {
             Integer tmp = new Integer(string);
         }
-        catch(NumberFormatException nfe)
+        catch (NumberFormatException nfe)
         {
             ret = false;
-            
+
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE, 
+                    Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid section ", nfe);
         }
         return ret;
