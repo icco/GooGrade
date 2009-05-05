@@ -124,7 +124,7 @@ public class Assignment implements java.io.Serializable
     {
         return new Course(this.getCourseId());
     }
-    
+
     /**
      * Gets the type of Assignment.
      * @return a String of the type Assignment.
@@ -177,8 +177,7 @@ public class Assignment implements java.io.Serializable
     public ArrayList<Grade> getGrades()
     {
         /*Now fetch the grades from the grade table */
-        String query = "SELECT accountId, grade, assignId " 
-                + "FROM Grades WHERE assignId =" + id;
+        String query = "SELECT accountId, grade, assignId " + "FROM Grades WHERE assignId =" + id;
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result2 = conn.query(query);
         conn.close();
@@ -187,13 +186,13 @@ public class Assignment implements java.io.Serializable
         try
         {
             grades = new ArrayList<Grade>();
-            
+
             /* Add a grade for each result */
             for (int count = 0; count < result2.size(); count++)
             {
                 int index = 0;
-                grades.add(new Grade(new Student((Integer) result2.get(count).get(index++)), 
-                        new Float((Double)result2.get(count).get(index++)),
+                grades.add(new Grade(new Student((Integer) result2.get(count).get(index++)),
+                        new Float((Double) result2.get(count).get(index++)),
                         new Assignment((Integer) result2.get(count).get(index))));
             }
 
@@ -202,8 +201,7 @@ public class Assignment implements java.io.Serializable
         {
             /*table insert failed */
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                    "SQL error occurred when trying to fetch Grades"
-                    + " with assignId = " + this.id.toString(), ex);
+                    "SQL error occurred when trying to fetch Grades" + " with assignId = " + this.id.toString(), ex);
         }
 
 
@@ -388,9 +386,7 @@ public class Assignment implements java.io.Serializable
     public boolean fetch()
     {
         /*Get the database at row ID */
-        String query = "SELECT id, aTotal, aName, "
-                + "aDueDate, aType, aAverage, aMax, "
-                + "aMin, courseId FROM Assignments WHERE id =" + this.getId();
+        String query = "SELECT id, aTotal, aName, " + "aDueDate, aType, aAverage, aMax, " + "aMin, courseId FROM Assignments WHERE id =" + this.getId();
         boolean ret = false;
         StorageConnection conn = new StorageConnection();
 
@@ -405,27 +401,25 @@ public class Assignment implements java.io.Serializable
             {
                 try
                 {
-                    int indx = 0;
-                    //set varaibles to values loaded from database,
-                    total = (Integer) result.get(indx++);
-                    name = (String) result.get(indx++);
+                    //set varaibles to values loaded from database
+                    total = (Integer) result.get(1);
+                    name = (String) result.get(2);
 
                     String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
                     SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
-                    Date newDate = format.parse((String) result.get(indx++));
+                    Date newDate = format.parse((String) result.get(3));
                     dueDate = newDate;
-                    this.setType((String) result.get(indx++));
-                    average = new Float((Double) result.get(indx++));
-                    max = new Float((Double) result.get(indx++));
-                    min = new Float((Double) result.get(indx++));
-                    this.setCourseId((Integer) result.get(indx));
+                    this.setType((String) result.get(4));
+                    average = new Float((Double) result.get(5));
+                    max = new Float((Double) result.get(6));
+                    min = new Float((Double) result.get(7));
+                    this.setCourseId((Integer) result.get(8));
                     ret = true;
                 }
                 catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch "
-                            + "Assignment with id = " + this.id.toString(), ex);
+                            "SQL error occurred when trying to fetch " + "Assignment with id = " + this.id.toString(), ex);
                 }
             }
         }
@@ -596,13 +590,8 @@ public class Assignment implements java.io.Serializable
         boolean ret = false;
 
 
-        String query = "INSERT INTO Assignments (aType, aMax, aMin, "
-                + "aAverage, aDueDate, aName, aTotal, courseId)" 
-                + " VALUES (\"" + this.getType() + "\"," 
-                + this.getMax() + "," + this.getMin() + "," + this.getAvg() 
-                + ",\"" + this.getDueDate() + "\",\"" + this.getName() 
-                + "\"," + this.getTotal() + ",\"" + this.getCourseId() + "\")";
-        
+        String query = "INSERT INTO Assignments (aType, aMax, aMin, " + "aAverage, aDueDate, aName, aTotal, courseId)" + " VALUES (\"" + this.getType() + "\"," + this.getMax() + "," + this.getMin() + "," + this.getAvg() + ",\"" + this.getDueDate() + "\",\"" + this.getName() + "\"," + this.getTotal() + ",\"" + this.getCourseId() + "\")";
+
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
         if (!(ret))
@@ -635,27 +624,33 @@ public class Assignment implements java.io.Serializable
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Assignments (id, aType, aMax, aMin, "
-                    + "aAverage, aDueDate, aName, aTotal, courseId" 
-                    + "VALUES (\"" + this.getId() + "\",\"" + this.getType() 
-                    + "\",\"" + this.getMax() + "\",\"" + this.getMin() 
-                    + "\",\"" + this.getAvg() + "\",\"" + this.getDueDate() 
-                    + "\",\"" + this.getName() + "\",\"" + this.getTotal() 
-                    + "\",\"" + this.getCourseId() + "\")";
+            query = "INSERT INTO Assignments (id, aType, aMax, aMin, " + "aAverage, aDueDate, aName, aTotal, courseId" + "VALUES (\"" + this.getId() + "\",\"" + this.getType() + "\",\"" + this.getMax() + "\",\"" + this.getMin() + "\",\"" + this.getAvg() + "\",\"" + this.getDueDate() + "\",\"" + this.getName() + "\",\"" + this.getTotal() + "\",\"" + this.getCourseId() + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Assignments SET " + "aType = \"" + this.getType() 
-                    + "\"," + "aMax = \"" + this.getMax() + "\"," + "aMin = \"" 
-                    + this.getMin() + "\"," + "aAverage = \"" + this.getAvg() 
-                    + "\"," + "aDueDate = \"" + this.getDueDate() + "\"," 
-                    + "aName = \"" + this.getName() + "\"," + "aTotal = \"" 
-                    + this.getTotal() + "\" " + "WHERE id = \"" + this.getId() + "\"";
+            query = "UPDATE Assignments SET " + "aType = \"" + this.getType() + "\"," + "aMax = \"" + this.getMax() + "\"," + "aMin = \"" + this.getMin() + "\"," + "aAverage = \"" + this.getAvg() + "\"," + "aDueDate = \"" + this.getDueDate() + "\"," + "aName = \"" + this.getName() + "\"," + "aTotal = \"" + this.getTotal() + "\" " + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();
+        return ret;
+    }
+
+    public String toString()
+    {
+        String ret = new String();
+
+        ret += this.getId() + ", ";
+        ret += this.getDueDate() + ", ";
+        ret += this.getName() + ", ";
+        ret += this.getTotal() + ", ";
+        ret += this.getType() + ", ";
+        ret += this.getAvg() + ", ";
+        ret += this.getMin() + ", ";
+        ret += this.getMax() + ", ";
+        ret += this.getCourseId();
+
         return ret;
     }
 }

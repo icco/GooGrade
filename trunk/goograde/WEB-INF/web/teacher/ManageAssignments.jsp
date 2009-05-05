@@ -46,6 +46,7 @@
                                 <%--TODO, do display "no assignments exist" --%>
                                 <c:forEach var = 'assg' items="${AssignmentList}">
                                     <tr class="color">
+                                        <!-- ${assg} -->
                                         <td>${assg.name}</td>
                                         <td>${assg.total}</td>
                                         <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
