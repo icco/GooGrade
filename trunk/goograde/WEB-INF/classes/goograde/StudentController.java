@@ -70,7 +70,6 @@ public class StudentController extends HttpServlet
 
         view = req.getRequestDispatcher("/student/index.jsp");
 
-
         req.setAttribute("studentList", (ArrayList<Student>) (Student.allStudents()));
 
         try
@@ -81,9 +80,6 @@ public class StudentController extends HttpServlet
         {
             Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE,
                     "Problem loading page", ex);
-        }
-        finally
-        {
         }
     }
 }

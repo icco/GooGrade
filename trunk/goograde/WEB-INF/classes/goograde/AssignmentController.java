@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
 
-
 /**
  * Does all of the work on the Assignment, it is the controller. 
  * We haven't really speced out what this is going to do yet.
@@ -35,7 +34,7 @@ public class AssignmentController extends HttpServlet
 
         String action = req.getParameter("action"); //the action to be done
 
-        /*Determine which action needs to be taken */
+        // Determine which action needs to be taken 
         if (action != null)
         {
             if (action.equals("delete"))
@@ -46,12 +45,11 @@ public class AssignmentController extends HttpServlet
             }
             else if (action.equals("add"))
             {
-                /*Parse Date into Date Object */
+                // Parse Date into Date Object 
                 String dateFormatString = "MM-dd-yy";
-                SimpleDateFormat format = new 
-                        SimpleDateFormat(dateFormatString);
+                SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
                 Date newDate = new Date();
-                
+
                 try
                 {
                     newDate = format.parse(req.getParameter("newAssgnDate"));
@@ -62,18 +60,19 @@ public class AssignmentController extends HttpServlet
                             log(Level.SEVERE, null, ex);
                 }
 
-                //Create the new Assignment with the input
+                // Create the new Assignment with the input
                 try
                 {
                     Assignment.addAssignment(new Integer(req.getParameter("id")),
                             req.getParameter("type"),
-                        newDate,
-                        req.getParameter("newAssgnTitle"),
-                        new Integer(req.getParameter("newAssgnTotal")));
+                            newDate,
+                            req.getParameter("newAssgnTitle"),
+                            new Integer(req.getParameter("newAssgnTotal")));
                 }
-                catch(Exception E)
+                catch (Exception ex)
                 {
-                    System.out.println(E.toString());
+                    Logger.getLogger(AssignmentController.class.getName()).
+                            log(Level.SEVERE, null, ex);
                 }
 
             }
@@ -82,8 +81,7 @@ public class AssignmentController extends HttpServlet
                 this.editAssignment(req.getParameter("AssignId"),
                         req.getParameter("newAssgnDate"),
                         req.getParameter("newAssgnTitle"),
-                        req.getParameter("newAssgnTotal")
-                        );
+                        req.getParameter("newAssgnTotal"));
             }
         }
 
@@ -113,17 +111,15 @@ public class AssignmentController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException
     {
-        RequestDispatcher view = 
+        RequestDispatcher view =
                 req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
-        
-        req.setAttribute("id", (String)req.getParameter("id"));
+
+        req.setAttribute("id", (String) req.getParameter("id"));
         req.setAttribute("teachCourseList",
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-                req.setAttribute("currentCourse", new Course(new Integer(req.getParameter("id"))));
-        req.setAttribute("AssignmentList", 
-                (ArrayList<Assignment>) 
-                new Course(new Integer((String)req.getAttribute("id"))).
-                getAssignments());
+        req.setAttribute("currentCourse", new Course(new Integer(req.getParameter("id"))));
+        req.setAttribute("AssignmentList", (ArrayList<Assignment>) new Course(
+                new Integer((String) req.getAttribute("id"))).getAssignments());
         System.out.println("Retreiveing from database");
 
 
@@ -149,15 +145,14 @@ public class AssignmentController extends HttpServlet
     private void editAssignment(String assId, String assDate, String assName, String assTotal)
     {
         Assignment ass = new Assignment(new Integer(assId));
-        
+
         if (assDate != null)
         {
             /*Parse Date into Date Object */
             String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
-            SimpleDateFormat format = new 
-                    SimpleDateFormat(dateFormatString);
+            SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
             Date newDate = new Date();
-            
+
             try
             {
                 newDate = format.parse(assDate);
@@ -178,16 +173,16 @@ public class AssignmentController extends HttpServlet
             ass.setTotal(new Integer(assTotal));
         }
         ass.save();
-              
+
     }
 
     /*
     private void addAssignment(int id, String type, float max, float min,
-            float average, Date dueDate, String name, Integer total)
+    float average, Date dueDate, String name, Integer total)
     {
-        Assignment temp = new Assignment(id);
-        modifyAssignment(type, max, min, average, dueDate, name, total, temp);
+    Assignment temp = new Assignment(id);
+    modifyAssignment(type, max, min, average, dueDate, name, total, temp);
     }
-    */
+     */
 }
 
