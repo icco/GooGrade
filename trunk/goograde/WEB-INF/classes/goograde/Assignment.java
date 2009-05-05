@@ -120,6 +120,11 @@ public class Assignment implements java.io.Serializable
         return this.courseId;
     }
 
+    public Course getCourse()
+    {
+        return new Course(this.getCourseId());
+    }
+    
     /**
      * Gets the type of Assignment.
      * @return a String of the type Assignment.
@@ -188,7 +193,7 @@ public class Assignment implements java.io.Serializable
             {
                 int index = 0;
                 grades.add(new Grade(new Student((Integer) result2.get(count).get(0)), 
-                        (Float) result2.get(count).get(1),
+                        new Float((Double)result2.get(count).get(1)),
                         new Assignment((Integer) result2.get(count).get(2))));
             }
 

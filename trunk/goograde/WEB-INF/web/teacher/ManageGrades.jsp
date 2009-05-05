@@ -29,38 +29,25 @@
                     <div class="cornerBoxInner">
                         <h3>Manage Grades</h3>
                         <table>
-                            <tr>
-                                <th>
-                                    
-                                </th>
-                                <c:forEach var="assignment" items="${assArray}">
-                                
-                                    <th>
-                                        ${assignment.name} (${assignment.total})
-                                    </th>
-                                    
-                                </c:forEach>
-                            </tr>
-                            <%--             
-             req.setAttribute("assArray", crse.getAssignments());
-            req.setAttribute("gradeList", gradearray);
-            req.setAttribute("stuArray",crse.getStudents());
-                            --%>
-                            <c:forEach var="student" items="${stuArray}">
-                                <tr class="color">
-                                    <td>
-                                        ${student.userName}
-                                    </td>
-                                    <c:forEach var="assignment" items="${assArray}">
-                                    
+                            <c:forEach var="assignment" items="${assArray}">
+                                <tr>
+                                    <form id="Edit${assignment.id}" method="post" action="<c:url value="grades"/>" >
+                                        <th>
+                                            ${assignment.name} 
+                                        </th>    
+                                        <c:forEach var="stu" items="${assignment.course.roster}">
+                                            <td>
+                                                <input type="text" name="${stu.id}" value="" size="5" maxlength="6" />
+                                            </td>
+                                        </c:forEach>
                                         <td>
-
+                                            <hidden name="ass" value="${assignment.id}" />
+                                            <input type="submit" value="Grade" />
                                         </td>
-                                        
-                                    </c:forEach>
+                                    </form>
                                 </tr>
-                            </c:forEach>       
-                        </table>
+                            </c:forEach>
+                        </table>   
                     </div>
                 </div>
                 

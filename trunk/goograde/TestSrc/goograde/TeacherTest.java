@@ -3,10 +3,6 @@ package goograde;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 
-/**
- *
- * @author mduder
- */
 public class TeacherTest extends TestCase {
     
     public TeacherTest(String testName) {

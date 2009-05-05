@@ -53,7 +53,8 @@ public class GradeController extends HttpServlet
             {
                 user3 = new Teacher(user1.getId());
                 req.setAttribute("teachCourseList", (ArrayList<Course>) (user3.getCourses()));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Teacher Does Not Exist", ex);
             }
@@ -64,9 +65,11 @@ public class GradeController extends HttpServlet
             {
                 if (action.equals("delete"))
                 {
-                } else if (action.equals("add"))
+                }
+                else if (action.equals("add"))
                 {
-                } else if (action.equals("edit"))
+                }
+                else if (action.equals("edit"))
                 {
                 }
             }
@@ -76,13 +79,14 @@ public class GradeController extends HttpServlet
             {
                 gradearray.addAll(ass.getGrades());
             }
+            
             req.setAttribute("currentCourse", crse);
             req.setAttribute("id", courseId);
             req.setAttribute("assArray", crse.getAssignments());
             req.setAttribute("gradeList", gradearray);
-            req.setAttribute("stuArray", crse.getStudents());
-        } else // Is a student
-
+            req.setAttribute("stuArray", (ArrayList<Student>)crse.getStudents());
+        }
+        else // Is a student
         {
             try
             {
@@ -93,7 +97,8 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", courseId);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, "Student Does Not Exist", ex);
             }
@@ -102,11 +107,13 @@ public class GradeController extends HttpServlet
         try
         {
             view.forward(req, resp);
-        } catch (ServletException ex)
+        }
+        catch (ServletException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
