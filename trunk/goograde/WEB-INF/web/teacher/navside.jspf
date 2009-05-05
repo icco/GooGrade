@@ -1,5 +1,5 @@
 <%-- 
-    Document   : navside
+    Document   : navside (Teacher)
     Created on : Apr 24, 2009, 3:07:57 AM
     Author     : pphu
 --%>
@@ -77,7 +77,7 @@
             
             <div id="accordion">
                 <c:forEach var="course" items="${teachCourseList}">
-                    <h3 class="trigger" id="${course.department}${course.number}${course.section}"><a href="#">${course.department} ${course.number}-${course.section}</a></h3>
+                    <h3 class="trigger" id="${course.department}${course.number}${course.section}"><a href="#${course.department}${course.number}${course.section}">${course.department} ${course.number}-${course.section}</a></h3>
                     
                     <div class="toggle_container">
                         

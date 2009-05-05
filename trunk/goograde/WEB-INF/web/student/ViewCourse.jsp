@@ -1,5 +1,5 @@
 <%-- 
-    Document   : Student Index
+    Document   : ViewCourse
     Created on : Apr 26, 2009, 9:47:24 PM
     Author     : nwelch
 --%>

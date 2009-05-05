@@ -28,37 +28,51 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>View Grades</h3>
-                        <table>
-                            <tr>
-                                <th>Assignment</th>
-                                <th>Possible Points</th>
-                                <th>Due Date</th>
-                                <th>Type</th>
-                                <th>Grade</th>
-                            </tr>
-                            <c:forEach var="user" items="${gradeList}">
-                            
-                                <tr class="color"> 
-                                    <td>
-                                        ${user.assignment.name}
-                                    </td>
-                                    <td>
-                                        ${user.assignment.total}
-                                    </td>
-                                    <td>
-                                        ${user.assignment.dueDate}
-                                    </td>
-                                    <td>
-                                        ${user.assignment.type}
-                                    </td>
-                                    <td>
-                                        ${user.grade}
-                                    </td>
-                                    
-                                </tr>
+                        
+                        <div id="data">
+                            <c:choose>
+                                <c:when test = "${!empty gradeList}">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Assignment</th>
+                                                <th>Possible Points</th>
+                                                <th>Due Date</th>
+                                                <th>Type</th>
+                                                <th>Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="user" items="${gradeList}">
+                                                <tr class="color">
+                                                    <td>
+                                                        ${user.assignment.name}
+                                                    </td>
+                                                    <td>
+                                                        ${user.assignment.total}
+                                                    </td>
+                                                    <td>
+                                                        ${user.assignment.dueDate}
+                                                    </td>
+                                                    <td>
+                                                        ${user.assignment.type}
+                                                    </td>
+                                                    <td>
+                                                        ${user.grade}
+                                                    </td>
+                                                    
+                                                </tr>
+                                                
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </c:when>
                                 
-                            </c:forEach>
-                        </table>
+                                <c:otherwise>
+                                    <h3 style="color: #e40000">There are no current grades in this course.</h3>
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
                     </div>
                 </div>
                 
