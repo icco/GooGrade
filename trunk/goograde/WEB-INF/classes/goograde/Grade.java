@@ -39,7 +39,9 @@ public class Grade implements Comparable<Grade>
         this.student = new Student(aThis);
         this.assignment = new Assignment(ass);
         
-        if(!this.fetch()){
+        //if no data is stored we set a 0
+        if(!this.fetch())
+        {
             gradeStudent(0);
         }
     }
@@ -222,8 +224,13 @@ public class Grade implements Comparable<Grade>
             Grade grade = null;
             try
             {
-                grade = new Grade((Integer)result.get(index).get(0),
-                        (Integer)result.get(index).get(1));
+                Integer assId = (Integer)result.get(index).get(0);
+                Integer accId = (Integer)result.get(index).get(1);
+                //We do not like null
+                if(assId != null && accId != null)
+                {
+                    grade = new Grade(assId, accId);
+                }
             }
             catch (Exception ex)
             {
