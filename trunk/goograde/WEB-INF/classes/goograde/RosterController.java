@@ -21,31 +21,26 @@ public class RosterController extends HttpServlet
 
     /**
      * 
-     * @param req
-     * @param resp
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
+     * @param req request class
+     * @param resp response class
      */
     @Override
-    public void doPost(HttpServletRequest req, HttpServletResponse resp) 
-            throws ServletException, IOException
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)       
     {
         // This is a hack
-        doGet(req,resp);
+        doGet(req, resp);
     }
 
     /**
      * 
-     * @param req
-     * @param resp
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
+     * @param req reqest class
+     * @param resp response class
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
-        RequestDispatcher view = req.getRequestDispatcher("/teacher/ViewRoster.jsp");
+        RequestDispatcher view = 
+                req.getRequestDispatcher("/teacher/ViewRoster.jsp");
         req.setAttribute("teachCourseList",
             (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         
@@ -61,11 +56,13 @@ public class RosterController extends HttpServlet
         }
         catch (ServletException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         catch (IOException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeacherController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
     }
 }
