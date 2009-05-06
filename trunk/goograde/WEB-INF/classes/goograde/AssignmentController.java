@@ -17,18 +17,18 @@ import java.util.Date;
  * Does all of the work on the Assignment, it is the controller. 
  * We haven't really speced out what this is going to do yet.
  *
- * @author bluGoo
+ * @author bluGoo, vgerdin
  * @version 0.42
  */
 public class AssignmentController extends HttpServlet
 {
 
-    @Override
     /**
      * doPost performs actions
      * @param req request
      * @param resp response
      */
+    @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
 
@@ -37,12 +37,14 @@ public class AssignmentController extends HttpServlet
         // Determine which action needs to be taken 
         if (action != null)
         {
+            //We want to delete
             if (action.equals("delete"))
             {
                 //choose teh appropriate assignment to modify and then modify 
                 //and then delete it
                 Assignment.deleteAssignment(req.getParameter("AssgnId"));
             }
+            //We want to add
             else if (action.equals("add"))
             {
                 // Parse Date into Date Object 
@@ -76,6 +78,7 @@ public class AssignmentController extends HttpServlet
                 }
 
             }
+            //We want to edit
             else if (action.equals("edit"))
             {
                 this.editAssignment(req.getParameter("AssignId"),
@@ -85,31 +88,19 @@ public class AssignmentController extends HttpServlet
             }
         }
 
-        try
-        {
-            this.doGet(req, resp);
-        }
-        catch (ServletException ex)
-        {
-            Logger.getLogger(AccountController.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(AccountController.class.getName()).
-                    log(Level.SEVERE, null, ex);
-        }
+        this.doGet(req, resp);
+
+
 
     }
 
-    @Override
     /**
      * doGet receives things
      * @param req request
      * @param resp respones
      */
+    @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
         RequestDispatcher view =
                 req.getRequestDispatcher("/teacher/ManageAssignments.jsp");
@@ -157,7 +148,7 @@ public class AssignmentController extends HttpServlet
             String assTotal)
     {
         Assignment ass = new Assignment(new Integer(assId));
-
+        //We do not like null pointer exceptions
         if (assDate != null)
         {
             /*Parse Date into Date Object */
@@ -176,10 +167,12 @@ public class AssignmentController extends HttpServlet
             }
             ass.setDueDate(newDate);
         }
+        //We do not like null pointer exceptions
         if (assName != null)
         {
             ass.setName(assName);
         }
+        //We do not like null pointer exceptions
         if (assTotal != null)
         {
             ass.setTotal(new Integer(assTotal));
