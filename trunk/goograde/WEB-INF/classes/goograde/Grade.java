@@ -144,6 +144,8 @@ public class Grade implements Comparable<Grade>
         String query = "SELECT accountId, " 
                 + "grade FROM Grades WHERE assignment =" + assignment.getId();
         StorageConnection conn = new StorageConnection();
+        boolean ret = true;
+        
         /* Proceed if result is positive */
         if (conn.query(query).size() > 0)
         {
@@ -153,7 +155,7 @@ public class Grade implements Comparable<Grade>
             /* No results from the query means an unsuccessful fetch */
             if (result.size() < 1)
             {
-                return false;
+                ret = false;
             }
             else
             {
@@ -174,10 +176,10 @@ public class Grade implements Comparable<Grade>
         }
         else
         {
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**
