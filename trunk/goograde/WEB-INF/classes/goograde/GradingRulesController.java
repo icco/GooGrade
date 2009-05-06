@@ -1,7 +1,5 @@
 package goograde;
 
-import java.lang.*;
-import java.util.*;
 
 /**
  * The GradingRulesController class is the GradingRules controller. 
