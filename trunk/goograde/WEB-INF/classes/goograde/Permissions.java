@@ -120,16 +120,17 @@ public class Permissions implements java.io.Serializable
         ArrayList<Object> result =  conn.query(query).get(0);
         conn.close();
 
+    int indx = 0;    
     /*set variables from results from the database.  */
     //i dont know how to get the items out of the array
-    manageUser = (Boolean) result.get(0);
-    manageAnnouncement = (Boolean) result.get(1);
-    manageRoster = (Boolean) result.get(2);
-    manageGrade = (Boolean) result.get(3);
-    manageMetric = (Boolean) result.get(4);
-    manageCourse = (Boolean) result.get(5);
-    uploadFile = (Boolean) result.get(6);
-    sendEmail = (Boolean) result.get(7);
+    manageUser = (Boolean) result.get(indx++);
+    manageAnnouncement = (Boolean) result.get(indx++);
+    manageRoster = (Boolean) result.get(indx++);
+    manageGrade = (Boolean) result.get(indx++);
+    manageMetric = (Boolean) result.get(indx++);
+    manageCourse = (Boolean) result.get(indx++);
+    uploadFile = (Boolean) result.get(indx++);
+    sendEmail = (Boolean) result.get(indx++);
     
 
     }
