@@ -281,23 +281,20 @@ public class Account implements java.io.Serializable
         {
             query = "SELECT id, username, name, email, password"
                     + " FROM Accounts WHERE id = " + this.getId().toString();
+            result = conn.query(query);
+            conn.close();
         }
         /* Otherwise, a present username requires a different query type */
         else if (this.getUserName() != null)
         {
             query = "SELECT id, username, name, email, password"
                     + " FROM Accounts WHERE username = \"" + this.getUserName() + "\"";
+            result = conn.query(query);
+            conn.close();
         }
-        /* An account with neither id nor username is empty; do not fetch */
-        else
-        {
-            return ret;
-        }
-        result = conn.query(query);
-        conn.close();
         
         /* No results from the query means an unsuccessful fetch */
-        if(result.size() >= 1)
+        if(result != null && result.size() >= 1)
         {
             try
             {
@@ -419,13 +416,6 @@ public class Account implements java.io.Serializable
             Logger.getLogger(Account.class.getName())
                     .log(Level.SEVERE, "Error in Account", ex);
         }
-        /* finally
-        {
-           
-            Logger.getLogger(Account.class.getName())
-                    .log(Level.WARNING, ret.toString());
-             
-        } */
 
         return ret;
     }
