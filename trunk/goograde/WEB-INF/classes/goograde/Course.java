@@ -468,14 +468,16 @@ public class Course implements java.io.Serializable
      */
     public GradingRules getGradingRules()
     {
+        
+        GradingRules rules = null;
         /*if no id is set, get one from db*/
         if (this.gradingRulesId != null)
         {
-            GradingRules rules = new GradingRules(this.getGradingRulesId());
+            rules = new GradingRules(this.getGradingRulesId());
             /*true if valid gradingRulesId in database, else false*/
-            if (rules.fetch())
+            if (!rules.fetch())
             {
-                return rules;
+                rules = null;
             }
         }
         return null;
@@ -757,7 +759,7 @@ public class Course implements java.io.Serializable
             catch (Exception ex)
             {
                 Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                        "Error msg TBD", ex);
+                        "Could not retrieve any courses", ex);
             }
             /*avoid null pointer exceptions and fetch is successful*/
             if (course != null && course.fetch())
@@ -863,9 +865,10 @@ public class Course implements java.io.Serializable
      */
     public boolean fetch()
     {
-        String query = "SELECT title, department, number, section, " +
-                "gradingRulesId FROM Courses " +
-                "WHERE id = " + this.getId();
+        String query = "SELECT title, department, number, section, ";
+        query += "gradingRulesId FROM Courses ";
+        query += "WHERE id = " + this.getId();
+        
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         ArrayList<Object> temp = null;
@@ -945,9 +948,9 @@ public class Course implements java.io.Serializable
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
 
-        String query = "INSERT INTO Courses (title, department, number, section) " +
-                "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment() +
-                "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
+        String query = "INSERT INTO Courses (title, department, number, section) ";
+        query += "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment();
+        query += "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
         if (!(ret))
@@ -980,26 +983,26 @@ public class Course implements java.io.Serializable
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Courses (id, title, department, number, section) " +
-                    "VALUES (\"" + this.getId() + "\",\"" +
-                    this.getTitle() + "\",\"" + this.getDepartment() +
-                    "\",\"" + this.getNumber() + "\",\"" +
-                    this.getSection() + "\")";
+            query = "INSERT INTO Courses (id, title, department, number, section) "; 
+            query += "VALUES (\"" + this.getId() + "\",\"";
+            query += this.getTitle() + "\",\"" + this.getDepartment();
+            query += "\",\"" + this.getNumber() + "\",\"";
+            query += this.getSection() + "\")";
 
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Courses SET " +
-                    "title = \"" +
-                    this.getTitle() +
-                    "\"," + "department = \"" +
-                    this.getDepartment() + "\"," +
-                    "number = \"" + this.getNumber() +
-                    "\"," + "section = \"" +
-                    this.getSection() + "\" " +
-                    "WHERE id = \"" + this.getId() + "\"";
+            query = "UPDATE Courses SET ";
+            query += "title = \"";
+            query += this.getTitle();
+            query += "\"," + "department = \"";
+            query += this.getDepartment() + "\",";
+            query += "number = \"" + this.getNumber();
+            query += "\"," + "section = \"";
+            query += this.getSection() + "\" ";
+            query += "WHERE id = \"" + this.getId() + "\"";
 
             ret = conn.updateQuery(query);
         }
@@ -1035,9 +1038,9 @@ public class Course implements java.io.Serializable
         /*db table has two columns that can't be set to null...*/
         if (teacher != null && this.getId() != null)
         {
-            String query = "INSERT INTO teaches (teacher, course) " +
-                    "VALUES (\"" + teacher.getId() +
-                    "\",\"" + this.getId() + "\")";
+            String query = "INSERT INTO teaches (teacher, course) ";
+            query += "VALUES (\"" + teacher.getId();
+            query += "\",\"" + this.getId() + "\")";
             StorageConnection conn = new StorageConnection();
             ret = conn.updateQuery(query);
             conn.close();
@@ -1069,7 +1072,7 @@ public class Course implements java.io.Serializable
 
             Logger.getLogger(
                     Course.class.getName()).log(Level.SEVERE,
-                    string + " is not a valid section ", nfe);
+                    string + " is not a valid section ");
         }
         return ret;
     }
@@ -1138,7 +1141,7 @@ public class Course implements java.io.Serializable
             ret = false;
             Logger.getLogger(
                     Course.class.getName()).log(Level.SEVERE,
-                    string + " is not a valid number", nfe);
+                    string + " is not a valid number");
         }
         return ret;
     }
@@ -1161,7 +1164,7 @@ public class Course implements java.io.Serializable
 
             Logger.getLogger(
                     Course.class.getName()).log(Level.SEVERE,
-                    string + " is not a valid section ", nfe);
+                    string + " is not a valid section ");
         }
         return ret;
     }

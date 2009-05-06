@@ -339,10 +339,10 @@ public class CourseTest extends TestCase {
     public void testGetGradingRules()
     {
         System.out.println("getGradingRules");
-        Course instance = new Course();
+        Course instance = new Course(1);
         GradingRules expResult = null;
         GradingRules result = instance.getGradingRules();
-        // fail("Grades are not yet implemented.");
+        assertEquals(expResult, result);
     }
 
     /**
@@ -408,13 +408,13 @@ public class CourseTest extends TestCase {
         Teacher testTeacher = null;
         try
         {
-            testTeacher = new Teacher(1);
+            testTeacher = new Teacher(2);
         }
         catch (Exception ex)
         {
             fail("invalid Teacher id" + ex);
         }
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.addTeacher(permission, testTeacher);
         assertEquals(expResult, result);
         
