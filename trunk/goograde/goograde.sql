@@ -74,12 +74,13 @@ CREATE TABLE Permissions (
                 accountID INTEGER, 
                 manageUser BOOLEAN,
                 manageAnnouncement BOOLEAN,
-                manageRoser BOOLEAN,
+                manageRoster BOOLEAN,
                 manageGrade BOOLEAN,
                 manageMetric BOOLEAN,
                 manageCourse BOOLEAN,
                 uploadFile BOOLEAN,
-                sendEmail BOOLEAN
+                sendEmail BOOLEAN,
+                viewOwnGrade BOOLEAN
 
 );
 
