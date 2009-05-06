@@ -38,9 +38,9 @@ public class Grade implements Comparable<Grade>
     {
         this.student = new Student(aThis);
         this.assignment = new Assignment(ass);
-        
+
         //if no data is stored we set a 0
-        if(!this.fetch())
+        if (!this.fetch())
         {
             gradeStudent(0);
         }
@@ -151,7 +151,7 @@ public class Grade implements Comparable<Grade>
         String query = "SELECT grade FROM Grades ";
         query += "WHERE assignId =" + this.getAssignment().getId();
         query += " AND accountId =" + this.getStudent().getId();
-        
+
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
 
@@ -170,13 +170,10 @@ public class Grade implements Comparable<Grade>
                     //this.setStudent(new Student((Integer) row.get(indx++)));
                     this.gradeStudent(new Float(row.get(indx++).toString()));
                     ret = true;
-                }
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " 
-                            + "Assignment  with id = " 
-                            + this.assignment.getId(), ex);
+                            "SQL error occurred when trying to fetch " + "Assignment  with id = " + this.assignment.getId(), ex);
                 }
             }
         }
@@ -197,8 +194,7 @@ public class Grade implements Comparable<Grade>
         {
             Grade gradeObject = (Grade) object;
             /* Compare data */
-            if ((gradeObject.getStudent().equals((Object) this.getStudent())) 
-                    && (gradeObject.getAssignment().equals(this.getAssignment())))
+            if ((gradeObject.getStudent().equals((Object) this.getStudent())) && (gradeObject.getAssignment().equals(this.getAssignment())))
             {
                 ret = true;
             }
@@ -210,39 +206,51 @@ public class Grade implements Comparable<Grade>
      * return all grades
      * @return all grades
      */
-    public static ArrayList<Grade> allGrades()
+    public static ArrayList<Grade> allGrades() throws Exception
     {
         ArrayList<Grade> assgns = new ArrayList<Grade>();
-        String query = "SELECT assignId, accountId FROM Grades";
+        //String query = "SELECT assignId, accountId FROM Grades";
+        String query = "SELECT id FROM Assignments";
+        String queryStu = "SELECT id FROM Students";
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result = conn.query(query);
-        conn.close();
+        ArrayList<ArrayList<Object>> resultStu = conn.query(queryStu);
 
-        /*for all in result, add to returned course list*/
         for (int index = 0; index < result.size(); index++)
         {
-            Grade grade = null;
-            try
+            Integer assid = (Integer) result.get(index).get(0);
+            for (ArrayList<Object> stu : resultStu)
             {
-                Integer assId = (Integer)result.get(index).get(0);
-                Integer accId = (Integer)result.get(index).get(1);
-                //We do not like null
-                if(assId != null && accId != null)
-                {
-                    grade = new Grade(assId, accId);
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                        "Error msg TBD", ex);
-            }
-            /*avoid null pointer exceptions and fetch is successful*/
-            if (grade != null && grade.fetch())
-            {
-                assgns.add(grade);
+                Integer stuId = (Integer) stu.get(0);
+                assgns.add(new Grade(assid, stuId));
             }
         }
+
+        /*for all in result, add to returned course list
+        for (int index = 0; index < result.size(); index++)
+        {
+        Grade grade = null;
+        try
+        {
+        Integer assId = (Integer)result.get(index).get(0);
+        Integer accId = (Integer)result.get(index).get(1);
+        //We do not like null
+        if(assId != null && accId != null)
+        {
+        grade = new Grade(assId, accId);
+        }
+        }
+        catch (Exception ex)
+        {
+        Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+        "Error msg TBD", ex);
+        }
+        /*avoid null pointer exceptions and fetch is successful
+        if (grade != null && grade.fetch())
+        {
+        assgns.add(grade);
+        }
+        }*/
 
         return assgns;
 
@@ -278,8 +286,7 @@ public class Grade implements Comparable<Grade>
     public static boolean deleteGrade(Student sStudent, Assignment sAssignment)
     {
         boolean ret = false;
-        String query = "DELETE FROM Grades WHERE accountId = " 
-                + sStudent.getId() + " AND assignId = " + sAssignment.getId();
+        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId() + " AND assignId = " + sAssignment.getId();
         StorageConnection conn = new StorageConnection();
         ret = conn.updateQuery(query);
         conn.close();
@@ -349,19 +356,14 @@ public class Grade implements Comparable<Grade>
         String query = "SELECT assignId FROM Grades ";
         query += "WHERE assignId = " + this.getAssignment().getId();
         query += " AND accountId = " + this.getStudent().getId();
-        
+
         ArrayList<ArrayList<Object>> result = conn.query(query);
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Grades (assignId, grade, accountId) " 
-                    + "VALUES (\"" + ((Integer) this.getAssignment().getId()) 
-                    + "\", \"" + this.getGrade() + "\",\"" 
-                    + ((Integer) this.getStudent().getId()) + "\")";
+            query = "INSERT INTO Grades (assignId, grade, accountId) " + "VALUES (\"" + ((Integer) this.getAssignment().getId()) + "\", \"" + this.getGrade() + "\",\"" + ((Integer) this.getStudent().getId()) + "\")";
             ret = conn.updateQuery(query);
-        }
-        /*if id does exist we update*/
-        else
+        } /*if id does exist we update*/ else
         {
             query = "UPDATE Grades SET grade = " + this.getGrade();
             query += " WHERE assignId = " + this.getAssignment().getId();

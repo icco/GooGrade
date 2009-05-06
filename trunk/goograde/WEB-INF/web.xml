@@ -87,7 +87,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>teachercontroller</servlet-name>
-        <url-pattern>/teacher/index</url-pattern>
+        <url-pattern>/teacher/teacher</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>accountcontroller</servlet-name>

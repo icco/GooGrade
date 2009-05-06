@@ -49,7 +49,7 @@
                                         <li class="student">
                                             <h3><a href="student/student">Student's Page</a></h3>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
                                     
                                     <ul class="iconlist">
                                         <li class="teacher">
-                                            <h3><a href="teacher/index">Teacher's Page</a></h3>
+                                            <h3><a href="teacher/teacher">Teacher's Page</a></h3>
                                         </li>
                                     </ul>
                                 </div>

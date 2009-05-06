@@ -28,40 +28,38 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Grades</h3>
-                        <ul>
+                        
+                        <div id="data">
+                            <table>
+                                <th>
+                                    
+                                </th>
+                                <c:forEach var="assignment" items="${assArray}">
+                                    <th>
+                                        ${assignment.name}
+                                    </th>
+                                </c:forEach>
+                                <c:forEach var="stu" items="${stuArray}">
+                                    <tr class="color">
+                                        <td>
+                                            ${stu.fullName}
+                                        </td>
+                                        <c:forEach var="assignment" items="${assArray}">
+                                            <c:forEach var="grade" items="${gradeList}">
+                                                <c:if test="${(grade.student.id == stu.id) && (grade.assignment.id == assignment.id)}">
+                                                    <td>
+                                                        <input type="text" name="${stu.id}@${assignment.id}" value="${grade.grade}" size="4" maxlength="5" />
+                                                        /${assignment.total}
+                                                    </td>
+                                                </c:if>
+                                            </c:forEach>
+                                        </c:forEach>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                            <input type="submit" value="Grade" />
                             
-                            <c:forEach var="assignment" items="${assArray}">
-                            
-                                <li><h4>${assignment.name}</h4> </li>
-                                <ul> 
-                                    <c:forEach var="stu" items="${assignment.course.roster}">
-                                        <form id="edit" method="post" action="<c:url value="grades"/>">
-                                            <li>
-                                                ${stu.fullName}
-                                                <c:forEach var="grade" items="gradeList">
-                                                    <c:choose>
-                                                        <c:when test="${(grade.assignment.id == assignment.id) && (grade.student.id == stu.id) }">
-                                                        
-                                                            <input type="text" name="grade" value="${grade.grade}" size="5" maxlength="6" />
-                                                        </c:when>
-                                                        
-                                                        <c:otherwise>
-                                                            <c:if test="${(grade.assignment.id == assignment.id)">
-                                                        </c:otherwise>
-                                                    </c:choose> 
-                                                </c:forEach>
-                                                <c:if var="changed" test=""
-                                                      <input type="text" name="grade" value="" size="5" maxlength="6" />
-                                                      <hidden name="ass" value="${assignment.id}" />
-                                                      <hidden name="stu" value="${stu.id}" />
-                                                      <input type="submit" value="Grade" />
-                                                  </li>
-                                              </form>
-                                    </c:forEach>
-                                </ul>
-                            </c:forEach>
-                            
-                        </ul>
+                        </div>
                     </div>
                 </div>
                 
