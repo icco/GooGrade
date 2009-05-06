@@ -158,24 +158,25 @@ public class CourseController extends HttpServlet
 
     private void doStudent(HttpServletRequest req, Account user1)
     {
+        //We do not like null pointer exceptions
         if(req.getParameter("id") != null)
         {
-        Integer courseId = new Integer(req.getParameter("id"));
-        Course crse = new Course(courseId);
-        req.setAttribute("currentCourse", crse);
-        Student user2 = null;
+            Integer courseId = new Integer(req.getParameter("id"));
+            Course crse = new Course(courseId);
+            req.setAttribute("currentCourse", crse);
+            Student user2 = null;
 
-        try
-        {
-            user2 = new Student(user1.getId());
-            req.setAttribute("enrolledCourseList", user2.getEnrolled());
-        }
-        catch (Exception ex)
-        {
-            Logger.getLogger(
+            try
+            {
+                user2 = new Student(user1.getId());
+                req.setAttribute("enrolledCourseList", user2.getEnrolled());
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(
                     CourseController.class.getName()).log(
                     Level.SEVERE, "Error With Student View", ex);
-        }
+            }
         }
     }
 
