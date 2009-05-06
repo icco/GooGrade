@@ -7,6 +7,9 @@ package goograde;
  */
 public class InvalidOption extends java.lang.Error
 {
+    /**
+     * Constructor for InvalidOption class. 
+     */
     public InvalidOption()
     {
         super("You have chosen to perform an invalid option.");
