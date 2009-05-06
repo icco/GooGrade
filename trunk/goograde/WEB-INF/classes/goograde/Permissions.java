@@ -40,6 +40,7 @@ public class Permissions implements java.io.Serializable
 
     /** Constructor for a NEW Permissions class. By default all permissions 
      * are turned off, assuming Teacher Assistant mode.
+     * 
      */
     public Permissions()
     {
@@ -54,16 +55,19 @@ public class Permissions implements java.io.Serializable
         sendEmail = false;
 
         //make ID the next integer in the database here T0D0
-        String query = "INSERT INTO Permissions (manageUser, "
-                + "manageAnnouncement, manageRoster, manageGrade, manageMetric"
-                + "manageCourse, viewOwnGrade, uploadFile, sendEmail) "
-                + "VALUES(" + manageUser + ", " + manageAnnouncement + ", "
-                + manageRoster + ", " + manageGrade + ", " + manageMetric + ", "
-                + manageCourse + ", " + viewOwnGrade + ", " + uploadFile + ", "
-                + sendEmail + ")";
+
+        String query = "INSERT INTO Permissions (manageUser, manageAnnouncement,"
+                +"manageRoster, manageGrade, manageMetric, manageCourse, " 
+                + "uploadFile, sendEmail, viewOwnGrade) "
+                + "VALUES(\"" 
+                 + manageUser + "\", \""+ manageAnnouncement + "\", \"" 
+                 + manageRoster +"\", \"" + manageGrade + "\", \"" 
+                 + manageMetric +"\", \"" + manageCourse + "\", \"" + uploadFile 
+                 +"\", \"" + sendEmail +"\", \"" + viewOwnGrade +"\")";
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close(); 
+        
     }
 
     /**
@@ -103,6 +107,7 @@ public class Permissions implements java.io.Serializable
             manageCourse = true;
             uploadFile = true;
             sendEmail = true;
+            viewOwnGrade = false;
         }
     }
 
@@ -115,25 +120,29 @@ public class Permissions implements java.io.Serializable
         /*loads permissions from the database */
         String query = "SELECT manageUser, manageAnnouncement, manageRoster, "
                 + "manageGrade, manageMetric, manageCourse, uploadFile, "
-                + "sendEmail FROM Permissions WHERE accountID =" + id;
+                + "sendEmail, viewOwnGrade FROM Permissions WHERE accountID ="
+                + id;
         StorageConnection conn = new StorageConnection();
         ArrayList<Object> result =  conn.query(query).get(0);
         conn.close();
 
-    int indx = 0;    
-    /*set variables from results from the database.  */
-    //i dont know how to get the items out of the array
-    manageUser = (Boolean) result.get(indx++);
-    manageAnnouncement = (Boolean) result.get(indx++);
-    manageRoster = (Boolean) result.get(indx++);
-    manageGrade = (Boolean) result.get(indx++);
-    manageMetric = (Boolean) result.get(indx++);
-    manageCourse = (Boolean) result.get(indx++);
-    uploadFile = (Boolean) result.get(indx++);
-    sendEmail = (Boolean) result.get(indx++);
+        int indx = 0;    
+        /*set variables from results from the database.  */
+        //i dont know how to get the items out of the array
+        manageUser = (Boolean) result.get(indx++);
+        manageAnnouncement = (Boolean) result.get(indx++);
+        manageRoster = (Boolean) result.get(indx++);
+        manageGrade = (Boolean) result.get(indx++);
+        manageMetric = (Boolean) result.get(indx++);
+        manageCourse = (Boolean) result.get(indx++);
+        uploadFile = (Boolean) result.get(indx++);
+        sendEmail = (Boolean) result.get(indx++);
+        viewOwnGrade = (Boolean) result.get(indx++);
     
 
     }
+    
+    //public Permissions(Account)
 
     /**
      * changeVerify is a permission checker to make sure the system has 
@@ -248,13 +257,6 @@ public class Permissions implements java.io.Serializable
             return false;
         }
 
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET sendEmail ="
-                + sendEmail + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
-
         return true;
     }
 
@@ -279,13 +281,6 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
-
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET uploadFile ="
-                + uploadFile + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
 
         return true;
     }
@@ -313,12 +308,6 @@ public class Permissions implements java.io.Serializable
             return false;
         }
 
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET viewOwnGrade ="
-                + viewOwnGrade + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
 
         return true;
     }
@@ -346,13 +335,6 @@ public class Permissions implements java.io.Serializable
             return false;
         }
 
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageCourse ="
-                + manageCourse + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
-
         return true;
     }
 
@@ -378,13 +360,6 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
-
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageMetric ="
-                + manageMetric + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
 
         return true;
     }
@@ -412,13 +387,6 @@ public class Permissions implements java.io.Serializable
             return false;
         }
 
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageGrade ="
-                + manageGrade + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
-
         return true;
     }
 
@@ -444,13 +412,6 @@ public class Permissions implements java.io.Serializable
             /*changeVerify reported insufficient permissions. */
             return false;
         }
-
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageRoster ="
-                + manageRoster + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
 
         return true;
     }
@@ -479,13 +440,6 @@ public class Permissions implements java.io.Serializable
             return false;
         }
 
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageAnnouncement ="
-                + manageAnnouncement + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
-
         return true;
     }
 
@@ -512,13 +466,128 @@ public class Permissions implements java.io.Serializable
             return false;
         }
 
-        /*now updating the database with changes */
-        String query = "UPDATE Permissions SET manageUser ="
-                + manageUser + "WHERE accountID = " + accountID;
-        StorageConnection conn = new StorageConnection();
-        conn.query(query);
-        conn.close();
-
         return true;
+    }
+    
+    private Integer getId()
+    {
+        return accountID;
+    }
+    
+    private boolean setId(Integer newId)
+    {
+        accountID = newId;
+        return true;
+    }
+    
+    /**
+     * save, stores current instance in database
+     * if id already exists, update
+     * else, insert
+     * @return true if successfull, else false
+     */
+    public boolean save()
+    {
+        boolean ret = false;
+        /*if id is null we a creating a new course*/
+        if (this.getId() == null)
+        {
+            ret = this.saveWithoutId();
+        }
+        /*if we have an id set, we are updating*/
+        else
+        {
+            ret = this.saveWithId();
+        }
+        return ret;
+    }
+
+    /**
+     * save method if we don't have id set
+     * @return true if no error
+     */
+    private boolean saveWithoutId()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+
+        String query = "INSERT INTO Permissions (manageUser, manageAnnouncement,"
+                + "manageRoster, manageGrade, manageMetric, manageCourse,"
+                + "uploadFile, sendEmail, viewOwnGrade)";
+        query += "VALUES (\"" + this.isManageUser() + "\",\""
+                + this.isManageAnnouncement() + "\",\""
+                + this.isManageRoster() + "\",\""
+                + this.isManageGrade() + "\",\""
+                + this.isManageMetric() + "\",\""
+                + this.isManageCourse() + "\",\""
+                + this.isUploadFile() + "\",\""
+                + this.isSendEmail() + "\",\""
+                + this.isViewOwnGrade() + "\")";
+        ret = conn.updateQuery(query);
+        /*if we failed to update, discontinue*/
+        if (!(ret))
+        {
+            return ret;
+        }
+        query = "SELECT max(accountID) FROM Permissions";
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        conn.close();
+        /*if result is empty so is Courses*/
+        if (result.isEmpty())
+        {
+            return false;
+        }
+        ret = this.setId((Integer) result.get(0).get(0));
+        return ret;
+    }
+
+    /**
+     * save method if we have id set
+     * @return true if no error
+     */
+    private boolean saveWithId()
+    {
+        StorageConnection conn = new StorageConnection();
+        boolean ret = false;
+
+        String query = "SELECT id FROM Permissions WHERE id = " + this.getId();
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        /*if for some reason id does not exist in db we insert*/
+        if (result.isEmpty())
+        {
+            query = "INSERT INTO Permissions (manageUser, manageAnnouncement,"
+                + "manageRoster, manageGrade, manageMetric, manageCourse,"
+                + "uploadFile, sendEmail, viewOwnGrade)";
+            query += "VALUES (\"" + this.isManageUser() + "\",\""
+                + this.isManageAnnouncement() + "\",\""
+                + this.isManageRoster() + "\",\""
+                + this.isManageGrade() + "\",\""
+                + this.isManageMetric() + "\",\""
+                + this.isManageCourse() + "\",\""
+                + this.isUploadFile() + "\",\""
+                + this.isSendEmail() + "\",\""
+                + this.isViewOwnGrade() + "\")";
+
+            ret = conn.updateQuery(query);
+        }
+        /*if id does exist we update*/
+        else
+        {
+            query = "UPDATE Permissions";
+            query += "SET \"" 
+                + "manageUser = "+ this.isManageUser() + "\",\""
+                + "manageAnnouncement = "+ this.isManageAnnouncement() + "\",\""
+                + "manageRoster = " + this.isManageRoster() + "\",\""
+                + "manageGrade = "+ this.isManageGrade() + "\",\""
+                + "manageMetric = " + this.isManageMetric() + "\",\""
+                + "manageCourse = " + this.isManageCourse() + "\",\""
+                + "uploadFile = "+ this.isUploadFile() + "\",\""
+                + "sendEmail = "+ this.isSendEmail() + "\",\""
+                + "viewOwnGrade" + this.isViewOwnGrade() + "\",\"";
+
+            ret = conn.updateQuery(query);
+        }
+        conn.close();
+        return ret;
     }
 }
