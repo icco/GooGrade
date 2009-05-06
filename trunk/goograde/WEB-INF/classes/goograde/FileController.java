@@ -1,7 +1,5 @@
 package goograde;
 
-import java.io.*;
-import java.util.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 public class FileController
 {
 
+    /**
+     * doPost handles a HTTP POST request
+     * @param req the request
+     * @param resp the response
+     */
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
     }
