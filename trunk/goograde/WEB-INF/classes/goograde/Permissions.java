@@ -245,6 +245,7 @@ public class Permissions implements java.io.Serializable
     public boolean setSendEmail(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -254,10 +255,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the uploadFile permission
@@ -270,6 +271,7 @@ public class Permissions implements java.io.Serializable
     public boolean setUploadFile(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -279,10 +281,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the viewOwnGrade permission
@@ -296,6 +298,7 @@ public class Permissions implements java.io.Serializable
     public boolean setViewOwnGrade(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -305,11 +308,11 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the manageCourse permission
@@ -323,6 +326,7 @@ public class Permissions implements java.io.Serializable
     public boolean setManageCourse(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -332,10 +336,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the manageMetric permission
@@ -349,6 +353,7 @@ public class Permissions implements java.io.Serializable
     public boolean setManageMetric(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -358,10 +363,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the manageGrade permission
@@ -375,6 +380,7 @@ public class Permissions implements java.io.Serializable
     public boolean setManageGrade(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -384,10 +390,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the manageRoster permission
@@ -401,6 +407,7 @@ public class Permissions implements java.io.Serializable
     public boolean setManageRoster(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -410,10 +417,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the manageAnnouncement permission
@@ -427,6 +434,7 @@ public class Permissions implements java.io.Serializable
     public boolean setManageAnnouncement(boolean desiredChange,
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -437,10 +445,10 @@ public class Permissions implements java.io.Serializable
         {
             /*changeVerify reported insufficient permissions. */
 
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
 
     /**Changes (sets) the manageUser permission
@@ -454,6 +462,7 @@ public class Permissions implements java.io.Serializable
     public boolean setManageUser(boolean desiredChange, 
             boolean manageUserPermit)
     {
+        boolean ret = true;
         try
         {
             changeVerify(manageUserPermit);
@@ -463,10 +472,10 @@ public class Permissions implements java.io.Serializable
         catch (IllegalAccessException accountError)
         {
             /*changeVerify reported insufficient permissions. */
-            return false;
+            ret = false;
         }
 
-        return true;
+        return ret;
     }
     
     private Integer getId()
