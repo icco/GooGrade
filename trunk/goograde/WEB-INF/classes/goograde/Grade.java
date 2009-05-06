@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  * @author kblizard 
  * @author nwelch
  */
-public class Grade
+public class Grade implements Comparable<Grade>
 {
 
     private Student student;
@@ -366,5 +366,17 @@ public class Grade
         }
         conn.close();
         return ret;
+    }
+
+    /**
+     * Compare to other objects
+     * 
+     * @param in grade to compare.
+     * @return a negative integer, zero, or a positive integer as this object 
+     * is less than, equal to, or greater than the specified object. 
+     */
+    public int compareTo(Grade in)
+    {
+        return this.getGrade().compareTo(in.getGrade());
     }
 }
