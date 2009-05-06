@@ -89,19 +89,14 @@ public class GradeController extends HttpServlet
         ArrayList<Assignment> asslist = currentCourse.getAssignments();
         ArrayList<Student> stulist = currentCourse.getStudents();
         
-        /*
-         * For every assignment and student, add the new 
-         * grade if it is greater than 0.0
-         */
+        //For every assignment and student, add the new grade if it is greater than 0.0
         for(Assignment ass : asslist)
         {
-            /*
-             * Read comment from above. Must be n^2 since it has to update everything
-             */
+            // Must be n^2 since it has to update everything
             for(Student stu : stulist)
             {
-                Float grade = new Float((String) req.getAttribute(ass.getId() + 
-                        "@" + stu.getId()));
+                Float grade = new Float((String) req.getAttribute(ass.getId() 
+                        + "@" + stu.getId()));
                 //0.0 means it hasn't been updated
                 if(grade > 0.0f)
                 {
