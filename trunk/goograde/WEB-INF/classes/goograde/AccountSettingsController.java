@@ -46,9 +46,9 @@ public class AccountSettingsController extends HttpServlet
                     AccountSettingsController.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
-        tmp.setUserName(req.getParameter("newUserName"));
-        tmp.setEmailAddress(new EmailAddress(req.getParameter("newEmailAddr")));
-        tmp.setFullName(req.getParameter("newFullName"));
+        tmp.setUserName(req.getParameter("selfUserName"));
+        tmp.setEmailAddress(new EmailAddress(req.getParameter("selfEmailAddr")));
+        tmp.setFullName(req.getParameter("selfFullName"));
 
         tmp.save();
 
@@ -66,7 +66,7 @@ public class AccountSettingsController extends HttpServlet
     {
         RequestDispatcher view = null;
         view = req.getRequestDispatcher("/AccountSettings.jsp");
-        Account user1 = null;
+        Account user1 = new Account();
         //For each cookie we find
         for (Cookie cook : req.getCookies())
         {
