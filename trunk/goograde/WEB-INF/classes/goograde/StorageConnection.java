@@ -63,10 +63,12 @@ public class StorageConnection
            
             stat = this.conn.createStatement();
             ResultSet rs = stat.executeQuery(in);
-                        
+                       
+            /*Fetching from the query and adding them to a listS */
             for (int idx = 0; rs.next(); idx++)
             {
-                toAdd = new ArrayList<Object>(Arrays.asList(rowProc.toArray(rs)));
+                toAdd = new ArrayList<Object>(Arrays.asList(
+                        rowProc.toArray(rs)));
                 ret.add(toAdd);
             }
 
@@ -79,13 +81,13 @@ public class StorageConnection
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
                     "An Error has occured while running a query. ", ex);
         }
-        finally
+        /*finally
         {
-            /*
+            
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
                     "Query Returned: " + ret.toString());
-             */ 
-        }
+             
+        }*/ 
            
         return ret;
     }
@@ -110,17 +112,20 @@ public class StorageConnection
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING, 
                     "SQL Update: " + in, ex);
         }
-        finally
+        /*finally
         {
-            /*
+            
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
                     "Update Query Returned: " + results + " rows updated.");
-             */ 
-        }
+              
+        }*/
 
         return results > 0;
     }
     
+    /**
+     * Close is used to close the connection to the database.
+     */
     public void close()
     {
         try
@@ -134,6 +139,11 @@ public class StorageConnection
         }
     }
 
+    /**
+     * getConn is a query method that returns the current Connection.
+     * 
+     * @return the current Connection in use
+     */
     public Connection getConn()
     {
         return this.conn;
