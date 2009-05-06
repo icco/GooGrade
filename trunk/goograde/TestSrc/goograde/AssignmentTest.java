@@ -139,14 +139,17 @@ public class AssignmentTest extends TestCase
     public void testGetGrades() throws Exception
     {
         System.out.println("getGrades");
-        Student stud = new Student(1);
-        Assignment instance = new Assignment();
-        instance.setAGrade(stud, 20.4F);
+        Student stud = new Student(3);
+        Assignment instance = new Assignment(2);
+        if(!instance.setAGrade(stud, 20.4F))
+        {
+            fail("setAGrade returns false");
+        }
         ArrayList<Grade> result = instance.getGrades();
         ArrayList<Grade> expResult = new ArrayList<Grade>();
         expResult.add(new Grade(instance, stud));
         expResult.get(0).gradeStudent(20.4F);
-        assertEquals(expResult, result);
+        assertEquals(expResult.get(expResult.size()-1).getGrade(), result.get(result.size()-1).getGrade());
     }
 
     /**

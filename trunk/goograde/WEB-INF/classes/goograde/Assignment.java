@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 /**
  * This class keeps information about Assignments
  *
- * @author bluGoo
+ * @author bluGoo, vgerdin//I deserve this for all the bugs
  * @version 0.42
  */
 public class Assignment implements java.io.Serializable
@@ -178,7 +178,7 @@ public class Assignment implements java.io.Serializable
     {
         /*Now fetch the grades from the grade table */
         String query = "SELECT accountId, grade, assignId ";
-        query += "FROM Grades WHERE assignId =" + id;
+        query += "FROM Grades WHERE assignId =" + this.getId();
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result2 = conn.query(query);
         conn.close();
@@ -347,18 +347,45 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setAGrade(Student aStudent, float newGrade)
     {
+        boolean ret = false;
+        boolean pass = false;
         ArrayList<Grade> grades = this.getGrades();
-
+        Grade toSet = new Grade(this, aStudent);
+        String query = "";
+        
         /*making sure to avoid nulls */
         if (grades == null)
         {
             grades = new ArrayList<Grade>();
         }
-
-        /*adds the new grade */
-        grades.add(new Grade(aStudent, new Float(newGrade), this));
-
-        return true;
+        //check for maches in the entire list
+        for(int indx = 0; indx<grades.size(); indx++)
+        {
+            //if grade is in there
+            if(toSet.equals(grades.get(indx)))
+            {
+                
+                query = "UPDATE Grades SET grade = " + newGrade;
+                query += " WHERE assignId = " + this.getId();
+                query += " AND accountId = " + aStudent.getId();
+                pass = true;
+                
+            }
+        }
+        //if we already set the query
+        if(!pass)
+        {
+            query = "INSERT INTO Grades (accountId, grade, assignId) ";
+            query += "VALUES (" + aStudent.getId() + "," + newGrade;
+            query += "," + this.getId() + ")";
+            
+        }
+        
+        StorageConnection conn = new StorageConnection();
+        ret = conn.updateQuery(query);
+        conn.close();
+        
+        return ret;
     }
 
     /**
@@ -684,6 +711,30 @@ public class Assignment implements java.io.Serializable
         ret += this.getMax() + ", ";
         ret += this.getCourseId();
 
+        return ret;
+    }
+    
+    /**
+     * verify one assignment is the same as another
+     * @param object object to compare with
+     * @return true if equal, false otherwise
+     */
+    @Override
+    public boolean equals(Object object)
+    {
+        boolean ret = false;
+        //object has to be an assignment
+        if(object instanceof Assignment)
+        {
+            Assignment assObject = (Assignment) object;
+            //we do not like null
+            if(this.getId() != null 
+                    && assObject != null 
+                    && assObject.getId() != null)
+            {
+                ret = this.getId().equals(assObject.getId());
+            }
+        }
         return ret;
     }
 }

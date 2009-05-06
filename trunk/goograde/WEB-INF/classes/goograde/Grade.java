@@ -90,7 +90,7 @@ public class Grade
      */
     public Assignment getAssignment()
     {
-        return assignment;
+        return this.assignment;
     }
 
     /**
@@ -194,7 +194,7 @@ public class Grade
         {
             Grade gradeObject = (Grade) object;
             /* Compare data */
-            if ((gradeObject.getStudent().equals(this.getStudent())) 
+            if ((gradeObject.getStudent().equals((Object) this.getStudent())) 
                     && (gradeObject.getAssignment().equals(this.getAssignment())))
             {
                 ret = true;

@@ -8,7 +8,7 @@ import java.util.logging.Logger;
  * This class keeps information about Students. It is an extension of Account. 
  * Students have files. 
  *
- * @author bluGoo
+ * @author bluGoo, vgerdin 
  * @version 0.42
  */
 public class Student extends Account
@@ -236,6 +236,27 @@ public class Student extends Account
             }
         }
 
+        return ret;
+    }
+    
+    /**
+     * verify one student is the same as another
+     * @param  object object to compare with
+     * @return true if equal, false otherwise
+     */
+    public boolean equals(Object object)
+    {
+        boolean ret = false;
+        //If the object is a Student
+        if(object instanceof Student)
+        {
+            Student stud = (Student) object;
+            //We do not like null
+            if(this.getId() != null && stud.getId() != null)
+            {
+                ret = this.getId().equals(stud.getId());
+            }
+        }
         return ret;
     }
 }
