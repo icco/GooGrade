@@ -1074,10 +1074,11 @@ public class Course implements java.io.Serializable
         catch (NumberFormatException nfe)
         {
             ret = false;
-
+/*
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE,
+                    Course.class.getName()).log(Level.WARNING,
                     string + " is not a valid section ");
+ */ 
         }
         return ret;
     }
@@ -1098,9 +1099,11 @@ public class Course implements java.io.Serializable
                 || string.length() > kTITLEMAXLEN)
         {
             ret = false;
+            /*
             Logger.getLogger(
-                    Course.class.getName()).log(Level.SEVERE,
+                    Course.class.getName()).log(Level.WARNING,
                     string + " is not a valid title");
+             */ 
         }
 
         return ret;
@@ -1121,9 +1124,11 @@ public class Course implements java.io.Serializable
                 || string.length() > kDEPARTMENTMAXLEN)
         {
             ret = false;
+            /*
             Logger.getLogger(
                     Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid department");
+             */ 
         }
 
         return ret;
@@ -1144,9 +1149,12 @@ public class Course implements java.io.Serializable
         catch (NumberFormatException nfe)
         {
             ret = false;
+            
+            /*
             Logger.getLogger(
                     Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid number");
+             */ 
         }
         return ret;
     }
@@ -1167,9 +1175,11 @@ public class Course implements java.io.Serializable
         {
             ret = false;
 
+            /*
             Logger.getLogger(
                     Course.class.getName()).log(Level.SEVERE,
                     string + " is not a valid section ");
+             */ 
         }
         return ret;
     }
