@@ -540,9 +540,29 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <copy-ear-war file="${file.reference.sqlite.jar}" propname="included.lib.file.reference.sqlite.jar.X"/>
         <basename file="${file.reference.commons-dbutils-1.1.jar}" property="included.lib.file.reference.commons-dbutils-1.1.jar"/>
         <copy-ear-war file="${file.reference.commons-dbutils-1.1.jar}" propname="included.lib.file.reference.commons-dbutils-1.1.jar.X"/>
+        <basename file="${file.reference.httpunit.jar}" property="included.lib.file.reference.httpunit.jar"/>
+        <copy-ear-war file="${file.reference.httpunit.jar}" propname="included.lib.file.reference.httpunit.jar.X"/>
+        <basename file="${file.reference.activation-1.1.jar}" property="included.lib.file.reference.activation-1.1.jar"/>
+        <copy-ear-war file="${file.reference.activation-1.1.jar}" propname="included.lib.file.reference.activation-1.1.jar.X"/>
+        <basename file="${file.reference.js-1.6R5.jar}" property="included.lib.file.reference.js-1.6R5.jar"/>
+        <copy-ear-war file="${file.reference.js-1.6R5.jar}" propname="included.lib.file.reference.js-1.6R5.jar.X"/>
+        <basename file="${file.reference.jtidy-4aug2000r7-dev.jar}" property="included.lib.file.reference.jtidy-4aug2000r7-dev.jar"/>
+        <copy-ear-war file="${file.reference.jtidy-4aug2000r7-dev.jar}" propname="included.lib.file.reference.jtidy-4aug2000r7-dev.jar.X"/>
+        <basename file="${file.reference.junit-3.8.1.jar}" property="included.lib.file.reference.junit-3.8.1.jar"/>
+        <copy-ear-war file="${file.reference.junit-3.8.1.jar}" propname="included.lib.file.reference.junit-3.8.1.jar.X"/>
+        <basename file="${file.reference.mail-1.4.jar}" property="included.lib.file.reference.mail-1.4.jar"/>
+        <copy-ear-war file="${file.reference.mail-1.4.jar}" propname="included.lib.file.reference.mail-1.4.jar.X"/>
+        <basename file="${file.reference.nekohtml-0.9.5.jar}" property="included.lib.file.reference.nekohtml-0.9.5.jar"/>
+        <copy-ear-war file="${file.reference.nekohtml-0.9.5.jar}" propname="included.lib.file.reference.nekohtml-0.9.5.jar.X"/>
+        <basename file="${file.reference.servlet-api-2.4.jar}" property="included.lib.file.reference.servlet-api-2.4.jar"/>
+        <copy-ear-war file="${file.reference.servlet-api-2.4.jar}" propname="included.lib.file.reference.servlet-api-2.4.jar.X"/>
+        <basename file="${file.reference.xercesImpl-2.6.1.jar}" property="included.lib.file.reference.xercesImpl-2.6.1.jar"/>
+        <copy-ear-war file="${file.reference.xercesImpl-2.6.1.jar}" propname="included.lib.file.reference.xercesImpl-2.6.1.jar.X"/>
+        <basename file="${file.reference.xmlParserAPIs-2.6.1.jar}" property="included.lib.file.reference.xmlParserAPIs-2.6.1.jar"/>
+        <copy-ear-war file="${file.reference.xmlParserAPIs-2.6.1.jar}" propname="included.lib.file.reference.xmlParserAPIs-2.6.1.jar.X"/>
         <mkdir dir="${build.web.dir}/META-INF"/>
         <manifest file="${build.web.dir}/META-INF/MANIFEST.MF" mode="update">
-            <attribute name="Class-Path" value="${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} ${included.lib.file.reference.servlet-api.jar} ${included.lib.libs.junit.classpath} ${included.lib.file.reference.sqlite.jar} ${included.lib.file.reference.commons-dbutils-1.1.jar} "/>
+            <attribute name="Class-Path" value="${included.lib.libs.jstl11.classpath.1.X} ${included.lib.libs.jstl11.classpath.2.X} ${included.lib.file.reference.servlet-api.jar} ${included.lib.libs.junit.classpath} ${included.lib.file.reference.sqlite.jar} ${included.lib.file.reference.commons-dbutils-1.1.jar} ${included.lib.file.reference.httpunit.jar} ${included.lib.file.reference.activation-1.1.jar} ${included.lib.file.reference.js-1.6R5.jar} ${included.lib.file.reference.jtidy-4aug2000r7-dev.jar} ${included.lib.file.reference.junit-3.8.1.jar} ${included.lib.file.reference.mail-1.4.jar} ${included.lib.file.reference.nekohtml-0.9.5.jar} ${included.lib.file.reference.servlet-api-2.4.jar} ${included.lib.file.reference.xercesImpl-2.6.1.jar} ${included.lib.file.reference.xmlParserAPIs-2.6.1.jar} "/>
         </manifest>
         <delete dir="${dist.ear.dir}/temp"/>
     </target>
@@ -553,6 +573,16 @@ or ant -Dj2ee.platform.classpath=&lt;server_classpath&gt; (where no properties f
         <copy file="${libs.junit.classpath}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${file.reference.sqlite.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
         <copy file="${file.reference.commons-dbutils-1.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.httpunit.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.activation-1.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.js-1.6R5.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.jtidy-4aug2000r7-dev.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.junit-3.8.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.mail-1.4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.nekohtml-0.9.5.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.servlet-api-2.4.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.xercesImpl-2.6.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
+        <copy file="${file.reference.xmlParserAPIs-2.6.1.jar}" todir="${build.web.dir}/WEB-INF/lib"/>
     </target>
     <target depends="init,compile,compile-jsps,-pre-dist,library-inclusion-in-manifest" name="do-ear-dist">
         <dirname file="${dist.ear.war}" property="dist.jar.dir"/>
