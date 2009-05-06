@@ -30,6 +30,7 @@ public class AccountSettingsController extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
+        //NOTE/TODO integer parse failure here.
         Course thiscourse = new Course(new Integer(req.getParameter("id")));
         String action = req.getParameter("action");
         String type = req.getParameter("type");
