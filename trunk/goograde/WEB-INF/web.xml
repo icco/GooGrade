@@ -37,7 +37,10 @@
         <servlet-name>accountcontroller</servlet-name>
         <servlet-class>goograde.AccountController</servlet-class>
     </servlet>
-    <servlet><servlet-name>accountsettingscontroller</servlet-name><servlet-class>goograde.AccountSettingsController</servlet-class></servlet>
+    <servlet>
+        <servlet-name>accountsettingscontroller</servlet-name>
+        <servlet-class>goograde.AccountSettingsController</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>studentassignmentcontroller</servlet-name>
         <servlet-class>goograde.StudentAssignmentController</servlet-class>
