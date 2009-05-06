@@ -82,7 +82,7 @@
                                                 <form action="<c:url value="course" />" method="post">
                                                     <input type="hidden" name="action" value="delete" />
                                                     <input type="hidden" name="courseRef" value="${course.id}" />
-                                                    <input type="submit" value="Delete">
+                                                    <input type="submit" value="Remove">
                                                 </form>
                                             </td>
                                         </td>
