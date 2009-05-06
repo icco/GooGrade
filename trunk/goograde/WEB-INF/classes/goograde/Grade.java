@@ -47,9 +47,15 @@ public class Grade
     {
         this.student = null;
         this.assignment = null;
-        this.grade = 3.14F;
+        this.grade = 0;
     }
 
+    /**
+     * Conttructor for Grade 
+     * @param stud The Student this grade belongs to
+     * @param aFloat the grade this student receives
+     * @param ass the assignment this grade is from.
+     */
     public Grade(Student stud, Float aFloat, Assignment ass)
     {
         this.student = stud;
@@ -135,7 +141,8 @@ public class Grade
     public boolean fetch()
     {
         /*Get the database at row ID */
-        String query = "SELECT accountId, grade FROM Grades WHERE assignment =" + assignment.getId();
+        String query = "SELECT accountId, " 
+                + "grade FROM Grades WHERE assignment =" + assignment.getId();
         StorageConnection conn = new StorageConnection();
         /* Proceed if result is positive */
         if (conn.query(query).size() > 0)
@@ -159,7 +166,9 @@ public class Grade
                 catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " + "Assignment  with id = " + this.assignment.getId(), ex);
+                            "SQL error occurred when trying to fetch " 
+                            + "Assignment  with id = " 
+                            + this.assignment.getId(), ex);
                 }
             }
         }
@@ -247,7 +256,8 @@ public class Grade
         int tid = (Integer) result.get(0).get(0) + 1;
 
         Grade temp = new Grade(sAssignment, sStudent);
-        query = "INSERT INTO Grades (id, accountId, assignId) VALUES (" + tid + sStudent.getId() + sAssignment.getId() + ")";
+        query = "INSERT INTO Grades (id, accountId, assignId) VALUES (" 
+                + tid + sStudent.getId() + sAssignment.getId() + ")";
         conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -262,7 +272,8 @@ public class Grade
      */
     public static void deleteGrade(Student sStudent, Assignment sAssignment)
     {
-        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId() + "assignId = " + sAssignment.getId();
+        String query = "DELETE FROM Grades WHERE accountId = " 
+                + sStudent.getId() + "assignId = " + sAssignment.getId();
         StorageConnection conn = new StorageConnection();
         conn.query(query);
         conn.close();
@@ -328,18 +339,26 @@ public class Grade
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
 
-        String query = "SELECT assignId FROM Grades WHERE id = " + this.getAssignment();
+        String query = "SELECT assignId FROM Grades WHERE id = " 
+                + this.getAssignment();
         ArrayList<ArrayList<Object>> result = conn.query(query);
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Grades (assignId, grade, accountId) " + "VALUES (\"" + ((Integer) this.getAssignment().getId()) + "\", \"" + this.getGrade() + "\",\"" + ((Integer) this.getStudent().getId()) + "\")";
+            query = "INSERT INTO Grades (assignId, grade, accountId) " 
+                    + "VALUES (\"" + ((Integer) this.getAssignment().getId()) 
+                    + "\", \"" + this.getGrade() + "\",\"" 
+                    + ((Integer) this.getStudent().getId()) + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Grades SET " + "assignId = \"" + ((Integer) this.getAssignment().getId()) + "\"," + "grade = \"" + this.getGrade() + "\"," + "accountId = \"" + ((Integer) this.getStudent().getId()) + "\"";
+            query = "UPDATE Grades SET " + "assignId = \"" 
+                    + ((Integer) this.getAssignment().getId()) 
+                    + "\"," + "grade = \"" + this.getGrade() + "\"," 
+                    + "accountId = \"" 
+                    + ((Integer) this.getStudent().getId()) + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();
