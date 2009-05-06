@@ -143,12 +143,13 @@ public class AssignmentTest extends TestCase
     public void testGetGrades() throws Exception
     {
         System.out.println("getGrades");
+        Student stud = new Student(1);
         Assignment instance = new Assignment();
-        ArrayList<Grade> expResult = new ArrayList<Grade>();
-        instance.setAGrade(new Student(42), 20.4F);
-        expResult.add(new Grade());
-        expResult.get(0).gradeStudent(20.4F);
+        instance.setAGrade(stud, 20.4F);
         ArrayList<Grade> result = instance.getGrades();
+        ArrayList<Grade> expResult = new ArrayList<Grade>();
+        expResult.add(new Grade(instance, stud));
+        expResult.get(0).gradeStudent(20.4F);
         assertEquals(expResult, result);
     }
 
@@ -249,7 +250,7 @@ public class AssignmentTest extends TestCase
     public void testSetAGrade() throws Exception
     {
         System.out.println("setAGrade");
-        Student aStudent = new Student(42);
+        Student aStudent = new Student(1);
         float newGrade = 40.0F;
         Assignment instance = new Assignment();
         boolean expResult = true;
@@ -263,7 +264,7 @@ public class AssignmentTest extends TestCase
     public void testFetch()
     {
         System.out.println("fetch");
-        Assignment instance = new Assignment();
+        Assignment instance = new Assignment(1);
         boolean expResult = true;
         boolean result = instance.fetch();
         assertEquals(expResult, result);

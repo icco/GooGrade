@@ -181,23 +181,26 @@ public class Grade
     }
 
     /**
-     * verify one grade equals another
+     * verify one grade is the same as another
      * @param object object to compare with
      * @return true if equal, false otherwise
      */
     @Override
     public boolean equals(Object object)
     {
+        boolean ret = false;
         /* Must be a grade to compare with */
         if (object instanceof Grade)
         {
+            Grade gradeObject = (Grade) object;
             /* Compare data */
-            if (((Grade) object).getGrade() == this.getGrade())
+            if ((gradeObject.getStudent().equals(this.getStudent())) 
+                    && (gradeObject.getAssignment().equals(this.getAssignment())))
             {
-                return true;
+                ret = true;
             }
         }
-        return false;
+        return ret;
     }
 
     /**
