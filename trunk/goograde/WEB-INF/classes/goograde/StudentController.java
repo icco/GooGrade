@@ -1,11 +1,9 @@
 package goograde;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,12 +22,9 @@ public class StudentController extends HttpServlet
      * method called from form tag with method="post"
      * @param req request
      * @param resp response
-     * @throws javax.servlet.ServletException on error
-     * @throws java.io.IOException on error
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException
     {
 
         String action = req.getParameter("action");
@@ -65,6 +60,11 @@ public class StudentController extends HttpServlet
         }
     }
 
+    /**
+     * used to show a view
+     * @param req HttpServletRequest
+     * @param resp HttpServletResponse
+     */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
