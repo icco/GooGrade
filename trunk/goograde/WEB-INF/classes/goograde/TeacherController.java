@@ -42,19 +42,25 @@ public class TeacherController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
         
+        /*Setting the attributes accessible from teh jsp */
         req.setAttribute("user", (Account) (user1));
         req.setAttribute("teach", (Teacher) (user1));
-        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        req.setAttribute("teachCourseList", (ArrayList<Course>)
+                (Teacher.allTeachers().get(0).getCourses()));
 
+        /*Determines the action asked for and performs it */
         if (action != null)
         {
+            /*Delete this Teacher if necessary */
             if (action.equals("delete"))
             {
                 this.deleteTeacher(new Integer(req.getParameter("accountRef")));
             }
+            /*If user wishes to add, take infor from jsp and create a new Teacher*/
             else if (action.equals("add"))
             {
                 this.addTeacher(req.getParameter("newUserName"),
@@ -62,14 +68,15 @@ public class TeacherController extends HttpServlet
                         req.getParameter("newEmailAddr"));
             }
         }
-
+        /*Forward the view to viewer */
         try
         {
             view.forward(req, resp);
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Problem loading page", ex);
+            Logger.getLogger(AccountController.class.getName()).
+                    log(Level.SEVERE, "Problem loading page", ex);
         }
 
     }
@@ -87,9 +94,12 @@ public class TeacherController extends HttpServlet
 
         view = req.getRequestDispatcher("/teacher/index.jsp");
 
-        req.setAttribute("teacherList", (ArrayList<Teacher>) (Teacher.allTeachers()));
-        req.setAttribute("teacherAssistantList", (ArrayList<TeacherAssistant>) (TeacherAssistant.allTeacherAssistants()));
-        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        req.setAttribute("teacherList", (ArrayList<Teacher>) 
+                (Teacher.allTeachers()));
+        req.setAttribute("teacherAssistantList", (ArrayList<TeacherAssistant>) 
+                (TeacherAssistant.allTeacherAssistants()));
+        req.setAttribute("teachCourseList", (ArrayList<Course>) 
+                (Teacher.allTeachers().get(0).getCourses()));
 
         try
         {
@@ -97,7 +107,8 @@ public class TeacherController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE, "Problem loading page", ex);
+            Logger.getLogger(AccountController.class.getName()).
+                    log(Level.SEVERE, "Problem loading page", ex);
         }
     }
 
