@@ -57,6 +57,7 @@ public class Announcement implements java.io.Serializable
 
     /**
      * Sets the body of the Announcement.
+     * @param newBody a new sexy body for our announcement
      * @return false if error. True if successful
      */
     public boolean setBody(String newBody)
@@ -76,6 +77,7 @@ public class Announcement implements java.io.Serializable
 
     /**
      * sets the title of the announcement.
+     * @param newTitle String we want as a title
      * @return false if error. True if successful
      */
     public boolean setTitle(String newTitle)
