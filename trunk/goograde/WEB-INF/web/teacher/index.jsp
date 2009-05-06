@@ -27,7 +27,7 @@
                 </strong>
             </p>
             
-            <form action="<c:url value="teacher/" />" method="post">
+            <form action="<c:url value="/teacher" />" method="post">
                 
                 <ul style="list-style: none">
                     <c:forEach var="teacher" items="${teacherList}">

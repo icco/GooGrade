@@ -18,8 +18,15 @@
         
         <div id="wrap">
             
+            <%
+            Cookie killMyCookie = new Cookie("userid", null);
+            killMyCookie.setMaxAge(0);
+            killMyCookie.setPath("/");
+            response.addCookie(killMyCookie);
+            %>
             
             
+                        
             <div id="index-content">
                 <div class="cornerBox">
                     <div class="corner TL"></div>
@@ -38,11 +45,11 @@
                                 <div class="corner-blue BR"></div>
                                 <div class="cornerBoxInner-blue">    
                                     <ul class="iconlist">
-
+                                        
                                         <li class="student">
-                                            <h3><a href="student">Student's Page</a></h3>
+                                            <h3><a href="student/student">Student's Page</a></h3>
                                         </li>
-  
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -55,12 +62,12 @@
                                     
                                     <ul class="iconlist">
                                         <li class="teacher">
-                                            <h3><a href="teacher">Teacher's Page</a></h3>
+                                            <h3><a href="teacher/index">Teacher's Page</a></h3>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
-                              <div class="cornerBox-blue" style="position: relative; top: 20px;">
+                            <div class="cornerBox-blue" style="position: relative; top: 20px;">
                                 <div class="corner-blue TL"></div>
                                 <div class="corner-blue TR"></div>
                                 <div class="corner-blue BL"></div>
