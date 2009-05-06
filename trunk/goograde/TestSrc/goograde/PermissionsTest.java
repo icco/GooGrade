@@ -247,19 +247,21 @@ public class PermissionsTest extends TestCase
         boolean manageUserPermit = true;
         Permissions instance = new Permissions();
         boolean expResult = true;
+        
         boolean result = instance.setSendEmail(pSendEmail, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isSendEmail());
+        assertEquals(false, instance.isSendEmail());
 
         manageUserPermit = false;
         expResult = false;
         result = instance.setSendEmail(pSendEmail, manageUserPermit);
         assertEquals(expResult, result);
-        assertEquals(true, instance.isSendEmail());
+        assertEquals(false, instance.isSendEmail());
 
         manageUserPermit = true;
+        pSendEmail = true;
         result = instance.setSendEmail(pSendEmail, manageUserPermit);
-        assertEquals(false, instance.isSendEmail());
+        assertEquals(true, instance.isSendEmail());
 
     }
 
