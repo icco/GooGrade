@@ -1,7 +1,6 @@
 package goograde;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -43,7 +42,9 @@ public class AccountSettingsController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AccountSettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    AccountSettingsController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
         tmp.setUserName(req.getParameter("newUserName"));
         tmp.setEmailAddress(new EmailAddress(req.getParameter("newEmailAddr")));
@@ -66,9 +67,10 @@ public class AccountSettingsController extends HttpServlet
         RequestDispatcher view = null;
         view = req.getRequestDispatcher("/AccountSettings.jsp");
         Account user1 = null;
-
+        //For each cookie we find
         for (Cookie cook : req.getCookies())
         {
+            //We want the cookie named "userid"
             if (cook.getName().equals("userid"))
             {
                 user1.setId(new Integer(cook.getValue()));
@@ -84,11 +86,15 @@ public class AccountSettingsController extends HttpServlet
         }
         catch (ServletException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    TeacherController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
         catch (IOException ex)
         {
-            Logger.getLogger(TeacherController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    TeacherController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
     }
 
@@ -125,7 +131,9 @@ public class AccountSettingsController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AccountSettingsController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    AccountSettingsController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
         temp.delete();
     }
