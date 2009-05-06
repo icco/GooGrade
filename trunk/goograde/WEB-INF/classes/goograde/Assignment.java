@@ -177,7 +177,8 @@ public class Assignment implements java.io.Serializable
     public ArrayList<Grade> getGrades()
     {
         /*Now fetch the grades from the grade table */
-        String query = "SELECT accountId, grade, assignId " + "FROM Grades WHERE assignId =" + id;
+        String query = "SELECT accountId, grade, assignId ";
+        query += "FROM Grades WHERE assignId =" + id;
         StorageConnection conn = new StorageConnection();
         ArrayList<ArrayList<Object>> result2 = conn.query(query);
         conn.close();
@@ -191,7 +192,8 @@ public class Assignment implements java.io.Serializable
             for (int count = 0; count < result2.size(); count++)
             {
                 int index = 0;
-                grades.add(new Grade(new Student((Integer) result2.get(count).get(index++)),
+                grades.add(new Grade(
+                        new Student((Integer) result2.get(count).get(index++)),
                         new Float((Double) result2.get(count).get(index++)),
                         new Assignment((Integer) result2.get(count).get(index))));
             }
@@ -199,9 +201,11 @@ public class Assignment implements java.io.Serializable
         }
         catch (Exception ex)
         {
+            String msg = "SQL error occurred when trying to fetch Grades ";
+            msg += "with assignId = " + this.id.toString();
             /*table insert failed */
             Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                    "SQL error occurred when trying to fetch Grades" + " with assignId = " + this.id.toString(), ex);
+                    msg, ex);
         }
 
 
@@ -386,7 +390,10 @@ public class Assignment implements java.io.Serializable
     public boolean fetch()
     {
         /*Get the database at row ID */
-        String query = "SELECT id, aTotal, aName, " + "aDueDate, aType, aAverage, aMax, " + "aMin, courseId FROM Assignments WHERE id =" + this.getId();
+        String query = "SELECT id, aTotal, aName, ";
+        query += "aDueDate, aType, aAverage, aMax, ";
+        query += "aMin, courseId FROM Assignments WHERE id = ";
+        query += this.getId();
         boolean ret = false;
         StorageConnection conn = new StorageConnection();
 
@@ -399,27 +406,30 @@ public class Assignment implements java.io.Serializable
             /* No results from the query means an unsuccessful fetch */
             if (result.size() > 0)
             {
+                int indx = 1;
                 try
                 {
                     //set varaibles to values loaded from database
-                    total = (Integer) result.get(1);
-                    name = (String) result.get(2);
+                    total = (Integer) result.get(indx++);
+                    name = (String) result.get(indx++);
 
                     String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
                     SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
-                    Date newDate = format.parse((String) result.get(3));
+                    Date newDate = format.parse((String) result.get(indx++));
                     dueDate = newDate;
-                    this.setType((String) result.get(4));
-                    average = new Float((Double) result.get(5));
-                    max = new Float((Double) result.get(6));
-                    min = new Float((Double) result.get(7));
-                    this.setCourseId((Integer) result.get(8));
+                    this.setType((String) result.get(indx++));
+                    average = new Float((Double) result.get(indx++));
+                    max = new Float((Double) result.get(indx++));
+                    min = new Float((Double) result.get(indx++));
+                    this.setCourseId((Integer) result.get(indx++));
                     ret = true;
                 }
                 catch (Exception ex)
                 {
+                    String msg = "SQL error occurred when trying to fetch ";
+                    msg += "Assignment with id = " + this.id.toString();
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " + "Assignment with id = " + this.id.toString(), ex);
+                             msg, ex);
                 }
             }
         }
@@ -503,7 +513,7 @@ public class Assignment implements java.io.Serializable
         temp.save();
     }
 
-    /**
+    /* <REMOVED * TO AVOID CONFUSION WITH JAVADOCS
      * This has a lot of parameters. Live with it.
      * 
      * @param type to change
@@ -515,49 +525,50 @@ public class Assignment implements java.io.Serializable
      * @param total to change
      * @param pid to change
      */
+    /* REMOVED AS IT IS UNUSED AND FAILS STYLE, NEEDS FIXING BEFORE IMPELENTING
     private static void modifyAssignment(String type, float max, float min,
             float average, Date dueDate, String name, Integer total, int pid)
     {
 
         Assignment temp = new Assignment(pid);
 
-        /* Validate data */
+        //Validate data
         if (type != null)
         {
             temp.setType(type);
         }
-        /* Validate data */
+        /* Validate data
         if (max >= 0)
         {
             temp.setMax(max);
         }
-        /* Validate data */
+        /* Validate data
         if (min >= 0)
         {
             temp.setMin(min);
         }
-        /* Validate data */
+        /* Validate data
         if (average >= 0)
         {
             temp.setAvg(average);
         }
-        /* Validate data */
+        /* Validate data
         if (dueDate != null)
         {
             temp.setDueDate(dueDate);
         }
-        /* Validate data */
+        /* Validate data 
         if (name != null)
         {
             temp.setName(name);
         }
-        /* Validate data */
+        /* Validate data 
         if (total != null)
         {
             temp.setTotal(total);
         }
     }
-
+*/
     /**
      * save, stores current instance in database
      * if id already exists, update
@@ -590,7 +601,12 @@ public class Assignment implements java.io.Serializable
         boolean ret = false;
 
 
-        String query = "INSERT INTO Assignments (aType, aMax, aMin, " + "aAverage, aDueDate, aName, aTotal, courseId)" + " VALUES (\"" + this.getType() + "\"," + this.getMax() + "," + this.getMin() + "," + this.getAvg() + ",\"" + this.getDueDate() + "\",\"" + this.getName() + "\"," + this.getTotal() + ",\"" + this.getCourseId() + "\")";
+        String query = "INSERT INTO Assignments (aType, aMax, aMin, ";
+        query += "aAverage, aDueDate, aName, aTotal, courseId)";
+        query += " VALUES (\"" + this.getType() + "\"," + this.getMax();
+        query += "," + this.getMin() + "," + this.getAvg() + ",\"";
+        query += this.getDueDate() + "\",\"" + this.getName() + "\",";
+        query += this.getTotal() + ",\"" + this.getCourseId() + "\")";
 
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
@@ -624,19 +640,36 @@ public class Assignment implements java.io.Serializable
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Assignments (id, aType, aMax, aMin, " + "aAverage, aDueDate, aName, aTotal, courseId" + "VALUES (\"" + this.getId() + "\",\"" + this.getType() + "\",\"" + this.getMax() + "\",\"" + this.getMin() + "\",\"" + this.getAvg() + "\",\"" + this.getDueDate() + "\",\"" + this.getName() + "\",\"" + this.getTotal() + "\",\"" + this.getCourseId() + "\")";
+            query = "INSERT INTO Assignments (id, aType, aMax, aMin, ";
+            query += "aAverage, aDueDate, aName, aTotal, courseId";
+            query += "VALUES (\"" + this.getId() + "\",\"" + this.getType();
+            query += "\",\"" + this.getMax() + "\",\"" + this.getMin();
+            query += "\",\"" + this.getAvg() + "\",\"" + this.getDueDate();
+            query += "\",\"" + this.getName() + "\",\"" + this.getTotal();
+            query += "\",\"" + this.getCourseId() + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Assignments SET " + "aType = \"" + this.getType() + "\"," + "aMax = \"" + this.getMax() + "\"," + "aMin = \"" + this.getMin() + "\"," + "aAverage = \"" + this.getAvg() + "\"," + "aDueDate = \"" + this.getDueDate() + "\"," + "aName = \"" + this.getName() + "\"," + "aTotal = \"" + this.getTotal() + "\" " + "WHERE id = \"" + this.getId() + "\"";
+            query = "UPDATE Assignments SET ";
+            query += "aType = \"" + this.getType() + "\"," + "aMax = \"";
+            query += this.getMax() + "\"," + "aMin = \"" + this.getMin();
+            query += "\"," + "aAverage = \"" + this.getAvg() + "\",";
+            query += "aDueDate = \"" + this.getDueDate() + "\"," + "aName = \"";
+            query += this.getName() + "\"," + "aTotal = \"" + this.getTotal();
+            query += "\" " + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         conn.close();
         return ret;
     }
 
+    /**
+     * standard toString(), returns a customized string of the assignment
+     * @return Assignment in string format
+     */
+    @Override
     public String toString()
     {
         String ret = new String();
