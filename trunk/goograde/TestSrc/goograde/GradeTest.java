@@ -1,6 +1,8 @@
 package goograde;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -41,6 +43,7 @@ public class GradeTest extends TestCase {
     {
         System.out.println("getGrade");
         Grade instance = new Grade();
+        instance.gradeStudent(3.14F);
         Float expResult = 3.14F;
         Float result = instance.getGrade();
         assertEquals(expResult, result);
@@ -52,9 +55,20 @@ public class GradeTest extends TestCase {
     public void testGetAssignment()
     {
         System.out.println("getAssignment");
-        Grade instance = new Grade();
+        Grade instance;
         Assignment expResult = null;
-        Assignment result = instance.getAssignment();
+        Assignment result = null;
+        try
+        {
+            instance = new Grade(1, 1);
+            expResult = new Assignment(1);
+            result = instance.getAssignment();
+        }
+        catch (Exception ex)
+        {
+            fail("Got an error thrown" + ex);
+        }
+        
         assertEquals(expResult, result);
     }
 
@@ -103,6 +117,7 @@ public class GradeTest extends TestCase {
     {
         System.out.println("toString");
         Grade instance = new Grade();
+        instance.gradeStudent(3.14F);
         String expResult = "3.14";
         String result = instance.toString();
         assertEquals(expResult, result);
@@ -134,13 +149,22 @@ public class GradeTest extends TestCase {
     public void testEquals()
     {
         System.out.println("equals");
-        Object object = null;
-        Grade instance = new Grade();
-        boolean expResult = false;
-        boolean result = instance.equals(object);
+        Grade instance = null;
+        Grade test = null;
+        boolean expResult = true;
+        boolean result = false;
+        try
+        {
+            instance = new Grade(1, 1);
+            test = new Grade(1,1);
+            result = instance.equals(test);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, null, ex);
+        }
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+
     }
 
     /**
@@ -195,6 +219,31 @@ public class GradeTest extends TestCase {
         // assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+    
+    /**
+     * Test of gradeStudent method, of class Grade.
+     */
+    public void testVGMagic()
+    {
+        System.out.println("Magic!!!");
+        Grade instance = null;
+        Grade instance2 = null;
+        try
+        {
+            instance = new Grade(2,3);
+            instance2 = new Grade(3,3);
+        }
+        catch (Exception ex)
+        {
+            fail("Invalid student ID " + ex);
+        }
+        float expResult1 = 47.2F;
+        float result1 = instance.getGrade();
+        assertEquals(expResult1, result1);
+        float expResult2 = 0F;
+        float result2 = instance2.getGrade();
+        assertEquals(expResult2, result2);
     }
 
 }

@@ -38,6 +38,10 @@ public class Grade implements Comparable<Grade>
     {
         this.student = new Student(aThis);
         this.assignment = new Assignment(ass);
+        
+        if(!this.fetch()){
+            gradeStudent(0);
+        }
     }
 
     /**
@@ -140,30 +144,30 @@ public class Grade implements Comparable<Grade>
      */
     public boolean fetch()
     {
+        boolean ret = false;
         /*Get the database at row ID */
-        String query = "SELECT accountId, " 
-                + "grade FROM Grades WHERE assignment =" + assignment.getId();
-        StorageConnection conn = new StorageConnection();
-        boolean ret = true;
+        String query = "SELECT grade FROM Grades ";
+        query += "WHERE assignId =" + this.getAssignment().getId();
+        query += " AND accountId =" + this.getStudent().getId();
         
-        /* Proceed if result is positive */
-        if (conn.query(query).size() > 0)
-        {
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> result = conn.query(query);
 
-            ArrayList<Object> result = conn.query(query).get(0);
+        /* Proceed if result is positive */
+        if (result.size() > 0)
+        {
+            ArrayList<Object> row = result.get(0);
             conn.close();
             /* No results from the query means an unsuccessful fetch */
-            if (result.size() < 1)
-            {
-                ret = false;
-            }
-            else
+            if (row.size() > 0)
             {
                 try
                 {
+                    int indx = 0;
                     //set varaibles to values loaded from database,
-                    student = (Student) result.get(0);
-                    grade = (Float) result.get(1);
+                    //this.setStudent(new Student((Integer) row.get(indx++)));
+                    this.gradeStudent(new Float(row.get(indx++).toString()));
+                    ret = true;
                 }
                 catch (Exception ex)
                 {
@@ -174,11 +178,6 @@ public class Grade implements Comparable<Grade>
                 }
             }
         }
-        else
-        {
-            ret = false;
-        }
-
         return ret;
     }
 
@@ -223,8 +222,8 @@ public class Grade implements Comparable<Grade>
             Grade grade = null;
             try
             {
-                grade = new Grade((Assignment) result.get(index).get(0),
-                        (Student) result.get(index).get(1));
+                grade = new Grade((Integer)result.get(index).get(0),
+                        (Integer)result.get(index).get(1));
             }
             catch (Exception ex)
             {
