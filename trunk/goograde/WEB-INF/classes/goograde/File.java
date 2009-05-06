@@ -21,8 +21,11 @@ public class File implements java.io.Serializable
 
     /**
      * We need a constructor
+     * @param newDate the date
+     * @param newOwner the name of the new owner
+     * @param newFileName the name of the filename that references the file.
      */
-    public File (Date newDate, String newOwner, String newFileName)
+    public File(Date newDate, String newOwner, String newFileName)
     {
         this.creationDate = newDate;
         this.owner = newOwner;
