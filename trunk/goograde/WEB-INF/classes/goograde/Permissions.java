@@ -65,7 +65,7 @@ public class Permissions implements java.io.Serializable
                  + manageMetric +"\", \"" + manageCourse + "\", \"" + uploadFile 
                  +"\", \"" + sendEmail +"\", \"" + viewOwnGrade +"\")";
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        conn.updateQuery(query);
         conn.close(); 
         
     }
