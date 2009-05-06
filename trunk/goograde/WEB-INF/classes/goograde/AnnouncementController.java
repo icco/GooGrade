@@ -13,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 public class AnnouncementController extends HttpServlet
 {
 
+    /**
+     * doPost handles an HTTP POST request
+     * @param req the request
+     * @param resp the response
+     */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
