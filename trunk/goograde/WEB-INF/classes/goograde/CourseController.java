@@ -106,7 +106,7 @@ public class CourseController extends HttpServlet
     }
 
     /**
-     * 
+     * called to display a page
      * @param req request
      * @param resp response
      */
@@ -131,6 +131,11 @@ public class CourseController extends HttpServlet
         }
     }
 
+    /**
+     * controller function to delete a Course
+     * @param courseRef id of course to be deleted
+     * @return true if no errors
+     */
     private boolean deleteCourse(String courseRef)
     {
         boolean pass = true;
@@ -149,6 +154,14 @@ public class CourseController extends HttpServlet
         return ret;
     }
 
+    /**
+     * controller function to add a course 
+     * @param title Course Title
+     * @param department Course Department
+     * @param number Course Number
+     * @param section Course Section
+     * @return true if no errors
+     */
     private boolean addCourse(String title, String department,
             String number, String section)
     {
@@ -181,6 +194,15 @@ public class CourseController extends HttpServlet
         return ret;
     }
 
+    /**
+     * controller function to alter a course
+     * @param courseRef id of course
+     * @param title new title
+     * @param department new department
+     * @param number new number
+     * @param section new section
+     * @return true if no errors
+     */
     private boolean editCourse(String courseRef, String title, String department, String number, String section)
     {
         boolean pass = true;

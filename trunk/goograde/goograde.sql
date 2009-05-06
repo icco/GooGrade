@@ -59,7 +59,10 @@ CREATE TABLE Assignments (
                 aAverage FLOAT, 
                 aMax FLOAT, 
                 aMin FLOAT,
-                courseId INTEGER
+                courseId INTEGER,
+
+                CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES
+                Courses (id) ON DELETE CASCADE
 );
 
 /* 
