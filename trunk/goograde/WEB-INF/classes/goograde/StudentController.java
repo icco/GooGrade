@@ -45,12 +45,14 @@ public class StudentController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(StudentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentController.class.getName()).
+                    log(Level.SEVERE, null, ex);
         }
 
         req.setAttribute("user", (Account) (user1));
         req.setAttribute("stud", (Student) (user1));
-        req.setAttribute("enrolledCourseList", (ArrayList<Course>) (user1.getEnrolled()));
+        req.setAttribute("enrolledCourseList", (ArrayList<Course>) 
+                (user1.getEnrolled()));
 
         try
         {
@@ -58,8 +60,8 @@ public class StudentController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE,
-                    "Problem loading page", ex);
+            Logger.getLogger(AccountController.class.getName()).
+                    log(Level.SEVERE, "Problem loading page", ex);
         }
     }
 
@@ -70,7 +72,8 @@ public class StudentController extends HttpServlet
 
         view = req.getRequestDispatcher("/student/index.jsp");
 
-        req.setAttribute("studentList", (ArrayList<Student>) (Student.allStudents()));
+        req.setAttribute("studentList", (ArrayList<Student>)
+                (Student.allStudents()));
 
         try
         {
@@ -78,8 +81,8 @@ public class StudentController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(AccountController.class.getName()).log(Level.SEVERE,
-                    "Problem loading page", ex);
+            Logger.getLogger(AccountController.class.getName()).
+                    log(Level.SEVERE, "Problem loading page", ex);
         }
     }
 }
