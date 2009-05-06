@@ -30,34 +30,40 @@
                         <h3>Manage Grades</h3>
                         
                         <div id="data">
-                            <table>
-                                <th>
-                                    
-                                </th>
-                                <c:forEach var="assignment" items="${assArray}">
+                            <form action="<c:url value="grades" />" method="post">
+                                
+                                <table>
                                     <th>
-                                        ${assignment.name}
+                                        
                                     </th>
-                                </c:forEach>
-                                <c:forEach var="stu" items="${stuArray}">
-                                    <tr class="color">
-                                        <td>
-                                            ${stu.fullName}
-                                        </td>
-                                        <c:forEach var="assignment" items="${assArray}">
-                                            <c:forEach var="grade" items="${gradeList}">
-                                                <c:if test="${(grade.student.id == stu.id) && (grade.assignment.id == assignment.id)}">
-                                                    <td>
-                                                        <input type="text" name="${stu.id}@${assignment.id}" value="${grade.grade}" size="4" maxlength="5" />
-                                                        /${assignment.total}
-                                                    </td>
-                                                </c:if>
+                                    <c:forEach var="assignment" items="${assArray}">
+                                        <th>
+                                            ${assignment.name}
+                                        </th>
+                                    </c:forEach>
+                                    <c:forEach var="stu" items="${stuArray}">
+                                        <tr class="color">
+                                            <td>
+                                                ${stu.fullName}
+                                            </td>
+                                            <c:forEach var="assignment" items="${assArray}">
+                                                <c:forEach var="grade" items="${gradeList}">
+                                                    <c:if test="${(grade.student.id == stu.id) && (grade.assignment.id == assignment.id)}">
+                                                        <td>
+                                                            <input type="text" name="${assignment.id}@${stu.id}" value="${grade.grade}" size="4" maxlength="5" />
+                                                            /${assignment.total}
+                                                        </td>
+                                                    </c:if>
+                                                </c:forEach>
                                             </c:forEach>
-                                        </c:forEach>
-                                    </tr>
-                                </c:forEach>
-                            </table>
-                            <input type="submit" value="Grade" />
+                                        </tr>
+                                    </c:forEach>
+                                </table>
+                                <input type="hidden" name="id" value="${id}" />
+                                <input type="hidden" name="currentCourse" value="${currentCourse}"/>
+                                
+                                <input type="submit" value="Grade" />
+                            </form>
                             
                         </div>
                     </div>

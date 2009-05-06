@@ -84,6 +84,26 @@ public class GradeController extends HttpServlet
         return view;
     }
 
+    private HttpServletRequest addGrades(HttpServletRequest req, Course currentCourse)
+    {
+        ArrayList<Assignment> asslist = currentCourse.getAssignments();
+        ArrayList<Student> stulist = currentCourse.getStudents();
+        
+        for(Assignment ass : asslist)
+        {
+            for(Student stu : stulist)
+            {
+                Float grade = new Float((String) req.getAttribute(ass.getId() + "@" + stu.getId()));
+                if(grade > 0.0f)
+                {
+                    Grade.addGrade(stu, ass, grade);
+                }
+            }
+            
+        }
+        
+        return req;
+    }
     /**
      * doPost performs actions
      * 
@@ -98,12 +118,15 @@ public class GradeController extends HttpServlet
         Account user1 = new Account();
         Integer courseId = new Integer((String) req.getAttribute("id"));
         Course crse = new Course(courseId);
+        
 
         user1 = getCookie(user1, req);
 
         // Are we a student or a teacher
         if (user1.isTeacher() || user1.isTeacherAssistant())
         {
+            req.setAttribute("currentCourse", crse);
+            req.setAttribute("id", (String) req.getParameter("id"));
             view = teacherSet(req, user1, courseId, crse);
         } 
         else // Is a student
@@ -117,7 +140,7 @@ public class GradeController extends HttpServlet
                         (ArrayList<Course>) (user2.getEnrolled()));
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
-                req.setAttribute("id", courseId);
+                req.setAttribute("id", (String) req.getParameter("id"));
             } 
             catch (Exception ex)
             {
@@ -208,7 +231,7 @@ public class GradeController extends HttpServlet
                         (ArrayList<Course>) (user2.getEnrolled()));
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
-                req.setAttribute("id", courseId);
+                req.setAttribute("id", (String) req.getParameter("id"));
             } 
             catch (Exception ex)
             {

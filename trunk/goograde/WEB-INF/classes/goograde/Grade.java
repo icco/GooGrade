@@ -57,7 +57,7 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * Conttructor for Grade 
+     * Constructor for Grade 
      * @param stud The Student this grade belongs to
      * @param aFloat the grade this student receives
      * @param ass the assignment this grade is from.
