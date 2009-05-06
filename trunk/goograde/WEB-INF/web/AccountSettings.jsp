@@ -21,6 +21,7 @@ I am using an iFrame (2nd to last demo)
     </head>
     <link rel="stylesheet" href="styles/popups.css" type="text/css"/>
     <body>
+        <h2>Account Settings</h2>
         <table border="1">
             <thead>
                 <tr>
@@ -43,13 +44,14 @@ I am using an iFrame (2nd to last demo)
                     
                 </tr>
             </tbody>
-            
         </table>
+        
+        <h3>Edit Account</h3>
         <form action="<c:url value="/settings" />" method="post">
             <td><input type="hidden" name="action" value="add" /></td>
-            <td><input name="newUserName" type="text" /></td>
-            <td><input name="newEmailAddr" type="text" /></td>
-            <td><input name="newFullName" type="text" /></td>
+            <td>Login Name:<input name="selfUserName" type="text" /></td>
+            <td>Email:<input name="selfEmailAddr" type="text" /></td>
+            <td>Full Name:<input name="selfFullName" type="text" /></td>
             <tr>
                 <td><input type="submit" value="Enter" /></td>
             </tr>
