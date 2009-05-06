@@ -946,25 +946,31 @@ public class Course implements java.io.Serializable
     {
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
+        ArrayList<ArrayList<Object>> result; 
 
         String query = "INSERT INTO Courses (title, department, number, section) ";
         query += "VALUES (\"" + this.getTitle() + "\",\"" + this.getDepartment();
         query += "\",\"" + this.getNumber() + "\",\"" + this.getSection() + "\")";
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
-        if (!(ret))
+        if ((ret))
         {
-            return ret;
+            query = "SELECT max(id) FROM Courses";
+            result = conn.query(query);
+            conn.close();
+            if (result.isEmpty())
+            {
+                ret = false;
+            }
+            else
+            {
+                ret = this.setId((Integer) result.get(0).get(0));
+            }
         }
-        query = "SELECT max(id) FROM Courses";
-        ArrayList<ArrayList<Object>> result = conn.query(query);
-        conn.close();
+        
         /*if result is empty so is Courses*/
-        if (result.isEmpty())
-        {
-            return false;
-        }
-        ret = this.setId((Integer) result.get(0).get(0));
+       
+        
         return ret;
     }
 
