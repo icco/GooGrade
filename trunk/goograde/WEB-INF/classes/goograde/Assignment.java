@@ -395,6 +395,7 @@ public class Assignment implements java.io.Serializable
      */
     public boolean setId(int newId)
     {
+        boolean ret = true;
         /* Only good data will be set */
         if (newId > 0)
         {
@@ -402,9 +403,9 @@ public class Assignment implements java.io.Serializable
         }
         else
         {
-            return false;
+            ret = false;
         }
-        return true;
+        return ret;
     }
 
     /**
