@@ -323,11 +323,7 @@ public class Account implements java.io.Serializable
     public boolean refresh()
     {
         /* Account validity is checked before a fetch */
-        if (this.getId() != null)
-        {
-            return this.fetch();
-        }
-        return false;
+        return (this.getId() != null) && this.fetch(); 
     }
 
     /**
