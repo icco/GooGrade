@@ -958,6 +958,7 @@ public class Course implements java.io.Serializable
             query = "SELECT max(id) FROM Courses";
             result = conn.query(query);
             conn.close();
+            /* An empty query results in a negative result */
             if (result.isEmpty())
             {
                 ret = false;

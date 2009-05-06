@@ -170,10 +170,12 @@ public class Grade implements Comparable<Grade>
                     //this.setStudent(new Student((Integer) row.get(indx++)));
                     this.gradeStudent(new Float(row.get(indx++).toString()));
                     ret = true;
-                } catch (Exception ex)
+                } 
+                catch (Exception ex)
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
-                            "SQL error occurred when trying to fetch " + "Assignment  with id = " + this.assignment.getId(), ex);
+                            "SQL error occurred when trying to fetch " 
+                            + "Assignment  with id = " + this.assignment.getId(), ex);
                 }
             }
         }
@@ -194,7 +196,8 @@ public class Grade implements Comparable<Grade>
         {
             Grade gradeObject = (Grade) object;
             /* Compare data */
-            if ((gradeObject.getStudent().equals((Object) this.getStudent())) && (gradeObject.getAssignment().equals(this.getAssignment())))
+            if ((gradeObject.getStudent().equals((Object) this.getStudent())) 
+                    && (gradeObject.getAssignment().equals(this.getAssignment())))
             {
                 ret = true;
             }
@@ -205,6 +208,7 @@ public class Grade implements Comparable<Grade>
     /**
      * return all grades
      * @return all grades
+     * @throws Exception Account constructor ex
      */
     public static ArrayList<Grade> allGrades() throws Exception
     {
@@ -216,9 +220,11 @@ public class Grade implements Comparable<Grade>
         ArrayList<ArrayList<Object>> result = conn.query(query);
         ArrayList<ArrayList<Object>> resultStu = conn.query(queryStu);
 
+        /* for all in result, add to returned course list */
         for (int index = 0; index < result.size(); index++)
         {
             Integer assid = (Integer) result.get(index).get(0);
+            /* Deal with every student in the list */
             for (ArrayList<Object> stu : resultStu)
             {
                 Integer stuId = (Integer) stu.get(0);
@@ -286,7 +292,8 @@ public class Grade implements Comparable<Grade>
     public static boolean deleteGrade(Student sStudent, Assignment sAssignment)
     {
         boolean ret = false;
-        String query = "DELETE FROM Grades WHERE accountId = " + sStudent.getId() + " AND assignId = " + sAssignment.getId();
+        String query = "DELETE FROM Grades WHERE accountId = " 
+                + sStudent.getId() + " AND assignId = " + sAssignment.getId();
         StorageConnection conn = new StorageConnection();
         ret = conn.updateQuery(query);
         conn.close();
@@ -361,9 +368,13 @@ public class Grade implements Comparable<Grade>
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
         {
-            query = "INSERT INTO Grades (assignId, grade, accountId) " + "VALUES (\"" + ((Integer) this.getAssignment().getId()) + "\", \"" + this.getGrade() + "\",\"" + ((Integer) this.getStudent().getId()) + "\")";
+            query = "INSERT INTO Grades (assignId, grade, accountId) " 
+                    + "VALUES (\"" + ((Integer) this.getAssignment().getId()) 
+                    + "\", \"" + this.getGrade() + "\",\"" 
+                    + ((Integer) this.getStudent().getId()) + "\")";
             ret = conn.updateQuery(query);
-        } /*if id does exist we update*/ else
+        } /*if id does exist we update*/ 
+        else
         {
             query = "UPDATE Grades SET grade = " + this.getGrade();
             query += " WHERE assignId = " + this.getAssignment().getId();
