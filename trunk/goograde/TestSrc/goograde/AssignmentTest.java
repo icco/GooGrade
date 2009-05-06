@@ -1,8 +1,3 @@
-/*
- * Assignment Test for Assignment class
- * @author kblizard
- * @version 0.42
- */
 package goograde;
 
 import java.util.ArrayList;
@@ -10,9 +5,10 @@ import java.util.Date;
 import junit.framework.TestCase;
 
 
-/**
- * AssignmentTest is a Junit test for the Assignment class
+/*
+ * Assignment Test for Assignment class
  * @author kblizard
+ * @version 0.42
  */
 public class AssignmentTest extends TestCase
 {
