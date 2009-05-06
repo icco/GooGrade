@@ -158,6 +158,8 @@ public class CourseController extends HttpServlet
 
     private void doStudent(HttpServletRequest req, Account user1)
     {
+        if(req.getParameter("id") != null)
+        {
         Integer courseId = new Integer(req.getParameter("id"));
         Course crse = new Course(courseId);
         req.setAttribute("currentCourse", crse);
@@ -173,6 +175,7 @@ public class CourseController extends HttpServlet
             Logger.getLogger(
                     CourseController.class.getName()).log(
                     Level.SEVERE, "Error With Student View", ex);
+        }
         }
     }
 
