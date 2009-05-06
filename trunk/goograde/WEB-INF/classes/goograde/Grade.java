@@ -246,41 +246,37 @@ public class Grade implements Comparable<Grade>
      * @param sStudent student whom owns it
      * @param sAssignment assignment who is owned by it
      * @param sGrade the value
+     * @return true if no errors
      */
-    public static void addGrade(Student sStudent, Assignment sAssignment,
+    public static boolean addGrade(Student sStudent, Assignment sAssignment,
             float sGrade)
     {
-        String query = "SELECT count (*) FROM Grades";
-        StorageConnection conn = new StorageConnection();
-        ArrayList<ArrayList<Object>> result = conn.query(query);
-        conn.close();
-        //T0D0: fix database indexing issue. Deleting an item 
-        //and adding it confiuses the index
-
-        int tid = (Integer) result.get(0).get(0) + 1;
-
+        boolean ret = false;
         Grade temp = new Grade(sAssignment, sStudent);
-        query = "INSERT INTO Grades (id, accountId, assignId) VALUES (" 
-                + tid + sStudent.getId() + sAssignment.getId() + ")";
-        conn = new StorageConnection();
-        conn.query(query);
+        String query = "INSERT INTO Grades (accountId, assignId, grade) ";
+        query += "VALUES (" + sStudent.getId() + ",";
+        query += sAssignment.getId() + "," + sGrade + ")";
+        StorageConnection conn = new StorageConnection();
+        ret = conn.updateQuery(query);
         conn.close();
-
-        temp.gradeStudent(sGrade);
+        return ret;
     }
 
     /**
      * delete a grade
      * @param sStudent student whom owns this grade
      * @param sAssignment assignment owned by this grade
+     * @return true if no errors
      */
-    public static void deleteGrade(Student sStudent, Assignment sAssignment)
+    public static boolean deleteGrade(Student sStudent, Assignment sAssignment)
     {
+        boolean ret = false;
         String query = "DELETE FROM Grades WHERE accountId = " 
-                + sStudent.getId() + "assignId = " + sAssignment.getId();
+                + sStudent.getId() + " AND assignId = " + sAssignment.getId();
         StorageConnection conn = new StorageConnection();
-        conn.query(query);
+        ret = conn.updateQuery(query);
         conn.close();
+        return ret;
     }
 
     /**
@@ -343,8 +339,10 @@ public class Grade implements Comparable<Grade>
         StorageConnection conn = new StorageConnection();
         boolean ret = false;
 
-        String query = "SELECT assignId FROM Grades WHERE id = " 
-                + this.getAssignment();
+        String query = "SELECT assignId FROM Grades ";
+        query += "WHERE assignId = " + this.getAssignment().getId();
+        query += " AND accountId = " + this.getStudent().getId();
+        
         ArrayList<ArrayList<Object>> result = conn.query(query);
         /*if for some reason id does not exist in db we insert*/
         if (result.isEmpty())
@@ -358,11 +356,9 @@ public class Grade implements Comparable<Grade>
         /*if id does exist we update*/
         else
         {
-            query = "UPDATE Grades SET " + "assignId = \"" 
-                    + ((Integer) this.getAssignment().getId()) 
-                    + "\"," + "grade = \"" + this.getGrade() + "\"," 
-                    + "accountId = \"" 
-                    + ((Integer) this.getStudent().getId()) + "\"";
+            query = "UPDATE Grades SET grade = " + this.getGrade();
+            query += " WHERE assignId = " + this.getAssignment().getId();
+            query += " AND accountId = " + this.getStudent().getId();
             ret = conn.updateQuery(query);
         }
         conn.close();

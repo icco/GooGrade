@@ -173,11 +173,20 @@ public class GradeTest extends TestCase {
     public void testAllGrades()
     {
         System.out.println("allGrades");
-        ArrayList<Grade> expResult = null;
+        ArrayList<Grade> expResult = new ArrayList<Grade>();
+        try
+        {
+            expResult.add(new Grade(2,4));
+            expResult.add(new Grade(2,3));
+            expResult.add(new Grade(9,3));
+            expResult.add(new Grade(9,4));
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, null, ex);
+        }
         ArrayList<Grade> result = Grade.allGrades();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -187,11 +196,19 @@ public class GradeTest extends TestCase {
     {
         System.out.println("addGrade");
         Student sStudent = null;
-        Assignment sAssignment = null;
-        float sGrade = 0.0F;
-        // Grade.addGrade(sStudent, sAssignment, sGrade);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try
+        {
+            sStudent = new Student(3);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Assignment sAssignment = new Assignment(1);
+        float sGrade = 100.0F;
+        boolean result = Grade.addGrade(sStudent, sAssignment, sGrade);
+        boolean expResult = true;
+        assertEquals(expResult, result);
     }
 
     /**
@@ -201,10 +218,18 @@ public class GradeTest extends TestCase {
     {
         System.out.println("deleteGrade");
         Student sStudent = null;
-        Assignment sAssignment = null;
-        // Grade.deleteGrade(sStudent, sAssignment);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        try
+        {
+            sStudent = new Student(3);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Assignment sAssignment = new Assignment(1);
+        boolean result = Grade.deleteGrade(sStudent, sAssignment);
+        boolean expResult = true;
+        assertEquals(expResult, result);
     }
 
     /**
@@ -213,12 +238,19 @@ public class GradeTest extends TestCase {
     public void testSave()
     {
         System.out.println("save");
-        Grade instance = new Grade();
-        boolean expResult = false;
-        // boolean result = instance.save();
-        // assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Grade instance = null;
+        try
+        {
+            instance = new Grade(2, 3);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        instance.gradeStudent(3.14F);
+        boolean expResult = true;
+        boolean result = instance.save();
+        assertEquals(expResult, result);
     }
     
     /**
@@ -238,7 +270,7 @@ public class GradeTest extends TestCase {
         {
             fail("Invalid student ID " + ex);
         }
-        float expResult1 = 47.2F;
+        float expResult1 = 3.14F;
         float result1 = instance.getGrade();
         assertEquals(expResult1, result1);
         float expResult2 = 0F;
