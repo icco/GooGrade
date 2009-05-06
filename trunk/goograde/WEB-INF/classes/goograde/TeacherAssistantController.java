@@ -54,19 +54,17 @@ public class TeacherAssistantController extends HttpServlet
      * Controller get method only redirects this call to the doPost above
      * @param request   a servlet with request info
      * @param response  a servlet with response info
-     * @throws javax.servlet.ServletException   throws as we don't catch them
-     * @throws java.io.IOException              throws as we don't catch them
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
     {
-        doPost(request, response); 
+            doPost(request, response); 
     }
 
     
     /**
      * editCourse asks for information from the user and updates the Course with it
+     * @param course the course to be updated
      * @return the new, edited Course
      */
     public Course editCourse(Course course)
@@ -76,6 +74,7 @@ public class TeacherAssistantController extends HttpServlet
 
     /**
      * removeCourse marks a course for deletion. 
+     * @param course the course marked for deletion
      * @return true if no errors occur
      */
     public boolean removeCourse(Course course)
@@ -85,6 +84,7 @@ public class TeacherAssistantController extends HttpServlet
     
      /**
      * Adds a new course.
+      * @param course the course to be added
      * @return true if no errors occur
      */
     public boolean addCourse(Course course)
