@@ -44,24 +44,8 @@ public class EditCourseController extends HttpServlet
                         (String) req.getAttribute("section"));
             }
         }
-        /*try
-        {*/
-            req.setAttribute("id", req.getAttribute("courseRef"));
-            this.doGet(req, resp);
-        /*}*/
-        /*catch (ServletException ex)
-        {
-            Logger.getLogger(
-                    AccountController.class.getName()).log(Level.SEVERE,
-                    null, ex);
-        }
-        catch (IOException ex)
-        {
-            Logger.getLogger(
-                    AccountController.class.getName()).log(Level.SEVERE,
-                    null, ex);
-        } */
-
+        req.setAttribute("id", req.getAttribute("courseRef"));
+        this.doGet(req, resp);
     }
 
     /**
@@ -100,6 +84,8 @@ public class EditCourseController extends HttpServlet
                     .log(Level.SEVERE, null, ex);
         }
 
+        req.setAttribute("user", Utils.getUseridCookie(req));
+        
         try
         {
             view.forward(req, resp);

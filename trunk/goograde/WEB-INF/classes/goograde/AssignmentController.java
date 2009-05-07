@@ -89,9 +89,6 @@ public class AssignmentController extends HttpServlet
         }
 
         this.doGet(req, resp);
-
-
-
     }
 
     /**
@@ -114,9 +111,8 @@ public class AssignmentController extends HttpServlet
                 new Integer((String) req.getAttribute("id"))).getAssignments());
         System.out.println("Retreiveing from database");
 
-
-        /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
-        (Teacher.allTeachers().get(0).getCourses())); */
+        req.setAttribute("user", Utils.getUseridCookie(req));
+        
         try
         {
             view.forward(req, resp);

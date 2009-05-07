@@ -21,11 +21,10 @@ public class Utils
     {
         Account user1 = new Account();
 
-
         // Gets the cookie we want
         for (Cookie cook : req.getCookies())
         {
-            /*Get the id of the account in order to load it */
+            // Get the id of the account and load it
             if (cook.getName().equals("userid"))
             {
                 user1.setId(new Integer(cook.getValue()));

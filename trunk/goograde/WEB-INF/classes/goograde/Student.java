@@ -61,8 +61,19 @@ public class Student extends Account
             throws Exception
     {
         super(id, username, name, email);
-        this.enrolled = getEnrolled();
+        this.enrolled = this.getEnrolled();
+    }
 
+    /**
+     * Create a student from an account
+     * 
+     * @param user Account
+     */
+    public Student(Account user)
+    {
+        this.setId(user.getId());
+        this.fetch();
+        this.enrolled = this.getEnrolled();
     }
 
     /**

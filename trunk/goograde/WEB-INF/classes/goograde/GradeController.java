@@ -154,6 +154,7 @@ public class GradeController extends HttpServlet
             }
         }
 
+        req.setAttribute("user", Utils.getUseridCookie(req));
         viewForward(view, req, resp);
     }
 
@@ -245,6 +246,7 @@ public class GradeController extends HttpServlet
             }
         }
 
+        req.setAttribute("user", Utils.getUseridCookie(req));
         viewForward(view, req, resp);
     }
     

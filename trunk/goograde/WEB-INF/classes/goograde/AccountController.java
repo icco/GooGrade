@@ -65,6 +65,7 @@ public class AccountController extends HttpServlet
         members.addAll(thiscourse.getTeacherAssistants());
         members.addAll(thiscourse.getStudents());
 
+        req.setAttribute("user",Utils.getUseridCookie(req));
 
         req.setAttribute("accountList", members);
         req.setAttribute("tas", thiscourse.getTeacherAssistants());

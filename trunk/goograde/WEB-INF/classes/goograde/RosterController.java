@@ -52,6 +52,7 @@ public class RosterController extends HttpServlet
         
         try
         {
+            req.setAttribute("user", Utils.getUseridCookie(req));
             view.forward(req, resp);
         }
         catch (ServletException ex)

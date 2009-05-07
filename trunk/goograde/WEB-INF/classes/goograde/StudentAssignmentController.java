@@ -68,16 +68,14 @@ public class StudentAssignmentController extends HttpServlet
                 }
             }
         }
-
-
+      
+        req.setAttribute("user", Utils.getUseridCookie(req));
         req.setAttribute("id", (String) req.getParameter("id"));
         req.setAttribute("enrolledCourseList", user1.getEnrolled());
         req.setAttribute("currentCourse", crse);
         req.setAttribute("AssignmentList", (ArrayList<Assignment>)
                 crse.getAssignments());
 
-        /*req.setAttribute("AssignmentList", (ArrayList<Course>) 
-        (Teacher.allTeachers().get(0).getCourses())); */
         try
         {
             view.forward(req, resp);

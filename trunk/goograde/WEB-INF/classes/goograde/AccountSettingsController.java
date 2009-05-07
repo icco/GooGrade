@@ -67,19 +67,8 @@ public class AccountSettingsController extends HttpServlet
     {
         RequestDispatcher view = null;
         view = req.getRequestDispatcher("/AccountSettings.jsp");
-        Account user1 = new Account();
-        //For each cookie we find
-        for (Cookie cook : req.getCookies())
-        {
-            //We want the cookie named "userid"
-            if (cook.getName().equals("userid"))
-            {
-                user1.setId(new Integer(cook.getValue()));
-                user1.fetch();
-            }
-        }
 
-        req.setAttribute("user", (Account) (user1));
+        req.setAttribute("user", Utils.getUseridCookie(req));
 
         try
         {
