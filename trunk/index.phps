@@ -49,7 +49,7 @@ function passed($dir,$file)
 </ul>
 
 <strong>Build Logs</strong><br />
-<small>10 Most recent</small>
+<small>the 10 Most recent or <a href="logs/">view all...</a></small>
 <ul>
 <?php
 $dir = opendir("logs");
@@ -80,7 +80,7 @@ if (substr("$entry", 0, 1) != ".") {
 ?>
 </ul>
 <strong>Test Logs</strong><br />
-<small>10 Most recent</small>
+<small>the 10 Most recent or <a href="test/">view all...</a></small>
 <ul>
 <?php
 $dir = opendir("test");
