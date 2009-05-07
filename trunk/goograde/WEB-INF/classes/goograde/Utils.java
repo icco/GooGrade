@@ -8,16 +8,22 @@ import javax.servlet.http.HttpServletRequest;
  * 
  * @author nwelch
  */
-public class Utils
+public final class Utils
 {
-
+    /**
+     * To overide defailt public construvtor
+     */
+    private Utils()
+    {
+       // So Checkstyle doesn't get mad
+    }
     /**
      * Given a servlet request, get an account outta it's cookie.
      * 
      * @param req the incomming request.
      * @return an account.
      */
-    static public Account getUseridCookie(HttpServletRequest req)
+    public static Account getUseridCookie(HttpServletRequest req)
     {
         Account user1 = new Account();
 
