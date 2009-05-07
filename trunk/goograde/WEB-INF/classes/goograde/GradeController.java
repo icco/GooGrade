@@ -38,6 +38,7 @@ public class GradeController extends HttpServlet
                 user1.fetch();
             }
         }
+        
         return user1;
     }
 
