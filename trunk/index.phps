@@ -48,7 +48,8 @@ function passed($dir,$file)
 <li><a href="http://blugoo.csc.calpoly.edu:8080/GooGrade">Lastest Deployed .War File</a></li>
 </ul>
 
-<strong>Build Logs</strong>
+<strong>Build Logs</strong><br />
+<small>10 Most recent</small>
 <ul>
 <?php
 $dir = opendir("logs");
@@ -70,7 +71,7 @@ $dirArray = array_values($dirArray);
 
 // print 'em
 // loop through the array of files and print them all
-foreach($dirArray as $entry) {
+foreach(array_slice($dirArray,0,10) as $entry) {
 if (substr("$entry", 0, 1) != ".") {
         print("<li><a href=\"logs/$entry\">$entry</a> - " . passed("logs/",$entry) . "</li>");
     }
@@ -78,7 +79,8 @@ if (substr("$entry", 0, 1) != ".") {
 
 ?>
 </ul>
-<strong>Test Logs</strong>
+<strong>Test Logs</strong><br />
+<small>10 Most recent</small>
 <ul>
 <?php
 $dir = opendir("test");
@@ -100,7 +102,7 @@ $dirArray = array_values($dirArray);
 
 // print 'em
 // loop through the array of files and print them all
-foreach($dirArray as $entry) {
+foreach(array_slice($dirArray,0,10) as $entry) {
 if (substr("$entry", 0, 1) != ".") {
         print("<li><a href=\"test/$entry\">$entry</a> - " . passed("test/",$entry) . "</li>");
     }
