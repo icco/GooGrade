@@ -22,7 +22,6 @@ import java.io.IOException;
 //import javax.servlet.ServletException;
 import junit.framework.TestCase;
 import org.xml.sax.SAXException;
-import java.io.FileInputStream;
 
 
 /**
@@ -56,13 +55,7 @@ public class CourseControllerTest extends TestCase
     public void testDoPost() throws SAXException
     {
         System.out.println("HTTPUnit: CourseController doPost & doGet driver");
-        int aryLoc = -1;
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
-
-        //WebResponse resp = null;
-        WebLink link = null;
-        WebForm form = null;
-        WebLink linkArray[] = null;
         try
         {
             ServletRunner sr = new ServletRunner(
@@ -73,8 +66,6 @@ public class CourseControllerTest extends TestCase
             
             WebRequest req = new PostMethodWebRequest(  //was GetMethodWebRequest
                 "http://localhost:8080/GooGrade/teacher/course");
-            
-             //WebConversation wc = new WebConversation();
         
             sc.putCookie("userid", "1");
             req.setParameter("newCourseTitle", "Intro to Sleep");
@@ -83,31 +74,26 @@ public class CourseControllerTest extends TestCase
             req.setParameter("newCourseSection", "04");
             req.setParameter("action", "add");
             
-            
-                    
             InvocationContext ic = sc.newInvocation( req );
             CourseController ss = (CourseController) ic.getServlet();
             assertNull( "A session already exists", 
                     ic.getRequest().getSession( false ) );
             
-            
-
             ss.doGet( ic.getRequest(), ic.getResponse() );
             assertNotNull( "Session was not created", 
                     ic.getRequest().getSession( false ) );
             assertEquals("Intro to Sleep", 
                     ic.getRequest().getSession()
                     .getAttribute( "newCourseTitle"));
-
         }
         catch (IOException ex)
         {
             fail("IOException: " + ex);
         }
-        catch (SAXException ex)
+        /*catch (SAXException ex)
         {
             fail("SAXException: " + ex);
-        }
+        }*/
         catch(javax.servlet.ServletException ex)
         {
             
