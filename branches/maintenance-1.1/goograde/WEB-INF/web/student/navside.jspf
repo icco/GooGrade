@@ -1,0 +1,79 @@
+<%-- 
+    Document   : navside (Student)
+    Created on : Apr 24, 2009, 3:07:57 AM
+    Author     : pphu
+--%>
+
+<!-- Begin Nav -->
+
+<c:choose>
+    <c:when test = "${!empty currentCourse}">
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#accordion").accordion(
+                { 
+                    active: "#${currentCourse.department}${currentCourse.number}${currentCourse.section}",
+                    alwaysOpen: false, 
+                    collapsible: true,
+                    autoHeight: true
+                });
+
+            });
+
+        </script>
+    </c:when>
+    <c:otherwise>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#accordion").accordion(
+                { 
+                    active: false, 
+                    alwaysOpen: false, 
+                    collapsible: true,
+                    autoHeight: true
+                });
+
+            });
+        </script>
+    </c:otherwise>
+</c:choose>
+
+<div id="side">
+    <div class="cornerBox">
+        <div class="corner TL"></div>
+        <div class="corner TR"></div>
+        <div class="corner BL"></div>
+        <div class="corner BR"></div>
+        <div class="cornerBoxInner">
+            <h1><a href="/GooGrade">Goo<span style="color: #518ac1;">Grade</span></a></h1>
+            <h2>Student's Control Panel</h2>
+
+
+            
+            <div id="accordion">
+                <c:forEach var="course" items="${enrolledCourseList}">
+                    <h3 class="trigger" id="${course.department}${course.number}${course.section}"><a href="#">${course.department} ${course.number}-${course.section}</a></h3>
+                    <div class="toggle_container">
+                        <div class="block">
+                            <ul>
+                                <li>
+                                    <a href="/GooGrade/student/grades?id=${course.id}">View Grades</a>
+                                </li>
+                                <li>
+                                    <a href="/GooGrade/student/assignments?id=${course.id}">View Assignments</a>
+                                </li>
+                                <li>
+                                    <a href="/GooGrade/student/course?id=${course.id}">View Course</a>
+                                </li>
+
+                            </ul>
+                        </div>  
+                    </div>  
+                </c:forEach>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- End Nav -->
