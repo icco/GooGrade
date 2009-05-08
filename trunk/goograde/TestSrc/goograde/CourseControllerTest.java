@@ -21,7 +21,6 @@ import java.io.IOException;
 //import javax.servlet.ServletException;
 import junit.framework.TestCase;
 //import org.xml.sax.SAXException;
-import com.meterware.httpunit.cookies.Cookie;
 
 
 /**
@@ -48,16 +47,16 @@ public class CourseControllerTest extends TestCase
         super.tearDown();
     }
 
+    
     /**
      * Test of doPost method, of class CourseController.
      */
     public void testDoPost()
     {
-        System.out.println("HTTPUnit: AccountController doPost & doGet driver");
+        System.out.println("HTTPUnit: CourseController doPost & doGet driver");
         int aryLoc = -1;
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
         
-        //Cookie cook = new Cookie();
         ServletRunner sr = new ServletRunner();
         sr.registerServlet("GooGrade/teacher/course",
                 CourseController.class.getName() );
@@ -73,17 +72,19 @@ public class CourseControllerTest extends TestCase
         WebLink linkArray[] = null;
         try
         {
+            sc.putCookie("userid", "1");
             req.setParameter("newCourseTitle", "Intro to Sleep");
             req.setParameter("newCourseDepartment", "SLP");
             req.setParameter("newCourseNumber", "101");
             req.setParameter("newCourseSection", "04");
-            req.setParameter("id", "1");
             req.setParameter("action", "add");
+            
             
             InvocationContext ic = sc.newInvocation( req );
             CourseController ss = (CourseController) ic.getServlet();
             assertNull( "A session already exists", 
                     ic.getRequest().getSession( false ) );
+            
             
 
             ss.doGet( ic.getRequest(), ic.getResponse() );
@@ -93,28 +94,16 @@ public class CourseControllerTest extends TestCase
                     ic.getRequest().getSession()
                     .getAttribute( "newCourseTitle"));
 
-            //resp = sc.getResponse(req);         // Main page
-            //link = resp.getLinkWith("teacher"); // Highlight teacher's page
-            //req = link.getRequest();
-            //resp = sc.getResponse(req);         // Follow link
-            //form = resp.getForms()[0];          // Access form to select nwelch
-            //req = form.getRequest();
-            //form.setParameter("who", "1");      // Set it to nwelch (id 1)
-            //assertEquals("1", form.getParameterValue("who"));
-            //resp = sc.getResponse(req);         // Follow submit button's link
-            //req = link.getRequest();
-
-            //linkArray = resp.getLinks(); // Get all links from teacher's opening page
             /* Store the index of the link in the array referring to 357-1 accts */
-            for (int index = 0; index < linkArray.length; index++)
+           /* for (int index = 0; index < linkArray.length; index++)
             {
-                /* pull the matching location out */
+                /* pull the matching location out *
                 if (new String("/GooGrade/teacher/accounts?id=1")
                         .equals(linkArray[index].getURLString()))
                 {
                     aryLoc = index;
                 }
-            }
+            }*/
             // System.out.println(linkArray[aryLoc].getURLString());
             //req = linkArray[aryLoc].getRequest();
             //resp = sc.getResponse(req);         // Follow link to manage 357 accounts
@@ -142,13 +131,9 @@ public class CourseControllerTest extends TestCase
      */
     public void testDoGet()
     {
-        System.out.println("doGet");
-        HttpServletRequest req = null;
-        HttpServletResponse resp = null;
-        CourseController instance = new CourseController();
-        instance.doGet(req, resp);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        testDoPost();
     }
-
 }
+    
+
+   
