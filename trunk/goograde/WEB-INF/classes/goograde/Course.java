@@ -798,7 +798,7 @@ public class Course implements java.io.Serializable
             ret = conn.updateQuery(query);
             
             query = "DELETE FROM enrolled WHERE course=" + id.toString();
-            ret = conn.updateQuery(query);
+            conn.updateQuery(query);
             
             conn.close();
         }
