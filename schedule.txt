@@ -19,7 +19,6 @@ Write Sys Tests                |       |     ..|.....[-|-----..|.]     |       |
 Integration Test               |       |       |       |[------|-]     |       |       |       |       |
 Daily Tests Begin              |       |       |       |     ..|..x    |       |       |       |       |
 Review System Test             |       |       |   ....|...[--]|       |       |       |       |       |
-Write Deployment Doc           |       |       |       |     [-|--]    |       |       |       |       |
 Release Prep                   |       |       |       |       |[-]    |       |       |       |       |
 Midterm Exam                   |       |       |       |     x |       |       |       |       |       |
 Release 1                      |       |       |       |       |   x (Wed 5/6 noon)    |       |       |
@@ -27,13 +26,13 @@ Release 1                      |       |       |       |       |   x (Wed 5/6 no
 --- Stage 2 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
                        |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
 Release Party                                                        x |       |       |       |       |       
-Training                                                               |[------|-----] |       |       |       
-Implement Stage 2                                                      |[------|------]|       |       |
+Release 1.1                                                            |     x |       |       |       | 
+Implement Stage 2                                                      | [-----|------]|       |       |
+Unit Test Development                                                  | [-----|------]|       |       |
 Write Sys Tests                                                        |       |  [----|]      |       | 
-Unit Test Development                                                  |       |  [----|----]  |       |
-Development Frozen                                                     |       |       |      x|       |
-System Test                                                            |       |       |    [--|--]    |
-Update Deployment Doc                                                  |       |       |       |[---]  |
+System Test                                                            |       |       | [-----|--]    |
+Development Frozen                                                     |       |       |       |   x   |
+write Deployment Doc                                                   |       |       |       |[---]  |
 Release Prep                                                           |       |       |       |      [|-]
 Release 2 finished                                                     |       |       |       |       |  x 
 Release 2 Due                                                          |       |       |       |       |   x(Wed 6/3 11am)
