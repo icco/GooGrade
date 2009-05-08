@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GooGrade" default="default"  basedir=".">
+    <description>Builds, tests, and runs the project GooGrade.</description>
+    <import file="nbproject/build-impl.xml"/> <!-- For NetBeans... -->
+
+    <!-- Obtain current sources from svn repository -->
+    <target name="-pre-init">
+	    <echo>Begining Build. See http://blugoo.csc.calpoly.edu/ for results</echo>
+	    <echo>Updating source files from repository</echo>
+	    <exec executable="svn">
+		    <arg value="update"/>
+	    </exec>
+    </target>
+
+    <!-- Create a property for the current svn revision -->
+    <target name="-post-init">
+	    <exec outputproperty="build.current.revision" executable="svnversion">
+		    <arg line="-n" />
+		    <arg line="${svnpath}" />
+	    </exec>
+
+	    <exec outputproperty="logdate" executable="date">
+		    <arg line="+%F" />
+	    </exec>
+
+	    <exec outputproperty="emaildate" executable="date">
+		    <arg line="+%D" />
+	    </exec>
+    </target>
+
+
+    <target name="svnstat-p">
+	    <delete dir="/var/www/html/svnstat2/" />
+	    <java classname="de.agentlab.svnstat.SvnStat" fork="yes">
+		    <arg line="-r /var/www/html/svnstat/svn.xml" />
+		    <arg line="-d /var/www/html/svnstat2" />
+		    <arg line="-config SvnStat.properties" />
+		    <arg line="-begin ${begin}" />
+		    <arg line="-end ${end}" />
+
+		    <classpath>
+			    <pathelement path="/var/www/html/SvnStat-all.jar" />
+		    </classpath>
+	    </java>
+    </target>
+
+
+    <target name="-post-dist" depends="javadoc,checkstyle">
+	    <copy todir="/var/www/html/javadoc/">
+		    <fileset dir="dist/javadoc/"/>
+	    </copy>
+
+	    <copy file="dist/GooGrade.war" tofile="/var/www/html/wars/GooGrade.${logdate}.war"/>
+	    <copy file="dist/GooGrade.war" tofile="/usr/share/tomcat5/webapps/GooGrade.war"/>
+
+	    <exec executable="/var/www/html/svnstat/runme.sh" />
+	    <exec executable="/var/www/html/svn/trunk/statsvn.sh" />
+
+	    <antcall target="svnstat-p">
+		    <param name="begin" value="2009-01-07" />
+		    <param name="end" value="9999-99-99" />
+	    </antcall>
+    </target>
+
+    <!-- Check for coding style conformance. -->
+    <target name="initstyle" >       
+        <!-- Declare the checkstyle task -->
+        <taskdef resource="checkstyletask.properties">
+            <classpath>
+                    <pathelement location="lib/checkstyle-all-4.4.jar"/>
+                    <pathelement location="lib/308checks.jar"/>
+            </classpath>
+        </taskdef>
+    </target>
+   
+    <target name="checkstyle" depends="initstyle">
+        <checkstyle config="lib/308style.xml" failOnViolation="false">
+            <fileset dir="WEB-INF/classes/" includes="**/*.java"/>
+        </checkstyle>
+    </target>
+</project>
+
