@@ -8,7 +8,7 @@ package goograde;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 //import junit.framework.TestCase;
-import com.meterware.httpunit.GetMethodWebRequest;
+import com.meterware.httpunit.PostMethodWebRequest;
 import com.meterware.httpunit.HttpUnitOptions;
 import com.meterware.servletunit.ServletUnitClient;
 import com.meterware.servletunit.ServletRunner;
@@ -16,11 +16,13 @@ import com.meterware.servletunit.InvocationContext;
 import com.meterware.httpunit.WebForm;
 import com.meterware.httpunit.WebLink;
 import com.meterware.httpunit.WebRequest;
+import java.io.File;
 //import com.meterware.httpunit.WebResponse;
 import java.io.IOException;
 //import javax.servlet.ServletException;
 import junit.framework.TestCase;
-//import org.xml.sax.SAXException;
+import org.xml.sax.SAXException;
+import java.io.FileInputStream;
 
 
 /**
@@ -51,27 +53,29 @@ public class CourseControllerTest extends TestCase
     /**
      * Test of doPost method, of class CourseController.
      */
-    public void testDoPost()
+    public void testDoPost() throws SAXException
     {
         System.out.println("HTTPUnit: CourseController doPost & doGet driver");
         int aryLoc = -1;
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
-        
-        ServletRunner sr = new ServletRunner();
-        sr.registerServlet("GooGrade/teacher/course",
-                CourseController.class.getName() );
-        
-        //WebConversation wc = new WebConversation();
-        ServletUnitClient sc = sr.newClient();
-        WebRequest req = new GetMethodWebRequest(
-                "http://localhost:8080/GooGrade/teacher/course");
-        
+
         //WebResponse resp = null;
         WebLink link = null;
         WebForm form = null;
         WebLink linkArray[] = null;
         try
         {
+            ServletRunner sr = new ServletRunner(
+                    new File("WEB-INF/web.xml"));
+            sr.registerServlet("GooGrade/teacher/course",
+                CourseController.class.getName() );
+            ServletUnitClient sc = sr.newClient();
+            
+            WebRequest req = new PostMethodWebRequest(  //was GetMethodWebRequest
+                "http://localhost:8080/GooGrade/teacher/course");
+            
+             //WebConversation wc = new WebConversation();
+        
             sc.putCookie("userid", "1");
             req.setParameter("newCourseTitle", "Intro to Sleep");
             req.setParameter("newCourseDepartment", "SLP");
@@ -80,6 +84,7 @@ public class CourseControllerTest extends TestCase
             req.setParameter("action", "add");
             
             
+                    
             InvocationContext ic = sc.newInvocation( req );
             CourseController ss = (CourseController) ic.getServlet();
             assertNull( "A session already exists", 
@@ -94,32 +99,15 @@ public class CourseControllerTest extends TestCase
                     ic.getRequest().getSession()
                     .getAttribute( "newCourseTitle"));
 
-            /* Store the index of the link in the array referring to 357-1 accts */
-           /* for (int index = 0; index < linkArray.length; index++)
-            {
-                /* pull the matching location out *
-                if (new String("/GooGrade/teacher/accounts?id=1")
-                        .equals(linkArray[index].getURLString()))
-                {
-                    aryLoc = index;
-                }
-            }*/
-            // System.out.println(linkArray[aryLoc].getURLString());
-            //req = linkArray[aryLoc].getRequest();
-            //resp = sc.getResponse(req);         // Follow link to manage 357 accounts
-            // System.out.println(new String(resp.getTitle()));
-            //String expResult = "[CSC-357-1] - Manage Accounts";
-            //String result = resp.getTitle();
-            //assertEquals(expResult, result);
         }
         catch (IOException ex)
         {
             fail("IOException: " + ex);
         }
-        /*catch (SAXException ex)
+        catch (SAXException ex)
         {
             fail("SAXException: " + ex);
-        }*/
+        }
         catch(javax.servlet.ServletException ex)
         {
             
@@ -129,10 +117,10 @@ public class CourseControllerTest extends TestCase
     /**
      * Test of doGet method, of class CourseController.
      */
-    public void testDoGet()
+    /*public void testDoGet()
     {
         testDoPost();
-    }
+    } */
 }
     
 
