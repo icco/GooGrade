@@ -26,6 +26,8 @@ Release 1                      |       |       |       |       |   x (Wed 5/6 no
 --- Stage 2 ---        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
                        |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------
 Release Party                                                        x |       |       |       |       |       
+Fix Bugs for Release 1.1                                               | [-]   |       |       |       |     
+Test Release 1.1                                                       | [---] |       |       |       |     
 Release 1.1                                                            |     x |       |       |       | 
 Implement Stage 2                                                      | [-----|------]|       |       |
 Unit Test Development                                                  | [-----|------]|       |       |
