@@ -32,12 +32,12 @@ Release 1.1                                                            |     x |
 Implement Stage 2                                                      | [-----|------]|       |       |
 Unit Test Development                                                  | [-----|------]|       |       |
 Write Sys Tests                                                        |       |  [----|]      |       | 
-System Test                                                            |       |       | [-----|--]    |
-Development Frozen                                                     |       |       |       |   x   |
-write Deployment Doc                                                   |       |       |       |[---]  |
-Release Prep                                                           |       |       |       |      [|-]
-Release 2 finished                                                     |       |       |       |       |  x 
-Release 2 Due                                                          |       |       |       |       |   x(Wed 6/3 11am)
+System Test                                                            |       |       | [----]|       |
+Development Frozen                                                     |       |       |       |x      |
+write Deployment Doc                                                   |       |       |  [---]|       |
+Release Prep                                                           |       |       |       |[--]   |
+Release 2 Due                                                          |       |       |       |   x(Wed 6/3 11am)
+Final                                                                  |       |       |       |       | x ( Mon 6/8 10 am )
                        |SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS|SMTWRFS
                        |  Wk 1 |  Wk 2 |  Wk 3 |  Wk 4 |  Wk 5 |  Wk 6 |  Wk 7 |  Wk 8 |  Wk 9 | Dead  | Final  
 
