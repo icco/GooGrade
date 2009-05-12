@@ -13,6 +13,7 @@ import com.meterware.httpunit.HttpUnitOptions;
 import com.meterware.servletunit.ServletUnitClient;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.InvocationContext;
+import com.meterware.servletunit.InvocationContextFactory;
 import com.meterware.httpunit.WebForm;
 import com.meterware.httpunit.WebLink;
 import com.meterware.httpunit.WebRequest;
@@ -55,7 +56,6 @@ public class CourseControllerTest extends TestCase
     public void testDoPost() throws SAXException
     {
         System.out.println("HTTPUnit: CourseController doPost & doGet driver");
-        HttpUnitOptions.setExceptionsThrownOnScriptError(false);
         try
         {
             ServletRunner sr = new ServletRunner(
@@ -90,7 +90,8 @@ public class CourseControllerTest extends TestCase
         {
             fail("IOException: " + ex);
         }
-        /*catch (SAXException ex)
+        /* commented out to see stack trace of errors right now
+         catch (SAXException ex)
         {
             fail("SAXException: " + ex);
         }*/
