@@ -19,22 +19,20 @@ INSERT INTO "Courses" VALUES(5,'Graduate Thesis','CSC',500,1,1);
 
 
 -- Nat's account needs to stay first, since we test that the teacher is first in the db.
-INSERT INTO Accounts (username, name, email, password) VALUES("nwelch","Nathaniel Welch","nat@natwelch.com","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("pphu","Paul Phu","pphu@calpoly.edu","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("vgerdin","Viktor Gerdin","vgerdin@calpoly.edu","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("kblizard","Katherine Blizard","kblizard@calpoly.edu","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("mduder","Matt Duder","mduder@calpoly.edu","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("kvu","Kalvin Vu","kvu@calpoly.edu","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("mquan","Michael Quan","mquan@calpoly.edu","123456a");
-INSERT INTO Accounts (username, name, email, password) VALUES("hmendez","Hermyn Mendez","hmendez@calpoly.edu","123456a");
+INSERT INTO Accounts (username, name, email) VALUES("nwelch","Nathaniel Welch","nat@natwelch.com");
+INSERT INTO Accounts (username, name, email) VALUES("pphu","Paul Phu","pphu@calpoly.edu");
+INSERT INTO Accounts (username, name, email) VALUES("vgerdin","Viktor Gerdin","vgerdin@calpoly.edu");
+INSERT INTO Accounts (username, name, email) VALUES("kblizard","Katherine Blizard","kblizard@calpoly.edu");
+INSERT INTO Accounts (username, name, email) VALUES("mduder","Matt Duder","mduder@calpoly.edu");
+INSERT INTO Accounts (username, name, email) VALUES("kvu","Kalvin Vu","kvu@calpoly.edu");
+INSERT INTO Accounts (username, name, email) VALUES("mquan","Michael Quan","mquan@calpoly.edu");
+INSERT INTO Accounts (username, name, email) VALUES("hmendez","Hermyn Mendez","hmendez@calpoly.edu");
 
 INSERT INTO teaches (course, teacher) VALUES (1,1);
 INSERT INTO teaches (course, teacher) VALUES (2,1);
 INSERT INTO teaches (course, teacher) VALUES (3,1);
 INSERT INTO teaches (course, teacher) VALUES (4,1);
 INSERT INTO teaches (course, teacher) VALUES (5,1);
-
-INSERT INTO assists (course, ta) VALUES (1,2);
 
 INSERT INTO enrolled (course, student) VALUES (1, 3);
 INSERT INTO enrolled (course, student) VALUES (2, 3);

@@ -3,20 +3,13 @@
 -- Drop Tables & Views
 DROP TABLE IF EXISTS Accounts;
 DROP TABLE IF EXISTS Courses;
-DROP TABLE IF EXISTS Files;
 DROP TABLE IF EXISTS Assignments;
-DROP TABLE IF EXISTS Permissions;
-DROP TABLE IF EXISTS Announcements;
 DROP TABLE IF EXISTS GradingRules;
 DROP TABLE IF EXISTS Grades;
 DROP TABLE IF EXISTS hasGrade;
 DROP TABLE IF EXISTS teaches;
-DROP TABLE IF EXISTS submitted;
-DROP TABLE IF EXISTS hasPermission;
 DROP TABLE IF EXISTS enrolled;
-DROP TABLE IF EXISTS assists; 
 DROP VIEW IF EXISTS Teachers;
-DROP VIEW IF EXISTS TAs;
 DROP VIEW IF EXISTS Students;
 
 /* entity table for Account class */
@@ -25,7 +18,6 @@ CREATE TABLE Accounts (
 		username STRING UNIQUE ON CONFLICT ROLLBACK,
 		name STRING,
 		email STRING,
-		password STRING,
 
 		CONSTRAINT unique_username UNIQUE (username) ON 
 			CONFLICT ROLLBACK
@@ -44,10 +36,6 @@ CREATE TABLE Courses (
 		GradingRules (id) ON DELETE RESTRICT
 );
 
-/* entity table for File class */
-CREATE TABLE Files (        
-		id INTEGER PRIMARY KEY AUTOINCREMENT
-);
 
 /* entity table for Assignment class */
 CREATE TABLE Assignments (  
@@ -65,37 +53,13 @@ CREATE TABLE Assignments (
                 Courses (id) ON DELETE CASCADE
 );
 
-/* 
- * entity table for Permission class 
- * ... This needs some other stuff...
- */
-CREATE TABLE Permissions (  
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-                accountID INTEGER, 
-                manageUser BOOLEAN,
-                manageAnnouncement BOOLEAN,
-                manageRoster BOOLEAN,
-                manageGrade BOOLEAN,
-                manageMetric BOOLEAN,
-                manageCourse BOOLEAN,
-                uploadFile BOOLEAN,
-                sendEmail BOOLEAN,
-                viewOwnGrade BOOLEAN
-
-);
-
--- entity table for Announcement class
-CREATE TABLE Announcements (   
-		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		courseId INTEGER,
-		title TEXT,
-		post TEXT,
-		datetime INTEGER
-);
-
 -- entity table for GradingRules class
 CREATE TABLE GradingRules (    
 		id INTEGER PRIMARY KEY AUTOINCREMENT
+                aFloor FLOAT,
+                bFloor FLOAT,
+                cFloor FLOAT,
+                dFloor FLOAT
 );
 
 
@@ -108,28 +72,6 @@ Create Table Grades (
 		CONSTRAINT fk_account FOREIGN KEY (accountId) REFERENCES Accounts
 			(id) ON DELETE CASCADE,
 		CONSTRAINT fk_assign FOREIGN KEY (assignId) REFERENCES Assignments
-			(id) ON DELETE CASCADE
-);
-
--- relation table between Accounts & Files
-CREATE TABLE submitted (       
-		account INTEGER,
-		file INTEGER,
-		CONSTRAINT pk_submitted PRIMARY KEY (account, file),
-		CONSTRAINT fk_account FOREIGN KEY (account) REFERENCES Accounts
-			(id) ON DELETE CASCADE,
-		CONSTRAINT fk_file FOREIGN KEY (file) REFERENCES Files
-			(id) ON DELETE CASCADE
-);
-
--- relation table between Accounts & Permissions
-Create Table hasPermission (   
-		account INTEGER,
-		permissions INTEGER,
-		CONSTRAINT pk_hasPermission PRIMARY KEY (account, permissions),
-		CONSTRAINT fk_account FOREIGN KEY (account) REFERENCES Accounts
-			(id) ON DELETE CASCADE,
-		CONSTRAINT fk_permissions FOREIGN KEY (permissions) REFERENCES Permissions
 			(id) ON DELETE CASCADE
 );
 
@@ -155,24 +97,9 @@ CREATE TABLE enrolled (
 			(id) ON DELETE CASCADE
 );
 
--- relation table between Account (tas) & Courses 
-CREATE TABLE assists (
-		course INTEGER,
-		ta INTEGER,
-		CONSTRAINT pk_enrolled PRIMARY KEY (course, ta),
-		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
-			(id) ON DELETE CASCADE,
-		CONSTRAINT fk_tas FOREIGN KEY (ta) REFERENCES Accounts
-			(id) ON DELETE CASCADE
-);
-
 -- View of all teacher ids
 CREATE VIEW Teachers AS
     SELECT DISTINCT teacher as id FROM teaches;
-
--- View of all ta ids
-CREATE VIEW TAs AS
-    SELECT DISTINCT ta as id FROM assists;
 
 -- View of all student ids
 CREATE VIEW Students AS
