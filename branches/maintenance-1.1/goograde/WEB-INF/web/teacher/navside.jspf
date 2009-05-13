@@ -63,7 +63,7 @@
                             </li>
                             --%>
                             <li class="add">
-                                <h4><img src="/GooGrade1.1/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade/teacher/course">Manage Courses</a></h4>
+                                <h4><img src="/GooGrade1.1/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade1.1/teacher/course">Manage Courses</a></h4>
                             </li>
                             <%-- Not till release 2
                             <li class="export" >

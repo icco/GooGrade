@@ -30,9 +30,6 @@ public class AccountSettingsController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         //NOTE/TODO integer parse failure here.
-        Course thiscourse = new Course(new Integer(req.getParameter("id")));
-        String action = req.getParameter("action");
-        String type = req.getParameter("type");
         Account tmp = null;
         RequestDispatcher view = req.getRequestDispatcher("/AccountSettings.jsp");
 
