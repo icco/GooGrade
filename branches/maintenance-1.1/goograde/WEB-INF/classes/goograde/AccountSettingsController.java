@@ -56,7 +56,8 @@ public class AccountSettingsController extends HttpServlet
     }
 
     /**
-     * Called automagically when a HTTP GET is made.
+     * Called automagically when a HTTP GET is made. This is usually called within
+     * a iFrame, which does not support cookies.
      * 
      * @param req the incoming HttpServletRequest
      * @param resp the outgoing HttpServletResponse
@@ -65,10 +66,13 @@ public class AccountSettingsController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
         RequestDispatcher view = null;
+        Account user1 = Utils.getUseridCookie(req);
         view = req.getRequestDispatcher("/AccountSettings.jsp");
 
-        req.setAttribute("user", Utils.getUseridCookie(req));
+        req.setAttribute("user", user1);
 
+        Logger.getLogger(TeacherController.class.getName()).log(Level.INFO, user1.toString());
+        
         try
         {
             view.forward(req, resp);
