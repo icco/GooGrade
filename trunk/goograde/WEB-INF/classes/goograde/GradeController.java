@@ -121,7 +121,7 @@ public class GradeController extends HttpServlet
         RequestDispatcher view = null;
 
         Account user1 = new Account();
-        Integer courseId = new Integer((String) req.getAttribute("id"));
+        Integer courseId = new Integer((String) req.getParameter("id"));
         Course crse = new Course(courseId);
         
 
@@ -195,6 +195,7 @@ public class GradeController extends HttpServlet
 
         Account user1 = new Account();
         Integer courseId = new Integer(req.getParameter("id"));
+        req.setAttribute("id", req.getParameter("id"));
         Course crse = new Course(courseId);
 
         user1 = getCookie(user1, req);
