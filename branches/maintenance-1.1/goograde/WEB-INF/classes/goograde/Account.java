@@ -37,10 +37,6 @@ public class Account implements java.io.Serializable
      */
     private Permissions permission;
     /**
-     * Files owned by account
-     */
-    private ArrayList<File> files;
-    /**
      * ID used to find things in database
      */
     private Integer id;
@@ -60,7 +56,6 @@ public class Account implements java.io.Serializable
         this.emailAddress = new EmailAddress(new String());
         this.password = null;
         this.permission = null;
-        this.files = null;
     }
     
     /**
@@ -77,7 +72,6 @@ public class Account implements java.io.Serializable
         this.emailAddress = new EmailAddress(newEmail);
         this.password = null;
         this.permission = null;
-        this.files = null;
     }
 
     /**
@@ -92,7 +86,6 @@ public class Account implements java.io.Serializable
         this.id = newID;
         this.password = null;
         this.permission = null;
-        this.files = null;
         boolean validIdent = this.fetch();
         
         /* An invalid ID must throw an error */
@@ -117,7 +110,6 @@ public class Account implements java.io.Serializable
         this.emailAddress = new EmailAddress(newEmail);
         this.password = null;
         this.permission = null;
-        this.files = null;
     }
 
     // Begin the Functions!
@@ -208,28 +200,6 @@ public class Account implements java.io.Serializable
      */
     public boolean isPassword(String passwd)
     {
-        return true;
-    }
-
-    /**
-     * gets the list of files submitted by this account.
-     * @return this user's files 
-     * @todo NOT IMPLEMENTING FOR RELEASE 1
-     */
-    public ArrayList<File> getFiles()
-    {
-        return files;
-    }
-
-    /**
-     * sets the list of files for this account
-     * @param newFiles a list of files owned by this account
-     * @return true if set, false if error.
-     * @todo NOT IMPLEMENTING FOR RELEASE 1
-     */
-    public boolean setFiles(ArrayList<File> newFiles)
-    {
-        this.files = newFiles;
         return true;
     }
 

@@ -21,11 +21,6 @@
         <servlet-class>goograde.GradeController</servlet-class>
     </servlet>
     <servlet>
-        <description>The about page</description>
-        <servlet-name>about</servlet-name>
-        <jsp-file>/about.jsp</jsp-file>
-    </servlet>
-    <servlet>
         <servlet-name>studentcontroller</servlet-name>
         <servlet-class>goograde.StudentController</servlet-class>
     </servlet>
@@ -57,13 +52,13 @@
         <servlet-name>editcoursecontroller</servlet-name>
         <servlet-class>goograde.EditCourseController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AboutController</servlet-name>
+        <servlet-class>goograde.AboutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>assignmentscontroller</servlet-name>
         <url-pattern>/teacher/assignment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>about</servlet-name>
-        <url-pattern>/about</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>coursecontroller</servlet-name>
@@ -112,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>coursecontroller</servlet-name>
         <url-pattern>/student/course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AboutController</servlet-name>
+        <url-pattern>/about</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
