@@ -66,12 +66,23 @@ public class AccountSettingsController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
         RequestDispatcher view = null;
-        Account user1 = Utils.getUseridCookie(req);
+        Account user1;
+        try
+        {
+            user1 = new Account(new Integer(req.getParameter("uId")));
+            req.setAttribute("user", user1);
+            Logger.getLogger(TeacherController.class.getName()).log(Level.INFO, user1.toString());
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(AccountSettingsController.class.getName()).log(
+                    Level.SEVERE, "failure to get attribute.", ex);
+        }
         view = req.getRequestDispatcher("/AccountSettings.jsp");
 
-        req.setAttribute("user", user1);
+        
 
-        Logger.getLogger(TeacherController.class.getName()).log(Level.INFO, user1.toString());
+        
         
         try
         {
