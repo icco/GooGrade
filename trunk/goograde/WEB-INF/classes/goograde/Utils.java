@@ -15,8 +15,9 @@ public final class Utils
      */
     private Utils()
     {
-       // So Checkstyle doesn't get mad
+        // So Checkstyle doesn't get mad
     }
+
     /**
      * Given a servlet request, get an account outta it's cookie.
      * 
