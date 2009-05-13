@@ -17,7 +17,7 @@ ant -f dailybuild.xml -logfile $MESSAGE_FILE &> /dev/null
 
 # Deploy that which you built to the web
 echo "Deploying build"
-cp /var/www/html/wars/GooGrade.`date +%F`.war /usr/share/tomcat5/webapps/GooGrade.war
-rm -rf /user/share/tomcat5/webapps/GooGrade/
+cp /var/www/html/wars/GooGrade2.0.`date +%F`.war /usr/share/tomcat5/webapps/GooGrade2.0.war
+rm -rf /user/share/tomcat5/webapps/GooGrade2.0/
 /sbin/service tomcat5 restart
 

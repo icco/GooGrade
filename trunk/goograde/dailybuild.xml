@@ -50,8 +50,8 @@
 		    <fileset dir="dist/javadoc/"/>
 	    </copy>
 
-	    <copy file="dist/GooGrade.war" tofile="/var/www/html/wars/GooGrade.${logdate}.war"/>
-	    <copy file="dist/GooGrade.war" tofile="/usr/share/tomcat5/webapps/GooGrade.war"/>
+	    <copy file="dist/GooGrade2.0.war" tofile="/var/www/html/wars/GooGrade2.0.${logdate}.war"/>
+	    <copy file="dist/GooGrade2.0.war" tofile="/usr/share/tomcat5/webapps/GooGrade2.0.war"/>
 
 	    <exec executable="/var/www/html/svnstat/runme.sh" />
 	    <exec executable="/var/www/html/svn/trunk/statsvn.sh" />
