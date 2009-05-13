@@ -124,31 +124,6 @@ public class AccountTest extends TestCase {
     }
 
     /**
-     * Test of getFiles method, of class Account.
-     */
-    public void testGetFiles()
-    {
-        System.out.println("getFiles");
-        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
-        ArrayList<File> expResult = null;
-        ArrayList<File> result = instance.getFiles();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setFiles method, of class Account.
-     */
-    public void testSetFiles()
-    {
-        System.out.println("setFiles");
-        ArrayList<File> newFiles = null;
-        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
-        boolean expResult = true;
-        boolean result = instance.setFiles(newFiles);
-        assertEquals(expResult, result);
-    }
-
-    /**
      * Test of getId method, of class Account.
      */
     public void testGetId()
