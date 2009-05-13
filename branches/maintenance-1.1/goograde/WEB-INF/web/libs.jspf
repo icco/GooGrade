@@ -1,9 +1,9 @@
-<script type="text/javascript" src="/GooGrade/styles/jquery.js"></script>
-<script type="text/javascript" src="/GooGrade/styles/ui.core.js"></script>
-<script type="text/javascript" src="/GooGrade/styles/ui.accordion.js"></script>
-<script type="text/javascript" src="/GooGrade/styles/ui.datepicker.js"></script>
-<script type="text/javascript" src="/GooGrade/styles/thickbox.js"></script>
-<link rel="stylesheet" href="/GooGrade/styles/thickbox.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="/GooGrade/styles/goograde.css" type="text/css"/>
+<script type="text/javascript" src="/GooGrade1.1/styles/jquery.js"></script>
+<script type="text/javascript" src="/GooGrade1.1/styles/ui.core.js"></script>
+<script type="text/javascript" src="/GooGrade1.1/styles/ui.accordion.js"></script>
+<script type="text/javascript" src="/GooGrade1.1/styles/ui.datepicker.js"></script>
+<script type="text/javascript" src="/GooGrade1.1/styles/thickbox.js"></script>
+<link rel="stylesheet" href="/GooGrade1.1/styles/thickbox.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="/GooGrade1.1/styles/goograde.css" type="text/css"/>
 
 <%@ include file="includes.jspf" %>

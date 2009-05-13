@@ -19,7 +19,7 @@ I am using an iFrame (2nd to last demo)
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <link rel="stylesheet" href="styles/popups.css" type="text/css"/>
+    <link rel="stylesheet" href="/GooGrade1.1/styles/popups.css" type="text/css"/>
     <body>
         <h2>Account Settings</h2>
         <table border="1">

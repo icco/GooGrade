@@ -28,11 +28,9 @@
                 </library>
                 <library files="1">
                     <file>${file.reference.emma.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library files="1">
                     <file>${file.reference.emma_ant.jar}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library files="1">
                     <file>${file.reference.markdownj-1.0.2b4-0.3.0.jar}</file>

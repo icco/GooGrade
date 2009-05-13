@@ -46,8 +46,8 @@
         <div class="corner BL"></div>
         <div class="corner BR"></div>
         <div class="cornerBoxInner">
-            <h1><a href="/GooGrade">Goo<span style="color: #518ac1;">Grade</span></a></h1>
-            <h2><a href="/GooGrade/teacher">Teacher's Control Panel </a></h2>
+            <h1><a href="/GooGrade1.1/">Goo<span style="color: #518ac1;">Grade</span></a></h1>
+            <h2><a href="/GooGrade1.1/teacher">Teacher's Control Panel </a></h2>
             <div id=coursepanel>
                 <div class="cornerBox-blue">
                     <div class="corner-blue TL"></div>
@@ -63,7 +63,7 @@
                             </li>
                             --%>
                             <li class="add">
-                                <h4><img src="/GooGrade/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade/teacher/course">Manage Courses</a></h4>
+                                <h4><img src="/GooGrade1.1/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade/teacher/course">Manage Courses</a></h4>
                             </li>
                             <%-- Not till release 2
                             <li class="export" >
@@ -89,13 +89,13 @@
                             </li>
                                 --%>
                                 <li>
-                                    <a href="/GooGrade/teacher/grades?id=${course.id}">Manage Grades</a>
+                                    <a href="/GooGrade1.1/teacher/grades?id=${course.id}">Manage Grades</a>
                                 </li>
                                 <li>
-                                    <a href="/GooGrade/teacher/assignment?id=${course.id}">Manage Assignments</a>
+                                    <a href="/GooGrade1.1/teacher/assignment?id=${course.id}">Manage Assignments</a>
                                 </li>
                                 <li>
-                                    <a href="/GooGrade/teacher/accounts?id=${course.id}">Manage Accounts</a>
+                                    <a href="/GooGrade1.1/teacher/accounts?id=${course.id}">Manage Accounts</a>
                                 </li>
                                 <%-- For Release 2
                             <li>
@@ -106,7 +106,7 @@
                             </li>
                                 --%>
                                 <li>
-                                    <a href="/GooGrade/teacher/roster?id=${course.id}">View Roster</a>
+                                    <a href="/GooGrade1.1/teacher/roster?id=${course.id}">View Roster</a>
                                 </li>
                                 <%-- For Release 2
                                 <li>
