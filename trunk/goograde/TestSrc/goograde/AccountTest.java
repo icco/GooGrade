@@ -55,21 +55,9 @@ public class AccountTest extends TestCase {
         System.out.println("getEmailAddress");
         Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
         String expResult = "test@guy";
-        assertEquals(expResult, testAct.getEmailAddress().toString());
+        assertEquals(expResult, testAct.getEmailAddress());
     }
 
-    /**
-     * Test of setPassword method, of class Account.
-     */
-    public void testSetPassword()
-    {
-        System.out.println("setPassword");
-        Password newPass = new Password("123456");
-        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
-        boolean expResult = true;
-        boolean result = testAct.setPassword(newPass);
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of setUserName method, of class Account.
@@ -103,48 +91,10 @@ public class AccountTest extends TestCase {
     public void testSetEmailAddress()
     {
         System.out.println("setEmailAddress");
-        EmailAddress newAddress = new EmailAddress(new String("new@guy"));
+        String newAddress = new String("new@guy");
         Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
         boolean expResult = true;
         boolean result = testAct.setEmailAddress(newAddress);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of isPassword method, of class Account.
-     */
-    public void testIsPassword()
-    {
-        System.out.println("isPassword");
-        String passwd = "123456";
-        Account testAct = new Account(42, "testGuy", "Test Guy", "test@guy");
-        boolean expResult = true;
-        boolean result = testAct.isPassword(passwd);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getFiles method, of class Account.
-     */
-    public void testGetFiles()
-    {
-        System.out.println("getFiles");
-        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
-        ArrayList<File> expResult = null;
-        ArrayList<File> result = instance.getFiles();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of setFiles method, of class Account.
-     */
-    public void testSetFiles()
-    {
-        System.out.println("setFiles");
-        ArrayList<File> newFiles = null;
-        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
-        boolean expResult = true;
-        boolean result = instance.setFiles(newFiles);
         assertEquals(expResult, result);
     }
 
@@ -170,18 +120,6 @@ public class AccountTest extends TestCase {
         Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
         boolean expResult = true;
         boolean result = instance.setId(newID);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getPermissions method, of class Account.
-     */
-    public void testGetPermissions()
-    {
-        System.out.println("getPermissions");
-        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
-        Permissions expResult = null;
-        Permissions result = instance.getPermissions();
         assertEquals(expResult, result);
     }
 
@@ -279,17 +217,6 @@ public class AccountTest extends TestCase {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of isTeacherAssistant method, of class Account.
-     */
-    public void testIsTeacherAssistant()
-    {
-        System.out.println("isTeacherAssistant");
-        Account instance = new Account(42, "testGuy", "Test Guy", "test@guy");
-        boolean expResult = false;
-        boolean result = instance.isTeacherAssistant();
-        assertEquals(expResult, result);
-    }
 
     /**
      * Test of equals method in class Account

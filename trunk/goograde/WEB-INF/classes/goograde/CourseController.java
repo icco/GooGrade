@@ -45,7 +45,7 @@ public class CourseController extends HttpServlet
         }
 
         /*if user is teacher or ta*/
-        if (user1.isTeacher() || user1.isTeacherAssistant())
+        if (user1.isTeacher())
         {
             this.doTeacher(req, user1, action);
             
@@ -106,7 +106,7 @@ public class CourseController extends HttpServlet
         /*if validation passed*/
         if (pass)
         {
-            ret = Course.deleteCourse(null, new Integer(courseRef));
+            ret = Course.deleteCourse(new Integer(courseRef));
         }
 
         return ret;
@@ -149,7 +149,7 @@ public class CourseController extends HttpServlet
         /*if validation is passed*/
         if (pass)
         {
-            ret = Course.addCourse(null, title, department, new Integer(number),
+            ret = Course.addCourse(title, department, new Integer(number),
                     new Integer(section), Teacher.allTeachers().get(0));
         }
 

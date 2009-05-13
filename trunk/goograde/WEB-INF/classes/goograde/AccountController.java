@@ -62,13 +62,11 @@ public class AccountController extends HttpServlet
         req.setAttribute("currentCourse", thiscourse);
         ArrayList<Account> members = new ArrayList<Account>();
 
-        members.addAll(thiscourse.getTeacherAssistants());
         members.addAll(thiscourse.getStudents());
 
         req.setAttribute("user", Utils.getUseridCookie(req));
 
         req.setAttribute("accountList", members);
-        req.setAttribute("tas", thiscourse.getTeacherAssistants());
 
         req.setAttribute("currentCourse", thiscourse);
 
@@ -101,7 +99,7 @@ public class AccountController extends HttpServlet
     {
         Account temp = null;
         temp = new Account();
-        temp.setEmailAddress(new EmailAddress(eAddr));
+        temp.setEmailAddress(eAddr);
         temp.setUserName(uName);
         temp.setFullName(fName);
         temp.save();
@@ -163,7 +161,7 @@ public class AccountController extends HttpServlet
         Course thiscourse = new Course(new Integer(req.getParameter("id")));
         try
         {
-            ret = thiscourse.removeStudent(null, 
+            ret = thiscourse.removeStudent(
                     new Student(new Integer(req.getParameter("accountRef"))));
         }
         catch (Exception ex)
@@ -191,12 +189,7 @@ public class AccountController extends HttpServlet
             //We want to add this one as a student
             if (type.equals("student"))
             {
-                ret = thiscourse.addStudent(null, toAdd);
-            }
-            //We want to add this one as a ta
-            else if (type.equals("teacherAssistant"))
-            {
-                ret = thiscourse.addTA(null, toAdd);
+                ret = thiscourse.addStudent(toAdd);
             }
         }
         return ret;
@@ -217,7 +210,7 @@ public class AccountController extends HttpServlet
                     Level.SEVERE, null, ex);
         }
         tmp.setUserName(req.getParameter("newUserName"));
-        tmp.setEmailAddress(new EmailAddress(req.getParameter("newEmailAddr")));
+        tmp.setEmailAddress(req.getParameter("newEmailAddr"));
         tmp.setFullName(req.getParameter("newFullName"));
 
         ret = tmp.save();
@@ -246,12 +239,7 @@ public class AccountController extends HttpServlet
             //We want to add this one as a studet
             if (type.equals("student"))
             {
-                ret = thiscourse.addStudent(null, toAdd);
-            }
-            //We want to add this one as a ta
-            else if (type.equals("teacherAssistant"))
-            {
-                ret = thiscourse.addTA(null, toAdd);
+                ret = thiscourse.addStudent(toAdd);
             }
         }
         return ret;

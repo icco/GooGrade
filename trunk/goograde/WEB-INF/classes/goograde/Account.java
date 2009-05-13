@@ -26,20 +26,7 @@ public class Account implements java.io.Serializable
     /**
      * Email address of the Account owner
      */
-    private EmailAddress emailAddress;
-    /**
-     * Password for logging in. This will not be 
-     * stored in plain text due to privacy concerns. 
-     */
-    private Password password;
-    /**
-     * Permissions for performing actions
-     */
-    private Permissions permission;
-    /**
-     * Files owned by account
-     */
-    private ArrayList<File> files;
+    private String emailAddress;
     /**
      * ID used to find things in database
      */
@@ -57,10 +44,7 @@ public class Account implements java.io.Serializable
         this.id = null;
         this.userName = new String();
         this.fullName = new String();
-        this.emailAddress = new EmailAddress(new String());
-        this.password = null;
-        this.permission = null;
-        this.files = null;
+        this.emailAddress = new String();
     }
     
     /**
@@ -74,10 +58,7 @@ public class Account implements java.io.Serializable
         this.id = null;
         this.userName = newUser;
         this.fullName = newFull;
-        this.emailAddress = new EmailAddress(newEmail);
-        this.password = null;
-        this.permission = null;
-        this.files = null;
+        this.emailAddress = newEmail;
     }
 
     /**
@@ -90,9 +71,6 @@ public class Account implements java.io.Serializable
     public Account(Integer newID) throws Exception
     {
         this.id = newID;
-        this.password = null;
-        this.permission = null;
-        this.files = null;
         boolean validIdent = this.fetch();
         
         /* An invalid ID must throw an error */
@@ -114,10 +92,7 @@ public class Account implements java.io.Serializable
         this.id = newID;
         this.userName = newUser;
         this.fullName = newFull;
-        this.emailAddress = new EmailAddress(newEmail);
-        this.password = null;
-        this.permission = null;
-        this.files = null;
+        this.emailAddress = newEmail;
     }
 
     // Begin the Functions!
@@ -143,20 +118,9 @@ public class Account implements java.io.Serializable
      * gets the EmailAddress of this account.
      * @return this user's email address 
      */
-    public EmailAddress getEmailAddress()
+    public String getEmailAddress()
     {
         return this.emailAddress;
-    }
-
-    /**
-     * Takes new password, hashes it, and saves to database.
-     * @param newPass the new password to be saved
-     * @return true if set, false if failure.
-     * @todo Passwords are not implemented for release 1.
-     */
-    public boolean setPassword(Password newPass)
-    {
-        return true;
     }
 
     /**
@@ -193,43 +157,9 @@ public class Account implements java.io.Serializable
      * @param newAddress the new email address to be stored
      * @return true if set, false if error.
      */
-    public boolean setEmailAddress(EmailAddress newAddress)
+    public boolean setEmailAddress(String newAddress)
     {
         this.emailAddress = newAddress;
-        return true;
-    }
-
-    /**
-     * Checks the provided password to see if they match.
-     * @param passwd the password entered by the user. 
-     * @return true if the hashed passwd matches the password in the database,
-     *         false otherwise. 
-     * @todo To be implemented with release 2
-     */
-    public boolean isPassword(String passwd)
-    {
-        return true;
-    }
-
-    /**
-     * gets the list of files submitted by this account.
-     * @return this user's files 
-     * @todo NOT IMPLEMENTING FOR RELEASE 1
-     */
-    public ArrayList<File> getFiles()
-    {
-        return files;
-    }
-
-    /**
-     * sets the list of files for this account
-     * @param newFiles a list of files owned by this account
-     * @return true if set, false if error.
-     * @todo NOT IMPLEMENTING FOR RELEASE 1
-     */
-    public boolean setFiles(ArrayList<File> newFiles)
-    {
-        this.files = newFiles;
         return true;
     }
 
@@ -254,15 +184,6 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * returns the permission for an account
-     * @return the permission
-     */
-    public Permissions getPermissions()
-    {
-        return this.permission;
-    }
-
-    /**
      * Searches the database table Account according
      * to this.id and sets all instance variables from there
      * 
@@ -279,7 +200,7 @@ public class Account implements java.io.Serializable
         /* A present ID requires one type of query */
         if (this.getId() != null)
         {
-            query = "SELECT id, username, name, email, password"
+            query = "SELECT id, username, name, email"
                     + " FROM Accounts WHERE id = " + this.getId().toString();
             result = conn.query(query);
             conn.close();
@@ -287,7 +208,7 @@ public class Account implements java.io.Serializable
         /* Otherwise, a present username requires a different query type */
         else if (this.getUserName() != null)
         {
-            query = "SELECT id, username, name, email, password"
+            query = "SELECT id, username, name, email"
                     + " FROM Accounts WHERE username = \"" + this.getUserName() + "\"";
             result = conn.query(query);
             conn.close();
@@ -302,8 +223,7 @@ public class Account implements java.io.Serializable
                 this.setId((Integer) rs.get(index++));
                 this.setUserName(new String((String) rs.get(index++)));
                 this.setFullName((String) rs.get(index++));
-                this.setEmailAddress(new EmailAddress((String) rs.get(index++)));
-                this.setPassword(new Password((String) rs.get(index++)));
+                this.setEmailAddress((String) rs.get(index++));
                 ret = true;
             }
             catch (Exception ex)
@@ -345,17 +265,15 @@ public class Account implements java.io.Serializable
                     + "username = \"" + this.getUserName() + "\","
                     + "name = \"" + this.getFullName() + "\","
                     + "email = \"" + this.getEmailAddress().toString() + "\","
-                    + "password = \"123456a\" "
                     + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         else
         {
-            String query = "INSERT into Accounts (username, name, email, password)";
+            String query = "INSERT into Accounts (username, name, email)";
             query += " VALUES(\"" + this.getUserName() + "\",\"";
             query += this.getFullName() + "\",\"";
-            query += this.getEmailAddress().toString();
-            query += "\",\"123456a\")";
+            query += this.getEmailAddress().toString() + "\")";
             ret = conn.updateQuery(query);
         }
         
@@ -433,30 +351,6 @@ public class Account implements java.io.Serializable
         conn.close();
         
         /* If there is a result, then this account is Teacher */
-        if(result.size() > 0)
-        {
-            ret = true;
-        }
-        
-        return ret;
-    }
-
-    /**
-     * Tells whether an accounter is a TeacherAssistant or Not.
-     * @return true if account is a TeacherAssistant, false if it isn't
-     */
-    public boolean isTeacherAssistant()
-    {
-        boolean ret = false;
-        StorageConnection conn = new StorageConnection();
-        ArrayList<ArrayList<Object>> result = null;
-        String query = "SELECT id FROM TAs WHERE id = \""
-                + id + "\"";
-        
-        result = conn.query(query);
-        conn.close();
-        
-        /* If there is a result, then this account is TeacherAssitant */
         if(result.size() > 0)
         {
             ret = true;

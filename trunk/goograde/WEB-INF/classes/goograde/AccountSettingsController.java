@@ -47,7 +47,7 @@ public class AccountSettingsController extends HttpServlet
                     Level.SEVERE, null, ex);
         }
         tmp.setUserName(req.getParameter("selfUserName"));
-        tmp.setEmailAddress(new EmailAddress(req.getParameter("selfEmailAddr")));
+        tmp.setEmailAddress(new String(req.getParameter("selfEmailAddr")));
         tmp.setFullName(req.getParameter("selfFullName"));
 
         tmp.save();
@@ -98,7 +98,7 @@ public class AccountSettingsController extends HttpServlet
     {
         Account temp = null;
         temp = new Account();
-        temp.setEmailAddress(new EmailAddress(eAddr));
+        temp.setEmailAddress(eAddr);
         temp.setUserName(uName);
         temp.setFullName(fName);
         temp.save();

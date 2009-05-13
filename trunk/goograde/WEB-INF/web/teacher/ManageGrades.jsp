@@ -27,7 +27,7 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>Manage Grades</h3>
+                        <h3>Manage Grades ${id}</h3>
                         
                         <div id="data">
                             <form action="<c:url value="grades" />" method="post">

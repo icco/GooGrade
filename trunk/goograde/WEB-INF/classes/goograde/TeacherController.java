@@ -96,8 +96,6 @@ public class TeacherController extends HttpServlet
 
         req.setAttribute("teacherList", (ArrayList<Teacher>) 
                 (Teacher.allTeachers()));
-        req.setAttribute("teacherAssistantList", (ArrayList<TeacherAssistant>) 
-                (TeacherAssistant.allTeacherAssistants()));
         req.setAttribute("teachCourseList", (ArrayList<Course>) 
                 (Teacher.allTeachers().get(0).getCourses()));
 

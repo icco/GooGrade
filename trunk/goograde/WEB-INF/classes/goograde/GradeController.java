@@ -128,7 +128,7 @@ public class GradeController extends HttpServlet
         user1 = getCookie(user1, req);
 
         // Are we a student or a teacher
-        if (user1.isTeacher() || user1.isTeacherAssistant())
+        if (user1.isTeacher())
         {
             req.setAttribute("currentCourse", crse);
             req.setAttribute("id", (String) req.getParameter("id"));
@@ -201,7 +201,7 @@ public class GradeController extends HttpServlet
         user1 = getCookie(user1, req);
 
         // Are we a student or a teacher
-        if (user1.isTeacher() || user1.isTeacherAssistant())
+        if (user1.isTeacher())
         {
             view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
 

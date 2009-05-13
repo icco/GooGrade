@@ -422,43 +422,6 @@ public class Course implements java.io.Serializable
         return teachers;
     }
 
-    /**
-     * getTeacherAssistant gets the TeacherAssistant attribute from this course
-     * @return assistants of this course
-     */
-    public ArrayList<TeacherAssistant> getTeacherAssistants()
-    {
-        ArrayList<TeacherAssistant> assistants = null;
-        TeacherAssistant toAdd = null;
-        /*avoid null pointer exceptions, we must have an id to fetch from db*/
-        if (this.getId() != null)
-        {
-            assistants = new ArrayList<TeacherAssistant>();
-            String query = "SELECT Accounts.id as id ";
-            query += "FROM Accounts, assists ";
-            query += "WHERE Accounts.id = assists.ta ";
-            query += "AND assists.course = " + this.getId();
-
-            StorageConnection conn = new StorageConnection();
-            ArrayList<ArrayList<Object>> result = conn.query(query);
-            conn.close();
-
-            /* For each query result, add a TeacherAssistant to the list */
-            for (int indx = 0; indx < result.size(); indx++)
-            {
-                try
-                {
-                    toAdd = new TeacherAssistant((Integer) result.get(indx).get(0));
-                    assistants.add(toAdd);
-                }
-                catch (Exception ex)
-                {
-                    System.out.println("Invalid TA list: " + ex);
-                }
-            }
-        }
-        return assistants;
-    }
 
     /**
      * getGradingRules generates a GradingRules object
@@ -485,11 +448,10 @@ public class Course implements java.io.Serializable
 
     /**
      * addStudent adds a new student to this course.
-     * @param permission the permission of the user who calls this function
      * @param student the student that is to be added to the course
      * @return true if no errors were enountered
      */
-    public boolean addStudent(Permissions permission, Account student)
+    public boolean addStudent(Account student)
     {
         boolean ret = false;
         boolean isInRoster = false;
@@ -529,11 +491,10 @@ public class Course implements java.io.Serializable
 
     /**
      * removeStudent removes a particular student from the course.
-     * @param permission the permission of the user who calls this function
      * @param student the student to be removed from this course
      * @return true if no errors were encountered in removal.
      */
-    public boolean removeStudent(Permissions permission, Account student)
+    public boolean removeStudent(Account student)
     {
         boolean ret = false;
         boolean isInRoster = false;
@@ -574,93 +535,11 @@ public class Course implements java.io.Serializable
     }
 
     /**
-     * addTA assignes a new TeacherAssistant to this course.
-     * @param permission the permission of the user who calls this function
-     * @param ta the TeacherAssistant to be assigned to this course
-     * @return true if no errors have occured
-     */
-    public boolean addTA(Permissions permission, Account ta)
-    {
-        boolean ret = false;
-        boolean isAssisting = false;
-
-        /* Check for valid id in teacher assistant object before proceeding */
-        if (ta != null && ta.getId() != null && this.getId() != null)
-        {
-            ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
-            int indx;
-            /* Walk through the list of teacher assistants */
-            for (indx = 0; indx < currentTAs.size(); indx++)
-            {
-                /* Confirm the received assistant is at this list location */
-                if (ta.equals(currentTAs.get(indx)))
-                {
-                    isAssisting = true;
-                    break;
-                }
-            }
-            /*if student is not in the roster, we add him*/
-            if (!isAssisting)
-            {
-                String query = "INSERT INTO assists (course, ta) ";
-                query += "VALUES (\"" + this.getId();
-                query += "\",\"" + ta.getId() + "\")";
-                StorageConnection conn = new StorageConnection();
-                ret = conn.updateQuery(query);
-                conn.close();
-            }
-        }
-        return ret;
-    }
-
-    /**
-     * removeTA removes a TeacherAssistant from this course
-     * @param permission the permission of the user who calls this function
-     * @param ta the TeacherAssistant to be removed to this course
-     * @return true if no errors have occured
-     */
-    public boolean removeTA(Permissions permission, Account ta)
-    {
-        boolean ret = false;
-        boolean isAssisting = false;
-
-        /* Validate the id of the teacher assistant before proceeding */
-        if (ta != null && ta.getId() != null && this.getId() != null)
-        {
-            ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
-            int indx;
-            /* walk through the teacher assistant list */
-            for (indx = 0; indx < currentTAs.size(); indx++)
-            {
-                /* confirm the received TA is the same as the one at this list loc */
-                if (ta.equals(currentTAs.get(indx)))
-                {
-                    isAssisting = true;
-                    break;
-                }
-            }
-
-            /* Proceed if a teacher assistant was found */
-            if (isAssisting)
-            {
-                String query = "DELETE FROM assists ";
-                query += "WHERE ta = \"" + ta.getId();
-                query += "\" AND course = \"" + this.getId() + "\"";
-                StorageConnection conn = new StorageConnection();
-                ret = conn.updateQuery(query);
-                conn.close();
-            }
-        }
-        return ret;
-    }
-
-    /**
      * addTeacher assignes a new Teacher to this course.
-     * @param permission Permission of the user who calls this function
      * @param teacher Teacher to be added to this course
      * @return true if no errors have occured
      */
-    public boolean addTeacher(Permissions permission, Account teacher)
+    public boolean addTeacher(Account teacher)
     {
         boolean ret = false;
         boolean isTeaching = false;
@@ -668,13 +547,13 @@ public class Course implements java.io.Serializable
         /* validate incoming teacher's ID before proceeding */
         if (teacher != null && teacher.getId() != null && this.getId() != null)
         {
-            ArrayList<TeacherAssistant> currentTAs = this.getTeacherAssistants();
+            ArrayList<Teacher> currentTeachers = this.getTeachers();
             int indx;
             /* Loop through the list retrieved */
-            for (indx = 0; indx < currentTAs.size(); indx++)
+            for (indx = 0; indx < currentTeachers.size(); indx++)
             {
                 /* Proceed if a teacher is found */
-                if (teacher.equals(currentTAs.get(indx)))
+                if (teacher.equals(currentTeachers.get(indx)))
                 {
                     isTeaching = true;
                     break;
@@ -696,11 +575,10 @@ public class Course implements java.io.Serializable
 
     /**
      * removeTeacher removes a Teacher from this course.
-     * @param permission Permission of the user who calls this function
      * @param teacher Teacher to be removed from this course
      * @return true if no errors have occured
      */
-    public boolean removeTeacher(Permissions permission, Account teacher)
+    public boolean removeTeacher(Account teacher)
     {
         boolean ret = false;
         boolean isTeaching = false;
@@ -776,13 +654,11 @@ public class Course implements java.io.Serializable
      * deleteCourse (static) removes the course, if exists, with 
      * provided id from the database.
      * 
-     * @param permission Permission to remove a course
      * @param id Id of Course to be deleted
      * @return true if deleted, false otherwise
      * @todo StorageConnection.query does not do deletes
-     * @todo Implement Permissions
      */
-    public static boolean deleteCourse(Permissions permission, Integer id)
+    public static boolean deleteCourse(Integer id)
     {
         String query;
         StorageConnection conn;
@@ -809,11 +685,9 @@ public class Course implements java.io.Serializable
     /**
      * delete removes the current course, if exists,
      * from the database
-     * @param permission Permission to remove the 
      * @return true if deleted, false otherwise
-     * @todo Implement Permissions
      */
-    public boolean delete(Permissions permission)
+    public boolean delete()
     {
         boolean ret = false;
         /*we can only delete if id is not null*/
@@ -834,7 +708,6 @@ public class Course implements java.io.Serializable
      * addCourse (static) adds a course with the given parameters to the 
      * database.
      * 
-     * @param permission Permission to add a Course
      * @param title new Course's title
      * @param department new Course's department
      * @param number new Course's number
@@ -842,7 +715,7 @@ public class Course implements java.io.Serializable
      * @param teacher set the teacher for the class
      * @return true if added, false otherwise
      */
-    public static boolean addCourse(Permissions permission, String title,
+    public static boolean addCourse(String title,
             String department, Integer number, Integer section, Teacher teacher)
     {
 

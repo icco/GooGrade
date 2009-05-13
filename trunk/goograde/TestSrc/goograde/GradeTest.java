@@ -1,5 +1,6 @@
 package goograde;
 
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import junit.framework.TestCase;
@@ -171,7 +172,6 @@ public class GradeTest extends TestCase {
      */
     public void testAllGrades()
     {
-		/*
         System.out.println("allGrades");
         ArrayList<Grade> expResult = new ArrayList<Grade>();
 		ArrayList<Grade> result = new ArrayList<Grade> ();
@@ -189,9 +189,8 @@ public class GradeTest extends TestCase {
         }
 		
         assertEquals(expResult, result);
-		*/
 
-        assertEquals(1,1);
+        //assertEquals(1,1);
     }
 
     /**

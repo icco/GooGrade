@@ -315,19 +315,6 @@ public class CourseTest extends TestCase {
     }
 
     /**
-     * Test of getTeacherAssistants method, of class Course.
-     */
-    public void testGetTeacherAssistants()
-    {
-        System.out.println("getTeacherAssistants");
-        Course instance = new Course(1);
-        ArrayList<TeacherAssistant> result = instance.getTeacherAssistants();
-        String taName = new String(result.get(0).getUserName());
-        String expResult = new String("pphu");
-        assertEquals(expResult, taName);
-    }
-
-    /**
      * Test of getGradingRules method, of class Course.
      * @todo Implement after this feature is implemented
      */
@@ -346,7 +333,6 @@ public class CourseTest extends TestCase {
     public void testAddAndRemoveStudent()
     {
         System.out.println("addStudent");
-        Permissions permission = null;
         Course instance = new Course(4);
         Student student = null;
         try
@@ -358,37 +344,10 @@ public class CourseTest extends TestCase {
             fail("invalid student id" + ex);
         }
         boolean expResult = true;
-        boolean result = instance.addStudent(permission, student);
+        boolean result = instance.addStudent(student);
         assertEquals(expResult, result);
-        
         System.out.println("removeStudent");
-        result = instance.removeStudent(permission, student);
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of addTA method, of class Course.
-     */
-    public void testAddAndRemoveTA()
-    {
-        System.out.println("addTA");
-        Permissions permission = null;
-        Course instance = new Course(4);
-        TeacherAssistant ta = null;
-        try
-        {
-            ta = new TeacherAssistant(2);
-        }
-        catch (Exception ex)
-        {
-            fail("invalid Teacher Assistant id" + ex);
-        }
-        boolean expResult = true;
-        boolean result = instance.addTA(permission, ta);
-        assertEquals(expResult, result);
-        
-        System.out.println("removeTA");
-        result = instance.removeTA(permission, ta);
+        result = instance.removeStudent(student);
         assertEquals(expResult, result);
     }
 
@@ -398,7 +357,6 @@ public class CourseTest extends TestCase {
     public void testAddAndRemoveTeacher()
     {
         System.out.println("addTeacher");
-        Permissions permission = null;
         Course instance = new Course(4);
         Teacher testTeacher = null;
         try
@@ -410,12 +368,12 @@ public class CourseTest extends TestCase {
             fail("invalid Teacher id" + ex);
         }
         boolean expResult = true;
-        boolean result = instance.addTeacher(permission, testTeacher);
+        boolean result = instance.addTeacher(testTeacher);
         assertEquals(expResult, result);
         
         System.out.println("removeTeacher");
         expResult = true;
-        result = instance.removeTeacher(permission, testTeacher);
+        result = instance.removeTeacher(testTeacher);
         assertEquals(expResult, result);
     }
 
@@ -443,7 +401,6 @@ public class CourseTest extends TestCase {
     public void testAddCourseAndDeleteCourse()
     {
         System.out.println("addCourse");
-        Permissions permission = null;
         String title = new String("jUnit Test Course");
         String department = new String("CPE");
         Integer number = new Integer(666);
@@ -460,14 +417,14 @@ public class CourseTest extends TestCase {
         boolean expResult = true;
         ArrayList<Course> cList = Course.allCourses();
         Integer initialSize = cList.get(cList.size() - 1).getId();
-        boolean result = Course.addCourse(permission, title, department, number, 
+        boolean result = Course.addCourse(title, department, number, 
                 section, testTeacher);
         assertEquals(expResult, result);
         
         System.out.println("deleteCourse");
         cList = Course.allCourses();
         Integer lastCourseId = cList.get(cList.size() - 1).getId();
-        result = Course.deleteCourse(permission, lastCourseId);
+        result = Course.deleteCourse(lastCourseId);
         assertEquals(expResult, result);
         cList = Course.allCourses();
         Integer finalSize = cList.get(cList.size() - 1).getId();
@@ -497,7 +454,7 @@ public class CourseTest extends TestCase {
         assertEquals(workingSave, expResult);
         
         System.out.println("delete");
-        testCourse.delete(null);
+        testCourse.delete();
         queryResult = conn.query(query);
         conn.close();
         Integer workingDelete = queryResult.size();
