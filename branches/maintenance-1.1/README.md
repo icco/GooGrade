@@ -49,7 +49,7 @@ The following features are available to students:
 
 ## Software Requirements
 
-This software will run in Firefox 3, Safari 4, Internet Explorer 7, or later.
+ This software will run in Firefox 3, Safari 4, Internet Explorer 7, or later.
 
 ## Installation
 
