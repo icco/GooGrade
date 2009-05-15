@@ -1,6 +1,6 @@
 # GooGrade
 
-A course management software for teachers.
+A course management software for teachers.  This software also allows students to access course information at the teacher's discretion.  
 
 ## Maintainers
  * Nat Welch
@@ -22,16 +22,32 @@ A course management software for teachers.
  This is a bug fix release.
 
  New Features:
-  * Account Settings
+
+* Account Settings
 
  Bug Fixes:
-  * We now error out safely when trying to manage grades.
-  * Lots of small UI changes
+
+* We now error out safely when trying to manage grades.
+* Lots of small UI changes
   
-### Release 1 - Azure Apple
+### Release 1 - Azure Apple ###
 
-  Our Initial Release! (Put more here....)
+The following features are available to teachers & teacher assistants:
 
+*   Manage Courses
+*   Manage Grades
+*   Manage Assignments
+*   Manage Accounts
+*   View Roster
+
+
+The following features are available to students:
  
+*   View Course
+*   View Grades
+*   View Assignments
+*   Account Settings (???)
 
+## Software Requirements
 
+This software will run in Firefox 3, Internet Explorer 7, or later versions of either.
