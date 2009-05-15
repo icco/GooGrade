@@ -23,31 +23,37 @@ A course management software for teachers.  This software also allows students t
 
  New Features:
 
-* Account Settings
+ * Account Settings
 
  Bug Fixes:
 
-* We now error out safely when trying to manage grades.
-* Lots of small UI changes
+ * We now error out safely when trying to manage grades.
+ * Lots of small UI changes
   
 ### Release 1 - Azure Apple ###
 
 The following features are available to teachers & teacher assistants:
 
-*   Manage Courses
-*   Manage Grades
-*   Manage Assignments
-*   Manage Accounts
-*   View Roster
+ *   Manage Courses
+ *   Manage Grades
+ *   Manage Assignments
+ *   Manage Accounts
+ *   View Roster
 
 
 The following features are available to students:
  
-*   View Course
-*   View Grades
-*   View Assignments
-*   Account Settings (???)
+ *   View Course
+ *   View Grades
+ *   View Assignments
 
 ## Software Requirements
 
-This software will run in Firefox 3, Internet Explorer 7, or later versions of either.
+This software will run in Firefox 3, Safari 4, Internet Explorer 7, or later.
+
+## Installation
+
+cd goograde; 
+ant;
+Then deploy the generated .war file to your tomcat server. 
+
