@@ -103,7 +103,7 @@ public class GradingRules implements java.io.Serializable
     /**
      * returns a list of the current boundaries as floats
      * in the order a,b,c,d
-     * @return an ArrayList<Float> with the 4 boundaries a to d
+     * @return an ArrayList with the 4 boundaries a to d
      */
     public ArrayList<Float> getRules()
     {

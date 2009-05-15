@@ -173,15 +173,11 @@ public class GradeTest extends TestCase {
     public void testAllGrades()
     {
         System.out.println("allGrades");
-        ArrayList<Grade> expResult = new ArrayList<Grade>();
-		ArrayList<Grade> result = new ArrayList<Grade> ();
+        Integer expResult = new Integer(45);
+        Integer result = null;
         try
         {
-            expResult.add(new Grade(2,4));
-            expResult.add(new Grade(2,3));
-            expResult.add(new Grade(9,3));
-            expResult.add(new Grade(9,4));
-			result = Grade.allGrades();
+            result = Grade.allGrades().size();
         }
         catch (Exception ex)
         {
@@ -189,8 +185,6 @@ public class GradeTest extends TestCase {
         }
 		
         assertEquals(expResult, result);
-
-        //assertEquals(1,1);
     }
 
     /**
