@@ -40,12 +40,16 @@ function passed($dir,$file)
 <ul>
 <li><a href="usage">Server Usage</a></li>
 <li><a href="javadoc">JavaDocs</a></li>
-<li><a href="wars/GooGrade.<?php echo date("Y-m-d",strtotime('-12 hours')); ?>.war">Lastest .WAR file</a></li>
 <li><a href="svnstat">SVN Log</a></li>
 <li><a href="svnstat2">SVN Statistics</a></li>
 <li><a href="statsvn">More SVN Statistics</a></li>
+<li><a href="coverage/">EMMA Code Coverage</a></li>
 <li><a href="http://wiki.csc.calpoly.edu/blugoo">TRAC</a></li>
-<li><a href="http://blugoo.csc.calpoly.edu:8080/GooGrade">Lastest Deployed .War File</a></li>
+<li><a href="http://blugoo.csc.calpoly.edu:8080/GooGrade2.0/">Lastest Deployed Trunk .War File</a></li>
+<li><a href="http://blugoo.csc.calpoly.edu:8080/GooGrade1.1/">GooGrade 1.1 Deployed .War File</a></li>
+<!--<li><a href="wars/GooGrade1.1.war">.War File for Baby Blue Banana (release 1.1)</a></li>-->
+<!--<li><a href="wars/GooGrade2.0.<?php echo date("Y-m-d",strtotime('-12 hours')); ?>.war">Lastest .WAR file</a></li>-->
+<li><a href="wars/">Older War Files</a></li>
 </ul>
 
 <strong>Build Logs</strong><br />
