@@ -270,4 +270,14 @@ public class Student extends Account
         }
         return ret;
     }
+
+    /**
+     * Calculate and return the student's current grade
+     * @param course the course the grade covers
+     * @return Float the student's current grade
+     */
+    public Float getCurrentGrade(Course course)
+    {
+        return null;
+    }
 }

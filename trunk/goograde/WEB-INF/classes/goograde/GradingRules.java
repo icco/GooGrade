@@ -105,8 +105,108 @@ public class GradingRules implements java.io.Serializable
      * in the order a,b,c,d
      * @return an ArrayList with the 4 boundaries a to d
      */
-    public ArrayList<Float> getRules()
+    public ArrayList<Integer> getRules()
     {
         return null;
+    }
+
+    /**
+     * Get lower boundary for an A
+     * @return aFloor
+     */
+    public Integer getA()
+    {
+        return this.aFloor;
+    }
+
+    /**
+     * Get lower boundary for an B
+     * @return bFloor
+     */
+    public Integer getB()
+    {
+        return this.bFloor;
+    }
+
+    /**
+     * Get lower boundary for an C
+     * @return cFloor
+     */
+    public Integer getC()
+    {
+        return this.cFloor;
+    }
+
+    /**
+     * Get lower boundary for an D
+     * @return dFloor
+     */
+    public Integer getD()
+    {
+        return this.dFloor;
+    }
+
+    /**
+     * Set lower boundary for an A
+     * @param floor lower boundary
+     * @return true if no errors, false otherwise
+     */
+    public boolean setA(Integer floor)
+    {
+        boolean ret = false;
+        if(floor != null)
+        {
+            this.aFloor = floor;
+            ret = true;
+        }
+        return ret;
+    }
+
+    /**
+     * Set lower boundary for a B
+     * @param floor lower boundary
+     * @return true if no errors, false otherwise
+     */
+    public boolean setB(Integer floor)
+    {
+        boolean ret = false;
+        if(floor != null)
+        {
+            this.bFloor = floor;
+            ret = true;
+        }
+        return ret;
+    }
+
+    /**
+     * Set lower boundary for a C
+     * @param floor lower boundary
+     * @return true if no errors, false otherwise
+     */
+    public boolean setC(Integer floor)
+    {
+        boolean ret = false;
+        if(floor != null)
+        {
+            this.cFloor = floor;
+            ret = true;
+        }
+        return ret;
+    }
+
+    /**
+     * Set lower boundary for a D
+     * @param floor lower boundary
+     * @return true if no errors, false otherwise
+     */
+    public boolean setD(Integer floor)
+    {
+        boolean ret = false;
+        if(floor != null)
+        {
+            this.dFloor = floor;
+            ret = true;
+        }
+        return ret;
     }
 }

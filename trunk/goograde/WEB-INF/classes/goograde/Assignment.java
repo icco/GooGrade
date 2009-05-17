@@ -738,5 +738,51 @@ public class Assignment implements java.io.Serializable
         }
         return ret;
     }
+
+    /**
+     * calculate and return the mean grade of this assignment
+     * @return the mean grade of this assignment
+     */
+    public Float getMean()
+    {
+        return null;
+    }
+
+    /**
+     * calculate and return the mode grade of this assignment
+     * @return the mode grade of this assignment
+     */
+    public Float getMode()
+    {
+        return null;
+    }
+
+    /**
+     * calculate and return the Q1 grade of this assignment
+     * @return the Q1 grade of this assignment
+     */
+    public Float getQ1()
+    {
+        return null;
+    }
+
+    /**
+     * calculate and return the Q2 grade of this assignment
+     * @return the Q2 grade of this assignment
+     */
+    public Float getQ2()
+    {
+        return null;
+    }
+    
+    /**
+     * calculate and return the Q3 grade of this assignment
+     * @return the Q3 grade of this assignment
+     */
+    public Float getQ3()
+    {
+        return null;
+    }
+
 }
 

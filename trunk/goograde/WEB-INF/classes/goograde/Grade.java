@@ -15,7 +15,8 @@ public class Grade implements Comparable<Grade>
 
     private Student student;
     private Assignment assignment;
-    private float grade;
+    private Float grade;
+    private Boolean graded;
 
     /**
      * Constructor for Grade class
@@ -24,8 +25,9 @@ public class Grade implements Comparable<Grade>
      */
     public Grade(Assignment ass, Student aThis)
     {
-        this.student = aThis;
-        this.assignment = ass;
+        this.setStudent(aThis);
+        this.setAssignment(ass);
+        this.setGraded(false);
     }
 
     /**
@@ -42,7 +44,12 @@ public class Grade implements Comparable<Grade>
         //if no data is stored we set a 0
         if (!this.fetch())
         {
-            gradeStudent(0);
+            this.gradeStudent(0);
+            this.setGraded(false);
+        }
+        else
+        {
+            this.setGraded(true);
         }
     }
 
@@ -53,7 +60,8 @@ public class Grade implements Comparable<Grade>
     {
         this.student = null;
         this.assignment = null;
-        this.grade = 0;
+        this.grade = null;
+        this.setGraded(false);
     }
 
     /**
@@ -87,7 +95,7 @@ public class Grade implements Comparable<Grade>
      */
     public Float getGrade()
     {
-        return grade;
+        return this.grade;
     }
 
     /**
@@ -395,5 +403,55 @@ public class Grade implements Comparable<Grade>
     public int compareTo(Grade in)
     {
         return this.getGrade().compareTo(in.getGrade());
+    }
+
+    /**
+     * Returns a list of all grades for a student and a course
+     * @param course Course object to which the assignment belongs
+     * @param student Student object to which the assignment belongs
+     * @param graded 1 only graded, -1 only non graded, 0 both.
+     * @return ArrayList of Grades in course and object, null if not found
+     */
+    public static ArrayList<Grade> getGrades(Course course, Student student, Integer graded)
+    {
+        return null;
+    }
+
+    /**
+     * Calculate and return list of required results 
+     * in order for student to recieved specified grade
+     * @param course Course object in which we want to predict the grade
+     * @param student Student object whos grade we want to predics
+     * @param grade grade we want
+     * @return a list of required results to get wished grade
+     */
+    public static ArrayList<Grade> predictGrades(Course course, Student student, Float grade)
+    {
+        return null;
+    }
+
+    /**
+     * Set whether this graded is graded or not
+     * @param set what to set this.graded to
+     * @return true if no errors
+     */
+    public boolean setGraded(Boolean set)
+    {
+        boolean ret = false;
+        if(set != null)
+        {
+            this.graded = set;
+            ret = true;
+        }
+        return ret;
+    }
+
+    /**
+     * Check whether this grade is graded
+     * @return true if graded, false otherwise
+     */
+    public Boolean isGraded()
+    {
+        return this.graded;
     }
 }
