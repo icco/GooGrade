@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="GooGrade" default="default" xmlns:doxygen="antlib:org.doxygen.tools" basedir=".">
+    <description>Builds, tests, and runs the project GooGrade.</description>
+    <import file="nbproject/build-impl.xml"/> <!-- For NetBeans... -->
+
+	<!-- Defining Stuff for emma IN PROGESS -->
+	<taskdef resource="emma_ant.properties" classpathref="emma.lib" />
+	<property name="coverage.dir" value="${basedir}/coverage" />
+
+	<target name="-pre-init">
+		<!-- Set up database -->
+		<echo>Building /tmp/goograde.db</echo>
+		<exec executable="sqlite3">
+			<arg line="-init goograde.sql" />
+			<arg line="/tmp/goograde.db" />
+		</exec>
+
+		<!-- Set up database -->
+		<echo>Put test data into database</echo>
+		<exec executable="sqlite3">
+			<arg line="-init testData.sql" />
+			<arg line="/tmp/goograde.db" />
+		</exec>
+
+		<echo>Set permissions on database</echo>
+		<chmod file="/tmp/goograde.db" perm="777"/>
+	</target>
+
+    <target name="-post-init">
+	    <exec outputproperty="logdate" executable="date">
+		    <arg line="+%F" />
+	    </exec>
+
+	    <exec outputproperty="emaildate" executable="date">
+		    <arg line="+%D" />
+	    </exec>
+    </target>
+
+
+</project>
