@@ -412,7 +412,8 @@ public class Grade implements Comparable<Grade>
      * @param graded 1 only graded, -1 only non graded, 0 both.
      * @return ArrayList of Grades in course and object, null if not found
      */
-    public static ArrayList<Grade> getGrades(Course course, Student student, Integer graded)
+    public static ArrayList<Grade> getGrades(Course course, 
+      Student student, Integer graded)
     {
         return null;
     }
@@ -425,7 +426,8 @@ public class Grade implements Comparable<Grade>
      * @param grade grade we want
      * @return a list of required results to get wished grade
      */
-    public static ArrayList<Grade> predictGrades(Course course, Student student, Float grade)
+    public static ArrayList<Grade> predictGrades(Course course, 
+      Student student, Float grade)
     {
         return null;
     }
@@ -438,6 +440,7 @@ public class Grade implements Comparable<Grade>
     public boolean setGraded(Boolean set)
     {
         boolean ret = false;
+        /* Assignment graded only if input value exists */
         if(set != null)
         {
             this.graded = set;
