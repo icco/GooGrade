@@ -154,6 +154,7 @@ public class GradingRules implements java.io.Serializable
     public boolean setA(Integer floor)
     {
         boolean ret = false;
+        /* Set value to a non-null Integer */
         if(floor != null)
         {
             this.aFloor = floor;
@@ -170,6 +171,7 @@ public class GradingRules implements java.io.Serializable
     public boolean setB(Integer floor)
     {
         boolean ret = false;
+        /* Set value to a non-null Integer */
         if(floor != null)
         {
             this.bFloor = floor;
@@ -186,6 +188,7 @@ public class GradingRules implements java.io.Serializable
     public boolean setC(Integer floor)
     {
         boolean ret = false;
+        /* Set value to a non-null Integer */
         if(floor != null)
         {
             this.cFloor = floor;
@@ -202,6 +205,7 @@ public class GradingRules implements java.io.Serializable
     public boolean setD(Integer floor)
     {
         boolean ret = false;
+        /* Set new value to a non-null Integer */
         if(floor != null)
         {
             this.dFloor = floor;
