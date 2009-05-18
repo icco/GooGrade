@@ -17,6 +17,8 @@ ant test &> $MESSAGE_FILE
 #rm -rf /var/www/html/coverage/
 #cp -r /var/www/html/svn/trunk/goograde/coverage/ /var/www/html/
 
+#echo "AddType 'text/html; charset=ISO-8859-1' html" > /var/www/html/coverage/.htaccess
+
 # Mail it!!!
 /bin/mail -s "$SUBJECT" "$EMAIL" < $MESSAGE_FILE
 
