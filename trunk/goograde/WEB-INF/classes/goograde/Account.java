@@ -454,5 +454,20 @@ public class Account implements java.io.Serializable
         }
         return ret;
     }
+    
+    @Override
+    public boolean equals(Object in)
+    {
+        return false;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        int hash = 3;
+        hash = 29 * hash + (this.userName != null ? this.userName.hashCode() : 0);
+        hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
+        return hash;
+    }
 }
 

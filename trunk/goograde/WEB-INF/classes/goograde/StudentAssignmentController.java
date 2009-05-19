@@ -13,15 +13,12 @@ import javax.servlet.http.Cookie;
 
 /**
  * Does all of the work on the Assignment, it is the controller. 
- * We haven't really speced out what this is going to do yet.
  *
  * @author bluGoo
  * @version 0.42
  */
 public class StudentAssignmentController extends HttpServlet
 {
-
-    
     /**
      * doPost performs actions
      * @param req request
@@ -30,10 +27,8 @@ public class StudentAssignmentController extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
-
         this.doGet(req, resp);
     }
-
     
     /**
      * doGet receives things
@@ -42,8 +37,7 @@ public class StudentAssignmentController extends HttpServlet
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-    {
-       
+    {  
         RequestDispatcher view =
                 req.getRequestDispatcher("/student/ViewAssignments.jsp");
 
