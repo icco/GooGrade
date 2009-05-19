@@ -11,7 +11,6 @@ import java.util.ArrayList;
  */
 public class GradingRules implements java.io.Serializable
 {
-
     /**
      * ID used to find things in database
      */
@@ -107,7 +106,14 @@ public class GradingRules implements java.io.Serializable
      */
     public ArrayList<Integer> getRules()
     {
-        return null;
+		ArrayList<Integer> ret = new ArrayList<Integer>();
+
+		ret.add(this.getA());
+		ret.add(this.getB());
+		ret.add(this.getC());
+		ret.add(this.getD());
+
+		return ret;
     }
 
     /**

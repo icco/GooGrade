@@ -1,6 +1,5 @@
 package goograde;
 
-
 /**
  * The GradingRulesController class is the GradingRules controller. 
  *
@@ -9,7 +8,6 @@ package goograde;
  */
 public class GradingRulesController
 {
-
     /**
      * Renders the Pie Charts
      */
@@ -50,3 +48,4 @@ public class GradingRulesController
         return false;
     }
 }
+
