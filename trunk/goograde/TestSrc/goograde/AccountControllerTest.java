@@ -33,7 +33,7 @@ public class AccountControllerTest extends TestCase
     {
 
 
-        System.out.println("HTTPUnit: AccountController doPost & doGet driver");
+        /*System.out.println("HTTPUnit: AccountController doPost & doGet driver");
         int aryLoc = -1;
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
         
@@ -83,10 +83,10 @@ public class AccountControllerTest extends TestCase
             //req = link.getRequest();
 
             //linkArray = resp.getLinks(); // Get all links from teacher's opening page
-            /* Store the index of the link in the array referring to 357-1 accts */
+             Store the index of the link in the array referring to 357-1 accts 
             for (int index = 0; index < linkArray.length; index++)
             {
-                /* pull the matching location out */
+                 pull the matching location out 
                 if (new String("/GooGrade/teacher/accounts?id=1").equals(linkArray[index].getURLString()))
                 {
                     aryLoc = index;
@@ -104,13 +104,13 @@ public class AccountControllerTest extends TestCase
         {
             fail("IOException: " + ex);
         }
-        /*catch (SAXException ex)
+        catch (SAXException ex)
         {
             fail("SAXException: " + ex);
-        }*/
+        }
         catch(javax.servlet.ServletException ex)
         {
             
-        }
+        }*/
     }
 }
