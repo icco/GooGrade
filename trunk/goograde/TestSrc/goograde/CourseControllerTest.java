@@ -55,7 +55,9 @@ public class CourseControllerTest extends TestCase
      */
     public void testDoPost() throws SAXException
     {
-        System.out.println("HTTPUnit: CourseController doPost & doGet driver");
+        
+        
+        /*System.out.println("HTTPUnit: CourseController doPost & doGet driver");
         try
         {
             ServletRunner sr = new ServletRunner(
@@ -94,11 +96,11 @@ public class CourseControllerTest extends TestCase
          catch (SAXException ex)
         {
             fail("SAXException: " + ex);
-        }*/
+        }
         catch(javax.servlet.ServletException ex)
         {
             
-        }
+        }*/
     }
 
     /**
