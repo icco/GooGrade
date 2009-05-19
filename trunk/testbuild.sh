@@ -11,7 +11,7 @@ ant clean &> /dev/null
 ant &> /dev/null # This should be enabled if not being run after the daily build script
 java -cp lib/emma.jar:. emma instr -ip . -m overwrite
 ant test &> $MESSAGE_FILE
-java -cp lib/emma.jar emma report -r html -sp . -in coverage.em -in coverage.ec
+java -cp lib/emma.jar emma report -r html -sp WEB-INF/classes -in coverage.em -in coverage.ec
 
 # cp up.
 rm -rf /var/www/html/coverage/
@@ -20,5 +20,5 @@ cp -r /var/www/html/svn/trunk/goograde/coverage/ /var/www/html/
 echo "AddType 'text/html; charset=ISO-8859-1' html" > /var/www/html/coverage/.htaccess
 
 # Mail it!!!
-/bin/mail -s "$SUBJECT" "$EMAIL" < $MESSAGE_FILE
+#/bin/mail -s "$SUBJECT" "$EMAIL" < $MESSAGE_FILE
 
