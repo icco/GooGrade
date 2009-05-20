@@ -15,7 +15,7 @@ echo "Hey, $TEAMNAME" >> $FILE;
 echo "" >> $FILE;
 echo "Hope everyone is doing well. Here are the tickets that are either accepted or open to each member of the team. Please remember to accept tickets, so we know who is doing what." >> $FILE;
 
-TEAM=`echo mduder nwelch pphu vgerdin kblizard | sed 's/ /\n/g'`;
+TEAM=`echo mduder nwelch pphu vgerdin kblizard | sed 's/ /\n/g' | shuf`;
 
 for n in $TEAM; do
 	echo "" >> $FILE;
