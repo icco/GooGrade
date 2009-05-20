@@ -106,14 +106,14 @@ public class GradingRules implements java.io.Serializable
      */
     public ArrayList<Integer> getRules()
     {
-		ArrayList<Integer> ret = new ArrayList<Integer>();
+        ArrayList<Integer> ret = new ArrayList<Integer>();
 
-		ret.add(this.getA());
-		ret.add(this.getB());
-		ret.add(this.getC());
-		ret.add(this.getD());
+        ret.add(this.getA());
+        ret.add(this.getB());
+        ret.add(this.getC());
+        ret.add(this.getD());
 
-		return ret;
+        return ret;
     }
 
     /**
