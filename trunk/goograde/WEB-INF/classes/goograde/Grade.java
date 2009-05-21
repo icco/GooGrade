@@ -406,7 +406,7 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * Returns a list of all grades for a student and a course
+     * Returns a list of all grades for a student in a course
      * @param course Course object to which the assignment belongs
      * @param student Student object to which the assignment belongs
      * @param graded 1 only graded, -1 only non graded, 0 both.
@@ -415,6 +415,33 @@ public class Grade implements Comparable<Grade>
     public static ArrayList<Grade> getGrades(Course course, 
       Student student, Integer graded)
     {
+        ArrayList<Grade> toReturn = new ArrayList();
+        StorageConnection conn = new StorageConnection();
+        
+        String query = "SELECT assignId FROM Grades WHERE accountId = ";
+        query += student.getId();
+        
+        switch(graded)
+        {
+            case -1: //only nongraded grades
+            {
+                query += " AND grade IS NULL";
+                break;
+            }
+            case 0://both graded and nongraded
+            {
+                
+                break;
+            }
+            case 1://only graded grades
+            {
+                query += " AND grade IS NOT NULL";
+                break;
+            }
+        }
+        ArrayList<ArrayList<Object>> result = conn.query(query);
+        
+        conn.close();
         return null;
     }
 
