@@ -278,6 +278,22 @@ public class Student extends Account
      */
     public Float getCurrentGrade(Course course)
     {
-        return null;
+        Float totalScore = 0F;
+        Integer totalWeight = 0;
+        Float currentGrade = null;
+        ArrayList<Grade> grades = Grade.getGrades(course, this, 1);
+
+        if(grades != null)
+        {
+            for(Grade grade : grades)
+            {
+                totalWeight+=grade.getAssignment().getTotal();
+                totalScore+=grade.getGrade();
+            }
+
+            currentGrade = totalScore / totalWeight;
+        }
+        
+        return currentGrade;
     }
 }
