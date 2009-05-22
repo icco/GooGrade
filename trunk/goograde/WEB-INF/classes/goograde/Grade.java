@@ -456,7 +456,53 @@ public class Grade implements Comparable<Grade>
     public static ArrayList<Grade> predictGrades(Course course, 
       Student student, Float grade)
     {
-        return null;
+        ArrayList<Grade> minimum = null;
+        ArrayList<Grade> graded = Grade.getGrades(course, student, 1);
+        ArrayList<Grade> all = Grade.getGrades(course, student, 0);
+        ArrayList<Grade> ungraded = Grade.getGrades(course, student, -1);
+
+        Integer totals = 0;
+        Integer gradedTotals = 0;
+        Float achieved = 0F;
+        Float needed = 0F;
+
+        //no null pointers
+        if(all != null)
+        {
+            for(Grade gradeIndxI : all)
+            {
+                totals += gradeIndxI.getAssignment().getTotal();
+            }
+
+            needed = grade * totals;
+
+            if(graded != null)
+            {
+                for(Grade gradeIndxII : graded)
+                {
+                    achieved += gradeIndxII.getGrade();
+                    gradedTotals += gradeIndxII.getAssignment().getTotal();
+                }
+                needed = needed - achieved;
+            }
+            
+            if(needed < (totals - gradedTotals))
+            {
+                int indx = 0;
+                while(needed > 0F)
+                {
+                    Grade current = ungraded.get(indx);
+                    if(current.getGrade() < current.getAssignment().getTotal())
+                    {
+                        current.gradeStudent(current.getGrade() + 1F);
+                        needed = needed - 1F;
+                     }
+                     indx = ((indx + 1) % ungraded.size());
+                }
+                minimum = ungraded;
+            }
+        }
+        return minimum;
     }
 
     /**
