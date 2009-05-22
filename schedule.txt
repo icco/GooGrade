@@ -29,13 +29,13 @@ Release Party                                                        x |       |
 Fix Bugs for Release 1.1                                               | [-]   |       |       |       |     
 Test Release 1.1                                                       | [---] |       |       |       |     
 Release 1.1                                                            |     x |       |       |       | 
-Implement Stage 2                                                      | [-----|------]|       |       |
-Unit Test Development                                                  | [-----|------]|       |       |
+Implement Stage 2                                                      | [-----|-------|---]   |       |
+Unit Test Development                                                  | [-----|-------|----]  |       |
 Formal Reveiws                                                         |       |    [--|-]     |       |          
 No School                                                              |       |       | x     |       |        
 Write Sys Tests                                                        |       |[------|---]   |       | 
-System Test                                                            |       |       | [----]|       |
-Development Frozen                                                     |       |       |       |x      |
+System Test                                                            |       |       | [-----|--]    |
+Development Frozen                                                     |       |       |       | x     |
 write Deployment Doc                                                   |       |       |  [---]|       |
 Release Prep                                                           |       |       |       |[--]   |
 Release 2 Due                                                          |       |       |       |   x(Wed 6/3 11am)
