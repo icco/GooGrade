@@ -151,6 +151,7 @@ public class GradingRules implements java.io.Serializable
     public boolean save()
     {
         boolean ret = false;
+		StorageConnection conn = new StorageConnection();
 
         /* Update if the id exists */
         if (this.getId() != null)
