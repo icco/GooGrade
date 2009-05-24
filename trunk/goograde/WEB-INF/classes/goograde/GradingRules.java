@@ -53,8 +53,8 @@ public class GradingRules implements java.io.Serializable
     public GradingRules(Integer id)
     {
         this.id = id;
+		this.fetch();
     }
-    
     
     /**
      * Sets a the lowest percentage one can have to have a grade.
@@ -62,32 +62,65 @@ public class GradingRules implements java.io.Serializable
      * @param grade The Percentage you wish to set the floor to.
      * @return false if fail, true if set.
      */
-    boolean setCurve(Character letter, Integer grade)
-    {
-        return false;
-    }
+	boolean setCurve(Character letter, Integer grade)
+	{
+		return false;
+	}
 
-    /**
-     * Gets a the lowest percentage one can have to have a grade.
-     * @param letter The Grade (A,B,C,D) you wish to get
-     * @return false if fail, true if set.
-     */
-    Integer getCurve(Character letter)
-    {
-        return null;
-    }
-    
-    /**
-     * Searches the database table GradingRules according
-     * to this.id and sets all instance variables from there
-     * @return true if found in database, else false
-     * @todo improve StorageConnection.query return handling
-     * @todo write it
-     */
-    public boolean fetch()
-    {
-        return false;
-    }
+	/**
+	 * Gets a the lowest percentage one can have to have a grade.
+	 * @param letter The Grade (A,B,C,D) you wish to get
+	 * @return false if fail, true if set.
+	 */
+	Integer getCurve(Character letter)
+	{
+		return null;
+	}
+
+	/**
+	 * Searches the database table GradingRules according
+	 * to this.id and sets all instance variables from there
+	 * @return true if found in database, else false
+	 * @todo improve StorageConnection.query return handling
+	 * @todo write it
+	 */
+	public boolean fetch()
+	{
+		StorageConnection conn = new StorageConnection();
+		ArrayList<ArrayList<Object>> result = null;
+		String query = new String();
+		boolean ret = false;
+		int indx = 0;
+
+		/* A present ID requires one type of query */
+		if(this.getId() != null)
+		{
+			query = "SELECT id, aFloor, bFloor, cFloor, dFloor"
+				+ " FROM GradingRules WHERE id = " 
+				+ this.getId().toString();
+
+			result = conn.query(query);
+			conn.close();
+
+			try
+			{
+				indx = 0;
+				ArrayList<Object> rs = result.get(indx);
+				ret = this.setA((Float)rs.get(indx++));
+				ret = this.setB((Float)rs.get(indx++));
+				ret = this.setC((Float)rs.get(indx++));
+				ret = this.setD((Float)rs.get(indx++));
+			}
+			catch (Exception ex)
+			{
+				Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
+						"SQL error occurred when trying to fetch Grading Rules"
+						+ " with id = " + this.getId().toString(), ex);
+			}
+		}
+
+		return ret;
+	}
     
     /**
      * save will insert or update appropeatly in the db
