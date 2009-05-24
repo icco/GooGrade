@@ -76,7 +76,27 @@ public class GradingRules implements java.io.Serializable
 	 */
 	Integer getCurve(Character letter)
 	{
-		return null;
+		Integer ret = 0;
+
+		switch(letter)
+		{
+		case 'A':
+			ret = this.getA();
+			break;
+		case 'B':
+			ret = this.getB();
+			break;
+		case 'C':
+			ret = this.getC();
+			break;
+		case 'D':
+			ret = this.getD();
+			break;
+		default:
+			ret = null;
+		}
+
+		return ret;
 	}
 
 	/**
@@ -131,6 +151,28 @@ public class GradingRules implements java.io.Serializable
     public boolean save()
     {
         boolean ret = false;
+
+        /* Update if the id exists */
+        if (this.getId() != null)
+        {
+            String query = "UPDATE Accounts SET "
+                    + "username = \"" + this.getUserName() + "\","
+                    + "name = \"" + this.getFullName() + "\","
+                    + "email = \"" + this.getEmailAddress().toString() + "\","
+                    + "WHERE id = \"" + this.getId() + "\"";
+            ret = conn.updateQuery(query);
+        }
+        else
+        {
+            String query = "INSERT into Accounts (username, name, email)";
+            query += " VALUES(\"" + this.getUserName() + "\",\"";
+            query += this.getFullName() + "\",\"";
+            query += this.getEmailAddress().toString() + "\")";
+            ret = conn.updateQuery(query);
+        }
+        
+        conn.close();
+        
         return ret;
     }
     
