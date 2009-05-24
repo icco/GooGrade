@@ -1,6 +1,8 @@
 package goograde;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The GradingRules class determines how the Total Grade
@@ -106,10 +108,10 @@ public class GradingRules implements java.io.Serializable
 			{
 				indx = 0;
 				ArrayList<Object> rs = result.get(indx);
-				ret = this.setA((Float)rs.get(indx++));
-				ret = this.setB((Float)rs.get(indx++));
-				ret = this.setC((Float)rs.get(indx++));
-				ret = this.setD((Float)rs.get(indx++));
+				ret = this.setA((Integer)rs.get(indx++));
+				ret = this.setB((Integer)rs.get(indx++));
+				ret = this.setC((Integer)rs.get(indx++));
+				ret = this.setD((Integer)rs.get(indx++));
 			}
 			catch (Exception ex)
 			{
@@ -251,5 +253,10 @@ public class GradingRules implements java.io.Serializable
             ret = true;
         }
         return ret;
+    }
+
+    public Integer getId()
+    {
+        return this.id;
     }
 }
