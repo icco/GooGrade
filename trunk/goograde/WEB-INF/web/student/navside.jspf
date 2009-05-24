@@ -57,10 +57,10 @@
                         <div class="block">
                             <ul>
                                 <li>
-                                    <a href="/GooGrade/student/grades?id=${course.id}">View Grades</a>
+                                    <a href="/GooGrade2.0/student/grades?id=${course.id}">View Grades</a>
                                 </li>
                                 <li>
-                                    <a href="/GooGrade/student/assignments?id=${course.id}">View Assignments</a>
+                                    <a href="/GooGrade2.0/student/assignments?id=${course.id}">View Assignments</a>
                                 </li>
                                 <li>
                                     <a href="/GooGrade/student/course?id=${course.id}">View Course</a>
