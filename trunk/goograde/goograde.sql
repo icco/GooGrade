@@ -20,11 +20,11 @@ CREATE TABLE Accounts (
 		username STRING UNIQUE ON CONFLICT ROLLBACK,
 		name STRING,
 		email STRING,
-                password STRING,
+		password STRING,
 
 		CONSTRAINT unique_username UNIQUE (username) ON 
-			CONFLICT ROLLBACK
-);
+		CONFLICT ROLLBACK
+		);
 
 /* entity table for Course class */
 CREATE TABLE Courses (      
@@ -37,46 +37,46 @@ CREATE TABLE Courses (
 
 		CONSTRAINT fk_gradingRules FOREIGN KEY (gradingRulesID) REFERENCES 
 		GradingRules (id) ON DELETE RESTRICT
-);
+		);
 
 
 /* entity table for Assignment class */
 CREATE TABLE Assignments (  
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		aName TEXT,
-                aTotal INTEGER,  
-                aDueDate DATE, 
-                aType TEXT, 
-                aAverage FLOAT, 
-                aMax FLOAT, 
-                aMin FLOAT,
-                courseId INTEGER,
+		aTotal INTEGER,  
+		aDueDate DATE, 
+		aType TEXT, 
+		aAverage FLOAT, 
+		aMax FLOAT, 
+		aMin FLOAT,
+		courseId INTEGER,
 
-                CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES
-                Courses (id) ON DELETE CASCADE
-);
+		CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES
+		Courses (id) ON DELETE CASCADE
+		);
 
 -- entity table for GradingRules class
 CREATE TABLE GradingRules (    
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-                aFloor FLOAT,
-                bFloor FLOAT,
-                cFloor FLOAT,
-                dFloor FLOAT
-);
+		aFloor FLOAT,
+		bFloor FLOAT,
+		cFloor FLOAT,
+		dFloor FLOAT
+		);
 
 
 -- relation table between Accounts & Grades 
 Create Table Grades (        
 		accountId INTEGER,
 		grade FLOAT,
-                assignId INTEGER,
+		assignId INTEGER,
 		CONSTRAINT pk_Grades PRIMARY KEY (accountId, assignId),
 		CONSTRAINT fk_account FOREIGN KEY (accountId) REFERENCES Accounts
-			(id) ON DELETE CASCADE,
+		(id) ON DELETE CASCADE,
 		CONSTRAINT fk_assign FOREIGN KEY (assignId) REFERENCES Assignments
-			(id) ON DELETE CASCADE
-);
+		(id) ON DELETE CASCADE
+		);
 
 -- relation table between Accounts (teachers) & Courses 
 CREATE TABLE teaches (         
@@ -84,10 +84,10 @@ CREATE TABLE teaches (
 		teacher INTEGER,
 		CONSTRAINT pk_teaches PRIMARY KEY (course, teacher),
 		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
-			(id) ON DELETE CASCADE,
+		(id) ON DELETE CASCADE,
 		CONSTRAINT fk_teacher FOREIGN KEY (teacher) REFERENCES Accounts
-			(id) ON DELETE CASCADE
-);
+		(id) ON DELETE CASCADE
+		);
 
 -- relation table between Accounts (students) & Courses 
 CREATE TABLE enrolled (
@@ -95,32 +95,32 @@ CREATE TABLE enrolled (
 		student INTEGER,
 		CONSTRAINT pk_enrolled PRIMARY KEY (course, student),
 		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
-			(id) ON DELETE CASCADE,
+		(id) ON DELETE CASCADE,
 		CONSTRAINT fk_student FOREIGN KEY (student) REFERENCES Accounts
-			(id) ON DELETE CASCADE
-);
+		(id) ON DELETE CASCADE
+		);
 
 -- relation table between Account (tas) & Courses
 CREATE TABLE assists (
-                course INTEGER,
-                ta INTEGER,
-                CONSTRAINT pk_enrolled PRIMARY KEY (course, ta),
-                CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
-                        (id) ON DELETE CASCADE,
-                CONSTRAINT fk_tas FOREIGN KEY (ta) REFERENCES Accounts
-                        (id) ON DELETE CASCADE
-);
+		course INTEGER,
+		ta INTEGER,
+		CONSTRAINT pk_enrolled PRIMARY KEY (course, ta),
+		CONSTRAINT fk_course FOREIGN KEY (course) REFERENCES Courses
+		(id) ON DELETE CASCADE,
+		CONSTRAINT fk_tas FOREIGN KEY (ta) REFERENCES Accounts
+		(id) ON DELETE CASCADE
+		);
 
 -- View of all teacher ids
 CREATE VIEW Teachers AS
-    SELECT DISTINCT teacher as id FROM teaches;
+SELECT DISTINCT teacher as id FROM teaches;
 
 -- View of all student ids
 CREATE VIEW Students AS
-    SELECT DISTINCT student as id FROM enrolled;
+SELECT DISTINCT student as id FROM enrolled;
 
 -- View of all ta ids
 CREATE VIEW TAs AS
-    SELECT DISTINCT ta as id FROM assists;
+SELECT DISTINCT ta as id FROM assists;
 
 -- Thanks for visiting!
