@@ -155,19 +155,21 @@ public class GradingRules implements java.io.Serializable
         /* Update if the id exists */
         if (this.getId() != null)
         {
-            String query = "UPDATE Accounts SET "
-                    + "username = \"" + this.getUserName() + "\","
-                    + "name = \"" + this.getFullName() + "\","
-                    + "email = \"" + this.getEmailAddress().toString() + "\","
+            String query = "UPDATE GradingRules SET "
+                    + "aFloor = \"" + this.getA().toString() + "\","
+                    + "bFloor = \"" + this.getB().toString() + "\","
+                    + "cFloor = \"" + this.getC().toString() + "\","
+                    + "dFloor = \"" + this.getD().toString() + "\","
                     + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         else
         {
-            String query = "INSERT into Accounts (username, name, email)";
-            query += " VALUES(\"" + this.getUserName() + "\",\"";
-            query += this.getFullName() + "\",\"";
-            query += this.getEmailAddress().toString() + "\")";
+            String query = "INSERT into GradingRules (aFloor, bFloor, cFloor, dFloor)";
+            query += " VALUES(\"" + this.getA() + "\",\"";
+            query += this.getB() + "\",\"";
+            query += this.getC() + "\",\"";
+            query += this.getD() + "\")";
             ret = conn.updateQuery(query);
         }
         
