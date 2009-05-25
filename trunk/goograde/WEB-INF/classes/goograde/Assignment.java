@@ -170,6 +170,7 @@ public class Assignment implements java.io.Serializable
         return this.id;
     }
 
+    
     /**
      * getGrades returns a list of grades for this assignment
      * @return the list of grades
@@ -740,21 +741,134 @@ public class Assignment implements java.io.Serializable
     }
 
     /**
-     * calculate and return the mean grade of this assignment
+     *  Calculate and return the mean grade of this assignment
      * @return the mean grade of this assignment
      */
     public Float getMean()
     {
-        return null;
+        ArrayList<Grade> gradeList = this.getGrades();
+        Float mean = -1F;
+        int counter = 0;
+        
+        /*ensures that operations are not performed on a null object */
+        if(gradeList != null)
+        {   
+            mean = 0F;
+            
+            /*sum all of the grades and then divide by the number of grades
+             to get the average (mean) */
+            for(counter = 0; counter < gradeList.size(); counter++)
+            {
+                mean += gradeList.get(counter).getGrade();
+            }
+        }
+        
+        mean = mean / counter;
+        
+        return mean;
     }
 
+    /** gradeComparator<T> is an implementation of the java Comparator class
+      * that enables an arrayList of grades to be sorted. See the javadocs for
+      * java.util.Comparator<T> for more details. 
+      * Generic class T is assumed to be a Grade class. 
+      * Do not use this class to compare anything other than Grades. */
+    class gradeComparator<T> implements java.util.Comparator<T>
+    {
+        /**
+         * compare is a comparator method that determines if a Grade is less 
+         * than, equal to, or greater than another Grade. 
+         * @param one the first grade
+         * @param two the second grade
+         * @return a negative number if one is less than two. 
+         * zero if one == two, or a positive number if one is greater than two. 
+         */
+        public int compare(T one, T two)
+        {
+            int returnable = 0;
+
+            /*compares for equal, greater than and less than, respectively. */
+            if ( ((one instanceof Grade)&&(two instanceof Grade)) &&
+                    ((Grade) one).getGrade() == ((Grade) two).getGrade() )
+            {
+                returnable = 0;
+            }
+            else if (((one instanceof Grade)&&(two instanceof Grade)) 
+                    && ((Grade) one).getGrade() > ((Grade) two).getGrade())
+            {
+                returnable = 1;
+            }
+            else if ((one instanceof Grade)&&(two instanceof Grade))
+            {
+                returnable = -1;
+            }
+            return returnable;
+            
+        }
+   
+        /**
+         * equals Indicates whether some other object is "equal to" this 
+         * Comparator.
+         * @param object an object to compare to this comparator
+         * @return true if the two objects are both gradeComparators
+         */
+        @Override
+        public boolean equals(Object object)
+        {
+            boolean equa = false;
+ 
+            /*checks if the instance is a gradeComparator */
+            if(object instanceof gradeComparator)
+            {
+                equa = true;
+            }
+            return equa;
+        }
+        
+    }
     /**
      * calculate and return the mode grade of this assignment
      * @return the mode grade of this assignment
      */
     public Float getMode()
     {
-        return null;
+        ArrayList<Grade> gradeList = this.getGrades();
+        Float mode = -1F;
+        Float current = 0F;
+        Integer high = 0;
+        Integer newHigh = 0;
+        int counter = 0;
+        
+        /*sort the grade list */
+        java.util.Collections.sort(gradeList, new gradeComparator());
+       
+        /*ensures that operations are not performed on a null object */
+        if(gradeList != null)
+        { 
+            /*
+             * Iterate through all of the grades. reset the counter every time a 
+             * new number begins. if the new higest beats the old highest. save the
+             * new mode and the new highest.
+             * */
+            for(counter = 0; counter < gradeList.size(); counter++)
+            {
+                /*determine if new number reached */
+                if(gradeList.get(counter).getGrade() != current)
+                {
+                    current = gradeList.get(counter).getGrade();
+                    newHigh = 0;
+                }
+
+                newHigh++;
+                /*determine if a new mode was found */
+                if(newHigh > high)
+                {
+                    mode = current;
+                    high = newHigh;
+                }
+            }
+        }
+        return mode;
     }
 
     /**
@@ -763,7 +877,40 @@ public class Assignment implements java.io.Serializable
      */
     public Float getQ1()
     {
-        return null;
+        ArrayList<Grade> gradeList = this.getGrades();
+        ArrayList<Grade> subGrade = null;
+        Float Q1 = -1F;
+        Integer indexQuartile = (gradeList.size()/2);
+        boolean isEven = false;
+        
+        /*ensures that operations are not performed on a null object */
+        if(gradeList != null)
+        { 
+            //1. Use the median to divide the ordered data set into two halves. 
+            // Do not include the median into the halves.
+            //2. The lower quartile value is the median of the lower half of the 
+            //data. The upper quartile value is the median of the upper half of the 
+            //data. 
+            java.util.Collections.sort(gradeList, new gradeComparator());
+
+            subGrade = (ArrayList) gradeList.subList(0, indexQuartile-1);
+            indexQuartile = (subGrade.size()/2);
+            isEven = (subGrade.size()%2 )==0;
+
+            /* if the list has an even number of elements, the quartile has to be
+             * averaged*/
+            if(!isEven)
+            {
+                Q1 = (subGrade.get(indexQuartile).getGrade());
+            }
+            else
+            {
+                Q1 = ((subGrade.get(indexQuartile).getGrade() 
+                        + subGrade.get(indexQuartile+1).getGrade()) /2 );
+            }
+        }
+        
+        return Q1;
     }
 
     /**
@@ -772,7 +919,36 @@ public class Assignment implements java.io.Serializable
      */
     public Float getQ2()
     {
-        return null;
+        ArrayList<Grade> gradeList = this.getGrades();
+        Integer indexQuartile = (gradeList.size()/2) ;
+        boolean isEven = false;
+        Float median = -1F;
+        
+        /*ensures that operations are not performed on a null object */
+        if(gradeList != null)
+        {
+            //1. Use the median to divide the ordered data set into two halves. 
+            // Do not include the median into the halves.
+            //2. The lower quartile value is the median of the lower half of the 
+            //data. The upper quartile value is the median of the upper half of the 
+            //data. 
+            java.util.Collections.sort(gradeList, new gradeComparator());
+            isEven = (gradeList.size()%2 )==0;
+
+            /* if the list has an even number of elements, the quartile has to be
+             * averaged*/
+            if(!isEven)
+            {
+                median = (gradeList.get(indexQuartile).getGrade());
+            }
+            else
+            {
+                median = ((gradeList.get(indexQuartile).getGrade() 
+                        + gradeList.get(indexQuartile+1).getGrade()) /2 );
+            }
+        }
+        
+        return median;
     }
     
     /**
@@ -781,7 +957,40 @@ public class Assignment implements java.io.Serializable
      */
     public Float getQ3()
     {
-        return null;
+        ArrayList<Grade> gradeList = this.getGrades();
+        ArrayList<Grade> subGrade = null;
+        Float Q3 = -1F;
+        boolean isEven = false;
+        Integer indexQuartile = (gradeList.size()/2) ;
+        
+        /*ensures that operations are not performed on a null object */
+        if(gradeList != null)
+        {
+            //1. Use the median to divide the ordered data set into two halves. 
+            // Do not include the median into the halves.
+            //2. The lower quartile value is the median of the lower half of the 
+            //data. The upper quartile value is the median of the upper half of the 
+            //data. 
+            java.util.Collections.sort(gradeList, new gradeComparator());
+            subGrade = (ArrayList) gradeList.subList(indexQuartile+1, 
+                    gradeList.size()-1);
+            indexQuartile = (subGrade.size()/2);
+            isEven = (subGrade.size()%2 )==0;
+            
+            /* if the list has an even number of elements, the quartile has to be
+             * averaged*/
+            if(!isEven)
+            {
+                Q3 = (subGrade.get(indexQuartile).getGrade());
+            }
+            else
+            {
+                Q3 = ((subGrade.get(indexQuartile).getGrade() 
+                        + subGrade.get(indexQuartile+1).getGrade()) /2 );
+            }
+        }
+        
+        return Q3;
     }
 
 }
