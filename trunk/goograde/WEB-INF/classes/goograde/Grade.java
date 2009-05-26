@@ -456,52 +456,75 @@ public class Grade implements Comparable<Grade>
     public static ArrayList<Grade> predictGrades(Course course, 
       Student student, Float grade)
     {
+        //return variable
         ArrayList<Grade> minimum = null;
-        ArrayList<Grade> graded = Grade.getGrades(course, student, 1);
+        //list of all grades for that student in that course
         ArrayList<Grade> all = Grade.getGrades(course, student, 0);
-        ArrayList<Grade> ungraded = Grade.getGrades(course, student, -1);
+        //list of the ungraded grades
+        ArrayList<Grade> ungraded = new ArrayList<Grade>(); 
 
+        //counter of total points available
         Integer totals = 0;
+        //counter of total points for graded points, ie no longer available
         Integer gradedTotals = 0;
+        //counter of assigned points
         Float achieved = 0F;
+        //how many points needed for the wished grade
         Float needed = 0F;
 
-        //no null pointers
+        //no null pointers, ie there are no assignments
         if(all != null)
         {
+            //for all assignments (grades) in the class 
             for(Grade gradeIndxI : all)
             {
+                //increment total points
                 totals += gradeIndxI.getAssignment().getTotal();
-            }
-
-            needed = grade * totals;
-
-            if(graded != null)
-            {
-                for(Grade gradeIndxII : graded)
+                //if graded, ie the assignment is graded and no longer available
+                if(gradeIndxI.isGraded())
                 {
-                    achieved += gradeIndxII.getGrade();
-                    gradedTotals += gradeIndxII.getAssignment().getTotal();
+                    //increment achieved points
+                    achieved += gradeIndxI.getGrade();
+                    //increment the number of graded totals
+                    gradedTotals += gradeIndxI.getAssignment().getTotal();
                 }
-                needed = needed - achieved;
+                //if not graded
+                else
+                {
+                    //add the Grade to list of ungraded
+                    ungraded.add(gradeIndxI);
+                }
             }
-            
+
+            //needed points are a set of the total points 
+            //minus the ones already achieved
+            needed = (grade * totals) - achieved;
+
+            //continue iff needed is less than totals left
             if(needed < (totals - gradedTotals))
             {
-                int indx = 0;
+                int indx = 0; //iterative index
+                //continue as long as there are still points needed
                 while(needed > 0F)
                 {
                     Grade current = ungraded.get(indx);
+                    //if an assignment is lower than its maximum (can't get more than max)
                     if(current.getGrade() < current.getAssignment().getTotal())
                     {
+                        //increment grade
                         current.gradeStudent(current.getGrade() + 1F);
+                        //decrement needed
                         needed = needed - 1F;
-                     }
-                     indx = ((indx + 1) % ungraded.size());
+                    }
+                    //increment indx and go back to beginning if out of bounds
+                    indx = ((indx + 1) % ungraded.size());
                 }
+                //assign list of needed grade (ungraded) to return variable (minimum)
                 minimum = ungraded;
             }
         }
+        //if there are assignments and the grade is reachable, a list is returned
+        //else null is returned
         return minimum;
     }
 
