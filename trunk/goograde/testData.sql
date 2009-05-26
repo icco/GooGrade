@@ -6,10 +6,12 @@ INSERT INTO "Assignments" VALUES(2,'JSP Sample',10,'Thu Apr 16 00:00:00 PDT 2009
 INSERT INTO "Assignments" VALUES(3,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2);
 INSERT INTO "Assignments" VALUES(4,'Midterm 2',100,'Sun May 10 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2);
 INSERT INTO "Assignments" VALUES(5,'Vision and Scope Review',23,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
-INSERT INTO "Assignments" VALUES(6,'SRS',40,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,4);
+INSERT INTO "Assignments" VALUES(6,'SRS',40,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,1);
 INSERT INTO "Assignments" VALUES(7,'Preliminary Design',25,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
 INSERT INTO "Assignments" VALUES(8,'Psaudo Code',10,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
 INSERT INTO "Assignments" VALUES(9,'Wiki',15,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
+INSERT INTO "Assignments" VALUES(10,'Test Cases',10,'Tue May 12 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
+INSERT INTO "Assignments" VALUES(11,'Journal',5,'Wed May 13 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
 
 INSERT INTO "Courses" VALUES(1,'Systems Programming','CSC',357,1,1);
 INSERT INTO "Courses" VALUES(2,'Software Engineering I','CPE',308,1,1);
@@ -38,6 +40,7 @@ INSERT INTO enrolled (course, student) VALUES (1, 3);
 INSERT INTO enrolled (course, student) VALUES (2, 3);
 INSERT INTO enrolled (course, student) VALUES (3, 3);
 INSERT INTO enrolled (course, student) VALUES (4, 3);
+INSERT INTO enrolled (course, student) VALUES (5, 3);
 
 INSERT INTO enrolled (course, student) VALUES (1, 4);
 INSERT INTO enrolled (course, student) VALUES (2, 4);
@@ -65,7 +68,9 @@ INSERT INTO Grades (accountId, assignId, grade) VALUES (3,2,47.2);
 
 INSERT INTO Grades (accountId, assignId, grade) VALUES (3,9,80.0);
 INSERT INTO Grades (accountId, assignId, grade) VALUES (4,9,7.6);
-                
+
+INSERT INTO Grades (accountId, assignId, grade) VALUES (3,7,15.0);
+INSERT INTO Grades (accountId, assignId, grade) VALUES (3,8,10.0);
 -- Word to your Database. 
 -- Peace, I'm Out.
 
