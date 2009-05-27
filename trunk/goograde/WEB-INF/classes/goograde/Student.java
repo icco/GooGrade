@@ -85,7 +85,8 @@ public class Student extends Account
      */
     public Float getGrade(Course crse, Assignment ass)
     {
-        return (new Grade(ass, this)).getGrade();
+        Float ret = (new Grade(ass, this)).getGrade();
+        return ret;
     }
 
     /**

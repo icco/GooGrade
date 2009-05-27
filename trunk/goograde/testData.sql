@@ -8,7 +8,7 @@ INSERT INTO "Assignments" VALUES(4,'Midterm 2',100,'Sun May 10 00:00:00 PDT 2009
 INSERT INTO "Assignments" VALUES(5,'Vision and Scope Review',23,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
 INSERT INTO "Assignments" VALUES(6,'SRS',40,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,1);
 INSERT INTO "Assignments" VALUES(7,'Preliminary Design',25,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
-INSERT INTO "Assignments" VALUES(8,'Psaudo Code',10,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
+INSERT INTO "Assignments" VALUES(8,'Pseudo Code',10,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
 INSERT INTO "Assignments" VALUES(9,'Wiki',15,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
 INSERT INTO "Assignments" VALUES(10,'Test Cases',10,'Tue May 12 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
 INSERT INTO "Assignments" VALUES(11,'Journal',5,'Wed May 13 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);

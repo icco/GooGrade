@@ -149,7 +149,11 @@ public class AssignmentTest extends TestCase
         ArrayList<Grade> expResult = new ArrayList<Grade>();
         expResult.add(new Grade(instance, stud));
         expResult.get(0).gradeStudent(20.4F);
-        assertEquals(expResult.get(expResult.size()-1).getGrade(), result.get(result.size()-1).getGrade());
+        if(result == null)
+        {
+            fail("getGrades returned null when it shouldn't");
+        }
+        assertEquals(expResult.get(0).getGrade(), result.get(result.size()-1).getGrade());
     }
 
     /**

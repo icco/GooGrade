@@ -278,11 +278,30 @@ public class CourseTest extends TestCase {
     public void testGetAssignments()
     {
         System.out.println("getAssignments");
-        Course instance = new Course(4);
+        Course instance = new Course(5);
         ArrayList<Assignment> result = instance.getAssignments();
+        
         String assignName = new String(result.get(0).getName());
-        String expResult = new String("SRS");
+        String expResult = new String("Preliminary Design");
         assertEquals(expResult, assignName);
+        
+        assignName = new String(result.get(1).getName());
+        expResult = new String("Pseudo Code");
+        assertEquals(expResult, assignName);
+        
+        assignName = new String(result.get(2).getName());
+        expResult = new String("Test Cases");
+        assertEquals(expResult, assignName);
+        
+        assignName = new String(result.get(3).getName());
+        expResult = new String("Journal");
+        assertEquals(expResult, assignName);
+        
+        assertEquals(result.size(),4);
+        
+        instance = new Course(4);
+        result = instance.getAssignments();
+        assertEquals(new ArrayList<Assignment>(), result);
     }
 
     /**

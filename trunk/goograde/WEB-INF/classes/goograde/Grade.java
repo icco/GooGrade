@@ -27,7 +27,17 @@ public class Grade implements Comparable<Grade>
     {
         this.setStudent(aThis);
         this.setAssignment(ass);
-        this.setGraded(false);
+        
+        //if no data is stored we set a 0
+        if (!this.fetch())
+        {
+            this.gradeStudent(0);
+            this.setGraded(false);
+        }
+        else
+        {
+            this.setGraded(true);
+        }
     }
 
     /**
@@ -75,6 +85,7 @@ public class Grade implements Comparable<Grade>
         this.student = stud;
         this.assignment = ass;
         this.grade = aFloat;
+        this.setGraded(true);
     }
 
     /**
@@ -551,6 +562,7 @@ public class Grade implements Comparable<Grade>
      */
     public Boolean isGraded()
     {
+        
         return this.graded;
     }
 }
