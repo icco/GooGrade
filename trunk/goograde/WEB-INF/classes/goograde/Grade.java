@@ -429,31 +429,51 @@ public class Grade implements Comparable<Grade>
         ArrayList<Grade> toReturn = new ArrayList();
         StorageConnection conn = new StorageConnection();
         
-        String query = "SELECT assignId FROM Grades WHERE accountId = ";
-        query += student.getId();
+        String query = "SELECT id FROM Assignments WHERE courseId = ";
+        query += course.getId();
+        
         
         switch(graded)
         {
             case -1: //only nongraded grades
             {
-                query += " AND grade IS NULL";
-                break;
-            }
-            case 0://both graded and nongraded
-            {
+                query += "Select id FROM Assignments WHERE courseId = ";
+                query += course.getId();
+                query +=" EXCEPT select assignId from Grades where accountId";
+                query += " = " + student.getId() + ";";
                 
                 break;
             }
+            case 0:
+            {
+                query += "Select id FROM Assignments WHERE courseId = ";
+                query += course.getId();
+            }
             case 1://only graded grades
             {
-                query += " AND grade IS NOT NULL";
+                query = "Select assignId from Grades where accountId";
+                query += student.getId();
                 break;
             }
         }
         ArrayList<ArrayList<Object>> result = conn.query(query);
         
+        for( ArrayList<Object> ass : result )
+        {
+                Integer assId = (Integer) ass.get(0);
+                try
+                {
+                    toReturn.add(new Grade(assId, student.getId()));
+                } catch (Exception ex)
+                {
+                    Logger.getLogger(Grade.class.getName()).log(Level.SEVERE,
+                                                                    null, ex);
+                }
+        }
+        
+        
         conn.close();
-        return null;
+        return toReturn;
     }
 
     /**
