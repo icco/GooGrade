@@ -69,7 +69,7 @@ INSERT INTO Grades (accountId, assignId, grade) VALUES (3,2,47.2);
 INSERT INTO Grades (accountId, assignId, grade) VALUES (3,9,80.0);
 INSERT INTO Grades (accountId, assignId, grade) VALUES (4,9,7.6);
 
-INSERT INTO Grades (accountId, assignId, grade) VALUES (3,7,15.0);
+INSERT INTO Grades (accountId, assignId, grade) VALUES (3,7,17.0);
 INSERT INTO Grades (accountId, assignId, grade) VALUES (3,8,10.0);
 -- Word to your Database. 
 -- Peace, I'm Out.

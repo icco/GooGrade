@@ -173,7 +173,7 @@ public class GradeTest extends TestCase {
     public void testAllGrades()
     {
         System.out.println("allGrades");
-        Integer expResult = new Integer(45);
+        Integer expResult = new Integer(55);
         Integer result = null;
         try
         {
@@ -274,6 +274,105 @@ public class GradeTest extends TestCase {
         float expResult2 = 0F;
         float result2 = instance2.getGrade();
         assertEquals(expResult2, result2);
+    }
+    
+    /**
+     * Test for predictGrade method in class Grade
+     */
+    public void testPredictGrade()
+    {
+        System.out.println("predictGrade");
+        ArrayList<Grade> result = null;
+        
+        try
+        {
+            //Test 1, a course with no assignments
+            result = Grade.predictGrades(new Course(4), new Student(3), 0.50F);
+            assertEquals(result, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+        
+        try
+        {
+            //Test 2, goal is unachievable
+            result = Grade.predictGrades(new Course(5), new Student(3), 0.90F);
+            assertEquals(result, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+        
+        try
+        {
+            //Test 3, goal is achievable
+            result = Grade.predictGrades(new Course(5), new Student(3), 0.80F);
+            if(result == null)
+            {
+                fail("returned null when shouldn't");
+            }
+            else
+            {
+                assertEquals(result.get(0).getGrade(), 5F);
+                assertEquals(result.get(1).getGrade(), 8F);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+        
+        try
+        {
+            //Test 4, boundary testing
+            result = Grade.predictGrades(new Course(5), new Student(3), 0.83F);
+            if(result == null)
+            {
+                fail("returned null when shouldn't");
+            }
+            else
+            {
+                assertEquals(result.get(0).getGrade(), 5F);
+                assertEquals(result.get(1).getGrade(), 10F);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+        
+        try
+        {
+            //Test 5, boundary testing
+            result = Grade.predictGrades(new Course(5), new Student(3), 0.84F);
+            if(result == null)
+            {
+                fail("returned null when shouldn't");
+            }
+            else
+            {
+                assertEquals(result.get(0).getGrade(), 5F);
+                assertEquals(result.get(1).getGrade(), 10F);
+            }
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+        
+        try
+        {
+            //Test 6, boundary testing
+            result = Grade.predictGrades(new Course(5), new Student(3), 0.5F);
+            assertEquals(result, null);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
     }
 
 }
