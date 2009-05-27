@@ -1,6 +1,8 @@
 package goograde;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import junit.framework.TestCase;
 
 /**
@@ -33,16 +35,16 @@ public class StudentTest extends TestCase {
         Student testStu = null;
         try
         {
-            testStu = new Student(4);
+            testStu = new Student(3);
         }
         catch (Exception ex)
         {
             fail("invalid student ID");
         }
-        Assignment testAssign = new Assignment(2);
-        Course testCourse = new Course(3);
+        Assignment testAssign = new Assignment(7);
+        Course testCourse = new Course(5);
         Float result = testStu.getGrade(testCourse, testAssign);
-        Float expResult = new Float(0.0);
+        Float expResult = new Float(17.0);
         assertEquals(expResult, result);
     } 
 
@@ -94,4 +96,38 @@ public class StudentTest extends TestCase {
         assertEquals(testResult, expResult);
     }
 
+    /**
+     * Test if getCurrentGrade, of class Student
+     */
+    
+    public void testGetCurrentGrade()
+    {
+        System.out.println("getCurrentGrade");
+        Float result = null;
+        Float expResult = null;
+        try
+        {
+            //Test 1, no assignments in course
+            Student student = new Student(3);
+            result = student.getCurrentGrade(new Course(4));
+            assertEquals(result, expResult);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(StudentTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+        
+        try
+        {
+            //Test 2
+            Student student = new Student(3);
+            result = student.getCurrentGrade(new Course(5));
+            expResult = 0.6F;
+            assertEquals(result, expResult);
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(StudentTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+        }
+    }
 }
