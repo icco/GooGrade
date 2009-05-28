@@ -32,7 +32,7 @@
     </target>
 
     <target name="deps-clean">
-	    <delete includeEmptyDirs="true">
+	    <delete includeEmptyDirs="true" failonerror="false">
 		    <fileset dir="coverage"/>
 		    <fileset file="coverage.em"/>
 		    <fileset file="coverage.ec"/>
