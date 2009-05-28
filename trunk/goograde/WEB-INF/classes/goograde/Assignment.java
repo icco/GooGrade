@@ -893,9 +893,17 @@ public class Assignment implements java.io.Serializable
             //data. 
             java.util.Collections.sort(gradeList, new gradeComparator());
 
-            subGrade = (ArrayList) gradeList.subList(0, indexQuartile-1);
-            indexQuartile = (subGrade.size()/2);
+            subGrade = new ArrayList(gradeList.subList(0, indexQuartile-1));
             isEven = (subGrade.size()%2 )==0;
+            if(subGrade.size() > 2)
+            {
+                indexQuartile = (subGrade.size()/2);
+            }
+            else
+            {
+                indexQuartile = 0;
+            }
+            
 
             /* if the list has an even number of elements, the quartile has to be
              * averaged*/
@@ -909,7 +917,6 @@ public class Assignment implements java.io.Serializable
                         + subGrade.get(indexQuartile+1).getGrade()) /2 );
             }
         }
-        
         return Q1;
     }
 
@@ -943,8 +950,8 @@ public class Assignment implements java.io.Serializable
             }
             else
             {
-                median = ((gradeList.get(indexQuartile).getGrade() 
-                        + gradeList.get(indexQuartile+1).getGrade()) /2 );
+                median = ((gradeList.get(indexQuartile-1).getGrade() 
+                        + gradeList.get(indexQuartile).getGrade()) /2 );
             }
         }
         
@@ -972,9 +979,16 @@ public class Assignment implements java.io.Serializable
             //data. The upper quartile value is the median of the upper half of the 
             //data. 
             java.util.Collections.sort(gradeList, new gradeComparator());
-            subGrade = (ArrayList) gradeList.subList(indexQuartile+1, 
-                    gradeList.size()-1);
-            indexQuartile = (subGrade.size()/2);
+            subGrade = new ArrayList(gradeList.subList(indexQuartile, 
+                    gradeList.size()-1));
+            if(subGrade.size() > 2)
+            {
+                indexQuartile = (subGrade.size()/2);
+            }
+            else
+            {
+                indexQuartile = 0;
+            }
             isEven = (subGrade.size()%2 )==0;
             
             /* if the list has an even number of elements, the quartile has to be
