@@ -59,10 +59,10 @@ CREATE TABLE Assignments (
 -- entity table for GradingRules class
 CREATE TABLE GradingRules (    
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		aFloor FLOAT,
-		bFloor FLOAT,
-		cFloor FLOAT,
-		dFloor FLOAT
+		aFloor INTEGER,
+		bFloor INTEGER,
+		cFloor INTEGER,
+		dFloor INTEGER
 		);
 
 
