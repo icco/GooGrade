@@ -288,22 +288,22 @@ public class GradeTest extends TestCase {
         {
             //Test 1, a course with no assignments
             result = Grade.predictGrades(new Course(4), new Student(3), 0.50F);
-            assertEquals(result, null);
+            assertEquals(null, result);
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad test data");
         }
         
         try
         {
             //Test 2, goal is unachievable
             result = Grade.predictGrades(new Course(5), new Student(3), 0.90F);
-            assertEquals(result, null);
+            assertEquals(null, result);
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad test data");
         }
         
         try
@@ -322,7 +322,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad test data");
         }
         
         try
@@ -341,7 +341,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad test data");
         }
         
         try
@@ -360,7 +360,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad test data");
         }
         
         try
@@ -371,8 +371,85 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad test data");
         }
     }
+    
+    /**
+     * Test for isGraded method in class Grade
+     */
+    public void testIsGraded()
+    {
+        System.out.println("isGraded");
+        
+        Grade instance = null;
+        boolean expResult;
+        boolean result;
+        
+        try
+        {
+            instance = new Grade(8, 3);
+            expResult = true;
+            result = instance.isGraded();
+            assertEquals(expResult, result);
+        }
+        catch (Exception ex)
+        {
+            fail("Bad test data");
+        }
+        try
+        {
 
+            instance = new Grade(10, 3);
+            expResult = false;
+            result = instance.isGraded();
+            assertEquals(expResult, result);
+        }
+        catch (Exception ex)
+        {
+            fail("Bad test data");
+        }
+    }
+    
+    /**
+     * Test for setGraded method in class Grade
+     */
+    public void testSetGraded()
+    {
+        System.out.println("setGraded");
+        
+        Grade instance = null;
+        boolean expResult;
+        boolean result;
+        try
+        {
+            instance = new Grade(8, 3);
+            expResult = false;
+            result = instance.setGraded(null);
+            assertEquals(expResult, result);
+        }
+        catch (Exception ex)
+        {
+            fail("Bad test data");
+        }
+        try
+        {
+
+            instance = new Grade(8, 3);
+            expResult = true;
+            result = instance.setGraded(false);
+            assertEquals(expResult, result);
+            assertEquals(new Boolean(false), instance.isGraded());
+            
+            result = instance.setGraded(true);
+            assertEquals(expResult, result);
+            assertEquals(new Boolean(true), instance.isGraded());
+        }
+        catch (Exception ex)
+        {
+            fail("Bad test data");
+        }
+            
+        
+    }
 }
