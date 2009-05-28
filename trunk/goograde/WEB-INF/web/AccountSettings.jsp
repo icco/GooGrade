@@ -19,7 +19,7 @@ I am using an iFrame (2nd to last demo)
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <link rel="stylesheet" href="/GooGrade1.1/styles/popups.css" type="text/css"/>
+    <link rel="stylesheet" href="../styles/popups.css" type="text/css"/>
     <body>
         <h2>Account Settings</h2>
         <table>
@@ -33,7 +33,7 @@ I am using an iFrame (2nd to last demo)
                     <td>Full Name:<input name="selfFullName" type="text" value="${user.fullName}"  /></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Change" onclick="parent.tb_remove(); parent.location.href=parent.location.href; parent.location.href=parent.location.href; parent.location.refresh()"/></td>
+                    <td><input type="submit" value="Change" /></td>
                 </tr>
             </form>
         </table>

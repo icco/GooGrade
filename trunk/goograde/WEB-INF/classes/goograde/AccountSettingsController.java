@@ -30,7 +30,7 @@ public class AccountSettingsController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
         //NOTE/TODO integer parse failure here.
-        Course thiscourse = new Course(new Integer(req.getParameter("id")));
+        //Course thiscourse = new Course(new Integer(req.getParameter("id")));
         String action = req.getParameter("action");
         String type = req.getParameter("type");
         Account tmp = null;
@@ -69,7 +69,9 @@ public class AccountSettingsController extends HttpServlet
         Account user1;
         try
         {
-            user1 = new Account(new Integer(req.getParameter("uId")));
+            String temp = req.getParameter("userId");
+            user1 = new Account(new Integer(temp));
+            //user1 = Utils.getUseridCookie(req);
             req.setAttribute("user", user1);
             Logger.getLogger(TeacherController.class.getName()).log(Level.INFO, user1.toString());
         }
