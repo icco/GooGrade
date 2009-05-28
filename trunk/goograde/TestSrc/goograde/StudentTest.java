@@ -27,7 +27,6 @@ public class StudentTest extends TestCase {
 
     /**
      * Test of getGrade method, of class Student.
-     * Note: Needs to be updated once this method is implemented.
      */
     public void testGetGrade()
     {
@@ -110,7 +109,7 @@ public class StudentTest extends TestCase {
             //Test 1, no assignments in course
             Student student = new Student(3);
             result = student.getCurrentGrade(new Course(4));
-            assertEquals(result, expResult);
+            assertEquals(expResult, result);
         }
         catch (Exception ex)
         {
@@ -123,7 +122,7 @@ public class StudentTest extends TestCase {
             Student student = new Student(3);
             result = student.getCurrentGrade(new Course(5));
             expResult = 0.6F;
-            assertEquals(result, expResult);
+            assertEquals(expResult, result);
         }
         catch (Exception ex)
         {
