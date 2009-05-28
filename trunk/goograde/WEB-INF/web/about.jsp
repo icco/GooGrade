@@ -55,11 +55,10 @@
                         <%-- Defect #176 fixed here --%>
                         <dt>Implementation Manager, Architect, & Designer</dt>
                         <dd>Paul Phu</dd>
-
-			<%-- Defect #179 fixed here --%>
-                        <dt>Change Mangager & Analyst</dt>
-			<dd>Viktor Gerdin</dd>
                         
+                        <%-- Defect #179 fixed here --%>
+                        <dt>Change Mangager & Analyst</dt>
+                        <dd>Viktor Gerdin</dd>
                     </div>
                 </div>
             </div>

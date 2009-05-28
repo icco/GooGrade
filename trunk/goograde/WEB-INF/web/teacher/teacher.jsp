@@ -13,7 +13,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>GooGrade</title>
     </head>
-    
+    <script type="text/javascript">
+<!--
+window.location = "course"
+//-->
+</script>
+
     <body>
         
         <div id="wrap">

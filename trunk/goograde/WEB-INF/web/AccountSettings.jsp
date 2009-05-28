@@ -19,43 +19,24 @@ I am using an iFrame (2nd to last demo)
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <link rel="stylesheet" href="styles/popups.css" type="text/css"/>
+    <link rel="stylesheet" href="/GooGrade1.1/styles/popups.css" type="text/css"/>
     <body>
         <h2>Account Settings</h2>
-        <table border="1">
-            <thead>
+        <table>
+            <form action="<c:url value="/settings" />" method="post">
+                <tr class="color">
+                    <input type="hidden" name="id" value="${currentCourse.id}" />
+                    <input type="hidden" name="accountRef" value="${user.id}" />
+                    <input type="hidden" name="action" value="add" />
+                    <td>Login Name:<input name="selfUserName" type="text" value="${user.userName}" /></td>
+                    <td>Email:<input name="selfEmailAddr" type="text" value="${user.emailAddress}"  /></td>
+                    <td>Full Name:<input name="selfFullName" type="text" value="${user.fullName}"  /></td>
+                </tr>
                 <tr>
-                    <th>ID</th>
-                    <th>User Name</th>
-                    <th>Email Address</th>
-                    <th>Full Name</th>
+                    <td><input type="submit" value="Change" onclick="parent.tb_remove(); parent.location.href=parent.location.href; parent.location.href=parent.location.href; parent.location.refresh()"/></td>
                 </tr>
-            </thead>
-            <tbody>
-                
-                <tr>
-                    <td>${user.id}</td>
-                    <td>${user.userName}</td>
-                    <td>${user.emailAddress}</td>
-                    <td>${user.fullName}</td>
-                </tr>
-                
-                <tr> 
-                    
-                </tr>
-            </tbody>
+            </form>
         </table>
-        
-        <h3>Edit Account</h3>
-        <form action="<c:url value="/settings" />" method="post">
-            <td><input type="hidden" name="action" value="add" /></td>
-            <td>Login Name:<input name="selfUserName" type="text" /></td>
-            <td>Email:<input name="selfEmailAddr" type="text" /></td>
-            <td>Full Name:<input name="selfFullName" type="text" /></td>
-            <tr>
-                <td><input type="submit" value="Enter" /></td>
-            </tr>
-        </form>
         
     </body>
 </html>
