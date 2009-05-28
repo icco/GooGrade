@@ -451,7 +451,7 @@ public class Grade implements Comparable<Grade>
             }
             case 1://only graded grades
             {
-                query = "Select assignId from Grades where accountId";
+                query = "Select assignId from Grades where accountId = ";
                 query += student.getId();
                 break;
             }
