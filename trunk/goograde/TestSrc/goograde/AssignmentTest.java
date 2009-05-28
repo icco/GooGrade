@@ -272,4 +272,130 @@ public class AssignmentTest extends TestCase
         boolean result = instance.fetch();
         assertEquals(expResult, result);
     }
+    
+    /**
+     * test for get Mode
+     */
+    public void testGetMode() throws Exception
+    {
+        System.out.println("getMode");
+        Assignment instance = new Assignment(1);
+        Float result;
+        Integer count = 0;
+        
+        instance.setCourseId(5);
+
+        instance.setAGrade(new Student(4), 
+                    10.0F);
+       instance.setAGrade(new Student(5), 
+                    10.0F);
+       instance.setAGrade(new Student(6), 
+                    11.0F);        
+       instance.setAGrade(new Student(7), 
+                    12.0F);        
+        result = instance.getMode();
+        assertEquals(10.0F, result);
+        
+    }
+    
+    /**
+     * test for get the mean /average
+     */
+    public void testGetMean() throws Exception
+    {
+        System.out.println("getMean");
+        Assignment instance = new Assignment(1);
+        Student aStudent = new Student(1);
+        float newGrade = 10.0F;
+        Float result;
+        Integer count = 0;
+        
+        instance.setAGrade(new Student(4), 
+                    10.0F);
+        instance.setAGrade(new Student(5), 
+                    10.0F);
+        instance.setAGrade(new Student(6), 
+                    11.0F);        
+        instance.setAGrade(new Student(7), 
+                    9.0F);       
+        result = instance.getMean();
+        assertEquals(10.0F, result);
+        
+        
+        instance.setAGrade(new Student(7), 
+                    20.0F);       
+        result = instance.getMean();
+        assertEquals(12.75F, result);
+            
+        
+    }
+    
+    /**
+     * test for get the first quartile
+     */
+    public void testGetQ1() throws Exception
+    {
+        System.out.println("getQ1");
+        Assignment instance = new Assignment(1);
+        float newGrade = 10.0F;
+        Float result;
+        Integer count = 0;
+        
+        instance.setAGrade(new Student(4), 
+                    1.0F);
+       instance.setAGrade(new Student(5), 
+                    2.0F);
+       instance.setAGrade(new Student(6), 
+                    3.0F);        
+       instance.setAGrade(new Student(7), 
+                    4.0F);       
+        result = instance.getQ1();
+        assertEquals(1.0F, result);
+    }
+    
+    /**
+     * test for getting the median
+     */
+    public void testGetQ2() throws Exception
+    {
+        System.out.println("getQ2");
+        Assignment instance = new Assignment(1);
+        float newGrade = 10.0F;
+        Float result;
+        Integer count = 0;
+        
+        instance.setAGrade(new Student(4), 
+                    1.0F);
+       instance.setAGrade(new Student(5), 
+                    2.0F);
+       instance.setAGrade(new Student(6), 
+                    3.0F);        
+       instance.setAGrade(new Student(7), 
+                    4.0F);
+        result = instance.getQ2();
+        assertEquals(2.5F, result);
+    }
+    
+    /**
+     * test for get third quartile
+     */
+    public void testGetQ3() throws Exception
+    {
+        System.out.println("getQ3");
+        Assignment instance = new Assignment(1);
+        float newGrade = 10.0F;
+        Float result;
+        Integer count = 0;
+        
+        instance.setAGrade(new Student(4), 
+                    1.0F);
+       instance.setAGrade(new Student(5), 
+                    2.0F);
+       instance.setAGrade(new Student(6), 
+                    3.0F);        
+       instance.setAGrade(new Student(7), 
+                    4.0F);
+        result = instance.getQ3();
+        assertEquals(3.0F, result);
+    }
 }
