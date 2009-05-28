@@ -14,7 +14,7 @@
         <div class="cornerBoxInner">
             
             ${user.userName} &nbsp; |  &nbsp;&nbsp; 
-            <a href="../settings?keepThis=true&TB_iframe=true&height=400&width=600&userId=${user.id}"class="thickbox">
+            <a href="../settings?userId=${user.id}&keepThis=true&TB_iframe=true&height=400&width=600" class="thickbox">
             Account Settings</a>&nbsp;&nbsp;
             | &nbsp;&nbsp; <a href="../">Logout</a>
         </div>
