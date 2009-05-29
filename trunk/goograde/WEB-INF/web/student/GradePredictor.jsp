@@ -1,7 +1,7 @@
 <%-- 
     Document   : ViewGrades
     Created on : Apr 26, 2009, 9:47:24 PM
-    Author     : pphu
+    Author     : vgerdin
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -36,10 +36,8 @@
                                         <thead>
                                             <tr>
                                                 <th>Assignment</th>
-                                                <th>Possible Points</th>
-                                                <th>Due Date</th>
-                                                <th>Type</th>
                                                 <th>Grade</th>
+                                                <th>Possible Points</th>
                                             </tr>
                                         </thead>
                                         <tbody>

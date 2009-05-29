@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Controls server interactions for grades. Tells what views to serve and gets 
  * data from the model, and related models.
- * @author nwelch
- * @author kblizard
+ * @author vgerdin
  */
 public class GradePredictorController extends HttpServlet
 {
@@ -42,73 +41,7 @@ public class GradePredictorController extends HttpServlet
         return user1;
     }
 
-    /**
-     * teacherSet fulfills the POST teacher request from doPost()
-     * @param req the request serveletRequest
-     * @param user1 the Account to use
-     * @param courseId teh ID of the course being modified. 
-     * @param crse the course being used. 
-     * @return the view
-     */
-    private RequestDispatcher teacherSet(HttpServletRequest req, Account user1,
-            Integer courseId, Course crse)
-    {
-        RequestDispatcher view =
-                req.getRequestDispatcher("/student/GradePredictor.jsp");
-
-        Teacher user3;
-        try
-        {
-            user3 = new Teacher(user1.getId());
-            req.setAttribute("teachCourseList",
-                    (ArrayList<Course>) (user3.getCourses()));
-        } 
-        catch (Exception ex)
-        {
-            Logger.getLogger(GradePredictorController.class.getName()).log(Level.SEVERE, 
-                    "Teacher Does Not Exist", ex);
-        }
-
-        Integer assId = new Integer(req.getParameter("ass"));
-        //Integer stuId = new Integer(req.getParameter("stu"));
-
-        Assignment a1 = new Assignment(assId);
-        Student s1 = new Student();
-
-        new Grade(s1, new Float(req.getParameter("grade")), a1);
-
-        req.setAttribute("currentCourse", crse);
-        req.setAttribute("id", courseId);
-        req.setAttribute("assArray", crse.getAssignments());
-        req.setAttribute("stuArray",
-                (ArrayList<Student>) crse.getStudents());
-        return view;
-    }
-
-    private HttpServletRequest addGrades(HttpServletRequest req, Course currentCourse)
-    {
-        ArrayList<Assignment> asslist = currentCourse.getAssignments();
-        ArrayList<Student> stulist = currentCourse.getStudents();
         
-        //For every assignment and student, add the new grade if it is greater than 0.0
-        for(Assignment ass : asslist)
-        {
-            // Must be n^2 since it has to update everything
-            for(Student stu : stulist)
-            {
-                Float grade = new Float((String) req.getAttribute(ass.getId() 
-                        + "@" + stu.getId()));
-                //0.0 means it hasn't been updated
-                if(grade > 0.0f)
-                {
-                    Grade.addGrade(stu, ass, grade);
-                }
-            }
-            
-        }
-        
-        return req;
-    }
     /**
      * doPost performs actions
      * 
@@ -121,40 +54,38 @@ public class GradePredictorController extends HttpServlet
         RequestDispatcher view = null;
 
         Account user1 = new Account();
-        Integer courseId = new Integer((String) req.getParameter("id"));
+        Integer courseId = new Integer(req.getParameter("id"));
+        req.setAttribute("id", req.getParameter("id"));
         Course crse = new Course(courseId);
-        
 
         user1 = getCookie(user1, req);
 
-        // Are we a student or a teacher
-        if (user1.isTeacher())
+        view = req.getRequestDispatcher("/student/GradePredictor.jsp");
+        
+        Student student = (Student) user1;
+        ArrayList<Grade> gradedList = this.getGradedList(crse, student);
+        
+        Character letter = (Character) req.getParameter("wishedGrade").charAt(0);
+        ArrayList<Grade> ungradedList = this.getPredictedList(crse, student, crse.getGradingRules().getCurve(letter).floatValue());
+        
+        String msg = "";
+        if(ungradedList == null)
         {
-            req.setAttribute("currentCourse", crse);
-            req.setAttribute("id", (String) req.getParameter("id"));
-            view = teacherSet(req, user1, courseId, crse);
-        } 
-        else // Is a student
-        {
-            try
-            {
-                Student user2 = new Student(user1.getId());
-                view = req.getRequestDispatcher("/student/ViewGrades.jsp");
-                ArrayList<Grade> gradelist = user2.getGrades(crse);
-                req.setAttribute("enrolledCourseList",
-                        (ArrayList<Course>) (user2.getEnrolled()));
-                req.setAttribute("gradeList", gradelist);
-                req.setAttribute("currentCourse", crse);
-                req.setAttribute("id", (String) req.getParameter("id"));
-            } 
-            catch (Exception ex)
-            {
-                Logger.getLogger(GradePredictorController.class.getName()).log(
-                        Level.SEVERE, "Student Does Not Exist", ex);
-            }
+            msg = "Grade " + letter + "cannot be reached. Sorry.";
+            ungradedList = new ArrayList<Grade>();
         }
-
+        
+        req.setAttribute("msg", msg);
+        
+        ArrayList<Course> enrolledCourseList = this.getEnrolledCourseList(student);
+        
+        req.setAttribute("currentCourse", crse);
+        req.setAttribute("id", courseId);
+        req.setAttribute("gradedList", gradedList);
+        req.setAttribute("ungradedList", ungradedList);
+        req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
+
         viewForward(view, req, resp);
     }
 
@@ -200,69 +131,69 @@ public class GradePredictorController extends HttpServlet
 
         user1 = getCookie(user1, req);
 
-        // Are we a student or a teacher
-        if (user1.isTeacher())
+        view = req.getRequestDispatcher("/student/GradePredictor.jsp");
+        
+        Student student = (Student) user1;
+        ArrayList<Grade> gradedList = this.getGradedList(crse, student);
+
+        ArrayList<Grade> ungradedList = (ArrayList<Grade>) req.getAttribute("ungradedList");
+        //if not set (first call) reset
+        if(ungradedList == null)
         {
-            view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
-
-            Teacher user3;
-
-            ArrayList<Grade> gradelist = gradeListHelper();
-
-            try
-            {
-                user3 = new Teacher(user1.getId());
-                req.setAttribute("teachCourseList",
-                        (ArrayList<Course>) (user3.getCourses()));
-            } 
-            catch (Exception ex)
-            {
-                Logger.getLogger(GradePredictorController.class.getName()).log(
-                            Level.SEVERE, "Teacher Does Not Exist", ex);
-            }
-
-            req.setAttribute("currentCourse", crse);
-            req.setAttribute("id", courseId);
-            req.setAttribute("gradeList", gradelist);
-            req.setAttribute("assArray", crse.getAssignments());
-            req.setAttribute("stuArray", (ArrayList<Student>) crse.getStudents());
+            this.getUngradedList(crse, student);
         }
-        else // Is a student
-        {
-            try
-            {
-                Student user2 = new Student(user1.getId());
-                view = req.getRequestDispatcher("/student/ViewGrades.jsp");
-                ArrayList<Grade> gradelist = user2.getGrades(crse);
-                req.setAttribute("enrolledCourseList",
-                        (ArrayList<Course>) (user2.getEnrolled()));
-                req.setAttribute("gradeList", gradelist);
-                req.setAttribute("currentCourse", crse);
-                req.setAttribute("id", (String) req.getParameter("id"));
-            } 
-            catch (Exception ex)
-            {
-                Logger.getLogger(GradePredictorController.class.getName()).log(
-                        Level.SEVERE, "Student Does Not Exist", ex);
-            }
-        }
-
+        
+        ArrayList<Course> enrolledCourseList = this.getEnrolledCourseList(student);
+        
+        req.setAttribute("currentCourse", crse);
+        req.setAttribute("id", courseId);
+        req.setAttribute("gradedList", gradedList);
+        req.setAttribute("ungradedList", ungradedList);
+        req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
+        
         viewForward(view, req, resp);
     }
     
-    private ArrayList<Grade> gradeListHelper()
+    private ArrayList<Grade> getGradedList(Course course, Student student)
     {
-        ArrayList<Grade> gradelist = null;
-        try
+        ArrayList<Grade> toReturn = Grade.getGrades(course, student, 1);
+        //mustn't return null
+        if(toReturn == null)
         {
-            gradelist = Grade.allGrades();
-        } 
-        catch (Exception ex)
-        {
-            Logger.getLogger(GradePredictorController.class.getName()).log(
-                            Level.SEVERE, "All Grades Query Error", ex);
+            toReturn = new ArrayList<Grade>();
         }
-        return gradelist;
+        
+        return toReturn;
+    }
+    
+    private ArrayList<Grade> getUngradedList(Course course, Student student)
+    {
+        ArrayList<Grade> toReturn = Grade.getGrades(course, student, -1);
+        //mustn't return null
+        if(toReturn == null)
+        {
+            toReturn = new ArrayList<Grade>();
+        }
+        
+        return toReturn;
+    }
+    
+    private ArrayList<Course> getEnrolledCourseList(Student student)
+    {
+        ArrayList<Course> toReturn = student.getEnrolled();
+        //mustn't return null
+        if(toReturn == null)
+        {
+            toReturn = new ArrayList<Course>();
+        }
+        
+        return toReturn;
+    }
+    
+    private ArrayList<Grade> getPredictedList(Course course, Student student, Float grade)
+    {
+        ArrayList<Grade> toReturn = Grade.predictGrades(course, student, (grade/100));
+        return toReturn;
     }
 }
