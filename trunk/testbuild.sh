@@ -9,9 +9,9 @@ MESSAGE_FILE="/var/www/html/test/test.`date +%F`.log"
 cd /var/www/html/svn/trunk/goograde/; 
 ant clean &> /dev/null
 ant &> /dev/null # This should be enabled if not being run after the daily build script
-java -cp lib/emma.jar:. emma instr -ip . -m overwrite
-ant test &> $MESSAGE_FILE
-java -cp lib/emma.jar emma report -r html -sp WEB-INF/classes -in coverage.em -in coverage.ec
+java -cp lib/emma.jar:. emma instr -ip . -m overwrite > $MESSAGE_FILE
+ant test 1>> $MESSAGE_FILE 2>> $MESSAGE_FILE
+java -cp lib/emma.jar emma report -r html -sp WEB-INF/classes -in coverage.em -in coverage.ec >> $MESSAGE_FILE
 
 # cp up.
 rm -rf /var/www/html/coverage/
