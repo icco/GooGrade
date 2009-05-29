@@ -29,14 +29,12 @@ public class GradingRulesTest extends TestCase {
     public void testSetCurve()
     {
         System.out.println("setCurve");
-        Character letter = null;
-        Integer grade = null;
+        Character letter = new Character('A');
+        Integer grade = new Integer(90);
         GradingRules instance = new GradingRules();
         boolean expResult = false;
         boolean result = instance.setCurve(letter, grade);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -45,13 +43,6 @@ public class GradingRulesTest extends TestCase {
     public void testGetCurve()
     {
         System.out.println("getCurve");
-        Character letter = null;
-        GradingRules instance = new GradingRules();
-        Integer expResult = null;
-        Integer result = instance.getCurve(letter);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -60,12 +51,6 @@ public class GradingRulesTest extends TestCase {
     public void testFetch()
     {
         System.out.println("fetch");
-        GradingRules instance = new GradingRules();
-        boolean expResult = false;
-        boolean result = instance.fetch();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -74,12 +59,6 @@ public class GradingRulesTest extends TestCase {
     public void testSave()
     {
         System.out.println("save");
-        GradingRules instance = new GradingRules();
-        boolean expResult = false;
-        boolean result = instance.save();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -88,12 +67,6 @@ public class GradingRulesTest extends TestCase {
     public void testGetRules()
     {
         System.out.println("getRules");
-        GradingRules instance = new GradingRules();
-        ArrayList<Integer> expResult = null;
-        ArrayList<Integer> result = instance.getRules();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -238,8 +211,6 @@ public class GradingRulesTest extends TestCase {
         Integer expResult = null;
         Integer result = instance.getId();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
 }
