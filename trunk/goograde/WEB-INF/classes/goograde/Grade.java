@@ -422,6 +422,7 @@ public class Grade implements Comparable<Grade>
      * @param student Student object to which the assignment belongs
      * @param graded 1 only graded, -1 only non graded, 0 both.
      * @return ArrayList of Grades in course and object, null if not found
+     * @author pphu
      */
     public static ArrayList<Grade> getGrades(Course course, 
       Student student, Integer graded)

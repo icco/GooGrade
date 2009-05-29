@@ -60,7 +60,7 @@ public class GradingRules implements java.io.Serializable
      * @param grade The Percentage you wish to set the floor to.
      * @return false if fail, true if set.
      */
-    boolean setCurve(Character letter, Integer grade)
+    public boolean setCurve(Character letter, Integer grade)
     {
         return false;
     }
@@ -70,7 +70,7 @@ public class GradingRules implements java.io.Serializable
      * @param letter The Grade (A,B,C,D) you wish to get
      * @return false if fail, true if set.
      */
-    Integer getCurve(Character letter)
+    public Integer getCurve(Character letter)
     {
         Integer ret = 0;
 
@@ -99,6 +99,7 @@ public class GradingRules implements java.io.Serializable
      * Searches the database table GradingRules according
      * to this.id and sets all instance variables from there
      * @return true if found in database, else false
+     * @author nwelch
      */
     public boolean fetch()
     {

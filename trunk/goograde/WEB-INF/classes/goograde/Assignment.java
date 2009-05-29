@@ -743,6 +743,7 @@ public class Assignment implements java.io.Serializable
     /**
      *  Calculate and return the mean grade of this assignment
      * @return the mean grade of this assignment
+     * @author kblizard
      */
     public Float getMean()
     {
@@ -829,6 +830,7 @@ public class Assignment implements java.io.Serializable
     /**
      * calculate and return the mode grade of this assignment
      * @return the mode grade of this assignment
+     * @author kblizard
      */
     public Float getMode()
     {
@@ -874,6 +876,7 @@ public class Assignment implements java.io.Serializable
     /**
      * calculate and return the Q1 grade of this assignment
      * @return the Q1 grade of this assignment
+     * @author kblizard
      */
     public Float getQ1()
     {
@@ -923,6 +926,7 @@ public class Assignment implements java.io.Serializable
     /**
      * calculate and return the Q2 grade of this assignment
      * @return the Q2 grade of this assignment
+     * @author kblizard
      */
     public Float getQ2()
     {
@@ -961,6 +965,7 @@ public class Assignment implements java.io.Serializable
     /**
      * calculate and return the Q3 grade of this assignment
      * @return the Q3 grade of this assignment
+     * @author kblizard
      */
     public Float getQ3()
     {
