@@ -31,36 +31,60 @@
                         
                         <div id="data">
                             <c:choose>
-                                <c:when test = "${!empty gradeList}">
+                                <c:when test = "${!empty gradedList}">
                                     <table>
                                         <thead>
                                             <tr>
                                                 <th>Assignment</th>
-                                                <th>Grade</th>
+                                                <th>Your Grade</th>
                                                 <th>Possible Points</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach var="user" items="${gradeList}">
+                                            <c:forEach var="grade" items="${gradeList}">
                                                 <tr class="color">
                                                     <td>
-                                                        ${user.assignment.name}
+                                                        ${grade.assignment.name}
                                                     </td>
                                                     <td>
-                                                        ${user.assignment.total}
+                                                        ${grade.grade}
                                                     </td>
                                                     <td>
-                                                        ${user.assignment.dueDate}
+                                                        ${grade.assignment.total}
                                                     </td>
-                                                    <td>
-                                                        ${user.assignment.type}
-                                                    </td>
-                                                    <td>
-                                                        ${user.grade}
-                                                    </td>
-                                                    
                                                 </tr>
-                                                
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </c:when>
+                                
+                                <c:otherwise>
+                                    <h3 style="color: #e40000">There are no current grades in this course.</h3>
+                                </c:otherwise>
+                            </c:choose>
+                            <c:choose>
+                                <c:when test = "${!empty ungradedList}">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Assignment</th>
+                                                <th>Needed Grade</th>
+                                                <th>Possible Points</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach var="ungrade" items="${ungradedList}">
+                                                <tr class="color">
+                                                    <td>
+                                                        ${ungrade.assignment.name}
+                                                    </td>
+                                                    <td>
+                                                        ${ungrade.grade}
+                                                    </td>
+                                                    <td>
+                                                        ${ungrade.assignment.total}
+                                                    </td>
+                                                </tr>
                                             </c:forEach>
                                         </tbody>
                                     </table>

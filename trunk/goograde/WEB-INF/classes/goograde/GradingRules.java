@@ -197,6 +197,7 @@ public class GradingRules implements java.io.Serializable
     /**
      * Get lower boundary for an B
      * @return bFloor
+     * @author vgerdin
      */
     public Integer getB()
     {
@@ -206,6 +207,7 @@ public class GradingRules implements java.io.Serializable
     /**
      * Get lower boundary for an C
      * @return cFloor
+     * @author vgerdin
      */
     public Integer getC()
     {
@@ -215,6 +217,7 @@ public class GradingRules implements java.io.Serializable
     /**
      * Get lower boundary for an D
      * @return dFloor
+     * @author vgerdin
      */
     public Integer getD()
     {
@@ -225,6 +228,7 @@ public class GradingRules implements java.io.Serializable
      * Set lower boundary for an A
      * @param floor lower boundary
      * @return true if no errors, false otherwise
+     * @author vgerdin
      */
     public boolean setA(Integer floor)
     {
@@ -242,6 +246,7 @@ public class GradingRules implements java.io.Serializable
      * Set lower boundary for a B
      * @param floor lower boundary
      * @return true if no errors, false otherwise
+     * @author vgerdin
      */
     public boolean setB(Integer floor)
     {
@@ -259,6 +264,7 @@ public class GradingRules implements java.io.Serializable
      * Set lower boundary for a C
      * @param floor lower boundary
      * @return true if no errors, false otherwise
+     * @author vgerdin
      */
     public boolean setC(Integer floor)
     {
@@ -276,6 +282,7 @@ public class GradingRules implements java.io.Serializable
      * Set lower boundary for a D
      * @param floor lower boundary
      * @return true if no errors, false otherwise
+     * @author vgerdin
      */
     public boolean setD(Integer floor)
     {
@@ -291,6 +298,8 @@ public class GradingRules implements java.io.Serializable
 
     /**
      * Get's the id of this GradingRules object.
+     * @return id Integer
+     * @author nwelch
      */
     public Integer getId()
     {
@@ -299,6 +308,8 @@ public class GradingRules implements java.io.Serializable
 
     /**
      * Set's the id of this GradingRules object.
+     * @param in Integer id to be set
+     * @author nwelch
      */
     public boolean setId(Integer in)
     {

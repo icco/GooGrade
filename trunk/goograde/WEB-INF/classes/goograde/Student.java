@@ -276,6 +276,7 @@ public class Student extends Account
      * Calculate and return the student's current grade
      * @param course the course the grade covers
      * @return Float the student's current grade
+     * @author vgerdin
      */
     public Float getCurrentGrade(Course course)
     {

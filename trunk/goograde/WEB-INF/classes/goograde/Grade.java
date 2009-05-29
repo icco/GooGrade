@@ -483,6 +483,7 @@ public class Grade implements Comparable<Grade>
      * @param student Student object whos grade we want to predics
      * @param grade grade we want
      * @return a list of required results to get wished grade
+     * @author vgerdin
      */
     public static ArrayList<Grade> predictGrades(Course course, 
       Student student, Float grade)
@@ -563,6 +564,7 @@ public class Grade implements Comparable<Grade>
      * Set whether this graded is graded or not
      * @param set what to set this.graded to
      * @return true if no errors
+     * @author vgerdin
      */
     public boolean setGraded(Boolean set)
     {
@@ -579,6 +581,7 @@ public class Grade implements Comparable<Grade>
     /**
      * Check whether this grade is graded
      * @return true if graded, false otherwise
+     * @author vgerdin
      */
     public Boolean isGraded()
     {
