@@ -32,18 +32,19 @@ public class TeacherControllerTest extends TestCase {
     public void testDoPostAndGet() throws IOException
     {
         
-        /*System.out.println("doPost & doGet");
+        System.out.println("doPost & doGet");
         // int aryLoc = -1;
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
         WebConversation wc = new WebConversation();
         WebRequest req = new GetMethodWebRequest
-                ("http://localhost:8080/GooGrade/");
-        WebResponse resp = null;
-        WebLink link = null;
-        WebForm form = null;
+                ("http://localhost:8080/GooGrade2.0/");
+
         // WebLink linkArray[] = null;
         try
         {
+            WebResponse resp = wc.getResponse(req);
+            WebLink link = null;
+            WebForm form = null;
             resp = wc.getResponse(req);         // Main page
             link = resp.getLinkWith("teacher"); // Highlight teacher's page
             req  = link.getRequest();
@@ -55,16 +56,17 @@ public class TeacherControllerTest extends TestCase {
             resp = wc.getResponse(req);         // Follow submit button's link
             req  = link.getRequest();
             
-            //System.out.println("This needs to be completed.");
+            //The teacher index appears to have dissappeared. Find out if this 
+            //test is complete 
             
         }
-        /*catch (IOException ex)
+        catch (IOException ex)
         {
             fail("IOException: " + ex);
         } 
         catch (SAXException ex)
         {
             fail("SAXException: " + ex);
-        } //*/
+        } 
     }
 }
