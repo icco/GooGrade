@@ -84,10 +84,7 @@ public class StorageConnection
         }
         finally
         {
-        
-        Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,
-        "Query Returned: " + ret.toString());
-        
+			//Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,"Query Returned: " + ret.toString());
         }
 
         return ret;
@@ -115,10 +112,7 @@ public class StorageConnection
         }
         finally
         {
-        
-        Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,
-        "Update Query Returned: " + results + " rows updated.");
-        
+			//Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,"Update Query Returned: " + ret.toString());
         }
 
         return results > 0;
