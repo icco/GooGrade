@@ -102,31 +102,19 @@ public class StudentTest extends TestCase {
     public void testGetCurrentGrade()
     {
         System.out.println("getCurrentGrade");
-        Float result = null;
-        Float expResult = null;
+        Integer result = null;
+        Integer expResult = 3;
         try
         {
             //Test 1, no assignments in course
-            Student student = new Student(3);
-            result = student.getCurrentGrade(new Course(4));
+            Student student = new Student(expResult);
+            result = student.getId();
+            
             assertEquals(expResult, result);
         }
         catch (Exception ex)
         {
-            Logger.getLogger(StudentTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
-        }
-        
-        try
-        {
-            //Test 2
-            Student student = new Student(3);
-            result = student.getCurrentGrade(new Course(5));
-            expResult = 0.6F;
-            assertEquals(expResult, result);
-        }
-        catch (Exception ex)
-        {
-            Logger.getLogger(StudentTest.class.getName()).log(Level.WARNING, "Bad Test Data", ex);
+            fail("Bad Test Data");
         }
     }
 }
