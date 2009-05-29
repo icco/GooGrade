@@ -120,6 +120,7 @@ public class GradingRules implements java.io.Serializable
 
             indx = 0;
             ArrayList<Object> rs = result.get(indx);
+			ret = this.setId((Integer) rs.get(indx++));
             ret = this.setA((Integer) rs.get(indx++));
             ret = this.setB((Integer) rs.get(indx++));
             ret = this.setC((Integer) rs.get(indx++));
@@ -287,5 +288,15 @@ public class GradingRules implements java.io.Serializable
     public Integer getId()
     {
         return this.id;
+    }
+
+    /**
+     * Set's the id of this GradingRules object.
+     */
+    public boolean setId(Integer in)
+    {
+		this.id = new Integer(in);
+
+        return true;
     }
 }
