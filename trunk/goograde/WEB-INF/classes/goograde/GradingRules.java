@@ -120,12 +120,12 @@ public class GradingRules implements java.io.Serializable
 
             indx = 0;
             ArrayList<Object> rs = result.get(indx);
-			ret = this.setId((Integer) rs.get(indx++));
+            ret = this.setId((Integer) rs.get(indx++));
             ret = this.setA((Integer) rs.get(indx++));
             ret = this.setB((Integer) rs.get(indx++));
             ret = this.setC((Integer) rs.get(indx++));
             ret = this.setD((Integer) rs.get(indx++));
-            
+
         }
 
         return ret;
@@ -146,7 +146,10 @@ public class GradingRules implements java.io.Serializable
             String query = "UPDATE GradingRules SET " + "aFloor = \"" + this.getA().toString() + "\"," + "bFloor = \"" + this.getB().toString() + "\"," + "cFloor = \"" + this.getC().toString() + "\"," + "dFloor = \"" + this.getD().toString() + "\"," + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
-        else
+        else if (this.getA() != null &&
+                this.getB() != null &&
+                this.getC() != null &&
+                this.getD() != null)
         {
             String query = "INSERT into GradingRules (aFloor, bFloor, cFloor, dFloor)";
             query += " VALUES(\"" + this.getA() + "\",\"";
@@ -154,9 +157,13 @@ public class GradingRules implements java.io.Serializable
             query += this.getC() + "\",\"";
             query += this.getD() + "\")";
             ret = conn.updateQuery(query);
+
+            // Update the instance with the new ID
+            this.fetch();
         }
 
         conn.close();
+
 
         return ret;
     }
@@ -295,7 +302,7 @@ public class GradingRules implements java.io.Serializable
      */
     public boolean setId(Integer in)
     {
-		this.id = new Integer(in);
+        this.id = new Integer(in);
 
         return true;
     }

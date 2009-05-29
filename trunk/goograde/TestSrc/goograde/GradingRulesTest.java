@@ -7,19 +7,23 @@ import junit.framework.TestCase;
  *
  * @author nwelch
  */
-public class GradingRulesTest extends TestCase {
-    
-    public GradingRulesTest(String testName) {
+public class GradingRulesTest extends TestCase
+{
+
+    public GradingRulesTest(String testName)
+    {
         super(testName);
-    }            
+    }
 
     @Override
-    protected void setUp() throws Exception {
+    protected void setUp() throws Exception
+    {
         super.setUp();
     }
 
     @Override
-    protected void tearDown() throws Exception {
+    protected void tearDown() throws Exception
+    {
         super.tearDown();
     }
 
@@ -51,6 +55,15 @@ public class GradingRulesTest extends TestCase {
     public void testFetch()
     {
         System.out.println("fetch");
+        GradingRules instance = new GradingRules();
+        instance.setId(1);
+        instance.fetch();
+        ArrayList result = new ArrayList();
+        result.add(instance.getA());
+        result.add(instance.getB());
+        result.add(instance.getC());
+        result.add(instance.getD());
+        assertEquals(instance.getRules(), result);
     }
 
     /**
@@ -59,6 +72,10 @@ public class GradingRulesTest extends TestCase {
     public void testSave()
     {
         System.out.println("save");
+        GradingRules instance = new GradingRules();
+        boolean expResult = false;
+        boolean result = instance.save();
+        assertEquals(expResult, result);
     }
 
     /**
@@ -67,6 +84,13 @@ public class GradingRulesTest extends TestCase {
     public void testGetRules()
     {
         System.out.println("getRules");
+        GradingRules instance = new GradingRules(1);
+        ArrayList result = new ArrayList();
+        result.add(instance.getA());
+        result.add(instance.getB());
+        result.add(instance.getC());
+        result.add(instance.getD());
+        assertEquals(instance.getRules(), result);
     }
 
     /**
@@ -132,10 +156,10 @@ public class GradingRulesTest extends TestCase {
 
         floor = 85;
         expResult = true;
-        result = instance.setA(floor); 
+        result = instance.setA(floor);
         assertEquals(expResult, result);
-        
-        assertEquals(floor,instance.getA());
+
+        assertEquals(floor, instance.getA());
     }
 
     /**
@@ -153,10 +177,10 @@ public class GradingRulesTest extends TestCase {
 
         floor = 75;
         expResult = true;
-        result = instance.setB(floor); 
+        result = instance.setB(floor);
         assertEquals(expResult, result);
-        
-        assertEquals(floor,instance.getB());
+
+        assertEquals(floor, instance.getB());
     }
 
     /**
@@ -174,10 +198,10 @@ public class GradingRulesTest extends TestCase {
 
         floor = 65;
         expResult = true;
-        result = instance.setC(floor); 
+        result = instance.setC(floor);
         assertEquals(expResult, result);
-        
-        assertEquals(floor,instance.getC());
+
+        assertEquals(floor, instance.getC());
     }
 
     /**
@@ -195,10 +219,10 @@ public class GradingRulesTest extends TestCase {
 
         floor = 55;
         expResult = true;
-        result = instance.setD(floor); 
+        result = instance.setD(floor);
         assertEquals(expResult, result);
-        
-        assertEquals(floor,instance.getD());
+
+        assertEquals(floor, instance.getD());
     }
 
     /**
@@ -212,5 +236,4 @@ public class GradingRulesTest extends TestCase {
         Integer result = instance.getId();
         assertEquals(expResult, result);
     }
-
 }
