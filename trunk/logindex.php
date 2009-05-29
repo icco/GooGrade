@@ -23,8 +23,6 @@ function passed($dir,$file)
 	return "<span class=\"" . $ret . "\">" . $ret . "</span>";
 }
 
-
-
 ?>
 <html>
 <head>
@@ -37,7 +35,7 @@ function passed($dir,$file)
 <strong>Logs</strong><br />
 <ul>
 <?php
-$dir = opendir("logs");
+$dir = opendir(".");
 
 while($entryName = readdir($dir)) {
     $dirArray[] = $entryName;
@@ -58,7 +56,7 @@ $dirArray = array_values($dirArray);
 // loop through the array of files and print them all
 foreach($dirArray as $entry) {
 if (substr("$entry", 0, 1) != ".") {
-        print("<li><a href=\"logs/$entry\">$entry</a> - " . passed("logs/",$entry) . "</li>");
+        print("<li><a href=\"$entry\">$entry</a> - " . passed(".",$entry) . "</li>");
     }
 }
 
