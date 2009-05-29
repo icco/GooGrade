@@ -41,7 +41,8 @@ public class StorageConnection
         }
         catch (Exception ex)
         {
-            System.err.println(ex);
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
+                    "Error opening DB connection", ex);
         }
     }
 
@@ -57,13 +58,13 @@ public class StorageConnection
         BasicRowProcessor rowProc = new BasicRowProcessor();
         ArrayList<ArrayList<Object>> ret = new ArrayList<ArrayList<Object>>();
         ArrayList<Object> toAdd = null;
-        
+
         try
         {
-           
+
             stat = this.conn.createStatement();
             ResultSet rs = stat.executeQuery(in);
-                       
+
             /*Fetching from the query and adding them to a listS */
             for (int idx = 0; rs.next(); idx++)
             {
@@ -81,17 +82,17 @@ public class StorageConnection
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
                     "An Error has occured while running a query. ", ex);
         }
-        /*finally
+        finally
         {
-            
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
-                    "Query Returned: " + ret.toString());
-             
-        }*/ 
-           
+        
+        Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,
+        "Query Returned: " + ret.toString());
+        
+        }
+
         return ret;
     }
-    
+
     /**
      * This is the method you use to update the database. 
      * @param in A query string containing an insert, update, or delete statement.
@@ -109,20 +110,20 @@ public class StorageConnection
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING, 
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
                     "SQL Update: " + in, ex);
         }
-        /*finally
+        finally
         {
-            
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
-                    "Update Query Returned: " + results + " rows updated.");
-              
-        }*/
+        
+        Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,
+        "Update Query Returned: " + results + " rows updated.");
+        
+        }
 
         return results > 0;
     }
-    
+
     /**
      * Close is used to close the connection to the database.
      */
@@ -134,7 +135,7 @@ public class StorageConnection
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE, 
+            Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
                     "An Error has occured while closing the connection. ", ex);
         }
     }
