@@ -44,9 +44,9 @@ public class AccountControllerTest extends TestCase
             assertEquals("[CPE-309-1] - Manage Accounts", resp.getTitle());
             form = resp.getForms()[0];              //edit first course
             form.setParameter("action", "edit");
-            form.setParameter("newUserName", "mshinoda");
-            form.setParameter("newEmailAddr", "bobella@website.com");
-            form.setParameter("newFullName", "Mike Shinoda");
+            form.setParameter("newUserName", "jhendrix");
+            form.setParameter("newEmailAddr", "jhendrix@website.com");
+            form.setParameter("newFullName", "Jimmy Hendrix");
             form.submit();
             wc.getCurrentPage();                    //refresh 
             form = resp.getForms()[1];              //delete first course
@@ -54,9 +54,9 @@ public class AccountControllerTest extends TestCase
             //form.setParameter("AssgnId", "1");
             form.submit();
             form = resp.getForms()[10];             //add new course
-            form.setParameter("newUserName", "smhinoda");
-            form.setParameter("newEmailAddr", "bobella@website.com");
-            form.setParameter("newFullName", "Spike Mhinoda");
+            form.setParameter("newUserName", "jpage");
+            form.setParameter("newEmailAddr", "jpage@website.com");
+            form.setParameter("newFullName", "Jimmy Page");
             form.submit();
         }
         catch (IOException ex)
