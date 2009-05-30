@@ -44,7 +44,7 @@ public class CourseControllerTest extends TestCase
     /**
      * Test of doPost method, of class CourseController.
      */
-    public void testDoPost() throws SAXException
+    public void testDoPostTeacher() throws SAXException
     {
        System.out.println("doPost & doGet: Teacher");
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
@@ -90,14 +90,39 @@ public class CourseControllerTest extends TestCase
             fail("SAXException: " + ex);
         } 
     }
-
+    
     /**
-     * Test of doGet method, of class CourseController.
+     * Test of doPost method, of class CourseController.
      */
-    /*public void testDoGet()
+    public void testDoPostStudent() throws SAXException
     {
-        testDoPost();
-    } */
+       System.out.println("doPost & doGet: Student");
+        HttpUnitOptions.setExceptionsThrownOnScriptError(false);
+        WebConversation wc = new WebConversation();
+        WebRequest req = new GetMethodWebRequest
+                ("http://localhost:8080/GooGrade2.0/student/course?id=2");
+
+        try
+        {
+            wc.putCookie("userid", "3");    // i am kblizard
+            WebResponse resp = wc.getResponse(req);
+            WebLink link = null;
+            WebForm form = null;
+            resp = wc.getResponse(req);             // Page to be tested loads
+            
+            assertEquals("[CPE-308-1] - View Course", resp.getTitle());
+
+        }
+        catch (IOException ex)
+        {
+            fail("IOException: " + ex);
+        } 
+        catch (SAXException ex)
+        {
+            fail("SAXException: " + ex);
+        } 
+    }
+
 }
     
 
