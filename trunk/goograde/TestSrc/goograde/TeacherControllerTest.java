@@ -17,8 +17,8 @@ import junit.framework.TestCase;
 import org.xml.sax.SAXException;
 
 /**
- *
- * @author mduder
+ *TeacherController Test
+ * @author kblizard and mduder
  */
 public class TeacherControllerTest extends TestCase {
     
