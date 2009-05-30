@@ -2,25 +2,16 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package goograde;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-//import junit.framework.TestCase;
-import com.meterware.httpunit.PostMethodWebRequest;
+import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.HttpUnitOptions;
-import com.meterware.servletunit.ServletUnitClient;
-import com.meterware.servletunit.ServletRunner;
-import com.meterware.servletunit.InvocationContext;
-import com.meterware.servletunit.InvocationContextFactory;
+import com.meterware.httpunit.WebConversation;
 import com.meterware.httpunit.WebForm;
 import com.meterware.httpunit.WebLink;
 import com.meterware.httpunit.WebRequest;
-import java.io.File;
-//import com.meterware.httpunit.WebResponse;
+import com.meterware.httpunit.WebResponse;
 import java.io.IOException;
-//import javax.servlet.ServletException;
 import junit.framework.TestCase;
 import org.xml.sax.SAXException;
 
@@ -55,52 +46,49 @@ public class CourseControllerTest extends TestCase
      */
     public void testDoPost() throws SAXException
     {
-        
-        
-        /*System.out.println("HTTPUnit: CourseController doPost & doGet driver");
+       System.out.println("doPost & doGet: Teacher");
+        HttpUnitOptions.setExceptionsThrownOnScriptError(false);
+        WebConversation wc = new WebConversation();
+        WebRequest req = new GetMethodWebRequest
+                ("http://localhost:8080/GooGrade2.0/teacher/course");
+
         try
         {
-            ServletRunner sr = new ServletRunner(
-                    new File("WEB-INF/web.xml"));
-            sr.registerServlet("GooGrade/teacher/course",
-                CourseController.class.getName() );
-            ServletUnitClient sc = sr.newClient();
+            wc.putCookie("userid", "1");
+            WebResponse resp = wc.getResponse(req);
+            WebLink link = null;
+            WebForm form = null;
+            resp = wc.getResponse(req);             // Page to be tested loads
             
-            WebRequest req = new PostMethodWebRequest(  //was GetMethodWebRequest
-                "http://localhost:8080/GooGrade/teacher/course");
-        
-            sc.putCookie("userid", "1");
-            req.setParameter("newCourseTitle", "Intro to Sleep");
-            req.setParameter("newCourseDepartment", "SLP");
-            req.setParameter("newCourseNumber", "101");
-            req.setParameter("newCourseSection", "04");
-            req.setParameter("action", "add");
-            
-            InvocationContext ic = sc.newInvocation( req );
-            CourseController ss = (CourseController) ic.getServlet();
-            assertNull( "A session already exists", 
-                    ic.getRequest().getSession( false ) );
-            
-            ss.doGet( ic.getRequest(), ic.getResponse() );
-            assertNotNull( "Session was not created", 
-                    ic.getRequest().getSession( false ) );
-            assertEquals("Intro to Sleep", 
-                    ic.getRequest().getSession()
-                    .getAttribute( "newCourseTitle"));
+            assertEquals("Manage Courses", resp.getTitle());
+            form = resp.getForms()[0];              //edit first course
+            form.setParameter("action", "edit");
+            form.setParameter("title", "SLEEPING");
+            form.setParameter("department", "SLE");
+            form.setParameter("number", "101");
+            form.setParameter("section", "04");
+            form.submit();
+            wc.getCurrentPage();                    //refresh 
+            form = resp.getForms()[1];              //delete first course
+            form.setParameter("action", "delete");
+            form.setParameter("courseRef", "1");
+            form.submit();
+            form = resp.getForms()[10];             //add new course
+            form.setParameter("action", "add");
+            form.setParameter("newCourseTitle", "Napping");
+            form.setParameter("newCourseDepartment", "NAP");
+            form.setParameter("newCourseNumber", "102");
+            form.setParameter("newCourseSection", "05");
+            form.submit();
         }
         catch (IOException ex)
         {
             fail("IOException: " + ex);
-        }
-        /* commented out to see stack trace of errors right now
-         catch (SAXException ex)
+        } 
+        catch (SAXException ex)
         {
             fail("SAXException: " + ex);
-        }
-        catch(javax.servlet.ServletException ex)
-        {
-            
-        }*/
+        } 
     }
 
     /**
