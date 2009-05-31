@@ -99,26 +99,29 @@ public final class Metrics
         ArrayList<Student> students = course.getRoster();
         Integer[] distro = {0, 0, 0, 0, 0};
         rules.add(-1); //adds F to the list, which is a floor of -1 to count for 0's
-        ArrayList<Integer> toReturn;
+        ArrayList<Integer> toReturn = null;
         
         /*
          * Checks to see the grade is greater than the floor of the letter grade
          */
-        
-        for(Student stu : students)
+        if(!rules.isEmpty())
         {
-            float currentGrade = 0;
-            currentGrade += stu.getCurrentGrade(course);
-            for(int i = 0; i < distro.length; i++)
+            for(Student stu : students)
             {
-                if(currentGrade >= (float)rules.get(i))
+                float currentGrade = 0;
+                currentGrade += stu.getCurrentGrade(course);
+                for(int i = 0; i < distro.length; i++)
                 {
-                    distro[i]++;
+                    if(currentGrade >= (float)rules.get(i))
+                    {
+                        distro[i]++;
+                    }
                 }
             }
-        }
         
-        toReturn = new ArrayList<Integer>( Arrays.asList( distro) );
+        
+            toReturn = new ArrayList<Integer>( Arrays.asList( distro) );
+        }
         
         return toReturn;
         
