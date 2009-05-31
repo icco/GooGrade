@@ -5,10 +5,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Grade holds a specific grade for bewteen an assignment and student.  
+ * Grade holds a specific grade for bewteen an assignment and student. The Grade
+ * represents what that student received for that particular assignment. 
  * 
  * @author kblizard 
  * @author nwelch
+ * @version 2.42
  */
 public class Grade implements Comparable<Grade>
 {
@@ -19,9 +21,10 @@ public class Grade implements Comparable<Grade>
     private Boolean graded;
 
     /**
-     * Constructor for Grade class
-     * @param ass teh assignment this grade is from
+     * Constructor for Grade class depending on a given assignment and student
+     * @param ass the assignment this grade is from
      * @param aThis the student is grade is for
+     * @author bluGoo
      */
     public Grade(Assignment ass, Student aThis)
     {
@@ -45,6 +48,7 @@ public class Grade implements Comparable<Grade>
      * @param ass id for assignment
      * @param aThis id for student?
      * @throws java.lang.Exception because it can
+     * @author bluGoo
      */
     public Grade(int ass, int aThis) throws Exception
     {
@@ -65,6 +69,7 @@ public class Grade implements Comparable<Grade>
 
     /**
      * Empty Constructor for Grade. Not to be used, other than for unit tests.
+     * @author bluGoo
      */
     public Grade()
     {
@@ -75,10 +80,12 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * Constructor for Grade 
+     * Constructor for Grade when the assignment, student and the grade itself 
+     * is already known
      * @param stud The Student this grade belongs to
      * @param aFloat the grade this student receives
      * @param ass the assignment this grade is from.
+     * @author bluGoo
      */
     public Grade(Student stud, Float aFloat, Assignment ass)
     {
@@ -92,6 +99,7 @@ public class Grade implements Comparable<Grade>
      * gradeStudent gives a grade to a specific student.
      * @param theGrade the grade the student will receive
      * @return true if grading is successful
+     * @author kblizard
      */
     public boolean gradeStudent(float theGrade)
     {
@@ -103,6 +111,7 @@ public class Grade implements Comparable<Grade>
     /**
      * getGrade retrieves the grade for this student and assignment
      * @return the grade received
+     * @author kblizard
      */
     public Float getGrade()
     {
@@ -112,6 +121,7 @@ public class Grade implements Comparable<Grade>
     /**
      * getAssignment returns the assignment this grade belonged to
      * @return the Assignment ID
+     * @author kblizard
      */
     public Assignment getAssignment()
     {
@@ -121,6 +131,7 @@ public class Grade implements Comparable<Grade>
     /**
      * getStudent returns the student this grade is for
      * @return the Student ID
+     * @author kblizard
      */
     public Student getStudent()
     {
@@ -129,8 +140,9 @@ public class Grade implements Comparable<Grade>
 
     /**
      * set student changes the Student id number
-     * @param pstudent the p of a student, you know????
+     * @param the Student to save the id number for
      * @return true if change is sucessful
+     * @author nwelch
      */
     public boolean setStudent(Student pstudent)
     {
@@ -142,6 +154,7 @@ public class Grade implements Comparable<Grade>
      * set Assignment changes the id number of the assignment
      * @param assignmentNo assignment number
      * @return true if set is sucessful
+     * @author bluGoo
      */
     public boolean setAssignment(Assignment assignmentNo)
     {
@@ -152,6 +165,7 @@ public class Grade implements Comparable<Grade>
     /**
      * toString returns the grade in the form of a string
      * @return the String version of the grade. 
+     * @author kblizard
      */
     @Override
     public String toString()
@@ -162,6 +176,7 @@ public class Grade implements Comparable<Grade>
     /**
      * fetch grade data from the database
      * @return true if successful, false otherwise
+     * @author bluGoo
      */
     public boolean fetch()
     {
@@ -202,9 +217,12 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * verify one grade is the same as another
+     * equals verifies that one grade is the same (numerically) as another. Only
+     * the value of the grade itself is compared. The student and the assignment
+     * this grade is from is not entered into the equation. 
      * @param object object to compare with
      * @return true if equal, false otherwise
+     * @author bluGoo
      */
     @Override
     public boolean equals(Object object)
@@ -225,8 +243,8 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * return all grades
-     * @return all grades
+     * allGrades returns all of the grades in the database
+     * @return an arraylsit of all the grades
      * @throws Exception Account constructor ex
      */
     public static ArrayList<Grade> allGrades() throws Exception
@@ -282,11 +300,12 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * add a grade
+     * static method addGrade saves new grade to the database
      * @param sStudent student whom owns it
      * @param sAssignment assignment who is owned by it
      * @param sGrade the value
      * @return true if no errors
+     * @author bluGoo
      */
     public static boolean addGrade(Student sStudent, Assignment sAssignment,
             float sGrade)
@@ -303,10 +322,11 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * delete a grade
+     * static method deleteGrade permanantly removes a grade from the database
      * @param sStudent student whom owns this grade
      * @param sAssignment assignment owned by this grade
      * @return true if no errors
+     * @author blugoo
      */
     public static boolean deleteGrade(Student sStudent, Assignment sAssignment)
     {
@@ -320,10 +340,9 @@ public class Grade implements Comparable<Grade>
     }
 
     /**
-     * save, stores current instance in database
-     * if id already exists, update
-     * else, insert
+     * save stores this current instance in database
      * @return true if successfull, else false
+     * @author bluGoo
      */
     public boolean save()
     {
@@ -410,6 +429,7 @@ public class Grade implements Comparable<Grade>
      * @param in grade to compare.
      * @return a negative integer, zero, or a positive integer as this object 
      * is less than, equal to, or greater than the specified object. 
+     * @author bluGoo
      */
     public int compareTo(Grade in)
     {
@@ -608,6 +628,7 @@ public class Grade implements Comparable<Grade>
      * Update a grade, a simple wrapper for gradeStudent and save
      * @param newGrade object, the new grade
      * @return true if successfull save, false if null input or failed save
+     * @author vgerdin
      */
     public boolean updateGrade(Float newGrade)
     {
