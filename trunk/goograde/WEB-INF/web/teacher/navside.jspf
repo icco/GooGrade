@@ -112,11 +112,12 @@
                                 <li>
                                     <a href="/GooGrade/teacher/editCourse?id=${course.id}">Edit Course</a>
                                 </li>
+                                --%>
 
                                 <li>
-                                    <a href="AdjustGradingCurve.jsp">Adjust Grading Curve</a>
+                                    <a href="/GooGrade2.0/teacher/rules?id=${course.id}">Adjust Grading Curve</a>
                                 </li> 
-                                --%>
+                                
                             </ul>
                         </div>  
                     </div>  
