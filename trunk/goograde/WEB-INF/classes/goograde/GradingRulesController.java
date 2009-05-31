@@ -1,51 +1,63 @@
 package goograde;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * The GradingRulesController class is the GradingRules controller. 
  *
  * @author Blugoo
  * @version 0.42
  */
-public class GradingRulesController
+public class GradingRulesController extends HttpServlet
 {
+
     /**
-     * Renders the Pie Charts
+     * 
+     * @param req request
+     * @param resp response
      */
-    public void renderPieCharts()
+    @Override
+    public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
+        this.doGet(req, resp);
     }
 
     /**
-     * Sets a the lowest percentage one can have to have a grade.
-     * @param letter The Grade (A,B,C,D) you wish to change
-     * @param amount The amount you wish to increment the floor.
-     * @return false if fail, true if set.
+     * called to display a page
+     * @param req request
+     * @param resp response
      */
-    public boolean addPercentage(Character letter, Integer amount)
+    @Override
+    public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
-        return false;
-    }
+        Account user1 = Utils.getUseridCookie(req);
+        RequestDispatcher view = null;
+        req.setAttribute("user", user1);
 
-    /**
-     * Sets a the lowest percentage one can have to have a grade.
-     * @param letter The Grade (A,B,C,D) you wish to change
-     * @param amount The amount you wish to decrement the floor.
-     * @return false if fail, true if set.
-     */
-    public boolean subtractPercentage(Character letter, Integer amount)
-    {
-        return false;
-    }
+        try
+        {
+            view.forward(req, resp);
+        }
+        catch (ServletException ex)
+        {
+            Logger.getLogger(
+                    CourseController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+        catch (IOException ex)
+        {
+            Logger.getLogger(
+                    CourseController.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
 
-    /**
-     * Sets a the lowest percentage one can have to have a grade.
-     * @param letter The Grade (A,B,C,D) you wish to change
-     * @param grade The Percentage you wish to set the floor to.
-     * @return false if fail, true if set.
-     */
-    public boolean setPercentage(Character letter, Integer grade)
-    {
-        return false;
     }
 }
 
