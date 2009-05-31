@@ -14,10 +14,10 @@ import org.xml.sax.SAXException;
  *
  * @author mduder
  */
-public class AccountControllerTest extends TestCase
+public class CAccountControllerTest extends TestCase
 {
 
-    public AccountControllerTest(String testName)
+    public CAccountControllerTest(String testName)
     {
         super(testName);
     }

@@ -17,12 +17,12 @@ import junit.framework.TestCase;
 import org.xml.sax.SAXException;
 
 /**
- *AssignmentControllerTest
+ *CAssignmentControllerTest
  * @author kblizard
  */
-public class AssignmentControllerTest extends TestCase {
+public class CAssignmentControllerTest extends TestCase {
     
-    public AssignmentControllerTest(String testName) {
+    public CAssignmentControllerTest(String testName) {
         super(testName);
     }
 

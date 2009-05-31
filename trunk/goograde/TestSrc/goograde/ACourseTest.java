@@ -7,9 +7,9 @@ import junit.framework.TestCase;
  *
  * @author mduder, vgerdin
  */
-public class CourseTest extends TestCase {
+public class ACourseTest extends TestCase {
     
-    public CourseTest(String testName) {
+    public ACourseTest(String testName) {
         super(testName);
     }            
 

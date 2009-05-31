@@ -20,10 +20,10 @@ import org.xml.sax.SAXException;
  *
  * @author kblizard
  */
-public class StudentAssignmentControllerTest extends TestCase 
+public class BStudentAssignmentControllerTest extends TestCase 
     {
     
-    public StudentAssignmentControllerTest(String testName) 
+    public BStudentAssignmentControllerTest(String testName) 
     {
         super(testName);
     }            

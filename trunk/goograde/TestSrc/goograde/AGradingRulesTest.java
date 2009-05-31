@@ -7,10 +7,10 @@ import junit.framework.TestCase;
  *
  * @author nwelch
  */
-public class GradingRulesTest extends TestCase
+public class AGradingRulesTest extends TestCase
 {
 
-    public GradingRulesTest(String testName)
+    public AGradingRulesTest(String testName)
     {
         super(testName);
     }

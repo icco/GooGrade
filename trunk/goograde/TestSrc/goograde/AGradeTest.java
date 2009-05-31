@@ -9,9 +9,9 @@ import junit.framework.TestCase;
  *
  * @author mduder
  */
-public class GradeTest extends TestCase {
+public class AGradeTest extends TestCase {
     
-    public GradeTest(String testName) {
+    public AGradeTest(String testName) {
         super(testName);
     }
 
@@ -161,7 +161,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, null, ex);
+            Logger.getLogger(AGradeTest.class.getName()).log(Level.WARNING, null, ex);
         }
         assertEquals(expResult, result);
 
@@ -181,7 +181,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.WARNING, null, ex);
+            Logger.getLogger(AGradeTest.class.getName()).log(Level.WARNING, null, ex);
         }
 		
         assertEquals(expResult, result);
@@ -200,7 +200,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AGradeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         Assignment sAssignment = new Assignment(1);
         float sGrade = 100.0F;
@@ -222,7 +222,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AGradeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         Assignment sAssignment = new Assignment(1);
         boolean result = Grade.deleteGrade(sStudent, sAssignment);
@@ -243,7 +243,7 @@ public class GradeTest extends TestCase {
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradeTest.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AGradeTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         instance.gradeStudent(3.14F);
         boolean expResult = true;

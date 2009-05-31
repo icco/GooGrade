@@ -3,9 +3,9 @@ package goograde;
 import java.util.ArrayList;
 import junit.framework.TestCase;
 
-public class TeacherTest extends TestCase {
+public class ATeacherTest extends TestCase {
     
-    public TeacherTest(String testName) {
+    public ATeacherTest(String testName) {
         super(testName);
     }            
 

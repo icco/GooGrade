@@ -19,10 +19,10 @@ import org.xml.sax.SAXException;
  *
  * @author kblizard
  */
-public class StudentControllerTest extends TestCase 
+public class BRosterControllerTest extends TestCase 
     {
     
-    public StudentControllerTest(String testName) 
+    public BRosterControllerTest(String testName) 
     {
         super(testName);
     }            
@@ -49,27 +49,17 @@ public class StudentControllerTest extends TestCase
         HttpUnitOptions.setExceptionsThrownOnScriptError(false);
         WebConversation wc = new WebConversation();
         WebRequest req = new GetMethodWebRequest
-                ("http://localhost:8080/GooGrade2.0/");
+                ("http://localhost:8080/GooGrade2.0/teacher/roster?id=1");
 
         try
         {
-            //wc.putCookie("userid", "1");
+            wc.putCookie("userid", "1");
             WebResponse resp = wc.getResponse(req);
             WebLink link = null;
             WebForm form = null;
-
-            resp = wc.getResponse(req);         // Main page
-            link = resp.getLinkWith("student"); // Highlight student's page
-            req  = link.getRequest();
+            resp = wc.getResponse(req);             // Page to be tested loads
             
-            resp = wc.getResponse(req);         // Follow link
-            form = resp.getForms()[0];          // Access form to select kblizard
-            req = form.getRequest();
-            form.setParameter("who", "3");      // Set it to kblizard (id 3)
-            assertEquals("3", form.getParameterValue("who"));
-            
-            resp = wc.getResponse(req);         // Follow submit button's link
-            assertEquals("View Student", resp.getTitle());
+            assertEquals("[CSC-357-1] - View Roster", resp.getTitle());
         }
         catch (IOException ex)
         {

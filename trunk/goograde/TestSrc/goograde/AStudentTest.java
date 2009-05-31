@@ -9,9 +9,9 @@ import junit.framework.TestCase;
  *
  * @author mduder
  */
-public class StudentTest extends TestCase {
+public class AStudentTest extends TestCase {
     
-    public StudentTest(String testName) {
+    public AStudentTest(String testName) {
         super(testName);
     }            
 

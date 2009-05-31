@@ -18,10 +18,10 @@ import org.xml.sax.SAXException;
  
 /** @author kblizard
  */
-public class GradeControllerTest extends TestCase 
+public class CGradeControllerTest extends TestCase 
     {
     
-    public GradeControllerTest(String testName) 
+    public CGradeControllerTest(String testName) 
     {
         super(testName);
     }            

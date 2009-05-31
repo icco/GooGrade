@@ -20,9 +20,9 @@ import org.xml.sax.SAXException;
  *TeacherController Test
  * @author kblizard and mduder
  */
-public class TeacherControllerTest extends TestCase {
+public class BTeacherControllerTest extends TestCase {
     
-    public TeacherControllerTest(String testName) {
+    public BTeacherControllerTest(String testName) {
         super(testName);
     }
 
