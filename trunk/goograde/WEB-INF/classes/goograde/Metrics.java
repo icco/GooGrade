@@ -45,13 +45,18 @@ public final class Metrics
         //Adds each value in the order of F, D, C, B and then A
         toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index--);
+                    + "," + distro.get(index);
         
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         
+        index = 4;
+        
         //Adds the labels for each respective section
-        toReturn += "&chl=A|B|C|D|F";
+        toReturn += "&chl=A (" + distro.get(index--) + ")|B (";
+        toReturn += distro.get(index--) + ")|C (" + distro.get(index--) + ")|D"; 
+        toReturn += " (" + distro.get(index--) + ")|F (" + distro.get(index);
+        toReturn += ")";
         
         return toReturn;
         
@@ -75,13 +80,18 @@ public final class Metrics
         //Adds each value in the order of F, D, C, B and then A
         toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index--);
+                    + "," + distro.get(index);
         
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         
+        index = 4;
+        
         //Adds the labels for each respective section
-        toReturn += "&chl=A|B|C|D|F";
+        toReturn += "&chl=A (" + distro.get(index--) + ")|B (";
+        toReturn += distro.get(index--) + ")|C (" + distro.get(index--) + ")|D"; 
+        toReturn += " (" + distro.get(index--) + ")|F (" + distro.get(index);
+        toReturn += ")";
         
         return toReturn;
                 
@@ -116,13 +126,18 @@ public final class Metrics
         //Adds each value in the order of F, D, C, B and then A
         toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index--);
+                    + "," + distro.get(index);
         
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         
+        index = 4;
+        
         //Adds the labels for each respective section
-        toReturn += "&chl=A|B|C|D|F";
+        toReturn += "&chl=A (" + distro.get(index--) + ")|B (";
+        toReturn += distro.get(index--) + ")|C (" + distro.get(index--) + ")|D"; 
+        toReturn += " (" + distro.get(index--) + ")|F (" + distro.get(index);
+        toReturn += ")";
         
         return toReturn;
     }
