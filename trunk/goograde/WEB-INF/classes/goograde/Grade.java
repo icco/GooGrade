@@ -430,48 +430,57 @@ public class Grade implements Comparable<Grade>
         ArrayList<Grade> toReturn = new ArrayList();
         StorageConnection conn = new StorageConnection();
         
-        String query = "SELECT id FROM Assignments WHERE courseId = ";
-        query += course.getId();
+        String query = null;
         
         
         switch(graded)
         {
             case -1: //only nongraded grades
             {
-                query += "Select id FROM Assignments WHERE courseId = ";
+                query = "SELECT id FROM Assignments WHERE courseId = ";
                 query += course.getId();
                 query +=" EXCEPT select assignId from Grades where accountId";
-                query += " = " + student.getId() + ";";
+                query += " = " + student.getId();
                 
                 break;
             }
-            case 0:
+            case 0: //all assignments in the course
             {
-                query += "Select id FROM Assignments WHERE courseId = ";
+                query = "SELECT id FROM Assignments WHERE courseId = ";
                 query += course.getId();
+                break;
             }
             case 1://only graded grades
             {
-                query = "Select assignId from Grades where accountId = ";
+                query = "SELECT assignId from Grades where accountId = ";
                 query += student.getId();
                 break;
             }
         }
         ArrayList<ArrayList<Object>> result = conn.query(query);
-        
-        for( ArrayList<Object> ass : result )
+        if(result == null || result.isEmpty() )
         {
-                Integer assId = (Integer) ass.get(0);
+            toReturn = null;
+        }
+        else
+        {
+            for( ArrayList<Object> ass : result )
+            {
+                    Integer assId = (Integer) ass.get(0);
                 try
                 {
                     toReturn.add(new Grade(assId, student.getId()));
                 } catch (Exception ex)
                 {
-                    Logger.getLogger(Grade.class.getName()).log(Level.SEVERE,
-                                                                    null, ex);
+                    Logger.getLogger(Grade.class.getName()).log(Level.SEVERE, null, ex);
                 }
+
+            }
         }
-        
+        if(toReturn.isEmpty())
+        {
+            toReturn = null;
+        }
         
         conn.close();
         return toReturn;
