@@ -161,7 +161,6 @@ public final class Metrics
         /*
          * Checks to see the grade is greater than the floor of the letter grade
          */
-        System.out.println(rules);
         if(!rules.isEmpty())
         {
             for(Student stu : students)
@@ -203,31 +202,6 @@ public final class Metrics
         rules.add(60);//Adding D floor
         rules.add(0);//Adding F floor
         
-        /*
-        for( Grade grade : grades)
-        {
-            float currentGrade = grade.getGrade();
-            if(currentGrade >= 90.0) //is greater than A's floor
-            {
-                distro[0]++;
-            }
-            else if(currentGrade >= 80.0) //is greater than B's floor
-            {
-                distro[1]++;
-            }
-            else if(currentGrade >= 70.0) //is greater than C's floor
-            {
-                distro[2]++;
-            }
-            else if(currentGrade >= 60.0) //is greater than D's floor
-            {
-                distro[3]++;
-            }
-            else // is F :(
-            {
-                distro[4]++;
-            }
-        }*/
         /*
          * Checks to see the grade is greater than the floor of the letter grade
          * */

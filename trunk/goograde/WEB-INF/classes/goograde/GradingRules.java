@@ -144,7 +144,12 @@ public class GradingRules implements java.io.Serializable
         /* Update if the id exists */
         if (this.getId() != null)
         {
-            String query = "UPDATE GradingRules SET " + "aFloor = \"" + this.getA().toString() + "\"," + "bFloor = \"" + this.getB().toString() + "\"," + "cFloor = \"" + this.getC().toString() + "\"," + "dFloor = \"" + this.getD().toString() + "\"," + "WHERE id = \"" + this.getId() + "\"";
+            String query = "UPDATE GradingRules SET " 
+                    + "aFloor = \"" + this.getA().toString() + "\"," 
+                    + "bFloor = \"" + this.getB().toString() + "\"," 
+                    + "cFloor = \"" + this.getC().toString() + "\"," 
+                    + "dFloor = \"" + this.getD().toString() + "\" " 
+                    + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
         else if (this.getA() != null &&

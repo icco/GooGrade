@@ -1,11 +1,10 @@
 package goograde;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +26,17 @@ public class GradingRulesController extends HttpServlet
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
     {
+        Map para = req.getParameterMap();
+        Integer courseId = new Integer(req.getParameter("id"));
+        Course crs = new Course(courseId);
+        GradingRules gr = new GradingRules(crs.getGradingRulesId());
+        
+        gr.setA(new Integer(req.getParameter("aVal")));
+        gr.setB(new Integer(req.getParameter("bVal")));
+        gr.setC(new Integer(req.getParameter("cVal")));
+        gr.setD(new Integer(req.getParameter("dVal")));
+        gr.save();
+        
         this.doGet(req, resp);
     }
 
@@ -41,17 +51,20 @@ public class GradingRulesController extends HttpServlet
         Account user1 = Utils.getUseridCookie(req);
         RequestDispatcher view = null;
         Integer courseId = new Integer(req.getParameter("id"));
-        
-        System.out.println(courseId);
+        Course crs = new Course(courseId);
+        GradingRules gr = new GradingRules(crs.getGradingRulesId());
 
         view = req.getRequestDispatcher("/teacher/GradingRules.jsp");
-        
+
         req.setAttribute("user", user1);
         req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
-        
-        req.setAttribute("imgsrc1",Metrics.gradeDistroBars(new Course(courseId), 400, 500, 5));
-        
 
+        req.setAttribute("imgsrc1", Metrics.gradeDistroPie(crs, 300, 200, 10));
+        req.setAttribute("ain", gr.getA());
+        req.setAttribute("bin", gr.getB());
+        req.setAttribute("cin", gr.getC());
+        req.setAttribute("din", gr.getD());
+        
         try
         {
             view.forward(req, resp);
