@@ -73,7 +73,8 @@ public class AccountSettingsController extends HttpServlet
             user1 = new Account(new Integer(temp));
             //user1 = Utils.getUseridCookie(req);
             req.setAttribute("user", user1);
-            Logger.getLogger(TeacherController.class.getName()).log(Level.INFO, user1.toString());
+            Logger.getLogger(TeacherController.class.getName())
+                    .log(Level.INFO, user1.toString());
         }
         catch (Exception ex)
         {

@@ -1,8 +1,6 @@
 package goograde;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * The GradingRules class determines how the Total Grade
@@ -74,6 +72,7 @@ public class GradingRules implements java.io.Serializable
     {
         Integer ret = 0;
 
+        /* set return value to curve related to letter received */
         switch (letter)
         {
             case 'A':
@@ -152,10 +151,11 @@ public class GradingRules implements java.io.Serializable
                     + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
-        else if (this.getA() != null &&
-                this.getB() != null &&
-                this.getC() != null &&
-                this.getD() != null)
+        /* If nothing exists, insert a new GradingRule into the db */
+        else if (this.getA() != null
+                && this.getB() != null
+                && this.getC() != null
+                && this.getD() != null)
         {
             String query = "INSERT into GradingRules (aFloor, bFloor, cFloor, dFloor)";
             query += " VALUES(\"" + this.getA() + "\",\"";
@@ -315,6 +315,7 @@ public class GradingRules implements java.io.Serializable
     /**
      * Set's the id of this GradingRules object.
      * @param in Integer id to be set
+     * @return true if set, false otherwise
      * @author nwelch
      */
     public boolean setId(Integer in)

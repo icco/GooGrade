@@ -49,6 +49,7 @@ public class Course implements java.io.Serializable
      */
     public Course(Integer id)
     {
+        /* Only construct a course if the given id exists */
         if(id != null)
         {
             this.setId(id);

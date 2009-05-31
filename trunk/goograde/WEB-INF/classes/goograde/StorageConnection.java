@@ -82,10 +82,6 @@ public class StorageConnection
             Logger.getLogger(StorageConnection.class.getName()).log(Level.SEVERE,
                     "An Error has occured while running a query. ", ex);
         }
-        finally
-        {
-			//Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,"Query Returned: " + ret.toString());
-        }
 
         return ret;
     }
@@ -109,10 +105,6 @@ public class StorageConnection
         {
             Logger.getLogger(StorageConnection.class.getName()).log(Level.WARNING,
                     "SQL Update: " + in, ex);
-        }
-        finally
-        {
-			//Logger.getLogger(StorageConnection.class.getName()).log(Level.INFO,"Update Query Returned: " + ret.toString());
         }
 
         return results > 0;
