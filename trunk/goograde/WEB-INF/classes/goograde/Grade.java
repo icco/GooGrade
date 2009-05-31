@@ -477,7 +477,7 @@ public class Grade implements Comparable<Grade>
 
             }
         }
-        if(toReturn.isEmpty())
+        if(toReturn != null && toReturn.isEmpty())
         {
             toReturn = null;
         }
@@ -498,6 +498,11 @@ public class Grade implements Comparable<Grade>
     public static ArrayList<Grade> predictGrades(Course course, 
       Student student, Float grade)
     {
+        if(course == null || student == null)
+        {
+            return new ArrayList<Grade>();
+        }
+
         //return variable
         ArrayList<Grade> minimum = null;
         //list of all grades for that student in that course
@@ -543,7 +548,7 @@ public class Grade implements Comparable<Grade>
             needed = (grade * totals) - achieved;
 
             //continue iff needed is less than totals left
-            if(needed < (totals - gradedTotals))
+            if(needed <= (totals - gradedTotals))
             {
                 int indx = 0; //iterative index
                 //continue as long as there are still points needed

@@ -283,7 +283,7 @@ public class GradeTest extends TestCase {
     {
         System.out.println("predictGrade");
         ArrayList<Grade> result = null;
-        
+
         try
         {
             //Test 1, a course with no assignments
@@ -316,8 +316,8 @@ public class GradeTest extends TestCase {
             }
             else
             {
-                assertEquals(result.get(0).getGrade(), 5F);
-                assertEquals(result.get(1).getGrade(), 8F);
+                assertEquals(8F, result.get(0).getGrade());
+                assertEquals(5F, result.get(1).getGrade());
             }
         }
         catch (Exception ex)
@@ -335,8 +335,8 @@ public class GradeTest extends TestCase {
             }
             else
             {
-                assertEquals(result.get(0).getGrade(), 5F);
-                assertEquals(result.get(1).getGrade(), 10F);
+                assertEquals(10F, result.get(0).getGrade());
+                assertEquals(5F, result.get(1).getGrade());
             }
         }
         catch (Exception ex)
@@ -354,8 +354,8 @@ public class GradeTest extends TestCase {
             }
             else
             {
-                assertEquals(result.get(0).getGrade(), 5F);
-                assertEquals(result.get(1).getGrade(), 10F);
+                assertEquals(10F, result.get(0).getGrade());
+                assertEquals(5F, result.get(1).getGrade());
             }
         }
         catch (Exception ex)
@@ -366,8 +366,8 @@ public class GradeTest extends TestCase {
         try
         {
             //Test 6, boundary testing
-            result = Grade.predictGrades(new Course(5), new Student(3), 0.5F);
-            assertEquals(result, null);
+            result = Grade.predictGrades(new Course(5), new Student(3), 0.85F);
+            assertEquals(null, result);
         }
         catch (Exception ex)
         {
