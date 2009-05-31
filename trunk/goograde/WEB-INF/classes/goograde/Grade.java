@@ -140,7 +140,7 @@ public class Grade implements Comparable<Grade>
 
     /**
      * set student changes the Student id number
-     * @param the Student to save the id number for
+     * @param pstudent the Student to save the id number for
      * @return true if change is sucessful
      * @author nwelch
      */
@@ -520,11 +520,6 @@ public class Grade implements Comparable<Grade>
     public static ArrayList<Grade> predictGrades(Course course, 
       Student student, Float grade)
     {
-        if(course == null || student == null)
-        {
-            return new ArrayList<Grade>();
-        }
-
         //return variable
         ArrayList<Grade> minimum = null;
         //list of all grades for that student in that course
@@ -577,7 +572,8 @@ public class Grade implements Comparable<Grade>
                 while(needed > 0F)
                 {
                     Grade current = ungraded.get(indx);
-                    //if an assignment is lower than its maximum (can't get more than max)
+                    //if an assignment is lower than
+                    //its maximum (can't get more than max)
                     if(current.getGrade() < current.getAssignment().getTotal())
                     {
                         //increment grade
@@ -622,7 +618,6 @@ public class Grade implements Comparable<Grade>
      */
     public Boolean isGraded()
     {
-        
         return this.graded;
     }
 
@@ -639,7 +634,7 @@ public class Grade implements Comparable<Grade>
         //if newGrade was added successfully
         if(ret)
         {
-            ret=this.save();
+            ret = this.save();
         }
         return ret;
     }
