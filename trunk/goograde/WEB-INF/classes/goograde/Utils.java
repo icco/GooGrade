@@ -11,13 +11,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public final class Utils
 {
-    /**
-     * To overide defailt public construvtor
-     */
-    private Utils()
-    {
-       // So Checkstyle doesn't get mad
-    }
+
     /**
      * Given a servlet request, get an account out of it's cookie.
      * 
@@ -28,21 +22,23 @@ public final class Utils
     {
         Account user1 = new Account();
 
-        // Gets the cookie we want
-        for (Cookie cook : req.getCookies())
+        if (req != null)
         {
-            // Get the id of the account and load it
-            if (cook.getName().equals("userid"))
+            // Gets the cookie we want
+            for (Cookie cook : req.getCookies())
             {
-                user1.setId(new Integer(cook.getValue()));
-                user1.fetch();
+                // Get the id of the account and load it
+                if (cook.getName().equals("userid"))
+                {
+                    user1.setId(new Integer(cook.getValue()));
+                    user1.fetch();
+                }
             }
         }
 
         return user1;
     }
-    
-    
+
     /**
      * Used to convert Markdown syntax to HTML. I have this here more for my 
      * own benefit than anything else.
@@ -51,6 +47,6 @@ public final class Utils
     public static String getHTML(String markdown)
     {
         MarkdownProcessor md = new MarkdownProcessor();
-        return md.markdown(markdown);
+        return md.markdown(markdown).trim();
     }
 }

@@ -455,19 +455,32 @@ public class Account implements java.io.Serializable
         return ret;
     }
     
+    /**
+     * Overriding the equals method
+     * @param in the object to compare to
+     * @return a boolean
+     */
     @Override
     public boolean equals(Object in)
     {
-        return false;
+        boolean ret = false;
+        
+        if(in instanceof Account)
+        {
+            ret = this.equals((Account)in);            
+        }
+        
+        return ret;
     }
 
+    /**
+     * A hash code generator.
+     * @return a hash of the Object
+     */
     @Override
     public int hashCode()
     {
-        int hash = 3;
-        hash = 29 * hash + (this.userName != null ? this.userName.hashCode() : 0);
-        hash = 29 * hash + (this.id != null ? this.id.hashCode() : 0);
-        return hash;
+        return this.toString().hashCode();
     }
 }
 
