@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  * data from the model, and related models.
  * @author nwelch
  * @author kblizard
+ * @version 2.42
  */
 public class GradeController extends HttpServlet
 {
@@ -25,6 +26,7 @@ public class GradeController extends HttpServlet
      * @param user1 the Account being modified
      * @param req the request ServeletRequest. 
      * @return the accoutn modified. 
+     * @author nwelch
      */
     private Account getCookie(Account user1, HttpServletRequest req)
     {
@@ -49,6 +51,7 @@ public class GradeController extends HttpServlet
      * @param courseId teh ID of the course being modified. 
      * @param crse the course being used. 
      * @return the view
+     * @author bluGoo
      */
     private RequestDispatcher teacherSet(HttpServletRequest req, Account user1,
             Integer courseId, Course crse)
@@ -85,7 +88,15 @@ public class GradeController extends HttpServlet
         return view;
     }
 
-    private HttpServletRequest addGrades(HttpServletRequest req, Course currentCourse)
+    /**
+     * addGrades dictate how a new grade is added to the database
+     * @param req
+     * @param currentCourse
+     * @return the Request sent in as the paramater
+     * @author bluGoo
+     */
+    private HttpServletRequest addGrades(HttpServletRequest req, 
+            Course currentCourse)
     {
         ArrayList<Assignment> asslist = currentCourse.getAssignments();
         ArrayList<Student> stulist = currentCourse.getStudents();
@@ -110,10 +121,12 @@ public class GradeController extends HttpServlet
         return req;
     }
     /**
-     * doPost performs actions
+     * doPost perform a specified action set by the browser. The action depends
+     * if the user is a Teacher or a Student. 
      * 
-     * @param req request
-     * @param resp response
+     * @param req request from client
+     * @param resp response to client
+     * @author bluGoo
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -163,6 +176,7 @@ public class GradeController extends HttpServlet
      * @param view the RequestDispatcher for the view. 
      * @param req the request
      * @param resp teh response
+     * @author bluGoo
      */
     private void viewForward(RequestDispatcher view, HttpServletRequest req,
             HttpServletResponse resp)
@@ -184,9 +198,10 @@ public class GradeController extends HttpServlet
     }
 
     /**
-     * doGet receives things
-     * @param req request
-     * @param resp respones
+     * doGet handles requests from the clients
+     * @param req request from the client
+     * @param resp response to the client
+     * @author bluGoo
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -251,6 +266,12 @@ public class GradeController extends HttpServlet
         viewForward(view, req, resp);
     }
     
+    /**
+     * gradeListHelper is a helper method fetch all grades and log any problems
+     * from fetching all the grades. 
+     * @return An ArrayList of all grades
+     * @author bluGoo
+     */
     private ArrayList<Grade> gradeListHelper()
     {
         ArrayList<Grade> gradelist = null;
