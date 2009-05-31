@@ -49,8 +49,16 @@ public class Course implements java.io.Serializable
      */
     public Course(Integer id)
     {
-        this.id = id;
-        this.fetch();
+        if(id != null)
+        {
+            this.setId(id);
+            this.fetch();
+        }
+        else
+        {
+            Logger.getLogger(Course.class.getName()).
+                    log(Level.SEVERE, "Problem finding course id " + id);
+        }
     }
 
     /**

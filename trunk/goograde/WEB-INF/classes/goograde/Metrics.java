@@ -94,7 +94,7 @@ public final class Metrics
     private static ArrayList<Integer> gradeDistroInts(Course course)
     {
         GradingRules gradingRules = new GradingRules();
-        ArrayList<Integer> rules;
+        ArrayList<Integer> rules = new ArrayList();
         rules = gradingRules.getRules();
         ArrayList<Student> students = course.getRoster();
         Integer[] distro = {0, 0, 0, 0, 0};
@@ -102,39 +102,16 @@ public final class Metrics
         ArrayList<Integer> toReturn;
         
         /*
-        for( Student stu : students)
-        {
-            float currentGrade = stu.getCurrentGrade(course);
-            if(currentGrade > rules.get(0)) //is greater than A's floor
-            {
-                distro[0]++;
-            }
-            else if(currentGrade > rules.get(1)) //is greater than B's floor
-            {
-                distro[1]++;
-            }
-            else if(currentGrade > rules.get(2)) //is greater than C's floor
-            {
-                distro[2]++;
-            }
-            else if(currentGrade > rules.get(3)) //is greater than D's floor
-            {
-                distro[3]++;
-            }
-            else // is F :(
-            {
-                distro[4]++;
-            }
-        }*/
-        /*
          * Checks to see the grade is greater than the floor of the letter grade
-         * */
-        for(Student stu: students)
+         */
+        
+        for(Student stu : students)
         {
-            float currentGrade = stu.getCurrentGrade(course);
+            float currentGrade = 0;
+            currentGrade += stu.getCurrentGrade(course);
             for(int i = 0; i < distro.length; i++)
             {
-                if(currentGrade > (float)rules.get(i))
+                if(currentGrade >= (float)rules.get(i))
                 {
                     distro[i]++;
                 }

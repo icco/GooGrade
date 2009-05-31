@@ -57,7 +57,7 @@
                     <div class="cornerBoxInner-blue">
                         
                         <ul class="iconlist">
-                            <%-- Not till release 2
+                            <%-- Not till release 3
                             <li class="import" >
                                 <img src="../styles/import.png" style=" position: relative; top: 3px;">Import Course
                             </li>
@@ -65,7 +65,7 @@
                             <li class="add">
                                 <h4><img src="/GooGrade2.0/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade2.0/teacher/course">Manage Courses</a></h4>
                             </li>
-                            <%-- Not till release 2
+                            <%-- Not till release 3
                             <li class="export" >
                                 <img src="../styles/export.png" style=" position: relative; top: 3px;">Export Course
                             </li>

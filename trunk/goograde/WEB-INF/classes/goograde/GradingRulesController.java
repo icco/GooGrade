@@ -1,6 +1,7 @@
 package goograde;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * The GradingRulesController class is the GradingRules controller. 
  *
- * @author Blugoo
+ * @author nwelch
  * @version 0.42
  */
 public class GradingRulesController extends HttpServlet
@@ -39,25 +40,28 @@ public class GradingRulesController extends HttpServlet
     {
         Account user1 = Utils.getUseridCookie(req);
         RequestDispatcher view = null;
+        Integer courseId = new Integer(req.getParameter("id"));
+        
+        System.out.println(courseId);
+
+        view = req.getRequestDispatcher("/teacher/GradingRules.jsp");
+        
         req.setAttribute("user", user1);
+        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        
+        req.setAttribute("imgsrc1",Metrics.gradeDistroBars(new Course(courseId), 400, 500, 5));
+        
 
         try
         {
             view.forward(req, resp);
         }
-        catch (ServletException ex)
+        catch (Exception ex)
         {
             Logger.getLogger(
                     CourseController.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
-        catch (IOException ex)
-        {
-            Logger.getLogger(
-                    CourseController.class.getName()).log(
-                    Level.SEVERE, null, ex);
-        }
-
     }
 }
 
