@@ -449,7 +449,34 @@ public class GradeTest extends TestCase {
         {
             fail("Bad test data");
         }
+    }
             
-        
+    /**
+     * Test for updateGrade method in class Grade
+     */
+    public void testUpdateGrade()
+    {
+        System.out.println("updateGrade");
+        Grade instance = null;
+        boolean result = false;
+        boolean expResult = true;
+
+        try {
+            instance = new Grade(10, 3);
+        } catch (Exception ex) {
+            fail("Bad Test Data");
+        }
+        finally
+        {
+            if(instance != null)
+            {
+                result = instance.updateGrade(5F);
+                assertEquals(expResult, result);
+            }
+            else
+            {
+                fail("Null");
+            }
+        }
     }
 }

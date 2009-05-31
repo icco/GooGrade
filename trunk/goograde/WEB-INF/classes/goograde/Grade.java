@@ -603,4 +603,22 @@ public class Grade implements Comparable<Grade>
         
         return this.graded;
     }
+
+    /**
+     * Update a grade, a simple wrapper for gradeStudent and save
+     * @param Float object, the new grade
+     * @return true if successfull save, false if null input or failed save
+     */
+    public boolean updateGrade(Float newGrade)
+    {
+        boolean ret = false;
+        ret = this.gradeStudent(newGrade);
+        //if newGrade was added successfully
+        if(ret)
+        {
+            ret=this.save();
+        }
+        return ret;
+    }
+
 }
