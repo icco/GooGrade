@@ -93,7 +93,7 @@ public final class Metrics
      */
     private static ArrayList<Integer> gradeDistroInts(Course course)
     {
-        GradingRules gradingRules = new GradingRules();
+        GradingRules gradingRules = new GradingRules(course.getGradingRulesId());
         ArrayList<Integer> rules = new ArrayList();
         rules = gradingRules.getRules();
         ArrayList<Student> students = course.getRoster();
@@ -104,12 +104,15 @@ public final class Metrics
         /*
          * Checks to see the grade is greater than the floor of the letter grade
          */
+        System.out.println(rules);
         if(!rules.isEmpty())
         {
             for(Student stu : students)
             {
                 float currentGrade = 0;
+                System.out.println("FUCK: " + currentGrade);
                 currentGrade += stu.getCurrentGrade(course);
+                System.out.println("PENIS: "+currentGrade);
                 for(int i = 0; i < distro.length; i++)
                 {
                     if(currentGrade >= (float)rules.get(i))
