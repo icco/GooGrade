@@ -19,7 +19,7 @@ public final class Utils
        // So Checkstyle doesn't get mad
     }
     /**
-     * Given a servlet request, get an account outta it's cookie.
+     * Given a servlet request, get an account out of it's cookie.
      * 
      * @param req the incomming request.
      * @return an account.
@@ -50,7 +50,7 @@ public final class Utils
      */
     public static String getHTML(String markdown)
     {
-        MarkdownProcessor markdown_processor = new MarkdownProcessor();
-        return markdown_processor.markdown(markdown);
+        MarkdownProcessor md = new MarkdownProcessor();
+        return md.markdown(markdown);
     }
 }
