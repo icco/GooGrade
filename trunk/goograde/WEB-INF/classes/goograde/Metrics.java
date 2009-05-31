@@ -103,7 +103,7 @@ public final class Metrics
      * D = 60%  and F = anything less than 60%
      * @param ass the Assignment to get the distribution
      * @param graphWidth the desired width of the bar graph
-     * @param graphHieght the desired height of the bar graph
+     * @param graphHeight the desired height of the bar graph
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */

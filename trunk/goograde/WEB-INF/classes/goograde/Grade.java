@@ -606,7 +606,7 @@ public class Grade implements Comparable<Grade>
 
     /**
      * Update a grade, a simple wrapper for gradeStudent and save
-     * @param Float object, the new grade
+     * @param newGrade object, the new grade
      * @return true if successfull save, false if null input or failed save
      */
     public boolean updateGrade(Float newGrade)
