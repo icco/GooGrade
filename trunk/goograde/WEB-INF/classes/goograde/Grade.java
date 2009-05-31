@@ -209,7 +209,8 @@ public class Grade implements Comparable<Grade>
                 {
                     Logger.getLogger(Course.class.getName()).log(Level.SEVERE,
                             "SQL error occurred when trying to fetch " 
-                            + "Assignment  with id = " + this.assignment.getId(), ex);
+                            + "Assignment  with id = " 
+                            + this.assignment.getId(), ex);
                 }
             }
         }
@@ -492,7 +493,8 @@ public class Grade implements Comparable<Grade>
                     toReturn.add(new Grade(assId, student.getId()));
                 } catch (Exception ex)
                 {
-                    Logger.getLogger(Grade.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Grade.class.getName()).log(Level.SEVERE,
+                            null, ex);
                 }
 
             }
