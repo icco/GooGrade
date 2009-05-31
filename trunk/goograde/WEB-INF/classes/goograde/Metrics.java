@@ -96,7 +96,7 @@ public final class Metrics
         GradingRules gradingRules = new GradingRules();
         ArrayList<Integer> rules;
         rules = gradingRules.getRules();
-        ArrayList<Student> students = Student.allStudents();
+        ArrayList<Student> students = course.getRoster();
         Integer[] distro = {0, 0, 0, 0, 0};
         rules.add(-1); //adds F to the list, which is a floor of -1 to count for 0's
         ArrayList<Integer> toReturn;
