@@ -15,7 +15,7 @@ import java.util.Arrays;
 public final class Metrics
 {
     //Base URL for accessing Google Chart API
-    private static String baseURL = "http://chart.apis.google.com/chart?cht=bvs&chs=";
+    private static String baseURL = "http://chart.apis.google.com/chart?";
      /**
      * Using Google Charts API, a bar graph representing each possible letter grade
      * will be producded where the floor percent values taken from what the teacher has set
@@ -25,6 +25,37 @@ public final class Metrics
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
+    
+    public static String gradeDistroPie( Course course, int graphWidth, 
+                                          int graphHeight, int barWidth)
+    {
+        int index = 4; // the number of grades including 0 totals to 5
+        String toReturn = "";
+        ArrayList<Integer> distro = gradeDistroInts(course);
+        
+        //adds the baseURL of Google api
+        toReturn += baseURL;
+        
+        //Adds that it is going to be a pie chart
+        toReturn += "cht=p";
+        
+        //Adds the graph dimensions as width x height
+        toReturn += "&chs=" + graphWidth + "x" + graphHeight;
+        
+        //Adds each value in the order of F, D, C, B and then A
+        toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
+                    + "," + distro.get(index--) + "," + distro.get(index--) 
+                    + "," + distro.get(index--);
+        
+        //Adds the range of the values [0 , 100]
+        toReturn += "&chbh=50&chds=0,100";
+        
+        //Adds the labels for each respective section
+        toReturn += "&chl=A|B|C|D|F";
+        
+        return toReturn;
+        
+    }
     public static String gradeDistroBars( Course course, int graphWidth, 
                                           int graphHeight, int barWidth)
     {
@@ -35,16 +66,22 @@ public final class Metrics
         //adds the baseURL of Google api
         toReturn += baseURL;
         
+        //Adds that it is going to be a bar veritcal stacked graph
+        toReturn += "cht=bvs";
+        
         //Adds the graph dimensions as width x height
-        toReturn += graphWidth + "x" + graphHeight;
+        toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
         //Adds each value in the order of F, D, C, B and then A
         toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--);
         
-        //Adds the color Black (000000) and then sets the range of the values [0, 100]
-        toReturn += "&chco=000000&chbh=50&chds=0,100";
+        //Adds the range of the values [0 , 100]
+        toReturn += "&chbh=50&chds=0,100";
+        
+        //Adds the labels for each respective section
+        toReturn += "&chl=A|B|C|D|F";
         
         return toReturn;
                 
@@ -70,17 +107,22 @@ public final class Metrics
         //adds the baseURL of Google api
         toReturn += baseURL;
         
+        //Adds that it is going to be a bar veritcal stacked graph
+        toReturn += "cht=bvs";
+        
         //Adds the graph dimensions as width x height
-        toReturn += graphWidth + "x" + graphHeight;
+        toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
         //Adds each value in the order of F, D, C, B and then A
         toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--) + "," + distro.get(index--) 
                     + "," + distro.get(index--);
         
-        //Adds the color Black (000000) and then sets the range of the values [0, 100]
-        toReturn += "&chco=000000&chbh=50&chds=0,100";
+        //Adds the range of the values [0 , 100]
+        toReturn += "&chbh=50&chds=0,100";
         
+        //Adds the labels for each respective section
+        toReturn += "&chl=A|B|C|D|F";
         
         return toReturn;
     }
@@ -110,9 +152,7 @@ public final class Metrics
             for(Student stu : students)
             {
                 float currentGrade = 0;
-                System.out.println("FUCK: " + currentGrade);
                 currentGrade += stu.getCurrentGrade(course);
-                System.out.println("PENIS: "+currentGrade);
                 for(int i = 0; i < distro.length; i++)
                 {
                     if(currentGrade >= (float)rules.get(i))
