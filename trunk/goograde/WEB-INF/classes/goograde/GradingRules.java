@@ -6,8 +6,8 @@ import java.util.ArrayList;
  * The GradingRules class determines how the Total Grade
  * is computed from mutiple Assignment Grades. 
  *
- * @author Blugoo
- * @version 0.42
+ * @author nwelch
+ * @version 2.42
  */
 public class GradingRules implements java.io.Serializable
 {
@@ -60,20 +60,39 @@ public class GradingRules implements java.io.Serializable
      */
     public boolean setCurve(Character letter, Integer grade)
     {
-        return false;
+        boolean ret = false;
+        switch (Character.toUpperCase(letter))
+        {
+            case 'A':
+                ret = this.setA(grade);
+                break;
+            case 'B':
+                ret = this.setB(grade);
+                break;
+            case 'C':
+                ret = this.setC(grade);
+                break;
+            case 'D':
+                ret = this.setD(grade);
+                break;
+            default:
+                ret = false;
+        }
+        
+        return ret;
     }
 
     /**
      * Gets a the lowest percentage one can have to have a grade.
      * @param letter The Grade (A,B,C,D) you wish to get
-     * @return false if fail, true if set.
+     * @return the floor for that percentage or null
      */
     public Integer getCurve(Character letter)
     {
         Integer ret = 0;
 
         /* set return value to curve related to letter received */
-        switch (letter)
+        switch (Character.toUpperCase(letter))
         {
             case 'A':
                 ret = this.getA();
@@ -98,7 +117,6 @@ public class GradingRules implements java.io.Serializable
      * Searches the database table GradingRules according
      * to this.id and sets all instance variables from there
      * @return true if found in database, else false
-     * @author nwelch
      */
     public boolean fetch()
     {
@@ -257,12 +275,14 @@ public class GradingRules implements java.io.Serializable
     public boolean setB(Integer floor)
     {
         boolean ret = false;
+        
         /* Set value to a non-null Integer */
         if (floor != null)
         {
             this.bFloor = floor;
             ret = true;
         }
+        
         return ret;
     }
 
@@ -275,12 +295,14 @@ public class GradingRules implements java.io.Serializable
     public boolean setC(Integer floor)
     {
         boolean ret = false;
+        
         /* Set value to a non-null Integer */
         if (floor != null)
         {
             this.cFloor = floor;
             ret = true;
         }
+        
         return ret;
     }
 
@@ -293,19 +315,20 @@ public class GradingRules implements java.io.Serializable
     public boolean setD(Integer floor)
     {
         boolean ret = false;
+        
         /* Set new value to a non-null Integer */
         if (floor != null)
         {
             this.dFloor = floor;
             ret = true;
         }
+        
         return ret;
     }
 
     /**
      * Get's the id of this GradingRules object.
      * @return id Integer
-     * @author nwelch
      */
     public Integer getId()
     {
@@ -320,8 +343,15 @@ public class GradingRules implements java.io.Serializable
      */
     public boolean setId(Integer in)
     {
-        this.id = new Integer(in);
+        boolean ret = false;
 
-        return true;
+        if (in != null)
+        {
+            this.id = new Integer(in);
+            ret = true;
+        }
+
+        return ret;
     }
 }
+
