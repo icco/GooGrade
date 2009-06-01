@@ -98,23 +98,38 @@ public class AStudentTest extends TestCase {
     /**
      * Test if getCurrentGrade, of class Student
      */
-    
     public void testGetCurrentGrade()
     {
         System.out.println("getCurrentGrade");
-        Integer result = null;
-        Integer expResult = 3;
+        Student student = null;
+        Course course = null;
+        Float result = null;
+        Float expResult = null;
         try
         {
-            //Test 1, no assignments in course
-            Student student = new Student(expResult);
-            result = student.getId();
-            
-            assertEquals(expResult, result);
+            student = new Student(3);
         }
         catch (Exception ex)
         {
             fail("Bad Test Data");
         }
+        finally
+        {
+            //Test 1, no assignments in course
+            course = new Course(4);
+            expResult = new Float(0);
+            result = student.getCurrentGrade(course);
+            
+            assertEquals(expResult, result);
+            
+            //Test 2, with assignments in course
+            course = new Course(5);
+            expResult = new Float(77.14286);
+            result = student.getCurrentGrade(course);
+            
+            assertEquals(expResult, result);
+        }
+        
+        
     }
 }

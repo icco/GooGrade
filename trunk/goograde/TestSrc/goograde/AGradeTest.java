@@ -462,7 +462,7 @@ public class AGradeTest extends TestCase {
         boolean expResult = true;
 
         try {
-            instance = new Grade(10, 3);
+            instance = new Grade(4, 3);
         } catch (Exception ex) {
             fail("Bad Test Data");
         }
@@ -483,26 +483,35 @@ public class AGradeTest extends TestCase {
     public void testGetGrades() throws Exception
     {
         System.out.println("getGrades");
-        Grade instance = null;
         ArrayList<Grade> result = null;
-        
-        try {
-            instance = new Grade(10, 3);
-        } catch (Exception ex) {
-            fail("Bad Test Data");
-        }
-        finally
+        result = Grade.getGrades(new Course(5), new Student(3),0);
+        if(result != null)
         {
-            if(instance != null)
-            {
-                result = instance.getGrades(new Course(1), new Student(2),0);
-                assertEquals(3, result.size());
-            }
-            else
-            {
-                fail("Null");
-            }
+            assertEquals(4, result.size());
+        }
+        else
+        {
+            fail("Null");
         }
         
+        result = Grade.getGrades(new Course(5), new Student(3),1);
+        if(result != null)
+        {
+            assertEquals(2, result.size());
+        }
+        else
+        {
+            fail("Null");
+        }
+        
+        result = Grade.getGrades(new Course(5), new Student(3),-1);
+        if(result != null)
+        {
+            assertEquals(2, result.size());
+        }
+        else
+        {
+            fail("Null");
+        }
     }
 }
