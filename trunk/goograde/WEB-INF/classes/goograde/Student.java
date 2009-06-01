@@ -256,6 +256,7 @@ public class Student extends Account
      * @param  object object to compare with
      * @return true if equal, false otherwise
      */
+    @Override
     public boolean equals(Object object)
     {
         boolean ret = false;
@@ -270,6 +271,16 @@ public class Student extends Account
             }
         }
         return ret;
+    }
+
+    /**
+     * Generates a hashcode
+     * @return the hash of the string
+     */
+    @Override
+    public int hashCode()
+    {
+        return this.toString().hashCode();
     }
 
     /**
