@@ -84,7 +84,8 @@ public class AssignmentController extends HttpServlet
                 this.editAssignment(req.getParameter("AssignId"),
                         req.getParameter("newAssgnDate"),
                         req.getParameter("newAssgnTitle"),
-                        req.getParameter("newAssgnTotal"));
+                        req.getParameter("newAssgnTotal"),
+                        req.getParameter("newAssgnType"));
             }
         }
 
@@ -141,7 +142,8 @@ public class AssignmentController extends HttpServlet
     private void editAssignment(String assId, 
             String assDate, 
             String assName, 
-            String assTotal)
+            String assTotal,
+            String assType)
     {
         Assignment ass = new Assignment(new Integer(assId));
         //We do not like null pointer exceptions
@@ -172,6 +174,11 @@ public class AssignmentController extends HttpServlet
         if (assTotal != null)
         {
             ass.setTotal(new Integer(assTotal));
+        }
+        //We do not like null pointer exceptions
+        if (assType != null)
+        {
+            ass.setType(assType);
         }
         ass.save();
 
