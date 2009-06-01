@@ -81,13 +81,13 @@
                                                             
                                                             <td>
                                                                 Type: 
-                                                                <select name="type" size="1" >
-                                                                    <option>Homework</option>
-                                                                    <option>Quiz</option>
-                                                                    <option>Test</option>
-                                                                    <option>Final</option>
-                                                                    <option>Participation</option>
-                                                                    <option>Other</option>
+                                                                <select name="newAssgnType" size="1">
+                                                                    <option value="Homework">Homework</option>
+                                                                    <option value="Quiz">Quiz</option>
+                                                                    <option value="Test">Test</option>
+                                                                    <option value="Final">Final</option>
+                                                                    <option value="Participation">Participation</option>
+                                                                    <option value="Other">Other</option>
                                                                 </select>
                                                                 
                                                             </td>
