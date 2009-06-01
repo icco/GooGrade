@@ -148,17 +148,22 @@ public final class Metrics
                 {
                     toReturn += ",";
                 }
-                if(index > 0)
+                if(index == 4)
                 {
                     toReturn += rules.get(index - 1) - rules.get(index);
-                    toReturn2 += letters[index] + "" + rules.get(index - 1);
-                    toReturn2 += "-" + rules.get(index) + ")";
+                    toReturn2 += "F";
+                }
+                else if(index > 0)
+                {
+                    toReturn += rules.get(index - 1) - rules.get(index);
+                    toReturn2 += letters[index];
+                    toReturn2 += rules.get(index) + "%%2B)";
                 }
                 else
                 {
                     toReturn += aFloor - rules.get(index);
-                    toReturn2 += letters[index] + "100" + "-";
-                    toReturn2 += rules.get(index) + ")";
+                    toReturn2 += letters[index];
+                    toReturn2 += rules.get(index) + "%%2B)";
                 }
                 
             }
@@ -167,7 +172,7 @@ public final class Metrics
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=10&chds=0,100";
         
-        toReturn += toReturn2;
+        toReturn += toReturn2 + "&chco=0044FF";
 
         return toReturn;
 
