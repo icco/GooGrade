@@ -48,7 +48,7 @@ public class AccountController extends HttpServlet
      * 
      * @param req the incoming HttpServletRequest
      * @param resp the outgoing HttpServletResponse
-     * @authro vgerdin
+     * @author vgerdin
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)

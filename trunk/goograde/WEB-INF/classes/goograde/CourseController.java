@@ -24,7 +24,7 @@ public class CourseController extends HttpServlet
      * called from form method = "post"
      * @param req request
      * @param resp response
-     * @author bluGoo
+     * @author nwelch
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) 
@@ -72,7 +72,7 @@ public class CourseController extends HttpServlet
      * called to display a page
      * @param req request
      * @param resp response
-     * @authro bluGoo
+     * @author nwelch
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)

@@ -49,7 +49,7 @@ public class GradePredictorController extends HttpServlet
      * 
      * @param req request from the client
      * @param resp response to the client
-     * @authro vgerdin
+     * @author vgerdin
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
