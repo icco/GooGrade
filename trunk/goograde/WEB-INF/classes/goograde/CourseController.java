@@ -11,10 +11,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Methods for modifying a course and it's related actions.
+ * Methods for modifying a course and it's related actions. Interfaces between 
+ * models and the jsps
  *
  * @author bluGoo
- * @version 0.42
+ * @version 2.42
  */
 public class CourseController extends HttpServlet
 {
@@ -23,6 +24,7 @@ public class CourseController extends HttpServlet
      * called from form method = "post"
      * @param req request
      * @param resp response
+     * @author bluGoo
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp) 
@@ -70,6 +72,7 @@ public class CourseController extends HttpServlet
      * called to display a page
      * @param req request
      * @param resp response
+     * @authro bluGoo
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -81,6 +84,7 @@ public class CourseController extends HttpServlet
      * controller function to delete a Course
      * @param courseRef id of course to be deleted
      * @return true if no errors
+     * @author bluGoo
      */
     private boolean deleteCourse(String courseRef)
     {
@@ -108,6 +112,7 @@ public class CourseController extends HttpServlet
      * @param number Course Number
      * @param section Course Section
      * @return true if no errors
+     * @author bluGoo
      */
     private boolean addCourse(String title, String department,
             String number, String section)
@@ -145,6 +150,12 @@ public class CourseController extends HttpServlet
         return ret;
     }
 
+    /**
+     * doStudent displays course information for a student.
+     * @param req the servlet request
+     * @param user1 the account inquiring for this web page
+     * @autor bluGoo
+     */
     private void doStudent(HttpServletRequest req, Account user1)
     {
         //We do not like null pointer exceptions
@@ -169,6 +180,15 @@ public class CourseController extends HttpServlet
         }
     }
 
+    /**
+     * wrapper for edit course methods
+     * @param courseRef 
+     * @param title the title of the course
+     * @param department 3-4 letter department name. I.E CPE
+     * @param number of the course. I.E. the 103 in CPE 103
+     * @param section of the course
+     * @return true if edit is successful
+     */
     private boolean preEditCourse(String courseRef, String title, 
             String department, String number, String section)
     {
@@ -211,6 +231,7 @@ public class CourseController extends HttpServlet
      * @param number new number
      * @param section new section
      * @return true if no errors
+     * @authro bluGoo
      */
     private boolean editCourse(String courseRef, String title, 
             String department, String number, String section)
@@ -235,7 +256,7 @@ public class CourseController extends HttpServlet
         return ret;
     }
     /**
-     * performs specified action
+     * performs specified action from the client
      * @param req Http Servlet request
      * @param action String of what we want to do
      * @return true if no errors
@@ -269,6 +290,13 @@ public class CourseController extends HttpServlet
         return ret;
     }
 
+    /**
+     * handles a teacher's request to view or edit a course
+     * @param req the servlet request
+     * @param user1 the account inquiring
+     * @param action the action to be performed. specified by the jsp's
+     * @author bluGoo
+     */
     private void doTeacher(HttpServletRequest req, Account user1, String action)
     {
         /*if we have an action do*/
