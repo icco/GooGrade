@@ -79,11 +79,10 @@ public class Student extends Account
 
     /**
      * Gets the student grade in the course.
-     * @return percentage the student has in the course
-     * @param crse A string which maches a course name, or other identifier.
+     * @return percentage the student for the assignment
      * @param ass An assignment to get the grade for.
      */
-    public Float getGrade(Course crse, Assignment ass)
+    public Float getGrade(Assignment ass)
     {
         Float ret = (new Grade(ass, this)).getGrade();
         return ret;

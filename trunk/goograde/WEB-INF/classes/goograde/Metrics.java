@@ -32,7 +32,6 @@ public final class Metrics
      * @param course the Course to get the distribution
      * @param graphWidth the desired width of the pie chart
      * @param graphHeight the desired height of the pie chart
-     * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
     public static String gradeDistroPie(Course course, int graphWidth,
@@ -98,7 +97,6 @@ public final class Metrics
      * @param course the Course to get the distribution
      * @param graphWidth the desired width of the pie chart
      * @param graphHeight the desired height of the pie chart
-     * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
     public static String gradeCourseCurvePie(Course course, int graphWidth,
