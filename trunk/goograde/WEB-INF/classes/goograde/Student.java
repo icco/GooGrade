@@ -294,7 +294,7 @@ public class Student extends Account
         Float totalScore = 0F;
         Integer totalWeight = 0;
         Float currentGrade = new Float(0);
-        Integer oneHundred = new Integer(100);
+        final Integer oneHundred = new Integer(100);
         ArrayList<Grade> grades = Grade.getGrades(course, this, 1);
 
         // No nulls boy!
