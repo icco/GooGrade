@@ -479,4 +479,30 @@ public class AGradeTest extends TestCase {
             }
         }
     }
+    
+    public void testGetGrades() throws Exception
+    {
+        System.out.println("getGrades");
+        Grade instance = null;
+        ArrayList<Grade> result = null;
+        
+        try {
+            instance = new Grade(10, 3);
+        } catch (Exception ex) {
+            fail("Bad Test Data");
+        }
+        finally
+        {
+            if(instance != null)
+            {
+                result = instance.getGrades(new Course(1), new Student(2),0);
+                assertEquals(3, result.size());
+            }
+            else
+            {
+                fail("Null");
+            }
+        }
+        
+    }
 }
