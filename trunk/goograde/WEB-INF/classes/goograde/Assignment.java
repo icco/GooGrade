@@ -670,7 +670,7 @@ public class Assignment implements java.io.Serializable
         if (result.isEmpty())
         {
             query = "INSERT INTO Assignments (id, aType, aMax, aMin, ";
-            query += "aAverage, aDueDate, aName, aTotal, courseId ";
+            query += "aAverage, aDueDate, aName, aTotal, courseId) ";
             query += "VALUES (\"" + this.getId() + "\",\"" + this.getType();
             query += "\",\"" + this.getMax() + "\",\"" + this.getMin();
             query += "\",\"" + this.getAvg() + "\",\"" + this.getDueDate();
