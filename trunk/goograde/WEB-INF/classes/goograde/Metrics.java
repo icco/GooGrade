@@ -11,163 +11,231 @@ import java.util.Arrays;
  * @author pphu
  * @version 0.2
  */
-
 public final class Metrics
 {
     //Base URL for accessing Google Chart API
+
     private static String baseURL = "http://chart.apis.google.com/chart?";
+    private static String letters[] = { "A (", "B (", "C (", "D (", "F ("};
 
     /**
      * To satisfy Checkstyle
      */
-    private Metrics() { }
-    
-     /**
+    private Metrics()
+    {
+    }
+
+    /**
      * Using Google Charts API, pie representing each possible letter grade
-     * will be producded where the floor percent values taken from what the teacher has set
+     * will be producded where the floor percent values taken from what 
+     * the teacher has set
      * @param course the Course to get the distribution
      * @param graphWidth the desired width of the pie chart
      * @param graphHeight the desired height of the pie chart
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
-    public static String gradeDistroPie( Course course, int graphWidth, 
-                                          int graphHeight, int barWidth)
+    public static String gradeDistroPie(Course course, int graphWidth,
+            int graphHeight)
     {
-        int index = 0; // the number of grades including 0 totals to 5
+        int length, length2;
         String toReturn = "";
+        String toReturn2 = "";
         ArrayList<Integer> distro = gradeDistroInts(course);
-        
+
         //adds the baseURL of Google api
         toReturn += baseURL;
-        
+
         //Adds that it is going to be a pie chart
         toReturn += "cht=p";
-        
+
         //Adds the graph dimensions as width x height
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
+
+        toReturn += "&chd=t:";
+        
+        toReturn2 += "&chl=";
+        
+        length = toReturn.length();
+        length2 = toReturn2.length();
+        
         
         //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index);
-        
+        for (int index = 0; index < distro.size(); index++)
+        {
+            //Adds only if there is a student that falls inside this letter
+            if (distro.get(index) != 0)
+            {
+                //Adds the | needed and not at the beginning
+                if(toReturn2.length() > length2)
+                {
+                    toReturn2 += "|";
+                }
+                
+                //Adds the | needed and not at the beginning
+                if(toReturn.length() > length)
+                {
+                    toReturn += ",";
+                }
+                toReturn += distro.get(index);
+                toReturn2 += letters[index] + "" + distro.get(index) + ")";
+            }
+        }
+
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
-        
-        index = 0;
-        
-        //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index++) + ")";
-        toReturn += "|B (" + distro.get(index++) + ")";
-        toReturn += "|C (" + distro.get(index++) + ")"; 
-        toReturn += "|D (" + distro.get(index++) + ")";
-        toReturn += "|F (" + distro.get(index) + ")";
-        
+        toReturn += toReturn2 + "&chco=0044FF";
+
         return toReturn;
-        
+
     }
-    
-    
-    
-     /**
+
+    /**
      * Using Google Charts API, pie representing each possible letter grade
-     * will be producded where the floor percent values taken from what the teacher has set
+     * will be producded where the floor percent values taken from what the
+     * teacher has set
      * @param course the Course to get the distribution
      * @param graphWidth the desired width of the pie chart
      * @param graphHeight the desired height of the pie chart
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
-    public static String gradeCourseCurvePie( Course course, int graphWidth, 
-                                          int graphHeight, int barWidth)
+    public static String gradeCourseCurvePie(Course course, int graphWidth,
+            int graphHeight)
     {
-        int index = 0; // the number of grades including 0 totals to 5
+        int length, length2; // the number of grades including 0 totals to 5
+
         String toReturn = "";
-        ArrayList<Integer> distro = gradeDistroInts(course);
-        
+        String toReturn2 = "";
+        GradingRules gradingRules = new GradingRules(course.getGradingRulesId());
+        ArrayList<Integer> rules = new ArrayList();
+        rules = gradingRules.getRules();
+        rules.add(-1);
+        final int aFloor = 100;
         //adds the baseURL of Google api
         toReturn += baseURL;
-        
+
         //Adds that it is going to be a pie chart
         toReturn += "cht=p";
-        
+
         //Adds the graph dimensions as width x height
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
+        toReturn += "&chd=t:";
+
         //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index);
+        toReturn2 += "&chl=";
+
+
+        length = toReturn.length();
+        length2 = toReturn2.length();
         
+
+        //Adds each value in the order of F, D, C, B and then A
+        for (int index = 0; index < rules.size(); index++)
+        {
+            //Adds only if there is a student that falls inside this letter
+            if (rules.get(index) != 0)
+            {
+                //Adds the | needed and not at the beginning
+                if(toReturn2.length() > length2)
+                {
+                    toReturn2 += "|";
+                }
+                
+                //Adds the | needed and not at the beginning
+                if(toReturn.length() > length)
+                {
+                    toReturn += ",";
+                }
+                if(index > 0)
+                {
+                    toReturn += rules.get(index - 1) - rules.get(index);
+                    toReturn2 += letters[index] + "" + rules.get(index - 1);
+                    toReturn2 += "-" + rules.get(index) + ")";
+                }
+                else
+                {
+                    toReturn += aFloor - rules.get(index);
+                    toReturn2 += letters[index] + "100" + "-";
+                    toReturn2 += rules.get(index) + ")";
+                }
+                
+            }
+        }
+
         //Adds the range of the values [0 , 100]
-        toReturn += "&chbh=50&chds=0,100";
+        toReturn += "&chbh=10&chds=0,100";
         
-        index = 0;
-        
-        //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index++) + ")";
-        toReturn += "|B (" + distro.get(index++) + ")";
-        toReturn += "|C (" + distro.get(index++) + ")"; 
-        toReturn += "|D (" + distro.get(index++) + ")";
-        toReturn += "|F (" + distro.get(index) + ")";
-        
+        toReturn += toReturn2;
+
         return toReturn;
-        
+
     }
-    
-    
-    
-     /**
-     * Using Google Charts API, a bar graph representing each possible letter grade
-     * will be producded where the floor percent values taken from what the teacher has set
+
+    /**
+     * Using Google Charts API, a bar graph representing each possible letter 
+     * grade will be producded where the floor percent values taken from what 
+     * the teacher has set
      * @param course the Course to get the distribution
      * @param graphWidth the desired width of the bar graph
      * @param graphHeight the desired height of the bar graph
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
-    public static String gradeDistroBars( Course course, int graphWidth, 
-                                          int graphHeight, int barWidth)
+    public static String gradeDistroBars(Course course, int graphWidth,
+            int graphHeight, int barWidth)
     {
-        int index = 0; // the number of grades including 0 totals to 5
+
         String toReturn = "";
+        String toReturn2 = "";
         ArrayList<Integer> distro = gradeDistroInts(course);
         
+        int length, length2;
+
         //adds the baseURL of Google api
         toReturn += baseURL;
-        
+
         //Adds that it is going to be a bar veritcal stacked graph
         toReturn += "cht=bvs";
-        
+
         //Adds the graph dimensions as width x height
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
-        //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index);
+        toReturn2 += "&chl=";
         
+        length = toReturn.length();
+        length2 = toReturn2.length();
+        
+        
+        //Adds each value in the order of F, D, C, B and then A
+        for (int index = 0; index < distro.size(); index++)
+        {
+            //Adds only if there is a student that falls inside this letter
+            if (distro.get(index) != 0)
+            {
+                //Adds the | needed and not at the beginning
+                if(toReturn2.length() > length2)
+                {
+                    toReturn2 += "|";
+                }
+                
+                //Adds the | needed and not at the beginning
+                if(toReturn.length() > length)
+                {
+                    toReturn += ",";
+                }
+                toReturn += distro.get(index);
+                toReturn2 += letters[index] + "" + distro.get(index) + ")";
+            }
+        }
+
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
-        
-        index = 0;
-        
-        //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index++) + ")";
-        toReturn += "|B (" + distro.get(index++) + ")";
-        toReturn += "|C (" + distro.get(index++) + ")"; 
-        toReturn += "|D (" + distro.get(index++) + ")";
-        toReturn += "|F (" + distro.get(index) + ")";
-        
+        toReturn += toReturn2;
+
         return toReturn;
-                
+
     }
 
     /**
@@ -180,45 +248,60 @@ public final class Metrics
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
-    public static String assignmentGradeDistroBars( Assignment ass, int graphWidth, 
-                                                    int graphHeight, int barWidth)
+    public static String assignmentGradeDistroBars(Assignment ass, int graphWidth,
+            int graphHeight, int barWidth)
     {
-        int index = 0; // the number of grades including 0 totals to 5
+        int length, length2; // the number of grades including 0 totals to 5
+
         String toReturn = "";
+        String toReturn2 = "";
         ArrayList<Integer> distro = assignmentGradeDistroInts(ass);
         ArrayList<Integer> rules = new ArrayList();
-        
+
         //adds the baseURL of Google api
         toReturn += baseURL;
-        
+
         //Adds that it is going to be a bar veritcal stacked graph
         toReturn += "cht=bvs";
-        
+
         //Adds the graph dimensions as width x height
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
+
+        toReturn2 += "&chl=";
+        
+        length = toReturn.length();
+        length2 = toReturn2.length();
+        
         
         //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index++);
-        toReturn += "," + distro.get(index);
-        
+        for (int index = 0; index < distro.size(); index++)
+        {
+            //Adds only if there is a student that falls inside this letter
+            if (distro.get(index) != 0)
+            {
+                //Adds the | needed and not at the beginning
+                if(toReturn2.length() > length2)
+                {
+                    toReturn2 += "|";
+                }
+                
+                //Adds the | needed and not at the beginning
+                if(toReturn.length() > length)
+                {
+                    toReturn += ",";
+                }
+                toReturn += distro.get(index);
+                toReturn2 += letters[index] + "" + distro.get(index) + ")";
+            }
+        }
+
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
-        
-        index = 0;
-        
-        //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index++) + ")";
-        toReturn += "|B (" + distro.get(index++) + ")";
-        toReturn += "|C (" + distro.get(index++) + ")"; 
-        toReturn += "|D (" + distro.get(index++) + ")";
-        toReturn += "|F (" + distro.get(index) + ")";
-        
+        toReturn += toReturn2;
+
         return toReturn;
     }
-    
+
     /**
      * Produces an ArrayList of the distribution of grades in the course.
      * Letter grade is in the order of A, B, C, D.   
@@ -231,39 +314,49 @@ public final class Metrics
         ArrayList<Integer> rules = new ArrayList();
         rules = gradingRules.getRules();
         ArrayList<Student> students = course.getRoster();
-        Integer[] distro = {0, 0, 0, 0, 0};
+        Integer[] distro =
+        {
+            0, 0, 0, 0, 0
+        };
         rules.add(-1); //adds F to the list, which is a floor of -1 to count for 0's
+
         ArrayList<Integer> toReturn = null;
-        
+
         /*
          * Checks to see the grade is greater than the floor of the letter grade
          */
-        if(!rules.isEmpty())
+        if (!rules.isEmpty())
         {
-            for(Student stu : students)
+
+            //For every Student it will add a tally to the correct letter
+            for (Student stu : students)
             {
                 float currentGrade = 0;
                 currentGrade += stu.getCurrentGrade(course);
-                for(int i = 0; i < distro.length; i++)
+
+
+                //Checks if the currentGrade grade is in a letter range defined 
+                //by gradingRules
+                for (int index = 0; index < distro.length; index++)
                 {
-                    if(currentGrade >= (float)rules.get(i))
+                    //if greater than or eqal to the grade rule
+                    if (currentGrade >= (float) rules.get(index))
                     {
-                        System.out.println("Rule " + rules.get(i) + "    currentGrade " + currentGrade);
-                        distro[i]++;
-                        i = distro.length;
+                        distro[index]++;
+                        index = distro.length;
                     }
                 }
             }
-        
-        
-            toReturn = new ArrayList<Integer>( Arrays.asList( distro) );
+
+
+            toReturn = new ArrayList<Integer>(Arrays.asList(distro));
         }
-        
+
         return toReturn;
-        
+
     }
-    
-     /**
+
+    /**
      * Produces an ArrayList of the distribution of grades in the Assignment.
      * Letter grade is in the order of A, B, C, D.   
      * @param course the course to get the distribution from
@@ -272,33 +365,46 @@ public final class Metrics
     private static ArrayList<Integer> assignmentGradeDistroInts(Assignment assignment)
     {
         ArrayList<Grade> grades = assignment.getGrades();
-        Integer[] distro = {0, 0, 0, 0, 0};
+        Integer[] distro =
+        {
+            0, 0, 0, 0, 0
+        };
         ArrayList<Integer> toReturn;
         ArrayList<Integer> rules = new ArrayList<Integer>();
-        rules.add(90);//Adding A floor
-        rules.add(80);//Adding B floor
-        rules.add(70);//Adding C floor
-        rules.add(60);//Adding D floor
-        rules.add(0);//Adding F floor
-        
+        final int aFloor = 90;
+        final int bFloor = 80;
+        final int cFloor = 70;
+        final int dFloor = 60;
+        final int fFloor = 0;
+
+        rules.add(aFloor); //Adding A floor
+
+        rules.add(bFloor); //Adding B floor
+
+        rules.add(cFloor); //Adding C floor
+
+        rules.add(dFloor); //Adding D floor
+
+        rules.add(fFloor); //Adding F floor
+
         /*
          * Checks to see the grade is greater than the floor of the letter grade
          * */
-        for( Grade grade : grades)
+        for (Grade grade : grades)
         {
             float currentGrade = grade.getGrade();
-            for(int i = 0; i < distro.length; i++)
+            for (int index = 0; index < distro.length; index++)
             {
-                if(currentGrade > (float)rules.get(i))
+                if (currentGrade > (float) rules.get(index))
                 {
-                    distro[i]++;
+                    distro[index]++;
                 }
             }
         }
-        
-        toReturn = new ArrayList<Integer>( Arrays.asList( distro) );
-        
+
+        toReturn = new ArrayList<Integer>(Arrays.asList(distro));
+
         return toReturn;
-        
+
     }
 }

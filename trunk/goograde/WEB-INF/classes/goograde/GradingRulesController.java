@@ -57,7 +57,6 @@ public class GradingRulesController extends HttpServlet
         GradingRules gr = new GradingRules(crs.getGradingRulesId());
         int width = 300;
         int height = 200;
-        int bar = 10;
 
         view = req.getRequestDispatcher("/teacher/GradingRules.jsp");
 
@@ -66,9 +65,9 @@ public class GradingRulesController extends HttpServlet
                 (Teacher.allTeachers().get(0).getCourses()));
 
         req.setAttribute("imgsrc1", 
-                Metrics.gradeDistroPie(crs, width, height, bar));
+                Metrics.gradeDistroPie(crs, width, height));
         req.setAttribute("imgsrc2", 
-                Metrics.gradeCourseCurvePie(crs, width, height, bar));
+                Metrics.gradeCourseCurvePie(crs, width, height));
         req.setAttribute("ain", gr.getA());
         req.setAttribute("bin", gr.getB());
         req.setAttribute("cin", gr.getC());
