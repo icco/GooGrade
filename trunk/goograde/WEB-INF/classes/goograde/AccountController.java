@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServlet;
 
 /**
  * This class does most of the work on the Account. It is 
- * the Account controller. Not really sure what it should be 
- * doing, but we'll get to that.
+ * the Account controller. It is the buffer between the model and the jsp's
  * 
- * @author bluGoo, vgerdin
+ * @author bluGoo 
+ * @author vgerdin
  * @version 0.42
  */
 public class AccountController extends HttpServlet
@@ -26,6 +26,7 @@ public class AccountController extends HttpServlet
      * 
      * @param req the incoming HttpServletRequest
      * @param resp the outgoing HttpServletResponse
+     * @author vgerdin
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -47,6 +48,7 @@ public class AccountController extends HttpServlet
      * 
      * @param req the incoming HttpServletRequest
      * @param resp the outgoing HttpServletResponse
+     * @authro vgerdin
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -89,11 +91,12 @@ public class AccountController extends HttpServlet
     }
 
     /**
-     * Add an account to the system.
+     * Add a new account to the system.
      * 
      * @param uName User name of new account
      * @param fName Full Name of new account
      * @param eAddr email address of new account
+     * @author vgerdin
      */
     private void addAccount(String uName, String fName, String eAddr)
     {
@@ -109,6 +112,7 @@ public class AccountController extends HttpServlet
      * Delete an account.
      * 
      * @param in ID of account to delete
+     * @author vgerdin
      */
     private void deleteAccount(Integer in)
     {
@@ -126,6 +130,14 @@ public class AccountController extends HttpServlet
         temp.delete();
     }
 
+    /**
+     * doAction fulfills the request in doPost or doGet, modifying the info
+     * from the models and saving to the database VIA the models.
+     * @param req
+     * @param action
+     * @return true if no errors occurred
+     * @authro vgerdin
+     */
     private boolean doAction(HttpServletRequest req, String action)
     {
         boolean ret = false;
@@ -155,6 +167,12 @@ public class AccountController extends HttpServlet
         return ret;
     }
 
+    /**
+     * doActionDelete specifically deletes an Account from the system
+     * @param req the servlet request
+     * @return true delete is successful
+     * @author vgerdin
+     */
     private boolean doActionDelete(HttpServletRequest req)
     {
         boolean ret = false;
@@ -173,6 +191,12 @@ public class AccountController extends HttpServlet
         return ret;
     }
     
+    /**
+     * doActionAdd specifically adds a new Account to the system
+     * @param req the servlet request
+     * @return true if add is successful
+     * @author vgerdin
+     */
     private boolean doActionAdd(HttpServletRequest req)
     {
         boolean ret = false;
@@ -195,6 +219,12 @@ public class AccountController extends HttpServlet
         return ret;
     }
 
+    /**
+     * doActionedit specificllay edits a course
+     * @param req the servlet request
+     * @return true if edit is successful
+     * @author vgerdin
+     */
     private boolean doActionEdit(HttpServletRequest req)
     {
         boolean ret = false;
@@ -217,6 +247,12 @@ public class AccountController extends HttpServlet
         return ret;
     }
     
+    /**
+     * adds an existing account.
+     * @param req the servlet request
+     * @return true if add is successful
+     * @author vgerdin
+     */
     private boolean doActionAddOld(HttpServletRequest req)
     {
         boolean ret = false;
