@@ -9,8 +9,8 @@ import java.util.logging.Logger;
  * a synomnym for an Account. This will have lots of get and set methods 
  * that will handle getting and saving Accounts to the Storage system.
  *
- * @author bluGoo
- * @version 0.42
+ * @author mduder
+ * @version 2.42
  */
 public class Account implements java.io.Serializable
 {
@@ -37,7 +37,9 @@ public class Account implements java.io.Serializable
      */
     
     /**
-     * Standard constructor
+     * Default constructor instantiats an empty Account object.
+     * 
+     * @author mduder
      */
     public Account()
     {
@@ -48,10 +50,12 @@ public class Account implements java.io.Serializable
     }
     
     /**
-     * Non-standard constructor
+     * Constructor for generating an Account with user input.
+     * 
      * @param newUser  the user name an account holder uses to access GooGrade
      * @param newFull      the full name of an account holder
      * @param newEmail     the email address of an account holder
+     * @author mduder
      */
     public Account(String newUser, String newFull, String newEmail)
     {
@@ -62,11 +66,11 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * ID constructor, standard constructor with id parameter.
-     * All variables, other than id, are still null and retrieved from
-     * database with fetch();
+     * System constructor which receives an ID and fetches the other info.
+     * 
      * @param newID identification Integer used to fetch data from db
      * @throws Exception an invalid id passed in is erroneous
+     * @author mduder
      */
     public Account(Integer newID) throws Exception
     {
@@ -81,11 +85,13 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * Commonly used constructor. I should just be able to do this with an id tho.
+     * Standard system constructor where all information is already known.
+     * 
      * @param newID        unique identification number for each account
      * @param newUser  the user name an account holder uses to access GooGrade
      * @param newFull      the full name of an account holder
      * @param newEmail     the email address of an account holder
+     * @author mduder
      */
     public Account(Integer newID, String newUser, String newFull, String newEmail)
     {
@@ -95,10 +101,11 @@ public class Account implements java.io.Serializable
         this.emailAddress = newEmail;
     }
 
-    // Begin the Functions!
     /**
-     * get the accounts user name.
+     * Retrieve the account's user name.
+     * 
      * @return a string with the user name of the current account
+     * @author mduder
      */
     public String getUserName()
     {
@@ -106,8 +113,10 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * get the accounts full name.
+     * Retrieve the account's full name.
+     * 
      * @return a string with the full name of the current account
+     * @author mduder
      */
     public String getFullName()
     {
@@ -115,8 +124,10 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * gets the EmailAddress of this account.
+     * Retrieve the account's EmailAddress of this account.
+     * 
      * @return this user's email address 
+     * @author mduder
      */
     public String getEmailAddress()
     {
@@ -124,9 +135,11 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * set the Account's user name.
+     * Sets the Account's user name.
+     * 
      * @param newUserName the new name to be stored
      * @return true if set, false if error.
+     * @author muder
      */
     public boolean setUserName(String newUserName)
     {
@@ -142,9 +155,11 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * set the Account's full name.
+     * Sets the Account's full name.
+     * 
      * @param newFullName the new name to be stored
      * @return true if set, false if error.
+     * @author mduder
      */
     public boolean setFullName(String newFullName)
     {
@@ -153,9 +168,11 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * sets the EmailAddress of this Account.
+     * Sets the Account's EmailAddress.
+     * 
      * @param newAddress the new email address to be stored
      * @return true if set, false if error.
+     * @author mduder
      */
     public boolean setEmailAddress(String newAddress)
     {
@@ -164,8 +181,10 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * gets the id for this account.
+     * Retrieve the account's id for this account.
+     * 
      * @return this account's id
+     * @author mduder
      */
     public Integer getId()
     {
@@ -173,9 +192,11 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * sets the id for this instance
+     * Sets the Account's id.
+     * 
      * @param newID the id used in the db for the account
      * @return true if set, false if error.
+     * @author mduder
      */
     public boolean setId(Integer newID)
     {
@@ -188,6 +209,7 @@ public class Account implements java.io.Serializable
      * to this.id and sets all instance variables from there
      * 
      * @return true if found in database, else false
+     * @author mduder
      */
     public boolean fetch()
     { 
@@ -238,7 +260,9 @@ public class Account implements java.io.Serializable
 
     /**
      * Resets all variables according to current database information
+     * 
      * @return true if successful, else false
+     * @author mduder
      */
     public boolean refresh()
     {
@@ -247,11 +271,11 @@ public class Account implements java.io.Serializable
     }
 
     /**
-     * save, stores current instance in database
-     * if id already exists, update
-     * else, insert
+     * Stores current instance in database and either updates it if
+     * the id already exists, otherwise it inserts
+     * 
      * @return true if successfull, else false
-     * @todo implement the functionality requried for this
+     * @author mduder
      */
     public boolean save()
     {
@@ -284,7 +308,9 @@ public class Account implements java.io.Serializable
 
     /**
      * Standard toString method for displaying a class
+     * 
      * @return a concatenated string of the object's variables
+     * @author mduder
      */
     @Override
     public String toString()
@@ -303,6 +329,7 @@ public class Account implements java.io.Serializable
      * Returns an array of all of the accounts.
      * 
      * @return and arraylist of all the accounts.
+     * @author mduder
      */
     public static ArrayList<Account> allAccounts()
     {
@@ -336,7 +363,9 @@ public class Account implements java.io.Serializable
 
     /**
      * Tells whether an accounter is a Teacher or Not.
+     * 
      * @return true if account is a Treacher, false if it isn't
+     * @author mduder
      */
     public boolean isTeacher()
     {
@@ -361,7 +390,9 @@ public class Account implements java.io.Serializable
     
     /**
      * Tells whether an accounter is a Student or Not.
+     * 
      * @return true if account is a Student, false if it isn't
+     * @author mduder
      */
     public boolean isStudent()
     {
@@ -386,7 +417,9 @@ public class Account implements java.io.Serializable
 
     /**
      * An account is deleted from the database
+     * 
      * @return a boolean representing the success of the delete call
+     * @author mduder
      */
     public boolean delete()
     {
@@ -412,12 +445,11 @@ public class Account implements java.io.Serializable
     }
     
     /**
-     * This checks the database to make sure the queried username
-     * is unique.  *** As per Nat Welch, 05-02, this method has been
-     * set to always return true due to design issues.  Should be fixed. ***
+     * This checks the database to make sure the queried username is unique.
      * 
      * @param userNameIn the name to verify if is unique
      * @return true if unique, false if not.
+     * @author nwelch
      */
     public static boolean isUserNameUnique(String userNameIn)
     {
@@ -441,8 +473,10 @@ public class Account implements java.io.Serializable
     
     /**
      * Standard issue equals method
+     * 
      * @param testAct the Account object to be compared with
      * @return true if equal, false otherwise
+     * @author mduder
      */
     public boolean equals(Account testAct)
     {
@@ -457,8 +491,10 @@ public class Account implements java.io.Serializable
     
     /**
      * Overriding the equals method
+     * 
      * @param in the object to compare to
      * @return a boolean
+     * @author mduder
      */
     @Override
     public boolean equals(Object in)
@@ -475,7 +511,9 @@ public class Account implements java.io.Serializable
 
     /**
      * A hash code generator.
+     * 
      * @return a hash of the Object
+     * @author nwelch
      */
     @Override
     public int hashCode()

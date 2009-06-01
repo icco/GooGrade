@@ -20,9 +20,11 @@ public class RosterController extends HttpServlet
 {
 
     /**
+     * Post requests from the view are redirected to the doGet method
      * 
      * @param req request class
      * @param resp response class
+     * @author kblizard
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)       
@@ -32,13 +34,15 @@ public class RosterController extends HttpServlet
     }
 
     /**
+     * Get requests from the view are processed and responded to
      * 
      * @param req reqest class
      * @param resp response class
+     * @author nwelch
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-    {
+    { 
         RequestDispatcher view = 
                 req.getRequestDispatcher("/teacher/ViewRoster.jsp");
         req.setAttribute("teachCourseList",
@@ -51,21 +55,21 @@ public class RosterController extends HttpServlet
         req.setAttribute("studentList", roster.getRoster());
         
         try
-        {
+        { 
             req.setAttribute("user", Utils.getUseridCookie(req));
             view.forward(req, resp);
-        }
+        } 
         catch (ServletException ex)
-        {
+        { 
             Logger.getLogger(TeacherController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        }
+        } 
         catch (IOException ex)
-        {
+        { 
             Logger.getLogger(TeacherController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        }
-    }
+        } 
+    } 
 }
 
 
