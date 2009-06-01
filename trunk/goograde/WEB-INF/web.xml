@@ -61,6 +61,10 @@
         <servlet-name>gradingrulescontroller</servlet-name>
         <servlet-class>goograde.GradingRulesController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>gradepredictorcontroller</servlet-name>
+        <servlet-class>goograde.GradePredictorController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>assignmentscontroller</servlet-name>
         <url-pattern>/teacher/assignment</url-pattern>
@@ -120,6 +124,10 @@
     <servlet-mapping>
         <servlet-name>gradingrulescontroller</servlet-name>
         <url-pattern>/teacher/rules</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>gradepredictorcontroller</servlet-name>
+        <url-pattern>/student/predictor</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

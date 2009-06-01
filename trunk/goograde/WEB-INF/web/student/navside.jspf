@@ -65,7 +65,9 @@
                                 <li>
                                     <a href="/GooGrade2.0/student/course?id=${course.id}">View Course</a>
                                 </li>
-
+                                <li>
+                                    <a href="/GooGrade2.0/student/predictor?id=${course.id}">Grade Predictor</a>
+                                </li>
                             </ul>
                         </div>  
                     </div>  

@@ -133,10 +133,19 @@ public class GradePredictorController extends HttpServlet
 
         view = req.getRequestDispatcher("/student/GradePredictor.jsp");
         
-        Student student = (Student) user1;
+        Student student = null;
+        try
+        {
+            student = new Student(user1.getId());
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradePredictorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ArrayList<Grade> gradedList = this.getGradedList(crse, student);
 
         ArrayList<Grade> ungradedList = (ArrayList<Grade>) req.getAttribute("ungradedList");
+        
         //if not set (first call) reset
         if(ungradedList == null)
         {
