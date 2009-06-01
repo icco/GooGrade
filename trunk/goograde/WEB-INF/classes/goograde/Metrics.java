@@ -16,20 +16,20 @@ public final class Metrics
 {
     //Base URL for accessing Google Chart API
     private static String baseURL = "http://chart.apis.google.com/chart?";
+
      /**
-     * Using Google Charts API, a bar graph representing each possible letter grade
+     * Using Google Charts API, pie representing each possible letter grade
      * will be producded where the floor percent values taken from what the teacher has set
      * @param course the Course to get the distribution
-     * @param graphWidth the desired width of the bar graph
-     * @param graphHeight the desired height of the bar graph
+     * @param graphWidth the desired width of the pie chart
+     * @param graphHeight the desired height of the pie chart
      * @param barWidth the desired width of the bars
      * @return a String representing the link to the Google image
      */
-    
     public static String gradeDistroPie( Course course, int graphWidth, 
                                           int graphHeight, int barWidth)
     {
-        int index = 4; // the number of grades including 0 totals to 5
+        int index = 0; // the number of grades including 0 totals to 5
         String toReturn = "";
         ArrayList<Integer> distro = gradeDistroInts(course);
         
@@ -43,28 +43,93 @@ public final class Metrics
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
         //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index);
+        toReturn += "&chd=t:" + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index);
         
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         
-        index = 4;
+        index = 0;
         
         //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index--) + ")|B (";
-        toReturn += distro.get(index--) + ")|C (" + distro.get(index--) + ")|D"; 
-        toReturn += " (" + distro.get(index--) + ")|F (" + distro.get(index);
-        toReturn += ")";
+        toReturn += "&chl=A (" + distro.get(index++) + ")";
+        toReturn += "|B (" + distro.get(index++) + ")";
+        toReturn += "|C (" + distro.get(index++) + ")"; 
+        toReturn += "|D (" + distro.get(index++) + ")";
+        toReturn += "|F (" + distro.get(index) + ")";
         
         return toReturn;
         
     }
+    
+    
+    
+     /**
+     * Using Google Charts API, pie representing each possible letter grade
+     * will be producded where the floor percent values taken from what the teacher has set
+     * @param course the Course to get the distribution
+     * @param graphWidth the desired width of the pie chart
+     * @param graphHeight the desired height of the pie chart
+     * @param barWidth the desired width of the bars
+     * @return a String representing the link to the Google image
+     */
+    public static String gradeCourseCurvePie( Course course, int graphWidth, 
+                                          int graphHeight, int barWidth)
+    {
+        int index = 0; // the number of grades including 0 totals to 5
+        String toReturn = "";
+        ArrayList<Integer> distro = gradeDistroInts(course);
+        
+        //adds the baseURL of Google api
+        toReturn += baseURL;
+        
+        //Adds that it is going to be a pie chart
+        toReturn += "cht=p";
+        
+        //Adds the graph dimensions as width x height
+        toReturn += "&chs=" + graphWidth + "x" + graphHeight;
+        
+        //Adds each value in the order of F, D, C, B and then A
+        toReturn += "&chd=t:" + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index);
+        
+        //Adds the range of the values [0 , 100]
+        toReturn += "&chbh=50&chds=0,100";
+        
+        index = 0;
+        
+        //Adds the labels for each respective section
+        toReturn += "&chl=A (" + distro.get(index++) + ")";
+        toReturn += "|B (" + distro.get(index++) + ")";
+        toReturn += "|C (" + distro.get(index++) + ")"; 
+        toReturn += "|D (" + distro.get(index++) + ")";
+        toReturn += "|F (" + distro.get(index) + ")";
+        
+        return toReturn;
+        
+    }
+    
+    
+    
+     /**
+     * Using Google Charts API, a bar graph representing each possible letter grade
+     * will be producded where the floor percent values taken from what the teacher has set
+     * @param course the Course to get the distribution
+     * @param graphWidth the desired width of the bar graph
+     * @param graphHeight the desired height of the bar graph
+     * @param barWidth the desired width of the bars
+     * @return a String representing the link to the Google image
+     */
     public static String gradeDistroBars( Course course, int graphWidth, 
                                           int graphHeight, int barWidth)
     {
-        int index = 4; // the number of grades including 0 totals to 5
+        int index = 0; // the number of grades including 0 totals to 5
         String toReturn = "";
         ArrayList<Integer> distro = gradeDistroInts(course);
         
@@ -78,20 +143,23 @@ public final class Metrics
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
         //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index);
+        toReturn += "&chd=t:" + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index);
         
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         
-        index = 4;
+        index = 0;
         
         //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index--) + ")|B (";
-        toReturn += distro.get(index--) + ")|C (" + distro.get(index--) + ")|D"; 
-        toReturn += " (" + distro.get(index--) + ")|F (" + distro.get(index);
-        toReturn += ")";
+        toReturn += "&chl=A (" + distro.get(index++) + ")";
+        toReturn += "|B (" + distro.get(index++) + ")";
+        toReturn += "|C (" + distro.get(index++) + ")"; 
+        toReturn += "|D (" + distro.get(index++) + ")";
+        toReturn += "|F (" + distro.get(index) + ")";
         
         return toReturn;
                 
@@ -110,9 +178,10 @@ public final class Metrics
     public static String assignmentGradeDistroBars( Assignment ass, int graphWidth, 
                                                     int graphHeight, int barWidth)
     {
-        int index = 4; // the number of grades including 0 totals to 5
+        int index = 0; // the number of grades including 0 totals to 5
         String toReturn = "";
         ArrayList<Integer> distro = assignmentGradeDistroInts(ass);
+        ArrayList<Integer> rules = new ArrayList();
         
         //adds the baseURL of Google api
         toReturn += baseURL;
@@ -124,20 +193,23 @@ public final class Metrics
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
         //Adds each value in the order of F, D, C, B and then A
-        toReturn += "&chd=t:" + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index--) + "," + distro.get(index--) 
-                    + "," + distro.get(index);
+        toReturn += "&chd=t:" + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index++);
+        toReturn += "," + distro.get(index);
         
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         
-        index = 4;
+        index = 0;
         
         //Adds the labels for each respective section
-        toReturn += "&chl=A (" + distro.get(index--) + ")|B (";
-        toReturn += distro.get(index--) + ")|C (" + distro.get(index--) + ")|D"; 
-        toReturn += " (" + distro.get(index--) + ")|F (" + distro.get(index);
-        toReturn += ")";
+        toReturn += "&chl=A (" + distro.get(index++) + ")";
+        toReturn += "|B (" + distro.get(index++) + ")";
+        toReturn += "|C (" + distro.get(index++) + ")"; 
+        toReturn += "|D (" + distro.get(index++) + ")";
+        toReturn += "|F (" + distro.get(index) + ")";
         
         return toReturn;
     }
@@ -171,7 +243,9 @@ public final class Metrics
                 {
                     if(currentGrade >= (float)rules.get(i))
                     {
+                        System.out.println("Rule " + rules.get(i) + "    currentGrade " + currentGrade);
                         distro[i]++;
+                        i = distro.length;
                     }
                 }
             }
