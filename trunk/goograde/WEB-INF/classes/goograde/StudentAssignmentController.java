@@ -12,15 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Cookie;
 
 /**
- * Does all of the work on the Assignment, it is the controller. 
+ * Does all of the work on the Assignment, it is the controller 
+ * when you are dealing with students. 
  *
- * @author bluGoo
+ * @author nwelch
  * @version 0.42
  */
 public class StudentAssignmentController extends HttpServlet
 {
     /**
      * doPost performs actions
+     * 
      * @param req request
      * @param resp response
      */
@@ -32,6 +34,7 @@ public class StudentAssignmentController extends HttpServlet
     
     /**
      * doGet receives things
+     * 
      * @param req request
      * @param resp respones
      */
@@ -45,24 +48,16 @@ public class StudentAssignmentController extends HttpServlet
         Integer courseId = new Integer(req.getParameter("id"));
         Course crse = new Course(courseId);
 
-        /*Check cookies to ger a student */
-        for (Cookie cook : req.getCookies())
+        /*Check cookies to get a student */
+        try
         {
-            /*Fetching Id needed, then creating the Student */
-            if (cook.getName().equals("userid"))
-            {
-                try
-                {
-                    user1 = new Student(new Integer(cook.getValue()));
-                }
-                catch (Exception ex)
-                {
-                    Logger.getLogger(StudentAssignmentController.class.
-                            getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            user1 = new Student(Utils.getUseridCookie(req));
         }
-      
+        catch (Exception ex)
+        {
+            Logger.getLogger(StudentAssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         req.setAttribute("user", Utils.getUseridCookie(req));
         req.setAttribute("id", (String) req.getParameter("id"));
         req.setAttribute("enrolledCourseList", user1.getEnrolled());
