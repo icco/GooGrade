@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  * Controls server interactions for grades. Tells what views to serve and gets 
  * data from the model, and related models.
  * @author vgerdin
+ * @version 2.42
  */
 public class GradePredictorController extends HttpServlet
 {
@@ -24,6 +25,7 @@ public class GradePredictorController extends HttpServlet
      * @param user1 the Account being modified
      * @param req the request ServeletRequest. 
      * @return the accoutn modified. 
+     * @author vgerdin
      */
     private Account getCookie(Account user1, HttpServletRequest req)
     {
@@ -43,10 +45,11 @@ public class GradePredictorController extends HttpServlet
 
         
     /**
-     * doPost performs actions
+     * doPost performs actions requested by the client
      * 
-     * @param req request
-     * @param resp response
+     * @param req request from the client
+     * @param resp response to the client
+     * @authro vgerdin
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -102,7 +105,7 @@ public class GradePredictorController extends HttpServlet
      * viewForward is a wrapper for view.forward with included try and catch
      * @param view the RequestDispatcher for the view. 
      * @param req the request
-     * @param resp teh response
+     * @param resp the response
      */
     private void viewForward(RequestDispatcher view, HttpServletRequest req,
             HttpServletResponse resp)
@@ -124,9 +127,9 @@ public class GradePredictorController extends HttpServlet
     }
 
     /**
-     * doGet receives things
-     * @param req request
-     * @param resp respones
+     * doGet processes requests from the client
+     * @param req request from the client
+     * @param resp respones to the client
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -173,6 +176,12 @@ public class GradePredictorController extends HttpServlet
         viewForward(view, req, resp);
     }
     
+    /**
+     * getGradedList fetches a graded list of grades
+     * @param course teh course of the grades
+     * @param student the owner of the grade specified
+     * @return a list of grades belonging to this student in this course
+     */
     private ArrayList<Grade> getGradedList(Course course, Student student)
     {
         ArrayList<Grade> toReturn = Grade.getGrades(course, student, 1);
@@ -185,6 +194,12 @@ public class GradePredictorController extends HttpServlet
         return toReturn;
     }
     
+    /**
+     * getUngradedList get a list of ungraded grades specifed by course and student
+     * @param course
+     * @param student
+     * @return a list of ungraded grades
+     */
     private ArrayList<Grade> getUngradedList(Course course, Student student)
     {
         ArrayList<Grade> toReturn = Grade.getGrades(course, student, -1);
@@ -197,6 +212,11 @@ public class GradePredictorController extends HttpServlet
         return toReturn;
     }
     
+    /**
+     * getEnrolledCourseList returns a list of courses this student is in
+     * @param student
+     * @return an arraylist of courses this student is in
+     */
     private ArrayList<Course> getEnrolledCourseList(Student student)
     {
         ArrayList<Course> toReturn = student.getEnrolled();
@@ -209,6 +229,13 @@ public class GradePredictorController extends HttpServlet
         return toReturn;
     }
     
+    /**
+     * getPredictedList returns a list of predicted grades for a particular student
+     * @param course the course this pertains to
+     * @param student the student inquiring
+     * @param grade the grade desired
+     * @return an arraylist of predicted grades
+     */
     private ArrayList<Grade> getPredictedList(Course course, Student student, Float grade)
     {
         ArrayList<Grade> toReturn = Grade.predictGrades(course, student, (grade/100));
