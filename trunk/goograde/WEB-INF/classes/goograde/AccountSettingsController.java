@@ -10,11 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServlet;
 
 /**
- * This class does most of the work on the Account. It is 
- * the Account controller. Not really sure what it should be 
- * doing, but we'll get to that.
+ * This class deals with changing information about a user
  * 
- * @author bluGoo
+ * @author nwelch
  * @version 0.42
  */
 public class AccountSettingsController extends HttpServlet
