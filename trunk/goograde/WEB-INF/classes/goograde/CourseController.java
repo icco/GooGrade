@@ -28,21 +28,10 @@ public class CourseController extends HttpServlet
     public void doPost(HttpServletRequest req, HttpServletResponse resp) 
     {
         String action = req.getParameter("action");
-        Account user1 = new Account();
+        Account user1 = Utils.getUseridCookie(req);
         RequestDispatcher view = null;
 
-        /*get all cookies*/
-        for (Cookie cook : req.getCookies())
-        {
-            /*we are looking for cookie "userid"*/
-            if (cook.getName().equals("userid"))
-            {
-                user1.setId(new Integer(cook.getValue()));
-                user1.fetch();
-                req.setAttribute("user", user1);
-
-            }
-        }
+        req.setAttribute("user", user1);
 
         /*if user is teacher or ta*/
         if (user1.isTeacher())
