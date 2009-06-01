@@ -8,6 +8,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <%@ include file="../libs.jspf" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -88,21 +90,26 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
+                                    
                                 </c:when>
                                 
                                 <c:otherwise>
-                                    <h3 style="color: #e40000">There are no current grades in this course.</h3>
+                                    <h3 style="color: #e40000">${msg}</h3>
                                 </c:otherwise>
                             </c:choose>
-                            <form action="<c:url value="predictor" />" method="post">
-                                <input type="hidden" name="id" value="${id}" />
-                                <select name="wishedGrade" onchange="this.form.submit();" width="5">
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
-                                    <option value="D">D</option>
-                                </select>
-                            </form>
+                            <c:choose>
+                                <c:when test = "${fn:length(msg)>3 || !empty ungradedList}">
+                                    <form action="<c:url value="predictor" />" method="post">
+                                        <input type="hidden" name="id" value="${id}" />
+                                        <select name="wishedGrade" onclick="this.form.submit();" width="80" style="width: 80px">
+                                            <option value="A"> A </option>
+                                            <option value="B"> B </option>
+                                            <option value="C"> C </option>
+                                            <option value="D"> D </option>
+                                        </select>
+                                    </form>
+                                </c:when>
+                            </c:choose>
                         </div>
                     </div>
                 </div>

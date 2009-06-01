@@ -83,12 +83,11 @@ public class GradePredictorController extends HttpServlet
         String msg = "";
         if(ungradedList == null)
         {
-            msg = "Grade " + letter + "cannot be reached. Sorry.";
+            msg = "Grade " + letter + " cannot be reached. Sorry.";
             ungradedList = new ArrayList<Grade>();
         }
         
         req.setAttribute("msg", msg);
-        
         ArrayList<Course> enrolledCourseList = this.getEnrolledCourseList(student);
         
         req.setAttribute("currentCourse", crse);
@@ -172,7 +171,7 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("ungradedList", ungradedList);
         req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
-        
+        req.setAttribute("msg", "");
         viewForward(view, req, resp);
     }
     
