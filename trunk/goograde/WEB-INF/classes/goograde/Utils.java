@@ -42,6 +42,7 @@ public final class Utils
      * Used to convert Markdown syntax to HTML. I have this here more for my 
      * own benefit than anything else.
      * @param markdown The markdown you would like translated
+     * @return HTML string which is equivelent to the markdown inserted
      */
     public static String getHTML(String markdown)
     {
