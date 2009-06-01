@@ -756,8 +756,7 @@ public class Assignment implements java.io.Serializable
         {   
             mean = 0F;
             
-            /*sum all of the grades and then divide by the number of grades
-             to get the average (mean) */
+            /*sum all of the grades and then divide by the number of grades*/
             for(counter = 0; counter < gradeList.size(); counter++)
             {
                 mean += gradeList.get(counter).getGrade();
@@ -774,7 +773,7 @@ public class Assignment implements java.io.Serializable
       * java.util.Comparator<T> for more details. 
       * Generic class T is assumed to be a Grade class. 
       * Do not use this class to compare anything other than Grades. */
-    class gradeComparator<T> implements java.util.Comparator<T>
+    class GradeComparator<T> implements java.util.Comparator<T>
     {
         /**
          * compare is a comparator method that determines if a Grade is less 
@@ -789,17 +788,17 @@ public class Assignment implements java.io.Serializable
             int returnable = 0;
 
             /*compares for equal, greater than and less than, respectively. */
-            if ( ((one instanceof Grade)&&(two instanceof Grade)) &&
-                    ((Grade) one).getGrade() == ((Grade) two).getGrade() )
+            if(((Grade) one).getGrade() == ((Grade) two).getGrade())
             {
                 returnable = 0;
             }
-            else if (((one instanceof Grade)&&(two instanceof Grade)) 
-                    && ((Grade) one).getGrade() > ((Grade) two).getGrade())
+            /*greater than */
+            else if(((Grade) one).getGrade() > ((Grade) two).getGrade())
             {
                 returnable = 1;
             }
-            else if ((one instanceof Grade)&&(two instanceof Grade))
+            /*less than */
+            else 
             {
                 returnable = -1;
             }
@@ -819,7 +818,7 @@ public class Assignment implements java.io.Serializable
             boolean equa = false;
  
             /*checks if the instance is a gradeComparator */
-            if(object instanceof gradeComparator)
+            if(object instanceof GradeComparator)
             {
                 equa = true;
             }
@@ -842,7 +841,7 @@ public class Assignment implements java.io.Serializable
         int counter = 0;
         
         /*sort the grade list */
-        java.util.Collections.sort(gradeList, new gradeComparator());
+        java.util.Collections.sort(gradeList, new GradeComparator());
        
         /*ensures that operations are not performed on a null object */
         if(gradeList != null)
@@ -852,6 +851,7 @@ public class Assignment implements java.io.Serializable
              * new number begins. if the new higest beats the old highest. save the
              * new mode and the new highest.
              * */
+            /*start iteration */
             for(counter = 0; counter < gradeList.size(); counter++)
             {
                 /*determine if new number reached */
@@ -882,7 +882,7 @@ public class Assignment implements java.io.Serializable
     {
         ArrayList<Grade> gradeList = this.getGrades();
         ArrayList<Grade> subGrade = null;
-        Float Q1 = -1F;
+        Float q1 = -1F;
         Integer indexQuartile = (gradeList.size()/2);
         boolean isEven = false;
         
@@ -894,14 +894,16 @@ public class Assignment implements java.io.Serializable
             //2. The lower quartile value is the median of the lower half of the 
             //data. The upper quartile value is the median of the upper half of the 
             //data. 
-            java.util.Collections.sort(gradeList, new gradeComparator());
+            java.util.Collections.sort(gradeList, new GradeComparator());
 
             subGrade = new ArrayList(gradeList.subList(0, indexQuartile-1));
-            isEven = (subGrade.size()%2 )==0;
+            isEven = (subGrade.size()%2)==0;
+            /*answer dependant if list is even or odd */
             if(subGrade.size() > 2)
             {
                 indexQuartile = (subGrade.size()/2);
             }
+            /*answer dependant if list is even or odd */
             else
             {
                 indexQuartile = 0;
@@ -912,15 +914,15 @@ public class Assignment implements java.io.Serializable
              * averaged*/
             if(!isEven)
             {
-                Q1 = (subGrade.get(indexQuartile).getGrade());
+                q1 = (subGrade.get(indexQuartile).getGrade());
             }
             else
             {
-                Q1 = ((subGrade.get(indexQuartile).getGrade() 
-                        + subGrade.get(indexQuartile+1).getGrade()) /2 );
+                q1 = ((subGrade.get(indexQuartile).getGrade() 
+                        + subGrade.get(indexQuartile+1).getGrade()) /2);
             }
         }
-        return Q1;
+        return q1;
     }
 
     /**
@@ -943,11 +945,10 @@ public class Assignment implements java.io.Serializable
             //2. The lower quartile value is the median of the lower half of the 
             //data. The upper quartile value is the median of the upper half of the 
             //data. 
-            java.util.Collections.sort(gradeList, new gradeComparator());
-            isEven = (gradeList.size()%2 )==0;
+            java.util.Collections.sort(gradeList, new GradeComparator());
+            isEven = (gradeList.size()%2)==0;
 
-            /* if the list has an even number of elements, the quartile has to be
-             * averaged*/
+            /* if the list has an even number of elements, the quartile's averaged*/
             if(!isEven)
             {
                 median = (gradeList.get(indexQuartile).getGrade());
@@ -971,9 +972,9 @@ public class Assignment implements java.io.Serializable
     {
         ArrayList<Grade> gradeList = this.getGrades();
         ArrayList<Grade> subGrade = null;
-        Float Q3 = -1F;
+        Float q3 = -1F;
         boolean isEven = false;
-        Integer indexQuartile = (gradeList.size()/2) ;
+        Integer indexQuartile = (gradeList.size()/2);
         
         /*ensures that operations are not performed on a null object */
         if(gradeList != null)
@@ -983,9 +984,10 @@ public class Assignment implements java.io.Serializable
             //2. The lower quartile value is the median of the lower half of the 
             //data. The upper quartile value is the median of the upper half of the 
             //data. 
-            java.util.Collections.sort(gradeList, new gradeComparator());
+            java.util.Collections.sort(gradeList, new GradeComparator());
             subGrade = new ArrayList(gradeList.subList(indexQuartile, 
                     gradeList.size()-1));
+            /*indexing is depandant on arraysize */
             if(subGrade.size() > 2)
             {
                 indexQuartile = (subGrade.size()/2);
@@ -994,22 +996,21 @@ public class Assignment implements java.io.Serializable
             {
                 indexQuartile = 0;
             }
-            isEven = (subGrade.size()%2 )==0;
+            isEven = (subGrade.size()%2)==0;
             
-            /* if the list has an even number of elements, the quartile has to be
-             * averaged*/
+            /* if the list has an even number of elements, the quartile's averaged*/
             if(!isEven)
             {
-                Q3 = (subGrade.get(indexQuartile).getGrade());
+                q3 = (subGrade.get(indexQuartile).getGrade());
             }
             else
             {
-                Q3 = ((subGrade.get(indexQuartile).getGrade() 
-                        + subGrade.get(indexQuartile+1).getGrade()) /2 );
+                q3 = ((subGrade.get(indexQuartile).getGrade() 
+                        + subGrade.get(indexQuartile+1).getGrade()) /2);
             }
         }
         
-        return Q3;
+        return q3;
     }
 
 }
