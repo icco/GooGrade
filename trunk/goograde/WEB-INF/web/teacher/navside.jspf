@@ -38,6 +38,24 @@
     </c:otherwise>
 </c:choose>
 
+<script language="javascript">
+function Clickheretoprint()
+{ 
+  var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+      disp_setting+="scrollbars=yes,width=650, height=600, left=100, top=25"; 
+  var content_vlue = document.getElementById("content").innerHTML; 
+  var docprint=window.open("","",disp_setting); 
+   docprint.document.open(); 
+   docprint.document.write('<html><head><title>'); 
+   docprint.document.write(document.title); 
+   docprint.document.write('</title><link rel="stylesheet" type="text/css" href="/GooGrade2.0/styles/print.css" /></head><body>');          
+   docprint.document.write('<div id=wrap><div id=content'); 
+   docprint.document.write(content_vlue);          
+   docprint.document.write('</div></div></body></html>'); 
+   docprint.document.close(); 
+   docprint.focus(); 
+}
+</script>
 
 <div id="side">
     <div class="cornerBox">
@@ -64,6 +82,9 @@
                             --%>
                             <li class="add">
                                 <h4><img src="/GooGrade2.0/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade2.0/teacher/course">Manage Courses</a></h4>
+                            </li>
+                            <li class="print">
+                                <h4><img src="/GooGrade2.0/styles/print.png" style="width:25px; height:25px; position: relative; right: 2px; top: 3px;"><a href="javascript:Clickheretoprint()">Printer Friendly Page</a><br></h4>
                             </li>
                             <%-- Not till release 3
                             <li class="export" >

@@ -5,5 +5,7 @@
 <script type="text/javascript" src="/GooGrade2.0/styles/thickbox.js"></script>
 <link rel="stylesheet" href="/GooGrade2.0/styles/thickbox.css" type="text/css" media="screen" />
 <link rel="stylesheet" href="/GooGrade2.0/styles/goograde.css" type="text/css"/>
+<link rel="stylesheet" type="text/css" media="print" href="/GooGrade2.0/styles/print.css" />
+
 
 <%@ include file="includes.jspf" %>
