@@ -12,9 +12,7 @@ import java.util.logging.Logger;
 import org.apache.commons.dbutils.BasicRowProcessor;
 
 /**
- * Alright this is how you do Database connections. If you 
- * want to run updates on the database, I suggest you deal 
- * with that yourself. This just kinda works with other stuff.
+ * Alright this is how you do Database connections. 
  * 
  * @author nwelch
  */

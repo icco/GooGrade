@@ -10,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This class deals with controlling Students. It is an extension of AccountController. 
+ * This class deals with controlling Students. 
+ * It is an extension of AccountController. 
  *
- * @author bluGoo
+ * @author nwelch
  * @version 0.42
  */
 public class StudentController extends HttpServlet
@@ -20,6 +21,7 @@ public class StudentController extends HttpServlet
 
     /**
      * method called from form tag with method="post"
+     * 
      * @param req request
      * @param resp response
      */
