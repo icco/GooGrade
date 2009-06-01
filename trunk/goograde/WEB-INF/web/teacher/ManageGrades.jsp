@@ -49,7 +49,7 @@
                                                 <c:forEach var="grade" items="${gradeList}">
                                                     <c:if test="${(grade.student.id == stu.id) && (grade.assignment.id == assignment.id)}">
                                                         <td>
-                                                            <input type="text" name="${assignment.id}@${stu.id}" value="${grade.grade}" size="4" maxlength="5" />
+                                                            <input type="text" name="a${assignment.id}@${stu.id}" value="${grade.grade}" size="4" maxlength="5" />
                                                             /${assignment.total}
                                                         </td>
                                                     </c:if>

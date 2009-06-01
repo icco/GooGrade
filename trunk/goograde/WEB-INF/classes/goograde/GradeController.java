@@ -40,7 +40,7 @@ public class GradeController extends HttpServlet
                 user1.fetch();
             }
         }
-        
+
         return user1;
     }
 
@@ -56,26 +56,26 @@ public class GradeController extends HttpServlet
     private RequestDispatcher teacherSet(HttpServletRequest req, Account user1,
             Integer courseId, Course crse)
     {
+        
         RequestDispatcher view =
                 req.getRequestDispatcher("/teacher/ManageGrades.jsp");
-
+         
         Teacher user3;
         try
         {
             user3 = new Teacher(user1.getId());
             req.setAttribute("teachCourseList",
                     (ArrayList<Course>) (user3.getCourses()));
-        } 
-        catch (Exception ex)
+        } catch (Exception ex)
         {
-            Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE, 
+            Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE,
                     "Teacher Does Not Exist", ex);
         }
-
+        /*
         Integer assId = new Integer(req.getParameter("ass"));
-        //Integer stuId = new Integer(req.getParameter("stu"));
+        //Integer stuId = new Integer(req.getParameter("stu"));*/
 
-        addGrades(req, crse);
+       
 
         req.setAttribute("currentCourse", crse);
         req.setAttribute("id", courseId);
@@ -92,35 +92,52 @@ public class GradeController extends HttpServlet
      * @return the Request sent in as the paramater
      * @author bluGoo
      */
-    private HttpServletRequest addGrades(HttpServletRequest req, 
+    private HttpServletRequest addGrades(HttpServletRequest req,
             Course currentCourse)
     {
         ArrayList<Assignment> asslist = currentCourse.getAssignments();
         ArrayList<Student> stulist = currentCourse.getStudents();
-        
+
         //For every assignment and student, add the new grade if it is greater than 0.0
-        for(Assignment ass : asslist)
+        for (Assignment ass : asslist)
         {
             // Must be n^2 since it has to update everything
-            for(Student stu : stulist)
+            for (Student stu : stulist)
             {
-                Float grade = new Float((String) req.getAttribute(ass.getId() 
-                        + "@" + stu.getId()));
-                //0.0 means it hasn't been updated
-                if(grade != 0.0f)
+                System.out.println("a" + ass.getId() + "@" + stu.getId());
+                if (req.getAttribute("a" + ass.getId() + "@" + stu.getId()) != null)
                 {
-                    // if grade is != to the current grade at stu's grade then update grade
-                    
+                    System.out.println("hello world");
+                    Float grade = new Float((String) req.getAttribute("a"+
+                            ass.getId() + "@" + stu.getId()));
+                    //0.0 means it hasn't been updated
+                    if (grade != 0.0f)
+                    {
+                        System.out.println("yeah");
+                        // if grade is != to the current grade at stu's grade then update grade
+                        if (grade != stu.getGrade(currentCourse, ass))
+                        {
+                            System.out.println("Updating");
+                            Grade newGrade = new Grade(ass, stu);
+                            newGrade.updateGrade(grade);
+                        }
+                        else
+                        {
+                            System.out.println("adding");
+                            Grade.addGrade(stu, ass, grade);
+                        }
                     //else it is a new grade so add it
-                    Grade.addGrade(stu, ass, grade);
+
+                    }
                 }
-                
+
             }
-            
+
         }
-        
+
         return req;
     }
+
     /**
      * doPost perform a specified action set by the browser. The action depends
      * if the user is a Teacher or a Student. 
@@ -137,18 +154,20 @@ public class GradeController extends HttpServlet
         Account user1 = new Account();
         Integer courseId = new Integer((String) req.getParameter("id"));
         Course crse = new Course(courseId);
-        
+
 
         user1 = getCookie(user1, req);
 
         // Are we a student or a teacher
         if (user1.isTeacher())
         {
+            addGrades(req, crse);
             req.setAttribute("currentCourse", crse);
             req.setAttribute("id", (String) req.getParameter("id"));
             view = teacherSet(req, user1, courseId, crse);
-        } 
+        }
         else // Is a student
+
         {
             try
             {
@@ -160,8 +179,7 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
-            } 
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(
                         Level.SEVERE, "Student Does Not Exist", ex);
@@ -185,13 +203,11 @@ public class GradeController extends HttpServlet
         try
         {
             view.forward(req, resp);
-        } 
-        catch (ServletException ex)
+        } catch (ServletException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } 
-        catch (IOException ex)
+        } catch (IOException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -226,11 +242,10 @@ public class GradeController extends HttpServlet
                 user3 = new Teacher(user1.getId());
                 req.setAttribute("teachCourseList",
                         (ArrayList<Course>) (user3.getCourses()));
-            } 
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(
-                            Level.SEVERE, "Teacher Does Not Exist", ex);
+                        Level.SEVERE, "Teacher Does Not Exist", ex);
             }
 
             req.setAttribute("currentCourse", crse);
@@ -240,6 +255,7 @@ public class GradeController extends HttpServlet
             req.setAttribute("stuArray", (ArrayList<Student>) crse.getStudents());
         }
         else // Is a student
+
         {
             try
             {
@@ -251,8 +267,7 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
-            } 
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(
                         Level.SEVERE, "Student Does Not Exist", ex);
@@ -262,7 +277,7 @@ public class GradeController extends HttpServlet
         req.setAttribute("user", Utils.getUseridCookie(req));
         viewForward(view, req, resp);
     }
-    
+
     /**
      * gradeListHelper is a helper method fetch all grades and log any problems
      * from fetching all the grades. 
@@ -275,11 +290,10 @@ public class GradeController extends HttpServlet
         try
         {
             gradelist = Grade.allGrades();
-        } 
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             Logger.getLogger(GradeController.class.getName()).log(
-                            Level.SEVERE, "All Grades Query Error", ex);
+                    Level.SEVERE, "All Grades Query Error", ex);
         }
         return gradelist;
     }

@@ -101,12 +101,20 @@
                                 <c:when test = "${fn:length(msg)>3 || !empty ungradedList}">
                                     <form action="<c:url value="predictor" />" method="post">
                                         <input type="hidden" name="id" value="${id}" />
-                                        <select name="wishedGrade" onclick="this.form.submit();" width="80" style="width: 80px">
-                                            <option value="A"> A </option>
-                                            <option value="B"> B </option>
-                                            <option value="C"> C </option>
-                                            <option value="D"> D </option>
-                                        </select>
+                                        <ul>
+                                            <li>
+                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="A"/>A
+                                            </li>
+                                            <li>
+                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="B"/>B
+                                            </li>
+                                            <li>
+                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="C"/>C
+                                            </li>
+                                            <li>
+                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="D"/>D
+                                            </li>
+                                        </ul>
                                     </form>
                                 </c:when>
                             </c:choose>
