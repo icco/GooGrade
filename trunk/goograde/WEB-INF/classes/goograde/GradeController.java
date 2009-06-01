@@ -208,21 +208,17 @@ public class GradeController extends HttpServlet
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
     {
         RequestDispatcher view = null;
-
         Account user1 = new Account();
         Integer courseId = new Integer(req.getParameter("id"));
         req.setAttribute("id", req.getParameter("id"));
         Course crse = new Course(courseId);
-
         user1 = getCookie(user1, req);
 
         // Are we a student or a teacher
         if (user1.isTeacher())
         {
             view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
-
             Teacher user3;
-
             ArrayList<Grade> gradelist = gradeListHelper();
 
             try
