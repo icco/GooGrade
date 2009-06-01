@@ -19,6 +19,17 @@
         </style>
         
     </head>
+    <SCRIPT language=Javascript>
+       
+        function isNumberKey(evt)
+        {
+            var charCode = (evt.which) ? evt.which : event.keyCode
+            if (charCode > 31 && (charCode < 48 || charCode > 57))
+                return false;
+
+            return true;
+        }
+    </SCRIPT>
     
     <body>
         
@@ -50,16 +61,16 @@
                                         <tr>
                                             
                                             <td>
-                                                A: <input type="text" size="2" name="aVal" value="${ain}" />
+                                                A: <input type="text" size="2" maxlength="2" onkeypress="return isNumberKey(event)" name="aVal" value="${ain}" />
                                             </td>
                                             <td>
-                                                B: <input type="text" size="2" name="bVal" value="${bin}" />
+                                                B: <input type="text" size="2" maxlength="2" onkeypress="return isNumberKey(event)" name="bVal" value="${bin}" />
                                             </td>
                                             <td>
-                                                C: <input type="text" size="2" name="cVal" value="${cin}" />
+                                                C: <input type="text" size="2" maxlength="2" onkeypress="return isNumberKey(event)" name="cVal" value="${cin}" />
                                             </td>
                                             <td>
-                                                D: <input type="text" size="2" name="dVal" value="${din}" />
+                                                D: <input type="text" size="2" maxlength="2" onkeypress="return isNumberKey(event)" name="dVal" value="${din}" />
                                             </td>
                                             
                                         </tr>
