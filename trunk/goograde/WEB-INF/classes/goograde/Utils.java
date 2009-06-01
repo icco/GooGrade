@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public final class Utils
 {
-
     /**
      * Given a servlet request, get an account out of it's cookie.
      * 

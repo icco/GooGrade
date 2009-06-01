@@ -38,7 +38,7 @@
                             <strong>Current Grade Distribution</strong>
                         </p>
                         <div>
-                            <img src="${imgsrc1}">
+                            <img src="${imgsrc1}"> <img src="${imgsrc2}">
                         </div>
                         <div>     
                             <form method="post">

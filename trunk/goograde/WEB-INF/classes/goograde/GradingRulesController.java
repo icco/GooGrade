@@ -60,6 +60,7 @@ public class GradingRulesController extends HttpServlet
         req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
 
         req.setAttribute("imgsrc1", Metrics.gradeDistroPie(crs, 300, 200, 10));
+        req.setAttribute("imgsrc2", Metrics.gradeCourseCurvePie(crs, 300, 200, 10));
         req.setAttribute("ain", gr.getA());
         req.setAttribute("bin", gr.getB());
         req.setAttribute("cin", gr.getC());
