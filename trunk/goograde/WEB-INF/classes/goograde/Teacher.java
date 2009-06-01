@@ -9,7 +9,7 @@ import java.util.logging.Logger;
  * administrator of its installation. Models work by making all sql calls and dealing
  * with that side of things.
  *
- * @author bluGoo
+ * @author nwelch
  * @version 0.42
  */
 public class Teacher extends Account
@@ -20,11 +20,8 @@ public class Teacher extends Account
      */
     private ArrayList<Course> teaches;
 
-    /**
-     * Constructors
-     */
     /** 
-     * Constructor for Teacher. All permissions are granted to the Teacher by  default.  
+     * Constructor for Teacher. 
      */
     public Teacher()
     {
@@ -46,7 +43,7 @@ public class Teacher extends Account
 
     /**
      * Builds a Teacher with information we have already grabbed because we are
-     * fly like that. Note that this just calls Accounts constructor.
+     * fly like that. Note that this basically calls the account constructor.
      * 
      * @param id The ID from the Database
      * @param username Teachers username
@@ -148,6 +145,7 @@ public class Teacher extends Account
      * returns true.
      * 
      * @return true if teacher.
+     * @todo this implementation is incredibly broken...
      */
     @Override
     public boolean isTeacher()
