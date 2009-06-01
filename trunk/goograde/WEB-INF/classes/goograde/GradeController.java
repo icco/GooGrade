@@ -115,7 +115,7 @@ public class GradeController extends HttpServlet
                     {
                         System.out.println("yeah");
                         // if grade is != to the current grade at stu's grade then update grade
-                        if (grade != stu.getGrade(currentCourse, ass))
+                        if (grade != stu.getGrade(ass))
                         {
                             System.out.println("Updating");
                             Grade newGrade = new Grade(ass, stu);
