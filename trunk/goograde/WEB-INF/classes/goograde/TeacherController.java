@@ -10,17 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * This is a controller for teacher. It should be noted that controllers work by
- * running doPost or something similiar, then calling a function which then calls
- * the model.
+ * This is a controller for teacher. 
  *
- * @author bluGoo
+ * @author nwelch
  * @version 0.42
  */
 public class TeacherController extends HttpServlet
 {
     /**
-     * Connects models to views.
+     * Connects models to views by responding to HTTP POST.
      * 
      * @param req request
      * @param resp response
@@ -82,7 +80,7 @@ public class TeacherController extends HttpServlet
     }
 
     /**
-     * Connects models to views.
+     * Connects models to views by responding to HTTP GET.
      * 
      * @param req request
      * @param resp response
@@ -110,11 +108,21 @@ public class TeacherController extends HttpServlet
         }
     }
 
+    /**
+     * This is not used, but one day it may be.
+     * @param uName User name
+     * @param fName full name
+     * @param eMailAddr email address
+     */
     private void addTeacher(String uName, String fName, String eMailAddr)
     {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
+    /**
+     * This is not used, but one day it may be.
+     * @param id ID to delete
+     */
     private void deleteTeacher(Integer id)
     {
         throw new UnsupportedOperationException("Not yet implemented");
