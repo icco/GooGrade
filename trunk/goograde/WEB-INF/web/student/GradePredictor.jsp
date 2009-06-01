@@ -11,7 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - View Grades</title>
+        <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - Grade Predictor</title>
     </head>
     
     <body>
@@ -41,7 +41,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach var="grade" items="${gradeList}">
+                                            <c:forEach var="grade" items="${gradedList}">
                                                 <tr class="color">
                                                     <td>
                                                         ${grade.assignment.name}
@@ -94,6 +94,15 @@
                                     <h3 style="color: #e40000">There are no current grades in this course.</h3>
                                 </c:otherwise>
                             </c:choose>
+                            <form action="<c:url value="predictor" />" method="post">
+                                <input type="hidden" name="id" value="${id}" />
+                                <select name="wishedGrade" onchange="this.form.submit();" width="5">
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                </select>
+                            </form>
                         </div>
                     </div>
                 </div>

@@ -5,10 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * This class keeps information about Courses. 
+ * This class keeps information about Courses. Courses are handled
+ * on every page throughout the application.   
  *
- * @author bluGoo
- * @version 0.42
+ * @author vgerdin
+ * @version 2.42
  */
 public class Course implements java.io.Serializable
 {
@@ -29,13 +30,18 @@ public class Course implements java.io.Serializable
     private ArrayList<Student> roster;
     /** An array of Assignments that are associatet with the Course */
     private ArrayList<Assignment> assignments;
+    /** Minimum length of a title */
     private static final int kTITLEMINLEN = 3;
+    /** Maximum length of a title */
     private static final int kTITLEMAXLEN = 100;
+    /** Minimum length of a department number */
     private static final int kDEPARTMENTMINLEN = 2;
+    /** Maximum length of a department number */
     private static final int kDEPARTMENTMAXLEN = 4;
 
     /**
      * Standard constructor, should not be used, kept for now
+     * @author vgerdin
      */
     public Course()
     {
@@ -46,10 +52,11 @@ public class Course implements java.io.Serializable
      * All variables, other than id, are still null and retrieved from
      * database with fetch();
      * @param id identification Integer used to fetch data from db
+     * @author vgerdin
      */
     public Course(Integer id)
     {
-        /* Only construct a course if the given id exists */
+        /* Only construct a course if the given id is not null */
         if(id != null)
         {
             this.setId(id);
@@ -68,6 +75,7 @@ public class Course implements java.io.Serializable
      * @param department Department of course
      * @param number course number
      * @param section section of course
+     * @author vgerdin
      */
     public Course(String title, String department, Integer number, Integer section)
     {
@@ -89,6 +97,7 @@ public class Course implements java.io.Serializable
      * setId sets this.id to provided argument
      * @param newId Integer to store
      * @return true if no errors
+     * @author vgerdin
      */
     public boolean setId(Integer newId)
     {
@@ -106,6 +115,7 @@ public class Course implements java.io.Serializable
      * setTitle saves a new Couse title over the old.
      * @param newTitle the new title to save
      * @return true if no errors 
+     * @author vgerdin
      */
     public boolean setTitle(String newTitle)
     {
@@ -123,6 +133,7 @@ public class Course implements java.io.Serializable
      * setDepartment sets this.department to provided argument
      * @param newDepartment department tag (eg. "CSC")
      * @return true if no errors
+     * @author vgerdin
      */
     public boolean setDepartment(String newDepartment)
     {
@@ -140,6 +151,7 @@ public class Course implements java.io.Serializable
      * setNumber replaces the course number with a new one
      * @param newNumber is the new course number to save
      * @return true if no errors occurred. 
+     * @author vgerdin
      */
     public boolean setNumber(Integer newNumber)
     {
@@ -157,6 +169,7 @@ public class Course implements java.io.Serializable
      * setSection saves a new section number over the old one
      * @param newSection is the number of the new section to save
      * @return true if no errors occurred
+     * @author vgerdin
      */
     public boolean setSection(Integer newSection)
     {
@@ -174,6 +187,7 @@ public class Course implements java.io.Serializable
      * setGradingRules saves a new Grading Rules over the old.
      * @param newRulesId the new grading rules to save
      * @return true if no errors 
+     * @author vgerdin
      */
     public boolean setGradingRulesId(Integer newRulesId)
     {
@@ -191,6 +205,7 @@ public class Course implements java.io.Serializable
      * setRoster sets this.roster to provided argument
      * @param newRoster list of students enrolled in the course
      * @return true if no errors
+     * @author vgerdin
      */
     public boolean setRoster(ArrayList<Student> newRoster)
     {
@@ -208,6 +223,7 @@ public class Course implements java.io.Serializable
      * setAssignments sets this.assignments provided argument
      * @param newAssignments list of assignments associated with the course
      * @return true if no errors
+     * @author vgerdin
      */
     public boolean setAssignments(ArrayList<Assignment> newAssignments)
     {
@@ -224,6 +240,7 @@ public class Course implements java.io.Serializable
     /**
      * getId returns this.id
      * @return id Integer to identify correct course in db
+     * @author vgerdin
      */
     public Integer getId()
     {
@@ -233,6 +250,7 @@ public class Course implements java.io.Serializable
     /**
      * getTitle gets the title
      * @return the title
+     * @author vgerdin
      */
     public String getTitle()
     {
@@ -242,6 +260,7 @@ public class Course implements java.io.Serializable
     /**
      * getDepartment gets the deparment code (eg "CSC")
      * @return the department code
+     * @author vgerdin
      */
     public String getDepartment()
     {
@@ -251,6 +270,7 @@ public class Course implements java.io.Serializable
     /**
      * getNumber gets the number
      * @return the number
+     * @author vgerdin
      */
     public Integer getNumber()
     {
@@ -260,6 +280,7 @@ public class Course implements java.io.Serializable
     /**
      * getSection gets the section
      * @return the section
+     * @author vgerdin
      */
     public Integer getSection()
     {
@@ -267,9 +288,9 @@ public class Course implements java.io.Serializable
     }
 
     /**
-     * 
+     * gets the id of the associated grading rules
      * @return this.gradingRulesId 
-     * @todo write comment
+     * @author vgerdin
      */
     public Integer getGradingRulesId()
     {
@@ -279,6 +300,7 @@ public class Course implements java.io.Serializable
     /**
      * A simple wrapper for getRoster so we have a slightly more consistent api
      * @return an arraylist of students
+     * @author vgerdin
      */
     public ArrayList<Student> getStudents()
     {
@@ -290,7 +312,7 @@ public class Course implements java.io.Serializable
      * roster is no set untill first called, if roster
      * is null then query the database and create it
      * @return list of enrolled students, null if unset and this.id is null
-     * @todo build roster
+     * @author vgerdin
      */
     public ArrayList<Student> getRoster()
     {
@@ -341,7 +363,7 @@ public class Course implements java.io.Serializable
      * assignments is no set untill first called, if assignments
      * is null then query the database and create it
      * @return list of associated Assignments
-     * @todo build assignments
+     * @author vgerdin
      */
     public ArrayList<Assignment> getAssignments()
     {
@@ -387,6 +409,7 @@ public class Course implements java.io.Serializable
     /**
      * getCode gets the course code (eg. "CSC309")
      * @return the course code as a String
+     * @author vgerdin
      */
     public String getCode()
     {
@@ -396,6 +419,7 @@ public class Course implements java.io.Serializable
     /**
      * getTeachers gets the Teacher attribute from this course
      * @return teacher of this course
+     * @author vgerdin
      */
     public ArrayList<Teacher> getTeachers()
     {
@@ -436,7 +460,7 @@ public class Course implements java.io.Serializable
      * getGradingRules generates a GradingRules object
      * according to gradingRulesId and returns it 
      * @return the associated GradingRules object
-     * @todo fix GradingRules class accordingly
+     * @author vgerdin
      */
     public GradingRules getGradingRules()
     {
@@ -447,10 +471,10 @@ public class Course implements java.io.Serializable
         {
             rules = new GradingRules(this.getGradingRulesId());
             /*true if valid gradingRulesId in database, else false*/
-            if (!rules.fetch())
+            /*if (!rules.fetch())
             {
                 rules = null;
-            }
+            }*/
         }
         return null;
     }
@@ -459,6 +483,7 @@ public class Course implements java.io.Serializable
      * addStudent adds a new student to this course.
      * @param student the student that is to be added to the course
      * @return true if no errors were enountered
+     * @author vgerdin
      */
     public boolean addStudent(Account student)
     {
@@ -502,6 +527,7 @@ public class Course implements java.io.Serializable
      * removeStudent removes a particular student from the course.
      * @param student the student to be removed from this course
      * @return true if no errors were encountered in removal.
+     * @author vgerdin
      */
     public boolean removeStudent(Account student)
     {
@@ -547,6 +573,7 @@ public class Course implements java.io.Serializable
      * addTeacher assignes a new Teacher to this course.
      * @param teacher Teacher to be added to this course
      * @return true if no errors have occured
+     * @author vgerdin
      */
     public boolean addTeacher(Account teacher)
     {
@@ -586,6 +613,7 @@ public class Course implements java.io.Serializable
      * removeTeacher removes a Teacher from this course.
      * @param teacher Teacher to be removed from this course
      * @return true if no errors have occured
+     * @author vgerdin
      */
     public boolean removeTeacher(Account teacher)
     {
@@ -625,6 +653,7 @@ public class Course implements java.io.Serializable
      * allCourses (static) queries the db for all
      * courses and returns a list of Course objects
      * @return list of all Courses in the database
+     * @author vgerdin
      */
     public static ArrayList<Course> allCourses()
     {
@@ -665,7 +694,7 @@ public class Course implements java.io.Serializable
      * 
      * @param id Id of Course to be deleted
      * @return true if deleted, false otherwise
-     * @todo StorageConnection.query does not do deletes
+     * @author vgerdin
      */
     public static boolean deleteCourse(Integer id)
     {
@@ -695,6 +724,7 @@ public class Course implements java.io.Serializable
      * delete removes the current course, if exists,
      * from the database
      * @return true if deleted, false otherwise
+     * @author vgerdin
      */
     public boolean delete()
     {
@@ -723,6 +753,7 @@ public class Course implements java.io.Serializable
      * @param section new Course's section
      * @param teacher set the teacher for the class
      * @return true if added, false otherwise
+     * @author vgerdin
      */
     public static boolean addCourse(String title,
             String department, Integer number, Integer section, Teacher teacher)
@@ -746,8 +777,7 @@ public class Course implements java.io.Serializable
      * to this.id and sets all instance variables from there.
      * 
      * @return true if found in database, else false
-     * @todo improve StorageConnection.query return handling
-     * @todo write it
+     * @author vgerdin
      */
     public boolean fetch()
     {
@@ -788,6 +818,7 @@ public class Course implements java.io.Serializable
      * refresh resets all variables according to
      * database entry, a rollback 
      * @return true if successful, else false
+     * @author vgerdin
      */
     public boolean refresh()
     {
@@ -805,7 +836,8 @@ public class Course implements java.io.Serializable
      * save, stores current instance in database
      * if id already exists, update
      * else, insert
-     * @return true if successfull, else false
+     * @return true if successful, else false
+     * @author vgerdin
      */
     public boolean save()
     {
@@ -827,6 +859,7 @@ public class Course implements java.io.Serializable
     /**
      * save method if we don't have id set
      * @return true if no error
+     * @author vgerdin
      */
     private boolean saveWithoutId()
     {
@@ -864,6 +897,7 @@ public class Course implements java.io.Serializable
     /**
      * save method if we have id set
      * @return true if no error
+     * @author vgerdin
      */
     private boolean saveWithId()
     {
@@ -905,6 +939,7 @@ public class Course implements java.io.Serializable
     /**
      * toString()
      * @return a string created from Course class
+     * @author vgerdin
      */
     @Override
     public String toString()
@@ -923,6 +958,7 @@ public class Course implements java.io.Serializable
      * matches a teacher's id and a course id int the table teaches
      * @param teacher the new teacher for the class
      * @return true if set and no errors
+     * @author vgerdin
      */
     private boolean setTeacher(Teacher teacher)
     {
@@ -945,6 +981,7 @@ public class Course implements java.io.Serializable
      * Validates that given string can be used as an id
      * @param string string to be validated
      * @return true if string follows specifications for id
+     * @author vgerdin
      */
     public static boolean validateId(String string)
     {
@@ -974,6 +1011,7 @@ public class Course implements java.io.Serializable
      * Validates that given string can be used as a title
      * @param string string to be validated
      * @return true if string follows specifications for title
+     * @author vgerdin
      */
     public static boolean validateTitle(String string)
     {
@@ -1000,6 +1038,7 @@ public class Course implements java.io.Serializable
      * Validates that given string can be used as a department
      * @param string string to be validated
      * @return true if string follows specifications for department
+     * @author vgerdin
      */
     public static boolean validateDepartment(String string)
     {
@@ -1050,6 +1089,7 @@ public class Course implements java.io.Serializable
      * Validates that given string can be used as a section
      * @param string string to be validated
      * @return true if string follows specifications for section
+     * @author vgerdin
      */
     public static boolean validateSection(String string)
     {

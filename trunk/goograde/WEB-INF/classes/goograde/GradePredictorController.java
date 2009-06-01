@@ -55,18 +55,27 @@ public class GradePredictorController extends HttpServlet
 
         Account user1 = new Account();
         Integer courseId = new Integer(req.getParameter("id"));
-        req.setAttribute("id", req.getParameter("id"));
+        req.setAttribute("id", courseId);
         Course crse = new Course(courseId);
 
         user1 = getCookie(user1, req);
 
         view = req.getRequestDispatcher("/student/GradePredictor.jsp");
         
-        Student student = (Student) user1;
+        Student student = null;
+        try
+        {
+            student = new Student(user1.getId());
+        }
+        catch (Exception ex)
+        {
+            Logger.getLogger(GradePredictorController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ArrayList<Grade> gradedList = this.getGradedList(crse, student);
         
         Character letter = (Character) req.getParameter("wishedGrade").charAt(0);
-        ArrayList<Grade> ungradedList = this.getPredictedList(crse, student, crse.getGradingRules().getCurve(letter).floatValue());
+        Float grade = crse.getGradingRules().getCurve(letter).floatValue();
+        ArrayList<Grade> ungradedList = this.getPredictedList(crse, student, grade);
         
         String msg = "";
         if(ungradedList == null)
@@ -149,7 +158,7 @@ public class GradePredictorController extends HttpServlet
         //if not set (first call) reset
         if(ungradedList == null)
         {
-            this.getUngradedList(crse, student);
+            ungradedList = this.getUngradedList(crse, student);
         }
         
         ArrayList<Course> enrolledCourseList = this.getEnrolledCourseList(student);

@@ -19,11 +19,11 @@ INSERT INTO "Courses" VALUES(3,'Software Engineering II','CPE',309,1,3);
 INSERT INTO "Courses" VALUES(4,'Professional responsabilities','CSC',300,1,4);
 INSERT INTO "Courses" VALUES(5,'Graduate Thesis','CSC',500,1,5);
 
-INSERT INTO "GradingRules" VALUES(1,90,80,70,60);
-INSERT INTO "GradingRules" VALUES(2,90,80,70,60);
-INSERT INTO "GradingRules" VALUES(3,90,80,70,60);
-INSERT INTO "GradingRules" VALUES(4,90,80,70,60);
-INSERT INTO "GradingRules" VALUES(5,90,80,70,60);
+INSERT INTO "GradingRules" VALUES(1,90.0,80.0,70.0,60.0);
+INSERT INTO "GradingRules" VALUES(2,90.0,80.0,70.0,60.0);
+INSERT INTO "GradingRules" VALUES(3,90.0,80.0,70.0,60.0);
+INSERT INTO "GradingRules" VALUES(4,90.0,80.0,70.0,60.0);
+INSERT INTO "GradingRules" VALUES(5,90.0,80.0,70.0,60.0);
 
 
 -- Nat's account needs to stay first, since we test that the teacher is first in the db.

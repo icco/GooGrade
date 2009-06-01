@@ -10,6 +10,7 @@ import java.util.logging.Logger;
  * 
  * @author kblizard 
  * @author nwelch
+ * @author vgerdin
  * @version 2.42
  */
 public class Grade implements Comparable<Grade>
@@ -24,7 +25,7 @@ public class Grade implements Comparable<Grade>
      * Constructor for Grade class depending on a given assignment and student
      * @param ass the assignment this grade is from
      * @param aThis the student is grade is for
-     * @author bluGoo
+     * @author vgerdin
      */
     public Grade(Assignment ass, Student aThis)
     {
@@ -69,7 +70,7 @@ public class Grade implements Comparable<Grade>
 
     /**
      * Empty Constructor for Grade. Not to be used, other than for unit tests.
-     * @author bluGoo
+     * @author vgerdin
      */
     public Grade()
     {
@@ -85,7 +86,7 @@ public class Grade implements Comparable<Grade>
      * @param stud The Student this grade belongs to
      * @param aFloat the grade this student receives
      * @param ass the assignment this grade is from.
-     * @author bluGoo
+     * @author vgerdin
      */
     public Grade(Student stud, Float aFloat, Assignment ass)
     {
@@ -176,7 +177,7 @@ public class Grade implements Comparable<Grade>
     /**
      * fetch grade data from the database
      * @return true if successful, false otherwise
-     * @author bluGoo
+     * @author vgerdin
      */
     public boolean fetch()
     {
@@ -223,7 +224,7 @@ public class Grade implements Comparable<Grade>
      * this grade is from is not entered into the equation. 
      * @param object object to compare with
      * @return true if equal, false otherwise
-     * @author bluGoo
+     * @author vgerdin
      */
     @Override
     public boolean equals(Object object)
@@ -247,6 +248,7 @@ public class Grade implements Comparable<Grade>
      * allGrades returns all of the grades in the database
      * @return an arraylsit of all the grades
      * @throws Exception Account constructor ex
+     * @author bluyGoo
      */
     public static ArrayList<Grade> allGrades() throws Exception
     {
@@ -306,7 +308,7 @@ public class Grade implements Comparable<Grade>
      * @param sAssignment assignment who is owned by it
      * @param sGrade the value
      * @return true if no errors
-     * @author bluGoo
+     * @author vgerdin
      */
     public static boolean addGrade(Student sStudent, Assignment sAssignment,
             float sGrade)
@@ -327,7 +329,7 @@ public class Grade implements Comparable<Grade>
      * @param sStudent student whom owns this grade
      * @param sAssignment assignment owned by this grade
      * @return true if no errors
-     * @author blugoo
+     * @author vgerdin
      */
     public static boolean deleteGrade(Student sStudent, Assignment sAssignment)
     {
@@ -393,6 +395,7 @@ public class Grade implements Comparable<Grade>
     /**
      * save method if we have id set
      * @return true if no error
+     * @author bluGoo
      */
     private boolean saveWithId()
     {
