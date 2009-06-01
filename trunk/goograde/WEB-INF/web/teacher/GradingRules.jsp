@@ -34,46 +34,45 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Grading Rules</h3>
-                        <p>
-                            <strong>Current Grade Distribution</strong>
-                        </p>
-                        <div>
-                            <img src="${imgsrc1}"> <img src="${imgsrc2}">
-                        </div>
-                        <div>     
-                            <form method="post">
-                                <table>
-                                    <tr>
-                                        <th>+</th>
-                                        <th>+</th>
-                                        <th>+</th>
-                                        <th>+</th>
-                                    </tr>
-                                    <tr>
-                                        
-                                        <td>
-                                           A: <input type="text" size="2" name="aVal" value="${ain}" />
-                                        </td>
-                                        <td>
-                                           B: <input type="text" size="2" name="bVal" value="${bin}" />
-                                        </td>
-                                        <td>
-                                           C: <input type="text" size="2" name="cVal" value="${cin}" />
-                                        </td>
-                                        <td>
-                                           D: <input type="text" size="2" name="dVal" value="${din}" />
-                                        </td>
-                                        
-                                    </tr>
-                                    <tr>
-                                        <th>-</th>
-                                        <th>-</th>
-                                        <th>-</th>
-                                        <th>-</th>
-                                    </tr>
-                                </table>
-                                <input type="submit">
-                            </form>
+                        <div id="data">
+                            <div>
+                                <img src="${imgsrc1}"> <img src="${imgsrc2}">
+                            </div>
+                            <div>     
+                                <form method="post">
+                                    <table>
+                                        <tr>
+                                            <th>+</th>
+                                            <th>+</th>
+                                            <th>+</th>
+                                            <th>+</th>
+                                        </tr>
+                                        <tr>
+                                            
+                                            <td>
+                                                A: <input type="text" size="2" name="aVal" value="${ain}" />
+                                            </td>
+                                            <td>
+                                                B: <input type="text" size="2" name="bVal" value="${bin}" />
+                                            </td>
+                                            <td>
+                                                C: <input type="text" size="2" name="cVal" value="${cin}" />
+                                            </td>
+                                            <td>
+                                                D: <input type="text" size="2" name="dVal" value="${din}" />
+                                            </td>
+                                            
+                                        </tr>
+                                        <tr>
+                                            <th>-</th>
+                                            <th>-</th>
+                                            <th>-</th>
+                                            <th>-</th>
+                                        </tr>
+                                    </table>
+                                    <input type="submit">
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

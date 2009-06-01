@@ -84,7 +84,8 @@ public final class Metrics
 
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
-        toReturn += toReturn2 + "&chco=0044FF";
+        toReturn += toReturn2 + "&chco=0044FF&chf=bg,s,65432100";
+        toReturn += "&chtt=Current+Grade+Distribution";
 
         return toReturn;
 
@@ -171,8 +172,8 @@ public final class Metrics
 
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=10&chds=0,100";
-        
-        toReturn += toReturn2 + "&chco=0044FF";
+        toReturn += toReturn2 + "&chco=0044FF&chf=bg,s,65432100";
+        toReturn += "&chtt=Current+Grade+Curve";
 
         return toReturn;
 
@@ -237,7 +238,7 @@ public final class Metrics
 
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
-        toReturn += toReturn2;
+        toReturn += toReturn2 + "&chco=0044FF&chf=bg,s,65432100";
 
         return toReturn;
 
@@ -302,7 +303,7 @@ public final class Metrics
 
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
-        toReturn += toReturn2;
+        toReturn += toReturn2 + "&chco=0044FF&chf=bg,s,65432100";
 
         return toReturn;
     }

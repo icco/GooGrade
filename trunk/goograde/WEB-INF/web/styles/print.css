@@ -362,20 +362,4 @@ h3.trigger a:hover {
 
 h3.active {
     width: auto;
-    
-} /*--When toggle is triggered, it will shift the image to the bottom to show its "opened" state--*/
-
-.toggle_container {
-    margin: 0 0 5px 20px;
-    padding: 0;
-    overflow: hidden;
-    font-size: 14px;
-    width: 200px;
-    clear: both;
-}
-
-.toggle_container .block {
-    padding: 5px; /*--Padding of Container--*/
-    background: url(toggle_block_btm.gif) no-repeat left bottom; /*--Bottom rounded corners--*/
-}
-
+} 
