@@ -464,19 +464,13 @@ public class Course implements java.io.Serializable
      */
     public GradingRules getGradingRules()
     {
-        
         GradingRules rules = null;
         /*if no id is set, get one from db*/
         if (this.gradingRulesId != null)
         {
             rules = new GradingRules(this.getGradingRulesId());
-            /*true if valid gradingRulesId in database, else false*/
-            /*if (!rules.fetch())
-            {
-                rules = null;
-            }*/
         }
-        return null;
+        return rules;
     }
 
     /**
