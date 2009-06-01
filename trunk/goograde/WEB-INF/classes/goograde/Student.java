@@ -283,10 +283,13 @@ public class Student extends Account
         Float totalScore = 0F;
         Integer totalWeight = 0;
         Float currentGrade = new Float(0);
+        Integer oneHundred = new Integer(100);
         ArrayList<Grade> grades = Grade.getGrades(course, this, 1);
 
+        // No nulls boy!
         if(grades != null)
         {
+            // For each grade, add, then calc percentage
             for(Grade grade : grades)
             {
                 totalWeight += grade.getAssignment().getTotal();
@@ -294,7 +297,7 @@ public class Student extends Account
             }
             System.out.println("totalScore " + totalScore + " totalWeight " + totalWeight);
             currentGrade = totalScore / new Float(totalWeight);
-            currentGrade *= 100;
+            currentGrade *= oneHundred;
         }
         
         return currentGrade;
