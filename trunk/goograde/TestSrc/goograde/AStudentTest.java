@@ -42,7 +42,7 @@ public class AStudentTest extends TestCase {
         }
         Assignment testAssign = new Assignment(7);
         Course testCourse = new Course(5);
-        Float result = testStu.getGrade(testCourse, testAssign);
+        Float result = testStu.getGrade(testAssign);
         Float expResult = new Float(17.0);
         assertEquals(expResult, result);
     } 
