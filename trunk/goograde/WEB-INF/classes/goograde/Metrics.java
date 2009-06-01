@@ -363,7 +363,7 @@ public final class Metrics
     /**
      * Produces an ArrayList of the distribution of grades in the Assignment.
      * Letter grade is in the order of A, B, C, D.   
-     * @param course the course to get the distribution from
+     * @param assignment the assignment to get the distribution from
      * @return the int value of how many students are receiving what A, B, C, and D 
      */
     private static ArrayList<Integer> assignmentGradeDistroInts(Assignment assignment)

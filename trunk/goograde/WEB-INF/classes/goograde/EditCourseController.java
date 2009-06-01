@@ -148,7 +148,7 @@ public class EditCourseController extends HttpServlet
      * @param number  the course number. I.E. the 103 in CPE 103
      * @param section
      * @return true if this course has a valid number and section
-     * @authro vgerdin
+     * @author vgerdin
      */
     private boolean validateCourse(String number, String section)
     {

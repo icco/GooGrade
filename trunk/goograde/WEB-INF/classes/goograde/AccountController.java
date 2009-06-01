@@ -136,7 +136,7 @@ public class AccountController extends HttpServlet
      * @param req
      * @param action
      * @return true if no errors occurred
-     * @authro vgerdin
+     * @author vgerdin
      */
     private boolean doAction(HttpServletRequest req, String action)
     {

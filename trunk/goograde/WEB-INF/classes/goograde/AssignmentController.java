@@ -132,10 +132,12 @@ public class AssignmentController extends HttpServlet
     }
 
     /**
+     * This is a privet method to edit the assignmetn
      * @param assId  to change
      * @param assDate to change
      * @param assName to change
      * @param assTotal to change
+     * @param assType to change
      * 
      * @todo Make better javadoc comments
      */

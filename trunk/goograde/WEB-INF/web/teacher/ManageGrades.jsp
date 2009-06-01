@@ -29,7 +29,7 @@
                         <h3>Manage Grades</h3>
                         
                         <div id="data">
-                            <form action="<c:url value="grades" />" method="post">
+                            <form action="<c:url value="grades" />?id=${id}" method="post">
                                 
                                 <table>
                                     <th>
@@ -62,7 +62,7 @@
                                 <input type="hidden" name="currentCourse" value="${currentCourse}"/>
                                 
                                 <input type="submit" value="Grade" />
-                                   </form>
+                            </form>
                             
                         </div>
                     </div>

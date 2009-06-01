@@ -5,7 +5,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * Methods for modifying a course and it's related actions. Interfaces between 
  * models and the jsps
  *
- * @author bluGoo
+ * @author nwelch
  * @version 2.42
  */
 public class CourseController extends HttpServlet
@@ -154,7 +153,7 @@ public class CourseController extends HttpServlet
      * doStudent displays course information for a student.
      * @param req the servlet request
      * @param user1 the account inquiring for this web page
-     * @autor bluGoo
+     * @author nwelch
      */
     private void doStudent(HttpServletRequest req, Account user1)
     {
@@ -231,7 +230,7 @@ public class CourseController extends HttpServlet
      * @param number new number
      * @param section new section
      * @return true if no errors
-     * @authro bluGoo
+     * @author nwelch
      */
     private boolean editCourse(String courseRef, String title, 
             String department, String number, String section)
