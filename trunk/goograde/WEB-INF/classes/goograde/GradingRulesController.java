@@ -53,14 +53,18 @@ public class GradingRulesController extends HttpServlet
         Integer courseId = new Integer(req.getParameter("id"));
         Course crs = new Course(courseId);
         GradingRules gr = new GradingRules(crs.getGradingRulesId());
+        int width = 300;
+        int height = 200;
+        int bar = 10;
 
         view = req.getRequestDispatcher("/teacher/GradingRules.jsp");
 
         req.setAttribute("user", user1);
-        req.setAttribute("teachCourseList", (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
+        req.setAttribute("teachCourseList", (ArrayList<Course>) 
+                (Teacher.allTeachers().get(0).getCourses()));
 
-        req.setAttribute("imgsrc1", Metrics.gradeDistroPie(crs, 300, 200, 10));
-        req.setAttribute("imgsrc2", Metrics.gradeCourseCurvePie(crs, 300, 200, 10));
+        req.setAttribute("imgsrc1", Metrics.gradeDistroPie(crs, width, height, bar));
+        req.setAttribute("imgsrc2", Metrics.gradeCourseCurvePie(crs, width, height, bar));
         req.setAttribute("ain", gr.getA());
         req.setAttribute("bin", gr.getB());
         req.setAttribute("cin", gr.getC());
