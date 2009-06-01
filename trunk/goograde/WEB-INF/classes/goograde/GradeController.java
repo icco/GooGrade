@@ -22,29 +22,6 @@ public class GradeController extends HttpServlet
 {
 
     /**
-     * Fetches the information from a cookie and places it into an Account.
-     * @param user1 the Account being modified
-     * @param req the request ServeletRequest. 
-     * @return the accoutn modified. 
-     * @author nwelch
-     */
-    private Account getCookie(Account user1, HttpServletRequest req)
-    {
-        // Gets the cookie we want
-        for (Cookie cook : req.getCookies())
-        {
-            /*Get the id of the account in order to load it */
-            if (cook.getName().equals("userid"))
-            {
-                user1.setId(new Integer(cook.getValue()));
-                user1.fetch();
-            }
-        }
-
-        return user1;
-    }
-
-    /**
      * teacherSet fulfills the POST teacher request from doPost()
      * @param req the request serveletRequest
      * @param user1 the Account to use
@@ -66,15 +43,12 @@ public class GradeController extends HttpServlet
             user3 = new Teacher(user1.getId());
             req.setAttribute("teachCourseList",
                     (ArrayList<Course>) (user3.getCourses()));
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Logger.getLogger(GradeController.class.getName()).log(Level.SEVERE,
                     "Teacher Does Not Exist", ex);
         }
-        /*
-        Integer assId = new Integer(req.getParameter("ass"));
-        //Integer stuId = new Integer(req.getParameter("stu"));*/
-
        
 
         req.setAttribute("currentCourse", crse);
@@ -126,7 +100,6 @@ public class GradeController extends HttpServlet
                             System.out.println("adding");
                             Grade.addGrade(stu, ass, grade);
                         }
-                    //else it is a new grade so add it
 
                     }
                 }
@@ -154,12 +127,32 @@ public class GradeController extends HttpServlet
         Account user1 = new Account();
         Integer courseId = new Integer((String) req.getParameter("id"));
         Course crse = new Course(courseId);
+        StorageConnection conn = new StorageConnection();
+        ArrayList<ArrayList<Object>> res = new ArrayList<ArrayList<Object>>();
+        user1 = Utils.getUseridCookie(req);
+        Student user2 = null;
+        Teacher user3 = null;
 
+        res = conn.query("Select * from teaches where teacher = " + user1.getId());
 
-        user1 = getCookie(user1, req);
+        for (ArrayList<Object> arr : res)
+        {
+            for (Object barr : res)
+            {
+                try
+                {
+                    user3 = new Teacher(user1.getId());
+                }
+                catch (Exception ex)
+                {
+                    Logger.getLogger(GradeController.class.getName()).log(
+                            Level.SEVERE, "Teacher Does Not Exist", ex);
+                }
+            }
+        }
 
         // Are we a student or a teacher
-        if (user1.isTeacher())
+        if (user3 != null)
         {
             addGrades(req, crse);
             req.setAttribute("currentCourse", crse);
@@ -171,7 +164,7 @@ public class GradeController extends HttpServlet
         {
             try
             {
-                Student user2 = new Student(user1.getId());
+                user2 = new Student(user1.getId());
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
                 ArrayList<Grade> gradelist = user2.getGrades(crse);
                 req.setAttribute("enrolledCourseList",
@@ -179,14 +172,15 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(
                         Level.SEVERE, "Student Does Not Exist", ex);
             }
         }
 
-        req.setAttribute("user", Utils.getUseridCookie(req));
+        req.setAttribute("user", user1);
         viewForward(view, req, resp);
     }
 
@@ -203,11 +197,13 @@ public class GradeController extends HttpServlet
         try
         {
             view.forward(req, resp);
-        } catch (ServletException ex)
+        }
+        catch (ServletException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        } catch (IOException ex)
+        }
+        catch (IOException ex)
         {
             Logger.getLogger(GradeController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -228,7 +224,7 @@ public class GradeController extends HttpServlet
         Integer courseId = new Integer(req.getParameter("id"));
         req.setAttribute("id", req.getParameter("id"));
         Course crse = new Course(courseId);
-        user1 = getCookie(user1, req);
+        user1 = Utils.getUseridCookie(req);
 
         // Are we a student or a teacher
         if (user1.isTeacher())
@@ -242,7 +238,8 @@ public class GradeController extends HttpServlet
                 user3 = new Teacher(user1.getId());
                 req.setAttribute("teachCourseList",
                         (ArrayList<Course>) (user3.getCourses()));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(
                         Level.SEVERE, "Teacher Does Not Exist", ex);
@@ -267,7 +264,8 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Logger.getLogger(GradeController.class.getName()).log(
                         Level.SEVERE, "Student Does Not Exist", ex);
@@ -290,7 +288,8 @@ public class GradeController extends HttpServlet
         try
         {
             gradelist = Grade.allGrades();
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             Logger.getLogger(GradeController.class.getName()).log(
                     Level.SEVERE, "All Grades Query Error", ex);
