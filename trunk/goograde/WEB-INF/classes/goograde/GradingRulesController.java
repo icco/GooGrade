@@ -19,6 +19,7 @@ public class GradingRulesController extends HttpServlet
 {
 
     /**
+     * Called when an HTTP POST is made
      * 
      * @param req request
      * @param resp response
@@ -41,7 +42,8 @@ public class GradingRulesController extends HttpServlet
     }
 
     /**
-     * called to display a page
+     * Called when an HTTP GET is made
+     * 
      * @param req request
      * @param resp response
      */
@@ -63,8 +65,10 @@ public class GradingRulesController extends HttpServlet
         req.setAttribute("teachCourseList", (ArrayList<Course>) 
                 (Teacher.allTeachers().get(0).getCourses()));
 
-        req.setAttribute("imgsrc1", Metrics.gradeDistroPie(crs, width, height, bar));
-        req.setAttribute("imgsrc2", Metrics.gradeCourseCurvePie(crs, width, height, bar));
+        req.setAttribute("imgsrc1", 
+                Metrics.gradeDistroPie(crs, width, height, bar));
+        req.setAttribute("imgsrc2", 
+                Metrics.gradeCourseCurvePie(crs, width, height, bar));
         req.setAttribute("ain", gr.getA());
         req.setAttribute("bin", gr.getB());
         req.setAttribute("cin", gr.getC());
@@ -76,8 +80,7 @@ public class GradingRulesController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(
-                    CourseController.class.getName()).log(
+            Logger.getLogger(CourseController.class.getName()).log(
                     Level.SEVERE, null, ex);
         }
     }
