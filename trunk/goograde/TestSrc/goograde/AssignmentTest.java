@@ -398,4 +398,51 @@ public class AssignmentTest extends TestCase
         result = instance.getQ3();
         assertEquals(3.0F, result);
     }
+    
+    public void testGetCourseId()
+    {
+        Assignment instance = new Assignment();
+        instance.setCourseId(4);
+        assertEquals(new Integer(4), instance.getCourseId());
+    }
+    
+    public void testgetCourse()
+    {
+        Assignment instance = new Assignment();
+        instance.setCourseId(1);
+        assertEquals(new Course(1).toString(), instance.getCourse().toString());
+    }
+    
+    public void testSetId()
+    {
+        Assignment instance = new Assignment();
+        instance.setId(4);
+        assertEquals(new Integer(4), instance.getId());
+    }
+    
+    public void testAllAssignments()
+    {
+        assertEquals(new Integer(11), new Integer(Assignment.allAssignments().
+                size()));
+    }
+    
+    public void testToString()
+    {
+        
+    }
+    
+    public void testSave()
+    {
+        Assignment instance = new Assignment(1);
+        instance.setId(17);
+        instance.save();
+        Assignment.deleteAssignment("17");
+        
+    }
+    
+    public void testAddandDeleteAssignment()
+    {
+        Assignment.addAssignment(17, "final", new Date(), "sinoda", 12);
+        Assignment.deleteAssignment("17");
+    }
 }
