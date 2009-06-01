@@ -75,10 +75,7 @@ public class GradeController extends HttpServlet
         Integer assId = new Integer(req.getParameter("ass"));
         //Integer stuId = new Integer(req.getParameter("stu"));
 
-        Assignment a1 = new Assignment(assId);
-        Student s1 = new Student();
-
-        new Grade(s1, new Float(req.getParameter("grade")), a1);
+        addGrades(req, crse);
 
         req.setAttribute("currentCourse", crse);
         req.setAttribute("id", courseId);
@@ -110,10 +107,14 @@ public class GradeController extends HttpServlet
                 Float grade = new Float((String) req.getAttribute(ass.getId() 
                         + "@" + stu.getId()));
                 //0.0 means it hasn't been updated
-                if(grade > 0.0f)
+                if(grade != 0.0f)
                 {
+                    // if grade is != to the current grade at stu's grade then update grade
+                    
+                    //else it is a new grade so add it
                     Grade.addGrade(stu, ass, grade);
                 }
+                
             }
             
         }

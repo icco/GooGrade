@@ -460,7 +460,7 @@ public class Grade implements Comparable<Grade>
             {
                 query = "SELECT id FROM Assignments WHERE courseId = ";
                 query += course.getId();
-                query +=" EXCEPT select assignId from Grades where accountId";
+                query +=" EXCEPT SELECT assignId FROM Grades WHERE accountId";
                 query += " = " + student.getId();
                 
                 break;
@@ -475,6 +475,9 @@ public class Grade implements Comparable<Grade>
             {
                 query = "SELECT assignId from Grades where accountId = ";
                 query += student.getId();
+                System.out.println("ID " + student.getId() + "    courseID " + course.getId());
+                query += " INTERSECT SELECT id FROM Assignments";
+                query += " WHERE courseId = " + course.getId();
                 break;
             }
         }
@@ -488,6 +491,7 @@ public class Grade implements Comparable<Grade>
             for( ArrayList<Object> ass : result )
             {
                     Integer assId = (Integer) ass.get(0);
+                    System.out.println("ass id " + (Integer) ass.get(0));
                 try
                 {
                     toReturn.add(new Grade(assId, student.getId()));

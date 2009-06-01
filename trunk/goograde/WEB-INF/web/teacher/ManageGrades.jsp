@@ -13,13 +13,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>[${currentCourse.department}-${currentCourse.number}-${currentCourse.section}] - Manage Grades</title>
     </head>
-    <script type="text/javascript">
-        function alert1()
-        {
-            alert("Grade function does not work");
-        }
-
-    </script>
     <body>
         
         <div id="wrap">
@@ -68,7 +61,7 @@
                                 <input type="hidden" name="id" value="${id}" />
                                 <input type="hidden" name="currentCourse" value="${currentCourse}"/>
                                 
-                                <input type="button" onClick="alert1()" value="Grade" />
+                                <input type="submit" value="Grade" />
                                    </form>
                             
                         </div>
