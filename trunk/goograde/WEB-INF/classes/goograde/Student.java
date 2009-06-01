@@ -6,20 +6,22 @@ import java.util.logging.Logger;
 
 /**
  * This class keeps information about Students. It is an extension of Account. 
- * Students have files. 
  *
- * @author bluGoo, vgerdin 
+ * @author vgerdin 
  * @version 0.42
  */
 public class Student extends Account
 {
 
+    /** 
+     * courses the student is enrolled in.
+     */
     private ArrayList<Course> enrolled;
 
     /**
      * Standard constructor, should not be used, kept for now
      */
-    public Student()
+    Student()
     {
         super();
     }
@@ -35,7 +37,6 @@ public class Student extends Account
     {
         super(id);
         this.enrolled = this.getEnrolled();
-
     }
 
     /**
@@ -81,7 +82,6 @@ public class Student extends Account
      * @return percentage the student has in the course
      * @param crse A string which maches a course name, or other identifier.
      * @param ass An assignment to get the grade for.
-     * @todo This method NEEDS to be completed.
      */
     public Float getGrade(Course crse, Assignment ass)
     {

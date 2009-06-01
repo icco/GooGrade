@@ -17,6 +17,11 @@ public final class Metrics
     //Base URL for accessing Google Chart API
     private static String baseURL = "http://chart.apis.google.com/chart?";
 
+    /**
+     * To satisfy Checkstyle
+     */
+    private Metrics() { }
+    
      /**
      * Using Google Charts API, pie representing each possible letter grade
      * will be producded where the floor percent values taken from what the teacher has set
