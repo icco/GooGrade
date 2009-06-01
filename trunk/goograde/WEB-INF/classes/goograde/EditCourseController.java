@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
+ * EditCourseController dictates how a course will be edited by a client from a 
+ * web browser. It passes the information along to the model classes for storage
+ * and retrieval. 
  * @author vgerdin
  */
 public class EditCourseController extends HttpServlet
@@ -25,6 +27,7 @@ public class EditCourseController extends HttpServlet
      * doPost handles a HTTP POST request
      * @param req the request
      * @param resp the response
+     * @author vgerdin
      */
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -52,6 +55,7 @@ public class EditCourseController extends HttpServlet
      * doGet handles a HTTP GET request. 
      * @param req the request
      * @param resp the response
+     * @author vgerdin
      */
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -138,6 +142,14 @@ public class EditCourseController extends HttpServlet
         return ret;
     }
     
+    /**
+     * validateCourse ensures that the data received for a course creates a valid
+     * course
+     * @param number  the course number. I.E. the 103 in CPE 103
+     * @param section
+     * @return true if this course has a valid number and section
+     * @authro vgerdin
+     */
     private boolean validateCourse(String number, String section)
     {
         boolean pass = false;
