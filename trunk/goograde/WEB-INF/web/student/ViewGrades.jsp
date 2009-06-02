@@ -86,7 +86,7 @@
                                 </c:when>
                                 
                                 <c:otherwise>
-                                    <h3 style="color: #e40000">There are no current grades in this course.</h3>
+                                    <h3 style="color: #e40000">No Assignments Exist.</h3>
                                 </c:otherwise>
                             </c:choose>
                         </div>
