@@ -78,10 +78,10 @@ public class GradeController extends HttpServlet
             for (Student stu : stulist)
             {
                 System.out.println("a" + ass.getId() + "@" + stu.getId());
-                if (req.getAttribute("a" + ass.getId() + "@" + stu.getId()) != null)
+                if (req.getParameter("a" + ass.getId() + "@" + stu.getId()) != null)
                 {
                     System.out.println("hello world");
-                    Float grade = new Float((String) req.getAttribute("a"+
+                    Float grade = new Float((String) req.getParameter("a"+
                             ass.getId() + "@" + stu.getId()));
                     //0.0 means it hasn't been updated
                     if (grade != 0.0f)
@@ -180,6 +180,7 @@ public class GradeController extends HttpServlet
         }
 
         req.setAttribute("user", user1);
+        doGet(req,resp);
         viewForward(view, req, resp);
     }
 
