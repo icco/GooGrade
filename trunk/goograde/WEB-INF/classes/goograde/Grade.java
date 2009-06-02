@@ -455,51 +455,27 @@ public class Grade implements Comparable<Grade>
         ArrayList<Grade> toReturn = new ArrayList();
         StorageConnection conn = new StorageConnection();
         
-        String query = null;
+        String query = makeQuery(graded, course, student);
         
         
-        switch(graded)
-        {
-            case -1: //only nongraded grades
-            {
-                query = "SELECT id FROM Assignments WHERE courseId = ";
-                query += course.getId();
-                query +=" EXCEPT SELECT assignId FROM Grades WHERE accountId";
-                query += " = " + student.getId();
-                
-                break;
-            }
-            case 0: //all assignments in the course
-            {
-                query = "SELECT id FROM Assignments WHERE courseId = ";
-                query += course.getId();
-                break;
-            }
-            case 1://only graded grades
-            {
-                query = "SELECT assignId from Grades where accountId = ";
-                query += student.getId();
-                System.out.println("ID " + student.getId() + "    courseID " + course.getId());
-                query += " INTERSECT SELECT id FROM Assignments";
-                query += " WHERE courseId = " + course.getId();
-                break;
-            }
-        }
+       
         ArrayList<ArrayList<Object>> result = conn.query(query);
-        if(result == null || result.isEmpty() )
+        //Set toReturn to null if there is no result
+        if(result == null || result.isEmpty())
         {
             toReturn = null;
         }
         else
         {
-            for( ArrayList<Object> ass : result )
+            //Adds every assignment found into the list
+            for(ArrayList<Object> ass : result)
             {
-                    Integer assId = (Integer) ass.get(0);
-                    System.out.println("ass id " + (Integer) ass.get(0));
+                Integer assId = (Integer) ass.get(0);
                 try
                 {
                     toReturn.add(new Grade(assId, student.getId()));
-                } catch (Exception ex)
+                } 
+                catch (Exception ex)
                 {
                     Logger.getLogger(Grade.class.getName()).log(Level.SEVERE,
                             null, ex);
@@ -507,6 +483,8 @@ public class Grade implements Comparable<Grade>
 
             }
         }
+        
+        //Checks again if there is nothing, might not be needed
         if(toReturn != null && toReturn.isEmpty())
         {
             toReturn = null;
@@ -514,6 +492,37 @@ public class Grade implements Comparable<Grade>
         
         conn.close();
         return toReturn;
+    }
+    
+    private static String makeQuery(Integer graded, Course course, Student student)
+    {
+        String query = null;
+        
+        //Sees which query is to be made
+        switch(graded)
+        {
+            case -1: //only nongraded grades
+                query = "SELECT id FROM Assignments WHERE courseId = ";
+                query += course.getId();
+                query +=" EXCEPT SELECT assignId FROM Grades WHERE accountId";
+                query += " = " + student.getId();
+                
+                break;
+            case 0: //all assignments in the course
+                query = "SELECT id FROM Assignments WHERE courseId = ";
+                query += course.getId();
+                break;
+            case 1://only graded grades
+                query = "SELECT assignId from Grades where accountId = ";
+                query += student.getId();
+                query += " INTERSECT SELECT id FROM Assignments";
+                query += " WHERE courseId = " + course.getId();
+                break;
+            default:
+                query = null;
+                break;
+        }
+        return query;
     }
 
     /**
