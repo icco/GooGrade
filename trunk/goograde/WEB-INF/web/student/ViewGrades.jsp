@@ -59,10 +59,14 @@
                                                         ${user.assignment.total}
                                                     </td>
                                                     <td>
-                                                        ${user.assignment.mode}
+                                                        <c:if test = "${user.assignment.mode > -1}">
+                                                            ${user.assignment.mode}
+                                                        </c:if>
                                                     </td>
                                                     <td>
-                                                        ${user.assignment.mean}
+                                                        <c:if test = "${user.assignment.mode > -1}">
+                                                            ${user.assignment.mean}
+                                                        </c:if>
                                                     </td>
                                                     <td>
                                                         ${user.assignment.dueDate}
