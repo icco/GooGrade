@@ -2,7 +2,10 @@
 <project name="GooGrade" default="default" xmlns:doxygen="antlib:org.doxygen.tools" basedir=".">
     <description>Builds, tests, and runs the project GooGrade.</description>
     <import file="nbproject/build-impl.xml"/> <!-- For NetBeans... -->
-	<target name="-pre-init">
+
+	<target name="-pre-init" depends="build-db" />
+
+	<target name="build-db">
 		<!-- Set up database -->
 		<echo>Building /tmp/goograde.db</echo>
 		<exec executable="sqlite3">
