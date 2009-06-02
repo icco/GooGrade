@@ -383,6 +383,7 @@ public class Course implements java.io.Serializable
                 this.assignments = new ArrayList<Assignment>();
                 String query = "SELECT id FROM Assignments ";
                 query += "WHERE courseId = " + this.getId();
+                query += " ORDER BY aDueDate ASC";
 
                 StorageConnection conn = new StorageConnection();
                 ArrayList<ArrayList<Object>> result = conn.query(query);

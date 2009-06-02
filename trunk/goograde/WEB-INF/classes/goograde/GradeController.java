@@ -258,7 +258,7 @@ public class GradeController extends HttpServlet
             {
                 Student user2 = new Student(user1.getId());
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
-                ArrayList<Grade> gradelist = user2.getGrades(crse);
+                ArrayList<Grade> gradelist = Grade.getGrades(crse, user2, 0);
                 req.setAttribute("enrolledCourseList",
                         (ArrayList<Course>) (user2.getEnrolled()));
                 req.setAttribute("gradeList", gradelist);
