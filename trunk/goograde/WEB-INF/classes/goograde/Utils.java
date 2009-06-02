@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletRequest;
  */
 public final class Utils
 {
+    private Utils()
+    {
+        // To appease CheckStyle
+    }
+    
     /**
      * Given a servlet request, get an account out of it's cookie.
      * 
