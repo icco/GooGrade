@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 public class GradingRulesController extends HttpServlet
 {
 
+    static final int kOtherSize = 300;
+    static final int kChartSize = 200;
     /**
      * Called when an HTTP POST is made
      * 
@@ -55,8 +57,8 @@ public class GradingRulesController extends HttpServlet
         Integer courseId = new Integer(req.getParameter("id"));
         Course crs = new Course(courseId);
         GradingRules gr = new GradingRules(crs.getGradingRulesId());
-        int width = 300;
-        int height = 200;
+        int width = kOtherSize;
+        int height = kChartSize;
 
         view = req.getRequestDispatcher("/teacher/GradingRules.jsp");
 

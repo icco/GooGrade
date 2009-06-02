@@ -61,6 +61,7 @@ public class GradingRules implements java.io.Serializable
     public boolean setCurve(Character letter, Integer grade)
     {
         boolean ret = false;
+        /*sets curve based on which letter grade was input */
         switch (Character.toUpperCase(letter))
         {
             case 'A':
@@ -345,6 +346,7 @@ public class GradingRules implements java.io.Serializable
     {
         boolean ret = false;
 
+        /*ensure action not done on null value */
         if (in != null)
         {
             this.id = new Integer(in);
