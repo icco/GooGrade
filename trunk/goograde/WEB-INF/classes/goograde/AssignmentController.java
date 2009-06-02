@@ -17,7 +17,7 @@ import java.util.Date;
  * Does all of the work on the Assignment, it is the controller. 
  * We haven't really speced out what this is going to do yet.
  *
- * @author bluGoo, vgerdin
+ * @author vgerdin
  * @version 0.42
  */
 public class AssignmentController extends HttpServlet
@@ -152,7 +152,8 @@ public class AssignmentController extends HttpServlet
         if (assDate != null)
         {
             /*Parse Date into Date Object */
-            String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
+            //String dateFormatString = "EEE MMM dd HH:mm:ss zzz yyyy";
+            String dateFormatString = "MM-dd-yy";
             SimpleDateFormat format = new SimpleDateFormat(dateFormatString);
             Date newDate = new Date();
 
