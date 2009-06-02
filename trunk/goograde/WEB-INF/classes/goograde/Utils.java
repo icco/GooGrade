@@ -26,6 +26,7 @@ public final class Utils
     {
         Account user1 = new Account();
 
+        //Checks for null
         if (req != null)
         {
             // Gets the cookie we want
