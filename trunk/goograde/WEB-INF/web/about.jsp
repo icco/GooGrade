@@ -6,10 +6,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>About GooGrade</title>
@@ -41,11 +40,11 @@
                         
                         <%-- Defect #174 fixed here.Make sure it shows at /about 
                         on the website to verify fix. --%>
-                        <dt>Team Leader & Web Lead</dt>
+                        <dt>Team Leader &amp; Web Lead</dt>
                         <dd>Nat Welch</dd>
                         
                         <%-- Defect #166 fixed here --%>
-                        <dt>Assistant programmer & QA manager:</dt>
+                        <dt>Assistant programmer &amp; QA manager:</dt>
                         <dd> Matt Duder</dd>
                         
                         <%--Defect 175 fixed here  --%>
@@ -53,11 +52,11 @@
                         <dd>Katherine Blizard</dd>
                         
                         <%-- Defect #176 fixed here --%>
-                        <dt>Implementation Manager, Architect, & Designer</dt>
+                        <dt>Implementation Manager, Architect, &amp; Designer</dt>
                         <dd>Paul Phu</dd>
                         
                         <%-- Defect #179 fixed here --%>
-                        <dt>Change Mangager & Analyst</dt>
+                        <dt>Change Mangager &amp; Analyst</dt>
                         <dd>Viktor Gerdin</dd>
                     </div>
                 </div>
