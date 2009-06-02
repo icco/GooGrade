@@ -247,22 +247,32 @@ public class GradePredictorController extends HttpServlet
         return toReturn;
     }
     
+    /**
+     * generate the letter grade (A,B,C,D or F) for a student in a course
+     * @param student Student object whos grade we want
+     * @param course Course in which the grade is in
+     * @return Character letter grade A through F
+     */
     private Character getCurrentGradeLetter(Student student, Course course)
     {
         Float grade = student.getCurrentGrade(course);
         Character ret = 'F';
+        //If higher than A
         if(grade > course.getGradingRules().getA())
         {
             ret = 'A';
         }
+        //If higher than B
         else if(grade > course.getGradingRules().getB())
         {
             ret = 'B';
         }
+        //If higher than C
         else if(grade > course.getGradingRules().getC())
         {
             ret = 'C';
         }
+        //If higher than D
         else if(grade > course.getGradingRules().getD())
         {
             ret = 'D';
