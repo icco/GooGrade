@@ -111,7 +111,7 @@ public class AssignmentController extends HttpServlet
                 (ArrayList<Course>) (Teacher.allTeachers().get(0).getCourses()));
         req.setAttribute("currentCourse", 
                 new Course(new Integer(req.getParameter("id"))));
-        req.setAttribute("AssignmentList", (ArrayList<Assignment>) new Course(
+       req.setAttribute("AssignmentList", new Course(
                 new Integer((String) req.getAttribute("id"))).getAssignments());
         System.out.println("Retreiveing from database");
 

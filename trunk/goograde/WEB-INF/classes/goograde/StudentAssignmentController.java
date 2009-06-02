@@ -62,9 +62,16 @@ public class StudentAssignmentController extends HttpServlet
         req.setAttribute("id", (String) req.getParameter("id"));
         req.setAttribute("enrolledCourseList", user1.getEnrolled());
         req.setAttribute("currentCourse", crse);
-        req.setAttribute("AssignmentList", (ArrayList<Assignment>)
-                crse.getAssignments());
-
+        ArrayList<Assignment> assList = crse.getAssignments();
+        Integer assTotals = 0;
+        
+        for(Assignment ass : assList)
+        {
+            assTotals += ass.getTotal();
+        }
+        req.setAttribute("AssignmentList", assList);
+        req.setAttribute("AssignmentTotals", assTotals);
+        
         try
         {
             view.forward(req, resp);

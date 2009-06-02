@@ -118,8 +118,7 @@
                                     </tr>
                                     <div id="AssDesc${assg.id}a" style="display: none">
                                         <p>${assg.description}</p>
-                                    </div>
-                                </c:forEach>
+                                    </div>                              </c:forEach>
                             </table>
                             <input alt="#TB_inline?height=300&width=700&inlineId=FormPopUp" 
                                    title="Add New Assignment" 

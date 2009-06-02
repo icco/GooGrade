@@ -50,6 +50,10 @@
                                         <p>${assg.description}</p>
                                     </div>
                                 </c:forEach>
+                                <tr class="color">
+                                    <td style="border:0px;background-color:#e5ecf3"></td>
+                                    <td>${AssignmentTotals}</td>
+                                </tr>
                             </table>
                         </div>
                     </div>

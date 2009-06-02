@@ -51,6 +51,7 @@ CREATE TABLE Assignments (
 		aMax FLOAT, 
 		aMin FLOAT,
 		courseId INTEGER,
+                aDesc STRING,
 
 		CONSTRAINT fk_courseId FOREIGN KEY (courseId) REFERENCES
 		Courses (id) ON DELETE CASCADE
