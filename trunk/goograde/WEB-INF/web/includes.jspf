@@ -3,4 +3,4 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<link REL="SHORTCUT ICON" HREF="/GooGrade2.0/favicon.ico" />
+<link rel="SHORTCUT ICON" href="/GooGrade2.0/favicon.ico" />
