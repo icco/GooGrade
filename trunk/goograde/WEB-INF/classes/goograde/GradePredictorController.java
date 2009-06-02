@@ -1,6 +1,7 @@
 package goograde;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class GradePredictorController extends HttpServlet
 {
-
+    /**
+     * to scale the percentages properly
+     */
+    final int k_percentFactor = 10;
     /**
      * Fetches the information from a cookie and places it into an Account.
      * @param user1 the Account being modified
@@ -88,7 +92,7 @@ public class GradePredictorController extends HttpServlet
         }
         else
         {
-            msg = "To get the grade " + letter + " you need to get:";
+            msg = "Predicted Grade: " + letter + "(" + NumberFormat.getPercentInstance().format(student.getCurrentGrade(crse)*k_percentFactor) +")";
         }
         
         req.setAttribute("msg", msg);
@@ -100,7 +104,8 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("ungradedList", ungradedList);
         req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
-        req.setAttribute("currentGradeLetter", this.getCurrentGradeLetter(student, crse));
+        req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(student.getCurrentGrade(crse)*k_percentFactor));
+        req.setAttribute("currentGradeLetter", student.getCurrentGradeLetter(crse));
         
         viewForward(view, req, resp);
     }
@@ -177,7 +182,8 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
         req.setAttribute("msg", " ");
-        req.setAttribute("currentGradeLetter", this.getCurrentGradeLetter(student, crse));
+        req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(student.getCurrentGrade(crse)*k_percentFactor));
+        req.setAttribute("currentGradeLetter", student.getCurrentGradeLetter(crse));
         viewForward(view, req, resp);
     }
     
@@ -245,39 +251,5 @@ public class GradePredictorController extends HttpServlet
     {
         ArrayList<Grade> toReturn = Grade.predictGrades(course, student, (grade/100));
         return toReturn;
-    }
-    
-    /**
-     * generate the letter grade (A,B,C,D or F) for a student in a course
-     * @param student Student object whos grade we want
-     * @param course Course in which the grade is in
-     * @return Character letter grade A through F
-     */
-    private Character getCurrentGradeLetter(Student student, Course course)
-    {
-        Float grade = student.getCurrentGrade(course);
-        Character ret = 'F';
-        //If higher than A
-        if(grade > course.getGradingRules().getA())
-        {
-            ret = 'A';
-        }
-        //If higher than B
-        else if(grade > course.getGradingRules().getB())
-        {
-            ret = 'B';
-        }
-        //If higher than C
-        else if(grade > course.getGradingRules().getC())
-        {
-            ret = 'C';
-        }
-        //If higher than D
-        else if(grade > course.getGradingRules().getD())
-        {
-            ret = 'D';
-        }
-        
-        return ret;
     }
 }

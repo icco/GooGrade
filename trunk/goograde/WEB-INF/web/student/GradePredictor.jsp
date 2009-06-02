@@ -47,7 +47,6 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test = "${!empty gradedList}">
-                                    <h3>So far you have a ${currentGradeLetter}</h3>
                                     <table>
                                         <thead>
                                             <tr>
@@ -59,7 +58,7 @@
                                         <tbody>
                                             <c:forEach var="grade" items="${gradedList}">
                                                 <tr class="color">
-                                                    <td>
+                                                    <td width="200">
                                                         ${grade.assignment.name}
                                                     </td>
                                                     <td>
@@ -70,6 +69,9 @@
                                                     </td>
                                                 </tr>
                                             </c:forEach>
+                                            <tr class="color">
+                                                <td>Current Grade: ${currentGradeLetter} (${currentGrade})</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                  </c:when>
@@ -80,7 +82,6 @@
                             </c:choose>
                             <c:choose>
                                 <c:when test = "${!empty ungradedList}">
-                                    <h3>${msg}</h3>
                                     <table>
                                         <thead>
                                             <tr>
@@ -92,7 +93,7 @@
                                         <tbody>
                                             <c:forEach var="ungrade" items="${ungradedList}">
                                                 <tr class="color">
-                                                    <td>
+                                                    <td width="200">
                                                         ${ungrade.assignment.name}
                                                     </td>
                                                     <td>
@@ -103,6 +104,11 @@
                                                     </td>
                                                 </tr>
                                             </c:forEach>
+                                            <c:if test="${fn:length(msg) > 3}">
+                                            <tr class="color">
+                                                <td>${msg}</td>
+                                            </tr>
+                                        </c:if>
                                         </tbody>
                                     </table>
                                     

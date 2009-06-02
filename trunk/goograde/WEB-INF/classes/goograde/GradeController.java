@@ -1,6 +1,7 @@
 package goograde;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +21,10 @@ import javax.servlet.http.HttpServletResponse;
 public class GradeController extends HttpServlet
 {
 
+    /**
+     * to scale the percentages properly
+     */
+    final int k_percentFactor = 10;
     /**
      * teacherSet fulfills the POST teacher request from doPost()
      * @param req the request serveletRequest
@@ -264,6 +269,8 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
+                req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(user2.getCurrentGrade(crse)*k_percentFactor));
+                req.setAttribute("currentGradeLetter", user2.getCurrentGradeLetter(crse));
             }
             catch (Exception ex)
             {

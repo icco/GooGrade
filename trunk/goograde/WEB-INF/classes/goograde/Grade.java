@@ -1,5 +1,6 @@
 package goograde;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -644,6 +645,17 @@ public class Grade implements Comparable<Grade>
             ret = this.save();
         }
         return ret;
+    }
+    
+    /**
+     * get percentage, grade / ass.max
+     * @return String of percentage
+     */
+    public String getPercentage()
+    {
+        Float ret = 0F;
+        ret = this.getGrade() / new Float(this.getAssignment().getTotal());
+        return NumberFormat.getPercentInstance().format(ret);
     }
 
 }

@@ -50,6 +50,11 @@ public class Assignment implements java.io.Serializable
     private Float min;
     private int courseId;
 
+    private Float mode;
+    private Float mean;
+    private Float q1;
+    private Float q2;
+    private Float q3;
     /**
      * Standard constructor, should not be used, kept for now
      */

@@ -312,4 +312,37 @@ public class Student extends Account
         
         return currentGrade;
     }
+    
+    /**
+     * Calculate and return the student's current grade letter
+     * @param course the course the grade covers
+     * @return Character the student's current grade letter
+     * @author vgerdin
+     */
+    public Character getCurrentGradeLetter(Course course)
+    {
+        Float grade = this.getCurrentGrade(course);
+        Character ret = 'F';
+        //If higher than A
+        if(grade > course.getGradingRules().getA())
+        {
+            ret = 'A';
+        }
+        //If higher than B
+        else if(grade > course.getGradingRules().getB())
+        {
+            ret = 'B';
+        }
+        //If higher than C
+        else if(grade > course.getGradingRules().getC())
+        {
+            ret = 'C';
+        }
+        //If higher than D
+        else if(grade > course.getGradingRules().getD())
+        {
+            ret = 'D';
+        }
+        return ret;
+    }
 }

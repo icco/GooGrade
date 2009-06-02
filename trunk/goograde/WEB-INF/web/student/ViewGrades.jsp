@@ -36,10 +36,12 @@
                                         <thead>
                                             <tr>
                                                 <th>Assignment</th>
-                                                <th>Possible Points</th>
+                                                <th>Grade</th>
+                                                <th>Total Points</th>
+                                                <th>Mode</th>
+                                                <th>Mean</th>
                                                 <th>Due Date</th>
                                                 <th>Type</th>
-                                                <th>Grade</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -49,7 +51,16 @@
                                                         ${user.assignment.name}
                                                     </td>
                                                     <td>
+                                                        ${user.grade}
+                                                    </td>
+                                                    <td>
                                                         ${user.assignment.total}
+                                                    </td>
+                                                    <td>
+                                                        ${user.assignment.mode}
+                                                    </td>
+                                                    <td>
+                                                        ${user.assignment.mean}
                                                     </td>
                                                     <td>
                                                         ${user.assignment.dueDate}
@@ -57,13 +68,13 @@
                                                     <td>
                                                         ${user.assignment.type}
                                                     </td>
-                                                    <td>
-                                                        ${user.grade}
-                                                    </td>
-                                                    
                                                 </tr>
-                                                
                                             </c:forEach>
+                                            <tr class ="color">
+                                                <td width="200">
+                                                    Current Grade: ${currentGradeLetter} (${currentGrade})
+                                                </td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </c:when>
