@@ -41,13 +41,6 @@ public class AGradingRulesTest extends TestCase
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of getCurve method, of class GradingRules.
-     */
-    public void testGetCurve()
-    {
-        System.out.println("getCurve");
-    }
 
     /**
      * Test of fetch method, of class GradingRules.
