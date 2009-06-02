@@ -51,7 +51,9 @@
                                                         ${user.assignment.name}
                                                     </td>
                                                     <td>
-                                                        ${user.grade}
+                                                        <c:if test="${user.graded}" >
+                                                            ${user.grade}
+                                                        </c:if>
                                                     </td>
                                                     <td>
                                                         ${user.assignment.total}

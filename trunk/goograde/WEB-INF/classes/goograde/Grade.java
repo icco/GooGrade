@@ -657,5 +657,16 @@ public class Grade implements Comparable<Grade>
         ret = this.getGrade() / new Float(this.getAssignment().getTotal());
         return NumberFormat.getPercentInstance().format(ret);
     }
+    
+    /**
+     * getGraded is a getter for Boolean graded, this might
+     * break some naming conventions however jsp does not
+     * work with only an "isGraded"
+     * @return this.graded
+     */
+    public Boolean getGraded()
+    {
+        return this.graded;
+    }
 
 }
