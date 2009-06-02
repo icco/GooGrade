@@ -169,7 +169,27 @@ public class GradeController extends HttpServlet
         }
         else // Is a student
         {
-            try
+            req = studentHelper(req, user1, user2, crse, view);
+        }
+
+        req.setAttribute("user", user1);
+        doGet(req, resp);
+        viewForward(view, req, resp);
+    }
+
+    /**
+     * student helper does doPost for students
+     * @param req the request
+     * @param user1 an account 
+     * @param user2 student 
+     * @param crse the course 
+     * @param view the view
+     * @return the http request
+     */
+    private HttpServletRequest studentHelper(HttpServletRequest req, 
+            Account user1, Student user2, Course crse, RequestDispatcher view)
+    {
+        try
             {
                 user2 = new Student(user1.getId());
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
@@ -185,13 +205,8 @@ public class GradeController extends HttpServlet
                 Logger.getLogger(GradeController.class.getName()).log(
                         Level.SEVERE, "Student Does Not Exist", ex);
             }
-        }
-
-        req.setAttribute("user", user1);
-        doGet(req, resp);
-        viewForward(view, req, resp);
+        return req;
     }
-
     /**
      * viewForward is a wrapper for view.forward with included try and catch
      * @param view the RequestDispatcher for the view. 
@@ -237,7 +252,55 @@ public class GradeController extends HttpServlet
         // Are we a student or a teacher
         if (user1.isTeacher())
         {
-            view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
+            req = teacherHelper(req, resp, view, user1, courseId, crse);
+        }
+        else // Is a student
+        {
+            try
+            {
+                Integer sizeA = 200;
+                Student user2 = new Student(user1.getId());
+                view = req.getRequestDispatcher("/student/ViewGrades.jsp");
+                ArrayList<Grade> gradelist = Grade.getGrades(crse, user2, 0);
+                req.setAttribute("enrolledCourseList",
+                        (ArrayList<Course>) (user2.getEnrolled()));
+                req.setAttribute("gradeList", gradelist);
+                req.setAttribute("currentCourse", crse);
+                req.setAttribute("id", (String) req.getParameter("id"));
+                req.setAttribute("currentGrade", user2.getCurrentGrade(crse) 
+                        + "%");
+                req.setAttribute("currentGradeLetter", 
+                        user2.getCurrentGradeLetter(crse));
+                req.setAttribute("graph", 
+                        Metrics.gradeDistroBars(crse, sizeA,
+                        sizeA, sizeA/20));
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(GradeController.class.getName()).log(
+                        Level.SEVERE, "Student Does Not Exist", ex);
+            }
+        }
+
+        req.setAttribute("user", Utils.getUseridCookie(req));
+        viewForward(view, req, resp);
+    }
+
+    /**
+     * teacher helper is doGet for teachers. 
+     * @param req request
+     * @param resp response
+     * @param view the view
+     * @param user1 a user
+     * @param courseId the identification of the course
+     * @param crse the course the request pertains to. 
+     * @return the http request
+     */
+    private HttpServletRequest teacherHelper(HttpServletRequest req, 
+            HttpServletResponse resp, RequestDispatcher view, Account user1,
+            Integer courseId, Course crse)
+    {
+        view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
             Teacher user3;
             ArrayList<Grade> gradelist = gradeListHelper();
 
@@ -258,39 +321,8 @@ public class GradeController extends HttpServlet
             req.setAttribute("gradeList", gradelist);
             req.setAttribute("assArray", crse.getAssignments());
             req.setAttribute("stuArray", (ArrayList<Student>) crse.getStudents());
-        }
-        else // Is a student
-
-        {
-            try
-            {
-                Student user2 = new Student(user1.getId());
-                view = req.getRequestDispatcher("/student/ViewGrades.jsp");
-                ArrayList<Grade> gradelist = Grade.getGrades(crse, user2, 0);
-                req.setAttribute("enrolledCourseList",
-                        (ArrayList<Course>) (user2.getEnrolled()));
-                req.setAttribute("gradeList", gradelist);
-                req.setAttribute("currentCourse", crse);
-                req.setAttribute("id", (String) req.getParameter("id"));
-                req.setAttribute("currentGrade", user2.getCurrentGrade(crse) 
-                        + "%");
-                req.setAttribute("currentGradeLetter", 
-                        user2.getCurrentGradeLetter(crse));
-                req.setAttribute("graph", 
-                        Metrics.gradeDistroBars(crse, 200,
-                        200, 10));
-            }
-            catch (Exception ex)
-            {
-                Logger.getLogger(GradeController.class.getName()).log(
-                        Level.SEVERE, "Student Does Not Exist", ex);
-            }
-        }
-
-        req.setAttribute("user", Utils.getUseridCookie(req));
-        viewForward(view, req, resp);
+            return req;
     }
-
     /**
      * gradeListHelper is a helper method fetch all grades and log any problems
      * from fetching all the grades. 
