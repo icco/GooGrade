@@ -206,6 +206,8 @@ public final class Metrics
         //Adds the graph dimensions as width x height
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
         
+        toReturn += "&chd=t:";
+        
         toReturn2 += "&chl=";
         
         length = toReturn.length();
@@ -237,6 +239,7 @@ public final class Metrics
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         toReturn += toReturn2 + "&chco=0044FF&chf=bg,s,65432100";
+        toReturn += "&chtt=Current+Grade+Distribution";
 
         return toReturn;
 
@@ -270,6 +273,8 @@ public final class Metrics
 
         //Adds the graph dimensions as width x height
         toReturn += "&chs=" + graphWidth + "x" + graphHeight;
+        
+        toReturn += "&chd=t:";
 
         toReturn2 += "&chl=";
         
@@ -302,6 +307,7 @@ public final class Metrics
         //Adds the range of the values [0 , 100]
         toReturn += "&chbh=50&chds=0,100";
         toReturn += toReturn2 + "&chco=0044FF&chf=bg,s,65432100";
+        toReturn += "&chtt=Current+Grade+Distribution";
 
         return toReturn;
     }

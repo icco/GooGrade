@@ -79,6 +79,12 @@
                                             <tr class ="color">
                                                 <td width="200">
                                                     Current Grade: ${currentGradeLetter} (${currentGrade})
+                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="${graph}">
                                                 </td>
                                             </tr>
                                         </tbody>

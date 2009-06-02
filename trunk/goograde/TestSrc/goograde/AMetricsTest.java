@@ -80,8 +80,9 @@ public class AMetricsTest extends TestCase
         int graphHeight = 100;
         int barWidth = 10;
         String expResult = "http://chart.apis.google.com/chart?cht=bvs&chs=" +
-                "100x1001,1,1&chbh=50&chds=0,100&chl=A (1)|C (1)|F " +
-                "(1)&chco=0044FF&chf=bg,s,65432100";
+                "100x100&chd=t:1,1,1&chbh=50&chds=0,100&chl=A (1)|C (1)|F " +
+                "(1)&chco=0044FF&chf=bg,s,65432100" +
+                "&chtt=Current+Grade+Distribution";
         String result = Metrics.gradeDistroBars(course, graphWidth, graphHeight,
                 barWidth);
         assertEquals(expResult, result);
@@ -99,7 +100,8 @@ public class AMetricsTest extends TestCase
         int graphHeight = 100;
         int barWidth = 10;
         String expResult = "http://chart.apis.google.com/chart?cht=bvs&chs=" +
-                "100x100&chbh=50&chds=0,100&chl=&chco=0044FF&chf=bg,s,65432100";
+                "100x100&chd=t:&chbh=50&chds=0,100&chl=&chco=0044FF&chf=bg,s,65432100" 
+                + "&chtt=Current+Grade+Distribution";
         String result = Metrics.assignmentGradeDistroBars(ass, graphWidth,
                 graphHeight, barWidth);
         assertEquals(expResult, result);

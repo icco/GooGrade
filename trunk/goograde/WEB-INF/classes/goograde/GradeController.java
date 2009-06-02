@@ -269,8 +269,9 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
-                req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(user2.getCurrentGrade(crse)*k_percentFactor));
+                req.setAttribute("currentGrade", user2.getCurrentGrade(crse) + "%");
                 req.setAttribute("currentGradeLetter", user2.getCurrentGradeLetter(crse));
+                req.setAttribute("graph", Metrics.gradeDistroBars(crse, 200, 200,10));
             }
             catch (Exception ex)
             {
