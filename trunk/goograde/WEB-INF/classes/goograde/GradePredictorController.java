@@ -23,7 +23,11 @@ public class GradePredictorController extends HttpServlet
     /**
      * to scale the percentages properly
      */
-    final int k_percentFactor = 10;
+    static final int kPercentFactor = 10;
+    /**
+     * to scale the percentages properly, but the other way
+     */
+    static final int kHundred = 100;
     /**
      * Fetches the information from a cookie and places it into an Account.
      * @param user1 the Account being modified
@@ -76,7 +80,9 @@ public class GradePredictorController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradePredictorController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    GradePredictorController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
         ArrayList<Grade> gradedList = this.getGradedList(crse, student);
         
@@ -85,6 +91,7 @@ public class GradePredictorController extends HttpServlet
         ArrayList<Grade> ungradedList = this.getPredictedList(crse, student, grade);
         
         String msg = "";
+        //set message whether the grade is achievable or not
         if(ungradedList == null)
         {
             msg = "Grade Not Possible";
@@ -92,7 +99,9 @@ public class GradePredictorController extends HttpServlet
         }
         else
         {
-            msg = "Predicted Grade: " + letter + "(" + NumberFormat.getPercentInstance().format(student.getCurrentGrade(crse)*k_percentFactor) +")";
+            msg = "Predicted Grade: " + letter;
+            msg += "(" + NumberFormat.getPercentInstance().format(
+                    student.getCurrentGrade(crse)*kPercentFactor) +")";
         }
         
         req.setAttribute("msg", msg);
@@ -102,9 +111,10 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("id", courseId);
         req.setAttribute("gradedList", gradedList);
         req.setAttribute("ungradedList", ungradedList);
-        req.setAttribute("enrolledCourseList",enrolledCourseList);
+        req.setAttribute("enrolledCourseList", enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
-        req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(student.getCurrentGrade(crse)*k_percentFactor));
+        req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(
+                student.getCurrentGrade(crse)*kPercentFactor));
         req.setAttribute("currentGradeLetter", student.getCurrentGradeLetter(crse));
         
         viewForward(view, req, resp);
@@ -128,7 +138,9 @@ public class GradePredictorController extends HttpServlet
         {
             Logger.getLogger(GradePredictorController.class.getName()).
                     log(Level.SEVERE, null, ex);
-        }        catch (IOException ex)
+        }
+        
+        catch (IOException ex)
         {
             Logger.getLogger(GradePredictorController.class.getName()).
                     log(Level.SEVERE, null, ex);
@@ -161,11 +173,14 @@ public class GradePredictorController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(GradePredictorController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(
+                    GradePredictorController.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
         ArrayList<Grade> gradedList = this.getGradedList(crse, student);
 
-        ArrayList<Grade> ungradedList = (ArrayList<Grade>) req.getAttribute("ungradedList");
+        ArrayList<Grade> ungradedList = 
+                (ArrayList<Grade>) req.getAttribute("ungradedList");
         
         //if not set (first call) reset
         if(ungradedList == null)
@@ -179,10 +194,12 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("id", courseId);
         req.setAttribute("gradedList", gradedList);
         req.setAttribute("ungradedList", ungradedList);
-        req.setAttribute("enrolledCourseList",enrolledCourseList);
+        req.setAttribute("enrolledCourseList", enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
         req.setAttribute("msg", " ");
-        req.setAttribute("currentGrade", NumberFormat.getPercentInstance().format(student.getCurrentGrade(crse)*k_percentFactor));
+        req.setAttribute("currentGrade", 
+                NumberFormat.getPercentInstance().
+                format(student.getCurrentGrade(crse)*kPercentFactor));
         req.setAttribute("currentGradeLetter", student.getCurrentGradeLetter(crse));
         viewForward(view, req, resp);
     }
@@ -247,9 +264,13 @@ public class GradePredictorController extends HttpServlet
      * @param grade the grade desired
      * @return an arraylist of predicted grades
      */
-    private ArrayList<Grade> getPredictedList(Course course, Student student, Float grade)
+    private ArrayList<Grade> getPredictedList(
+            Course course, 
+            Student student, 
+            Float grade)
     {
-        ArrayList<Grade> toReturn = Grade.predictGrades(course, student, (grade/100));
+        ArrayList<Grade> toReturn = Grade.predictGrades(
+                course, student, (grade/kHundred));
         return toReturn;
     }
 }
