@@ -177,8 +177,9 @@ h1{
 
 h2{
     font-family: myraid, verdana, arial;
-    font-size: 16pt;
+    font-size: 14pt;
     text-decoration: underline;
+    text-align: center;
 }
 h4{
     font-size: 12pt;
