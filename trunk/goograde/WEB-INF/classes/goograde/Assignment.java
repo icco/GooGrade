@@ -515,6 +515,7 @@ public class Assignment implements java.io.Serializable
      * @param dueDate the date to add
      * @param name the name to add
      * @param total the total to add
+     * @param desc the description of the assignment
      */
     public static void addAssignment(int courseId, String type, Date dueDate,
             String name, Integer total, String desc)
@@ -773,6 +774,7 @@ public class Assignment implements java.io.Serializable
         }
         
         mean = mean / counter;
+        /*return empty if the list is empty */
         if(counter == 0)
         {
             mean = -1F;
@@ -881,7 +883,8 @@ public class Assignment implements java.io.Serializable
                     high = newHigh;
                 }
             }
-             if(counter == 0)
+            /*return empty if the list is empty */
+            if(counter == 0)
             {
                 mode = -1F;
             }
@@ -927,8 +930,7 @@ public class Assignment implements java.io.Serializable
             }
             
 
-            /* if the list has an even number of elements, the quartile has to be
-             * averaged*/
+            /* if the list has an even number of elements, the quartil is averaged*/
             if(!isEven)
             {
                 q1 = (subGrade.get(indexQuartile).getGrade());
@@ -950,7 +952,7 @@ public class Assignment implements java.io.Serializable
     public Float getQ2()
     {
         ArrayList<Grade> gradeList = this.getGrades();
-        Integer indexQuartile = (gradeList.size()/2) ;
+        Integer indexQuartile = (gradeList.size()/2);
         boolean isEven = false;
         Float median = -1F;
         
@@ -973,7 +975,7 @@ public class Assignment implements java.io.Serializable
             else
             {
                 median = ((gradeList.get(indexQuartile-1).getGrade() 
-                        + gradeList.get(indexQuartile).getGrade()) /2 );
+                        + gradeList.get(indexQuartile).getGrade()) /2);
             }
         }
         

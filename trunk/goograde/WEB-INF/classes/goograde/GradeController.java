@@ -1,7 +1,7 @@
 package goograde;
 
 import java.io.IOException;
-import java.text.NumberFormat;
+//import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +24,7 @@ public class GradeController extends HttpServlet
     /**
      * to scale the percentages properly
      */
-    final int k_percentFactor = 10;
+    static final int kPercentFactor = 10;
     /**
      * teacherSet fulfills the POST teacher request from doPost()
      * @param req the request serveletRequest
@@ -83,16 +83,18 @@ public class GradeController extends HttpServlet
             for (Student stu : stulist)
             {
                 System.out.println("a" + ass.getId() + "@" + stu.getId());
+                /*next */
                 if (req.getParameter("a" + ass.getId() + "@" + stu.getId()) != null)
                 {
                     System.out.println("hello world");
-                    Float grade = new Float((String) req.getParameter("a"+
-                            ass.getId() + "@" + stu.getId()));
+                    Float grade = new Float((String) req.getParameter("a"
+                            + ass.getId() + "@" + stu.getId()));
                     //0.0 means it hasn't been updated
                     if (grade != 0.0f)
                     {
                         System.out.println("yeah");
-                        // if grade is != to the current grade at stu's grade then update grade
+                        // if grade is != to the current grade at stu's grade 
+                        //then update grade
                         if (grade != stu.getGrade(ass))
                         {
                             System.out.println("Updating");
@@ -139,8 +141,10 @@ public class GradeController extends HttpServlet
 
         res = conn.query("Select * from teaches where teacher = " + user1.getId());
 
+        //iterate over the array
         for (ArrayList<Object> arr : res)
         {
+            //objects iteration
             for (Object barr : res)
             {
                 try
@@ -164,7 +168,6 @@ public class GradeController extends HttpServlet
             view = teacherSet(req, user1, courseId, crse);
         }
         else // Is a student
-
         {
             try
             {
@@ -185,7 +188,7 @@ public class GradeController extends HttpServlet
         }
 
         req.setAttribute("user", user1);
-        doGet(req,resp);
+        doGet(req, resp);
         viewForward(view, req, resp);
     }
 
@@ -269,9 +272,13 @@ public class GradeController extends HttpServlet
                 req.setAttribute("gradeList", gradelist);
                 req.setAttribute("currentCourse", crse);
                 req.setAttribute("id", (String) req.getParameter("id"));
-                req.setAttribute("currentGrade", user2.getCurrentGrade(crse) + "%");
-                req.setAttribute("currentGradeLetter", user2.getCurrentGradeLetter(crse));
-                req.setAttribute("graph", Metrics.gradeDistroBars(crse, 200, 200,10));
+                req.setAttribute("currentGrade", user2.getCurrentGrade(crse) 
+                        + "%");
+                req.setAttribute("currentGradeLetter", 
+                        user2.getCurrentGradeLetter(crse));
+                req.setAttribute("graph", 
+                        Metrics.gradeDistroBars(crse, 200,
+                        200, 10));
             }
             catch (Exception ex)
             {

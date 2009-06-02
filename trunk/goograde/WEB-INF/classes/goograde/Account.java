@@ -501,6 +501,7 @@ public class Account implements java.io.Serializable
     {
         boolean ret = false;
         
+        /*ensuring an operation is not performed on a wrong object */
         if(in instanceof Account)
         {
             ret = this.equals((Account)in);            

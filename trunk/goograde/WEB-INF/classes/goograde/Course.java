@@ -402,7 +402,8 @@ public class Course implements java.io.Serializable
                         System.out.println("Invalid assignments: " + ex);
                     }
                 }
-                java.util.Collections.sort(this.assignments, new AssignmentListComparator());
+                java.util.Collections.sort(this.assignments, 
+                        new AssignmentListComparator());
             }
             return this.assignments;
         }
