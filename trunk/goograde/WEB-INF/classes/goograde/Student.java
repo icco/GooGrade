@@ -222,9 +222,9 @@ public class Student extends Account
         StorageConnection conn = new StorageConnection();
 
         query = "SELECT accountId, assignments.id FROM grades, assignments "
-                + "WHERE grades.assignId = assignments.id "
-                + "AND assignments.courseId = " + crse.getId()
-                + " AND  accountId = " + this.getId();
+                + " WHERE grades.assignId = assignments.id "
+                + " AND assignments.courseId = " + crse.getId()
+                + " AND accountId = " + this.getId();
 
         ArrayList<ArrayList<Object>> out = conn.query(query);
 
@@ -233,12 +233,12 @@ public class Student extends Account
         {
             int index = 0;
             Grade newGrade = null;
+            
             try
             {
                 newGrade = new Grade((Integer) row.get(index++),
                         (Integer) row.get(index++));
                 ret.add(newGrade);
-
             }
             catch (Exception ex)
             {
