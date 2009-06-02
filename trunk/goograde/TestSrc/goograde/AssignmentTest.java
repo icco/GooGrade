@@ -442,7 +442,7 @@ public class AssignmentTest extends TestCase
     
     public void testAddandDeleteAssignment()
     {
-        Assignment.addAssignment(17, "final", new Date(), "sinoda", 12);
+        Assignment.addAssignment(17, "final", new Date(), "sinoda", 12, "Rock and Roll");
         Assignment.deleteAssignment("17");
     }
 }

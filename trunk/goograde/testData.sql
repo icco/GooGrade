@@ -1,17 +1,17 @@
 -- 
 -- Test Data for Development. 
 --
-INSERT INTO "Assignments" VALUES(1,'ArrayList Object',20,'Fri Apr 10 00:00:00 PDT 2009','Homework',5.0,3.0,4.0,1);
-INSERT INTO "Assignments" VALUES(2,'JSP Sample',10,'Thu Apr 16 00:00:00 PDT 2009','Other',8.97,10.0,0.0,1);
-INSERT INTO "Assignments" VALUES(3,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2);
-INSERT INTO "Assignments" VALUES(4,'Midterm 2',100,'Sun May 10 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2);
-INSERT INTO "Assignments" VALUES(5,'Vision and Scope Review',23,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
-INSERT INTO "Assignments" VALUES(6,'SRS',40,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,1);
-INSERT INTO "Assignments" VALUES(7,'Preliminary Design',25,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
-INSERT INTO "Assignments" VALUES(8,'Pseudo Code',10,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
-INSERT INTO "Assignments" VALUES(9,'Wiki',15,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3);
-INSERT INTO "Assignments" VALUES(10,'Test Cases',10,'Tue May 12 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
-INSERT INTO "Assignments" VALUES(11,'Journal',5,'Wed May 13 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5);
+INSERT INTO "Assignments" VALUES(1,'ArrayList Object',20,'Fri Apr 10 00:00:00 PDT 2009','Homework',5.0,3.0,4.0,1,'');
+INSERT INTO "Assignments" VALUES(2,'JSP Sample',10,'Thu Apr 16 00:00:00 PDT 2009','Other',8.97,10.0,0.0,1,'');
+INSERT INTO "Assignments" VALUES(3,'Midterm 1',122,'Wed May 13 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2,'');
+INSERT INTO "Assignments" VALUES(4,'Midterm 2',100,'Sun May 10 00:00:00 PDT 2009','Test',0.0,0.0,0.0,2,'');
+INSERT INTO "Assignments" VALUES(5,'Vision and Scope Review',23,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3,'');
+INSERT INTO "Assignments" VALUES(6,'SRS',40,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,1,'Make a terribly long document that will no longer be accurate at the time you hand it in.');
+INSERT INTO "Assignments" VALUES(7,'Preliminary Design',25,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5,'');
+INSERT INTO "Assignments" VALUES(8,'Pseudo Code',10,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5,'');
+INSERT INTO "Assignments" VALUES(9,'Wiki',15,'Mon May 11 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,3,'');
+INSERT INTO "Assignments" VALUES(10,'Test Cases',10,'Tue May 12 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5,'');
+INSERT INTO "Assignments" VALUES(11,'Journal',5,'Wed May 13 00:00:00 PDT 2009','Homework',0.0,0.0,0.0,5,'');
 
 INSERT INTO "Courses" VALUES(1,'Systems Programming','CSC',357,1,1);
 INSERT INTO "Courses" VALUES(2,'Software Engineering I','CPE',308,1,2);

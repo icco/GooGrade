@@ -50,11 +50,10 @@ public class Assignment implements java.io.Serializable
     private Float min;
     private int courseId;
 
-    private Float mode;
-    private Float mean;
-    private Float q1;
-    private Float q2;
-    private Float q3;
+    /**
+     * The assignment description
+     */
+    private String description;
     /**
      * Standard constructor, should not be used, kept for now
      */
@@ -426,7 +425,7 @@ public class Assignment implements java.io.Serializable
         /*Get the database at row ID */
         String query = "SELECT id, aTotal, aName, ";
         query += "aDueDate, aType, aAverage, aMax, ";
-        query += "aMin, courseId FROM Assignments WHERE id = ";
+        query += "aMin, courseId, aDesc FROM Assignments WHERE id = ";
         query += this.getId();
         boolean ret = false;
         StorageConnection conn = new StorageConnection();
@@ -456,6 +455,7 @@ public class Assignment implements java.io.Serializable
                     max = new Float((Double) result.get(indx++));
                     min = new Float((Double) result.get(indx++));
                     this.setCourseId((Integer) result.get(indx++));
+                    this.setDescription((String) result.get(indx++));
                     ret = true;
                 }
                 catch (Exception ex)
@@ -517,7 +517,7 @@ public class Assignment implements java.io.Serializable
      * @param total the total to add
      */
     public static void addAssignment(int courseId, String type, Date dueDate,
-            String name, Integer total)
+            String name, Integer total, String desc)
     {
         /*String query = "SELECT count (*) FROM Assignments";
         StorageConnection conn = new StorageConnection();
@@ -543,6 +543,7 @@ public class Assignment implements java.io.Serializable
         temp.setAvg(new Float(0F));
         temp.setMax(new Float(0F));
         temp.setMin(new Float(0F));
+        temp.setDescription(desc);
 
         temp.save();
     }
@@ -636,11 +637,12 @@ public class Assignment implements java.io.Serializable
 
 
         String query = "INSERT INTO Assignments (aType, aMax, aMin, ";
-        query += "aAverage, aDueDate, aName, aTotal, courseId)";
+        query += "aAverage, aDueDate, aName, aTotal, courseId, aDesc)";
         query += " VALUES (\"" + this.getType() + "\"," + this.getMax();
         query += "," + this.getMin() + "," + this.getAvg() + ",\"";
         query += this.getDueDate() + "\",\"" + this.getName() + "\",";
-        query += this.getTotal() + ",\"" + this.getCourseId() + "\")";
+        query += this.getTotal() + ",\"" + this.getCourseId() + "\",\"";
+        query += this.getDescription() + "\")";
 
         ret = conn.updateQuery(query);
         /*if we failed to update, discontinue*/
@@ -675,12 +677,13 @@ public class Assignment implements java.io.Serializable
         if (result.isEmpty())
         {
             query = "INSERT INTO Assignments (id, aType, aMax, aMin, ";
-            query += "aAverage, aDueDate, aName, aTotal, courseId) ";
+            query += "aAverage, aDueDate, aName, aTotal, courseId, aDesc) ";
             query += "VALUES (\"" + this.getId() + "\",\"" + this.getType();
             query += "\",\"" + this.getMax() + "\",\"" + this.getMin();
             query += "\",\"" + this.getAvg() + "\",\"" + this.getDueDate();
             query += "\",\"" + this.getName() + "\",\"" + this.getTotal();
-            query += "\",\"" + this.getCourseId() + "\")";
+            query += "\",\"" + this.getCourseId() + "\",\"";
+            query += this.getDescription() + "\")";
             ret = conn.updateQuery(query);
         }
         /*if id does exist we update*/
@@ -692,6 +695,7 @@ public class Assignment implements java.io.Serializable
             query += "\"," + "aAverage = \"" + this.getAvg() + "\",";
             query += "aDueDate = \"" + this.getDueDate() + "\"," + "aName = \"";
             query += this.getName() + "\"," + "aTotal = \"" + this.getTotal();
+            query += "\"," + "aDesc = \"" + this.getDescription();
             query += "\" " + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }
@@ -1024,6 +1028,33 @@ public class Assignment implements java.io.Serializable
         }
         
         return q3;
+    }
+    
+    /**
+     * setter for the assignment description
+     * @param desc new description
+     * @return true if input is not null
+     */
+    public boolean setDescription(String desc)
+    {
+        boolean ret = false;
+        
+        //no nulls!
+        if(desc != null)
+        {
+            this.description = desc;
+            ret = true;
+        }
+        return ret;
+    }
+    
+    /**
+     * getter for the assignment description
+     * @return this.description
+     */
+    public String getDescription()
+    {
+        return this.description;
     }
 
 }

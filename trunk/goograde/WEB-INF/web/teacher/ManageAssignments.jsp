@@ -47,14 +47,14 @@
                                 <c:forEach var = 'assg' items="${AssignmentList}">
                                     <tr class="color">
                                         <!-- ${assg} -->
-                                        <td>${assg.name}</td>
+                                        <td><a href="#TB_inline?height=60&width=700&inlineId=AssDesc${assg.id}a" title="${assg.name} Description" class="thickbox">${assg.name}</a></td>
                                         <td>${assg.total}</td>
                                         <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
                                         <td>${assg.dueDate}</td>
                                         <td>${assg.type}</td>
                                         
                                         <td>
-                                            <input alt="#TB_inline?height=60&width=700&inlineId=Edit${assg.id}" 
+                                            <input alt="#TB_inline?height=100&width=700&inlineId=Edit${assg.id}" 
                                                    title="Edit Course" 
                                                    class="thickbox" 
                                                    type="button"
@@ -95,7 +95,12 @@
                                                                 <input  type="submit" value="Save" />
                                                             </td>
                                                         </tr>
-                                                        
+                                                        <tr>
+                                                            <td colspan="4">
+                                                                Description<br/>
+                                                                <input type="text" name="newAssgnDesc" value="${assg.description}" size="70" />
+                                                            </td>
+                                                        </tr>
                                                     </table>
                                                     
                                                 </form>
@@ -111,6 +116,9 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    <div id="AssDesc${assg.id}a" style="display: none">
+                                        <p>${assg.description}</p>
+                                    </div>
                                 </c:forEach>
                             </table>
                             <input alt="#TB_inline?height=300&width=700&inlineId=FormPopUp" 
@@ -152,7 +160,12 @@
                                                 <input  type="submit" value="Add" />
                                             </td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <td colspan="4">
+                                                Description<br/>
+                                                <input type="text" name="newAssgnDesc" value="${assg.description}" size="70" />
+                                            </td>
+                                        </tr>
                                     </table>
                                     
                                 </form>

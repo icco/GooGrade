@@ -60,6 +60,7 @@ public class AssignmentController extends HttpServlet
                 {
                     Logger.getLogger(AssignmentController.class.getName()).
                             log(Level.SEVERE, null, ex);
+                    //newDate = null;
                 }
 
                 // Create the new Assignment with the input
@@ -69,7 +70,8 @@ public class AssignmentController extends HttpServlet
                             req.getParameter("type"),
                             newDate,
                             req.getParameter("newAssgnTitle"),
-                            new Integer(req.getParameter("newAssgnTotal")));
+                            new Integer(req.getParameter("newAssgnTotal")),
+                            req.getParameter("newAssgnDesc"));
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +87,8 @@ public class AssignmentController extends HttpServlet
                         req.getParameter("newAssgnDate"),
                         req.getParameter("newAssgnTitle"),
                         req.getParameter("newAssgnTotal"),
-                        req.getParameter("newAssgnType"));
+                        req.getParameter("newAssgnType"),
+                        req.getParameter("newAssgnDesc"));
             }
         }
 
@@ -145,7 +148,8 @@ public class AssignmentController extends HttpServlet
             String assDate, 
             String assName, 
             String assTotal,
-            String assType)
+            String assType,
+            String assDesc)
     {
         Assignment ass = new Assignment(new Integer(assId));
         //We do not like null pointer exceptions
@@ -160,13 +164,16 @@ public class AssignmentController extends HttpServlet
             try
             {
                 newDate = format.parse(assDate);
+                ass.setDueDate(newDate);
+                
             }
             catch (ParseException ex)
             {
                 Logger.getLogger(AssignmentController.class.getName()).
                         log(Level.SEVERE, null, ex);
+
             }
-            ass.setDueDate(newDate);
+            
         }
         //We do not like null pointer exceptions
         if (assName != null)
@@ -182,6 +189,11 @@ public class AssignmentController extends HttpServlet
         if (assType != null)
         {
             ass.setType(assType);
+        }
+        //We do not like null pointer exceptions
+        if(assDesc != null)
+        {
+            ass.setDescription(assDesc);
         }
         ass.save();
 

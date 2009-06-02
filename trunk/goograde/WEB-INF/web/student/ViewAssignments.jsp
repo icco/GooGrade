@@ -40,12 +40,15 @@
                                 <%--TODO, do display "no assignments exist" --%>
                                 <c:forEach var = 'assg' items="${AssignmentList}">
                                     <tr class="color">
-                                        <td>${assg.name}</td>
+                                        <td><a href="#TB_inline?height=60&width=700&inlineId=AssDesc${assg.id}a" title="${assg.name} Description" class="thickbox">${assg.name}</a></td>
                                         <td>${assg.total}</td>
                                         <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
                                         <td>${assg.dueDate}</td>
                                         <td>${assg.type}</td>
                                     </tr>
+                                    <div id="AssDesc${assg.id}a" style="display: none">
+                                        <p>${assg.description}</p>
+                                    </div>
                                 </c:forEach>
                             </table>
                         </div>

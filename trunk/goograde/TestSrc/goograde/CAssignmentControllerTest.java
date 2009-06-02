@@ -63,6 +63,7 @@ public class CAssignmentControllerTest extends TestCase {
             form.setParameter("newAssgnDate", "05-30-09");
             form.setParameter("newAssgnTitle", "Take a Nap");
             form.setParameter("newAssgnTotal", "100");
+            form.setParameter("newAssgnDesc", "Zzzzzzzzzzz");
             form.submit();
         }
         catch (IOException ex)
