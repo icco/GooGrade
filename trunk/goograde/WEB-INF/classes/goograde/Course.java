@@ -402,6 +402,7 @@ public class Course implements java.io.Serializable
                         System.out.println("Invalid assignments: " + ex);
                     }
                 }
+                java.util.Collections.sort(this.assignments, new AssignmentListComparator());
             }
             return this.assignments;
         }
@@ -1104,5 +1105,31 @@ public class Course implements java.io.Serializable
              */ 
         }
         return ret;
+    }
+    
+    /** AssignmentListComparator<T> is an implementation of the java Comparator class
+      * that enables an arrayList of grades to be sorted. See the javadocs for
+      * java.util.Comparator<T> for more details. 
+      * Generic class T is assumed to be an Assignment class. 
+      * Do not use this class to compare anything other than Assignments. 
+      */
+    class AssignmentListComparator<T> implements java.util.Comparator<T>
+    {
+        /**
+         * compare is a comparator method that determines if a Assignment
+         * is due before or after another assignment  
+         * @param one the first assignment
+         * @param two the second assignment
+         * @return a negative number if one is less than two. 
+         * zero if one == two, or a positive number if one is greater than two. 
+         */
+        public int compare(T one, T two)
+        {
+            int returnable = 0;
+                returnable = ((Assignment) one).getDueDate().compareTo(
+                        ((Assignment) two).getDueDate());
+            return returnable;
+            
+        }
     }
 }
