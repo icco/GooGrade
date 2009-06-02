@@ -764,7 +764,10 @@ public class Assignment implements java.io.Serializable
         }
         
         mean = mean / counter;
-        
+        if(counter == 0)
+        {
+            mean = 0F;
+        }
         return mean;
     }
 
@@ -869,7 +872,12 @@ public class Assignment implements java.io.Serializable
                     high = newHigh;
                 }
             }
+             if(counter == 0)
+            {
+                mode = 0F;
+            }
         }
+       
         return mode;
     }
 
