@@ -771,7 +771,7 @@ public class Assignment implements java.io.Serializable
         mean = mean / counter;
         if(counter == 0)
         {
-            mean = 0F;
+            mean = -1F;
         }
         return mean;
     }
@@ -879,7 +879,7 @@ public class Assignment implements java.io.Serializable
             }
              if(counter == 0)
             {
-                mode = 0F;
+                mode = -1F;
             }
         }
        
