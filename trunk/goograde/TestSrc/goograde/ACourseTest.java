@@ -341,9 +341,8 @@ public class ACourseTest extends TestCase {
     {
         System.out.println("getGradingRules");
         Course instance = new Course(1);
-        GradingRules expResult = null;
         GradingRules result = instance.getGradingRules();
-        assertEquals(expResult, result);
+        assertEquals(new Integer(90), result.getA());
     }
 
     /**
