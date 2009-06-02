@@ -15,7 +15,6 @@
         <title>Welcome to GooGrade!</title>
         <%@ include file="libs.jspf" %>
     </head>
-    
     <body>
         
         <div id="wrap">
@@ -26,9 +25,7 @@
             killMyCookie.setPath("/");
             response.addCookie(killMyCookie);
             %>
-            
-            
-                        
+                              
             <div id="index-content">
                 <div class="cornerBox">
                     <div class="corner TL"></div>
@@ -37,7 +34,7 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <div class="logo">
-                            <img class="frontlogo" src="styles/blugooLOGO.gif">
+                            <img class="frontlogo" src="styles/blugooLOGO.gif" alt="Our logo" />
                         </div>
                         <div class="loginlinks">
                             <div class="cornerBox-blue" style="position: relative; top: -20px;">
