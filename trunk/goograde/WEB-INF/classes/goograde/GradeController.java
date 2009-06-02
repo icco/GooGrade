@@ -25,6 +25,7 @@ public class GradeController extends HttpServlet
      * to scale the percentages properly
      */
     static final int kPercentFactor = 10;
+    static final int kChartSize = 200;
     /**
      * teacherSet fulfills the POST teacher request from doPost()
      * @param req the request serveletRequest
@@ -258,7 +259,6 @@ public class GradeController extends HttpServlet
         {
             try
             {
-                Integer sizeA = 200;
                 Student user2 = new Student(user1.getId());
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
                 ArrayList<Grade> gradelist = Grade.getGrades(crse, user2, 0);
@@ -272,8 +272,8 @@ public class GradeController extends HttpServlet
                 req.setAttribute("currentGradeLetter", 
                         user2.getCurrentGradeLetter(crse));
                 req.setAttribute("graph", 
-                        Metrics.gradeDistroBars(crse, sizeA,
-                        sizeA, sizeA/20));
+                        Metrics.gradeDistroBars(crse, kChartSize,
+                        kChartSize, kPercentFactor));
             }
             catch (Exception ex)
             {
