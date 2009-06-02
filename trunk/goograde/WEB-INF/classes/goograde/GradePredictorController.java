@@ -83,8 +83,12 @@ public class GradePredictorController extends HttpServlet
         String msg = "";
         if(ungradedList == null)
         {
-            msg = "Grade " + letter + " cannot be reached. Sorry.";
+            msg = "Grade Not Possible";
             ungradedList = new ArrayList<Grade>();
+        }
+        else
+        {
+            msg = "To get the grade " + letter + " you need to get:";
         }
         
         req.setAttribute("msg", msg);
@@ -96,7 +100,8 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("ungradedList", ungradedList);
         req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
-
+        req.setAttribute("currentGradeLetter", this.getCurrentGradeLetter(student, crse));
+        
         viewForward(view, req, resp);
     }
 
@@ -171,7 +176,8 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("ungradedList", ungradedList);
         req.setAttribute("enrolledCourseList",enrolledCourseList);
         req.setAttribute("user", Utils.getUseridCookie(req));
-        req.setAttribute("msg", "");
+        req.setAttribute("msg", " ");
+        req.setAttribute("currentGradeLetter", this.getCurrentGradeLetter(student, crse));
         viewForward(view, req, resp);
     }
     
@@ -239,5 +245,29 @@ public class GradePredictorController extends HttpServlet
     {
         ArrayList<Grade> toReturn = Grade.predictGrades(course, student, (grade/100));
         return toReturn;
+    }
+    
+    private Character getCurrentGradeLetter(Student student, Course course)
+    {
+        Float grade = student.getCurrentGrade(course);
+        Character ret = 'F';
+        if(grade > course.getGradingRules().getA())
+        {
+            ret = 'A';
+        }
+        else if(grade > course.getGradingRules().getB())
+        {
+            ret = 'B';
+        }
+        else if(grade > course.getGradingRules().getC())
+        {
+            ret = 'C';
+        }
+        else if(grade > course.getGradingRules().getD())
+        {
+            ret = 'D';
+        }
+        
+        return ret;
     }
 }

@@ -29,11 +29,25 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>View Grades</h3>
+                        <h3>Grade Predictor</h3>
                         
                         <div id="data">
                             <c:choose>
+                            <c:when test = "${!empty gradedList || !empty ungradedList}">
+                                <c:choose>
+                                <c:when test = "${fn:length(msg)>3 || !empty ungradedList}">
+                                    <form action="<c:url value="predictor" />" method="post">
+                                        <input type="hidden" name="id" value="${id}" />
+                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="A"/>A
+                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="B"/>B
+                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="C"/>C
+                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="D"/>D
+                                    </form>
+                                </c:when>
+                            </c:choose>
+                            <c:choose>
                                 <c:when test = "${!empty gradedList}">
+                                    <h3>So far you have a ${currentGradeLetter}</h3>
                                     <table>
                                         <thead>
                                             <tr>
@@ -58,14 +72,15 @@
                                             </c:forEach>
                                         </tbody>
                                     </table>
-                                </c:when>
+                                 </c:when>
                                 
                                 <c:otherwise>
-                                    <h3 style="color: #e40000">There are no current grades in this course.</h3>
+                                    <h3 style="color: #e40000">No Graded Assignments Exist.</h3>
                                 </c:otherwise>
                             </c:choose>
                             <c:choose>
                                 <c:when test = "${!empty ungradedList}">
+                                    <h3>${msg}</h3>
                                     <table>
                                         <thead>
                                             <tr>
@@ -96,29 +111,19 @@
                                 <c:otherwise>
                                     <h3 style="color: #e40000">${msg}</h3>
                                 </c:otherwise>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test = "${fn:length(msg)>3 || !empty ungradedList}">
-                                    <form action="<c:url value="predictor" />" method="post">
-                                        <input type="hidden" name="id" value="${id}" />
-                                        <ul>
-                                            <li>
-                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="A"/>A
-                                            </li>
-                                            <li>
-                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="B"/>B
-                                            </li>
-                                            <li>
-                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="C"/>C
-                                            </li>
-                                            <li>
-                                                <input type=radio name="wishedGrade" onclick="this.form.submit();" value="D"/>D
-                                            </li>
-                                        </ul>
-                                    </form>
+                                </c:choose>
+                                <c:choose>
+                                <c:when test = "${fn:length(msg)<3 && empty ungradedList}">
+                                    <h3 style="color: #e40000">No More Ungraded Assignments.</h3>
                                 </c:when>
                             </c:choose>
-                        </div>
+                        </c:when>
+                        <c:otherwise>
+                            <h3 style="color: #e40000">No Assignments In This Course</h3>
+                        </c:otherwise>
+                    </c:choose>
+                            
+                                                    </div>
                     </div>
                 </div>
                 
