@@ -305,7 +305,8 @@ public class Student extends Account
                 totalWeight += grade.getAssignment().getTotal();
                 totalScore += grade.getGrade();
             }
-            System.out.println("totalScore " + totalScore + " totalWeight " + totalWeight);
+            System.out.println("totalScore " + totalScore 
+                    + " totalWeight " + totalWeight);
             currentGrade = totalScore / new Float(totalWeight);
             currentGrade *= oneHundred;
         }

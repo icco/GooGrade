@@ -9,7 +9,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Cookie;
 
 /**
  * Does all of the work on the Assignment, it is the controller 
@@ -55,7 +54,8 @@ public class StudentAssignmentController extends HttpServlet
         }
         catch (Exception ex)
         {
-            Logger.getLogger(StudentAssignmentController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(StudentAssignmentController.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
 
         req.setAttribute("user", Utils.getUseridCookie(req));
@@ -65,6 +65,7 @@ public class StudentAssignmentController extends HttpServlet
         ArrayList<Assignment> assList = crse.getAssignments();
         Integer assTotals = 0;
         
+        /* Set assignment attributes for each one in the list */
         for(Assignment ass : assList)
         {
             assTotals += ass.getTotal();
