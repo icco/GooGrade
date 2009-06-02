@@ -9,14 +9,16 @@ import java.util.Arrays;
  * For more infomation, see http://code.google.com/apis/chart/
  * 
  * @author pphu
- * @version 0.2
+ * @version 2.42
  */
 public final class Metrics
 {
     //Base URL for accessing Google Chart API
 
     private static String baseURL = "http://chart.apis.google.com/chart?";
-    private static String letters[] = { "A (", "B (", "C (", "D (", "F ("};
+    private static String[] letters = {"A (", "B (", "C (", "D (", "F ("};
+    private static final int kAfloor = 100;
+    private static final int kFlocation = 4;
 
     /**
      * To satisfy Checkstyle
@@ -28,7 +30,7 @@ public final class Metrics
     /**
      * Using Google Charts API, pie representing each possible letter grade
      * will be producded where the floor percent values taken from what 
-     * the teacher has set
+     * the teacher has set. 
      * @param course the Course to get the distribution
      * @param graphWidth the desired width of the pie chart
      * @param graphHeight the desired height of the pie chart
@@ -110,7 +112,7 @@ public final class Metrics
         ArrayList<Integer> rules = new ArrayList();
         rules = gradingRules.getRules();
         rules.add(-1);
-        final int aFloor = 100;
+
         //adds the baseURL of Google api
         toReturn += baseURL;
 
@@ -118,10 +120,8 @@ public final class Metrics
         toReturn += "cht=p";
 
         //Adds the graph dimensions as width x height
-        toReturn += "&chs=" + graphWidth + "x" + graphHeight;
+        toReturn += "&chs=" + graphWidth + "x" + graphHeight + "&chd=t:";
         
-        toReturn += "&chd=t:";
-
         //Adds each value in the order of F, D, C, B and then A
         toReturn2 += "&chl=";
 
@@ -147,20 +147,22 @@ public final class Metrics
                 {
                     toReturn += ",";
                 }
-                if(index == 4)
+                
+                //Checks for the final value added  to add proper string
+                if(index == kFlocation)
                 {
                     toReturn += rules.get(index - 1) - rules.get(index);
                     toReturn2 += "F";
-                }
-                else if(index > 0)
+                }//If is it not the first one
+                else if(index > 0) 
                 {
                     toReturn += rules.get(index - 1) - rules.get(index);
                     toReturn2 += letters[index];
                     toReturn2 += rules.get(index) + "%%2B)";
                 }
-                else
+                else//first value has a special setup
                 {
-                    toReturn += aFloor - rules.get(index);
+                    toReturn += kAfloor - rules.get(index);
                     toReturn2 += letters[index];
                     toReturn2 += rules.get(index) + "%%2B)";
                 }
@@ -332,9 +334,7 @@ public final class Metrics
 
         ArrayList<Integer> toReturn = null;
 
-        /*
-         * Checks to see the grade is greater than the floor of the letter grade
-         */
+        //Checks to see the grade is greater than the floor of the letter grade
         if (!rules.isEmpty())
         {
 
@@ -397,14 +397,17 @@ public final class Metrics
 
         rules.add(fFloor); //Adding F floor
 
-        /*
-         * Checks to see the grade is greater than the floor of the letter grade
-         * */
+        // Checks to see the grade is greater than the floor of the letter grade
         for (Grade grade : grades)
         {
+            
             float currentGrade = grade.getGrade();
+            
+            //Checks if the currentGrade grade is in a letter range defined 
+            //by gradingRules
             for (int index = 0; index < distro.length; index++)
             {
+                //if greater than or eqal to the grade rule
                 if (currentGrade > (float) rules.get(index))
                 {
                     distro[index]++;
