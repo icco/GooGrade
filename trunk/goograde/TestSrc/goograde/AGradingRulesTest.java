@@ -36,7 +36,7 @@ public class AGradingRulesTest extends TestCase
         Character letter = new Character('A');
         Integer grade = new Integer(90);
         GradingRules instance = new GradingRules();
-        boolean expResult = false;
+        boolean expResult = true;
         boolean result = instance.setCurve(letter, grade);
         assertEquals(expResult, result);
     }
