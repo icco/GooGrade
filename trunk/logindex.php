@@ -26,14 +26,15 @@ function passed($dir,$file)
 ?>
 <html>
 <head>
-<title>BluGoo Development Server : <?php basename(dirname(__FILE__)); ?></title>
-<link href="style.css" rel="stylesheet" type="text/css"/> 
+<title>BluGoo Development Server : <?php print (dirname(__FILE__)); ?></title>
+<link href="../style.css" rel="stylesheet" type="text/css"/> 
 </head>
 <body>
 
 <h1>Welcome!</h1>
 <strong>Logs</strong><br />
 <ul>
+<li><a href="..">Parent Directory</a></li>
 <?php
 $dir = opendir(".");
 
@@ -55,8 +56,8 @@ $dirArray = array_values($dirArray);
 // print 'em
 // loop through the array of files and print them all
 foreach($dirArray as $entry) {
-if (substr("$entry", 0, 1) != ".") {
-        print("<li><a href=\"$entry\">$entry</a> - " . passed(".",$entry) . "</li>");
+if (substr("$entry", 0, 1) != "." && $entry != "index.php") {
+        print("<li><a href=\"$entry\">$entry</a> - " . passed("",$entry) . "</li>");
     }
 }
 
