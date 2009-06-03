@@ -137,6 +137,14 @@
         <servlet-name>help</servlet-name>
         <url-pattern>/help</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>help</servlet-name>
+        <url-pattern>/student/help</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>help</servlet-name>
+        <url-pattern>/teacher/help</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
