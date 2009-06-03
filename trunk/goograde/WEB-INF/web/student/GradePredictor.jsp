@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
-  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 
 <%@ include file="../libs.jspf" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
@@ -34,103 +34,130 @@
                         
                         <div id="data">
                             <c:choose>
-                            <c:when test = "${!empty gradedList || !empty ungradedList}">
-                                <c:choose>
-                                <c:when test = "${fn:length(msg)>3 || !empty ungradedList}">
-                                    <form action="<c:url value="predictor" />" method="post">
-                                        <input type="hidden" name="id" value="${id}" />
-                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="A"/>A
-                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="B"/>B
-                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="C"/>C
-                                        <input type=radio name="wishedGrade" onclick="this.form.submit();" value="D"/>D
-                                    </form>
+                                <c:when test = "${!empty gradedList || !empty ungradedList}">
+                                    <c:choose>
+                                        <c:when test = "${fn:length(msg)>3 || !empty ungradedList}">
+                                            <form action="<c:url value="predictor" />" method="post">
+                                                <input type="hidden" name="id" value="${id}" />
+                                                <table>
+                                                    <tr>
+                                                                                                         <td rowspan="2" >
+                                                            Grade You Desire: 
+                                                        </td>       
+                                                        <th>A</th>
+                                                        <th>B</th>
+                                                        <th>C</th>
+                                                        <th>D</th>
+                                                    </tr>
+                                                    <tr>
+
+                                                        <td>
+                                                            <input type="radio" name="wishedGrade" onclick="this.form.submit();" value="A"/>
+                                                            
+                                                        </td>
+                                                        <td>
+                                                            
+                                                            <input type="radio" name="wishedGrade" onclick="this.form.submit();" value="B"/>
+                                                        </td>
+                                                        <td>
+                                                            <input type="radio" name="wishedGrade" onclick="this.form.submit();" value="C"/>
+                                                        </td>
+                                                        <td>
+                                                            <input type="radio" name="wishedGrade" onclick="this.form.submit();" value="D"/>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </form>
+                                            <br />
+                                            <br />
+                                            <br />
+                                        </c:when>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test = "${!empty gradedList}">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Assignment</th>
+                                                        <th>Your Grade</th>
+                                                        <th>Possible Points</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="grade" items="${gradedList}">
+                                                        <tr class="color">
+                                                            <td width="200">
+                                                                ${grade.assignment.name}
+                                                            </td>
+                                                            <td>
+                                                                ${grade.grade}
+                                                            </td>
+                                                            <td>
+                                                                ${grade.assignment.total}
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    <tr class="color">
+                                                        <td>Current Grade: ${currentGradeLetter} (${currentGrade})</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </c:when>
+                                        
+                                        <c:otherwise>
+                                            <h3 style="color: #e40000">No Graded Assignments Exist.</h3>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test = "${!empty ungradedList}">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>Assignment</th>
+                                                        <th>Needed Grade</th>
+                                                        <th>Possible Points</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="ungrade" items="${ungradedList}">
+                                                        <tr class="color">
+                                                            <td width="200">
+                                                                ${ungrade.assignment.name}
+                                                            </td>
+                                                            <td>
+                                                                ${ungrade.grade}
+                                                            </td>
+                                                            <td>
+                                                                ${ungrade.assignment.total}
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                    <c:if test="${fn:length(msg) > 3}">
+                                                        <tr class="color">
+                                                            <td>${msg}</td>
+                                                        </tr>
+                                                    </c:if>
+                                                </tbody>
+                                            </table>
+                                            
+                                        </c:when>
+                                        
+                                        <c:otherwise>
+                                            <h3 style="color: #e40000">${msg}</h3>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <c:choose>
+                                        <c:when test = "${fn:length(msg)<3 && empty ungradedList}">
+                                            <h3 style="color: #e40000">No More Ungraded Assignments.</h3>
+                                        </c:when>
+                                    </c:choose>
                                 </c:when>
-                            </c:choose>
-                            <c:choose>
-                                <c:when test = "${!empty gradedList}">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Assignment</th>
-                                                <th>Your Grade</th>
-                                                <th>Possible Points</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach var="grade" items="${gradedList}">
-                                                <tr class="color">
-                                                    <td width="200">
-                                                        ${grade.assignment.name}
-                                                    </td>
-                                                    <td>
-                                                        ${grade.grade}
-                                                    </td>
-                                                    <td>
-                                                        ${grade.assignment.total}
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            <tr class="color">
-                                                <td>Current Grade: ${currentGradeLetter} (${currentGrade})</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                 </c:when>
-                                
                                 <c:otherwise>
-                                    <h3 style="color: #e40000">No Graded Assignments Exist.</h3>
+                                    <h3 style="color: #e40000">No Assignments In This Course</h3>
                                 </c:otherwise>
                             </c:choose>
-                            <c:choose>
-                                <c:when test = "${!empty ungradedList}">
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>Assignment</th>
-                                                <th>Needed Grade</th>
-                                                <th>Possible Points</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach var="ungrade" items="${ungradedList}">
-                                                <tr class="color">
-                                                    <td width="200">
-                                                        ${ungrade.assignment.name}
-                                                    </td>
-                                                    <td>
-                                                        ${ungrade.grade}
-                                                    </td>
-                                                    <td>
-                                                        ${ungrade.assignment.total}
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            <c:if test="${fn:length(msg) > 3}">
-                                            <tr class="color">
-                                                <td>${msg}</td>
-                                            </tr>
-                                        </c:if>
-                                        </tbody>
-                                    </table>
-                                    
-                                </c:when>
-                                
-                                <c:otherwise>
-                                    <h3 style="color: #e40000">${msg}</h3>
-                                </c:otherwise>
-                                </c:choose>
-                                <c:choose>
-                                <c:when test = "${fn:length(msg)<3 && empty ungradedList}">
-                                    <h3 style="color: #e40000">No More Ungraded Assignments.</h3>
-                                </c:when>
-                            </c:choose>
-                        </c:when>
-                        <c:otherwise>
-                            <h3 style="color: #e40000">No Assignments In This Course</h3>
-                        </c:otherwise>
-                    </c:choose>
                             
-                                                    </div>
+                        </div>
                     </div>
                 </div>
                 

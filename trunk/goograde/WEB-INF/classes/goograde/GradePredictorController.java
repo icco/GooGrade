@@ -28,29 +28,6 @@ public class GradePredictorController extends HttpServlet
      * to scale the percentages properly, but the other way
      */
     static final int kHundred = 100;
-    /**
-     * Fetches the information from a cookie and places it into an Account.
-     * @param user1 the Account being modified
-     * @param req the request ServeletRequest. 
-     * @return the accoutn modified. 
-     * @author vgerdin
-     */
-    private Account getCookie(Account user1, HttpServletRequest req)
-    {
-        // Gets the cookie we want
-        for (Cookie cook : req.getCookies())
-        {
-            /*Get the id of the account in order to load it */
-            if (cook.getName().equals("userid"))
-            {
-                user1.setId(new Integer(cook.getValue()));
-                user1.fetch();
-            }
-        }
-        
-        return user1;
-    }
-
         
     /**
      * doPost performs actions requested by the client
@@ -69,7 +46,7 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("id", courseId);
         Course crse = new Course(courseId);
 
-        user1 = getCookie(user1, req);
+        user1 = Utils.getUseridCookie(req);
 
         view = req.getRequestDispatcher("/student/GradePredictor.jsp");
         
@@ -160,7 +137,7 @@ public class GradePredictorController extends HttpServlet
         req.setAttribute("id", req.getParameter("id"));
         Course crse = new Course(courseId);
 
-        user1 = getCookie(user1, req);
+        user1 = Utils.getUseridCookie(req);
 
         view = req.getRequestDispatcher("/student/GradePredictor.jsp");
         
