@@ -100,8 +100,6 @@ public class GradePredictorController extends HttpServlet
         else
         {
             msg = "Predicted Grade: " + letter;
-            msg += "(" + NumberFormat.getPercentInstance().format(
-                    student.getCurrentGrade(crse)*kPercentFactor) +")";
         }
         
         req.setAttribute("msg", msg);
