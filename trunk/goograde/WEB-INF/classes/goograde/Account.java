@@ -288,7 +288,7 @@ public class Account implements java.io.Serializable
             String query = "UPDATE Accounts SET "
                     + "username = \"" + this.getUserName() + "\","
                     + "name = \"" + this.getFullName() + "\","
-                    + "email = \"" + this.getEmailAddress().toString() + "\","
+                    + "email = \"" + this.getEmailAddress().toString() + "\" "
                     + "WHERE id = \"" + this.getId() + "\"";
             ret = conn.updateQuery(query);
         }

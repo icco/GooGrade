@@ -34,92 +34,99 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Manage Assignments</h3>
-                        <div id="data"> 
-                            <table >
-                                <tr>
-                                    <th>Assignment</th>
-                                    <th>Assignment Total</th>
-                                    <th>Due Date</th>
-                                    <th>Type</th>
-                                </tr>
-                                
-                                <%--TODO, do display "no assignments exist" --%>
-                                <c:forEach var = 'assg' items="${AssignmentList}">
-                                    <tr class="color">
-                                        <!-- ${assg} -->
-                                        <td><a href="#TB_inline?height=60&width=700&inlineId=AssDesc${assg.id}a" title="${assg.name} Description" class="thickbox">${assg.name}</a></td>
-                                        <td>${assg.total}</td>
-                                        <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
-                                        <td>${assg.dueDate}</td>
-                                        <td>${assg.type}</td>
+                        <div id="data">
+                            <c:choose>
+                                <c:when test = "${!empty AssignmentList}">
+                                    <table >
+                                        <tr>
+                                            <th>Assignment</th>
+                                            <th>Assignment Total</th>
+                                            <th>Due Date</th>
+                                            <th>Type</th>
+                                        </tr>
                                         
-                                        <td>
-                                            <input alt="#TB_inline?height=100&width=700&inlineId=Edit${assg.id}" 
-                                                   title="Edit Course" 
-                                                   class="thickbox" 
-                                                   type="button"
-                                                   value="Edit"
-                                                   />
-                                            <div id="Edit${assg.id}" style="display: none">
-                                                <form action="<c:url value="assignment"/>" method="post">
-                                                    <input type="hidden" name="action" value="edit" />
-                                                    <input type="hidden" name="id" value="${id}" />
-                                                    <input type="hidden" name="AssignId" value="${assg.id}" />
-                                                    <table>
-                                                        <tr>
-                                                            <td>
-                                                                Title<input type="text" name="newAssgnTitle" value="${assg.name}" />
-                                                            </td>
-                                                            <td>
-                                                                Due Date
-                                                                
-                                                                <input class="datepicker" type="date" size="5" name="newAssgnDate" value="${assg.dueDate}"/>
-                                                            </td>
-                                                            <td>
-                                                                Total Points <input type="integer" size="5" name="newAssgnTotal" value="${assg.total}" />
-                                                            </td>
+                                        <%--TODO, do display "no assignments exist" --%>
+                                        <c:forEach var = 'assg' items="${AssignmentList}">
+                                            <tr class="color">
+                                                <!-- ${assg} -->
+                                                <td><a href="#TB_inline?height=60&width=700&inlineId=AssDesc${assg.id}a" title="${assg.name} Description" class="thickbox">${assg.name}</a></td>
+                                                <td>${assg.total}</td>
+                                                <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
+                                                <td>${assg.dueDate}</td>
+                                                <td>${assg.type}</td>
+                                                
+                                                <td>
+                                                    <input alt="#TB_inline?height=100&width=700&inlineId=Edit${assg.id}" 
+                                                           title="Edit Course" 
+                                                           class="thickbox" 
+                                                           type="button"
+                                                           value="Edit"
+                                                           />
+                                                    <div id="Edit${assg.id}" style="display: none">
+                                                        <form action="<c:url value="assignment"/>" method="post">
+                                                            <input type="hidden" name="action" value="edit" />
+                                                            <input type="hidden" name="id" value="${id}" />
+                                                            <input type="hidden" name="AssignId" value="${assg.id}" />
+                                                            <table>
+                                                                <tr>
+                                                                    <td>
+                                                                        Title<input type="text" name="newAssgnTitle" value="${assg.name}" />
+                                                                    </td>
+                                                                    <td>
+                                                                        Due Date
+                                                                        
+                                                                        <input class="datepicker" type="date" size="5" name="newAssgnDate" value="${assg.dueDate}"/>
+                                                                    </td>
+                                                                    <td>
+                                                                        Total Points <input type="integer" size="5" name="newAssgnTotal" value="${assg.total}" />
+                                                                    </td>
+                                                                    
+                                                                    <td>
+                                                                        Type: 
+                                                                        <select name="newAssgnType" size="1">
+                                                                            <option value="Homework">Homework</option>
+                                                                            <option value="Quiz">Quiz</option>
+                                                                            <option value="Test">Test</option>
+                                                                            <option value="Final">Final</option>
+                                                                            <option value="Participation">Participation</option>
+                                                                            <option value="Other">Other</option>
+                                                                        </select>
+                                                                        
+                                                                    </td>
+                                                                    <td>
+                                                                        <input  type="submit" value="Save" />
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="4">
+                                                                        Description<br/>
+                                                                        <input type="text" name="newAssgnDesc" value="${assg.description}" size="70" />
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
                                                             
-                                                            <td>
-                                                                Type: 
-                                                                <select name="newAssgnType" size="1">
-                                                                    <option value="Homework">Homework</option>
-                                                                    <option value="Quiz">Quiz</option>
-                                                                    <option value="Test">Test</option>
-                                                                    <option value="Final">Final</option>
-                                                                    <option value="Participation">Participation</option>
-                                                                    <option value="Other">Other</option>
-                                                                </select>
-                                                                
-                                                            </td>
-                                                            <td>
-                                                                <input  type="submit" value="Save" />
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="4">
-                                                                Description<br/>
-                                                                <input type="text" name="newAssgnDesc" value="${assg.description}" size="70" />
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                    
-                                                </form>
-                                            </div>
-                                        </td>
-                                        
-                                        <td>
-                                            <form action="<c:url value="assignment" />" method="post">
-                                                <input type="hidden" name="id" value="${id}" />
-                                                <input type="hidden" name="action" value="delete" />
-                                                <input type="hidden" name="AssgnId" value="${assg.id}" />
-                                                <input type="submit" value="Remove">
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <div id="AssDesc${assg.id}a" style="display: none">
-                                        <p>${assg.description}</p>
-                                    </div>                              </c:forEach>
-                            </table>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td>
+                                                    <form action="<c:url value="assignment" />" method="post">
+                                                        <input type="hidden" name="id" value="${id}" />
+                                                        <input type="hidden" name="action" value="delete" />
+                                                        <input type="hidden" name="AssgnId" value="${assg.id}" />
+                                                        <input type="submit" value="Remove">
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <div id="AssDesc${assg.id}a" style="display: none">
+                                                <p>${assg.description}</p>
+                                            </div>                              </c:forEach>
+                                        </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <h3 style="color: #e40000">No Assignments Exist</h3>
+                                </c:otherwise>
+                            </c:choose>
                             <input alt="#TB_inline?height=300&width=700&inlineId=FormPopUp" 
                                    title="Add New Assignment" 
                                    class="thickbox" 

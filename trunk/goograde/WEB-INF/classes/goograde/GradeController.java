@@ -170,7 +170,16 @@ public class GradeController extends HttpServlet
         }
         else // Is a student
         {
-            req = studentHelper(req, user1, user2, crse, view);
+            try
+            {
+                user2 = new Student(user1.getId());
+                req = studentHelper(req, user1, user2, crse, view);
+            }
+            catch (Exception ex)
+            {
+                Logger.getLogger(
+                        GradeController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         req.setAttribute("user", user1);
@@ -192,7 +201,7 @@ public class GradeController extends HttpServlet
     {
         try
             {
-                user2 = new Student(user1.getId());
+                
                 view = req.getRequestDispatcher("/student/ViewGrades.jsp");
                 ArrayList<Grade> gradelist = user2.getGrades(crse);
                 req.setAttribute("enrolledCourseList",
@@ -253,6 +262,7 @@ public class GradeController extends HttpServlet
         // Are we a student or a teacher
         if (user1.isTeacher())
         {
+            view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
             req = teacherHelper(req, resp, view, user1, courseId, crse);
         }
         else // Is a student
@@ -300,7 +310,7 @@ public class GradeController extends HttpServlet
             HttpServletResponse resp, RequestDispatcher view, Account user1,
             Integer courseId, Course crse)
     {
-        view = req.getRequestDispatcher("/teacher/ManageGrades.jsp");
+        
             Teacher user3;
             ArrayList<Grade> gradelist = gradeListHelper();
 

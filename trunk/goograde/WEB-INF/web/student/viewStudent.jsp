@@ -28,24 +28,25 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Your Courses</h3>
-               
-                        <table>
-                            <tr>
-                                <td>Title</td>
-                                <td>Department</td>
-                                <td>Number</td>
-                                <td>Section</td>
-                            </tr>
-                            
-                            <c:forEach var="course" items="${enrolledCourseList}">
+                        <div id="data">
+                            <table>
                                 <tr>
-                                    <td>${course.title}</td>
-                                    <td>${course.department}</td>
-                                    <td>${course.number}</td>
-                                    <td>${course.section}</td>
+                                    <th>Title</th>
+                                    <th>Department</th>
+                                    <th>Number</th>
+                                    <th>Section</th>
                                 </tr>
-                            </c:forEach>
-                        </table>
+                                
+                                <c:forEach var="course" items="${enrolledCourseList}">
+                                    <tr class="color">
+                                        <td>${course.title}</td>
+                                        <td>${course.department}</td>
+                                        <td>${course.number}</td>
+                                        <td>${course.section}</td>
+                                    </tr>
+                                </c:forEach>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 

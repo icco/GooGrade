@@ -28,20 +28,22 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>View Course</h3>
-                        <table>
-                            <tr>
-                                <th>Title</th>
-                                <th>Department</th>
-                                <th>Number</th>
-                                <th>Section</th>
-                            </tr>
-                            <tr class="color">
-                                <td>${currentCourse.title}</td>
-                                <td>${currentCourse.department}</td>
-                                <td>${currentCourse.number}</td>
-                                <td>${currentCourse.section}</td>
-                            </tr>
-                        </table>
+                        <div id="data">
+                            <table>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Department</th>
+                                    <th>Number</th>
+                                    <th>Section</th>
+                                </tr>
+                                <tr class="color">
+                                    <td>${currentCourse.title}</td>
+                                    <td>${currentCourse.department}</td>
+                                    <td>${currentCourse.number}</td>
+                                    <td>${currentCourse.section}</td>
+                                </tr>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 

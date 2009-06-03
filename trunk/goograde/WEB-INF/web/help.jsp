@@ -31,8 +31,9 @@
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
                         <h3>Help</h3>
-                        <p> Pressing the submit button sends the information on the page to the application.
-                        
+                        <div id="data">
+                            <p> Pressing the submit button sends the information on the page to the application.
+                        </div>
                     </div>
                 </div>
             </div>

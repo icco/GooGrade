@@ -29,6 +29,8 @@
                         <h3>Manage Grades</h3>
                         
                         <div id="data">
+                            <c:choose>
+                            <c:when test = "${!empty assArray && !empty stuArray}">
                             <form action="<c:url value="grades" />?id=${id}" method="post">
                                 
                                 <table>
@@ -63,7 +65,18 @@
                                 
                                 <input type="submit" value="Grade" />
                             </form>
-                            
+                        </c:when>
+                        <c:otherwise>
+                            <c:if test="${empty stuArray}">
+                                <h3 style="color: #e40000">No Students Exist</h3>
+                                <a href="/GooGrade2.0/teacher/accounts?id=${id}">Manage Accounts</a>
+                            </c:if>
+                            <c:if test="${empty assArray}">
+                                <h3 style="color: #e40000">No Assignments Exist</h3>
+                                <a href="/GooGrade2.0/teacher/assignment?id=${id}">Manage Assignments</a>
+                            </c:if>
+                        </c:otherwise>
+                        </c:choose>
                         </div>
                     </div>
                 </div>

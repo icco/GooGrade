@@ -27,34 +27,39 @@
                     <div class="corner BL"></div>
                     <div class="corner BR"></div>
                     <div class="cornerBoxInner">
-                        <h3>View Assignmnents</h3>
+                        <h3>View Assignments</h3>
                         <div id="data"> 
-                            <table >
-                                <tr>
-                                    <th>Assignment</th>
-                                    <th>Assignment Total</th>
-                                    <th>Due Date</th>
-                                    <th>Type</th>
-                                </tr>
-                                
-                                <%--TODO, do display "no assignments exist" --%>
-                                <c:forEach var = 'assg' items="${AssignmentList}">
-                                    <tr class="color">
-                                        <td><a href="#TB_inline?height=60&width=700&inlineId=AssDesc${assg.id}a" title="${assg.name} Description" class="thickbox">${assg.name}</a></td>
-                                        <td>${assg.total}</td>
-                                        <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
-                                        <td>${assg.dueDate}</td>
-                                        <td>${assg.type}</td>
-                                    </tr>
-                                    <div id="AssDesc${assg.id}a" style="display: none">
-                                        <p>${assg.description}</p>
-                                    </div>
-                                </c:forEach>
-                                <tr class="color">
-                                    <td style="border:0px;background-color:#e5ecf3"></td>
-                                    <td>${AssignmentTotals}</td>
-                                </tr>
-                            </table>
+                            <c:choose>
+                                <c:when test="${!empty AssignmentList}">
+                                    <table >
+                                        <tr>
+                                            <th>Assignment</th>
+                                            <th>Assignment Total</th>
+                                            <th>Due Date</th>
+                                            <th>Type</th>
+                                        </tr>
+                                        <c:forEach var = 'assg' items="${AssignmentList}">
+                                            <tr class="color">
+                                                <td><a href="#TB_inline?height=60&width=700&inlineId=AssDesc${assg.id}a" title="${assg.name} Description" class="thickbox">${assg.name}</a></td>
+                                                <td>${assg.total}</td>
+                                                <%-- http://www.servletsuite.com/servlets/datetime.htm --%>
+                                                <td>${assg.dueDate}</td>
+                                                <td>${assg.type}</td>
+                                            </tr>
+                                            <div id="AssDesc${assg.id}a" style="display: none">
+                                                <p>${assg.description}</p>
+                                            </div>
+                                        </c:forEach>
+                                        <tr class="color">
+                                            <td style="border:0px;background-color:#e5ecf3">Total:</td>
+                                            <td>${AssignmentTotals}</td>
+                                        </tr>
+                                    </table>
+                                </c:when>
+                                <c:otherwise>
+                                    <h3 style="color: #e40000">No Assignments Exist.</h3>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                     </div>
                 </div>

@@ -15,8 +15,8 @@
             
             ${user.userName} &nbsp; |  &nbsp;&nbsp; 
             <a href="../settings?userId=${user.id}&keepThis=true&TB_iframe=true&height=400&width=600" class="thickbox">
-            Account Settings</a>&nbsp;&nbsp;
-            | &nbsp;&nbsp; <a href="../">Logout</a>| <a href="help">Help</a>
+            Account Settings</a>&nbsp;
+            | &nbsp; <a href="../">Logout</a>|&nbsp; <a href="/GooGrade2.0/help">Help</a>
         </div>
     </div>
 </div>
