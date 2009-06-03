@@ -33,7 +33,7 @@ I am using an iFrame (2nd to last demo)
                     <td>Full Name:<input name="selfFullName" type="text" value="${user.fullName}"  /></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" value="Change" /></td>
+                    <td><input type="submit" value="Change" onclick="parent.tb_remove(); parent.location.href=parent.location.href; parent.location.href=parent.location.href; parent.location.refresh()"/></td>
                 </tr>
             </form>
         </table>
