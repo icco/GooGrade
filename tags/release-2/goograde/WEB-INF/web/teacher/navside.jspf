@@ -1,0 +1,152 @@
+<%-- 
+    Document   : navside (Teacher)
+    Created on : Apr 24, 2009, 3:07:57 AM
+    Author     : pphu
+--%>
+<%@page contentType="text/html"%>
+<!-- Begin Nav -->
+
+<c:choose>
+    <c:when test = "${!empty currentCourse}">
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#accordion").accordion(
+                { 
+                    active: "#${currentCourse.department}${currentCourse.number}${currentCourse.section}",
+                    alwaysOpen: false, 
+                    collapsible: true,
+                    autoHeight: true
+                });
+
+            });
+
+        </script>
+    </c:when>
+    <c:otherwise>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#accordion").accordion(
+                { 
+                    active: false, 
+                    alwaysOpen: false, 
+                    collapsible: true,
+                    autoHeight: true
+                });
+
+            });
+        </script>
+    </c:otherwise>
+</c:choose>
+
+<script language="javascript">
+function Clickheretoprint()
+{ 
+  var disp_setting="toolbar=yes,location=no,directories=yes,menubar=yes,"; 
+      disp_setting+="scrollbars=yes,width=650, height=600, left=100, top=25"; 
+  var content_vlue = document.getElementById("content").innerHTML; 
+  var docprint=window.open("","",disp_setting); 
+   docprint.document.open(); 
+   docprint.document.write('<html><head><title>'); 
+   docprint.document.write(document.title); 
+   docprint.document.write('</title><link rel="stylesheet" type="text/css" href="/GooGrade2.0/styles/print.css" /></head><body>');          
+   docprint.document.write('<div id=wrap><div id=content'); 
+   docprint.document.write(content_vlue);          
+   docprint.document.write('</div></div></body></html>'); 
+   docprint.document.close(); 
+   docprint.focus(); 
+}
+</script>
+
+<div id="side">
+    <div class="cornerBox">
+        <div class="corner TL"></div>
+        <div class="corner TR"></div>
+        <div class="corner BL"></div>
+        <div class="corner BR"></div>
+        <div class="cornerBoxInner">
+            <h1><a href="/GooGrade2.0">Goo<span style="color: #518ac1;">Grade</span></a></h1>
+            <h2><a href="/GooGrade2.0/teacher">Teacher's Control Panel </a></h2>
+            <div id=coursepanel>
+                <div class="cornerBox-blue">
+                    <div class="corner-blue TL"></div>
+                    <div class="corner-blue TR"></div>
+                    <div class="corner-blue BL"></div>
+                    <div class="corner-blue BR"></div>
+                    <div class="cornerBoxInner-blue">
+                        
+                        <ul class="iconlist">
+                            <%-- Not till release 3
+                            <li class="import" >
+                                <img src="../styles/import.png" style=" position: relative; top: 3px;">Import Course
+                            </li>
+                            --%>
+                            <li class="add">
+                                <h4><img src="/GooGrade2.0/styles/add.png" style=" position: relative; top: 2px;"><a href="/GooGrade2.0/teacher/course">Manage Courses</a></h4>
+                            </li>
+                            <li class="print">
+                                <h4><img src="/GooGrade2.0/styles/print.png" style="width:25px; height:25px; position: relative; right: 2px; top: 3px;"><a href="javascript:Clickheretoprint()">Printer Friendly Page</a><br></h4>
+                            </li>
+                            <%-- Not till release 3
+                            <li class="export" >
+                                <img src="../styles/export.png" style=" position: relative; top: 3px;">Export Course
+                            </li>
+                            --%>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="accordion">
+                <c:forEach var="course" items="${teachCourseList}">
+                    <h3 class="trigger" id="${course.department}${course.number}${course.section}"><a href="#${course.department}${course.number}${course.section}">${course.department} ${course.number}-${course.section}</a></h3>
+                    
+                    <div class="toggle_container">
+                        
+                        <div class="block">
+                            <ul>
+                                <%--
+                            <li>
+                                <a href="ManageAccouncements.jsp">Manage Accouncements</a>
+                            </li>
+                                --%>
+                                <li>
+                                    <a href="/GooGrade2.0/teacher/grades?id=${course.id}">Manage Grades</a>
+                                </li>
+                                <li>
+                                    <a href="/GooGrade2.0/teacher/assignment?id=${course.id}">Manage Assignments</a>
+                                </li>
+                                <li>
+                                    <a href="/GooGrade2.0/teacher/accounts?id=${course.id}">Manage Accounts</a>
+                                </li>
+                                <%-- For Release 2
+                            <li>
+                                <a href="SendEmail.jsp">Send Email</a>
+                            </li>
+                            <li>
+                                <a href="TakeAttendance.jsp">Take Attendance</a>
+                            </li>
+                                --%>
+                                <li>
+                                    <a href="/GooGrade2.0/teacher/roster?id=${course.id}">View Roster</a>
+                                </li>
+                                <%-- For Release 2
+                                <li>
+                                    <a href="/GooGrade/teacher/editCourse?id=${course.id}">Edit Course</a>
+                                </li>
+                                --%>
+
+                                <li>
+                                    <a href="/GooGrade2.0/teacher/rules?id=${course.id}">Adjust Grading Curve</a>
+                                </li> 
+                                
+                            </ul>
+                        </div>  
+                    </div>  
+                </c:forEach>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- End Nav -->

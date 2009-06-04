@@ -1,0 +1,40 @@
+<%-- 
+    Document   : navside
+    Created on : Apr 24, 2009, 3:07:57 AM
+    Author     : pphu
+--%>
+
+<!-- Begin Nav -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#accordion").accordion(
+        { 
+            active: false, 
+            alwaysOpen: false, 
+            collapsible: true,
+            autoHeight: true
+        });
+
+    });
+</script>
+
+<div id="side">
+    <div class="cornerBox">
+        <div class="corner TL"></div>
+        <div class="corner TR"></div>
+        <div class="corner BL"></div>
+        <div class="corner BR"></div>
+        <div class="cornerBoxInner">
+            <h1><a href="/GooGrade2.0">Goo<span style="color: #518ac1;">Grade</span></a></h1>
+            
+           
+            
+            <div id="accordion">
+                
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- End Nav -->
